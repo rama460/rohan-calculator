@@ -6,13 +6,10 @@ import StatusPanel from "./StatusPanel";
 import CharactorPanel from "./CharactorPanel";
 import BuffPanel from "./BuffPanel";
 import React from "react";
-import { Race, races } from "../static/racs";
-import { Item } from "./EquipmentIconButton";
 
 export const Status = () => {
     const [level, setLevel] = React.useState(115);
     const [heroLevel, setHeroLevel] = React.useState(50);
-    const [race, setRace] = React.useState<Race>(races[0]);
     const [raceid, setRaceid] = React.useState("0");
     const [jobid, setJobid] = React.useState("0");
 
@@ -25,7 +22,7 @@ export const Status = () => {
                             <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
                                 Base
                             </Typography>
-                            <BasePanel level={level} heroLevel={heroLevel} race={race} raceid={raceid} jobid={jobid} setLevel={setLevel} setHeroLevel={setHeroLevel} setRace={setRace} setRaceid={setRaceid} setJobid={setJobid} />
+                            <BasePanel level={level} heroLevel={heroLevel} raceid={raceid} jobid={jobid} setLevel={setLevel} setHeroLevel={setHeroLevel} setRaceid={setRaceid} setJobid={setJobid} />
                         </Box>
                     </Grid>
                     <Grid size={{ md: 12, xs: 12 }}>

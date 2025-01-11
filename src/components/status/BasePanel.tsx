@@ -1,25 +1,22 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
-import { Race, races } from "../static/racs";
+import { races } from "../static/racs";
 
 interface BasePanelProps {
     level: number;
     heroLevel: number;
     raceid: string;
-    race: Race;
     jobid: string;
     setLevel: (level: number) => void;
     setHeroLevel: (heroLevel: number) => void;
     setRaceid: (raceid: string) => void;
-    setRace: (race: Race) => void;
     setJobid: (jobid: string) => void;
 }
 
 
-export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, race, jobid, setLevel, setHeroLevel, setRaceid, setRace, setJobid }) => {
+export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, jobid, setLevel, setHeroLevel, setRaceid, setJobid }) => {
     const handleRaceChange = (event: SelectChangeEvent) => {
         setRaceid(event.target.value as string);
-        setRace(races[Number(event.target.value)]);
     }
     const handleJobChange = (event: SelectChangeEvent) => {
         setJobid(event.target.value as string);
@@ -51,6 +48,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                         type="number"
                         size="small"
                         defaultValue={50}
+                        value={heroLevel}
                         sx={{ width: "80px", }}
                         slotProps={{ htmlInput: { min: 0, max: 50 } }}
                         onChange={(event) => {

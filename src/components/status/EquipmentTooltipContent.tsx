@@ -14,7 +14,7 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
     }
     const rows: EquipmentTooltipContentRowProps[] = [
         {
-            value: "ヴァレンティノの名誉",
+            value: currentItem.name,
             color: "red",
         },
         {
