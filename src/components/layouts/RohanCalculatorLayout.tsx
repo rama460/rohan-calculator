@@ -1,6 +1,7 @@
 import React from "react";
 import RohanCaluculatorDrawer from "./RohanCalculatorDrawer";
 import RohanCalculatorHeader from "./RohanCalculatorHeader";
+import Status from "../status/Status";
 
 export const RohanCalculatorLayout: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -12,6 +13,7 @@ export const RohanCalculatorLayout: React.FC = () => {
         <React.Fragment>
             <RohanCalculatorHeader open={open} toggleDrawer={toggleDrawer} />
             <RohanCaluculatorDrawer open={open} toggleDrawer={toggleDrawer} />
+            <Status />
         </React.Fragment>
 
     );
