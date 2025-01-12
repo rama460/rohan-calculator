@@ -30,7 +30,7 @@ export const Status = () => {
                             <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
                                 Status
                             </Typography>
-                            <StatusPanel level={level} heroLevel={heroLevel} />
+                            <StatusPanel level={level} heroLevel={heroLevel} raceid={raceid} />
                         </Box>
                     </Grid>
                     <Grid size={{ md: 6, xs: 12 }}>

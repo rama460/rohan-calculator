@@ -3,11 +3,13 @@ import Grid from "@mui/material/Grid2";
 import StatusField from "./StatusField";
 import React from "react";
 import StatusFieldTitle from "./StatusFieldTitle";
+import { races } from "../static/racs";
 
 
 interface StatusPanelProps {
     level: number;
     heroLevel: number;
+    raceid: string;
 }
 
 const gainedPoint = (level: number, heroLevel: number) => {
@@ -22,7 +24,7 @@ const gainedPoint = (level: number, heroLevel: number) => {
 }
 
 
-export const StatusPanel: React.FC<StatusPanelProps> = ({ level, heroLevel }) => {
+export const StatusPanel: React.FC<StatusPanelProps> = ({ level, heroLevel, raceid }) => {
     const [point, setPoint] = React.useState(gainedPoint(level, heroLevel));
     const [strength, setStrength] = React.useState(0);
     const [vitality, setVitality] = React.useState(0);
@@ -85,22 +87,22 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ level, heroLevel }) =>
                 <StatusFieldTitle />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="力" value={strength + metaStrength} onBaseChange={handleStrengthChange} onMetaChange={handleMetaStrengthChange} />
+                <StatusField name="力" value={strength + metaStrength + races[Number(raceid)].initialStatus.strength} onBaseChange={handleStrengthChange} onMetaChange={handleMetaStrengthChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="体力" value={vitality + metaVitality} onBaseChange={handleVitalityChange} onMetaChange={handleMetaVitalityChange} />
+                <StatusField name="体力" value={vitality + metaVitality + races[Number(raceid)].initialStatus.vitality} onBaseChange={handleVitalityChange} onMetaChange={handleMetaVitalityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="知能" value={intelligence + metaIntelligence} onBaseChange={handleIntelligenceChange} onMetaChange={handleMetaIntelligenceChange} />
+                <StatusField name="知能" value={intelligence + metaIntelligence + races[Number(raceid)].initialStatus.intelligence} onBaseChange={handleIntelligenceChange} onMetaChange={handleMetaIntelligenceChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="敏捷性" value={agility + metaAgility} onBaseChange={handleAgilityChange} onMetaChange={handleMetaAgilityChange} />
+                <StatusField name="敏捷性" value={agility + metaAgility + races[Number(raceid)].initialStatus.agility} onBaseChange={handleAgilityChange} onMetaChange={handleMetaAgilityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="精神力" value={mentality + metaMentality} onBaseChange={handleMentalityChange} onMetaChange={handleMetaMentalityChange} />
+                <StatusField name="精神力" value={mentality + metaMentality + races[Number(raceid)].initialStatus.mentality} onBaseChange={handleMentalityChange} onMetaChange={handleMetaMentalityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="瞬発力" value={dexterity + metaDexterity} onBaseChange={handleDexterityChange} onMetaChange={handleMetaDexterityChange} />
+                <StatusField name="瞬発力" value={dexterity + metaDexterity + races[Number(raceid)].initialStatus.dexterity} onBaseChange={handleDexterityChange} onMetaChange={handleMetaDexterityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
                 <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
