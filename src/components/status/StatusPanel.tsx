@@ -24,57 +24,57 @@ const gainedPoint = (level: number, heroLevel: number) => {
 
 export const StatusPanel: React.FC<StatusPanelProps> = ({ level, heroLevel }) => {
     const [point, setPoint] = React.useState(gainedPoint(level, heroLevel));
-    const [str, setStr] = React.useState(0);
-    const [sta, setSta] = React.useState(0);
-    const [int, setInt] = React.useState(0);
-    const [dex, setDex] = React.useState(0);
-    const [men, setMen] = React.useState(0);
-    const [ins, setIns] = React.useState(0);
-    const [metaStr, setMetaStr] = React.useState(0);
-    const [metaSta, setMetaSta] = React.useState(0);
-    const [metaInt, setMetaInt] = React.useState(0);
-    const [metaDex, setMetaDex] = React.useState(0);
-    const [metaMen, setMetaMen] = React.useState(0);
-    const [metaIns, setMetaIns] = React.useState(0);
+    const [strength, setStrength] = React.useState(0);
+    const [vitality, setVitality] = React.useState(0);
+    const [intelligence, setIntelligence] = React.useState(0);
+    const [agility, setAgility] = React.useState(0);
+    const [mentality, setMentality] = React.useState(0);
+    const [dexterity, setDexterity] = React.useState(0);
+    const [metaStrength, setMetaStrength] = React.useState(0);
+    const [metaVitality, setMetaVitality] = React.useState(0);
+    const [metaIntelligence, setMetaIntelligence] = React.useState(0);
+    const [metaAgility, setMetaAgility] = React.useState(0);
+    const [metaMentality, setMetaMentality] = React.useState(0);
+    const [metaDexterity, setMetaDexterity] = React.useState(0);
     React.useEffect(() => {
         setPoint(gainedPoint(level, heroLevel));
     }, [level, heroLevel]);
 
-    const handleStrChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setStr(Number(event.target.value));
+    const handleStrengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setStrength(Number(event.target.value));
     }
-    const handleStaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSta(Number(event.target.value));
+    const handleVitalityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setVitality(Number(event.target.value));
     }
-    const handleIntChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInt(Number(event.target.value));
+    const handleIntelligenceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIntelligence(Number(event.target.value));
     }
-    const handleDexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDex(Number(event.target.value));
+    const handleAgilityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAgility(Number(event.target.value));
     }
-    const handleMenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMen(Number(event.target.value));
+    const handleMentalityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMentality(Number(event.target.value));
     }
-    const handleInsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIns(Number(event.target.value));
+    const handleDexterityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDexterity(Number(event.target.value));
     }
-    const handleMetaStrChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMetaStr(Number(event.target.value));
+    const handleMetaStrengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMetaStrength(Number(event.target.value));
     }
-    const handleMetaStaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMetaSta(Number(event.target.value));
+    const handleMetaVitalityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMetaVitality(Number(event.target.value));
     }
-    const handleMetaIntChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMetaInt(Number(event.target.value));
+    const handleMetaIntelligenceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMetaIntelligence(Number(event.target.value));
     }
-    const handleMetaDexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMetaDex(Number(event.target.value));
+    const handleMetaAgilityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMetaAgility(Number(event.target.value));
     }
-    const handleMetaMenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMetaMen(Number(event.target.value));
+    const handleMetaMentalityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMetaMentality(Number(event.target.value));
     }
-    const handleMetaInsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMetaIns(Number(event.target.value));
+    const handleMetaDexterityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMetaDexterity(Number(event.target.value));
     }
     return (
         <Grid container columnSpacing={4}>
@@ -85,22 +85,22 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ level, heroLevel }) =>
                 <StatusFieldTitle />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="力" value={str + metaStr} onBaseChange={handleStrChange} onMetaChange={handleMetaStrChange} />
+                <StatusField name="力" value={strength + metaStrength} onBaseChange={handleStrengthChange} onMetaChange={handleMetaStrengthChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="体力" value={sta + metaSta} onBaseChange={handleStaChange} onMetaChange={handleMetaStaChange} />
+                <StatusField name="体力" value={vitality + metaVitality} onBaseChange={handleVitalityChange} onMetaChange={handleMetaVitalityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="知能" value={int + metaInt} onBaseChange={handleIntChange} onMetaChange={handleMetaIntChange} />
+                <StatusField name="知能" value={intelligence + metaIntelligence} onBaseChange={handleIntelligenceChange} onMetaChange={handleMetaIntelligenceChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="敏捷性" value={dex + metaDex} onBaseChange={handleDexChange} onMetaChange={handleMetaDexChange} />
+                <StatusField name="敏捷性" value={agility + metaAgility} onBaseChange={handleAgilityChange} onMetaChange={handleMetaAgilityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="精神力" value={men + metaMen} onBaseChange={handleMenChange} onMetaChange={handleMetaMenChange} />
+                <StatusField name="精神力" value={mentality + metaMentality} onBaseChange={handleMentalityChange} onMetaChange={handleMetaMentalityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <StatusField name="瞬発力" value={ins + metaIns} onBaseChange={handleInsChange} onMetaChange={handleMetaInsChange} />
+                <StatusField name="瞬発力" value={dexterity + metaDexterity} onBaseChange={handleDexterityChange} onMetaChange={handleMetaDexterityChange} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
                 <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
@@ -111,7 +111,7 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ level, heroLevel }) =>
                         type="number"
                         size="small"
                         defaultValue={0}
-                        value={point - str - sta - int - dex - men - ins}
+                        value={point - strength - vitality - intelligence - agility - mentality - dexterity}
                         sx={{ width: "100px", }}
                         slotProps={{ htmlInput: { min: 0, readOnly: true } }}
                     />
