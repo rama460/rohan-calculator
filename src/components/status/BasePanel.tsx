@@ -38,6 +38,9 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                             slotProps={{ htmlInput: { min: 1, max: 115 } }}
                             onChange={(event) => {
                                 setLevel(Number(event.target.value));
+                                if (Number(event.target.value) < 50) {
+                                    setJobid("0");
+                                }
                             }}
                         />
                         <Typography variant="body1" sx={{ textAlign: "left" }}>
