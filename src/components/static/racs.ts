@@ -17,15 +17,19 @@ export type Race = {
 export const races: Race[] = [
     {
         id: 0,
-        name: "Human",
+        name: "ヒューマン",
         jobs: [
             {
                 id: 0,
-                name: "Guardian",
+                name: "ナイト",
             },
             {
                 id: 1,
-                name: "Defender",
+                name: "ガーディアン",
+            },
+            {
+                id: 2,
+                name: "ディフェンダー",
             },
         ],
         initialStatus: {
@@ -39,15 +43,19 @@ export const races: Race[] = [
     },
     {
         id: 1,
-        name: "Elf",
+        name: "エルフ",
         jobs: [
             {
                 id: 0,
-                name: "Priest",
+                name: "ヒーラー"
             },
             {
                 id: 1,
-                name: "Templer",
+                name: "プリースト",
+            },
+            {
+                id: 1,
+                name: "テンプラー",
             },
         ],
         initialStatus: {
@@ -61,15 +69,19 @@ export const races: Race[] = [
     },
     {
         id: 2,
-        name: "Half Elf",
+        name: "ハーフエルフ",
         jobs: [
             {
                 id: 0,
-                name: "Reneger",
+                name: "アーチャー",
             },
             {
                 id: 1,
-                name: "Scout",
+                name: "レンジャー",
+            },
+            {
+                id: 2,
+                name: "スカウト",
             },
         ],
         initialStatus: {
@@ -83,37 +95,19 @@ export const races: Race[] = [
     },
     {
         id: 3,
-        name: "Dark Elf",
+        name: "ダン",
         jobs: [
             {
                 id: 0,
-                name: "Warlock",
+                name: "アサシン",
             },
             {
                 id: 1,
-                name: "wizard",
-            },
-        ],
-        initialStatus: {
-            strength: 10,
-            vitality: 19,
-            intelligence: 40,
-            agility: 17,
-            mentality: 34,
-            dexterity: 20,
-        }
-    },
-    {
-        id: 4,
-        name: "Dhan",
-        jobs: [
-            {
-                id: 0,
-                name: "Predator",
+                name: "プレデター",
             },
             {
-                id: 1,
-                name: "Avenger",
+                id: 2,
+                name: "アヴェンジャー",
             },
         ],
         initialStatus: {
@@ -126,16 +120,20 @@ export const races: Race[] = [
         }
     },
     {
-        id: 5,
-        name: "Dekan",
+        id: 4,
+        name: "デカン",
         jobs: [
             {
                 id: 0,
-                name: "Dragon Night",
+                name: "ドラゴンファイター"
             },
             {
                 id: 1,
-                name: "Dragon Sage",
+                name: "ドラゴンナイト",
+            },
+            {
+                id: 2,
+                name: "ドラゴンセージ",
             },
         ],
         initialStatus: {
@@ -148,16 +146,46 @@ export const races: Race[] = [
         }
     },
     {
-        id: 6,
-        name: "Giant",
+        id: 5,
+        name: "ダークエルフ",
         jobs: [
             {
                 id: 0,
-                name: "Berserker",
+                name: "メイジ",
             },
             {
                 id: 1,
-                name: "Savage",
+                name: "ウォーロック",
+            },
+            {
+                id: 2,
+                name: "ウィザード",
+            },
+        ],
+        initialStatus: {
+            strength: 10,
+            vitality: 19,
+            intelligence: 40,
+            agility: 17,
+            mentality: 34,
+            dexterity: 20,
+        }
+    },
+    {
+        id: 6,
+        name: "ジャイアント",
+        jobs: [
+            {
+                id: 0,
+                name: "ウォリアー",
+            },
+            {
+                id: 1,
+                name: "バーサーカー",
+            },
+            {
+                id: 2,
+                name: "サベージ",
             },
         ],
         initialStatus: {
@@ -167,6 +195,32 @@ export const races: Race[] = [
             agility: 27,
             mentality: 11,
             dexterity: 30,
+        }
+    },
+    {
+        id: 7,
+        name: "トリニティ",
+        jobs: [
+            {
+                id: 0,
+                name: "メル",
+            },
+            {
+                id: 1,
+                name: "ルミール",
+            },
+            {
+                id: 2,
+                name: "ノワール",
+            },
+        ],
+        initialStatus: {
+            strength: 30,
+            vitality: 30,
+            intelligence: 20,
+            agility: 15,
+            mentality: 30,
+            dexterity: 15,
         }
     }
 ]
