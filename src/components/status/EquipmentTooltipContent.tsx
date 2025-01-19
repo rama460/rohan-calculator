@@ -7,7 +7,7 @@ interface EquipmentTooltipContentProps {
 
 export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem }) => {
     const style = {
-        opacity: 0.5,
+        opacity: 0.8,
         backgroundColor: "black",
         border: "solid",
         width: "max-content",

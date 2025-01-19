@@ -5,7 +5,7 @@ export type DefaultEquipmentTooltipContentProps = {
 
 export const DefaultEquipmentTooltipContent: React.FC<DefaultEquipmentTooltipContentProps> = ({ content }) => {
     const style = {
-        opacity: 0.5,
+        opacity: 0.8,
         backgroundColor: "black",
         border: "solid",
         width: "max-content",
