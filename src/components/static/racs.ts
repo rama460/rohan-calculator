@@ -54,7 +54,7 @@ export const races: Race[] = [
                 name: "プリースト",
             },
             {
-                id: 1,
+                id: 2,
                 name: "テンプラー",
             },
         ],
@@ -103,11 +103,11 @@ export const races: Race[] = [
             },
             {
                 id: 1,
-                name: "プレデター",
+                name: "アヴェンジャー",
             },
             {
                 id: 2,
-                name: "アヴェンジャー",
+                name: "プレデター",
             },
         ],
         initialStatus: {
