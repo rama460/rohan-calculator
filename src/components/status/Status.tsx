@@ -6,63 +6,47 @@ import StatusPanel from "./StatusPanel";
 import CharactorPanel from "./CharactorPanel";
 import BuffPanel from "./BuffPanel";
 import React from "react";
+import BorderedTitleBox from "../common/BorderedTitleBox";
 
 export const Status = () => {
     const [level, setLevel] = React.useState(115);
     const [heroLevel, setHeroLevel] = React.useState(50);
-    const [raceid, setRaceid] = React.useState("0");
-    const [jobid, setJobid] = React.useState("0");
+    const [raceid, setRaceid] = React.useState<number>(0);
+    const [jobid, setJobid] = React.useState<number>(0);
 
     return (
         <Box sx={{ width: "100vw", paddingTop: "100px" }}>
             <Container maxWidth="md">
-                <Grid container spacing={5}>
+                <Grid container rowSpacing={1} columnSpacing={5}>
                     <Grid size={{ md: 12, xs: 12 }}>
-                        <Box sx={{ border: "1px solid black", borderRadius: "10px", padding: "10px", width: "100%" }}>
-                            <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
-                                Base
-                            </Typography>
+                        <BorderedTitleBox title="Base">
                             <BasePanel level={level} heroLevel={heroLevel} raceid={raceid} jobid={jobid} setLevel={setLevel} setHeroLevel={setHeroLevel} setRaceid={setRaceid} setJobid={setJobid} />
-                        </Box>
+                        </BorderedTitleBox>
                     </Grid>
                     <Grid size={{ md: 12, xs: 12 }}>
-                        <Box sx={{ border: "1px solid black", borderRadius: "10px", padding: "10px", width: "100%" }}>
-                            <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
-                                Status
-                            </Typography>
+                        <BorderedTitleBox title="Status">
                             <StatusPanel level={level} heroLevel={heroLevel} raceid={raceid} />
-                        </Box>
+                        </BorderedTitleBox>
                     </Grid>
                     <Grid size={{ md: 6, xs: 12 }}>
-                        <Box sx={{ border: "1px solid black", borderRadius: "10px", padding: "10px", width: "100%" }}>
-                            <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
-                                Equipment
-                            </Typography>
+                        <BorderedTitleBox title="Equipment">
                             <EquipmentPanel />
-                        </Box>
+                        </BorderedTitleBox>
                     </Grid>
                     <Grid size={{ md: 6, xs: 12 }}>
-                        <Box sx={{ border: "1px solid black", borderRadius: "10px", padding: "10px", width: "100%" }}>
-                            <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
-                                Inventory
-                            </Typography>
-                        </Box>
+                        <BorderedTitleBox title="Inventory">
+                            <div>Not Implemented</div>
+                        </BorderedTitleBox>
                     </Grid>
                     <Grid size={{ md: 12, xs: 12 }}>
-                        <Box sx={{ border: "1px solid black", borderRadius: "10px", padding: "10px", width: "100%" }}>
-                            <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
-                                Details
-                            </Typography>
+                        <BorderedTitleBox title="Details">
                             <CharactorPanel />
-                        </Box>
+                        </BorderedTitleBox>
                     </Grid>
                     <Grid size={{ md: 12, xs: 12 }}>
-                        <Box sx={{ border: "1px solid black", borderRadius: "10px", padding: "10px", width: "100%" }}>
-                            <Typography sx={{ position: "relative", top: "0", left: "0", width: "max-content", backgroundColor: "white", transform: 'translateY(-70%)', padding: "10px" }}>
-                                Buffs
-                            </Typography>
-                            <BuffPanel />
-                        </Box>
+                        <BorderedTitleBox title="Buff">
+                            <BuffPanel raceid={raceid} jobid={jobid} />
+                        </BorderedTitleBox>
                     </Grid>
 
                 </Grid>

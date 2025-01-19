@@ -5,21 +5,21 @@ import Grid from "@mui/material/Grid2";
 interface BasePanelProps {
     level: number;
     heroLevel: number;
-    raceid: string;
-    jobid: string;
+    raceid: number;
+    jobid: number;
     setLevel: (level: number) => void;
     setHeroLevel: (heroLevel: number) => void;
-    setRaceid: (raceid: string) => void;
-    setJobid: (jobid: string) => void;
+    setRaceid: (raceid: number) => void;
+    setJobid: (jobid: number) => void;
 }
 
 
 export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, jobid, setLevel, setHeroLevel, setRaceid, setJobid }) => {
     const handleRaceChange = (event: SelectChangeEvent) => {
-        setRaceid(event.target.value as string);
+        setRaceid(Number(event.target.value as string));
     }
     const handleJobChange = (event: SelectChangeEvent) => {
-        setJobid(event.target.value as string);
+        setJobid(Number(event.target.value as string));
     }
 
     return (
@@ -39,7 +39,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                             onChange={(event) => {
                                 setLevel(Number(event.target.value));
                                 if (Number(event.target.value) < 50) {
-                                    setJobid("0");
+                                    setJobid(0);
                                 }
                             }}
                         />
@@ -66,7 +66,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                         </Typography>
                         <FormControl size="small">
                             <Select
-                                value={raceid}
+                                value={raceid.toString()}
                                 onChange={handleRaceChange}
                             >
                                 {races.map((race) => (
@@ -79,7 +79,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                         </Typography>
                         <FormControl size="small">
                             <Select
-                                value={jobid}
+                                value={jobid.toString()}
                                 disabled={level < 50}
                                 onChange={handleJobChange}
                             >

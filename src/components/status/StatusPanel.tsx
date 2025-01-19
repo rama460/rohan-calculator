@@ -9,7 +9,7 @@ import { races } from "../static/racs";
 interface StatusPanelProps {
     level: number;
     heroLevel: number;
-    raceid: string;
+    raceid: number;
 }
 
 const gainedPoint = (level: number, heroLevel: number) => {
