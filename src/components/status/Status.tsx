@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import BasePanel from "./BasePanel";
 import EquipmentPanel from "./EquipmentPanel";
