@@ -49,7 +49,7 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
     return (
         <>
             <Tooltip content={
-                equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergisticCount={synergisticCount} /> : <DefaultEquipmentTooltipContent content={equipmentType} />} >
+                equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergisticCount={synergisticCount} equipmentType={equipmentType} /> : <DefaultEquipmentTooltipContent content={equipmentType} />} >
                 <IconButton backgroundImage={backgroundImage} image={equippedItem?.icon} onClick={handleOpen} />
             </Tooltip>
             <EquipmentDialog isOpen={openDialog} onConfirm={handleConfirm} onRemove={handleRemove} onCancel={handleCancel} equipmentType={equipmentType} equippedItem={equippedItem} >

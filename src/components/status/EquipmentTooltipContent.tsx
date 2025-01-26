@@ -6,9 +6,11 @@ import React from 'react';
 interface EquipmentTooltipContentProps {
     currentItem: Item
     synergisticCount: number
+    equipmentType: string
+    availableRaces?: string[]
 }
 
-export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergisticCount }) => {
+export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergisticCount, equipmentType, availableRaces }) => {
     const style = {
         opacity: 0.8,
         backgroundColor: "black",
@@ -27,12 +29,12 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
             color: "red",
         },
         {
-            value: "スタッフ",
+            value: equipmentType,
             color: "white",
         },
         {
             name: "可能種族",
-            value: "E, HE",
+            value: availableRaces?.join(", ") ?? "ALL",
             color: "white",
         },
         ...currentItem.baseOptions.map((option) => ({
