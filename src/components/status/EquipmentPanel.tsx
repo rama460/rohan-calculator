@@ -1,19 +1,20 @@
-import helmet from '../../assets/backgrounds/helmet.png'
-import gauntlet from '../../assets/backgrounds/gauntlet.png'
-import tunic from '../../assets/backgrounds/tunic.png'
-import leggings from '../../assets/backgrounds/leggings.png'
-import boots from '../../assets/backgrounds/boots.png'
-import accessory from '../../assets/backgrounds/accessory.png'
-import weapon from '../../assets/backgrounds/weapon.png'
-import shield from '../../assets/backgrounds/shield.png'
-import arrow from '../../assets/backgrounds/arrow.png'
-import hat from '../../assets/backgrounds/hat.png'
-import earing from '../../assets/backgrounds/earing.png'
-import glasses from '../../assets/backgrounds/glasses.png'
-import costume from '../../assets/backgrounds/costume.png'
+import background_helmet from '../../assets/backgrounds/helmet.png'
+import background_gauntlet from '../../assets/backgrounds/gauntlet.png'
+import background_tunic from '../../assets/backgrounds/tunic.png'
+import background_leggings from '../../assets/backgrounds/leggings.png'
+import background_boots from '../../assets/backgrounds/boots.png'
+import background_accessory from '../../assets/backgrounds/accessory.png'
+import background_weapon from '../../assets/backgrounds/weapon.png'
+import background_shield from '../../assets/backgrounds/shield.png'
+import background_arrow from '../../assets/backgrounds/arrow.png'
+import background_hat from '../../assets/backgrounds/hat.png'
+import background_earing from '../../assets/backgrounds/earing.png'
+import background_glasses from '../../assets/backgrounds/glasses.png'
+import background_costume from '../../assets/backgrounds/costume.png'
 import React from "react";
 import EquipmentIconButton from './EquipmentIconButton.tsx'
-import { Item } from "./EquipmentIconButton";
+import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
+import { Item } from '../static/items.ts'
 
 export const EquipmentPanel: React.FC = () => {
     const [equippedHelmet, setEquippedHelmet] = React.useState<Item | null>(null);
@@ -42,6 +43,7 @@ export const EquipmentPanel: React.FC = () => {
     const [equippedTalismanR, setEquippedTalismanR] = React.useState<Item | null>(null);
     const [equippedTalismanW, setEquippedTalismanW] = React.useState<Item | null>(null);
     const [equippedTalismanQ, setEquippedTalismanQ] = React.useState<Item | null>(null);
+    const [equippedTalismanS, setEquippedTalismanS] = React.useState<Item | null>(null);
     const [equippedPet, setEquippedPet] = React.useState<Item | null>(null);
 
     const style: React.CSSProperties = {
@@ -155,6 +157,10 @@ export const EquipmentPanel: React.FC = () => {
         gridColumn: "9",
         gridRow: "5",
     }
+    const tarismanSStype: React.CSSProperties = {
+        gridColumn: "10",
+        gridRow: "5",
+    }
     const petStyle: React.CSSProperties = {
         gridColumn: "8",
         gridRow: "1",
@@ -162,85 +168,140 @@ export const EquipmentPanel: React.FC = () => {
     return (
         <div style={style}>
             <div style={helmetStyle}>
-                <EquipmentIconButton equipmentType='頭' backgroudImage={helmet} equippedItem={equippedHelmet} setEquippedItem={setEquippedHelmet} />
+                <EquipmentIconButton equipmentType='頭' backgroundImage={background_helmet} equippedItem={equippedHelmet} setEquippedItem={setEquippedHelmet} items={helmets} />
             </div>
             <div style={gauntletStyle}>
-                <EquipmentIconButton equipmentType='手' backgroudImage={gauntlet} equippedItem={equippedGauntlet} setEquippedItem={setEquippedGauntlet} />
+                <EquipmentIconButton equipmentType='手' backgroundImage={background_gauntlet} equippedItem={equippedGauntlet} setEquippedItem={setEquippedGauntlet} items={gauntlets} />
             </div>
             <div style={tunicStyle}>
-                <EquipmentIconButton equipmentType='胴' backgroudImage={tunic} equippedItem={equippedTunic} setEquippedItem={setEquippedTunic} />
+                <EquipmentIconButton equipmentType='胴' backgroundImage={background_tunic} equippedItem={equippedTunic} setEquippedItem={setEquippedTunic} items={tunics} />
             </div>
             <div style={leggingsStyle}>
-                <EquipmentIconButton equipmentType='脚' backgroudImage={leggings} equippedItem={equippedLeggings} setEquippedItem={setEquippedLeggings} />
+                <EquipmentIconButton equipmentType='脚' backgroundImage={background_leggings} equippedItem={equippedLeggings} setEquippedItem={setEquippedLeggings} items={leggings} />
             </div>
             <div style={bootsStyle}>
-                <EquipmentIconButton equipmentType='足' backgroudImage={boots} equippedItem={equippedBoots} setEquippedItem={setEquippedBoots} />
+                <EquipmentIconButton equipmentType='足' backgroundImage={background_boots} equippedItem={equippedBoots} setEquippedItem={setEquippedBoots} items={boots} />
             </div>
             <div style={accessory1Style}>
-                <EquipmentIconButton equipmentType='アクセサリ1' backgroudImage={accessory} equippedItem={equippedAccessory1} setEquippedItem={setEquippedAccessory1} />
+                <EquipmentIconButton
+                    equipmentType='アクセサリ1'
+                    backgroundImage={background_accessory}
+                    equippedItem={equippedAccessory1}
+                    setEquippedItem={setEquippedAccessory1}
+                    items={accessories}
+                    synergisticDependentItems={[equippedAccessory2, equippedAccessory3, equippedAccessory4]}
+                />
             </div>
             <div style={accessory2Style}>
-                <EquipmentIconButton equipmentType='アクセサリ2' backgroudImage={accessory} equippedItem={equippedAccessory2} setEquippedItem={setEquippedAccessory2} />
+                <EquipmentIconButton
+                    equipmentType='アクセサリ2'
+                    backgroundImage={background_accessory}
+                    equippedItem={equippedAccessory2}
+                    setEquippedItem={setEquippedAccessory2}
+                    items={accessories}
+                    synergisticDependentItems={[equippedAccessory1, equippedAccessory3, equippedAccessory4]}
+                />
             </div>
             <div style={accessory3Style}>
-                <EquipmentIconButton equipmentType='アクセサリ3' backgroudImage={accessory} equippedItem={equippedAccessory3} setEquippedItem={setEquippedAccessory3} />
+                <EquipmentIconButton
+                    equipmentType='アクセサリ3'
+                    backgroundImage={background_accessory}
+                    equippedItem={equippedAccessory3}
+                    setEquippedItem={setEquippedAccessory3}
+                    items={accessories}
+                    synergisticDependentItems={[equippedAccessory1, equippedAccessory2, equippedAccessory4]}
+                />
             </div>
             <div style={accessory4Style}>
-                <EquipmentIconButton equipmentType='アクセサリ4' backgroudImage={accessory} equippedItem={equippedAccessory4} setEquippedItem={setEquippedAccessory4} />
+                <EquipmentIconButton
+                    equipmentType='アクセサリ4'
+                    backgroundImage={background_accessory}
+                    equippedItem={equippedAccessory4}
+                    setEquippedItem={setEquippedAccessory4}
+                    items={accessories}
+                    synergisticDependentItems={[equippedAccessory1, equippedAccessory2, equippedAccessory3]}
+                />
             </div>
             <div style={weaponStyle}>
-                <EquipmentIconButton equipmentType='武器' backgroudImage={weapon} equippedItem={equippedWeapon} setEquippedItem={setEquippedWeapon} />
+                <EquipmentIconButton equipmentType='武器' backgroundImage={background_weapon} equippedItem={equippedWeapon} setEquippedItem={setEquippedWeapon} items={weapons} />
             </div>
             <div style={shieldStyle}>
-                <EquipmentIconButton equipmentType='盾' backgroudImage={shield} equippedItem={equippedShield} setEquippedItem={setEquippedShield} />
+                <EquipmentIconButton equipmentType='盾' backgroundImage={background_shield} equippedItem={equippedShield} setEquippedItem={setEquippedShield} items={shields} />
             </div>
             <div style={arrowStyle}>
-                <EquipmentIconButton equipmentType='矢' backgroudImage={arrow} equippedItem={equippedArrow} setEquippedItem={setEquippedArrow} />
+                <EquipmentIconButton equipmentType='矢' backgroundImage={background_arrow} equippedItem={equippedArrow} setEquippedItem={setEquippedArrow} items={arrows} />
             </div>
             <div style={glassesStyle}>
-                <EquipmentIconButton equipmentType='メガネ' backgroudImage={glasses} equippedItem={equippedGlasses} setEquippedItem={setEquippedGlasses} />
+                <EquipmentIconButton equipmentType='メガネ'
+                    backgroundImage={background_glasses}
+                    equippedItem={equippedGlasses}
+                    setEquippedItem={setEquippedGlasses}
+                    items={glasses}
+                    synergisticDependentItems={[equippedHat, equippedEarrings, equippedCostume]}
+                />
             </div>
             <div style={hatStyle}>
-                <EquipmentIconButton equipmentType='帽子' backgroudImage={hat} equippedItem={equippedHat} setEquippedItem={setEquippedHat} />
+                <EquipmentIconButton equipmentType='帽子'
+                    backgroundImage={background_hat}
+                    equippedItem={equippedHat}
+                    setEquippedItem={setEquippedHat}
+                    items={hats}
+                    synergisticDependentItems={[equippedGlasses, equippedEarrings, equippedCostume]}
+                />
             </div>
             <div style={earingStyle}>
-                <EquipmentIconButton equipmentType='耳飾り' backgroudImage={earing} equippedItem={equippedEarrings} setEquippedItem={setEquippedEarrings} />
+                <EquipmentIconButton equipmentType='耳飾り'
+                    backgroundImage={background_earing}
+                    equippedItem={equippedEarrings}
+                    setEquippedItem={setEquippedEarrings}
+                    items={earrings}
+                    synergisticDependentItems={[equippedGlasses, equippedHat, equippedCostume]}
+                />
             </div>
             <div style={costumeStyle}>
-                <EquipmentIconButton equipmentType='コスチューム' backgroudImage={costume} equippedItem={equippedCostume} setEquippedItem={setEquippedCostume} />
+                <EquipmentIconButton equipmentType='コスチューム'
+                    backgroundImage={background_costume}
+                    equippedItem={equippedCostume}
+                    setEquippedItem={setEquippedCostume}
+                    items={costumes}
+                    synergisticDependentItems={[equippedGlasses, equippedHat, equippedEarrings]}
+                />
             </div>
             <div style={tarismanHStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプH' equippedItem={equippedTalismanH} setEquippedItem={setEquippedTalismanH} />
+                <EquipmentIconButton equipmentType='タリスマン タイプH' equippedItem={equippedTalismanH} setEquippedItem={setEquippedTalismanH} items={h_talismans} />
             </div>
             <div style={tarismanGStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプG' equippedItem={equippedTalismanG} setEquippedItem={setEquippedTalismanG} />
+                <EquipmentIconButton equipmentType='タリスマン タイプG' equippedItem={equippedTalismanG} setEquippedItem={setEquippedTalismanG} items={g_talismans} />
             </div>
             <div style={tarismanIStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプI' equippedItem={equippedTalismanI} setEquippedItem={setEquippedTalismanI} />
+                <EquipmentIconButton equipmentType='タリスマン タイプI' equippedItem={equippedTalismanI} setEquippedItem={setEquippedTalismanI} items={i_talismans} />
             </div>
             <div style={tarismanBStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプB' equippedItem={equippedTalismanB} setEquippedItem={setEquippedTalismanB} />
+                <EquipmentIconButton equipmentType='タリスマン タイプB' equippedItem={equippedTalismanB} setEquippedItem={setEquippedTalismanB} items={b_talismans} />
             </div>
             <div style={tarismanJStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプJ' equippedItem={equippedTalismanJ} setEquippedItem={setEquippedTalismanJ} />
+                <EquipmentIconButton equipmentType='タリスマン タイプJ' equippedItem={equippedTalismanJ} setEquippedItem={setEquippedTalismanJ} items={j_talismans} />
             </div>
             <div style={tarismanNStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプN' equippedItem={equippedTalismanN} setEquippedItem={setEquippedTalismanN} />
+                <EquipmentIconButton equipmentType='タリスマン タイプN' equippedItem={equippedTalismanN} setEquippedItem={setEquippedTalismanN} items={n_talismans} />
             </div>
             <div style={tarismanEStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプE' equippedItem={equippedTalismanE} setEquippedItem={setEquippedTalismanE} />
+                <EquipmentIconButton equipmentType='タリスマン タイプE' equippedItem={equippedTalismanE} setEquippedItem={setEquippedTalismanE} items={e_talismans} />
             </div>
             <div style={tarismanRStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプR' equippedItem={equippedTalismanR} setEquippedItem={setEquippedTalismanR} />
+                <EquipmentIconButton equipmentType='タリスマン タイプR' equippedItem={equippedTalismanR} setEquippedItem={setEquippedTalismanR} items={r_talismans} />
             </div>
             <div style={tarismanWStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプW' equippedItem={equippedTalismanW} setEquippedItem={setEquippedTalismanW} />
+                <EquipmentIconButton equipmentType='タリスマン タイプW' equippedItem={equippedTalismanW} setEquippedItem={setEquippedTalismanW} items={w_talismans} />
             </div>
             <div style={tarismanQStyle}>
-                <EquipmentIconButton equipmentType='タリスマン タイプQ' equippedItem={equippedTalismanQ} setEquippedItem={setEquippedTalismanQ} />
+                <EquipmentIconButton equipmentType='タリスマン タイプQ' equippedItem={equippedTalismanQ} setEquippedItem={setEquippedTalismanQ} items={q_talismans} />
+            </div>
+            <div style={tarismanSStype}>
+                <EquipmentIconButton equipmentType='タリスマン タイプS' equippedItem={equippedTalismanS} setEquippedItem={setEquippedTalismanS} items={s_talismans} />
             </div>
             <div style={petStyle}>
-                <EquipmentIconButton equipmentType='ペット' equippedItem={equippedPet} setEquippedItem={setEquippedPet} />
+                <EquipmentIconButton equipmentType='ペット' equippedItem={equippedPet} setEquippedItem={setEquippedPet} items={pets} />
             </div>
 
         </div>

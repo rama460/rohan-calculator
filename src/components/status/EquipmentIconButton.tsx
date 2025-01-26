@@ -1,99 +1,59 @@
-import React from "react";
+import React, { useEffect } from "react";
 import IconButton from "../common/IconButton"
 import Tooltip from "../common/Tooltip"
 import EquipmentTooltipContent from "./EquipmentTooltipContent"
 import EquipmentDialog from "./EquipmentDialog";
-import { TalismanDialogContent } from "./TalismanDialogContent";
+import { EquipmentDialogContent } from "./EquipmentDialogContent";
 import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent";
-import dagger from "../../assets/items/sample.jpg"
 import anyBackground from "../../assets/backgrounds/any.png"
-const talismans = [
-    {
-        id: 1,
-        name: "Talisman 1",
-        value: 1,
-        baseOptions: [
-            { name: "Option 1", value: 1 },
-            { name: "Option 2", value: 2 },
-        ],
-        additionalOptions: [],
-        customOptions: [],
-        icon: dagger,
-    },
-    {
-        id: 2,
-        name: "Talisman 2",
-        value: 2,
-        baseOptions: [
-            { name: "Option 4", value: 4 },
-            { name: "Option 5", value: 5 },
-        ],
-        additionalOptions: [],
-        customOptions: [],
-        icon: dagger,
-    },
-    {
-        id: 3,
-        name: "Talisman 3",
-        value: 3,
-        baseOptions: [
-            { name: "Option 7", value: 7 },
-            { name: "Option 8", value: 8 },
-        ],
-        additionalOptions: [],
-        customOptions: [],
-        icon: dagger,
-    },
-]
+import { generateItem, Item, ItemTemplate } from "../static/items";
 
-export type Item = {
-    id: number;
-    name: string;
-    value: number;
-    baseOptions: {
-        name: string;
-        value: number;
-    }[];
-    additionalOptions: {
-        name: string;
-        value: number;
-    }[];
-    customOptions: {
-        name: string;
-        value: number;
-    }[];
-    icon: string;
-}
 interface EquipmentIconButtonProps {
     equipmentType: string
-    backgroudImage?: string
+    backgroundImage?: string
     equippedItem: Item | null
     setEquippedItem: (item: Item | null) => void
+    items: ItemTemplate[]
+    synergisticDependentItems?: (Item | null)[]
 }
 
-export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, backgroudImage = anyBackground, equippedItem, setEquippedItem }) => {
-    // 
-    const [selectedItem, setSelectedItem] = React.useState<Item | null>(null);
+export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, backgroundImage = anyBackground, equippedItem, setEquippedItem, items, synergisticDependentItems }) => {
+
+    const [selectedItem, setSelectedItem] = React.useState<Item>(generateItem(items[0], 0, []));
     const [openDialog, setOpenDialog] = React.useState(false);
+    const [synergisticCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);
     const handleConfirm = () => {
         setEquippedItem(selectedItem);
         setOpenDialog(false);
     }
+    const handleRemove = () => {
+        setEquippedItem(null);
+        setOpenDialog(false);
+    }
     const handleCancel = () => {
         // FIXME: cancelするとダイアログが閉じる前に一瞬表示データが戻ってしまう
         setOpenDialog(false);
-        setSelectedItem(equippedItem);
+        if (equippedItem) {
+            setSelectedItem(equippedItem);
+        }
     }
-
+    useEffect(() => {
+        if (equippedItem) {
+            const count = synergisticDependentItems?.filter((item) => item?.synargisticKey === equippedItem.synargisticKey).length ?? 0;
+            setSynergisticCount(count + 1);
+        } else {
+            setSynergisticCount(0);
+        }
+    }, [synergisticDependentItems])
     return (
         <>
             <Tooltip content={
-                equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} /> : <DefaultEquipmentTooltipContent content={equipmentType} />} >
-                <IconButton backgroundImage={backgroudImage} image={equippedItem?.icon} onClick={handleOpen} />
+                equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergisticCount={synergisticCount} /> : <DefaultEquipmentTooltipContent content={equipmentType} />} >
+                <IconButton backgroundImage={backgroundImage} image={equippedItem?.icon} onClick={handleOpen} />
             </Tooltip>
-            <EquipmentDialog isOpen={openDialog} onConfirm={handleConfirm} onCancel={handleCancel} equipmentType={equipmentType} >
-                <TalismanDialogContent items={talismans} currentItem={selectedItem} setCurrentItem={setSelectedItem} />
+            <EquipmentDialog isOpen={openDialog} onConfirm={handleConfirm} onRemove={handleRemove} onCancel={handleCancel} equipmentType={equipmentType} equippedItem={equippedItem} >
+                <EquipmentDialogContent itemTemplates={items} currentItem={selectedItem} setCurrentItem={setSelectedItem} />
             </EquipmentDialog>
 
         </>

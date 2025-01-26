@@ -1,31 +1,31 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import React from "react";
+import { Item } from "../static/items";
 
 
 interface EquipmentDialogProps {
     isOpen: boolean;
     onConfirm: () => void;
+    onRemove: () => void;
     onCancel: () => void
     equipmentType: string;
+    equippedItem: Item | null;
     children: React.ReactNode
 }
 
-export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ isOpen, onConfirm, onCancel, equipmentType, children }) => {
+export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ isOpen, onConfirm, onRemove, onCancel, equipmentType, equippedItem, children }) => {
     return (
         <React.Fragment>
             <Dialog
                 open={isOpen}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
                 sx={{
                 }}
             >
-                <DialogTitle id="alert-dialog-title" sx={{ fontSize: "30px" }} >
+                <DialogTitle sx={{ fontSize: "30px" }} >
                     {equipmentType}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText
-                        id="alert-dialog-description"
                         sx={{ fontSize: "25px", textAlign: "center" }}
                     >
                         {children}
@@ -33,10 +33,13 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ isOpen, onConf
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={onConfirm} >
-                        OK
+                        装備
                     </Button>
+                    {equippedItem ? <Button onClick={onRemove} >
+                        解除
+                    </Button> : <></>}
                     <Button onClick={onCancel} >
-                        Cancel
+                        キャンセル
                     </Button>
                 </DialogActions>
             </Dialog>

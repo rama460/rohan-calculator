@@ -1,10 +1,8 @@
 import { Box, TextField, Typography } from "@mui/material";
+import { Option } from "../static/options";
 
 interface EquipmentOptionProps {
-    option: {
-        name: string;
-        value: number;
-    }
+    option: Option
 }
 export const EquipmentOption: React.FC<EquipmentOptionProps> = ({ option }) => {
     const equipmentOptionStyle: React.CSSProperties = {
@@ -14,13 +12,13 @@ export const EquipmentOption: React.FC<EquipmentOptionProps> = ({ option }) => {
     return (
         <Box display="flex" alignItems="center" gap={2} sx={equipmentOptionStyle}>
             <Typography variant="body1" sx={{ width: "200px", textAlign: "left" }}>
-                {option.name}:
+                {option.displayName}:
             </Typography>
             <TextField
                 type="number"
                 size="small"
-                defaultValue={option.value}
-                sx={{ width: "80px", }}
+                value={option.value}
+                sx={{ width: "100px", }}
             />
         </Box>
     );

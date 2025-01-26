@@ -8,8 +8,6 @@ interface BuffPanelProps {
 }
 
 export const BuffPanel: React.FC<BuffPanelProps> = ({ raceid, jobid }) => {
-    console.log(raceid, jobid);
-    console.log(skills.filter(skill => skill.raceid === raceid && (skill.jobid === jobid || skill.jobid === 0) && skill.type === "Buff"));
     return (
         <Grid container spacing={4}>
             <Grid size={{ md: 6, xs: 12 }}>
