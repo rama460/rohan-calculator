@@ -84,6 +84,48 @@ export const BuiltinOptions: Options = {
         displayName: '防御力',
         unit: 'number',
     },
+    'multiplyAllOption': {
+        name: 'multiplyAllOption',
+        displayColor: 'green',
+        displayName: '全ての能力値',
+        unit: 'percent',
+    },
+    'multiplyStrength': {
+        name: 'multiplyStrength',
+        displayColor: 'green',
+        displayName: '力',
+        unit: 'percent',
+    },
+    'multiplyVitality': {
+        name: 'multiplyVitality',
+        displayColor: 'green',
+        displayName: '体力',
+        unit: 'percent',
+    },
+    'multiplyIntelligence': {
+        name: 'multiplyIntelligence',
+        displayColor: 'green',
+        displayName: '知能',
+        unit: 'percent',
+    },
+    'multiplyAgility': {
+        name: 'multiplyAgility',
+        displayColor: 'green',
+        displayName: '敏捷性',
+        unit: 'percent',
+    },
+    'multiplyMentality': {
+        name: 'multiplyMentality',
+        displayColor: 'green',
+        displayName: '精神力',
+        unit: 'percent',
+    },
+    'multiplyDexterity': {
+        name: 'multiplyDexterity',
+        displayColor: 'green',
+        displayName: '瞬発力',
+        unit: 'percent',
+    },
     'multiplyHitPoint': {
         name: 'multiplyHitPoint',
         displayColor: 'green',
@@ -164,3 +206,6 @@ export const BuiltinOptions: Options = {
         unit: 'percent',
     },
 }
+
+export const BuiltinOptionKeys = Object.keys(BuiltinOptions);
+export type BuiltinOptionKeyType = keyof typeof BuiltinOptions;

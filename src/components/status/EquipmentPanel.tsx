@@ -16,36 +16,95 @@ import EquipmentIconButton from './EquipmentIconButton.tsx'
 import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
 import { Item } from '../static/items.ts'
 
-export const EquipmentPanel: React.FC = () => {
-    const [equippedHelmet, setEquippedHelmet] = React.useState<Item | null>(null);
-    const [equippedGauntlet, setEquippedGauntlet] = React.useState<Item | null>(null);
-    const [equippedTunic, setEquippedTunic] = React.useState<Item | null>(null);
-    const [equippedLeggings, setEquippedLeggings] = React.useState<Item | null>(null);
-    const [equippedBoots, setEquippedBoots] = React.useState<Item | null>(null);
-    const [equippedWeapon, setEquippedWeapon] = React.useState<Item | null>(null);
-    const [equippedShield, setEquippedShield] = React.useState<Item | null>(null);
-    const [equippedArrow, setEquippedArrow] = React.useState<Item | null>(null);
-    const [equippedAccessory1, setEquippedAccessory1] = React.useState<Item | null>(null);
-    const [equippedAccessory2, setEquippedAccessory2] = React.useState<Item | null>(null);
-    const [equippedAccessory3, setEquippedAccessory3] = React.useState<Item | null>(null);
-    const [equippedAccessory4, setEquippedAccessory4] = React.useState<Item | null>(null);
-    const [equippedGlasses, setEquippedGlasses] = React.useState<Item | null>(null);
-    const [equippedHat, setEquippedHat] = React.useState<Item | null>(null);
-    const [equippedEarrings, setEquippedEarrings] = React.useState<Item | null>(null);
-    const [equippedCostume, setEquippedCostume] = React.useState<Item | null>(null);
-    const [equippedTalismanH, setEquippedTalismanH] = React.useState<Item | null>(null);
-    const [equippedTalismanG, setEquippedTalismanG] = React.useState<Item | null>(null);
-    const [equippedTalismanI, setEquippedTalismanI] = React.useState<Item | null>(null);
-    const [equippedTalismanB, setEquippedTalismanB] = React.useState<Item | null>(null);
-    const [equippedTalismanJ, setEquippedTalismanJ] = React.useState<Item | null>(null);
-    const [equippedTalismanN, setEquippedTalismanN] = React.useState<Item | null>(null);
-    const [equippedTalismanE, setEquippedTalismanE] = React.useState<Item | null>(null);
-    const [equippedTalismanR, setEquippedTalismanR] = React.useState<Item | null>(null);
-    const [equippedTalismanW, setEquippedTalismanW] = React.useState<Item | null>(null);
-    const [equippedTalismanQ, setEquippedTalismanQ] = React.useState<Item | null>(null);
-    const [equippedTalismanS, setEquippedTalismanS] = React.useState<Item | null>(null);
-    const [equippedPet, setEquippedPet] = React.useState<Item | null>(null);
+interface EquipmentPanelProps {
+    equippedHelmet: Item | null
+    setEquippedHelmet: (item: Item | null) => void
+    equippedGauntlet: Item | null
+    setEquippedGauntlet: (item: Item | null) => void
+    equippedTunic: Item | null
+    setEquippedTunic: (item: Item | null) => void
+    equippedLeggings: Item | null
+    setEquippedLeggings: (item: Item | null) => void
+    equippedBoots: Item | null
+    setEquippedBoots: (item: Item | null) => void
+    equippedAccessory1: Item | null
+    setEquippedAccessory1: (item: Item | null) => void
+    equippedAccessory2: Item | null
+    setEquippedAccessory2: (item: Item | null) => void
+    equippedAccessory3: Item | null
+    setEquippedAccessory3: (item: Item | null) => void
+    equippedAccessory4: Item | null
+    setEquippedAccessory4: (item: Item | null) => void
+    equippedWeapon: Item | null
+    setEquippedWeapon: (item: Item | null) => void
+    equippedShield: Item | null
+    setEquippedShield: (item: Item | null) => void
+    equippedArrow: Item | null
+    setEquippedArrow: (item: Item | null) => void
+    equippedGlasses: Item | null
+    setEquippedGlasses: (item: Item | null) => void
+    equippedHat: Item | null
+    setEquippedHat: (item: Item | null) => void
+    equippedEarrings: Item | null
+    setEquippedEarrings: (item: Item | null) => void
+    equippedCostume: Item | null
+    setEquippedCostume: (item: Item | null) => void
+    equippedTalismanH: Item | null
+    setEquippedTalismanH: (item: Item | null) => void
+    equippedTalismanG: Item | null
+    setEquippedTalismanG: (item: Item | null) => void
+    equippedTalismanI: Item | null
+    setEquippedTalismanI: (item: Item | null) => void
+    equippedTalismanB: Item | null
+    setEquippedTalismanB: (item: Item | null) => void
+    equippedTalismanJ: Item | null
+    setEquippedTalismanJ: (item: Item | null) => void
+    equippedTalismanN: Item | null
+    setEquippedTalismanN: (item: Item | null) => void
+    equippedTalismanE: Item | null
+    setEquippedTalismanE: (item: Item | null) => void
+    equippedTalismanR: Item | null
+    setEquippedTalismanR: (item: Item | null) => void
+    equippedTalismanW: Item | null
+    setEquippedTalismanW: (item: Item | null) => void
+    equippedTalismanQ: Item | null
+    setEquippedTalismanQ: (item: Item | null) => void
+    equippedTalismanS: Item | null
+    setEquippedTalismanS: (item: Item | null) => void
+    equippedPet: Item | null
+    setEquippedPet: (item: Item | null) => void
+}
 
+export const EquipmentPanel: React.FC<EquipmentPanelProps> = ({
+    equippedHelmet, setEquippedHelmet,
+    equippedGauntlet, setEquippedGauntlet,
+    equippedTunic, setEquippedTunic,
+    equippedLeggings, setEquippedLeggings,
+    equippedBoots, setEquippedBoots,
+    equippedAccessory1, setEquippedAccessory1,
+    equippedAccessory2, setEquippedAccessory2,
+    equippedAccessory3, setEquippedAccessory3,
+    equippedAccessory4, setEquippedAccessory4,
+    equippedWeapon, setEquippedWeapon,
+    equippedShield, setEquippedShield,
+    equippedArrow, setEquippedArrow,
+    equippedGlasses, setEquippedGlasses,
+    equippedHat, setEquippedHat,
+    equippedEarrings, setEquippedEarrings,
+    equippedCostume, setEquippedCostume,
+    equippedTalismanH, setEquippedTalismanH,
+    equippedTalismanG, setEquippedTalismanG,
+    equippedTalismanI, setEquippedTalismanI,
+    equippedTalismanB, setEquippedTalismanB,
+    equippedTalismanJ, setEquippedTalismanJ,
+    equippedTalismanN, setEquippedTalismanN,
+    equippedTalismanE, setEquippedTalismanE,
+    equippedTalismanR, setEquippedTalismanR,
+    equippedTalismanW, setEquippedTalismanW,
+    equippedTalismanQ, setEquippedTalismanQ,
+    equippedTalismanS, setEquippedTalismanS,
+    equippedPet, setEquippedPet
+}) => {
     const style: React.CSSProperties = {
         display: "grid",
         gridTemplateColumns: "repeat(9, 34px)",
