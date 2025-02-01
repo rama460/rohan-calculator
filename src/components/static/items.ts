@@ -1,4 +1,4 @@
-import dagger from "../../assets/items/sample.jpg";
+import unknown from "../../assets/unknown.png";
 import { multiplyAttack, multiplyDeffense, multiplyHitPoint, multiplyNegationRate, multiplyPotionRecovery, multiplyPVEAttack, multiplyPVEDeffense, multiplyPVPAttack, multiplyPVPDeffense, multiplyReflectionRate, multiplySkillAttack, multiplySkillDeffense, Option, plusAllOption, plusAttack, plusDeffense, plusHitPoint, plusMagicPoint, plusStatusAttack } from "./options";
 
 
@@ -66,7 +66,7 @@ export const generateItem = (itemTemplate: ItemTemplate, enchantLevel: number, a
 export const weapons: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -75,7 +75,7 @@ export const weapons: ItemTemplate[] = [
 export const shields: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -84,7 +84,7 @@ export const shields: ItemTemplate[] = [
 export const arrows: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -93,7 +93,7 @@ export const arrows: ItemTemplate[] = [
 export const helmets: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -102,7 +102,7 @@ export const helmets: ItemTemplate[] = [
 export const gauntlets: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -111,7 +111,7 @@ export const gauntlets: ItemTemplate[] = [
 export const tunics: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -120,7 +120,7 @@ export const tunics: ItemTemplate[] = [
 export const leggings: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -129,7 +129,7 @@ export const leggings: ItemTemplate[] = [
 export const boots: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
@@ -169,7 +169,7 @@ export const glasses: ItemTemplate[] = [
             plusDeffense(3000),
             plusHitPoint(20000),
         ],
-        icon: dagger,
+        icon: unknown,
         synergisticOptions: rohaSynergisticOptions,
         synergisticKey: "ロハシリーズ"
     }
@@ -183,7 +183,7 @@ export const hats: ItemTemplate[] = [
             plusDeffense(3000),
             plusHitPoint(20000),
         ],
-        icon: dagger,
+        icon: unknown,
         synergisticOptions: rohaSynergisticOptions,
         synergisticKey: "ロハシリーズ"
     }
@@ -198,7 +198,7 @@ export const earrings: ItemTemplate[] = [
             plusDeffense(3000),
             plusHitPoint(20000),
         ],
-        icon: dagger,
+        icon: unknown,
         synergisticOptions: rohaSynergisticOptions,
         synergisticKey: "ロハシリーズ"
     }
@@ -213,7 +213,7 @@ export const costumes: ItemTemplate[] = [
             plusDeffense(3000),
             plusHitPoint(20000),
         ],
-        icon: dagger,
+        icon: unknown,
         synergisticOptions: rohaSynergisticOptions,
         synergisticKey: "ロハシリーズ"
     }
@@ -227,7 +227,7 @@ export const accessories: ItemTemplate[] = [
             plusHitPoint(100000),
             plusAttack(1000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "ケイオスブローチ",
@@ -236,7 +236,7 @@ export const accessories: ItemTemplate[] = [
             plusHitPoint(100000),
             plusAttack(1000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "ケイオスブレスレット",
@@ -245,7 +245,7 @@ export const accessories: ItemTemplate[] = [
             plusHitPoint(100000),
             plusAttack(1000),
         ],
-        icon: dagger,
+        icon: unknown,
 
     },
     {
@@ -255,7 +255,7 @@ export const accessories: ItemTemplate[] = [
             plusHitPoint(100000),
             plusAttack(1000),
         ],
-        icon: dagger,
+        icon: unknown,
 
     },
     {
@@ -265,7 +265,7 @@ export const accessories: ItemTemplate[] = [
             plusAttack(1000),
             plusDeffense(1000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "メイガスブローチ",
@@ -274,7 +274,7 @@ export const accessories: ItemTemplate[] = [
             plusAttack(1000),
             plusDeffense(1000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "メイガスブレスレット",
@@ -283,7 +283,7 @@ export const accessories: ItemTemplate[] = [
             plusAttack(1000),
             plusDeffense(1000),
         ],
-        icon: dagger,
+        icon: unknown,
 
     },
     {
@@ -293,7 +293,7 @@ export const accessories: ItemTemplate[] = [
             plusAttack(1000),
             plusDeffense(1000),
         ],
-        icon: dagger,
+        icon: unknown,
 
     },
     {
@@ -305,7 +305,7 @@ export const accessories: ItemTemplate[] = [
                 plusAttack(550),
             ]
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "深淵の宝珠(白虎)",
@@ -316,7 +316,7 @@ export const accessories: ItemTemplate[] = [
                 plusAttack(550),
             ]
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "深淵の宝珠(青龍)",
@@ -327,7 +327,7 @@ export const accessories: ItemTemplate[] = [
                 plusAttack(550),
             ]
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "深淵の宝珠(朱雀)",
@@ -338,7 +338,7 @@ export const accessories: ItemTemplate[] = [
                 plusAttack(550),
             ]
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "虚無の逆十字",
@@ -346,7 +346,7 @@ export const accessories: ItemTemplate[] = [
             plusStatusAttack(10000),
             plusHitPoint(75000),
         ],
-        icon: dagger,
+        icon: unknown,
     }
 ]
 
@@ -360,7 +360,7 @@ export const b_talismans: ItemTemplate[] = [
             plusDeffense(100),
             plusHitPoint(10000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "輝くノーウェンのタリスマン",
@@ -370,7 +370,7 @@ export const b_talismans: ItemTemplate[] = [
             plusDeffense(200),
             plusHitPoint(25000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "洗練されたノーウェンのタリスマン",
@@ -380,7 +380,7 @@ export const b_talismans: ItemTemplate[] = [
             plusDeffense(300),
             plusHitPoint(50000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "鮮血のタリスマン",
@@ -390,7 +390,7 @@ export const b_talismans: ItemTemplate[] = [
             plusDeffense(400),
             plusHitPoint(75000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "深紅のタリスマン",
@@ -400,7 +400,7 @@ export const b_talismans: ItemTemplate[] = [
             plusDeffense(1000),
             multiplyPotionRecovery(10),
         ],
-        icon: dagger,
+        icon: unknown,
     }
 ]
 export const j_talismans: ItemTemplate[] = [
@@ -410,7 +410,7 @@ export const j_talismans: ItemTemplate[] = [
             plusAllOption(200),
             plusAttack(200),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "輝くへスぺロスのタリスマン",
@@ -418,7 +418,7 @@ export const j_talismans: ItemTemplate[] = [
             plusAllOption(300),
             plusAttack(400),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "洗練されたヘスペロスのタリスマン",
@@ -426,7 +426,7 @@ export const j_talismans: ItemTemplate[] = [
             plusAllOption(450),
             plusAttack(600),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "栄光のタリスマン",
@@ -434,7 +434,7 @@ export const j_talismans: ItemTemplate[] = [
             plusAllOption(600),
             plusAttack(800),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "黄金のタリスマン",
@@ -444,7 +444,7 @@ export const j_talismans: ItemTemplate[] = [
             plusHitPoint(100000),
             multiplySkillAttack(10),
         ],
-        icon: dagger,
+        icon: unknown,
     }
 ]
 export const h_talismans: ItemTemplate[] = [
@@ -455,7 +455,7 @@ export const h_talismans: ItemTemplate[] = [
             plusDeffense(200),
             plusHitPoint(10000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "輝くカルラスのタリスマン",
@@ -464,7 +464,7 @@ export const h_talismans: ItemTemplate[] = [
             plusDeffense(400),
             plusHitPoint(25000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "洗練されたカルラスのタリスマン",
@@ -473,7 +473,7 @@ export const h_talismans: ItemTemplate[] = [
             plusDeffense(600),
             plusHitPoint(50000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "深緑のタリスマン",
@@ -482,7 +482,7 @@ export const h_talismans: ItemTemplate[] = [
             plusDeffense(800),
             plusHitPoint(75000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "翡翠のタリスマン",
@@ -492,7 +492,7 @@ export const h_talismans: ItemTemplate[] = [
             multiplyDeffense(10),
             plusHitPoint(100000),
         ],
-        icon: dagger,
+        icon: unknown,
     }
 ]
 export const g_talismans: ItemTemplate[] = [
@@ -503,7 +503,7 @@ export const g_talismans: ItemTemplate[] = [
             plusAttack(200),
             plusHitPoint(10000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "輝くディエガのタリスマン",
@@ -512,7 +512,7 @@ export const g_talismans: ItemTemplate[] = [
             plusAttack(400),
             plusHitPoint(25000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "洗練されたディエガのタリスマン",
@@ -521,7 +521,7 @@ export const g_talismans: ItemTemplate[] = [
             plusAttack(600),
             plusHitPoint(50000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "紺碧のタリスマン	",
@@ -530,7 +530,7 @@ export const g_talismans: ItemTemplate[] = [
             plusAttack(800),
             plusHitPoint(75000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "蒼穹のタリスマン",
@@ -540,7 +540,7 @@ export const g_talismans: ItemTemplate[] = [
             multiplyAttack(10),
             plusHitPoint(100000),
         ],
-        icon: dagger,
+        icon: unknown,
     }
 ]
 export const i_talismans: ItemTemplate[] = [
@@ -550,7 +550,7 @@ export const i_talismans: ItemTemplate[] = [
             plusAllOption(200),
             plusDeffense(200),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "輝くカシムのタリスマン",
@@ -558,7 +558,7 @@ export const i_talismans: ItemTemplate[] = [
             plusAllOption(300),
             plusDeffense(400),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "洗練されたカシムのタリスマン",
@@ -566,7 +566,7 @@ export const i_talismans: ItemTemplate[] = [
             plusAllOption(450),
             plusDeffense(600),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "紫闇のタリスマン",
@@ -574,7 +574,7 @@ export const i_talismans: ItemTemplate[] = [
             plusAllOption(600),
             plusDeffense(800),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "紫紺のタリスマン",
@@ -584,7 +584,7 @@ export const i_talismans: ItemTemplate[] = [
             plusHitPoint(100000),
             multiplySkillAttack(10),
         ],
-        icon: dagger,
+        icon: unknown,
     }
 ]
 
@@ -725,7 +725,7 @@ export const n_talismans: ItemTemplate[] = [
                 plusAllOption(600),
             ],
         ],
-        icon: dagger,
+        icon: unknown,
     },
 ]
 export const e_talismans: ItemTemplate[] = [
@@ -849,7 +849,7 @@ export const e_talismans: ItemTemplate[] = [
                 plusHitPoint(35000),
             ],
         ],
-        icon: dagger,
+        icon: unknown,
     },
 ]
 export const r_talismans: ItemTemplate[] = [
@@ -861,7 +861,7 @@ export const r_talismans: ItemTemplate[] = [
                 plusHitPoint(300000),
             ]
         ],
-        icon: dagger,
+        icon: unknown,
     }
 ]
 export const w_talismans: ItemTemplate[] = [
@@ -893,7 +893,7 @@ export const w_talismans: ItemTemplate[] = [
                 plusDeffense(3500),
             ],
         ],
-        icon: dagger,
+        icon: unknown,
     }
 
 ]
@@ -904,7 +904,7 @@ export const q_talismans: ItemTemplate[] = [
             plusHitPoint(2500),
             plusMagicPoint(500),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "7等兵階級章",
@@ -913,7 +913,7 @@ export const q_talismans: ItemTemplate[] = [
             plusMagicPoint(1000),
 
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "6等兵階級章",
@@ -921,7 +921,7 @@ export const q_talismans: ItemTemplate[] = [
             plusHitPoint(7500),
             plusMagicPoint(1500),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "5等兵階級章",
@@ -929,7 +929,7 @@ export const q_talismans: ItemTemplate[] = [
             plusHitPoint(10500),
             plusMagicPoint(2000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "4等兵階級章",
@@ -937,7 +937,7 @@ export const q_talismans: ItemTemplate[] = [
             plusHitPoint(12500),
             plusMagicPoint(2500),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "3等兵階級章",
@@ -945,7 +945,7 @@ export const q_talismans: ItemTemplate[] = [
             plusHitPoint(15000),
             plusMagicPoint(3000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "2等兵階級章",
@@ -953,7 +953,7 @@ export const q_talismans: ItemTemplate[] = [
             plusHitPoint(17500),
             plusMagicPoint(3500),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "1等兵階級章",
@@ -961,7 +961,7 @@ export const q_talismans: ItemTemplate[] = [
             plusHitPoint(20000),
             plusMagicPoint(4000),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "1将校階級章",
@@ -971,7 +971,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillAttack(5),
 
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "2将校階級章",
@@ -981,7 +981,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillAttack(10),
             multiplySkillDeffense(5),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "3将校階級章",
@@ -991,7 +991,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillAttack(15),
             multiplySkillDeffense(10),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "4将校階級章",
@@ -1001,7 +1001,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillAttack(20),
             multiplySkillDeffense(15),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "5将校階級章",
@@ -1011,7 +1011,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillAttack(25),
             multiplySkillDeffense(20),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "軍団長階級章",
@@ -1021,7 +1021,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillAttack(35),
             multiplySkillDeffense(30),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "司令官階級章",
@@ -1031,7 +1031,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillAttack(50),
             multiplySkillDeffense(40),
         ],
-        icon: dagger,
+        icon: unknown,
     },
     {
         name: "元帥階級章",
@@ -1042,7 +1042,7 @@ export const q_talismans: ItemTemplate[] = [
             multiplySkillDeffense(40),
             plusAllOption(1000),
         ],
-        icon: dagger
+        icon: unknown
     }
 ]
 export const s_talismans: ItemTemplate[] = [
@@ -1054,14 +1054,14 @@ export const s_talismans: ItemTemplate[] = [
             plusDeffense(10000),
             multiplySkillAttack(25),
         ],
-        icon: dagger,
+        icon: unknown,
     }
 
 ]
 export const pets: ItemTemplate[] = [
     {
         name: "サンプル",
-        icon: dagger,
+        icon: unknown,
         fixedBaseOptions: [
         ],
     }
