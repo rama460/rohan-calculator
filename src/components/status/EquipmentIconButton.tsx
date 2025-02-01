@@ -19,7 +19,7 @@ interface EquipmentIconButtonProps {
 
 export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, backgroundImage = anyBackground, equippedItem, setEquippedItem, items, synergisticDependentItems }) => {
 
-    const [selectedItem, setSelectedItem] = React.useState<Item>(generateItem(items[0], 0, []));
+    const [selectedItem, setSelectedItem] = React.useState<Item>(generateItem(items[0], 0, {}));
     const [openDialog, setOpenDialog] = React.useState(false);
     const [synergisticCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);

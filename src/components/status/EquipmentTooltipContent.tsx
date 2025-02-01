@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { Item } from '../static/items.ts'
 import { EquipmentTooltipContentRowProps, EquipmentTooltipContentRow } from "./EquipmentTooltipContentRow";
 import React from 'react';
+import { BuiltinOptions } from '../static/options.ts';
 
 interface EquipmentTooltipContentProps {
     currentItem: Item
@@ -37,10 +38,10 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
             value: availableRaces?.join(", ") ?? "ALL",
             color: "white",
         },
-        ...currentItem.baseOptions.map((option) => ({
-            name: option.displayName,
-            value: option.value.toString(),
-            color: option.displayColor,
+        ...Object.entries(currentItem.baseOptions).map(([key, value]) => ({
+            name: BuiltinOptions[key].displayName,
+            value: value.toString(),
+            color: BuiltinOptions[key].displayColor,
         }))
     ]
     return (
@@ -50,12 +51,12 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
                     <EquipmentTooltipContentRow {...row} />
                 ))}
             </div>
-            {currentItem.synergisticOptions?.map((synergisticOption) => (
+            {currentItem.synergisticOptions && Object.entries(currentItem.synergisticOptions).map(([requiredCount, options]) => (
                 <div style={style}>
-                    <div style={synergisticCount >= synergisticOption.requiredCount ? enabledStyle : disabledStyle}>
-                        {synergisticOption.requiredCount}セット：{synergisticOption.options.map((option) => (
+                    <div style={synergisticCount >= Number(requiredCount) ? enabledStyle : disabledStyle}>
+                        {requiredCount}セット：{Object.entries(options).map(([key, value]) => (
                             <div>
-                                {option.displayName}: {option.value}
+                                {BuiltinOptions[key].displayName}: {value}
                             </div>
                         ))}
                     </div>

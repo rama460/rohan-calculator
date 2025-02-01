@@ -3,7 +3,6 @@ import React from "react"
 import { ItemTemplate, Item, generateItem } from '../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
-import { Option } from "../static/options.ts";
 
 
 
@@ -17,7 +16,7 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
     // FIXME: ダイアログオープン時に表示される装備を全選択したもの or 装備中のものにする
     const [name, setName] = React.useState(itemTemplates[0].name);
     const [enchantLevel, setEnchantLevel] = React.useState(0);
-    const [additionalOptions, setAdditionalOptions] = React.useState<Option[]>([]);
+    const [additionalOptions, setAdditionalOptions] = React.useState<{ [key: string]: number }>({});
     const [selectedItemTemplate, setSelectedItemTemplate] = React.useState<ItemTemplate>(itemTemplates[0]);
     const handleChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
@@ -59,27 +58,28 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
                 ) : (<></>)
             }
             <Divider />
-            {selectedItemTemplate.fixedBaseOptions?.map((option) => (
-                <EquipmentOption option={option} />
+            {selectedItemTemplate.fixedBaseOptions && Object.entries(selectedItemTemplate.fixedBaseOptions).map(([name, value]) => (
+                <EquipmentOption name={name} value={value} />
             ))}
-            {selectedItemTemplate.enchantableBaseOptions?.at(enchantLevel)?.map((option) => (
-                <EquipmentOption option={option} />
-            )) ?? (
-                    selectedItemTemplate.enchantableBaseOptions?.at(-1)?.map((option) => (
-                        <EquipmentOption option={option} />
-                    ))
-                )
+
+            {selectedItemTemplate.enchantableBaseOptions && (
+                selectedItemTemplate.enchantableBaseOptions[enchantLevel] ?
+                    // FIXME: enchantLevelが定義外の場合に適切な値を表示する
+                    (Object.entries(selectedItemTemplate.enchantableBaseOptions[enchantLevel])?.map(([name, value]) => (
+                        <EquipmentOption name={name} value={value} />
+                    ))) : (<></>)
+            )
             }
 
             <Divider />
-            {additionalOptions.map((option) => (
-                <EquipmentOption option={option} />
+            {Object.entries(additionalOptions).map(([name, value]) => (
+                <EquipmentOption name={name} value={value} />
             ))}
             <Button onClick={() => {
-                setAdditionalOptions([...additionalOptions, { name: "Option", value: 0, displayName: "Option", displayColor: "white", unit: "number" }]);
+                setAdditionalOptions({ ...additionalOptions, "Option": 0, });
             }}>
                 <AddIcon />
             </Button>
-        </React.Fragment>
+        </React.Fragment >
     );
 }
