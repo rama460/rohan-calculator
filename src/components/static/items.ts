@@ -593,10 +593,65 @@ export const n_talismans: ItemTemplate[] = [
         name: "黎明のタリスマン",
         enchantableBaseOptions: [
             [
+                plusAttack(200),
+                plusDeffense(200),
+                plusHitPoint(3000),
+            ],
+            [
+                plusAttack(250),
+                plusDeffense(250),
+                plusHitPoint(4000),
+            ],
+            [
+                plusAttack(300),
+                plusDeffense(300),
+                plusHitPoint(5000),
+            ],
+            [
+                plusAttack(350),
+                plusDeffense(350),
+                plusHitPoint(6000),
+            ],
+            [
+                plusAttack(400),
+                plusDeffense(400),
+                plusHitPoint(7000),
+            ],
+            [
                 plusAttack(500),
                 plusDeffense(500),
                 plusHitPoint(8000),
                 multiplyPVEDeffense(2),
+            ],
+            [
+                plusAttack(600),
+                plusDeffense(600),
+                plusHitPoint(9000),
+                multiplyPVEDeffense(4),
+            ],
+            [
+                plusAttack(800),
+                plusDeffense(800),
+                plusHitPoint(10000),
+                multiplyPVEDeffense(6),
+            ],
+            [
+                plusAttack(1000),
+                plusDeffense(1000),
+                plusHitPoint(12000),
+                multiplyPVEDeffense(8),
+            ],
+            [
+                plusAttack(1200),
+                plusDeffense(1200),
+                plusHitPoint(14000),
+                multiplyPVEDeffense(10),
+            ],
+            [
+                plusAttack(2000),
+                plusDeffense(2000),
+                plusHitPoint(20000),
+                multiplyPVEDeffense(20),
             ],
             [
                 plusAttack(2500),
