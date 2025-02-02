@@ -9,7 +9,8 @@ import React from "react";
 import BorderedTitleBox from "../common/BorderedTitleBox";
 import { Item } from "../static/items";
 import { BuiltinOptionKeyType } from "../static/options";
-import { reduce } from "../../modules/context/reduce";
+import { reduceEquipments, reduceSkills } from "../../modules/context/reduce";
+import { AppliedSkill } from "../static/skill";
 
 export const Status = () => {
     const [level, setLevel] = React.useState(115);
@@ -44,10 +45,11 @@ export const Status = () => {
     const [equippedTalismanQ, setEquippedTalismanQ] = React.useState<Item | null>(null);
     const [equippedTalismanS, setEquippedTalismanS] = React.useState<Item | null>(null);
     const [equippedPet, setEquippedPet] = React.useState<Item | null>(null);
+    const [appliedSkills, setAppliedSkills] = React.useState<AppliedSkill[]>([]);
     const [optionContext, setOptionContext] = React.useState<{ [key in BuiltinOptionKeyType]?: number }>({});
-
+    const [skillContext, setSkillContext] = React.useState<{ [key in BuiltinOptionKeyType]?: number }>({});
     React.useEffect(() => {
-        setOptionContext(reduce([
+        setOptionContext(reduceEquipments([
             equippedHelmet,
             equippedGauntlet,
             equippedTunic,
@@ -79,6 +81,9 @@ export const Status = () => {
         ]));
     }, [level, heroLevel, raceid, jobid, equippedHelmet, equippedGauntlet, equippedTunic, equippedLeggings, equippedBoots, equippedWeapon, equippedShield, equippedArrow, equippedAccessory1, equippedAccessory2, equippedAccessory3, equippedAccessory4, equippedGlasses, equippedHat, equippedEarrings, equippedCostume, equippedTalismanH, equippedTalismanG, equippedTalismanI, equippedTalismanB, equippedTalismanJ, equippedTalismanN, equippedTalismanE, equippedTalismanR, equippedTalismanW, equippedTalismanQ, equippedTalismanS, equippedPet]);
 
+    React.useEffect(() => {
+        setSkillContext(reduceSkills(appliedSkills));
+    }, [appliedSkills]);
     return (
         <Box sx={{ width: "100vw", paddingTop: "100px" }}>
             <Container maxWidth="md">
@@ -95,7 +100,7 @@ export const Status = () => {
                                 heroLevel={heroLevel}
                                 raceid={raceid}
                                 options={optionContext}
-                                buffs={{}}
+                                skills={skillContext}
                             />
                         </BorderedTitleBox>
                     </Grid>
@@ -173,7 +178,7 @@ export const Status = () => {
                     </Grid>
                     <Grid size={{ md: 12, xs: 12 }}>
                         <BorderedTitleBox title="Buff">
-                            <BuffPanel raceid={raceid} jobid={jobid} />
+                            <BuffPanel raceid={raceid} jobid={jobid} setAppliedSkills={setAppliedSkills} />
                         </BorderedTitleBox>
                     </Grid>
 

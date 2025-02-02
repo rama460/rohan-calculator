@@ -1,10 +1,10 @@
-
-type Option = {
+export type Option = {
     name: string;
     displayColor: string;
     displayName: string;
     unit: OptionUnit;
 };
+
 
 type OptionUnit = "percent" | "number";
 

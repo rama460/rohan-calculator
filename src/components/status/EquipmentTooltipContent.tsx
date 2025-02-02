@@ -24,12 +24,6 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
     const enabledStyle = {
         color: "white",
     }
-    Object.entries(currentItem.baseOptions).forEach(([key, value]) => {
-        console.log(key, value)
-        console.log(BuiltinOptions[key as BuiltinOptionKeyType].displayName)
-    }
-    )
-    console.log(currentItem)
     const rows: EquipmentTooltipContentRowProps[] = [
         {
             value: currentItem.name,

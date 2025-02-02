@@ -98,9 +98,9 @@ import savage_monster_mind from "../../assets/skills/savage_monster_mind.png";
 import savage_brutality from "../../assets/skills/savage_brutality.png";
 import { BuiltinOptionKeyType } from "./options";
 
-
 export type Skill = {
     name: string;
+    displayName: string;
     icon: string;
     type: SkillType;
     raceid: number;
@@ -117,11 +117,20 @@ export type Skill = {
 
 export type SkillType = "Passive" | "Active" | "Buff" | "Group" | "Other";
 
+export type AppliedSkill = {
+    name: string;
+    level: number;
+    attributes: {
+        [key in BuiltinOptionKeyType]?: number;
+    }
+}
+
 export const skills: Skill[] = [
     // ヒューマン
     // ナイト
     {
-        name: "ライジングマイト",
+        name: "risingMight",
+        displayName: "ライジングマイト",
         icon: knight_rising_might,
         type: "Buff",
         raceid: 0,
@@ -139,30 +148,31 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                plusStrength: 10,
+                multiplyStrength: 10,
             },
             1: {
-                plusStrength: 15,
+                multiplyStrength: 15,
             },
             2: {
-                plusStrength: 20,
+                multiplyStrength: 20,
             },
             3: {
-                plusStrength: 25,
+                multiplyStrength: 25,
             },
             4: {
-                plusStrength: 30,
+                multiplyStrength: 30,
             },
             5: {
-                plusStrength: 35,
+                multiplyStrength: 35,
             },
             6: {
-                plusStrength: 50,
+                multiplyStrength: 50,
             },
         }
     },
     {
-        name: "プロテクション",
+        name: "protection",
+        displayName: "プロテクション",
         icon: knight_protection,
         type: "Buff",
         raceid: 0,
@@ -204,7 +214,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "シャープンブレイド",
+        name: "sharpenBlade",
+        displayName: "シャープンブレイド",
         icon: knight_sharpen_blade,
         type: "Buff",
         raceid: 0,
@@ -246,7 +257,8 @@ export const skills: Skill[] = [
         },
     },
     {
-        name: "ブレスドシールド",
+        name: "blessedShield",
+        displayName: "ブレスドシールド",
         icon: knight_blessed_shield,
         type: "Buff",
         raceid: 0,
@@ -287,7 +299,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "インボーク",
+        name: "invoke",
+        displayName: "インボーク",
         icon: knight_invoke,
         type: "Buff",
         raceid: 0,
@@ -336,7 +349,8 @@ export const skills: Skill[] = [
     },
     // ガーディアン
     {
-        name: "ソードマスタリー",
+        name: "swordMastery",
+        displayName: "ソードマスタリー",
         icon: guardian_sword_mastery,
         type: "Buff",
         raceid: 0,
@@ -384,7 +398,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "エイムブロー",
+        name: "aimBlow",
+        displayName: "エイムブロー",
         icon: guardian_aim_blow,
         type: "Buff",
         raceid: 0,
@@ -433,7 +448,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "フィジカルブロー",
+        name: "physicalBlow",
+        displayName: "フィジカルブロー",
         icon: guardian_physical_blow,
         type: "Buff",
         raceid: 0,
@@ -474,7 +490,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "クレイジーストレングス",
+        name: "crazyStrength",
+        displayName: "クレイジーストレングス",
         icon: guardian_crazy_strength,
         type: "Buff",
         raceid: 0,
@@ -515,7 +532,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "クリティカルオーラ",
+        name: "criticalAura",
+        displayName: "クリティカルオーラ",
         icon: guardian_critical_aura,
         type: "Group",
         raceid: 0,
@@ -564,7 +582,8 @@ export const skills: Skill[] = [
     },
     // ディフェンダー
     {
-        name: "ブラントマスタリー",
+        name: "bluntMastery",
+        displayName: "ブラントマスタリー",
         icon: defender_blunt_mastery,
         type: "Buff",
         raceid: 0,
@@ -612,7 +631,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "シールドマスタリー",
+        name: "shieldMastery",
+        displayName: "シールドマスタリー",
         icon: defender_shield_mastery,
         type: "Buff",
         raceid: 0,
@@ -653,7 +673,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "エターナルスタミナ",
+        name: "eternalStamina",
+        displayName: "エターナルスタミナ",
         icon: defender_eternal_stamina,
         type: "Buff",
         raceid: 0,
@@ -694,7 +715,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "モラルエクスパンション",
+        name: "moraleExpansion",
+        displayName: "モラルエクスパンション",
         icon: defender_morale_expansion,
         type: "Group",
         raceid: 0,
@@ -744,7 +766,8 @@ export const skills: Skill[] = [
     // エルフ
     // ヒーラー
     {
-        name: "インテリジェンスブロー",
+        name: "intelligenceBlow",
+        displayName: "インテリジェンスブロー",
         icon: healer_intelligence_blow,
         type: "Buff",
         raceid: 1,
@@ -785,7 +808,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "メンタルバリア",
+        name: "mentalBarrier",
+        displayName: "メンタルバリア",
         icon: healer_mental_barrier,
         type: "Buff",
         raceid: 1,
@@ -806,7 +830,8 @@ export const skills: Skill[] = [
     },
     // プリースト
     {
-        name: "メンタルブロー",
+        name: "mentalBlow",
+        displayName: "メンタルブロー",
         icon: priest_mental_blow,
         type: "Buff",
         raceid: 1,
@@ -848,7 +873,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "オールマイティ",
+        name: "almighty",
+        displayName: "オールマイティ",
         icon: priest_almighty,
         type: "Buff",
         raceid: 1,
@@ -890,7 +916,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "グループオールマイティー",
+        name: "groupAlmighty",
+        displayName: "グループオールマイティー",
         icon: priest_group_almighty,
         type: "Group",
         raceid: 1,
@@ -931,7 +958,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "スタッフマスタリー",
+        name: "staffMastery",
+        displayName: "スタッフマスタリー",
         icon: priest_staff_mastery,
         type: "Buff",
         raceid: 1,
@@ -986,7 +1014,8 @@ export const skills: Skill[] = [
         },
     },
     {
-        name: "マレアバトル",
+        name: "mareaBattle",
+        displayName: "マレアバトル",
         icon: priest_marea_battle,
         type: "Group",
         raceid: 1,
@@ -1027,7 +1056,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "マレアグレイス",
+        name: "mareaGrace",
+        displayName: "マレアグレイス",
         icon: priest_marea_grace,
         type: "Group",
         raceid: 1,
@@ -1047,7 +1077,8 @@ export const skills: Skill[] = [
         attributes: {}
     },
     {
-        name: "プレッシングオブネーチャー",
+        name: "blessingOfNature",
+        displayName: "プレッシングオブネーチャー",
         icon: priest_blessing_of_nature,
         type: "Group",
         raceid: 1,
@@ -1090,7 +1121,8 @@ export const skills: Skill[] = [
     },
     // テンプラー
     {
-        name: "ブルーファウンテン",
+        name: "blueFountain",
+        displayName: "ブルーファウンテン",
         icon: templer_blue_fountain,
         type: "Buff",
         raceid: 1,
@@ -1131,7 +1163,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブレインブロー",
+        name: "brainBlow",
+        displayName: "ブレインブロー",
         icon: templer_brain_blow,
         type: "Buff",
         raceid: 1,
@@ -1172,7 +1205,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブラントマスタリー",
+        name: "bluntMastery",
+        displayName: "ブラントマスタリー",
         icon: templer_blunt_mastery,
         type: "Buff",
         raceid: 1,
@@ -1192,7 +1226,8 @@ export const skills: Skill[] = [
         attributes: {}
     },
     {
-        name: "イクォリティ",
+        name: "equality",
+        displayName: "イクォリティ",
         icon: templer_equality,
         type: "Buff",
         raceid: 1,
@@ -1235,7 +1270,8 @@ export const skills: Skill[] = [
     // ハーフエルフ
     // アーチャー
     {
-        name: "エンチャントアロー",
+        name: "enchantArrow",
+        displayName: "エンチャントアロー",
         icon: archer_enchant_arrow,
         type: "Buff",
         raceid: 2,
@@ -1276,7 +1312,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "アジリティ",
+        name: "agility",
+        displayName: "アジリティ",
         icon: archer_agility,
         type: "Buff",
         raceid: 2,
@@ -1317,7 +1354,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "フェイタル",
+        name: "fatal",
+        displayName: "フェイタル",
         icon: archer_fatal,
         type: "Buff",
         raceid: 2,
@@ -1358,7 +1396,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "イベイド",
+        name: "evade",
+        displayName: "イベイド",
         icon: archer_evade,
         type: "Buff",
         raceid: 2,
@@ -1400,7 +1439,8 @@ export const skills: Skill[] = [
     },
     // レンジャー
     {
-        name: "クロスボウマスタリー",
+        name: "crossbowMastery",
+        displayName: "クロスボウマスタリー",
         icon: ranger_crossbow_mastery,
         type: "Buff",
         raceid: 2,
@@ -1455,7 +1495,8 @@ export const skills: Skill[] = [
         },
     },
     {
-        name: "アラクリティブロー",
+        name: "alacrityBlow",
+        displayName: "アラクリティブロー",
         icon: ranger_alacrity_blow,
         type: "Buff",
         raceid: 2,
@@ -1496,7 +1537,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ランクショット",
+        name: "rankShot",
+        displayName: "ランクショット",
         icon: ranger_rank_shot,
         type: "Buff",
         raceid: 2,
@@ -1537,7 +1579,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ウイングフット",
+        name: "wingFoot",
+        displayName: "ウイングフット",
         icon: ranger_wing_foot,
         type: "Group",
         raceid: 2,
@@ -1579,7 +1622,8 @@ export const skills: Skill[] = [
     },
     // スカウト
     {
-        name: "ボウマスタリー",
+        name: "bowMastery",
+        displayName: "ボウマスタリー",
         icon: scout_bow_mastery,
         type: "Buff",
         raceid: 2,
@@ -1627,7 +1671,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "シャープメレー",
+        name: "sharpMelee",
+        displayName: "シャープメレー",
         icon: scout_sharp_melee,
         type: "Buff",
         raceid: 2,
@@ -1647,7 +1692,8 @@ export const skills: Skill[] = [
         attributes: {}
     },
     {
-        name: "アラクリティブロー",
+        name: "alarityBlow",
+        displayName: "アラクリティブロー",
         icon: scout_alacrity_blow,
         type: "Buff",
         raceid: 2,
@@ -1688,7 +1734,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ゴーストアロー",
+        name: "ghostArrow",
+        displayName: "ゴーストアロー",
         icon: scout_ghost_arrow,
         type: "Buff",
         raceid: 2,
@@ -1729,7 +1776,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ランクショット",
+        name: "rankShot",
+        displayName: "ランクショット",
         icon: scout_rank_shot,
         type: "Buff",
         raceid: 2,
@@ -1770,7 +1818,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "レインフォースアクション",
+        name: "rainforceAction",
+        displayName: "レインフォースアクション",
         icon: scout_rainforce_action,
         type: "Buff",
         raceid: 2,
@@ -1811,7 +1860,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "スケッターショット",
+        name: "scatterShot",
+        displayName: "スケッターショット",
         icon: scout_scatter_shot,
         type: "Buff",
         raceid: 2,
@@ -1854,7 +1904,8 @@ export const skills: Skill[] = [
     // ダン
     // アサシン
     {
-        name: "パリィ",
+        name: "parry",
+        displayName: "パリィ",
         icon: assassin_parry,
         type: "Buff",
         raceid: 3,
@@ -1895,7 +1946,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ミラーシールド",
+        name: "mirrorShield",
+        displayName: "ミラーシールド",
         icon: assassin_mirror_shield,
         type: "Buff",
         raceid: 3,
@@ -1936,7 +1988,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "アボイド",
+        name: "avoid",
+        displayName: "アボイド",
         icon: assassin_avoid,
         type: "Buff",
         raceid: 3,
@@ -1977,7 +2030,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ストレングス",
+        name: "strength",
+        displayName: "ストレングス",
         icon: assassin_strength,
         type: "Buff",
         raceid: 3,
@@ -2018,7 +2072,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブースト",
+        name: "boost",
+        displayName: "ブースト",
         icon: assassin_boost,
         type: "Buff",
         raceid: 3,
@@ -2059,7 +2114,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "デッドリーブロー",
+        name: "deadlyBlow",
+        displayName: "デッドリーブロー",
         icon: assassin_deadly_blow,
         type: "Buff",
         raceid: 3,
@@ -2109,7 +2165,8 @@ export const skills: Skill[] = [
     },
     // アベンジャー
     {
-        name: "カタールマスタリー",
+        name: "katarMastery",
+        displayName: "カタールマスタリー",
         icon: avenger_katar_mastery,
         type: "Buff",
         raceid: 3,
@@ -2157,7 +2214,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ラウアルスパ",
+        name: "laualSpa",
+        displayName: "ラウアルスパ",
         icon: avenger_laual_spa,
         type: "Buff",
         raceid: 3,
@@ -2175,7 +2233,8 @@ export const skills: Skill[] = [
     },
     // プレデター
     {
-        name: "カタールマスタリー",
+        name: "katarMastery",
+        displayName: "カタールマスタリー",
         icon: predator_katar_mastery,
         type: "Buff",
         raceid: 3,
@@ -2230,7 +2289,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "オクトパス",
+        name: "octopus",
+        displayName: "オクトパス",
         icon: predator_octopus,
         type: "Buff",
         raceid: 3,
@@ -2273,7 +2333,8 @@ export const skills: Skill[] = [
     // デカン
     // ドラゴンファイター
     {
-        name: "ドラゴンパワー",
+        name: "dragonPower",
+        displayName: "ドラゴンパワー",
         icon: dragonfighter_dragon_power,
         type: "Buff",
         raceid: 4,
@@ -2314,7 +2375,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "セパレーション",
+        name: "separation",
+        displayName: "セパレーション",
         icon: dragonfighter_separation,
         type: "Buff",
         raceid: 4,
@@ -2334,7 +2396,8 @@ export const skills: Skill[] = [
     },
     // ドラゴンナイト
     {
-        name: "ゼンマスタリー",
+        name: "zenMastery",
+        displayName: "ゼンマスタリー",
         icon: dragonknight_zen_mastery,
         type: "Buff",
         raceid: 4,
@@ -2382,7 +2445,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブルーディフェンス",
+        name: "blueDefence",
+        displayName: "ブルーディフェンス",
         icon: dragonknight_blue_defence,
         type: "Buff",
         raceid: 4,
@@ -2423,7 +2487,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "クリティカルイミュニティ",
+        name: "criticalImmunity",
+        displayName: "クリティカルイミュニティ",
         icon: dragonknight_critical_immunity,
         type: "Buff",
         raceid: 4,
@@ -2465,7 +2530,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "イボルブ",
+        name: "evolve",
+        displayName: "イボルブ",
         icon: dragonknight_evolve,
         type: "Buff",
         raceid: 4,
@@ -2520,7 +2586,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "オールサクション",
+        name: "allSuction",
+        displayName: "オールサクション",
         icon: dragonknight_all_suction,
         type: "Passive",
         raceid: 4,
@@ -2568,7 +2635,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "フォースロック",
+        name: "forceLock",
+        displayName: "フォースロック",
         icon: dragonknight_force_lock,
         type: "Buff",
         raceid: 4,
@@ -2609,7 +2677,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "サドンデス",
+        name: "suddenDeath",
+        displayName: "サドンデス",
         icon: dragonknight_sudden_death,
         type: "Passive",
         raceid: 4,
@@ -2629,7 +2698,8 @@ export const skills: Skill[] = [
         attributes: {}
     },
     {
-        name: "ブラッドエフェクト",
+        name: "bloodEffect",
+        displayName: "ブラッドエフェクト",
         icon: dragonknight_blood_effect,
         type: "Passive",
         raceid: 4,
@@ -2670,7 +2740,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ルナシィ",
+        name: "lunacy",
+        displayName: "ルナシィ",
         icon: dragonknight_lunacy,
         type: "Passive",
         raceid: 4,
@@ -2712,7 +2783,8 @@ export const skills: Skill[] = [
     },
     // ドラゴンセージ
     {
-        name: "ゼンマスタリー",
+        name: "zenMastery",
+        displayName: "ゼンマスタリー",
         icon: dragonsage_zen_mastery,
         type: "Buff",
         raceid: 4,
@@ -2760,7 +2832,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブルーディフェンス",
+        name: "blueDefence",
+        displayName: "ブルーディフェンス",
         icon: dragonsage_blue_defence,
         type: "Buff",
         raceid: 4,
@@ -2801,7 +2874,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "クリティカルイミュニティ",
+        name: "criticalImmunity",
+        displayName: "クリティカルイミュニティ",
         icon: dragonsage_critical_immunity,
         type: "Buff",
         raceid: 4,
@@ -2842,7 +2916,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "イボルブーセパレーション",
+        name: "evolveSeparation",
+        displayName: "イボルブーセパレーション",
         icon: dragonsage_evolve_separation,
         type: "Buff",
         raceid: 4,
@@ -2890,7 +2965,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "サクション",
+        name: "suction",
+        displayName: "サクション",
         icon: dragonsage_suction,
         type: "Passive",
         raceid: 4,
@@ -2931,7 +3007,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ラピドロック",
+        name: "rapidLock",
+        displayName: "ラピドロック",
         icon: dragonsage_rapid_lock,
         type: "Buff",
         raceid: 4,
@@ -2972,7 +3049,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "スピッター",
+        name: "spitter",
+        displayName: "スピッター",
         icon: dragonsage_spitter,
         type: "Passive",
         raceid: 4,
@@ -3013,7 +3091,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "インプレグナブル",
+        name: "impregnable",
+        displayName: "インプレグナブル",
         icon: dragonsage_impregnable,
         type: "Passive",
         raceid: 4,
@@ -3054,7 +3133,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ドラゴンウイング",
+        name: "dragonWing",
+        displayName: "ドラゴンウイング",
         icon: dragonsage_dragon_wing,
         type: "Buff",
         raceid: 4,
@@ -3097,7 +3177,8 @@ export const skills: Skill[] = [
     // ダークエルフ
     // メイジ
     {
-        name: "ダークメッセージ",
+        name: "darkMessage",
+        displayName: "ダークメッセージ",
         icon: mage_dark_message,
         type: "Buff",
         raceid: 5,
@@ -3117,7 +3198,8 @@ export const skills: Skill[] = [
         attributes: {}
     },
     {
-        name: "ダークアイズ",
+        name: "darkEyes",
+        displayName: "ダークアイズ",
         icon: mage_dark_eyes,
         type: "Buff",
         raceid: 5,
@@ -3134,7 +3216,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "マジックブースト",
+        name: "magicBoost",
+        displayName: "マジックブースト",
         icon: mage_magic_boost,
         type: "Buff",
         raceid: 5,
@@ -3175,7 +3258,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ストロングマインド",
+        name: "strongMind",
+        displayName: "ストロングマインド",
         icon: mage_strong_mind,
         type: "Buff",
         raceid: 5,
@@ -3224,7 +3308,8 @@ export const skills: Skill[] = [
     },
     // ウォーロック
     {
-        name: "スタッフマスタリー",
+        name: "staffMastery",
+        displayName: "スタッフマスタリー",
         icon: warrock_staff_mastery,
         type: "Buff",
         raceid: 5,
@@ -3279,7 +3364,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "アドインテンション",
+        name: "addIntention",
+        displayName: "アドインテンション",
         icon: warrock_add_intention,
         type: "Buff",
         raceid: 5,
@@ -3321,7 +3407,8 @@ export const skills: Skill[] = [
     },
 
     {
-        name: "マナバーンアップ",
+        name: "manaBurnUp",
+        displayName: "マナバーンアップ",
         icon: warrock_mana_burn_up,
         type: "Buff",
         raceid: 5,
@@ -3364,7 +3451,8 @@ export const skills: Skill[] = [
     },
     // ウィザード
     {
-        name: "スタッフマスタリー",
+        name: "staffMastery",
+        displayName: "スタッフマスタリー",
         icon: wizard_staff_mastery,
         type: "Buff",
         raceid: 5,
@@ -3412,7 +3500,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "アドテンパー",
+        name: "addTemper",
+        displayName: "アドテンパー",
         icon: wizard_add_temper,
         type: "Buff",
         raceid: 5,
@@ -3453,7 +3542,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "メンタリティシールド",
+        name: "mentalityShield",
+        displayName: "メンタリティシールド",
         icon: wizard_mentality_shield,
         type: "Buff",
         raceid: 5,
@@ -3494,7 +3584,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "デストロイ",
+        name: "destroy",
+        displayName: "デストロイ",
         icon: wizard_destroy,
         type: "Buff",
         raceid: 5,
@@ -3535,7 +3626,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "マインドトレーニング",
+        name: "mindTraining",
+        displayName: "マインドトレーニング",
         icon: wizard_mind_training,
         type: "Buff",
         raceid: 5,
@@ -3592,7 +3684,8 @@ export const skills: Skill[] = [
     // ジャイアント
     // ウォリアー
     {
-        name: "バトルチャント",
+        name: "battleChant",
+        displayName: "バトルチャント",
         icon: warrior_battle_chant,
         type: "Buff",
         raceid: 6,
@@ -3640,7 +3733,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ファインドホール",
+        name: "findHole",
+        displayName: "ファインドホール",
         icon: warrior_find_hole,
         type: "Buff",
         raceid: 6,
@@ -3681,7 +3775,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "レージ",
+        name: "rage",
+        displayName: "レージ",
         icon: warrior_rage,
         type: "Buff",
         raceid: 6,
@@ -3729,7 +3824,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブルートフォース",
+        name: "bruteForce",
+        displayName: "ブルートフォース",
         icon: warrior_brute_force,
         type: "Buff",
         raceid: 6,
@@ -3771,7 +3867,8 @@ export const skills: Skill[] = [
     },
     // バーサーカー
     {
-        name: "ポールアームマスタリー",
+        name: "polearmMastery",
+        displayName: "ポールアームマスタリー",
         icon: berserker_polearm_mastery,
         type: "Buff",
         raceid: 6,
@@ -3819,7 +3916,8 @@ export const skills: Skill[] = [
         },
     },
     {
-        name: "クリミナルマインド",
+        name: "criminalMind",
+        displayName: "クリミナルマインド",
         icon: berserker_criminal_mind,
         type: "Buff",
         raceid: 6,
@@ -3839,7 +3937,8 @@ export const skills: Skill[] = [
         attributes: {}
     },
     {
-        name: "バーサーク",
+        name: "berserk",
+        displayName: "バーサーク",
         icon: berserker_berserk,
         type: "Buff",
         raceid: 6,
@@ -3894,7 +3993,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ビジランス",
+        name: "vigilance",
+        displayName: "ビジランス",
         icon: berserker_vigilance,
         type: "Buff",
         raceid: 6,
@@ -3942,7 +4042,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブランディッシュウェポン",
+        name: "brandishWeapon",
+        displayName: "ブランディッシュウェポン",
         icon: berserker_brandish_weapon,
         type: "Buff",
         raceid: 6,
@@ -3991,7 +4092,8 @@ export const skills: Skill[] = [
     },
     // サベージ
     {
-        name: "デュアルソードマスタリー",
+        name: "dualswordMastery",
+        displayName: "デュアルソードマスタリー",
         icon: savage_dualsword_mastery,
         type: "Buff",
         raceid: 6,
@@ -4046,7 +4148,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ラムページフォース",
+        name: "rampageForce",
+        displayName: "ラムページフォース",
         icon: savage_rampage_force,
         type: "Buff",
         raceid: 6,
@@ -4065,7 +4168,8 @@ export const skills: Skill[] = [
         attributes: {}
     },
     {
-        name: "フェロシアス",
+        name: "ferocious",
+        displayName: "フェロシアス",
         icon: savage_ferocious,
         type: "Buff",
         raceid: 6,
@@ -4113,7 +4217,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "モンスターマインド",
+        name: "monsterMind",
+        displayName: "モンスターマインド",
         icon: savage_monster_mind,
         type: "Buff",
         raceid: 6,
@@ -4154,7 +4259,8 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "ブルタリティ",
+        name: "brutality",
+        displayName: "ブルタリティ",
         icon: savage_brutality,
         type: "Buff",
         raceid: 6,
