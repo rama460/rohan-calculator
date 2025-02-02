@@ -25,7 +25,6 @@ import templer_blue_fountain from "../../assets/skills/templer_blue_fountain.png
 import templer_brain_blow from "../../assets/skills/templer_brain_blow.png";
 import templer_blunt_mastery from "../../assets/skills/templer_blunt_mastery.png";
 import templer_equality from "../../assets/skills/templer_equality.png";
-import archer_long_shot from "../../assets/skills/archer_long_shot.png";
 import archer_enchant_arrow from "../../assets/skills/archer_enchant_arrow.png";
 import archer_agility from "../../assets/skills/archer_agility.png";
 import archer_fatal from "../../assets/skills/archer_fatal.png";
@@ -97,6 +96,7 @@ import savage_rampage_force from "../../assets/skills/savage_rampage_force.png";
 import savage_ferocious from "../../assets/skills/savage_ferocious.png";
 import savage_monster_mind from "../../assets/skills/savage_monster_mind.png";
 import savage_brutality from "../../assets/skills/savage_brutality.png";
+import { BuiltinOptionKeyType } from "./options";
 
 
 export type Skill = {
@@ -109,9 +109,10 @@ export type Skill = {
     max: number;
     descriptions: string[];
     attributes: {
-        name: string;
-        values: number[];
-    }[];
+        [key: number]: {
+            [key in BuiltinOptionKeyType]?: number;
+        }
+    }
 }
 
 export type SkillType = "Passive" | "Active" | "Buff" | "Group" | "Other";
@@ -136,14 +137,29 @@ export const skills: Skill[] = [
             "30分間、使用者の力を35%上昇させます。",
             "90分間、使用者の力を50%上昇させます。",
         ],
-        attributes: [
-            {
-                name: "strength",
-                values: [
-                    10, 15, 20, 25, 30, 35, 50
-                ],
-            }
-        ]
+        attributes: {
+            0: {
+                plusStrength: 10,
+            },
+            1: {
+                plusStrength: 15,
+            },
+            2: {
+                plusStrength: 20,
+            },
+            3: {
+                plusStrength: 25,
+            },
+            4: {
+                plusStrength: 30,
+            },
+            5: {
+                plusStrength: 35,
+            },
+            6: {
+                plusStrength: 50,
+            },
+        }
     },
     {
         name: "プロテクション",
@@ -162,14 +178,30 @@ export const skills: Skill[] = [
             "30分間、使用者の鎧の防御力を35%上昇させます。",
             "90分間、使用者の鎧の防御力を50%上昇させます。",
         ],
-        attributes: [
-            {
-                name: "防御力",
-                values: [
-                    10, 15, 20, 25, 30, 35, 50
-                ],
-            }
-        ]
+        attributes: {
+            0: {
+                multiplyArmorDefense: 10,
+            },
+            1: {
+                multiplyArmorDefense: 15,
+            },
+            2: {
+                multiplyArmorDefense: 20,
+            },
+
+            3: {
+                multiplyArmorDefense: 25,
+            },
+            4: {
+                multiplyArmorDefense: 30,
+            },
+            5: {
+                multiplyArmorDefense: 35,
+            },
+            6: {
+                multiplyArmorDefense: 50,
+            },
+        }
     },
     {
         name: "シャープンブレイド",
@@ -189,14 +221,29 @@ export const skills: Skill[] = [
             "90分間、使用者の片手武器(短剣は除く)の攻撃力を21%上昇させます。",
 
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    3, 6, 9, 12, 15, 18, 21
-                ],
-            }
-        ]
+        attributes: {
+            0: {
+                multiplyAttack: 3,
+            },
+            1: {
+                multiplyAttack: 6,
+            },
+            2: {
+                multiplyAttack: 9,
+            },
+            3: {
+                multiplyAttack: 12,
+            },
+            4: {
+                multiplyAttack: 15,
+            },
+            5: {
+                multiplyAttack: 18,
+            },
+            6: {
+                multiplyAttack: 21,
+            },
+        },
     },
     {
         name: "ブレスドシールド",
@@ -215,14 +262,29 @@ export const skills: Skill[] = [
             "30分間、盾の防御力を350%上昇させます。",
             "90分間、盾の防御力を500%上昇させます。",
         ],
-        attributes: [
-            {
-                name: "防御力",
-                values: [
-                    50, 100, 150, 200, 250, 350, 500
-                ],
-            }
-        ]
+        attributes: {
+            0: {
+                multiplyShieldDefense: 50,
+            },
+            1: {
+                multiplyShieldDefense: 100,
+            },
+            2: {
+                multiplyShieldDefense: 150,
+            },
+            3: {
+                multiplyShieldDefense: 200,
+            },
+            4: {
+                multiplyShieldDefense: 250,
+            },
+            5: {
+                multiplyShieldDefense: 350,
+            },
+            6: {
+                multiplyShieldDefense: 500,
+            },
+        }
     },
     {
         name: "インボーク",
@@ -241,20 +303,36 @@ export const skills: Skill[] = [
             "30分間、敏捷性が30%増加し、クリティカル攻撃成功の時敏捷の1100%ほどダメージを増加させます。",
             "90分間、敏捷性が60%増加し、クリティカル攻撃成功の時敏捷の1500%ほどダメージを増加させます。",
         ],
-        attributes: [
-            {
-                name: "敏捷性",
-                values: [
-                    30, 30, 30, 30, 30, 30, 60
-                ],
+        attributes: {
+            0: {
+                multiplyAgility: 30,
+                plusCriticalDamageMultiplyAgility: 150,
             },
-            {
-                name: "クリティカルダメージ",
-                values: [
-                    150, 300, 500, 700, 900, 1100, 1500
-                ],
-            }
-        ]
+            1: {
+                multiplyAgility: 30,
+                plusCriticalDamageMultiplyAgility: 300,
+            },
+            2: {
+                multiplyAgility: 30,
+                plusCriticalDamageMultiplyAgility: 500,
+            },
+            3: {
+                multiplyAgility: 30,
+                plusCriticalDamageMultiplyAgility: 700,
+            },
+            4: {
+                multiplyAgility: 30,
+                plusCriticalDamageMultiplyAgility: 900,
+            },
+            5: {
+                multiplyAgility: 30,
+                plusCriticalDamageMultiplyAgility: 1100,
+            },
+            6: {
+                multiplyAgility: 60,
+                plusCriticalDamageMultiplyAgility: 1500,
+            },
+        }
     },
     // ガーディアン
     {
@@ -274,20 +352,36 @@ export const skills: Skill[] = [
             "30分間、短剣・片手剣の攻撃力及びオプション攻撃力が136%増加。力の98%ほど近距離攻撃力が増加。",
             "90分間、短剣・片手剣の攻撃力及びオプション攻撃力が192%増加。力の139%ほど近距離攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    19, 38, 58, 77, 96, 136, 192
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 19,
+                plusMeleeAttackMultiplyStrength: 14,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    14, 28, 42, 56, 70, 98, 139
-                ],
+            1: {
+                multiplyWeaponAttack: 38,
+                plusMeleeAttackMultiplyStrength: 28,
+            },
+            2: {
+                multiplyWeaponAttack: 58,
+                plusMeleeAttackMultiplyStrength: 42,
+            },
+            3: {
+                multiplyWeaponAttack: 77,
+                plusMeleeAttackMultiplyStrength: 56,
+            },
+            4: {
+                multiplyWeaponAttack: 96,
+                plusMeleeAttackMultiplyStrength: 70,
+            },
+            5: {
+                multiplyWeaponAttack: 136,
+                plusMeleeAttackMultiplyStrength: 98,
+            },
+            6: {
+                multiplyWeaponAttack: 192,
+                plusMeleeAttackMultiplyStrength: 139,
             }
-        ]
+        }
     },
     {
         name: "エイムブロー",
@@ -307,20 +401,36 @@ export const skills: Skill[] = [
             "補助武器装着用時、攻撃を20%の確率で受け止めてクリティカル確率10%増加させます。持続時間120分。",
 
         ],
-        attributes: [
-            {
-                name: "クリティカル確率",
-                values: [
-                    1, 2, 3, 4, 5, 7, 10
-                ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 1,
+                multiplyPhysicalBlockRate: 5,
             },
-            {
-                name: "ブロック",
-                values: [
-                    5, 7, 9, 11, 13, 15, 20
-                ],
+            1: {
+                multiplyCriticalRate: 2,
+                multiplyPhysicalBlockRate: 7,
+            },
+            2: {
+                multiplyCriticalRate: 3,
+                multiplyPhysicalBlockRate: 9,
+            },
+            3: {
+                multiplyCriticalRate: 4,
+                multiplyPhysicalBlockRate: 11,
+            },
+            4: {
+                multiplyCriticalRate: 5,
+                multiplyPhysicalBlockRate: 13,
+            },
+            5: {
+                multiplyCriticalRate: 7,
+                multiplyPhysicalBlockRate: 15,
+            },
+            6: {
+                multiplyCriticalRate: 10,
+                multiplyPhysicalBlockRate: 20,
             }
-        ]
+        }
     },
     {
         name: "フィジカルブロー",
@@ -339,14 +449,29 @@ export const skills: Skill[] = [
             "30分間、使用者のHPを35%増加させます。",
             "120分間、使用者のHPを40%増加させます。",
         ],
-        attributes: [
-            {
-                name: "HP",
-                values: [
-                    18, 21, 24, 27, 30, 35, 40
-                ],
+        attributes: {
+            0: {
+                multiplyHitPoint: 18,
+            },
+            1: {
+                multiplyHitPoint: 21,
+            },
+            2: {
+                multiplyHitPoint: 24,
+            },
+            3: {
+                multiplyHitPoint: 27,
+            },
+            4: {
+                multiplyHitPoint: 30,
+            },
+            5: {
+                multiplyHitPoint: 35,
+            },
+            6: {
+                multiplyHitPoint: 40,
             }
-        ]
+        }
     },
     {
         name: "クレイジーストレングス",
@@ -365,14 +490,29 @@ export const skills: Skill[] = [
             "30分間、使用者の力を40%増加させます。",
             "120分間、使用者の力を60%増加させます。"
         ],
-        attributes: [
-            {
-                name: "力",
-                values: [
-                    15, 20, 25, 30, 35, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyStrength: 15,
+            },
+            1: {
+                multiplyStrength: 20,
+            },
+            2: {
+                multiplyStrength: 25,
+            },
+            3: {
+                multiplyStrength: 30,
+            },
+            4: {
+                multiplyStrength: 35,
+            },
+            5: {
+                multiplyStrength: 40,
+            },
+            6: {
+                multiplyStrength: 60,
             }
-        ]
+        }
     },
     {
         name: "クリティカルオーラ",
@@ -391,20 +531,36 @@ export const skills: Skill[] = [
             "パーティーメンバー及び使用者のクリティカル確率を6%、攻撃力を20%増加させます。",
             "パーティーメンバー及び使用者のクリティカル確率を7%、攻撃力を25%増加させます。",
         ],
-        attributes: [
-            {
-                name: "クリティカル確率",
-                values: [
-                    1, 2, 3, 4, 5, 6, 7
-                ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 1,
+                multiplyAttack: 5,
             },
-            {
-                name: "攻撃力",
-                values: [
-                    5, 8, 11, 14, 17, 20, 25
-                ],
+            1: {
+                multiplyCriticalRate: 2,
+                multiplyAttack: 8,
+            },
+            2: {
+                multiplyCriticalRate: 3,
+                multiplyAttack: 11,
+            },
+            3: {
+                multiplyCriticalRate: 4,
+                multiplyAttack: 14,
+            },
+            4: {
+                multiplyCriticalRate: 5,
+                multiplyAttack: 17,
+            },
+            5: {
+                multiplyCriticalRate: 6,
+                multiplyAttack: 20,
+            },
+            6: {
+                multiplyCriticalRate: 7,
+                multiplyAttack: 25,
             }
-        ]
+        }
     },
     // ディフェンダー
     {
@@ -424,20 +580,36 @@ export const skills: Skill[] = [
             "30分間、片手銃器の攻撃力及びオプション攻撃力が200%増加。体力の200%の近距離攻撃力が増加。",
             "120分間、片手銃器の攻撃力及びオプション攻撃力が300%増加。体力の300%の近距離攻撃力が増加。"
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    30, 60, 90, 120, 150, 200, 300
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 30,
+                plusMeleeAttackMultiplyVitality: 30,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    30, 60, 90, 120, 150, 200, 300
-                ],
+            1: {
+                multiplyWeaponAttack: 60,
+                plusMeleeAttackMultiplyVitality: 60,
+            },
+            2: {
+                multiplyWeaponAttack: 90,
+                plusMeleeAttackMultiplyVitality: 90,
+            },
+            3: {
+                multiplyWeaponAttack: 120,
+                plusMeleeAttackMultiplyVitality: 120,
+            },
+            4: {
+                multiplyWeaponAttack: 150,
+                plusMeleeAttackMultiplyVitality: 150,
+            },
+            5: {
+                multiplyWeaponAttack: 200,
+                plusMeleeAttackMultiplyVitality: 200,
+            },
+            6: {
+                multiplyWeaponAttack: 300,
+                plusMeleeAttackMultiplyVitality: 300,
             }
-        ]
+        }
     },
     {
         name: "シールドマスタリー",
@@ -456,14 +628,29 @@ export const skills: Skill[] = [
             "30分間、盾のブロック率を25%増加させる。",
             "90分間、盾のブロック率を35%増加させる。"
         ],
-        attributes: [
-            {
-                name: "ブロック率",
-                values: [
-                    8, 11, 14, 17, 21, 25, 35
-                ],
+        attributes: {
+            0: {
+                multiplyShieldBlockRate: 8,
+            },
+            1: {
+                multiplyShieldBlockRate: 11,
+            },
+            2: {
+                multiplyShieldBlockRate: 14,
+            },
+            3: {
+                multiplyShieldBlockRate: 17,
+            },
+            4: {
+                multiplyShieldBlockRate: 21,
+            },
+            5: {
+                multiplyShieldBlockRate: 25,
+            },
+            6: {
+                multiplyShieldBlockRate: 35,
             }
-        ]
+        }
     },
     {
         name: "エターナルスタミナ",
@@ -482,14 +669,29 @@ export const skills: Skill[] = [
             "30分間、使用者の体力を45%増加させます。",
             "90分間、使用者の体力を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "体力",
-                values: [
-                    10, 15, 20, 25, 30, 45, 60
-                ],
+        attributes: {
+            0: {
+                multiplyHitPoint: 10,
+            },
+            1: {
+                multiplyHitPoint: 15,
+            },
+            2: {
+                multiplyHitPoint: 20,
+            },
+            3: {
+                multiplyHitPoint: 25,
+            },
+            4: {
+                multiplyHitPoint: 30,
+            },
+            5: {
+                multiplyHitPoint: 45,
+            },
+            6: {
+                multiplyHitPoint: 60,
             }
-        ]
+        }
     },
     {
         name: "モラルエクスパンション",
@@ -508,20 +710,36 @@ export const skills: Skill[] = [
             "パーティーメンバー及び使用者の攻撃力を20%、物理防御力を30%増加させます。",
             "パーティーメンバー及び使用者の攻撃力を30%、物理防御力を45%増加させます。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    3, 6, 9, 12, 15, 20, 30
-                ],
+        attributes: {
+            0: {
+                multiplyAttack: 3,
+                multiplyPhysicalDefense: 5,
             },
-            {
-                name: "物理防御力",
-                values: [
-                    5, 10, 15, 20, 25, 30, 45
-                ],
+            1: {
+                multiplyAttack: 6,
+                multiplyPhysicalDefense: 10,
+            },
+            2: {
+                multiplyAttack: 9,
+                multiplyPhysicalDefense: 15,
+            },
+            3: {
+                multiplyAttack: 12,
+                multiplyPhysicalDefense: 20,
+            },
+            4: {
+                multiplyAttack: 15,
+                multiplyPhysicalDefense: 25,
+            },
+            5: {
+                multiplyAttack: 20,
+                multiplyPhysicalDefense: 30,
+            },
+            6: {
+                multiplyAttack: 30,
+                multiplyPhysicalDefense: 45,
             }
-        ]
+        }
     },
     // エルフ
     // ヒーラー
@@ -542,14 +760,29 @@ export const skills: Skill[] = [
             "30分間、使用者の魔法攻撃力を30%ほど増加させます。",
             "90分間、使用者の魔法攻撃力を35%ほど増加させます。",
         ],
-        attributes: [
-            {
-                name: "魔法攻撃力",
-                values: [
-                    5, 10, 15, 20, 25, 30, 35
-                ],
+        attributes: {
+            0: {
+                multiplyMagicAttack: 5,
+            },
+            1: {
+                multiplyMagicAttack: 10,
+            },
+            2: {
+                multiplyMagicAttack: 15,
+            },
+            3: {
+                multiplyMagicAttack: 20,
+            },
+            4: {
+                multiplyMagicAttack: 25,
+            },
+            5: {
+                multiplyMagicAttack: 30,
+            },
+            6: {
+                multiplyMagicAttack: 35,
             }
-        ]
+        }
     },
     {
         name: "メンタルバリア",
@@ -568,14 +801,8 @@ export const skills: Skill[] = [
             "30分間、使用者の物理防御力を知能と精神の35%ほど増加させます。",
             "90分間、使用者の物理防御力を知能と精神の50%ほど増加させます。",
         ],
-        attributes: [
-            {
-                name: "物理防御力",
-                values: [
-                    5, 10, 15, 20, 25, 35, 50
-                ],
-            }
-        ]
+        // TODO: implement custom option
+        attributes: {}
     },
     // プリースト
     {
@@ -595,14 +822,30 @@ export const skills: Skill[] = [
             "30分間、使用者の精神力を40%ほど増加させます。",
             "120分間、使用者の精神力を60%ほど増加させます。",
         ],
-        attributes: [
-            {
-                name: "精神力",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyMentality: 10,
+            },
+            1: {
+                multiplyMentality: 15,
+            },
+            2: {
+                multiplyMentality: 20,
+            },
+            3: {
+                multiplyMentality: 25,
+            },
+            4: {
+                multiplyMentality: 30,
+            },
+            5: {
+                multiplyMentality: 40,
+            },
+            6: {
+                multiplyMentality: 60,
+
             }
-        ]
+        }
     },
     {
         name: "オールマイティ",
@@ -622,14 +865,29 @@ export const skills: Skill[] = [
             "120分間、使用者の全てのステータスを50%ほど増加させます。",
 
         ],
-        attributes: [
-            {
-                name: "全ステータス",
-                values: [
-                    6, 12, 18, 24, 30, 40, 50
-                ],
+        attributes: {
+            0: {
+                multiplyAllOption: 6,
+            },
+            1: {
+                multiplyAllOption: 12,
+            },
+            2: {
+                multiplyAllOption: 18,
+            },
+            3: {
+                multiplyAllOption: 24,
+            },
+            4: {
+                multiplyAllOption: 30,
+            },
+            5: {
+                multiplyAllOption: 40,
+            },
+            6: {
+                multiplyAllOption: 50,
             }
-        ]
+        }
     },
     {
         name: "グループオールマイティー",
@@ -648,14 +906,29 @@ export const skills: Skill[] = [
             "30分間、パーティーメンバーの全てのステータスを20%ほど増加させます。",
             "120分間、パーティーメンバーの全てのステータスを25%ほど増加させます。",
         ],
-        attributes: [
-            {
-                name: "全ステータス",
-                values: [
-                    3, 6, 9, 12, 15, 20, 25
-                ],
+        attributes: {
+            0: {
+                multiplyAllOption: 3,
+            },
+            1: {
+                multiplyAllOption: 6,
+            },
+            2: {
+                multiplyAllOption: 9,
+            },
+            3: {
+                multiplyAllOption: 12,
+            },
+            4: {
+                multiplyAllOption: 15,
+            },
+            5: {
+                multiplyAllOption: 20,
+            },
+            6: {
+                multiplyAllOption: 25,
             }
-        ]
+        }
     },
     {
         name: "スタッフマスタリー",
@@ -674,26 +947,43 @@ export const skills: Skill[] = [
             "30分間、ダメージの30%ほどMP回復。スタッフ装備時に武器及びオプション攻撃力が449%増加。精神の233%ほど魔法攻撃力増加。",
             "120分間、ダメージの30%ほどMP回復。スタッフ装備時に武器及びオプション攻撃力が642%増加。精神の333%ほど魔法攻撃力増加。",
         ],
-        attributes: [
-            {
-                name: "MP回復",
-                values: [
-                    30, 30, 30, 30, 30, 30, 30
-                ],
+        attributes: {
+            0: {
+                multiplyMagicPointAbsorbDamageRate: 30,
+                multiplyWeaponAttack: 64,
+                plusMagicAttackMultiplyMentality: 33,
             },
-            {
-                name: "攻撃力",
-                values: [
-                    64, 128, 193, 257, 321, 449, 642
-                ],
+            1: {
+                multiplyMagicPointAbsorbDamageRate: 30,
+                multiplyWeaponAttack: 128,
+                plusMagicAttackMultiplyMentality: 67,
             },
-            {
-                name: "魔法攻撃力",
-                values: [
-                    33, 67, 100, 133, 167, 233, 333
-                ],
+            2: {
+                multiplyMagicPointAbsorbDamageRate: 30,
+                multiplyWeaponAttack: 193,
+                plusMagicAttackMultiplyMentality: 100,
+            },
+            3: {
+                multiplyMagicPointAbsorbDamageRate: 30,
+                multiplyWeaponAttack: 257,
+                plusMagicAttackMultiplyMentality: 133,
+            },
+            4: {
+                multiplyMagicPointAbsorbDamageRate: 30,
+                multiplyWeaponAttack: 321,
+                plusMagicAttackMultiplyMentality: 167,
+            },
+            5: {
+                multiplyMagicPointAbsorbDamageRate: 30,
+                multiplyWeaponAttack: 449,
+                plusMagicAttackMultiplyMentality: 233,
+            },
+            6: {
+                multiplyMagicPointAbsorbDamageRate: 30,
+                multiplyWeaponAttack: 642,
+                plusMagicAttackMultiplyMentality: 333,
             }
-        ]
+        },
     },
     {
         name: "マレアバトル",
@@ -712,14 +1002,29 @@ export const skills: Skill[] = [
             "パーティーメンバー及び使用者の魔法ブロック確率を30%増加させます。",
             "パーティーメンバー及び使用者の魔法ブロック確率を50%増加させます。",
         ],
-        attributes: [
-            {
-                name: "魔法ブロック確率",
-                values: [
-                    5, 10, 15, 20, 25, 30, 50
-                ],
+        attributes: {
+            0: {
+                multiplyMagicalBlockRate: 5,
+            },
+            1: {
+                multiplyMagicalBlockRate: 10,
+            },
+            2: {
+                multiplyMagicalBlockRate: 15,
+            },
+            3: {
+                multiplyMagicalBlockRate: 20,
+            },
+            4: {
+                multiplyMagicalBlockRate: 25,
+            },
+            5: {
+                multiplyMagicalBlockRate: 30,
+            },
+            6: {
+                multiplyMagicalBlockRate: 50,
             }
-        ]
+        }
     },
     {
         name: "マレアグレイス",
@@ -738,14 +1043,8 @@ export const skills: Skill[] = [
             "パーティーメンバー及び使用者の最大HPを使用者レベルの250倍増加させます。",
             "パーティーメンバー及び使用者の最大HPを使用者レベルの350倍増加させます。",
         ],
-        attributes: [
-            {
-                name: "最大HP",
-                values: [
-                    40, 60, 70, 160, 200, 250, 350
-                ],
-            }
-        ]
+        // TODO: implement custom option
+        attributes: {}
     },
     {
         name: "プレッシングオブネーチャー",
@@ -764,14 +1063,30 @@ export const skills: Skill[] = [
             "パーティーメンバー及び使用者のスタン抵抗力を20%増加させます。",
             "パーティーメンバー及び使用者のスタン抵抗力を30%増加させます。",
         ],
-        attributes: [
-            {
-                name: "スタン抵抗力",
-                values: [
-                    3, 6, 9, 12, 15, 20, 30
-                ],
+        attributes: {
+            0: {
+                multiplyStunResistRate: 3,
+            },
+            1: {
+                multiplyStunResistRate: 6,
+            },
+            2: {
+                multiplyStunResistRate: 9,
+            },
+            3: {
+                multiplyStunResistRate: 12,
+            },
+            4: {
+                multiplyStunResistRate: 15,
+            },
+            5: {
+                multiplyStunResistRate: 20,
+            },
+            6: {
+                multiplyStunResistRate: 30,
             }
-        ]
+
+        }
     },
     // テンプラー
     {
@@ -791,14 +1106,29 @@ export const skills: Skill[] = [
             "30分間、使用者のMPを400%ほど増加させます。",
             "120分間、使用者のMPを600%ほど増加させます。",
         ],
-        attributes: [
-            {
-                name: "MP",
-                values: [
-                    100, 150, 200, 250, 300, 400, 600
-                ],
+        attributes: {
+            0: {
+                multiplyMagicPoint: 100,
+            },
+            1: {
+                multiplyMagicPoint: 150,
+            },
+            2: {
+                multiplyMagicPoint: 200,
+            },
+            3: {
+                multiplyMagicPoint: 250,
+            },
+            4: {
+                multiplyMagicPoint: 300,
+            },
+            5: {
+                multiplyMagicPoint: 400,
+            },
+            6: {
+                multiplyMagicPoint: 600,
             }
-        ]
+        }
     },
     {
         name: "ブレインブロー",
@@ -817,14 +1147,29 @@ export const skills: Skill[] = [
             "30分間、使用者の知能を40%増加させます。",
             "120分間、使用者の知能を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "知能",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyIntelligence: 10,
+            },
+            1: {
+                multiplyIntelligence: 15,
+            },
+            2: {
+                multiplyIntelligence: 20,
+            },
+            3: {
+                multiplyIntelligence: 25,
+            },
+            4: {
+                multiplyIntelligence: 30,
+            },
+            5: {
+                multiplyIntelligence: 40,
+            },
+            6: {
+                multiplyIntelligence: 60,
             }
-        ]
+        }
     },
     {
         name: "ブラントマスタリー",
@@ -843,26 +1188,8 @@ export const skills: Skill[] = [
             "30分間、片手鈍器及びオプション攻撃力が550%増加。攻撃速度40%増加。知能の411%と魔法攻撃力ほど近距離攻撃力が増加。",
             "120分間、片手鈍器及びオプション攻撃力が782%増加。攻撃速度60%増加。知能の587%と魔法攻撃力ほど近距離攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    87, 164, 242, 319, 396, 550, 782
-                ],
-            },
-            {
-                name: "攻撃速度",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
-            },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    58, 118, 176, 235, 294, 411, 587
-                ],
-            }
-        ]
+        // TODO: implement custom option
+        attributes: {}
     },
     {
         name: "イクォリティ",
@@ -881,43 +1208,32 @@ export const skills: Skill[] = [
             "30分間、80%の確率で通常攻撃を範囲化し、10メートル中の対象に60%減少したダメージを与えます。",
             "60分間、100%の確率で通常攻撃を範囲化し、10メートル中の対象に50%減少したダメージを与えます。",
         ],
-        attributes: [
-            {
-                name: "確率",
-                values: [
-                    20, 30, 40, 50, 60, 80, 100
-                ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: -40,
+            },
+            1: {
+                multiplyIncreaseDamageDealt: -40,
+            },
+            2: {
+                multiplyIncreaseDamageDealt: -40,
+            },
+            3: {
+                multiplyIncreaseDamageDealt: -40,
+            },
+            4: {
+                multiplyIncreaseDamageDealt: -40,
+            },
+            5: {
+                multiplyIncreaseDamageDealt: -40,
+            },
+            6: {
+                multiplyIncreaseDamageDealt: -50,
             }
-        ]
+        }
     },
     // ハーフエルフ
     // アーチャー
-    {
-        name: "ロングショット",
-        icon: archer_long_shot,
-        type: "Buff",
-        raceid: 2,
-        jobid: 0,
-        min: 1,
-        max: 7,
-        descriptions: [
-            "18分間、使用者の遠距離武器の射程距離を10%増加させます。",
-            "21分間、使用者の遠距離武器の射程距離を15%増加させます。",
-            "24分間、使用者の遠距離武器の射程距離を20%増加させます。",
-            "27分間、使用者の遠距離武器の射程距離を25%増加させます。",
-            "30分間、使用者の遠距離武器の射程距離を35%増加させます。",
-            "30分間、使用者の遠距離武器の射程距離を45%増加させます。",
-            "120分間、使用者の遠距離武器の射程距離を60%増加させます。",
-        ],
-        attributes: [
-            {
-                name: "射程距離",
-                values: [
-                    10, 15, 20, 25, 35, 45, 60
-                ],
-            }
-        ]
-    },
     {
         name: "エンチャントアロー",
         icon: archer_enchant_arrow,
@@ -935,14 +1251,29 @@ export const skills: Skill[] = [
             "30分間、矢とボルトの攻撃力を35%増加させます。",
             "120分間、矢とボルトの攻撃力を40%増加させます。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    10, 15, 20, 25, 30, 35, 40
-                ],
+        attributes: {
+            0: {
+                multiplyArrowAttack: 10,
+            },
+            1: {
+                multiplyArrowAttack: 15,
+            },
+            2: {
+                multiplyArrowAttack: 20,
+            },
+            3: {
+                multiplyArrowAttack: 25,
+            },
+            4: {
+                multiplyArrowAttack: 30,
+            },
+            5: {
+                multiplyArrowAttack: 35,
+            },
+            6: {
+                multiplyArrowAttack: 40,
             }
-        ]
+        }
     },
     {
         name: "アジリティ",
@@ -961,14 +1292,29 @@ export const skills: Skill[] = [
             "30分間、使用者の敏捷性を35%増加させます。",
             "120分間、使用者の敏捷性を50%増加させます。",
         ],
-        attributes: [
-            {
-                name: "敏捷性",
-                values: [
-                    10, 15, 20, 25, 30, 35, 50
-                ],
+        attributes: {
+            0: {
+                multiplyAgility: 10,
+            },
+            1: {
+                multiplyAgility: 15,
+            },
+            2: {
+                multiplyAgility: 20,
+            },
+            3: {
+                multiplyAgility: 25,
+            },
+            4: {
+                multiplyAgility: 30,
+            },
+            5: {
+                multiplyAgility: 35,
+            },
+            6: {
+                multiplyAgility: 50,
             }
-        ]
+        }
     },
     {
         name: "フェイタル",
@@ -987,14 +1333,29 @@ export const skills: Skill[] = [
             "30分間、クリティカル攻撃時に敏捷性の500%ほどダメージを増加させます。",
             "120分間、クリティカル攻撃時に敏捷性の700%ほどダメージを増加させます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    100, 150, 200, 250, 350, 500, 700
-                ],
+        attributes: {
+            0: {
+                plusCriticalDamageMultiplyAgility: 100,
+            },
+            1: {
+                plusCriticalDamageMultiplyAgility: 150,
+            },
+            2: {
+                plusCriticalDamageMultiplyAgility: 200,
+            },
+            3: {
+                plusCriticalDamageMultiplyAgility: 250,
+            },
+            4: {
+                plusCriticalDamageMultiplyAgility: 350,
+            },
+            5: {
+                plusCriticalDamageMultiplyAgility: 500,
+            },
+            6: {
+                plusCriticalDamageMultiplyAgility: 700,
             }
-        ]
+        }
     },
     {
         name: "イベイド",
@@ -1013,14 +1374,29 @@ export const skills: Skill[] = [
             "30分間、使用者の回避率を40%増加させます。",
             "120分間、使用者の回避率を50%増加させます。",
         ],
-        attributes: [
-            {
-                name: "回避率",
-                values: [
-                    15, 20, 25, 30, 35, 40, 50
-                ],
+        attributes: {
+            0: {
+                multiplyEvasionRate: 15,
+            },
+            1: {
+                multiplyEvasionRate: 20,
+            },
+            2: {
+                multiplyEvasionRate: 25,
+            },
+            3: {
+                multiplyEvasionRate: 30,
+            },
+            4: {
+                multiplyEvasionRate: 35,
+            },
+            5: {
+                multiplyEvasionRate: 40,
+            },
+            6: {
+                multiplyEvasionRate: 50,
             }
-        ]
+        }
     },
     // レンジャー
     {
@@ -1040,26 +1416,43 @@ export const skills: Skill[] = [
             "30分間、石弓とボルト及びオプション攻撃力が377%増加。攻撃速度30%増加。敏捷性の219%ほど遠距離攻撃力増加。",
             "120分間、石弓とボルト及びオプション攻撃力が538%増加。攻撃速度50%増加。敏捷性の313%ほど遠距離攻撃力増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    54, 108, 161, 215, 269, 377, 538
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 54,
+                multiplyAttackSpeed: 10,
+                plusRangeAttackMultiplyAgility: 31,
             },
-            {
-                name: "攻撃速度",
-                values: [
-                    10, 10, 10, 10, 10, 30, 50
-                ],
+            1: {
+                multiplyWeaponAttack: 108,
+                multiplyAttackSpeed: 10,
+                plusRangeAttackMultiplyAgility: 63,
             },
-            {
-                name: "遠距離攻撃力",
-                values: [
-                    31, 63, 94, 125, 157, 219, 313
-                ],
+            2: {
+                multiplyWeaponAttack: 161,
+                multiplyAttackSpeed: 10,
+                plusRangeAttackMultiplyAgility: 94,
+            },
+            3: {
+                multiplyWeaponAttack: 215,
+                multiplyAttackSpeed: 10,
+                plusRangeAttackMultiplyAgility: 125,
+            },
+            4: {
+                multiplyWeaponAttack: 269,
+                multiplyAttackSpeed: 10,
+                plusRangeAttackMultiplyAgility: 157,
+            },
+            5: {
+                multiplyWeaponAttack: 377,
+                multiplyAttackSpeed: 30,
+                plusRangeAttackMultiplyAgility: 219,
+            },
+            6: {
+                multiplyWeaponAttack: 538,
+                multiplyAttackSpeed: 50,
+                plusRangeAttackMultiplyAgility: 313
             }
-        ]
+        },
     },
     {
         name: "アラクリティブロー",
@@ -1078,14 +1471,29 @@ export const skills: Skill[] = [
             "30分間、使用者の敏捷性を40%増加させます。",
             "120分間、使用者の敏捷性を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "敏捷性",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyAgility: 10,
+            },
+            1: {
+                multiplyAgility: 15,
+            },
+            2: {
+                multiplyAgility: 20,
+            },
+            3: {
+                multiplyAgility: 25,
+            },
+            4: {
+                multiplyAgility: 30,
+            },
+            5: {
+                multiplyAgility: 40,
+            },
+            6: {
+                multiplyAgility: 60,
             }
-        ]
+        }
     },
     {
         name: "ランクショット",
@@ -1104,14 +1512,29 @@ export const skills: Skill[] = [
             "30分間使用者のPVP攻撃力がを7%増加します。",
             "120分間使用者のPVP攻撃力がを10%増加します。",
         ],
-        attributes: [
-            {
-                name: "PVP攻撃力",
-                values: [
-                    1, 2, 3, 4, 5, 7, 10
-                ],
+        attributes: {
+            0: {
+                multiplyPVPAttack: 1,
+            },
+            1: {
+                multiplyPVPAttack: 2,
+            },
+            2: {
+                multiplyPVPAttack: 3,
+            },
+            3: {
+                multiplyPVPAttack: 4,
+            },
+            4: {
+                multiplyPVPAttack: 5,
+            },
+            5: {
+                multiplyPVPAttack: 7,
+            },
+            6: {
+                multiplyPVPAttack: 10,
             }
-        ]
+        }
     },
     {
         name: "ウイングフット",
@@ -1130,14 +1553,29 @@ export const skills: Skill[] = [
             "パーティーメンバー及び使用者の移動速度を70%増加させます。",
             "パーティーメンバー及び使用者の移動速度を80%増加させます。",
         ],
-        attributes: [
-            {
-                name: "移動速度",
-                values: [
-                    20, 30, 40, 50, 60, 70, 80
-                ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 20,
+            },
+            1: {
+                multiplyMovementSpeed: 30,
+            },
+            2: {
+                multiplyMovementSpeed: 40,
+            },
+            3: {
+                multiplyMovementSpeed: 50,
+            },
+            4: {
+                multiplyMovementSpeed: 60,
+            },
+            5: {
+                multiplyMovementSpeed: 70,
+            },
+            6: {
+                multiplyMovementSpeed: 80,
             }
-        ]
+        }
     },
     // スカウト
     {
@@ -1157,20 +1595,36 @@ export const skills: Skill[] = [
             "30分間、弓と矢及びオプション攻撃力が344%増加。敏捷性の200%ほど遠距離攻撃力増加。",
             "120分間、弓と矢及びオプション攻撃力が492%増加。敏捷性の286%ほど遠距離攻撃力増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    49, 98, 148, 197, 246, 344, 492
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 49,
+                plusRangeAttackMultiplyAgility: 29,
             },
-            {
-                name: "遠距離攻撃力",
-                values: [
-                    29, 57, 86, 114, 143, 200, 286
-                ],
+            1: {
+                multiplyWeaponAttack: 98,
+                plusRangeAttackMultiplyAgility: 57,
+            },
+            2: {
+                multiplyWeaponAttack: 148,
+                plusRangeAttackMultiplyAgility: 86,
+            },
+            3: {
+                multiplyWeaponAttack: 197,
+                plusRangeAttackMultiplyAgility: 114,
+            },
+            4: {
+                multiplyWeaponAttack: 246,
+                plusRangeAttackMultiplyAgility: 143,
+            },
+            5: {
+                multiplyWeaponAttack: 344,
+                plusRangeAttackMultiplyAgility: 200,
+            },
+            6: {
+                multiplyWeaponAttack: 492,
+                plusRangeAttackMultiplyAgility: 286,
             }
-        ]
+        }
     },
     {
         name: "シャープメレー",
@@ -1189,14 +1643,8 @@ export const skills: Skill[] = [
             "10分間、7メートル内の対象に25%増加したダメージを与えます。",
             "30分間、10メートル内の対象に30%増加したダメージを与えます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    10, 13, 16, 19, 22, 25, 30
-                ],
-            }
-        ]
+        // TODO: implement custom option
+        attributes: {}
     },
     {
         name: "アラクリティブロー",
@@ -1215,14 +1663,29 @@ export const skills: Skill[] = [
             "30分間、使用者の敏捷性を40%増加させます。",
             "120分間、使用者の敏捷性を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "敏捷性",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyAgility: 10,
+            },
+            1: {
+                multiplyAgility: 15,
+            },
+            2: {
+                multiplyAgility: 20,
+            },
+            3: {
+                multiplyAgility: 25,
+            },
+            4: {
+                multiplyAgility: 30,
+            },
+            5: {
+                multiplyAgility: 40,
+            },
+            6: {
+                multiplyAgility: 60,
             }
-        ]
+        }
     },
     {
         name: "ゴーストアロー",
@@ -1241,14 +1704,29 @@ export const skills: Skill[] = [
             "使用者が受けるダメージを24%減少します。",
             "使用者が受けるダメージを30%減少します。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    10, 12, 14, 18, 20, 24, 30
-                ],
+        attributes: {
+            0: {
+                multiplyDecreaseDamageTaken: 10,
+            },
+            1: {
+                multiplyDecreaseDamageTaken: 12,
+            },
+            2: {
+                multiplyDecreaseDamageTaken: 14,
+            },
+            3: {
+                multiplyDecreaseDamageTaken: 18,
+            },
+            4: {
+                multiplyDecreaseDamageTaken: 20,
+            },
+            5: {
+                multiplyDecreaseDamageTaken: 24,
+            },
+            6: {
+                multiplyDecreaseDamageTaken: 30,
             }
-        ]
+        }
     },
     {
         name: "ランクショット",
@@ -1267,14 +1745,29 @@ export const skills: Skill[] = [
             "30分間使用者のPVP防御がを7%増加します。",
             "120分間使用者のPVP防御がを10%増加します。",
         ],
-        attributes: [
-            {
-                name: "PVP防御",
-                values: [
-                    1, 2, 3, 4, 5, 7, 10
-                ],
+        attributes: {
+            0: {
+                multiplyPVPDefense: 1,
+            },
+            1: {
+                multiplyPVPDefense: 2,
+            },
+            2: {
+                multiplyPVPDefense: 3,
+            },
+            3: {
+                multiplyPVPDefense: 4,
+            },
+            4: {
+                multiplyPVPDefense: 5,
+            },
+            5: {
+                multiplyPVPDefense: 7,
+            },
+            6: {
+                multiplyPVPDefense: 10,
             }
-        ]
+        }
     },
     {
         name: "レインフォースアクション",
@@ -1293,14 +1786,29 @@ export const skills: Skill[] = [
             "30分間、範囲スキルダメージを60%増加させます。",
             "60分間、範囲スキルダメージを80%増加させます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    10, 20, 30, 40, 50, 60, 80
-                ],
+        attributes: {
+            0: {
+                multiplyRangeSkillDamage: 10,
+            },
+            1: {
+                multiplyRangeSkillDamage: 20,
+            },
+            2: {
+                multiplyRangeSkillDamage: 30,
+            },
+            3: {
+                multiplyRangeSkillDamage: 40,
+            },
+            4: {
+                multiplyRangeSkillDamage: 50,
+            },
+            5: {
+                multiplyRangeSkillDamage: 60,
+            },
+            6: {
+                multiplyRangeSkillDamage: 80,
             }
-        ]
+        }
     },
     {
         name: "スケッターショット",
@@ -1319,14 +1827,29 @@ export const skills: Skill[] = [
             "30分間、通常攻撃を範囲化、攻撃対象に敵4体を追加、ダメージ15%増加",
             "120分間、通常攻撃を範囲化、攻撃対象に敵5体を追加、ダメージ20%増加",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    2, 4, 6, 8, 10, 15, 20
-                ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: 2,
+            },
+            1: {
+                multiplyIncreaseDamageDealt: 4,
+            },
+            2: {
+                multiplyIncreaseDamageDealt: 6,
+            },
+            3: {
+                multiplyIncreaseDamageDealt: 8,
+            },
+            4: {
+                multiplyIncreaseDamageDealt: 10,
+            },
+            5: {
+                multiplyIncreaseDamageDealt: 15,
+            },
+            6: {
+                multiplyIncreaseDamageDealt: 20,
             }
-        ]
+        }
     },
     // ダン
     // アサシン
@@ -1347,14 +1870,29 @@ export const skills: Skill[] = [
             "30分間、物理攻撃を19%の確率で防ぎます。",
             "90分間、物理攻撃を30%の確率で防ぎます。",
         ],
-        attributes: [
-            {
-                name: "確率",
-                values: [
-                    4, 7, 10, 13, 16, 19, 30
-                ],
+        attributes: {
+            0: {
+                multiplyPhysicalParryRate: 4,
+            },
+            1: {
+                multiplyPhysicalParryRate: 7,
+            },
+            2: {
+                multiplyPhysicalParryRate: 10,
+            },
+            3: {
+                multiplyPhysicalParryRate: 13,
+            },
+            4: {
+                multiplyPhysicalParryRate: 16,
+            },
+            5: {
+                multiplyPhysicalParryRate: 19,
+            },
+            6: {
+                multiplyPhysicalParryRate: 30,
             }
-        ]
+        }
     },
     {
         name: "ミラーシールド",
@@ -1373,14 +1911,29 @@ export const skills: Skill[] = [
             "8分間、魔法攻撃を含むすべてのダメージの20%を攻撃者に反射します。",
             "10分間、魔法攻撃を含むすべてのダメージの25%を攻撃者に反射します。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    9, 11, 13, 15, 17, 20, 25
-                ],
+        attributes: {
+            0: {
+                multiplyDamageReflectionRate: 9,
+            },
+            1: {
+                multiplyDamageReflectionRate: 11,
+            },
+            2: {
+                multiplyDamageReflectionRate: 13,
+            },
+            3: {
+                multiplyDamageReflectionRate: 15,
+            },
+            4: {
+                multiplyDamageReflectionRate: 17,
+            },
+            5: {
+                multiplyDamageReflectionRate: 20,
+            },
+            6: {
+                multiplyDamageReflectionRate: 25,
             }
-        ]
+        }
     },
     {
         name: "アボイド",
@@ -1399,14 +1952,29 @@ export const skills: Skill[] = [
             "30分間、使用者の瞬発力を40%増加させます。",
             "120分間、使用者の瞬発力を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "瞬発力",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyDexterity: 10,
+            },
+            1: {
+                multiplyDexterity: 15,
+            },
+            2: {
+                multiplyDexterity: 20,
+            },
+            3: {
+                multiplyDexterity: 25,
+            },
+            4: {
+                multiplyDexterity: 30,
+            },
+            5: {
+                multiplyDexterity: 40,
+            },
+            6: {
+                multiplyDexterity: 60,
             }
-        ]
+        }
     },
     {
         name: "ストレングス",
@@ -1425,14 +1993,29 @@ export const skills: Skill[] = [
             "30分間、使用者の力を40%増加させます。",
             "120分間、使用者の力を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "力",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyStrength: 10,
+            },
+            1: {
+                multiplyStrength: 15,
+            },
+            2: {
+                multiplyStrength: 20,
+            },
+            3: {
+                multiplyStrength: 25,
+            },
+            4: {
+                multiplyStrength: 30,
+            },
+            5: {
+                multiplyStrength: 40,
+            },
+            6: {
+                multiplyStrength: 60,
             }
-        ]
+        }
     },
     {
         name: "ブースト",
@@ -1451,14 +2034,29 @@ export const skills: Skill[] = [
             "30分間、使用者の通常攻撃のクリティカル確率を8%増加させます。",
             "120分間、使用者の通常攻撃のクリティカル確率を9%増加させます。",
         ],
-        attributes: [
-            {
-                name: "クリティカル確率",
-                values: [
-                    3, 4, 5, 6, 7, 8, 9
-                ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 3,
+            },
+            1: {
+                multiplyCriticalRate: 4,
+            },
+            2: {
+                multiplyCriticalRate: 5,
+            },
+            3: {
+                multiplyCriticalRate: 6,
+            },
+            4: {
+                multiplyCriticalRate: 7,
+            },
+            5: {
+                multiplyCriticalRate: 8,
+            },
+            6: {
+                multiplyCriticalRate: 9,
             }
-        ]
+        }
     },
     {
         name: "デッドリーブロー",
@@ -1477,20 +2075,37 @@ export const skills: Skill[] = [
             "30分間、瞬発力が20%増加し、使用者の攻撃がクリティカルで命中した場合、瞬発力の1500%ほどダメージを増加させます。",
             "120分間、瞬発力が40%増加し、使用者の攻撃がクリティカルで命中した場合、瞬発力の2000%ほどダメージを増加させます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    300, 500, 700, 900, 1100, 1500, 2000
-                ],
+        attributes: {
+            0: {
+                multiplyDexterity: 20,
+                plusCriticalDamageMultiplyDexterity: 300,
             },
-            {
-                name: "瞬発力",
-                values: [
-                    20, 20, 20, 20, 20, 20, 40
-                ],
+            1: {
+                multiplyDexterity: 20,
+                plusCriticalDamageMultiplyDexterity: 500,
+            },
+            2: {
+                multiplyDexterity: 20,
+                plusCriticalDamageMultiplyDexterity: 700,
+            },
+            3: {
+                multiplyDexterity: 20,
+                plusCriticalDamageMultiplyDexterity: 900,
+            },
+            4: {
+                multiplyDexterity: 20,
+                plusCriticalDamageMultiplyDexterity: 1100,
+            },
+            5: {
+                multiplyDexterity: 20,
+                plusCriticalDamageMultiplyDexterity: 1500,
+            },
+            6: {
+                multiplyDexterity: 40,
+                plusCriticalDamageMultiplyDexterity: 2000,
             }
-        ]
+
+        }
     },
     // アベンジャー
     {
@@ -1510,20 +2125,36 @@ export const skills: Skill[] = [
             "30分間、カタール及びオプション攻撃力が288%増加。瞬発力の70%ほど近距離攻撃力が増加。",
             "120分間、カタール及びオプション攻撃力が412%増加。瞬発力の100%ほど近距離攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    41, 82, 124, 165, 206, 288, 412
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 41,
+                plusMeleeAttackMultiplyDexterity: 10,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    10, 20, 30, 40, 50, 70, 100
-                ],
+            1: {
+                multiplyWeaponAttack: 82,
+                plusMeleeAttackMultiplyDexterity: 20,
+            },
+            2: {
+                multiplyWeaponAttack: 124,
+                plusMeleeAttackMultiplyDexterity: 30,
+            },
+            3: {
+                multiplyWeaponAttack: 165,
+                plusMeleeAttackMultiplyDexterity: 40,
+            },
+            4: {
+                multiplyWeaponAttack: 206,
+                plusMeleeAttackMultiplyDexterity: 50,
+            },
+            5: {
+                multiplyWeaponAttack: 288,
+                plusMeleeAttackMultiplyDexterity: 70,
+            },
+            6: {
+                multiplyWeaponAttack: 412,
+                plusMeleeAttackMultiplyDexterity: 100,
             }
-        ]
+        }
     },
     {
         name: "ラウアルスパ",
@@ -1536,14 +2167,11 @@ export const skills: Skill[] = [
         descriptions: [
             "10分間、乗り物の速度を20%速くします。"
         ],
-        attributes: [
-            {
-                name: "速度",
-                values: [
-                    20
-                ],
+        attributes: {
+            0: {
+                multiplyRideSpeed: 20,
             }
-        ]
+        }
     },
     // プレデター
     {
@@ -1563,26 +2191,43 @@ export const skills: Skill[] = [
             "30分間、カタール及びオプション攻撃力が275%増加。瞬発力の70%ほど近距離攻撃力が増加。クリティカル確率10%増加。",
             "120分間、カタール及びオプション攻撃力が393%増加。瞬発力の100%ほど近距離攻撃力が増加。クリティカル確率15%増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    39, 79, 118, 157, 197, 275, 393
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 39,
+                plusMeleeAttackMultiplyDexterity: 10,
+                multiplyCriticalRate: 2,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    10, 20, 30, 40, 50, 70, 100
-                ],
+            1: {
+                multiplyWeaponAttack: 79,
+                plusMeleeAttackMultiplyDexterity: 20,
+                multiplyCriticalRate: 3,
             },
-            {
-                name: "クリティカル確率",
-                values: [
-                    2, 3, 4, 5, 6, 10, 15
-                ],
+            2: {
+                multiplyWeaponAttack: 118,
+                plusMeleeAttackMultiplyDexterity: 30,
+                multiplyCriticalRate: 4,
+            },
+            3: {
+                multiplyWeaponAttack: 157,
+                plusMeleeAttackMultiplyDexterity: 40,
+                multiplyCriticalRate: 5,
+            },
+            4: {
+                multiplyWeaponAttack: 197,
+                plusMeleeAttackMultiplyDexterity: 50,
+                multiplyCriticalRate: 6,
+            },
+            5: {
+                multiplyWeaponAttack: 275,
+                plusMeleeAttackMultiplyDexterity: 70,
+                multiplyCriticalRate: 10,
+            },
+            6: {
+                multiplyWeaponAttack: 393,
+                plusMeleeAttackMultiplyDexterity: 100,
+                multiplyCriticalRate: 15,
             }
-        ]
+        }
     },
     {
         name: "オクトパス",
@@ -1601,20 +2246,29 @@ export const skills: Skill[] = [
             "30分間、80%の確率で通常攻撃が範囲化し、10メートル内の対象に60%減少したダメージを与える。",
             "60分間、100%の確率で通常攻撃が範囲化し、10メートル内の対象に60%減少したダメージを与える。",
         ],
-        attributes: [
-            {
-                name: "確率",
-                values: [
-                    20, 30, 40, 50, 60, 80, 100
-                ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: -60,
             },
-            {
-                name: "ダメージ",
-                values: [
-                    60
-                ],
+            1: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            2: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            3: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            4: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            5: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            6: {
+                multiplyIncreaseDamageDealt: -60,
             }
-        ]
+        }
     },
     // デカン
     // ドラゴンファイター
@@ -1635,14 +2289,29 @@ export const skills: Skill[] = [
             "30分間、使用者の近距離攻撃力を35%増加させます。",
             "90分間、使用者の近距離攻撃力を45%増加させます。",
         ],
-        attributes: [
-            {
-                name: "近距離攻撃力",
-                values: [
-                    10, 15, 20, 25, 30, 35, 45
-                ],
+        attributes: {
+            0: {
+                multiplyMeleeAttack: 10,
+            },
+            1: {
+                multiplyMeleeAttack: 15,
+            },
+            2: {
+                multiplyMeleeAttack: 20,
+            },
+            3: {
+                multiplyMeleeAttack: 25,
+            },
+            4: {
+                multiplyMeleeAttack: 30,
+            },
+            5: {
+                multiplyMeleeAttack: 35,
+            },
+            6: {
+                multiplyMeleeAttack: 45,
             }
-        ]
+        }
     },
     {
         name: "セパレーション",
@@ -1655,26 +2324,13 @@ export const skills: Skill[] = [
         descriptions: [
             "ゼンを分離して攻撃。武器ダメージ25%減少、物理防御力10%減少、攻撃速度60%増加"
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    25
-                ],
-            },
-            {
-                name: "物理防御力",
-                values: [
-                    10
-                ],
-            },
-            {
-                name: "攻撃速度",
-                values: [
-                    60
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: -25,
+                multiplyPhysicalDefense: -10,
+                multiplyAttackSpeed: 60,
             }
-        ]
+        }
     },
     // ドラゴンナイト
     {
@@ -1694,20 +2350,36 @@ export const skills: Skill[] = [
             "30分間、ゼン及びオプション攻撃力が600%増加。体力の1250%ほど近距離攻撃力が増加。",
             "120分間、ゼン及びオプション攻撃力が710%増加。体力の1500%ほど近距離攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    100, 200, 300, 400, 500, 600, 710
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 100,
+                plusMeleeAttackMultiplyVitality: 250,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    250, 450, 650, 850, 1050, 1250, 1500
-                ],
+            1: {
+                multiplyWeaponAttack: 200,
+                plusMeleeAttackMultiplyVitality: 450,
+            },
+            2: {
+                multiplyWeaponAttack: 300,
+                plusMeleeAttackMultiplyVitality: 650,
+            },
+            3: {
+                multiplyWeaponAttack: 400,
+                plusMeleeAttackMultiplyVitality: 850,
+            },
+            4: {
+                multiplyWeaponAttack: 500,
+                plusMeleeAttackMultiplyVitality: 1050,
+            },
+            5: {
+                multiplyWeaponAttack: 600,
+                plusMeleeAttackMultiplyVitality: 1250,
+            },
+            6: {
+                multiplyWeaponAttack: 710,
+                plusMeleeAttackMultiplyVitality: 1500,
             }
-        ]
+        }
     },
     {
         name: "ブルーディフェンス",
@@ -1726,14 +2398,29 @@ export const skills: Skill[] = [
             "30分間、使用者の体力を40%増加させます。",
             "120分間、使用者の体力を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "体力",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyVitality: 10,
+            },
+            1: {
+                multiplyVitality: 15,
+            },
+            2: {
+                multiplyVitality: 20,
+            },
+            3: {
+                multiplyVitality: 25,
+            },
+            4: {
+                multiplyVitality: 30,
+            },
+            5: {
+                multiplyVitality: 40,
+            },
+            6: {
+                multiplyVitality: 60,
             }
-        ]
+        }
     },
     {
         name: "クリティカルイミュニティ",
@@ -1752,14 +2439,30 @@ export const skills: Skill[] = [
             "30分間、クリティカル攻撃を受けた時のダメージを体力の280%ほど軽減させます",
             "60分間、クリティカル攻撃を受けた時のダメージを体力の400%ほど軽減させます",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    80, 120, 160, 200, 240, 280, 400
-                ],
+        attributes: {
+            0: {
+                multiplyDecreaseCriticalDamageTakenMultiplyVitality: 80,
+            },
+            1: {
+                multiplyDecreaseCriticalDamageTakenMultiplyVitality: 120,
+            },
+            2: {
+                multiplyDecreaseCriticalDamageTakenMultiplyVitality: 160,
+            },
+            3: {
+                multiplyDecreaseCriticalDamageTakenMultiplyVitality: 200,
+            },
+            4: {
+                multiplyDecreaseCriticalDamageTakenMultiplyVitality: 240,
+            },
+            5: {
+                multiplyDecreaseCriticalDamageTakenMultiplyVitality: 280,
+            },
+            6: {
+                multiplyDecreaseCriticalDamageTakenMultiplyVitality: 400,
             }
-        ]
+
+        }
     },
     {
         name: "イボルブ",
@@ -1778,20 +2481,43 @@ export const skills: Skill[] = [
             "30分間、ドラゴンに変身し、近距離/魔法攻撃力が30%、HPが20%増加されます。",
             "120分間、ドラゴンに変身し、近距離/魔法攻撃力が35%、HPが30%増加されます。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    5, 10, 15, 20, 25, 30, 35
-                ],
+        attributes: {
+            0: {
+                multiplyMeleeAttack: 5,
+                multiplyMagicAttack: 5,
+                multiplyHitPoint: 10,
             },
-            {
-                name: "HP",
-                values: [
-                    10, 10, 15, 15, 20, 20, 30
-                ],
+            1: {
+                multiplyMeleeAttack: 10,
+                multiplyMagicAttack: 10,
+                multiplyHitPoint: 10,
+            },
+            2: {
+                multiplyMeleeAttack: 15,
+                multiplyMagicAttack: 15,
+                multiplyHitPoint: 15,
+            },
+            3: {
+                multiplyMeleeAttack: 20,
+                multiplyMagicAttack: 20,
+                multiplyHitPoint: 15,
+            },
+            4: {
+                multiplyMeleeAttack: 25,
+                multiplyMagicAttack: 25,
+                multiplyHitPoint: 20,
+            },
+            5: {
+                multiplyMeleeAttack: 30,
+                multiplyMagicAttack: 30,
+                multiplyHitPoint: 20,
+            },
+            6: {
+                multiplyMeleeAttack: 35,
+                multiplyMagicAttack: 35,
+                multiplyHitPoint: 30,
             }
-        ]
+        }
     },
     {
         name: "オールサクション",
@@ -1810,14 +2536,36 @@ export const skills: Skill[] = [
             "ダメージの6%に値するHPとMPを吸収します。",
             "ダメージの7%に値するHPとMPを吸収します。",
         ],
-        attributes: [
-            {
-                name: "吸収",
-                values: [
-                    1, 2, 3, 4, 5, 6, 7
-                ],
+        attributes: {
+            0: {
+                multiplyHitPointAbsorbDamageRate: 1,
+                multiplyMagicPointAbsorbDamageRate: 1,
+            },
+            1: {
+                multiplyHitPointAbsorbDamageRate: 2,
+                multiplyMagicPointAbsorbDamageRate: 2,
+            },
+            2: {
+                multiplyHitPointAbsorbDamageRate: 3,
+                multiplyMagicPointAbsorbDamageRate: 3,
+            },
+            3: {
+                multiplyHitPointAbsorbDamageRate: 4,
+                multiplyMagicPointAbsorbDamageRate: 4,
+            },
+            4: {
+                multiplyHitPointAbsorbDamageRate: 5,
+                multiplyMagicPointAbsorbDamageRate: 5,
+            },
+            5: {
+                multiplyHitPointAbsorbDamageRate: 6,
+                multiplyMagicPointAbsorbDamageRate: 6,
+            },
+            6: {
+                multiplyHitPointAbsorbDamageRate: 7,
+                multiplyMagicPointAbsorbDamageRate: 7,
             }
-        ]
+        }
     },
     {
         name: "フォースロック",
@@ -1836,14 +2584,29 @@ export const skills: Skill[] = [
             "30分間、体力の500%ほどクリティカルダメージを追加。",
             "60分間、体力の700%ほどクリティカルダメージを追加。",
         ],
-        attributes: [
-            {
-                name: "クリティカルダメージ",
-                values: [
-                    100, 150, 200, 250, 350, 500, 700
-                ],
+        attributes: {
+            0: {
+                plusCriticalDamageMultiplyVitality: 100,
+            },
+            1: {
+                plusCriticalDamageMultiplyVitality: 150,
+            },
+            2: {
+                plusCriticalDamageMultiplyVitality: 200,
+            },
+            3: {
+                plusCriticalDamageMultiplyVitality: 250,
+            },
+            4: {
+                plusCriticalDamageMultiplyVitality: 350,
+            },
+            5: {
+                plusCriticalDamageMultiplyVitality: 500,
+            },
+            6: {
+                plusCriticalDamageMultiplyVitality: 700,
             }
-        ]
+        }
     },
     {
         name: "サドンデス",
@@ -1862,14 +2625,8 @@ export const skills: Skill[] = [
             "対象を攻撃するときに、ダメージの20%に値する追加ダメージを与えます。",
             "対象を攻撃するときに、ダメージの24%に値する追加ダメージを与えます。",
         ],
-        attributes: [
-            {
-                name: "追加ダメージ",
-                values: [
-                    10, 12, 14, 16, 18, 20, 24
-                ],
-            }
-        ]
+        // TODO: implement custom option
+        attributes: {}
     },
     {
         name: "ブラッドエフェクト",
@@ -1888,14 +2645,29 @@ export const skills: Skill[] = [
             "使用者のクリティカル確率を7%増加させます。",
             "使用者のクリティカル確率を10%増加させます。",
         ],
-        attributes: [
-            {
-                name: "クリティカル確率",
-                values: [
-                    1, 2, 3, 4, 5, 7, 10
-                ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 1,
+            },
+            1: {
+                multiplyCriticalRate: 2,
+            },
+            2: {
+                multiplyCriticalRate: 3,
+            },
+            3: {
+                multiplyCriticalRate: 4,
+            },
+            4: {
+                multiplyCriticalRate: 5,
+            },
+            5: {
+                multiplyCriticalRate: 7,
+            },
+            6: {
+                multiplyCriticalRate: 10,
             }
-        ]
+        }
     },
     {
         name: "ルナシィ",
@@ -1914,14 +2686,29 @@ export const skills: Skill[] = [
             "イボルブ状態での攻撃速度を40%増加させます。",
             "イボルブ状態での攻撃速度を70%増加させます。",
         ],
-        attributes: [
-            {
-                name: "攻撃速度",
-                values: [
-                    15, 20, 25, 30, 35, 40, 70
-                ],
+        attributes: {
+            0: {
+                multiplyAttackSpeed: 15,
+            },
+            1: {
+                multiplyAttackSpeed: 20,
+            },
+            2: {
+                multiplyAttackSpeed: 25,
+            },
+            3: {
+                multiplyAttackSpeed: 30,
+            },
+            4: {
+                multiplyAttackSpeed: 35,
+            },
+            5: {
+                multiplyAttackSpeed: 40,
+            },
+            6: {
+                multiplyAttackSpeed: 70,
             }
-        ]
+        }
     },
     // ドラゴンセージ
     {
@@ -1941,20 +2728,36 @@ export const skills: Skill[] = [
             "30分間、ゼン及びオプション攻撃力が524%増加。知能の399%ほど近距離攻撃力が増加。",
             "120分間、ゼン及びオプション攻撃力が748%増加。知能の570%ほど近距離攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    75, 150, 224, 299, 374, 524, 748
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 75,
+                plusMeleeAttackMultiplyIntelligence: 57,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    57, 114, 171, 228, 285, 399, 570
-                ],
+            1: {
+                multiplyWeaponAttack: 150,
+                plusMeleeAttackMultiplyIntelligence: 114,
+            },
+            2: {
+                multiplyWeaponAttack: 224,
+                plusMeleeAttackMultiplyIntelligence: 171,
+            },
+            3: {
+                multiplyWeaponAttack: 299,
+                plusMeleeAttackMultiplyIntelligence: 228,
+            },
+            4: {
+                multiplyWeaponAttack: 374,
+                plusMeleeAttackMultiplyIntelligence: 285,
+            },
+            5: {
+                multiplyWeaponAttack: 524,
+                plusMeleeAttackMultiplyIntelligence: 399,
+            },
+            6: {
+                multiplyWeaponAttack: 748,
+                plusMeleeAttackMultiplyIntelligence: 570,
             }
-        ]
+        }
     },
     {
         name: "ブルーディフェンス",
@@ -1973,14 +2776,29 @@ export const skills: Skill[] = [
             "30分間、使用者の知能を40%増加させます。",
             "120分間、使用者の知能を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "知能",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyIntelligence: 10,
+            },
+            1: {
+                multiplyIntelligence: 15,
+            },
+            2: {
+                multiplyIntelligence: 20,
+            },
+            3: {
+                multiplyIntelligence: 25,
+            },
+            4: {
+                multiplyIntelligence: 30,
+            },
+            5: {
+                multiplyIntelligence: 40,
+            },
+            6: {
+                multiplyIntelligence: 60,
             }
-        ]
+        }
     },
     {
         name: "クリティカルイミュニティ",
@@ -1999,14 +2817,29 @@ export const skills: Skill[] = [
             "30分間、クリティカル攻撃を受けた時のダメージを知能の280%ほど軽減させます",
             "60分間、クリティカル攻撃を受けた時のダメージを知能の400%ほど軽減させます",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    80, 120, 160, 200, 240, 280, 400
-                ],
+        attributes: {
+            0: {
+                multiplyDecreaseCriticalDamageTakenMultiplyIntelligence: 80,
+            },
+            1: {
+                multiplyDecreaseCriticalDamageTakenMultiplyIntelligence: 120,
+            },
+            2: {
+                multiplyDecreaseCriticalDamageTakenMultiplyIntelligence: 160,
+            },
+            3: {
+                multiplyDecreaseCriticalDamageTakenMultiplyIntelligence: 200,
+            },
+            4: {
+                multiplyDecreaseCriticalDamageTakenMultiplyIntelligence: 240,
+            },
+            5: {
+                multiplyDecreaseCriticalDamageTakenMultiplyIntelligence: 280,
+            },
+            6: {
+                multiplyDecreaseCriticalDamageTakenMultiplyIntelligence: 400,
             }
-        ]
+        }
     },
     {
         name: "イボルブーセパレーション",
@@ -2025,20 +2858,36 @@ export const skills: Skill[] = [
             "30分間、魔法攻撃力30%増加。攻撃速度20%増加。ゼンを分離して攻撃。",
             "120分間、魔法攻撃力35%増加。攻撃速度30%増加。ゼンを分離して攻撃。",
         ],
-        attributes: [
-            {
-                name: "魔法攻撃力",
-                values: [
-                    5, 10, 15, 20, 25, 30, 35
-                ],
+        attributes: {
+            0: {
+                multiplyMagicAttack: 5,
+                multiplyAttackSpeed: 10,
             },
-            {
-                name: "攻撃速度",
-                values: [
-                    10, 10, 15, 15, 20, 20, 30
-                ],
+            1: {
+                multiplyMagicAttack: 10,
+                multiplyAttackSpeed: 10,
+            },
+            2: {
+                multiplyMagicAttack: 15,
+                multiplyAttackSpeed: 15,
+            },
+            3: {
+                multiplyMagicAttack: 20,
+                multiplyAttackSpeed: 15,
+            },
+            4: {
+                multiplyMagicAttack: 25,
+                multiplyAttackSpeed: 20,
+            },
+            5: {
+                multiplyMagicAttack: 30,
+                multiplyAttackSpeed: 20,
+            },
+            6: {
+                multiplyMagicAttack: 35,
+                multiplyAttackSpeed: 30,
             }
-        ]
+        }
     },
     {
         name: "サクション",
@@ -2057,14 +2906,29 @@ export const skills: Skill[] = [
             "ダメージの6%に値するHPを吸収します。",
             "ダメージの7%に値するHPを吸収します。",
         ],
-        attributes: [
-            {
-                name: "吸収",
-                values: [
-                    1, 2, 3, 4, 5, 6, 7
-                ],
+        attributes: {
+            0: {
+                multiplyHitPointAbsorbDamageRate: 1,
+            },
+            1: {
+                multiplyHitPointAbsorbDamageRate: 2,
+            },
+            2: {
+                multiplyHitPointAbsorbDamageRate: 3,
+            },
+            3: {
+                multiplyHitPointAbsorbDamageRate: 4,
+            },
+            4: {
+                multiplyHitPointAbsorbDamageRate: 5,
+            },
+            5: {
+                multiplyHitPointAbsorbDamageRate: 6,
+            },
+            6: {
+                multiplyHitPointAbsorbDamageRate: 7,
             }
-        ]
+        }
     },
     {
         name: "ラピドロック",
@@ -2083,14 +2947,29 @@ export const skills: Skill[] = [
             "30分間、知能の500%ほどクリティカルダメージを追加。",
             "60分間、知能の700%ほどクリティカルダメージを追加。",
         ],
-        attributes: [
-            {
-                name: "クリティカルダメージ",
-                values: [
-                    100, 150, 200, 250, 350, 500, 700
-                ],
+        attributes: {
+            0: {
+                plusCriticalDamageMultiplyIntelligence: 100,
+            },
+            1: {
+                plusCriticalDamageMultiplyIntelligence: 150,
+            },
+            2: {
+                plusCriticalDamageMultiplyIntelligence: 200,
+            },
+            3: {
+                plusCriticalDamageMultiplyIntelligence: 250,
+            },
+            4: {
+                plusCriticalDamageMultiplyIntelligence: 350,
+            },
+            5: {
+                plusCriticalDamageMultiplyIntelligence: 500,
+            },
+            6: {
+                plusCriticalDamageMultiplyIntelligence: 700,
             }
-        ]
+        }
     },
     {
         name: "スピッター",
@@ -2109,20 +2988,29 @@ export const skills: Skill[] = [
             "イボルブ状態での通常攻撃を80%の確率で範囲攻撃にさせ、10メートル内の対象に60%減少したダメージを与えます。",
             "イボルブ状態での通常攻撃を100%の確率で範囲攻撃にさせ、10メートル内の対象に50%減少したダメージを与えます。",
         ],
-        attributes: [
-            {
-                name: "確率",
-                values: [
-                    20, 30, 40, 50, 60, 80, 100
-                ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: -60,
             },
-            {
-                name: "ダメージ",
-                values: [
-                    60, 60, 60, 60, 60, 60, 50
-                ],
+            1: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            2: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            3: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            4: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            5: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            6: {
+                multiplyIncreaseDamageDealt: -50,
             }
-        ]
+        }
     },
     {
         name: "インプレグナブル",
@@ -2141,14 +3029,29 @@ export const skills: Skill[] = [
             "防御力が知能の100%ほど増加します。",
             "防御力が知能の140%ほど増加します。",
         ],
-        attributes: [
-            {
-                name: "防御力",
-                values: [
-                    50, 60, 70, 80, 90, 100, 140
-                ],
+        attributes: {
+            0: {
+                plusDefenseMultiplyIntelligence: 50,
+            },
+            1: {
+                plusDefenseMultiplyIntelligence: 60,
+            },
+            2: {
+                plusDefenseMultiplyIntelligence: 70,
+            },
+            3: {
+                plusDefenseMultiplyIntelligence: 80,
+            },
+            4: {
+                plusDefenseMultiplyIntelligence: 90,
+            },
+            5: {
+                plusDefenseMultiplyIntelligence: 100,
+            },
+            6: {
+                plusDefenseMultiplyIntelligence: 140,
             }
-        ]
+        }
     },
     {
         name: "ドラゴンウイング",
@@ -2167,14 +3070,29 @@ export const skills: Skill[] = [
             "イボルブ状態の時、移動速度を40%増加させる。",
             "イボルブ状態の時、移動速度を50%増加させる。",
         ],
-        attributes: [
-            {
-                name: "移動速度",
-                values: [
-                    10, 15, 20, 25, 30, 40, 50
-                ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 10,
+            },
+            1: {
+                multiplyMovementSpeed: 15,
+            },
+            2: {
+                multiplyMovementSpeed: 20,
+            },
+            3: {
+                multiplyMovementSpeed: 25,
+            },
+            4: {
+                multiplyMovementSpeed: 30,
+            },
+            5: {
+                multiplyMovementSpeed: 40,
+            },
+            6: {
+                multiplyMovementSpeed: 50,
             }
-        ]
+        }
     },
     // ダークエルフ
     // メイジ
@@ -2195,20 +3113,8 @@ export const skills: Skill[] = [
             "30分間、使用者のレベルの250倍ほどHPとMPを増加させます。",
             "30分間、使用者のレベルの300倍ほどHPとMPを増加させます。",
         ],
-        attributes: [
-            {
-                name: "HP",
-                values: [
-                    150, 170, 190, 210, 230, 250, 300
-                ],
-            },
-            {
-                name: "MP",
-                values: [
-                    150, 170, 190, 210, 230, 250, 300
-                ],
-            }
-        ]
+        // TODO: implement custom option
+        attributes: {}
     },
     {
         name: "ダークアイズ",
@@ -2221,14 +3127,11 @@ export const skills: Skill[] = [
         descriptions: [
             "魔法攻撃力15%増加。",
         ],
-        attributes: [
-            {
-                name: "魔法攻撃力",
-                values: [
-                    15
-                ],
+        attributes: {
+            0: {
+                multiplyMagicAttack: 15,
             }
-        ]
+        }
     },
     {
         name: "マジックブースト",
@@ -2247,14 +3150,29 @@ export const skills: Skill[] = [
             "30分間、魔法攻撃のクリティカル率が10%増加します。",
             "90分間、魔法攻撃のクリティカル率が15%増加します。",
         ],
-        attributes: [
-            {
-                name: "クリティカル率",
-                values: [
-                    4, 5, 6, 7, 8, 10, 15
-                ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 4,
+            },
+            1: {
+                multiplyCriticalRate: 5,
+            },
+            2: {
+                multiplyCriticalRate: 6,
+            },
+            3: {
+                multiplyCriticalRate: 7,
+            },
+            4: {
+                multiplyCriticalRate: 8,
+            },
+            5: {
+                multiplyCriticalRate: 10,
+            },
+            6: {
+                multiplyCriticalRate: 15,
             }
-        ]
+        }
     },
     {
         name: "ストロングマインド",
@@ -2273,20 +3191,36 @@ export const skills: Skill[] = [
             "30分間、クリティカル攻撃時、使用者の知能の325%、精神の640%ほどダメージが増加されたダメージを与えます。",
             "90分間、クリティカル攻撃時、使用者の知能の450%、精神の850%ほどダメージが増加されたダメージを与えます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    50, 105, 160, 215, 270, 325, 450
-                ],
+        attributes: {
+            0: {
+                plusCriticalDamageMultiplyIntelligence: 50,
+                plusCriticalDamageMultiplyMentality: 90,
             },
-            {
-                name: "ダメージ",
-                values: [
-                    90, 200, 310, 420, 530, 640, 850
-                ],
+            1: {
+                plusCriticalDamageMultiplyIntelligence: 105,
+                plusCriticalDamageMultiplyMentality: 200,
+            },
+            2: {
+                plusCriticalDamageMultiplyIntelligence: 160,
+                plusCriticalDamageMultiplyMentality: 310,
+            },
+            3: {
+                plusCriticalDamageMultiplyIntelligence: 215,
+                plusCriticalDamageMultiplyMentality: 420,
+            },
+            4: {
+                plusCriticalDamageMultiplyIntelligence: 270,
+                plusCriticalDamageMultiplyMentality: 530,
+            },
+            5: {
+                plusCriticalDamageMultiplyIntelligence: 325,
+                plusCriticalDamageMultiplyMentality: 640,
+            },
+            6: {
+                plusCriticalDamageMultiplyIntelligence: 450,
+                plusCriticalDamageMultiplyMentality: 850,
             }
-        ]
+        }
     },
     // ウォーロック
     {
@@ -2306,20 +3240,43 @@ export const skills: Skill[] = [
             "30分間、スタッフ及びオプション攻撃力が529%増加。攻撃速度30%増加。知能の403%ほど魔法攻撃力が増加。",
             "120分間、スタッフ及びオプション攻撃力が755%増加。攻撃速度50%増加。知能の576%ほど魔法攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    76, 151, 227, 302, 378, 529, 755
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 76,
+                multiplyAttackSpeed: 10,
+                plusMagicAttackMultiplyIntelligence: 58,
             },
-            {
-                name: "魔法攻撃力",
-                values: [
-                    58, 115, 173, 230, 288, 403, 576
-                ],
+            1: {
+                multiplyWeaponAttack: 151,
+                multiplyAttackSpeed: 10,
+                plusMagicAttackMultiplyIntelligence: 115,
+            },
+            2: {
+                multiplyWeaponAttack: 227,
+                multiplyAttackSpeed: 10,
+                plusMagicAttackMultiplyIntelligence: 173,
+            },
+            3: {
+                multiplyWeaponAttack: 302,
+                multiplyAttackSpeed: 10,
+                plusMagicAttackMultiplyIntelligence: 230,
+            },
+            4: {
+                multiplyWeaponAttack: 378,
+                multiplyAttackSpeed: 10,
+                plusMagicAttackMultiplyIntelligence: 288,
+            },
+            5: {
+                multiplyWeaponAttack: 529,
+                multiplyAttackSpeed: 30,
+                plusMagicAttackMultiplyIntelligence: 403,
+            },
+            6: {
+                multiplyWeaponAttack: 755,
+                multiplyAttackSpeed: 50,
+                plusMagicAttackMultiplyIntelligence: 576,
             }
-        ]
+        }
     },
     {
         name: "アドインテンション",
@@ -2338,14 +3295,29 @@ export const skills: Skill[] = [
             "30分間、使用者の知能を40%増加させます。",
             "120分間、使用者の知能を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "知能",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyIntelligence: 10,
+            },
+            1: {
+                multiplyIntelligence: 15,
+            },
+            2: {
+                multiplyIntelligence: 20,
+            },
+            3: {
+                multiplyIntelligence: 25,
+            },
+            4: {
+                multiplyIntelligence: 30,
+            },
+            5: {
+                multiplyIntelligence: 40,
+            },
+            6: {
+                multiplyIntelligence: 60,
             }
-        ]
+        }
     },
 
     {
@@ -2365,20 +3337,30 @@ export const skills: Skill[] = [
             "30分間、使用者のスキル防御力が12%上昇し、与えたダメージの30%ほど相手のMPを減少。",
             "30分間、使用者のスキル防御力が15%上昇し、与えたダメージの40%ほど相手のMPを減少。",
         ],
-        attributes: [
-            {
-                name: "スキル防御力",
-                values: [
-                    2, 5, 7, 9, 10, 12, 15
-                ],
+        // TODO: implement custom option
+        attributes: {
+            0: {
+                multiplySkillDefense: 2,
             },
-            {
-                name: "MP",
-                values: [
-                    5, 10, 15, 20, 25, 30, 40
-                ],
+            1: {
+                multiplySkillDefense: 5,
+            },
+            2: {
+                multiplySkillDefense: 7,
+            },
+            3: {
+                multiplySkillDefense: 9,
+            },
+            4: {
+                multiplySkillDefense: 10,
+            },
+            5: {
+                multiplySkillDefense: 12,
+            },
+            6: {
+                multiplySkillDefense: 15,
             }
-        ]
+        }
     },
     // ウィザード
     {
@@ -2398,20 +3380,36 @@ export const skills: Skill[] = [
             "30分間、スタッフ及びオプション攻撃力が504%増加。精神力の332%ほど魔法攻撃力が増加。",
             "120分間、スタッフ及びオプション攻撃力が720%増加。精神力の474%ほど魔法攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    72, 144, 216, 288, 360, 504, 720
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 72,
+                plusMagicAttackMultiplyMentality: 47,
             },
-            {
-                name: "魔法攻撃力",
-                values: [
-                    47, 95, 142, 190, 237, 332, 474
-                ],
+            1: {
+                multiplyWeaponAttack: 144,
+                plusMagicAttackMultiplyMentality: 95,
+            },
+            2: {
+                multiplyWeaponAttack: 216,
+                plusMagicAttackMultiplyMentality: 142,
+            },
+            3: {
+                multiplyWeaponAttack: 288,
+                plusMagicAttackMultiplyMentality: 190,
+            },
+            4: {
+                multiplyWeaponAttack: 360,
+                plusMagicAttackMultiplyMentality: 237,
+            },
+            5: {
+                multiplyWeaponAttack: 504,
+                plusMagicAttackMultiplyMentality: 332,
+            },
+            6: {
+                multiplyWeaponAttack: 720,
+                plusMagicAttackMultiplyMentality: 474,
             }
-        ],
+        }
     },
     {
         name: "アドテンパー",
@@ -2430,14 +3428,29 @@ export const skills: Skill[] = [
             "30分間、使用者の精神力を40%増加させます。",
             "120分間、使用者の精神力を60%増加させます。",
         ],
-        attributes: [
-            {
-                name: "精神力",
-                values: [
-                    10, 15, 20, 25, 30, 40, 60
-                ],
+        attributes: {
+            0: {
+                multiplyMentality: 10,
+            },
+            1: {
+                multiplyMentality: 15,
+            },
+            2: {
+                multiplyMentality: 20,
+            },
+            3: {
+                multiplyMentality: 25,
+            },
+            4: {
+                multiplyMentality: 30,
+            },
+            5: {
+                multiplyMentality: 40,
+            },
+            6: {
+                multiplyMentality: 60,
             }
-        ]
+        }
     },
     {
         name: "メンタリティシールド",
@@ -2456,14 +3469,29 @@ export const skills: Skill[] = [
             "30分間、受けるダメージを使用者の精神の90%ほど軽減させます。",
             "120分間、受けるダメージを使用者の精神の150%ほど軽減させます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    30, 40, 50, 60, 70, 90, 150
-                ],
+        attributes: {
+            0: {
+                multiplyDecreaseDamageTakenMultiplyMentality: 30,
+            },
+            1: {
+                multiplyDecreaseDamageTakenMultiplyMentality: 40,
+            },
+            2: {
+                multiplyDecreaseDamageTakenMultiplyMentality: 50,
+            },
+            3: {
+                multiplyDecreaseDamageTakenMultiplyMentality: 60,
+            },
+            4: {
+                multiplyDecreaseDamageTakenMultiplyMentality: 70,
+            },
+            5: {
+                multiplyDecreaseDamageTakenMultiplyMentality: 90,
+            },
+            6: {
+                multiplyDecreaseDamageTakenMultiplyMentality: 150,
             }
-        ]
+        }
     },
     {
         name: "デストロイ",
@@ -2482,14 +3510,29 @@ export const skills: Skill[] = [
             "30分間、通常攻撃を範囲化し、攻撃対象に敵5体を追加。ダメージは80%を増加します。",
             "60分間、通常攻撃を範囲化し、攻撃対象に敵6体を追加。ダメージは100%を増加します。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    20, 30, 40, 50, 60, 80, 100
-                ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: 20,
+            },
+            1: {
+                multiplyIncreaseDamageDealt: 30,
+            },
+            2: {
+                multiplyIncreaseDamageDealt: 40,
+            },
+            3: {
+                multiplyIncreaseDamageDealt: 50,
+            },
+            4: {
+                multiplyIncreaseDamageDealt: 60,
+            },
+            5: {
+                multiplyIncreaseDamageDealt: 80,
+            },
+            6: {
+                multiplyIncreaseDamageDealt: 100,
             }
-        ]
+        }
     },
     {
         name: "マインドトレーニング",
@@ -2508,26 +3551,43 @@ export const skills: Skill[] = [
             "30分間、精神20%・攻撃速度30%・移動速度15%を増加させます。",
             "90分間、精神25%・攻撃速度40%・移動速度20%を増加させます。",
         ],
-        attributes: [
-            {
-                name: "精神力",
-                values: [
-                    3, 6, 9, 12, 15, 20, 25
-                ],
+        attributes: {
+            0: {
+                multiplyMentality: 3,
+                multiplyAttackSpeed: 5,
+                multiplyMovementSpeed: 2,
             },
-            {
-                name: "攻撃速度",
-                values: [
-                    5, 10, 15, 20, 25, 30, 40
-                ],
+            1: {
+                multiplyMentality: 6,
+                multiplyAttackSpeed: 10,
+                multiplyMovementSpeed: 4,
             },
-            {
-                name: "移動速度",
-                values: [
-                    2, 4, 6, 8, 10, 15, 20
-                ],
+            2: {
+                multiplyMentality: 9,
+                multiplyAttackSpeed: 15,
+                multiplyMovementSpeed: 6,
+            },
+            3: {
+                multiplyMentality: 12,
+                multiplyAttackSpeed: 20,
+                multiplyMovementSpeed: 8,
+            },
+            4: {
+                multiplyMentality: 15,
+                multiplyAttackSpeed: 25,
+                multiplyMovementSpeed: 10,
+            },
+            5: {
+                multiplyMentality: 20,
+                multiplyAttackSpeed: 30,
+                multiplyMovementSpeed: 15,
+            },
+            6: {
+                multiplyMentality: 25,
+                multiplyAttackSpeed: 40,
+                multiplyMovementSpeed: 20,
             }
-        ]
+        }
     },
     // ジャイアント
     // ウォリアー
@@ -2548,14 +3608,36 @@ export const skills: Skill[] = [
             "30分間使用者の力と敏捷の250%ほどのHPを増加させます。",
             "90分間使用者の力と敏捷の300%ほどのHPを増加させます。",
         ],
-        attributes: [
-            {
-                name: "HP",
-                values: [
-                    50, 90, 130, 170, 210, 250, 300
-                ],
+        attributes: {
+            0: {
+                plusHitPointMultiplyStrength: 50,
+                plusHitPointMultiplyAgility: 50,
+            },
+            1: {
+                plusHitPointMultiplyStrength: 90,
+                plusHitPointMultiplyAgility: 90,
+            },
+            2: {
+                plusHitPointMultiplyStrength: 130,
+                plusHitPointMultiplyAgility: 130,
+            },
+            3: {
+                plusHitPointMultiplyStrength: 170,
+                plusHitPointMultiplyAgility: 170,
+            },
+            4: {
+                plusHitPointMultiplyStrength: 210,
+                plusHitPointMultiplyAgility: 210,
+            },
+            5: {
+                plusHitPointMultiplyStrength: 250,
+                plusHitPointMultiplyAgility: 250,
+            },
+            6: {
+                plusHitPointMultiplyStrength: 300,
+                plusHitPointMultiplyAgility: 300,
             }
-        ]
+        }
     },
     {
         name: "ファインドホール",
@@ -2574,14 +3656,29 @@ export const skills: Skill[] = [
             "30分間、ダメージの20%ほど使用者のHPを回復させます。",
             "90分間、ダメージの35%ほど使用者のHPを回復させます。",
         ],
-        attributes: [
-            {
-                name: "HP",
-                values: [
-                    3, 6, 9, 12, 15, 20, 35
-                ],
+        attributes: {
+            0: {
+                multiplyHitPointAbsorbDamageRate: 3,
+            },
+            1: {
+                multiplyHitPointAbsorbDamageRate: 6,
+            },
+            2: {
+                multiplyHitPointAbsorbDamageRate: 9,
+            },
+            3: {
+                multiplyHitPointAbsorbDamageRate: 12,
+            },
+            4: {
+                multiplyHitPointAbsorbDamageRate: 15,
+            },
+            5: {
+                multiplyHitPointAbsorbDamageRate: 20,
+            },
+            6: {
+                multiplyHitPointAbsorbDamageRate: 35,
             }
-        ]
+        }
     },
     {
         name: "レージ",
@@ -2600,14 +3697,36 @@ export const skills: Skill[] = [
             "30分間、クリティカル攻撃時に力と敏捷の500%ほど増加したダメージを与えます。",
             "90分間、クリティカル攻撃時に力と敏捷の600%ほど増加したダメージを与えます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    230, 280, 330, 380, 430, 500, 600
-                ],
+        attributes: {
+            0: {
+                plusCriticalDamageMultiplyStrength: 230,
+                plusCriticalDamageMultiplyAgility: 230,
+            },
+            1: {
+                plusCriticalDamageMultiplyStrength: 280,
+                plusCriticalDamageMultiplyAgility: 280,
+            },
+            2: {
+                plusCriticalDamageMultiplyStrength: 330,
+                plusCriticalDamageMultiplyAgility: 330,
+            },
+            3: {
+                plusCriticalDamageMultiplyStrength: 380,
+                plusCriticalDamageMultiplyAgility: 380,
+            },
+            4: {
+                plusCriticalDamageMultiplyStrength: 430,
+                plusCriticalDamageMultiplyAgility: 430,
+            },
+            5: {
+                plusCriticalDamageMultiplyStrength: 500,
+                plusCriticalDamageMultiplyAgility: 500,
+            },
+            6: {
+                plusCriticalDamageMultiplyStrength: 600,
+                plusCriticalDamageMultiplyAgility: 600,
             }
-        ]
+        }
     },
     {
         name: "ブルートフォース",
@@ -2626,14 +3745,29 @@ export const skills: Skill[] = [
             "30分間、使用者のクリティカル攻撃率が8%増加します。",
             "90分間、使用者のクリティカル攻撃率が10%増加します。",
         ],
-        attributes: [
-            {
-                name: "クリティカル攻撃率",
-                values: [
-                    3, 4, 5, 6, 7, 8, 10
-                ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 3,
+            },
+            1: {
+                multiplyCriticalRate: 4,
+            },
+            2: {
+                multiplyCriticalRate: 5,
+            },
+            3: {
+                multiplyCriticalRate: 6,
+            },
+            4: {
+                multiplyCriticalRate: 7,
+            },
+            5: {
+                multiplyCriticalRate: 8,
+            },
+            6: {
+                multiplyCriticalRate: 10,
             }
-        ]
+        }
     },
     // バーサーカー
     {
@@ -2653,20 +3787,36 @@ export const skills: Skill[] = [
             "30分間、ポールアーム及びオプション攻撃力が344%増加。力の262%ほど近距離攻撃力が増加。",
             "120分間、ポールアーム及びオプション攻撃力が491%増加。力の374%ほど近距離攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    49, 98, 147, 196, 246, 344, 491
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 49,
+                plusMeleeAttackMultiplyStrength: 37,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    37, 75, 112, 150, 187, 262, 374
-                ],
+            1: {
+                multiplyWeaponAttack: 98,
+                plusMeleeAttackMultiplyStrength: 75,
+            },
+            2: {
+                multiplyWeaponAttack: 147,
+                plusMeleeAttackMultiplyStrength: 112,
+            },
+            3: {
+                multiplyWeaponAttack: 196,
+                plusMeleeAttackMultiplyStrength: 150,
+            },
+            4: {
+                multiplyWeaponAttack: 246,
+                plusMeleeAttackMultiplyStrength: 187,
+            },
+            5: {
+                multiplyWeaponAttack: 344,
+                plusMeleeAttackMultiplyStrength: 262,
+            },
+            6: {
+                multiplyWeaponAttack: 491,
+                plusMeleeAttackMultiplyStrength: 374,
             }
-        ]
+        },
     },
     {
         name: "クリミナルマインド",
@@ -2685,14 +3835,8 @@ export const skills: Skill[] = [
             "30分間、通常攻撃にマーダラーカウントの12倍のダメージが追加されます。",
             "120分間、通常攻撃にマーダラーカウントの20倍のダメージが追加されます。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    2, 4, 6, 8, 10, 12, 20
-                ],
-            }
-        ]
+        // TODO: implement custom option
+        attributes: {}
     },
     {
         name: "バーサーク",
@@ -2711,26 +3855,43 @@ export const skills: Skill[] = [
             "30分間、攻撃速度100%、攻撃力40%、移動速度を20%増加。",
             "60分間、攻撃速度150%、攻撃力50%、移動速度を30%増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃速度",
-                values: [
-                    50, 60, 70, 80, 90, 100, 150
-                ],
+        attributes: {
+            0: {
+                multiplyAttackSpeed: 50,
+                multiplyAttack: 10,
+                multiplyMovementSpeed: 5,
             },
-            {
-                name: "攻撃力",
-                values: [
-                    10, 15, 20, 25, 30, 40, 50
-                ],
+            1: {
+                multiplyAttackSpeed: 60,
+                multiplyAttack: 15,
+                multiplyMovementSpeed: 8,
             },
-            {
-                name: "移動速度",
-                values: [
-                    5, 8, 11, 14, 17, 20, 30
-                ],
+            2: {
+                multiplyAttackSpeed: 70,
+                multiplyAttack: 20,
+                multiplyMovementSpeed: 11,
+            },
+            3: {
+                multiplyAttackSpeed: 80,
+                multiplyAttack: 25,
+                multiplyMovementSpeed: 14,
+            },
+            4: {
+                multiplyAttackSpeed: 90,
+                multiplyAttack: 30,
+                multiplyMovementSpeed: 17,
+            },
+            5: {
+                multiplyAttackSpeed: 100,
+                multiplyAttack: 40,
+                multiplyMovementSpeed: 20,
+            },
+            6: {
+                multiplyAttackSpeed: 150,
+                multiplyAttack: 50,
+                multiplyMovementSpeed: 30,
             }
-        ]
+        }
     },
     {
         name: "ビジランス",
@@ -2749,20 +3910,36 @@ export const skills: Skill[] = [
             "30分間、使用者の力と敏捷性を45%ほど増加させます。",
             "120分間、使用者の力と敏捷性を60%ほど増加させます。",
         ],
-        attributes: [
-            {
-                name: "力",
-                values: [
-                    10, 15, 20, 25, 30, 45, 60
-                ],
+        attributes: {
+            0: {
+                multiplyStrength: 10,
+                multiplyAgility: 10
             },
-            {
-                name: "敏捷性",
-                values: [
-                    10, 15, 20, 25, 30, 45, 60
-                ],
+            1: {
+                multiplyStrength: 15,
+                multiplyAgility: 15
+            },
+            2: {
+                multiplyStrength: 20,
+                multiplyAgility: 20
+            },
+            3: {
+                multiplyStrength: 25,
+                multiplyAgility: 25
+            },
+            4: {
+                multiplyStrength: 30,
+                multiplyAgility: 30
+            },
+            5: {
+                multiplyStrength: 45,
+                multiplyAgility: 45
+            },
+            6: {
+                multiplyStrength: 60,
+                multiplyAgility: 60
             }
-        ]
+        }
     },
     {
         name: "ブランディッシュウェポン",
@@ -2781,20 +3958,36 @@ export const skills: Skill[] = [
             "30分間、80%の確率で通常攻撃を範囲化。15メートル内の対象に65%ほど減少したダメージを与えます。使用者のすべての防御力が30%増加します。",
             "120分間、100%の確率で通常攻撃を範囲化。15メートル内の対象に50%ほど減少したダメージを与えます。使用者のすべての防御力が50%増加します。",
         ],
-        attributes: [
-            {
-                name: "ダメージ",
-                values: [
-                    -65, -65, -65, -65, -65, -65, -50
-                ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: -65,
+                multiplyDefense: 6
             },
-            {
-                name: "防御力",
-                values: [
-                    6, 9, 12, 15, 20, 30, 50
-                ],
+            1: {
+                multiplyIncreaseDamageDealt: -65,
+                multiplyDefense: 9
+            },
+            2: {
+                multiplyIncreaseDamageDealt: -65,
+                multiplyDefense: 12
+            },
+            3: {
+                multiplyIncreaseDamageDealt: -65,
+                multiplyDefense: 15
+            },
+            4: {
+                multiplyIncreaseDamageDealt: -65,
+                multiplyDefense: 20
+            },
+            5: {
+                multiplyIncreaseDamageDealt: -65,
+                multiplyDefense: 30
+            },
+            6: {
+                multiplyIncreaseDamageDealt: -50,
+                multiplyDefense: 50
             }
-        ]
+        }
     },
     // サベージ
     {
@@ -2814,26 +4007,43 @@ export const skills: Skill[] = [
             "30分間、デュアルソード及びオプション攻撃力が243%増加。攻撃速度22%増加。力の169%ほど近距離攻撃力が増加。",
             "120分間、デュアルソード及びオプション攻撃力が338%増加。攻撃速度30%増加。力の242%ほど近距離攻撃力が増加。",
         ],
-        attributes: [
-            {
-                name: "攻撃力",
-                values: [
-                    52, 84, 116, 147, 180, 243, 338
-                ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 52,
+                multiplyAttackSpeed: 2,
+                plusMeleeAttackMultiplyStrength: 24,
             },
-            {
-                name: "攻撃速度",
-                values: [
-                    2, 6, 10, 14, 18, 22, 30
-                ],
+            1: {
+                multiplyWeaponAttack: 84,
+                multiplyAttackSpeed: 6,
+                plusMeleeAttackMultiplyStrength: 48,
             },
-            {
-                name: "近距離攻撃力",
-                values: [
-                    24, 48, 73, 97, 121, 169, 242
-                ],
+            2: {
+                multiplyWeaponAttack: 116,
+                multiplyAttackSpeed: 10,
+                plusMeleeAttackMultiplyStrength: 73,
+            },
+            3: {
+                multiplyWeaponAttack: 147,
+                multiplyAttackSpeed: 14,
+                plusMeleeAttackMultiplyStrength: 97,
+            },
+            4: {
+                multiplyWeaponAttack: 180,
+                multiplyAttackSpeed: 18,
+                plusMeleeAttackMultiplyStrength: 121,
+            },
+            5: {
+                multiplyWeaponAttack: 243,
+                multiplyAttackSpeed: 22,
+                plusMeleeAttackMultiplyStrength: 169,
+            },
+            6: {
+                multiplyWeaponAttack: 338,
+                multiplyAttackSpeed: 30,
+                plusMeleeAttackMultiplyStrength: 242,
             }
-        ]
+        }
     },
     {
         name: "ラムページフォース",
@@ -2852,8 +4062,7 @@ export const skills: Skill[] = [
             "30分間、80%の確率で使用者の通常攻撃が範囲攻撃になります。",
             "90分間、100%の確率で使用者の通常攻撃が範囲攻撃になります。",
         ],
-        attributes: [
-        ]
+        attributes: {}
     },
     {
         name: "フェロシアス",
@@ -2872,14 +4081,36 @@ export const skills: Skill[] = [
             "30分間、移動速度を20%増加し、クリティカル攻撃を受けた時のダメージを40%減少させます。",
             "120分間、移動速度を30%増加し、クリティカル攻撃を受けた時のダメージを50%減少させます。",
         ],
-        attributes: [
-            {
-                name: "移動速度",
-                values: [
-                    10, 12, 14, 16, 18, 20, 30
-                ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 10,
+                multiplyDecreaseCriticalDamageTaken: 15
+            },
+            1: {
+                multiplyMovementSpeed: 12,
+                multiplyDecreaseCriticalDamageTaken: 20
+            },
+            2: {
+                multiplyMovementSpeed: 14,
+                multiplyDecreaseCriticalDamageTaken: 25
+            },
+            3: {
+                multiplyMovementSpeed: 16,
+                multiplyDecreaseCriticalDamageTaken: 30
+            },
+            4: {
+                multiplyMovementSpeed: 18,
+                multiplyDecreaseCriticalDamageTaken: 35
+            },
+            5: {
+                multiplyMovementSpeed: 20,
+                multiplyDecreaseCriticalDamageTaken: 40
+            },
+            6: {
+                multiplyMovementSpeed: 30,
+                multiplyDecreaseCriticalDamageTaken: 50
             }
-        ]
+        }
     },
     {
         name: "モンスターマインド",
@@ -2898,14 +4129,29 @@ export const skills: Skill[] = [
             "30分間使用者のPVE攻撃力が12%増加します。",
             "120分間使用者のPVE攻撃力が15%増加します。",
         ],
-        attributes: [
-            {
-                name: "PVE攻撃力",
-                values: [
-                    2, 4, 6, 8, 10, 12, 15
-                ],
+        attributes: {
+            0: {
+                multiplyPVEAttack: 2,
+            },
+            1: {
+                multiplyPVEAttack: 4,
+            },
+            2: {
+                multiplyPVEAttack: 6,
+            },
+            3: {
+                multiplyPVEAttack: 8,
+            },
+            4: {
+                multiplyPVEAttack: 10,
+            },
+            5: {
+                multiplyPVEAttack: 12,
+            },
+            6: {
+                multiplyPVEAttack: 15,
             }
-        ]
+        }
     },
     {
         name: "ブルタリティ",
@@ -2924,19 +4170,35 @@ export const skills: Skill[] = [
             "30分間、使用者の力を45%、体力を12%増加させます。",
             "120分間、使用者の力を60%、体力を15%増加させます。",
         ],
-        attributes: [
-            {
-                name: "力",
-                values: [
-                    10, 15, 20, 25, 30, 45, 60
-                ],
+        attributes: {
+            0: {
+                multiplyStrength: 10,
+                multiplyVitality: 2
             },
-            {
-                name: "体力",
-                values: [
-                    2, 4, 6, 8, 10, 12, 15
-                ],
+            1: {
+                multiplyStrength: 15,
+                multiplyVitality: 4
+            },
+            2: {
+                multiplyStrength: 20,
+                multiplyVitality: 6
+            },
+            3: {
+                multiplyStrength: 25,
+                multiplyVitality: 8
+            },
+            4: {
+                multiplyStrength: 30,
+                multiplyVitality: 10
+            },
+            5: {
+                multiplyStrength: 45,
+                multiplyVitality: 12
+            },
+            6: {
+                multiplyStrength: 60,
+                multiplyVitality: 15
             }
-        ]
+        }
     }
 ]

@@ -1,8 +1,8 @@
 import { Box, TextField, Typography } from "@mui/material";
-import { BuiltinOptions } from "../static/options";
+import { BuiltinOptionKeyType, BuiltinOptions } from "../static/options";
 
 interface EquipmentOptionProps {
-    name: string;
+    name: BuiltinOptionKeyType;
     value: number;
 }
 export const EquipmentOption: React.FC<EquipmentOptionProps> = ({ name, value }) => {

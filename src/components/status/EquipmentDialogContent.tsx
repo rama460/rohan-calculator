@@ -3,6 +3,7 @@ import React from "react"
 import { ItemTemplate, Item, generateItem } from '../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
+import { BuiltinOptionKeyType } from "../static/options.ts";
 
 
 
@@ -59,21 +60,21 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
             }
             <Divider />
             {selectedItemTemplate.fixedBaseOptions && Object.entries(selectedItemTemplate.fixedBaseOptions).map(([name, value]) => (
-                <EquipmentOption name={name} value={value} />
+                <EquipmentOption name={name as BuiltinOptionKeyType} value={value} />
             ))}
 
             {selectedItemTemplate.enchantableBaseOptions && (
                 selectedItemTemplate.enchantableBaseOptions[enchantLevel] ?
                     // FIXME: enchantLevelが定義外の場合に適切な値を表示する
                     (Object.entries(selectedItemTemplate.enchantableBaseOptions[enchantLevel])?.map(([name, value]) => (
-                        <EquipmentOption name={name} value={value} />
+                        <EquipmentOption name={name as BuiltinOptionKeyType} value={value} />
                     ))) : (<></>)
             )
             }
 
             <Divider />
             {Object.entries(additionalOptions).map(([name, value]) => (
-                <EquipmentOption name={name} value={value} />
+                <EquipmentOption name={name as BuiltinOptionKeyType} value={value} />
             ))}
             <Button onClick={() => {
                 setAdditionalOptions({ ...additionalOptions, "Option": 0, });

@@ -44,7 +44,7 @@ export const Status = () => {
     const [equippedTalismanQ, setEquippedTalismanQ] = React.useState<Item | null>(null);
     const [equippedTalismanS, setEquippedTalismanS] = React.useState<Item | null>(null);
     const [equippedPet, setEquippedPet] = React.useState<Item | null>(null);
-    const [optionContext, setOptionContext] = React.useState<{ [key in BuiltinOptionKeyType]: number }>({});
+    const [optionContext, setOptionContext] = React.useState<{ [key in BuiltinOptionKeyType]?: number }>({});
 
     React.useEffect(() => {
         setOptionContext(reduce([

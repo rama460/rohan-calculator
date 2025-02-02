@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { Item } from '../static/items.ts'
 import { EquipmentTooltipContentRowProps, EquipmentTooltipContentRow } from "./EquipmentTooltipContentRow";
 import React from 'react';
-import { BuiltinOptions } from '../static/options.ts';
+import { BuiltinOptionKeyType, BuiltinOptions } from '../static/options.ts';
 
 interface EquipmentTooltipContentProps {
     currentItem: Item
@@ -24,6 +24,12 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
     const enabledStyle = {
         color: "white",
     }
+    Object.entries(currentItem.baseOptions).forEach(([key, value]) => {
+        console.log(key, value)
+        console.log(BuiltinOptions[key as BuiltinOptionKeyType].displayName)
+    }
+    )
+    console.log(currentItem)
     const rows: EquipmentTooltipContentRowProps[] = [
         {
             value: currentItem.name,
@@ -39,9 +45,9 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
             color: "white",
         },
         ...Object.entries(currentItem.baseOptions).map(([key, value]) => ({
-            name: BuiltinOptions[key].displayName,
+            name: BuiltinOptions[key as BuiltinOptionKeyType].displayName,
             value: value.toString(),
-            color: BuiltinOptions[key].displayColor,
+            color: BuiltinOptions[key as BuiltinOptionKeyType].displayColor,
         }))
     ]
     return (
@@ -56,7 +62,7 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
                     <div style={synergisticCount >= Number(requiredCount) ? enabledStyle : disabledStyle}>
                         {requiredCount}セット：{Object.entries(options).map(([key, value]) => (
                             <div>
-                                {BuiltinOptions[key].displayName}: {value}
+                                {BuiltinOptions[key as BuiltinOptionKeyType].displayName}: {value}
                             </div>
                         ))}
                     </div>
