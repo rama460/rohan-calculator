@@ -1,38 +1,54 @@
 import { Box, TextField, Typography } from "@mui/material";
+import React from "react";
+import { StatusType, useStatusesDispatch } from "../../modules/context/useStatusesContext";
+import { useCharactorContext } from "../../modules/context/useCharactorContext";
 
 interface StatusFieldProps {
-    name: string;
-    value: number;
-    onBaseChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onMetaChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    name: StatusType;
+    displayName: string;
 }
 
-export const StatusField: React.FC<StatusFieldProps> = ({ name, value, onBaseChange, onMetaChange }) => {
+export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) => {
+    const [base, setBase] = React.useState(0);
+    const [meta, setMeta] = React.useState(0);
+    const statusesDispatch = useStatusesDispatch();
+    const charactor = useCharactorContext();
+    const handleBaseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setBase(Number(event.target.value));
+        statusesDispatch({ type: "UPDATE_BASE", key: name as StatusType, value: Number(event.target.value) });
+    }
+    const handleMetaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMeta(Number(event.target.value));
+        statusesDispatch({ type: "UPDATE_META", key: name as StatusType, value: Number(event.target.value) });
+    }
+
     return (
         <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
             <Typography variant="body1" sx={{ textAlign: "center", width: "60px" }}>
-                {name}
+                {displayName}
             </Typography>
             <TextField
                 type="number"
                 size="small"
                 defaultValue={0}
+                value={base}
                 sx={{ width: "100px", }}
                 slotProps={{ htmlInput: { min: 0 } }}
-                onChange={onBaseChange}
+                onChange={handleBaseChange}
             />
             <TextField
                 type="number"
                 size="small"
                 defaultValue={0}
+                value={meta}
                 sx={{ width: "100px", }}
                 slotProps={{ htmlInput: { min: 0 } }}
-                onChange={onMetaChange}
+                onChange={handleMetaChange}
             />
             <TextField
                 type="number"
                 size="small"
-                value={value}
+                value={charactor.status[name]}
                 sx={{ width: "100px", }}
             />
         </Box>

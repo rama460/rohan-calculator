@@ -1,7 +1,9 @@
-import { Box, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import { Box, Checkbox, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
-import { races } from "../static/racs";
+import { races } from "../static/races";
 import Grid from "@mui/material/Grid2";
+import { useStatusesDispatch } from "../../modules/context/useStatusesContext";
+
 interface BasePanelProps {
     level: number;
     heroLevel: number;
@@ -15,8 +17,12 @@ interface BasePanelProps {
 
 
 export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, jobid, setLevel, setHeroLevel, setRaceid, setJobid }) => {
+    const [transcended, setTranscended] = React.useState(false);
+
+    const statusesDispatch = useStatusesDispatch();
     const handleRaceChange = (event: SelectChangeEvent) => {
         setRaceid(Number(event.target.value as string));
+        statusesDispatch({ type: "UPDATE_INITIAL", value: races[Number(event.target.value)].initialStatus });
     }
     const handleJobChange = (event: SelectChangeEvent) => {
         setJobid(Number(event.target.value as string));
@@ -50,7 +56,8 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                             type="number"
                             size="small"
                             defaultValue={50}
-                            value={heroLevel}
+                            value={level == 115 ? heroLevel : 0}
+                            disabled={level < 115}
                             sx={{ width: "80px", }}
                             slotProps={{ htmlInput: { min: 0, max: 50 } }}
                             onChange={(event) => {
@@ -92,6 +99,14 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                 </Grid>
                 <Grid size={{ md: 6, xs: 12 }}>
                     <Box display="flex" alignItems="center" gap={2}>
+                        <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>
+                            超越者:
+                        </Typography>
+                        <Checkbox
+                            disabled={level < 115 || heroLevel < 50}
+                            checked={(level < 115 || heroLevel < 50) ? false : transcended}
+                            onChange={() => { setTranscended(!transcended) }}
+                        />
                         <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>
                             称号:
                         </Typography>

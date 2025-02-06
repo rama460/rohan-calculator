@@ -7,11 +7,11 @@ import { BuiltinOptionKeyType, BuiltinOptions } from '../static/options.ts';
 interface EquipmentTooltipContentProps {
     currentItem: Item
     synergisticCount: number
-    equipmentType: string
+    title: string
     availableRaces?: string[]
 }
 
-export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergisticCount, equipmentType, availableRaces }) => {
+export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergisticCount, title, availableRaces }) => {
     const style = {
         opacity: 0.8,
         backgroundColor: "black",
@@ -30,7 +30,7 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
             color: "red",
         },
         {
-            value: equipmentType,
+            value: title,
             color: "white",
         },
         {

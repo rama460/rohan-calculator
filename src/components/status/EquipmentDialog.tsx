@@ -8,12 +8,12 @@ interface EquipmentDialogProps {
     onConfirm: () => void;
     onRemove: () => void;
     onCancel: () => void
-    equipmentType: string;
+    title: string;
     equippedItem: Item | null;
     children: React.ReactNode
 }
 
-export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ isOpen, onConfirm, onRemove, onCancel, equipmentType, equippedItem, children }) => {
+export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ isOpen, onConfirm, onRemove, onCancel, title, equippedItem, children }) => {
     return (
         <React.Fragment>
             <Dialog
@@ -22,7 +22,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ isOpen, onConf
                 }}
             >
                 <DialogTitle sx={{ fontSize: "30px" }} >
-                    {equipmentType}
+                    {title}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText
