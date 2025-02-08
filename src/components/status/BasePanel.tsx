@@ -3,6 +3,7 @@ import React from "react";
 import { races } from "../static/races";
 import Grid from "@mui/material/Grid2";
 import { useStatusesDispatch } from "../../modules/context/useStatusesContext";
+import { useBasesDispatch } from "../../modules/context/useBasesContext";
 
 interface BasePanelProps {
     level: number;
@@ -18,14 +19,16 @@ interface BasePanelProps {
 
 export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, jobid, setLevel, setHeroLevel, setRaceid, setJobid }) => {
     const [transcended, setTranscended] = React.useState(false);
-
+    const basesDispatch = useBasesDispatch();
     const statusesDispatch = useStatusesDispatch();
     const handleRaceChange = (event: SelectChangeEvent) => {
         setRaceid(Number(event.target.value as string));
         statusesDispatch({ type: "UPDATE_INITIAL", value: races[Number(event.target.value)].initialStatus });
+        basesDispatch({ type: "SET_RACEID", raceid: Number(event.target.value) });
     }
     const handleJobChange = (event: SelectChangeEvent) => {
         setJobid(Number(event.target.value as string));
+        basesDispatch({ type: "SET_JOBID", jobid: Number(event.target.value) });
     }
 
     return (
@@ -44,6 +47,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                             slotProps={{ htmlInput: { min: 1, max: 115 } }}
                             onChange={(event) => {
                                 setLevel(Number(event.target.value));
+                                basesDispatch({ type: "SET_LEVEL", level: Number(event.target.value) });
                                 if (Number(event.target.value) < 50) {
                                     setJobid(0);
                                 }
@@ -62,6 +66,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                             slotProps={{ htmlInput: { min: 0, max: 50 } }}
                             onChange={(event) => {
                                 setHeroLevel(Number(event.target.value));
+                                basesDispatch({ type: "SET_HERO_LEVEL", heroLevel: Number(event.target.value) });
                             }}
                         />
                     </Box>
@@ -105,7 +110,10 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                         <Checkbox
                             disabled={level < 115 || heroLevel < 50}
                             checked={(level < 115 || heroLevel < 50) ? false : transcended}
-                            onChange={() => { setTranscended(!transcended) }}
+                            onChange={() => {
+                                setTranscended(!transcended)
+                                basesDispatch({ type: "SET_TRANSCENDED", transcended: !transcended });
+                            }}
                         />
                         <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>
                             称号:

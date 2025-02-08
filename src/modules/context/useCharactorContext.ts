@@ -1,6 +1,7 @@
 import React from "react";
 import { Statuses, StatusType } from "./useStatusesContext";
 import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../components/static/options";
+import { Bases } from "./useBasesContext";
 
 export type BuiltinCharactorDetailKey = "meleeAttack" | ""
 
@@ -47,6 +48,7 @@ export const useCharactorContext = () => {
 export type CharactorAction =
     | {
         type: "UPDATE_STATUS"
+        bases: Bases
         statuses: Statuses
         equiomentOptions: { [key in BuiltinOptionKeyType]: number }
         skillOptions: { [key in BuiltinOptionKeyType]: number }
@@ -56,6 +58,7 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
     switch (action.type) {
         case "UPDATE_STATUS":
             state.status["strength"] = (
+                (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["strength"].base +
                 action.statuses["strength"].meta +
                 action.statuses["strength"].initial +
@@ -65,6 +68,7 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.skillOptions["plusAllOption"]) *
                 (100 + action.equiomentOptions["multiplyStrength"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyStrength"] + action.skillOptions["multiplyAllOption"]) / 100;
             state.status["vitality"] = (
+                (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["vitality"].base +
                 action.statuses["vitality"].meta +
                 action.statuses["vitality"].initial +
@@ -74,6 +78,7 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.skillOptions["plusAllOption"]) *
                 (100 + action.equiomentOptions["multiplyVitality"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyVitality"] + action.skillOptions["multiplyAllOption"]) / 100;
             state.status["intelligence"] = (
+                (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["intelligence"].base +
                 action.statuses["intelligence"].meta +
                 action.statuses["intelligence"].initial +
@@ -83,6 +88,7 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.skillOptions["plusAllOption"]) *
                 (100 + action.equiomentOptions["multiplyIntelligence"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyIntelligence"] + action.skillOptions["multiplyAllOption"]) / 100;
             state.status["agility"] = (
+                (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["agility"].base +
                 action.statuses["agility"].meta +
                 action.statuses["agility"].initial +
@@ -92,6 +98,7 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.skillOptions["plusAllOption"]) *
                 (100 + action.equiomentOptions["multiplyAgility"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyAgility"] + action.skillOptions["multiplyAllOption"]) / 100;
             state.status["mentality"] = (
+                (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["mentality"].base +
                 action.statuses["mentality"].meta +
                 action.statuses["mentality"].initial +
@@ -101,6 +108,7 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.skillOptions["plusAllOption"]) *
                 (100 + action.equiomentOptions["multiplyMentality"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyMentality"] + action.skillOptions["multiplyAllOption"]) / 100;
             state.status["dexterity"] = (
+                (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["dexterity"].base +
                 action.statuses["dexterity"].meta +
                 action.statuses["dexterity"].initial +
