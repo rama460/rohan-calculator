@@ -47,7 +47,7 @@ export const CharactorPanel: React.FC<CharactorPanelProps> = () => {
                 <CharactorParameterField name="HP回復" value={0} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="MP" value={0} />
+                <CharactorParameterField name="MP" value={charactor.detail.magicPoint} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
                 <CharactorParameterField name="MP回復" value={0} />

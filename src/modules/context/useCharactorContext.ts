@@ -139,6 +139,12 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
                 (100 + action.equiomentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100
             )
+            state.detail["magicPoint"] = ((
+                action.bases.level * races[action.bases.raceid].magicPointPerLevel + Math.floor((Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 / 2) +
+                Math.floor(state.status.mentality) * 10 +
+                action.equiomentOptions["plusMagicPoint"] + action.skillOptions["plusMagicPoint"] + action.synergyOptions["plusMagicPoint"]) *
+                (100 + action.equiomentOptions["multiplyMagicPoint"] + action.skillOptions["multiplyMagicPoint"] + action.synergyOptions["multiplyMagicPoint"]) / 100
+            )
             break;
         default:
             throw new Error("Invalid action");
