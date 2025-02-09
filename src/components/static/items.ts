@@ -175,6 +175,20 @@ const rohaSynergisticOptions = {
     }
 }
 
+const chaosSynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 20,
+        'multiplySkillDefense': 20,
+        'multiplyAttack': 20,
+        'multiplyDefense': 20,
+    },
+    4: {
+        'multiplyPVPAttack': 40,
+        'multiplyPVPDefense': 20,
+        'multiplyHitPoint': 200,
+        'multiplyHitPointAbsorbDamageRate': 20,
+    }
+}
 export const glasses: ItemTemplate[] = [
     {
         name: "ロハの眼帯",
@@ -243,6 +257,8 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
         },
         icon: unknown,
+        synergyOptions: chaosSynergisticOptions,
+        synergyKey: "chaos"
     },
     {
         name: "ケイオスブローチ",
@@ -252,6 +268,8 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
         },
         icon: unknown,
+        synergyOptions: chaosSynergisticOptions,
+        synergyKey: "chaos"
     },
     {
         name: "ケイオスブレスレット",
@@ -261,7 +279,8 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
         },
         icon: unknown,
-
+        synergyOptions: chaosSynergisticOptions,
+        synergyKey: "chaos"
     },
     {
         name: "ケイオスネックレス",
@@ -271,7 +290,8 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
         },
         icon: unknown,
-
+        synergyOptions: chaosSynergisticOptions,
+        synergyKey: "chaos"
     },
     {
         name: "メイガスリング",
