@@ -3,14 +3,14 @@ import { Statuses, StatusType } from "./useStatusesContext";
 import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../components/static/options";
 import { Bases } from "./useBasesContext";
 
-export type BuiltinCharactorDetailKey = "meleeAttack" | ""
+export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint"
 
 export type Charactor = {
     status: {
         [key in StatusType]: number
     },
     detail: {
-
+        [key in BuiltinCharactorDetailKey]: number
     },
     expression: {
 
@@ -32,7 +32,9 @@ export const initialCharactor: Charactor = {
         mentality: 0,
     },
     detail: {
-
+        meleeAttack: 0,
+        hitPoint: 0,
+        magicPoint: 0
     },
     expression: {
 
@@ -52,12 +54,13 @@ export type CharactorAction =
         statuses: Statuses
         equiomentOptions: { [key in BuiltinOptionKeyType]: number }
         skillOptions: { [key in BuiltinOptionKeyType]: number }
+        synergyOptions: { [key in BuiltinOptionKeyType]: number }
     }
 
 export const charactorReducer = (state: Charactor, action: CharactorAction): Charactor => {
     switch (action.type) {
         case "UPDATE_STATUS":
-            state.status["strength"] = (
+            state.status["strength"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["strength"].base +
                 action.statuses["strength"].meta +
@@ -65,9 +68,11 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusStrength"] +
                 action.equiomentOptions["plusAllOption"] +
                 action.skillOptions["plusStrength"] +
-                action.skillOptions["plusAllOption"]) *
-                (100 + action.equiomentOptions["multiplyStrength"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyStrength"] + action.skillOptions["multiplyAllOption"]) / 100;
-            state.status["vitality"] = (
+                action.skillOptions["plusAllOption"] +
+                action.synergyOptions["plusStrength"] +
+                action.synergyOptions["plusAllOption"]) *
+                (100 + action.equiomentOptions["multiplyStrength"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyStrength"] + action.skillOptions["multiplyAllOption"] + action.synergyOptions["multiplyStrength"] + action.synergyOptions["multiplyAllOption"]) / 100);
+            state.status["vitality"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["vitality"].base +
                 action.statuses["vitality"].meta +
@@ -75,9 +80,11 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusVitality"] +
                 action.equiomentOptions["plusAllOption"] +
                 action.skillOptions["plusVitality"] +
-                action.skillOptions["plusAllOption"]) *
-                (100 + action.equiomentOptions["multiplyVitality"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyVitality"] + action.skillOptions["multiplyAllOption"]) / 100;
-            state.status["intelligence"] = (
+                action.skillOptions["plusAllOption"] +
+                action.synergyOptions["plusVitality"] +
+                action.synergyOptions["plusAllOption"]) *
+                (100 + action.equiomentOptions["multiplyVitality"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyVitality"] + action.skillOptions["multiplyAllOption"] + action.synergyOptions["multiplyVitality"] + action.synergyOptions["multiplyAllOption"]) / 100);
+            state.status["intelligence"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["intelligence"].base +
                 action.statuses["intelligence"].meta +
@@ -85,9 +92,11 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusIntelligence"] +
                 action.equiomentOptions["plusAllOption"] +
                 action.skillOptions["plusIntelligence"] +
-                action.skillOptions["plusAllOption"]) *
-                (100 + action.equiomentOptions["multiplyIntelligence"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyIntelligence"] + action.skillOptions["multiplyAllOption"]) / 100;
-            state.status["agility"] = (
+                action.skillOptions["plusAllOption"] +
+                action.synergyOptions["plusIntelligence"] +
+                action.synergyOptions["plusAllOption"]) *
+                (100 + action.equiomentOptions["multiplyIntelligence"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyIntelligence"] + action.skillOptions["multiplyAllOption"] + action.synergyOptions["multiplyIntelligence"] + action.synergyOptions["multiplyAllOption"]) / 100);
+            state.status["agility"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["agility"].base +
                 action.statuses["agility"].meta +
@@ -95,9 +104,11 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusAgility"] +
                 action.equiomentOptions["plusAllOption"] +
                 action.skillOptions["plusAgility"] +
-                action.skillOptions["plusAllOption"]) *
-                (100 + action.equiomentOptions["multiplyAgility"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyAgility"] + action.skillOptions["multiplyAllOption"]) / 100;
-            state.status["mentality"] = (
+                action.skillOptions["plusAllOption"] +
+                action.synergyOptions["plusAgility"] +
+                action.synergyOptions["plusAllOption"]) *
+                (100 + action.equiomentOptions["multiplyAgility"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyAgility"] + action.skillOptions["multiplyAllOption"] + action.synergyOptions["multiplyAgility"] + action.synergyOptions["multiplyAllOption"]) / 100);
+            state.status["mentality"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["mentality"].base +
                 action.statuses["mentality"].meta +
@@ -105,9 +116,11 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusMentality"] +
                 action.equiomentOptions["plusAllOption"] +
                 action.skillOptions["plusMentality"] +
-                action.skillOptions["plusAllOption"]) *
-                (100 + action.equiomentOptions["multiplyMentality"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyMentality"] + action.skillOptions["multiplyAllOption"]) / 100;
-            state.status["dexterity"] = (
+                action.skillOptions["plusAllOption"] +
+                action.synergyOptions["plusMentality"] +
+                action.synergyOptions["plusAllOption"]) *
+                (100 + action.equiomentOptions["multiplyMentality"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyMentality"] + action.skillOptions["multiplyAllOption"] + action.synergyOptions["multiplyMentality"] + action.synergyOptions["multiplyAllOption"]) / 100);
+            state.status["dexterity"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["dexterity"].base +
                 action.statuses["dexterity"].meta +
@@ -115,8 +128,16 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusDexterity"] +
                 action.equiomentOptions["plusAllOption"] +
                 action.skillOptions["plusDexterity"] +
-                action.skillOptions["plusAllOption"]) *
-                (100 + action.equiomentOptions["multiplyDexterity"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyDexterity"] + action.skillOptions["multiplyAllOption"]) / 100;
+                action.skillOptions["plusAllOption"] +
+                action.synergyOptions["plusDexterity"] +
+                action.synergyOptions["plusAllOption"]) *
+                (100 + action.equiomentOptions["multiplyDexterity"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyDexterity"] + action.skillOptions["multiplyAllOption"] + action.synergyOptions["multiplyDexterity"] + action.synergyOptions["multiplyAllOption"]) / 100);
+            state.detail["hitPoint"] = ((
+                action.bases.level * 5 + (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
+                Math.floor(state.status.vitality) * 20 +
+                action.equiomentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
+                (100 + action.equiomentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100
+            )
             break;
         default:
             throw new Error("Invalid action");

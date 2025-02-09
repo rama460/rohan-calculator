@@ -7,23 +7,25 @@ import { EquipmentDialogContent } from "./EquipmentDialogContent";
 import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent";
 import anyBackground from "../../assets/backgrounds/any.png"
 import { generateItem, Item, ItemTemplate } from "../static/items";
-import { Equipments, useEquipmentsDispatch } from "../../modules/context/useEquipmentsContext";
+import { Equipments, useEquipments, useEquipmentsDispatch } from "../../modules/context/useEquipmentsContext";
+import { useSynergyDispatch } from "../../modules/context/useSynergyContext";
 
 interface EquipmentIconButtonProps {
     equipmentType: keyof Equipments
     title: string
     backgroundImage?: string
     items: ItemTemplate[]
-    synergisticDependentItems?: (Item | null)[]
 }
 
-export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items, synergisticDependentItems }) => {
+export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items }) => {
 
     const equipmentDispatch = useEquipmentsDispatch();
+    const equipments = useEquipments();
+    const synergyDispatch = useSynergyDispatch();
     const [selectedItem, setSelectedItem] = React.useState<Item>(generateItem(items[0], 0, {}));
     const [equippedItem, setEquippedItem] = React.useState<Item | null>(null);
     const [openDialog, setOpenDialog] = React.useState(false);
-    const [synergisticCount, setSynergisticCount] = React.useState(0);
+    const [synergyCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);
     const handleConfirm = () => {
         setEquippedItem(selectedItem);
@@ -43,17 +45,18 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
         }
     }
     useEffect(() => {
-        if (equippedItem) {
-            const count = synergisticDependentItems?.filter((item) => item?.synargisticKey === equippedItem.synargisticKey).length ?? 0;
-            setSynergisticCount(count + 1);
+        if (equippedItem && equippedItem?.synargisticKey && equippedItem?.synergyOptions) {
+            const count = Object.values(equipments).filter((item) => item?.synargisticKey === equippedItem.synargisticKey).length ?? 0;
+            setSynergisticCount(count);
+            synergyDispatch({ type: "UPDATE", synergyOption: equippedItem.synergyOptions, count: count, synergyKey: equippedItem.synargisticKey });
         } else {
             setSynergisticCount(0);
         }
-    }, [synergisticDependentItems])
+    }, [equipments])
     return (
         <>
             <Tooltip content={
-                equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergisticCount={synergisticCount} title={title} /> : <DefaultEquipmentTooltipContent content={title} />} >
+                equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergyCount={synergyCount} title={title} /> : <DefaultEquipmentTooltipContent content={title} />} >
                 <IconButton backgroundImage={backgroundImage} image={equippedItem?.icon} onClick={handleOpen} />
             </Tooltip>
             <EquipmentDialog isOpen={openDialog} onConfirm={handleConfirm} onRemove={handleRemove} onCancel={handleCancel} title={title} equippedItem={equippedItem} >

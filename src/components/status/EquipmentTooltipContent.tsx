@@ -6,12 +6,12 @@ import { BuiltinOptionKeyType, BuiltinOptions } from '../static/options.ts';
 
 interface EquipmentTooltipContentProps {
     currentItem: Item
-    synergisticCount: number
+    synergyCount: number
     title: string
     availableRaces?: string[]
 }
 
-export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergisticCount, title, availableRaces }) => {
+export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergyCount, title, availableRaces }) => {
     const style = {
         opacity: 0.8,
         backgroundColor: "black",
@@ -51,9 +51,9 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
                     <EquipmentTooltipContentRow {...row} />
                 ))}
             </div>
-            {currentItem.synergisticOptions && Object.entries(currentItem.synergisticOptions).map(([requiredCount, options]) => (
+            {currentItem.synergyOptions && Object.entries(currentItem.synergyOptions).map(([requiredCount, options]) => (
                 <div style={style}>
-                    <div style={synergisticCount >= Number(requiredCount) ? enabledStyle : disabledStyle}>
+                    <div style={synergyCount >= Number(requiredCount) ? enabledStyle : disabledStyle}>
                         {requiredCount}セット：{Object.entries(options).map(([key, value]) => (
                             <div>
                                 {BuiltinOptions[key as BuiltinOptionKeyType].displayName}: {value}

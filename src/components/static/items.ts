@@ -13,12 +13,12 @@ export type BaseItemTemplate = {
             [key in BuiltinOptionKeyType]?: number;
         }
     };
-    synergisticOptions?: {
+    synergyOptions?: {
         [key: number]: {
             [key in BuiltinOptionKeyType]?: number;
         };
     };
-    synergisticKey?: string;
+    synergyKey?: SynergyKey;
 }
 export type FixedItemTemplate = {
     fixedBaseOptions: {
@@ -35,12 +35,12 @@ export type EnchantableItemTemplate = {
 } & BaseItemTemplate;
 
 export type SetItemTemplate = {
-    synergisticOptions: {
+    synergyOptions: {
         [key: number]: {
             [key in BuiltinOptionKeyType]?: number;
         };
     };
-    synergisticKey: string;
+    synergyKey: SynergyKey;
 } & BaseItemTemplate;
 
 export type Item = {
@@ -52,12 +52,12 @@ export type Item = {
     additionalOptions: {
         [key in BuiltinOptionKeyType]?: number;
     };
-    synergisticOptions?: {
+    synergyOptions?: {
         [key: number]: {
             [key in BuiltinOptionKeyType]?: number;
         };
     };
-    synargisticKey?: string;
+    synargisticKey?: SynergyKey;
 }
 
 export type ItemTemplate = FixedItemTemplate | EnchantableItemTemplate | SetItemTemplate;
@@ -77,10 +77,12 @@ export const generateItem = (itemTemplate: ItemTemplate, enchantLevel: number, a
         icon: itemTemplate.icon,
         baseOptions: getOption(),
         additionalOptions: additionalOptions,
-        synergisticOptions: itemTemplate.synergisticOptions,
-        synargisticKey: itemTemplate.synergisticKey,
+        synergyOptions: itemTemplate.synergyOptions,
+        synargisticKey: itemTemplate.synergyKey,
     }
 }
+
+export type SynergyKey = "roha" | "chaos" | "megas" | "abyss" | "void" | "hesperos" | "karlas" | "diegas" | "kasim"
 
 export const weapons: ItemTemplate[] = [
     {
@@ -183,8 +185,8 @@ export const glasses: ItemTemplate[] = [
             'plusHitPoint': 20000,
         },
         icon: unknown,
-        synergisticOptions: rohaSynergisticOptions,
-        synergisticKey: "ロハシリーズ"
+        synergyOptions: rohaSynergisticOptions,
+        synergyKey: "roha"
     }
 ]
 export const hats: ItemTemplate[] = [
@@ -197,8 +199,8 @@ export const hats: ItemTemplate[] = [
             'plusHitPoint': 20000,
         },
         icon: unknown,
-        synergisticOptions: rohaSynergisticOptions,
-        synergisticKey: "ロハシリーズ"
+        synergyOptions: rohaSynergisticOptions,
+        synergyKey: "roha"
     }
 
 ]
@@ -212,8 +214,8 @@ export const earrings: ItemTemplate[] = [
             'plusHitPoint': 20000,
         },
         icon: unknown,
-        synergisticOptions: rohaSynergisticOptions,
-        synergisticKey: "ロハシリーズ"
+        synergyOptions: rohaSynergisticOptions,
+        synergyKey: "roha"
     }
 
 ]
@@ -227,8 +229,8 @@ export const costumes: ItemTemplate[] = [
             'plusHitPoint': 20000,
         },
         icon: unknown,
-        synergisticOptions: rohaSynergisticOptions,
-        synergisticKey: "ロハシリーズ"
+        synergyOptions: rohaSynergisticOptions,
+        synergyKey: "roha"
     }
 
 ]

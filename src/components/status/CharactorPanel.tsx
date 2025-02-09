@@ -1,11 +1,13 @@
 import Grid from "@mui/material/Grid2";
 import CharactorParameterField from "./CharactorParameterField";
+import { useCharactorContext } from "../../modules/context/useCharactorContext";
 
 
 interface CharactorPanelProps {
 }
 
 export const CharactorPanel: React.FC<CharactorPanelProps> = () => {
+    const charactor = useCharactorContext()
     return (
         <Grid container columnSpacing={4}>
             <Grid size={{ md: 6, xs: 12 }}>
@@ -39,7 +41,7 @@ export const CharactorPanel: React.FC<CharactorPanelProps> = () => {
                 <CharactorParameterField name="攻撃速度" value={0} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="HP" value={0} />
+                <CharactorParameterField name="HP" value={charactor.detail.hitPoint} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
                 <CharactorParameterField name="HP回復" value={0} />
