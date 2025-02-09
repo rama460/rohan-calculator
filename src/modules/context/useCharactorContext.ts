@@ -2,6 +2,7 @@ import React from "react";
 import { Statuses, StatusType } from "./useStatusesContext";
 import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../components/static/options";
 import { Bases } from "./useBasesContext";
+import { races } from "../../components/static/races";
 
 export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint"
 
@@ -133,7 +134,7 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.synergyOptions["plusAllOption"]) *
                 (100 + action.equiomentOptions["multiplyDexterity"] + action.equiomentOptions["multiplyAllOption"] + action.skillOptions["multiplyDexterity"] + action.skillOptions["multiplyAllOption"] + action.synergyOptions["multiplyDexterity"] + action.synergyOptions["multiplyAllOption"]) / 100);
             state.detail["hitPoint"] = ((
-                action.bases.level * 5 + (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
+                action.bases.level * races[action.bases.raceid].hitPointPerLevel + (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
                 Math.floor(state.status.vitality) * 20 +
                 action.equiomentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
                 (100 + action.equiomentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100

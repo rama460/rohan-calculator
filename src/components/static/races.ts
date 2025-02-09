@@ -13,6 +13,9 @@ export type Race = {
         mentality: number;
         dexterity: number;
     }
+    hitPointPerLevel: number;
+    magicPointPerLevel: number;
+    movementSpeed: number;
 }
 export const races: Race[] = [
     {
@@ -39,7 +42,10 @@ export const races: Race[] = [
             agility: 25,
             mentality: 14,
             dexterity: 26,
-        }
+        },
+        hitPointPerLevel: 9,
+        magicPointPerLevel: 5,
+        movementSpeed: 600,
     },
     {
         id: 1,
@@ -65,7 +71,10 @@ export const races: Race[] = [
             agility: 18,
             mentality: 40,
             dexterity: 15,
-        }
+        },
+        hitPointPerLevel: 5,
+        magicPointPerLevel: 9,
+        movementSpeed: 600,
     },
     {
         id: 2,
@@ -92,6 +101,9 @@ export const races: Race[] = [
             mentality: 14,
             dexterity: 27,
         },
+        hitPointPerLevel: 7,
+        magicPointPerLevel: 5,
+        movementSpeed: 660,
     },
     {
         id: 3,
@@ -117,7 +129,10 @@ export const races: Race[] = [
             agility: 30,
             mentality: 10,
             dexterity: 35,
-        }
+        },
+        hitPointPerLevel: 7,
+        magicPointPerLevel: 7,
+        movementSpeed: 600,
     },
     {
         id: 4,
@@ -143,7 +158,10 @@ export const races: Race[] = [
             agility: 25,
             mentality: 20,
             dexterity: 25,
-        }
+        },
+        hitPointPerLevel: 7,
+        magicPointPerLevel: 7,
+        movementSpeed: 600,
     },
     {
         id: 5,
@@ -169,7 +187,10 @@ export const races: Race[] = [
             agility: 17,
             mentality: 34,
             dexterity: 20,
-        }
+        },
+        hitPointPerLevel: 5,
+        magicPointPerLevel: 9,
+        movementSpeed: 600,
     },
     {
         id: 6,
@@ -195,7 +216,10 @@ export const races: Race[] = [
             agility: 27,
             mentality: 11,
             dexterity: 30,
-        }
+        },
+        hitPointPerLevel: 8,
+        magicPointPerLevel: 5,
+        movementSpeed: 600,
     },
     {
         id: 7,
@@ -221,6 +245,10 @@ export const races: Race[] = [
             agility: 15,
             mentality: 30,
             dexterity: 15,
-        }
+        },
+        // TODO: temporary value
+        hitPointPerLevel: 7,
+        magicPointPerLevel: 7,
+        movementSpeed: 600,
     }
 ]
