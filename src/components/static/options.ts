@@ -6,7 +6,7 @@ export type Option = {
 };
 
 
-type OptionUnit = "percent" | "number";
+export type OptionUnit = "percent" | "number";
 
 export const BuiltinOptions = {
     'plusAllOption': {
