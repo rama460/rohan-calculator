@@ -1415,25 +1415,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyEvasionRate: 15,
+                multiplyDodging: 15,
             },
             1: {
-                multiplyEvasionRate: 20,
+                multiplyDodging: 20,
             },
             2: {
-                multiplyEvasionRate: 25,
+                multiplyDodging: 25,
             },
             3: {
-                multiplyEvasionRate: 30,
+                multiplyDodging: 30,
             },
             4: {
-                multiplyEvasionRate: 35,
+                multiplyDodging: 35,
             },
             5: {
-                multiplyEvasionRate: 40,
+                multiplyDodging: 40,
             },
             6: {
-                multiplyEvasionRate: 50,
+                multiplyDodging: 50,
             }
         }
     },

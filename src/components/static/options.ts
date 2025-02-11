@@ -361,8 +361,8 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
-    'multiplyEvasionRate': {
-        name: 'multiplyEvasionRate',
+    'multiplyDodging': {
+        name: 'multiplyDodging',
         displayColor: 'green',
         displayName: '回避率',
         unit: 'percent',
