@@ -4,7 +4,7 @@ import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../components/static
 import { Bases } from "./useBasesContext";
 import { races } from "../../components/static/races";
 
-export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint" | "physicalDefense" | "magicalDefense" | "accuracy" | "dodging";
+export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint" | "physicalDefense" | "magicalDefense" | "accuracy" | "dodging" | "hitPointRecovery" | "magicPointRecovery" | "movementSpeed" | "attackSpeed" | "resistance"
 
 export type Charactor = {
     status: {
@@ -39,7 +39,12 @@ export const initialCharactor: Charactor = {
         physicalDefense: 0,
         magicalDefense: 0,
         accuracy: 0,
-        dodging: 0
+        dodging: 0,
+        hitPointRecovery: 0,
+        magicPointRecovery: 0,
+        movementSpeed: 0,
+        attackSpeed: 0,
+        resistance: 0
     },
     expression: {
 
@@ -178,6 +183,16 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 Math.floor(action.bases.level / 2) +
                 action.equiomentOptions["plusDodging"] + action.skillOptions["plusDodging"] + action.synergyOptions["plusDodging"]) *
                 (100 + action.equiomentOptions["multiplyDodging"] + action.skillOptions["multiplyDodging"] + action.synergyOptions["multiplyDodging"]) / 100)
+            state.detail["hitPointRecovery"] = Math.floor(1)
+            state.detail["magicPointRecovery"] = Math.floor(1)
+            state.detail["resistance"] = Math.floor(
+                (state.status.mentality + state.status.intelligence) / 15
+            )
+            console.log(action.skillOptions["multiplyMovementSpeed"])
+            state.detail["movementSpeed"] = Math.floor(
+                races[action.bases.raceid].movementSpeed *
+                (100 + action.equiomentOptions["multiplyMovementSpeed"] + action.synergyOptions["multiplyMovementSpeed"]) / 100 *
+                (100 + action.skillOptions["multiplyMovementSpeed"]) / 100)
             break;
         default:
             throw new Error("Invalid action");
