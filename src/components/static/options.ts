@@ -361,13 +361,6 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
-    'multiplyDodging': {
-        name: 'multiplyDodging',
-        displayColor: 'green',
-        displayName: '回避率',
-        unit: 'percent',
-        operationType: 'multiply'
-    },
     'multiplyMovementSpeed': {
         name: 'multiplyMovingSpeed',
         displayColor: 'green',
