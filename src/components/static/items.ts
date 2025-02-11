@@ -378,6 +378,16 @@ export const costumes: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
+    },
+    {
+        name: "紅蓮の鎧",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
     }
 
 ]
