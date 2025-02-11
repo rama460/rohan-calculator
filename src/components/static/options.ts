@@ -179,6 +179,20 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'plus'
     },
+    'plusAccuracy': {
+        name: 'plusAccuracy',
+        displayColor: 'green',
+        displayName: '命中率',
+        unit: 'number',
+        operationType: 'plus'
+    },
+    'plusDodging': {
+        name: 'plusDodging',
+        displayColor: 'green',
+        displayName: '回避率',
+        unit: 'number',
+        operationType: 'plus'
+    },
     'multiplyAllStatus': {
         name: 'multiplyAllStatus',
         displayColor: 'green',
@@ -636,6 +650,20 @@ export const BuiltinOptions = {
         name: 'multiplyMagicPointAbsorbDamageRate',
         displayColor: 'green',
         displayName: 'MP吸収率',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyAccuracy': {
+        name: 'multiplyAccuracy',
+        displayColor: 'green',
+        displayName: '命中率',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyDodging': {
+        name: 'multiplyDodging',
+        displayColor: 'green',
+        displayName: '回避率',
         unit: 'percent',
         operationType: 'multiply'
     },

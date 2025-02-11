@@ -4,7 +4,7 @@ import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../components/static
 import { Bases } from "./useBasesContext";
 import { races } from "../../components/static/races";
 
-export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint" | "physicalDefense" | "magicalDefense"
+export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint" | "physicalDefense" | "magicalDefense" | "accuracy" | "dodging";
 
 export type Charactor = {
     status: {
@@ -38,6 +38,8 @@ export const initialCharactor: Charactor = {
         magicPoint: 0,
         physicalDefense: 0,
         magicalDefense: 0,
+        accuracy: 0,
+        dodging: 0
     },
     expression: {
 
@@ -165,6 +167,17 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equiomentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
                 (100 + action.equiomentOptions["multiplyMagicalDefense"] + action.skillOptions["multiplyMagicalDefense"] + action.synergyOptions["multiplyMagicalDefense"] +
                     action.equiomentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
+
+            state.detail["accuracy"] = Math.floor((
+                state.status.agility +
+                Math.floor(action.bases.level / 2) +
+                action.equiomentOptions["plusAccuracy"] + action.skillOptions["plusAccuracy"] + action.synergyOptions["plusAccuracy"]) *
+                (100 + action.equiomentOptions["multiplyAccuracy"] + action.skillOptions["multiplyAccuracy"] + action.synergyOptions["multiplyAccuracy"]) / 100)
+            state.detail["dodging"] = Math.floor((
+                (state.status.dexterity * 1.2) +
+                Math.floor(action.bases.level / 2) +
+                action.equiomentOptions["plusDodging"] + action.skillOptions["plusDodging"] + action.synergyOptions["plusDodging"]) *
+                (100 + action.equiomentOptions["multiplyDodging"] + action.skillOptions["multiplyDodging"] + action.synergyOptions["multiplyDodging"]) / 100)
             break;
         default:
             throw new Error("Invalid action");
