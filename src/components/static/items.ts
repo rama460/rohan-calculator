@@ -76,7 +76,7 @@ export const getInitialBaseOtions = (itemTemplate: ItemTemplate, enchantLevel: n
     }
 }
 
-export type SynergyKey = "roha" | "chaos" | "megas" | "abyss" | "void" | "hesperos" | "karlas" | "diegas" | "kasim"
+export type SynergyKey = "roha" | "variant" | "chaos" | "megas" | "abyss" | "void" | "hesperos" | "karlas" | "diegas" | "kasim" | "onyxArmor";
 export type WeaponType = "sword" | "dagger" | "bow" | "staff" | "spear" | "axe" | "mace" | "crossbow" | "bow"
 export type WeaponTemplate = {
     type: WeaponType;
@@ -87,6 +87,7 @@ export const weapons: WeaponTemplate[] = [
         name: "グランドカイザーオニキスボウ",
         icon: unknown,
         type: "bow",
+        availableRaces: ["HalfElf"],
         enchantableBaseOptions: [
             {
                 "rangeAttack": 1585,
@@ -96,12 +97,30 @@ export const weapons: WeaponTemplate[] = [
     }
 
 ]
+
+// FIXME: base defence (physicalDefence/MagicalDefence) is defferent between the each races
 export const shields: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "ゼノオパニエルガーダー",
         icon: unknown,
-        fixedBaseOptions: {
-        },
+        enchantableBaseOptions: [
+            {
+                "physicalDefense": 276,
+                "magicalDefense": 230,
+                'multiplySkillDefense': 10,
+                'plusHitPoint': 1000,
+                'plusMagicPoint': 1000,
+                'multiplyAttackSpeed': 15
+            },
+            {
+                "physicalDefense": 276,
+                "magicalDefense": 230,
+                'multiplySkillDefense': 11,
+                'plusHitPoint': 1015,
+                'plusMagicPoint': 1015,
+                'multiplyAttackSpeed': 15
+            }
+        ]
     }
 
 ]
@@ -114,48 +133,108 @@ export const arrows: ItemTemplate[] = [
     }
 
 ]
+
+const onyxArmorSynergisticOptions = {
+    3: {
+        'plusDefense': 200,
+        'plusHitPoint': 1500,
+    },
+    5: {
+        'plusVitality': 75,
+        'plusAllStatus': 25,
+        'plusHitPoint': 3500,
+        'multiplyPVEDefense': 30,
+    }
+}
+
 export const helmets: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "グランドカイザーオニキスヘルメット(敏)",
         icon: unknown,
-        fixedBaseOptions: {
-        },
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        enchantableBaseOptions: [
+            {
+                "physicalDefense": 210,
+                "magicalDefense": 175,
+                "plusHitPoint": 300,
+                "plusAgility": 40
+            }
+        ],
+        synergyOptions: onyxArmorSynergisticOptions,
+        synergyKey: "onyxArmor"
     }
+
 
 ]
 export const gauntlets: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "グランドカイザーオニキスガントレット(敏)",
         icon: unknown,
-        fixedBaseOptions: {
-        },
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        enchantableBaseOptions: [
+            {
+                "physicalDefense": 161,
+                "magicalDefense": 134,
+                "plusHitPoint": 300,
+                "plusAgility": 40
+            }
+        ],
+        synergyOptions: onyxArmorSynergisticOptions,
+        synergyKey: "onyxArmor"
     }
 
 ]
 export const tunics: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "グランドカイザーオニキスチュニック(敏)",
         icon: unknown,
-        fixedBaseOptions: {
-        },
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        enchantableBaseOptions: [
+            {
+                "physicalDefense": 288,
+                "magicalDefense": 240,
+                "plusHitPoint": 300,
+                "plusAgility": 40
+            }
+        ],
+        synergyOptions: onyxArmorSynergisticOptions,
+        synergyKey: "onyxArmor"
     }
 
 ]
 export const leggings: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "グランドカイザーオニキスレギンス(敏)",
         icon: unknown,
-        fixedBaseOptions: {
-        },
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        enchantableBaseOptions: [
+            {
+                "physicalDefense": 249,
+                "magicalDefense": 207,
+                "plusHitPoint": 300,
+                "plusAgility": 40
+            }
+        ],
+        synergyOptions: onyxArmorSynergisticOptions,
+        synergyKey: "onyxArmor"
     }
 
 ]
 export const boots: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "グランドカイザーオニキスブーツ(敏)",
         icon: unknown,
-        fixedBaseOptions: {
-        },
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        enchantableBaseOptions: [
+            {
+                "physicalDefense": 161,
+                "magicalDefense": 134,
+                "plusHitPoint": 300,
+                "plusAgility": 40
+            }
+        ],
+        synergyOptions: onyxArmorSynergisticOptions,
+        synergyKey: "onyxArmor"
     }
 
 ]
@@ -192,6 +271,19 @@ const chaosSynergisticOptions = {
         'multiplyHitPointAbsorbDamageRate': 20,
     }
 }
+
+const variantSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 100,
+        'multiplyDamageReflectionRate': 50,
+    },
+    3: {
+        'multiplyHitPoint': 100,
+        'multiplyPVPAttack': 100,
+        'multiplyPVEAttack': 100,
+        'multiplySkillAttack': 100,
+    }
+}
 export const glasses: ItemTemplate[] = [
     {
         name: "ロハの眼帯",
@@ -204,6 +296,18 @@ export const glasses: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
+    },
+    {
+        name: "ヴァリアントアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 5000,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: variantSynergisticOptions,
+        synergyKey: "variant"
     }
 ]
 export const hats: ItemTemplate[] = [
@@ -218,7 +322,20 @@ export const hats: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
+    },
+    {
+        name: "ヴァリアントサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 5000,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: variantSynergisticOptions,
+        synergyKey: "variant"
     }
+
 
 ]
 export const earrings: ItemTemplate[] = [
@@ -233,7 +350,20 @@ export const earrings: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
+    },
+    {
+        name: "ヴァリアントイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 5000,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: variantSynergisticOptions,
+        synergyKey: "variant"
     }
+
 
 ]
 export const costumes: ItemTemplate[] = [
