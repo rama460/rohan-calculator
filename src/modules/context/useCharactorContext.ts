@@ -4,7 +4,7 @@ import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../components/static
 import { Bases } from "./useBasesContext";
 import { races } from "../../components/static/races";
 
-export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint"
+export type BuiltinCharactorDetailKey = "meleeAttack" | "hitPoint" | "magicPoint" | "physicalDefense" | "magicalDefense"
 
 export type Charactor = {
     status: {
@@ -35,7 +35,9 @@ export const initialCharactor: Charactor = {
     detail: {
         meleeAttack: 0,
         hitPoint: 0,
-        magicPoint: 0
+        magicPoint: 0,
+        physicalDefense: 0,
+        magicalDefense: 0,
     },
     expression: {
 
@@ -133,18 +135,36 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.synergyOptions["plusDexterity"] +
                 action.synergyOptions["plusAllStatus"]) *
                 (100 + action.equiomentOptions["multiplyDexterity"] + action.equiomentOptions["multiplyAllStatus"] + action.skillOptions["multiplyDexterity"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyDexterity"] + action.synergyOptions["multiplyAllStatus"]) / 100);
-            state.detail["hitPoint"] = ((
+            state.detail["hitPoint"] = Math.floor((
                 action.bases.level * races[action.bases.raceid].hitPointPerLevel + (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
                 Math.floor(state.status.vitality) * 20 +
                 action.equiomentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
                 (100 + action.equiomentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100
             )
-            state.detail["magicPoint"] = ((
+            state.detail["magicPoint"] = Math.floor((
                 action.bases.level * races[action.bases.raceid].magicPointPerLevel + Math.floor((Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 / 2) +
                 Math.floor(state.status.mentality) * 10 +
                 action.equiomentOptions["plusMagicPoint"] + action.skillOptions["plusMagicPoint"] + action.synergyOptions["plusMagicPoint"]) *
                 (100 + action.equiomentOptions["multiplyMagicPoint"] + action.skillOptions["multiplyMagicPoint"] + action.synergyOptions["multiplyMagicPoint"]) / 100
             )
+            state.detail["physicalDefense"] = Math.floor(((
+                action.bases.level > 70 ? action.bases.level * 3 : (action.bases.level > 50 ? action.bases.level * 2 : action.bases.level)) +
+                Math.floor(state.status.vitality) * 2 +
+                Math.floor(state.status.strength) +
+                action.equiomentOptions["physicalDefense"] + action.skillOptions["physicalDefense"] + action.synergyOptions["physicalDefense"] +
+                action.equiomentOptions["plusPhysicalDefense"] + action.skillOptions["plusPhysicalDefense"] + action.synergyOptions["plusPhysicalDefense"] +
+                action.equiomentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
+                (100 + action.equiomentOptions["multiplyPhysicalDefense"] + action.skillOptions["multiplyPhysicalDefense"] + action.synergyOptions["multiplyPhysicalDefense"] +
+                    action.equiomentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
+            state.detail["magicalDefense"] = Math.floor(((
+                action.bases.level > 70 ? action.bases.level * 3 : (action.bases.level > 50 ? action.bases.level * 2 : action.bases.level)) +
+                Math.floor(state.status.mentality) * 2 +
+                Math.floor(state.status.intelligence) +
+                action.equiomentOptions["magicalDefense"] + action.skillOptions["magicalDefense"] + action.synergyOptions["magicalDefense"] +
+                action.equiomentOptions["plusMagicalDefense"] + action.skillOptions["plusMagicalDefense"] + action.synergyOptions["plusMagicalDefense"] +
+                action.equiomentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
+                (100 + action.equiomentOptions["multiplyMagicalDefense"] + action.skillOptions["multiplyMagicalDefense"] + action.synergyOptions["multiplyMagicalDefense"] +
+                    action.equiomentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
             break;
         default:
             throw new Error("Invalid action");

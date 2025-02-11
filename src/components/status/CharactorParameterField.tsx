@@ -16,7 +16,7 @@ export const CharactorParameterField: React.FC<CharactorParameterFieldProps> = (
                 size="small"
                 defaultValue={0}
                 value={value}
-                sx={{ width: "100px", }}
+                sx={{ width: "120px", }}
                 slotProps={{ htmlInput: { min: 0, readOnly: true } }}
             />
         </Box>

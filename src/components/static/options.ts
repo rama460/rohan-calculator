@@ -165,6 +165,20 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'plus'
     },
+    'plusPhysicalDefense': {
+        name: 'plusPhysicalDefense',
+        displayColor: 'green',
+        displayName: '物理防御力',
+        unit: 'number',
+        operationType: 'plus'
+    },
+    'plusMagicalDefense': {
+        name: 'plusMagicalDefense',
+        displayColor: 'green',
+        displayName: '魔法防御力',
+        unit: 'number',
+        operationType: 'plus'
+    },
     'multiplyAllStatus': {
         name: 'multiplyAllStatus',
         displayColor: 'green',

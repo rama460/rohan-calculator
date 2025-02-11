@@ -29,13 +29,13 @@ export const CharactorPanel: React.FC<CharactorPanelProps> = () => {
                 <CharactorParameterField name="回避率" value={0} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="物理防御力" value={0} />
+                <CharactorParameterField name="物理防御力" value={charactor.detail.physicalDefense} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
                 <CharactorParameterField name="移動速度" value={0} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="魔法防御力" value={0} />
+                <CharactorParameterField name="魔法防御力" value={charactor.detail.magicalDefense} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
                 <CharactorParameterField name="攻撃速度" value={0} />
