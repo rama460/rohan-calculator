@@ -42,13 +42,13 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
             name: BuiltinOptions[key as BuiltinOptionKeyType].displayName,
             value: value.toString(),
             color: BuiltinOptions[key as BuiltinOptionKeyType].displayColor,
-            unit: BuiltinOptions[key as BuiltinOptionKeyType].unit,
+            operationType: BuiltinOptions[key as BuiltinOptionKeyType].operationType,
         })),
         ...Object.entries(currentItem.additionalOptions).map(([key, value]) => ({
             name: BuiltinOptions[key as BuiltinOptionKeyType].displayName,
             value: value.toString(),
             color: BuiltinOptions[key as BuiltinOptionKeyType].displayColor,
-            unit: BuiltinOptions[key as BuiltinOptionKeyType].unit,
+            operationType: BuiltinOptions[key as BuiltinOptionKeyType].operationType,
         }))
     ]
     return (
@@ -62,7 +62,7 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
                 <div style={style}>
                     <div style={synergyCount >= Number(requiredCount) ? enabledStyle : disabledStyle}>
                         {requiredCount}セット：{Object.entries(options).map(([key, value]) => (
-                            <EquipmentTooltipContentRow name={BuiltinOptions[key as BuiltinOptionKeyType].displayName} value={value.toString()} color={BuiltinOptions[key as BuiltinOptionKeyType].displayColor} unit={BuiltinOptions[key as BuiltinOptionKeyType].unit} />
+                            <EquipmentTooltipContentRow name={BuiltinOptions[key as BuiltinOptionKeyType].displayName} value={value.toString()} color={BuiltinOptions[key as BuiltinOptionKeyType].displayColor} operationType={BuiltinOptions[key as BuiltinOptionKeyType].operationType} />
                         ))}
                     </div>
                 </div>

@@ -1,15 +1,15 @@
 import React from "react";
-import { OptionUnit } from "../static/options";
+import { OptionOperationType } from "../static/options";
 
 
 export type EquipmentTooltipContentRowProps = {
     name?: string;
     value: string;
     color?: string;
-    unit?: OptionUnit;
+    operationType?: OptionOperationType;
 }
 
-export const EquipmentTooltipContentRow: React.FC<EquipmentTooltipContentRowProps> = ({ name, value, color = "white", unit }) => {
+export const EquipmentTooltipContentRow: React.FC<EquipmentTooltipContentRowProps> = ({ name, value, color = "white", operationType }) => {
     const style: React.CSSProperties = {
         color: `${color}`,
         textAlign: "center",
@@ -17,8 +17,8 @@ export const EquipmentTooltipContentRow: React.FC<EquipmentTooltipContentRowProp
     return (
         <div style={style}>
             {name !== undefined ? (<>{name}: </>) : (<></>)}
-            {unit === undefined ? value : (
-                unit == "percent" ? `${value}%` : `+${value}`
+            {(operationType === undefined || operationType === "absolute") ? value : (
+                operationType === "multiply" ? `${value}%` : `+${value}`
             )}<br />
         </div>
     );

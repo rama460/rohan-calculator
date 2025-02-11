@@ -74,14 +74,22 @@ export const getInitialBaseOtions = (itemTemplate: ItemTemplate, enchantLevel: n
 }
 
 export type SynergyKey = "roha" | "chaos" | "megas" | "abyss" | "void" | "hesperos" | "karlas" | "diegas" | "kasim"
+export type WeaponType = "sword" | "dagger" | "bow" | "staff" | "spear" | "axe" | "mace" | "crossbow" | "bow"
+export type WeaponTemplate = {
+    type: WeaponType;
+} & ItemTemplate;
 
-export const weapons: ItemTemplate[] = [
+export const weapons: WeaponTemplate[] = [
     {
-        name: "サンプル",
+        name: "グランドカイザーオニキスボウ",
         icon: unknown,
-        fixedBaseOptions: {
-            "plusDefense": 100,
-        },
+        type: "bow",
+        enchantableBaseOptions: [
+            {
+                "rangeAttack": 1585,
+                "plusAttack": 551
+            }
+        ]
     }
 
 ]
