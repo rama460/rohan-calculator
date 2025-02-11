@@ -46,6 +46,7 @@ export type SetItemTemplate = {
 export type Item = {
     name: string;
     icon: string;
+    enchantLevel: number;
     baseOptions: {
         [key in BuiltinOptionKeyType]?: number;
     };
@@ -57,28 +58,18 @@ export type Item = {
             [key in BuiltinOptionKeyType]?: number;
         };
     };
-    synargisticKey?: SynergyKey;
+    synergyKey?: SynergyKey;
 }
 
 export type ItemTemplate = FixedItemTemplate | EnchantableItemTemplate | SetItemTemplate;
 
-export const generateItem = (itemTemplate: ItemTemplate, enchantLevel: number, additionalOptions: { [key in BuiltinOptionKeyType]?: number }): Item => {
-    const getOption = () => {
-        if (itemTemplate.fixedBaseOptions) {
-            return itemTemplate.fixedBaseOptions;
-        } else if (itemTemplate.enchantableBaseOptions) {
-            return itemTemplate.enchantableBaseOptions[enchantLevel];
-        } else {
-            return {};
-        }
-    }
-    return {
-        name: itemTemplate.name,
-        icon: itemTemplate.icon,
-        baseOptions: getOption(),
-        additionalOptions: additionalOptions,
-        synergyOptions: itemTemplate.synergyOptions,
-        synargisticKey: itemTemplate.synergyKey,
+export const getInitialBaseOtions = (itemTemplate: ItemTemplate, enchantLevel: number): { [key in BuiltinOptionKeyType]?: number } => {
+    if (itemTemplate.fixedBaseOptions) {
+        return itemTemplate.fixedBaseOptions;
+    } else if (itemTemplate.enchantableBaseOptions) {
+        return itemTemplate.enchantableBaseOptions[enchantLevel];
+    } else {
+        return {};
     }
 }
 
@@ -89,6 +80,7 @@ export const weapons: ItemTemplate[] = [
         name: "サンプル",
         icon: unknown,
         fixedBaseOptions: {
+            "plusDefense": 100,
         },
     }
 

@@ -6,7 +6,7 @@ import EquipmentDialog from "./EquipmentDialog";
 import { EquipmentDialogContent } from "./EquipmentDialogContent";
 import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent";
 import anyBackground from "../../assets/backgrounds/any.png"
-import { generateItem, Item, ItemTemplate } from "../static/items";
+import { Item, ItemTemplate } from "../static/items";
 import { Equipments, useEquipments, useEquipmentsDispatch } from "../../modules/context/useEquipmentsContext";
 import { useSynergyDispatch } from "../../modules/context/useSynergyContext";
 
@@ -22,14 +22,17 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
     const equipmentDispatch = useEquipmentsDispatch();
     const equipments = useEquipments();
     const synergyDispatch = useSynergyDispatch();
-    const [selectedItem, setSelectedItem] = React.useState<Item>(generateItem(items[0], 0, {}));
+    const [selectedItem, setSelectedItem] = React.useState<Item | null>(null);
     const [equippedItem, setEquippedItem] = React.useState<Item | null>(null);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [synergyCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);
     const handleConfirm = () => {
-        setEquippedItem(selectedItem);
         setOpenDialog(false);
+        if (!selectedItem) {
+            return;
+        }
+        setEquippedItem(selectedItem);
         equipmentDispatch({ type: "SET", key: equipmentType, item: selectedItem });
     }
     const handleRemove = () => {
@@ -45,10 +48,10 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
         }
     }
     useEffect(() => {
-        if (equippedItem && equippedItem?.synargisticKey && equippedItem?.synergyOptions) {
-            const count = Object.values(equipments).filter((item) => item?.synargisticKey === equippedItem.synargisticKey).length ?? 0;
+        if (equippedItem && equippedItem?.synergyKey && equippedItem?.synergyOptions) {
+            const count = Object.values(equipments).filter((item) => item?.synergyKey === equippedItem.synergyKey).length ?? 0;
             setSynergisticCount(count);
-            synergyDispatch({ type: "UPDATE", synergyOption: equippedItem.synergyOptions, count: count, synergyKey: equippedItem.synargisticKey });
+            synergyDispatch({ type: "UPDATE", synergyOption: equippedItem.synergyOptions, count: count, synergyKey: equippedItem.synergyKey });
         } else {
             setSynergisticCount(0);
         }

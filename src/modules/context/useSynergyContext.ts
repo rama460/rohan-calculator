@@ -37,7 +37,6 @@ export const synergyReducer = (state: Synergy, action: SynergyAction): Synergy =
                     state[action.synergyKey]?.push(value)
                 }
             })
-            console.log(state)
             return { ...state };
         default:
             throw new Error("Invalid action");

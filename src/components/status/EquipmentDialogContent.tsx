@@ -1,30 +1,63 @@
 import { Button, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
 import React from "react"
-import { ItemTemplate, Item, generateItem } from '../static/items.ts'
+import { ItemTemplate, Item, getInitialBaseOtions } from '../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
-import { BuiltinOptionKeyType } from "../static/options.ts";
+import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../static/options.ts";
 
 
 
 interface EquipmentDialogContentProps {
     itemTemplates: ItemTemplate[];
-    currentItem: Item;
+    currentItem: Item | null;
     setCurrentItem: (item: Item) => void;
 }
 
-export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ itemTemplates, setCurrentItem }) => {
-    // FIXME: ダイアログオープン時に表示される装備を全選択したもの or 装備中のものにする
-    const [name, setName] = React.useState(itemTemplates[0].name);
-    const [enchantLevel, setEnchantLevel] = React.useState(0);
-    const [additionalOptions, setAdditionalOptions] = React.useState<{ [key: string]: number }>({});
+// FIXME: Reconsider the data structure of Item / Options, and states in this component
+// Because in the UI, the options need to hold the order to display, 
+// but the Item / Option data structure is not suitable for that because of hash.
+const hashToArray = (hash: { [key in BuiltinOptionKeyType]?: number }): { name: BuiltinOptionKeyType, value: number }[] => {
+    return Object.entries(hash).map(([name, value]) => ({ name: name as BuiltinOptionKeyType, value: value }));
+}
+const ArrayToHash = (array: { name: BuiltinOptionKeyType, value: number }[]): { [key in BuiltinOptionKeyType]?: number } => {
+    return Object.assign({}, ...array.map((option) => ({ [option.name]: option.value })));
+}
+
+
+export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ itemTemplates, currentItem, setCurrentItem }) => {
+    const [name, setName] = React.useState(
+        currentItem ? currentItem.name :
+            itemTemplates[0].name);
+    const [enchantLevel, setEnchantLevel] = React.useState(
+        currentItem ? currentItem.enchantLevel :
+            0);
+    const [baseOptions, setBaseOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
+        currentItem ? hashToArray(currentItem.baseOptions) :
+            hashToArray(getInitialBaseOtions(itemTemplates[0], enchantLevel))
+    );
+    const [additionalOptions, setAdditionalOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
+        currentItem ? hashToArray(currentItem.additionalOptions) :
+            []);
     const [selectedItemTemplate, setSelectedItemTemplate] = React.useState<ItemTemplate>(itemTemplates[0]);
     const handleChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
         const selectedItemTemplate: ItemTemplate = itemTemplates.find((itemTemplate) => itemTemplate.name === event.target.value) || itemTemplates[0];
-        setCurrentItem(generateItem(selectedItemTemplate, enchantLevel, additionalOptions));
+        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, enchantLevel)));
         setSelectedItemTemplate(selectedItemTemplate);
     };
+
+    React.useEffect(() => {
+        setCurrentItem({
+            name: name,
+            icon: selectedItemTemplate.icon,
+            enchantLevel: enchantLevel,
+            baseOptions: ArrayToHash(baseOptions),
+            additionalOptions: ArrayToHash(additionalOptions),
+            synergyKey: selectedItemTemplate.synergyKey,
+            synergyOptions: selectedItemTemplate.synergyOptions
+
+        })
+    }, [baseOptions, additionalOptions])
 
     return (
         <React.Fragment>
@@ -49,7 +82,7 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
                             size="small"
                             type="number"
                             onChange={(event) => {
-                                setCurrentItem(generateItem(selectedItemTemplate, Number(event.target.value), additionalOptions));
+                                setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, Number(event.target.value))));
                                 setEnchantLevel(Number(event.target.value));
                             }}
                             sx={{ width: "70px" }}
@@ -59,25 +92,20 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
                 ) : (<></>)
             }
             <Divider />
-            {selectedItemTemplate.fixedBaseOptions && Object.entries(selectedItemTemplate.fixedBaseOptions).map(([name, value]) => (
-                <EquipmentOption name={name as BuiltinOptionKeyType} value={value} />
+            {baseOptions.map((option, index) => (
+                <EquipmentOption name={option.name} value={option.value} index={index} options={baseOptions} setOptions={setBaseOptions} />
             ))}
 
-            {selectedItemTemplate.enchantableBaseOptions && (
-                selectedItemTemplate.enchantableBaseOptions[enchantLevel] ?
-                    // FIXME: enchantLevelが定義外の場合に適切な値を表示する
-                    (Object.entries(selectedItemTemplate.enchantableBaseOptions[enchantLevel])?.map(([name, value]) => (
-                        <EquipmentOption name={name as BuiltinOptionKeyType} value={value} />
-                    ))) : (<></>)
-            )
-            }
 
             <Divider />
-            {Object.entries(additionalOptions).map(([name, value]) => (
-                <EquipmentOption name={name as BuiltinOptionKeyType} value={value} />
+            {additionalOptions.map((option, index) => (
+                <EquipmentOption name={option.name} value={option.value} index={index} options={additionalOptions} setOptions={setAdditionalOptions} />
             ))}
             <Button onClick={() => {
-                setAdditionalOptions({ ...additionalOptions, "Option": 0, });
+                const unused = BuiltinOptionKeys.find((name) => additionalOptions.some((option) => option.name === name) === false);
+                if (unused !== undefined)
+                    additionalOptions.push({ name: unused, value: 0 });
+                setAdditionalOptions([...additionalOptions]);
             }}>
                 <AddIcon />
             </Button>

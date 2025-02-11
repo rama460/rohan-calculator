@@ -26,7 +26,7 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
     }
     const rows: EquipmentTooltipContentRowProps[] = [
         {
-            value: currentItem.name,
+            value: currentItem.enchantLevel === 0 ? currentItem.name : `${currentItem.name} +${currentItem.enchantLevel}`,
             color: "red",
         },
         {
@@ -39,6 +39,12 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
             color: "white",
         },
         ...Object.entries(currentItem.baseOptions).map(([key, value]) => ({
+            name: BuiltinOptions[key as BuiltinOptionKeyType].displayName,
+            value: value.toString(),
+            color: BuiltinOptions[key as BuiltinOptionKeyType].displayColor,
+            unit: BuiltinOptions[key as BuiltinOptionKeyType].unit,
+        })),
+        ...Object.entries(currentItem.additionalOptions).map(([key, value]) => ({
             name: BuiltinOptions[key as BuiltinOptionKeyType].displayName,
             value: value.toString(),
             color: BuiltinOptions[key as BuiltinOptionKeyType].displayColor,
