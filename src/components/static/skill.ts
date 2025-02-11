@@ -893,25 +893,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyAllOption: 6,
+                multiplyAllStatus: 6,
             },
             1: {
-                multiplyAllOption: 12,
+                multiplyAllStatus: 12,
             },
             2: {
-                multiplyAllOption: 18,
+                multiplyAllStatus: 18,
             },
             3: {
-                multiplyAllOption: 24,
+                multiplyAllStatus: 24,
             },
             4: {
-                multiplyAllOption: 30,
+                multiplyAllStatus: 30,
             },
             5: {
-                multiplyAllOption: 40,
+                multiplyAllStatus: 40,
             },
             6: {
-                multiplyAllOption: 50,
+                multiplyAllStatus: 50,
             }
         }
     },
@@ -935,25 +935,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyAllOption: 3,
+                multiplyAllStatus: 3,
             },
             1: {
-                multiplyAllOption: 6,
+                multiplyAllStatus: 6,
             },
             2: {
-                multiplyAllOption: 9,
+                multiplyAllStatus: 9,
             },
             3: {
-                multiplyAllOption: 12,
+                multiplyAllStatus: 12,
             },
             4: {
-                multiplyAllOption: 15,
+                multiplyAllStatus: 15,
             },
             5: {
-                multiplyAllOption: 20,
+                multiplyAllStatus: 20,
             },
             6: {
-                multiplyAllOption: 25,
+                multiplyAllStatus: 25,
             }
         }
     },

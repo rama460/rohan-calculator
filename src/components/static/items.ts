@@ -185,7 +185,7 @@ export const glasses: ItemTemplate[] = [
     {
         name: "ロハの眼帯",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusAttack': 2500,
             'plusDefense': 3000,
             'plusHitPoint': 20000,
@@ -199,7 +199,7 @@ export const hats: ItemTemplate[] = [
     {
         name: "ロハの冠",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusAttack': 2500,
             'plusDefense': 3000,
             'plusHitPoint': 20000,
@@ -214,7 +214,7 @@ export const earrings: ItemTemplate[] = [
     {
         name: "ロハの耳飾り",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusAttack': 2500,
             'plusDefense': 3000,
             'plusHitPoint': 20000,
@@ -229,7 +229,7 @@ export const costumes: ItemTemplate[] = [
     {
         name: "ロハの鎧",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusAttack': 2500,
             'plusDefense': 3000,
             'plusHitPoint': 20000,
@@ -244,7 +244,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "ケイオスリング",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
@@ -255,7 +255,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "ケイオスブローチ",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
@@ -266,7 +266,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "ケイオスブレスレット",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
@@ -277,7 +277,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "ケイオスネックレス",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
@@ -288,7 +288,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "メイガスリング",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
@@ -297,7 +297,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "メイガスブローチ",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
@@ -306,7 +306,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "メイガスブレスレット",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
@@ -316,7 +316,7 @@ export const accessories: ItemTemplate[] = [
     {
         name: "メイガスネックレス",
         fixedBaseOptions: {
-            'plusAllOption': 750,
+            'plusAllStatus': 750,
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
@@ -327,7 +327,7 @@ export const accessories: ItemTemplate[] = [
         name: "深淵の宝珠(玄武)",
         enchantableBaseOptions: {
             0: {
-                'plusAllOption': 225,
+                'plusAllStatus': 225,
                 'plusHitPoint': 2000,
                 'plusAttack': 550,
             }
@@ -338,7 +338,7 @@ export const accessories: ItemTemplate[] = [
         name: "深淵の宝珠(白虎)",
         enchantableBaseOptions: {
             0: {
-                'plusAllOption': 225,
+                'plusAllStatus': 225,
                 'plusHitPoint': 2000,
                 'plusAttack': 550,
             }
@@ -349,7 +349,7 @@ export const accessories: ItemTemplate[] = [
         name: "深淵の宝珠(青龍)",
         enchantableBaseOptions: {
             0: {
-                'plusAllOption': 225,
+                'plusAllStatus': 225,
                 'plusHitPoint': 2000,
                 'plusAttack': 550,
             }
@@ -360,7 +360,7 @@ export const accessories: ItemTemplate[] = [
         name: "深淵の宝珠(朱雀)",
         enchantableBaseOptions: {
             0: {
-                'plusAllOption': 225,
+                'plusAllStatus': 225,
                 'plusHitPoint': 2000,
                 'plusAttack': 550,
             }
@@ -382,7 +382,7 @@ export const b_talismans: ItemTemplate[] = [
     {
         name: "ノーウェンのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 150,
+            'plusAllStatus': 150,
             'plusAttack': 100,
             'plusDefense': 100,
             'plusHitPoint': 10000,
@@ -392,7 +392,7 @@ export const b_talismans: ItemTemplate[] = [
     {
         name: "輝くノーウェンのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 200,
+            'plusAllStatus': 200,
             'plusAttack': 200,
             'plusDefense': 200,
             'plusHitPoint': 25000,
@@ -402,7 +402,7 @@ export const b_talismans: ItemTemplate[] = [
     {
         name: "洗練されたノーウェンのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 300,
+            'plusAllStatus': 300,
             'plusAttack': 300,
             'plusDefense': 300,
             'plusHitPoint': 50000,
@@ -412,7 +412,7 @@ export const b_talismans: ItemTemplate[] = [
     {
         name: "鮮血のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 400,
+            'plusAllStatus': 400,
             'plusAttack': 400,
             'plusDefense': 400,
             'plusHitPoint': 75000,
@@ -422,7 +422,7 @@ export const b_talismans: ItemTemplate[] = [
     {
         name: "深紅のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusAttack': 1000,
             'plusDefense': 1000,
             'multiplyPotionRecovery': 10,
@@ -434,7 +434,7 @@ export const j_talismans: ItemTemplate[] = [
     {
         name: "ヘスペロスのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 200,
+            'plusAllStatus': 200,
             'plusAttack': 200,
         },
         icon: unknown,
@@ -442,7 +442,7 @@ export const j_talismans: ItemTemplate[] = [
     {
         name: "輝くへスぺロスのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 300,
+            'plusAllStatus': 300,
             'plusAttack': 400,
         },
         icon: unknown,
@@ -450,7 +450,7 @@ export const j_talismans: ItemTemplate[] = [
     {
         name: "洗練されたヘスペロスのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 450,
+            'plusAllStatus': 450,
             'plusAttack': 600,
         },
         icon: unknown,
@@ -458,7 +458,7 @@ export const j_talismans: ItemTemplate[] = [
     {
         name: "栄光のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 600,
+            'plusAllStatus': 600,
             'plusAttack': 800,
         },
         icon: unknown,
@@ -466,7 +466,7 @@ export const j_talismans: ItemTemplate[] = [
     {
         name: "黄金のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusAttack': 1000,
             'plusHitPoint': 100000,
             'multiplySkillAttack': 10,
@@ -478,7 +478,7 @@ export const h_talismans: ItemTemplate[] = [
     {
         name: "カルラスのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 150,
+            'plusAllStatus': 150,
             'plusDefense': 200,
             'plusHitPoint': 10000,
         },
@@ -487,7 +487,7 @@ export const h_talismans: ItemTemplate[] = [
     {
         name: "輝くカルラスのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 200,
+            'plusAllStatus': 200,
             'plusDefense': 400,
             'plusHitPoint': 25000,
         },
@@ -496,7 +496,7 @@ export const h_talismans: ItemTemplate[] = [
     {
         name: "洗練されたカルラスのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 300,
+            'plusAllStatus': 300,
             'plusDefense': 600,
             'plusHitPoint': 50000,
         },
@@ -505,7 +505,7 @@ export const h_talismans: ItemTemplate[] = [
     {
         name: "深緑のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 400,
+            'plusAllStatus': 400,
             'plusDefense': 800,
             'plusHitPoint': 75000,
         },
@@ -514,7 +514,7 @@ export const h_talismans: ItemTemplate[] = [
     {
         name: "翡翠のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusDefense': 1000,
             'multiplyDefense': 10,
             'plusHitPoint': 100000,
@@ -526,7 +526,7 @@ export const g_talismans: ItemTemplate[] = [
     {
         name: "ディエガのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 150,
+            'plusAllStatus': 150,
             'plusAttack': 200,
             'plusHitPoint': 10000,
         },
@@ -535,7 +535,7 @@ export const g_talismans: ItemTemplate[] = [
     {
         name: "輝くディエガのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 200,
+            'plusAllStatus': 200,
             'plusAttack': 400,
             'plusHitPoint': 25000,
         },
@@ -544,7 +544,7 @@ export const g_talismans: ItemTemplate[] = [
     {
         name: "洗練されたディエガのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 300,
+            'plusAllStatus': 300,
             'plusAttack': 600,
             'plusHitPoint': 50000,
         },
@@ -553,7 +553,7 @@ export const g_talismans: ItemTemplate[] = [
     {
         name: "紺碧のタリスマン	",
         fixedBaseOptions: {
-            'plusAllOption': 400,
+            'plusAllStatus': 400,
             'plusAttack': 800,
             'plusHitPoint': 75000,
         },
@@ -562,7 +562,7 @@ export const g_talismans: ItemTemplate[] = [
     {
         name: "蒼穹のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusAttack': 1000,
             'multiplyAttack': 10,
             'plusHitPoint': 100000,
@@ -574,7 +574,7 @@ export const i_talismans: ItemTemplate[] = [
     {
         name: "カシムのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 200,
+            'plusAllStatus': 200,
             'plusDefense': 200,
         },
         icon: unknown,
@@ -582,7 +582,7 @@ export const i_talismans: ItemTemplate[] = [
     {
         name: "輝くカシムのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 300,
+            'plusAllStatus': 300,
             'plusDefense': 400,
         },
         icon: unknown,
@@ -590,7 +590,7 @@ export const i_talismans: ItemTemplate[] = [
     {
         name: "洗練されたカシムのタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 450,
+            'plusAllStatus': 450,
             'plusDefense': 600,
         },
         icon: unknown,
@@ -598,7 +598,7 @@ export const i_talismans: ItemTemplate[] = [
     {
         name: "紫闇のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 600,
+            'plusAllStatus': 600,
             'plusDefense': 800,
         },
         icon: unknown,
@@ -606,7 +606,7 @@ export const i_talismans: ItemTemplate[] = [
     {
         name: "紫紺のタリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusDefense': 1000,
             'plusHitPoint': 100000,
             'multiplySkillAttack': 10,
@@ -685,70 +685,70 @@ export const n_talismans: ItemTemplate[] = [
                 'plusDefense': 2500,
                 'plusHitPoint': 25000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 100,
+                'plusAllStatus': 100,
             },
             12: {
                 'plusAttack': 3000,
                 'plusDefense': 3000,
                 'plusHitPoint': 30000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 150,
+                'plusAllStatus': 150,
             },
             13: {
                 'plusAttack': 3500,
                 'plusDefense': 3500,
                 'plusHitPoint': 35000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 200,
+                'plusAllStatus': 200,
             },
             14: {
                 'plusAttack': 4000,
                 'plusDefense': 4000,
                 'plusHitPoint': 40000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 250,
+                'plusAllStatus': 250,
             },
             15: {
                 'plusAttack': 4500,
                 'plusDefense': 4500,
                 'plusHitPoint': 45000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 300,
+                'plusAllStatus': 300,
             },
             16: {
                 'plusAttack': 5000,
                 'plusDefense': 5000,
                 'plusHitPoint': 50000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 350,
+                'plusAllStatus': 350,
             },
             17: {
                 'plusAttack': 5500,
                 'plusDefense': 5500,
                 'plusHitPoint': 55000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 400,
+                'plusAllStatus': 400,
             },
             18: {
                 'plusAttack': 6000,
                 'plusDefense': 6000,
                 'plusHitPoint': 60000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 450,
+                'plusAllStatus': 450,
             },
             19: {
                 'plusAttack': 7000,
                 'plusDefense': 7000,
                 'plusHitPoint': 70000,
                 'multiplyPVEDefense': 20,
-                'plusAllOption': 500,
+                'plusAllStatus': 500,
             },
             20: {
                 'plusAttack': 8000,
                 'plusDefense': 8000,
                 'plusHitPoint': 80000,
                 'multiplyPVEDefense': 22,
-                'plusAllOption': 600,
+                'plusAllStatus': 600,
             },
         },
         icon: unknown,
@@ -759,117 +759,117 @@ export const e_talismans: ItemTemplate[] = [
         name: "ウォルターのタリスマン",
         enchantableBaseOptions: {
             0: {
-                'plusAllOption': 10,
+                'plusAllStatus': 10,
             },
             1: {
-                'plusAllOption': 12,
+                'plusAllStatus': 12,
             },
             2: {
-                'plusAllOption': 14,
+                'plusAllStatus': 14,
                 'plusDefense': 26,
             },
             3: {
-                'plusAllOption': 22,
+                'plusAllStatus': 22,
                 'plusDefense': 39,
                 'plusAttack': 51,
             },
             4: {
-                'plusAllOption': 28,
+                'plusAllStatus': 28,
                 'plusDefense': 51,
                 'plusAttack': 66,
             },
             5: {
-                'plusAllOption': 37,
+                'plusAllStatus': 37,
                 'plusDefense': 66,
                 'plusAttack': 86,
                 'plusHitPoint': 500,
             },
             6: {
-                'plusAllOption': 49,
+                'plusAllStatus': 49,
                 'plusDefense': 125,
                 'plusAttack': 164,
                 'plusHitPoint': 950,
             },
             7: {
-                'plusAllOption': 118,
+                'plusAllStatus': 118,
                 'plusDefense': 213,
                 'plusAttack': 278,
                 'plusHitPoint': 1615,
             },
             8: {
-                'plusAllOption': 150,
+                'plusAllStatus': 150,
                 'plusDefense': 400,
                 'plusAttack': 400,
                 'plusHitPoint': 3000,
             },
             9: {
-                'plusAllOption': 200,
+                'plusAllStatus': 200,
                 'plusDefense': 600,
                 'plusAttack': 600,
                 'plusHitPoint': 5000,
             },
             10: {
-                'plusAllOption': 300,
+                'plusAllStatus': 300,
                 'plusDefense': 1000,
                 'plusAttack': 1000,
                 'plusHitPoint': 10000,
             },
             11: {
-                'plusAllOption': 330,
+                'plusAllStatus': 330,
                 'plusDefense': 1300,
                 'plusAttack': 1200,
                 'plusHitPoint': 12500,
             },
             12: {
-                'plusAllOption': 360,
+                'plusAllStatus': 360,
                 'plusDefense': 1600,
                 'plusAttack': 1400,
                 'plusHitPoint': 15000,
             },
             13: {
-                'plusAllOption': 390,
+                'plusAllStatus': 390,
                 'plusDefense': 1900,
                 'plusAttack': 1600,
                 'plusHitPoint': 17500,
             },
             14: {
-                'plusAllOption': 420,
+                'plusAllStatus': 420,
                 'plusDefense': 2200,
                 'plusAttack': 1800,
                 'plusHitPoint': 20000,
             },
             15: {
-                'plusAllOption': 450,
+                'plusAllStatus': 450,
                 'plusDefense': 2500,
                 'plusAttack': 2000,
                 'plusHitPoint': 22500,
             },
             16: {
-                'plusAllOption': 480,
+                'plusAllStatus': 480,
                 'plusDefense': 2800,
                 'plusAttack': 2200,
                 'plusHitPoint': 25000,
             },
             17: {
-                'plusAllOption': 510,
+                'plusAllStatus': 510,
                 'plusDefense': 3100,
                 'plusAttack': 2400,
                 'plusHitPoint': 27500,
             },
             18: {
-                'plusAllOption': 540,
+                'plusAllStatus': 540,
                 'plusDefense': 3400,
                 'plusAttack': 2600,
                 'plusHitPoint': 30000,
             },
             19: {
-                'plusAllOption': 570,
+                'plusAllStatus': 570,
                 'plusDefense': 3700,
                 'plusAttack': 2800,
                 'plusHitPoint': 32500,
             },
             20: {
-                'plusAllOption': 600,
+                'plusAllStatus': 600,
                 'plusDefense': 4000,
                 'plusAttack': 3000,
                 'plusHitPoint': 35000,
@@ -882,7 +882,7 @@ export const r_talismans: ItemTemplate[] = [
     {
         name: "ヴィクトリアス・タリスマン",
         fixedBaseOptions: {
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
             'plusHitPoint': 300000,
         },
         icon: unknown,
@@ -1064,7 +1064,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusMagicPoint': 50000,
             'multiplySkillAttack': 50,
             'multiplySkillDefense': 40,
-            'plusAllOption': 1000,
+            'plusAllStatus': 1000,
         },
         icon: unknown
     }

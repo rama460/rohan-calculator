@@ -9,8 +9,8 @@ export type Option = {
 export type OptionUnit = "percent" | "number";
 
 export const BuiltinOptions = {
-    'plusAllOption': {
-        name: 'plusAllOption',
+    'plusAllStatus': {
+        name: 'plusAllStatus',
         displayColor: 'green',
         displayName: '全ての能力値',
         unit: 'number',
@@ -111,8 +111,8 @@ export const BuiltinOptions = {
         displayName: '防御力',
         unit: 'number',
     },
-    'multiplyAllOption': {
-        name: 'multiplyAllOption',
+    'multiplyAllStatus': {
+        name: 'multiplyAllStatus',
         displayColor: 'green',
         displayName: '全ての能力値',
         unit: 'percent',
