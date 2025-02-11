@@ -1,9 +1,12 @@
+export type RaceName = "Human" | "Elf" | "HalfElf" | "Dan" | "Dekan" | "DarkElf" | "Giant" | "Trinity";
 export type Race = {
     id: number;
-    name: string;
+    name: RaceName;
+    displayName: string;
+    abbrev: string;
     jobs: {
         id: number;
-        name: string;
+        displayName: string;
     }[];
     initialStatus: {
         strength: number;
@@ -20,19 +23,21 @@ export type Race = {
 export const races: Race[] = [
     {
         id: 0,
-        name: "ヒューマン",
+        name: "Human",
+        displayName: "ヒューマン",
+        abbrev: "H",
         jobs: [
             {
                 id: 0,
-                name: "ナイト",
+                displayName: "ナイト",
             },
             {
                 id: 1,
-                name: "ガーディアン",
+                displayName: "ガーディアン",
             },
             {
                 id: 2,
-                name: "ディフェンダー",
+                displayName: "ディフェンダー",
             },
         ],
         initialStatus: {
@@ -49,19 +54,21 @@ export const races: Race[] = [
     },
     {
         id: 1,
-        name: "エルフ",
+        name: "Elf",
+        displayName: "エルフ",
+        abbrev: "E",
         jobs: [
             {
                 id: 0,
-                name: "ヒーラー"
+                displayName: "ヒーラー"
             },
             {
                 id: 1,
-                name: "プリースト",
+                displayName: "プリースト",
             },
             {
                 id: 2,
-                name: "テンプラー",
+                displayName: "テンプラー",
             },
         ],
         initialStatus: {
@@ -78,19 +85,21 @@ export const races: Race[] = [
     },
     {
         id: 2,
-        name: "ハーフエルフ",
+        name: "HalfElf",
+        displayName: "ハーフエルフ",
+        abbrev: "HE",
         jobs: [
             {
                 id: 0,
-                name: "アーチャー",
+                displayName: "アーチャー",
             },
             {
                 id: 1,
-                name: "レンジャー",
+                displayName: "レンジャー",
             },
             {
                 id: 2,
-                name: "スカウト",
+                displayName: "スカウト",
             },
         ],
         initialStatus: {
@@ -107,19 +116,21 @@ export const races: Race[] = [
     },
     {
         id: 3,
-        name: "ダン",
+        name: "Dan",
+        displayName: "ダン",
+        abbrev: "D",
         jobs: [
             {
                 id: 0,
-                name: "アサシン",
+                displayName: "アサシン",
             },
             {
                 id: 1,
-                name: "アヴェンジャー",
+                displayName: "アヴェンジャー",
             },
             {
                 id: 2,
-                name: "プレデター",
+                displayName: "プレデター",
             },
         ],
         initialStatus: {
@@ -136,19 +147,21 @@ export const races: Race[] = [
     },
     {
         id: 4,
-        name: "デカン",
+        name: "Dekan",
+        displayName: "デカン",
+        abbrev: "DK",
         jobs: [
             {
                 id: 0,
-                name: "ドラゴンファイター"
+                displayName: "ドラゴンファイター"
             },
             {
                 id: 1,
-                name: "ドラゴンナイト",
+                displayName: "ドラゴンナイト",
             },
             {
                 id: 2,
-                name: "ドラゴンセージ",
+                displayName: "ドラゴンセージ",
             },
         ],
         initialStatus: {
@@ -165,19 +178,21 @@ export const races: Race[] = [
     },
     {
         id: 5,
-        name: "ダークエルフ",
+        name: "DarkElf",
+        displayName: "ダークエルフ",
+        abbrev: "DE",
         jobs: [
             {
                 id: 0,
-                name: "メイジ",
+                displayName: "メイジ",
             },
             {
                 id: 1,
-                name: "ウォーロック",
+                displayName: "ウォーロック",
             },
             {
                 id: 2,
-                name: "ウィザード",
+                displayName: "ウィザード",
             },
         ],
         initialStatus: {
@@ -194,19 +209,21 @@ export const races: Race[] = [
     },
     {
         id: 6,
-        name: "ジャイアント",
+        name: "Giant",
+        displayName: "ジャイアント",
+        abbrev: "G",
         jobs: [
             {
                 id: 0,
-                name: "ウォリアー",
+                displayName: "ウォリアー",
             },
             {
                 id: 1,
-                name: "バーサーカー",
+                displayName: "バーサーカー",
             },
             {
                 id: 2,
-                name: "サベージ",
+                displayName: "サベージ",
             },
         ],
         initialStatus: {
@@ -223,19 +240,21 @@ export const races: Race[] = [
     },
     {
         id: 7,
-        name: "トリニティ",
+        name: "Trinity",
+        displayName: "トリニティ",
+        abbrev: "T",
         jobs: [
             {
                 id: 0,
-                name: "メル",
+                displayName: "メル",
             },
             {
                 id: 1,
-                name: "ルミール",
+                displayName: "ルミール",
             },
             {
                 id: 2,
-                name: "ノワール",
+                displayName: "ノワール",
             },
         ],
         initialStatus: {

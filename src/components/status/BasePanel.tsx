@@ -82,7 +82,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                                 onChange={handleRaceChange}
                             >
                                 {races.map((race) => (
-                                    <MenuItem value={race.id}>{race.name}</MenuItem>
+                                    <MenuItem value={race.id}>{race.displayName}</MenuItem>
                                 ))}
                             </Select>
                         </FormControl>
@@ -96,7 +96,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                                 onChange={handleJobChange}
                             >
                                 {races[Number(raceid)].jobs.map((job) => (
-                                    <MenuItem value={job.id}>{job.name}</MenuItem>
+                                    <MenuItem value={job.id}>{job.displayName}</MenuItem>
                                 ))}
                             </Select>
                         </FormControl>

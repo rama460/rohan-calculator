@@ -1,10 +1,12 @@
 import unknown from "../../assets/unknown.png";
 import { BuiltinOptionKeyType } from "./options";
+import { RaceName } from "./races";
 
 
 export type BaseItemTemplate = {
     name: string;
     icon: string;
+    availableRaces?: RaceName[];
     fixedBaseOptions?: {
         [key in BuiltinOptionKeyType]?: number;
     };
@@ -46,6 +48,7 @@ export type SetItemTemplate = {
 export type Item = {
     name: string;
     icon: string;
+    availableRaces?: RaceName[];
     enchantLevel: number;
     baseOptions: {
         [key in BuiltinOptionKeyType]?: number;

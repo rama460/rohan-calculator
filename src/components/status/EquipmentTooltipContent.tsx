@@ -3,15 +3,15 @@ import { Item } from '../static/items.ts'
 import { EquipmentTooltipContentRowProps, EquipmentTooltipContentRow } from "./EquipmentTooltipContentRow";
 import React from 'react';
 import { BuiltinOptionKeyType, BuiltinOptions } from '../static/options.ts';
+import { races } from '../static/races.ts';
 
 interface EquipmentTooltipContentProps {
     currentItem: Item
     synergyCount: number
     title: string
-    availableRaces?: string[]
 }
 
-export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergyCount, title, availableRaces }) => {
+export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = ({ currentItem, synergyCount, title }) => {
     const style = {
         opacity: 0.8,
         backgroundColor: "black",
@@ -35,7 +35,7 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
         },
         {
             name: "可能種族",
-            value: availableRaces?.join(", ") ?? "ALL",
+            value: currentItem.availableRaces?.map((r) => races.find((rr) => rr.name === r)?.abbrev).join(", ") ?? "ALL",
             color: "white",
         },
         ...Object.entries(currentItem.baseOptions).map(([key, value]) => ({
