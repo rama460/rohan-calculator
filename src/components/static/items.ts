@@ -1,4 +1,24 @@
 import unknown from "../../assets/unknown.png";
+
+import accessory_chaos_ring from "../../assets/items/accessory_chaos_ring.png";
+import accessory_chaos_brooch from "../../assets/items/accessory_chaos_brooch.png";
+import accessory_chaos_bracelet from "../../assets/items/accessory_chaos_bracelet.png";
+import accessory_chaos_necklace from "../../assets/items/accessory_chaos_necklace.png";
+
+import hat_roha from "../../assets/items/hat_roha.png";
+import hat_variant from "../../assets/items/hat_variant.png";
+import glasses_roha from "../../assets/items/glasses_roha.png";
+import glasses_variant from "../../assets/items/glasses_variant.png";
+import earrings_roha from "../../assets/items/earrings_roha.png";
+import earrings_variant from "../../assets/items/earrings_variant.png";
+import costume_roha from "../../assets/items/costume_roha.png";
+
+import talisman_b_1 from "../../assets/items/talisman_b_1.png";
+import talisman_g_1 from "../../assets/items/talisman_g_1.png";
+import talisman_h_1 from "../../assets/items/talisman_h_1.png";
+import talisman_i_1 from "../../assets/items/talisman_i_1.png";
+import talisman_j_1 from "../../assets/items/talisman_j_1.png";
+
 import { BuiltinOptionKeyType } from "./options";
 import { RaceName } from "./races";
 
@@ -293,7 +313,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 3000,
             'plusHitPoint': 20000,
         },
-        icon: unknown,
+        icon: glasses_roha,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
     },
@@ -305,7 +325,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 2500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: glasses_variant,
         synergyOptions: variantSynergisticOptions,
         synergyKey: "variant"
     }
@@ -319,7 +339,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 3000,
             'plusHitPoint': 20000,
         },
-        icon: unknown,
+        icon: hat_roha,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
     },
@@ -331,7 +351,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 2500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: hat_variant,
         synergyOptions: variantSynergisticOptions,
         synergyKey: "variant"
     }
@@ -347,7 +367,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 3000,
             'plusHitPoint': 20000,
         },
-        icon: unknown,
+        icon: earrings_roha,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
     },
@@ -359,7 +379,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 2500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: earrings_variant,
         synergyOptions: variantSynergisticOptions,
         synergyKey: "variant"
     }
@@ -375,7 +395,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 3000,
             'plusHitPoint': 20000,
         },
-        icon: unknown,
+        icon: costume_roha,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
     },
@@ -399,7 +419,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: unknown,
+        icon: accessory_chaos_ring,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -410,7 +430,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: unknown,
+        icon: accessory_chaos_brooch,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -421,7 +441,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: unknown,
+        icon: accessory_chaos_bracelet,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -432,7 +452,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: unknown,
+        icon: accessory_chaos_necklace,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -538,7 +558,7 @@ export const b_talismans: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 10000,
         },
-        icon: unknown,
+        icon: talisman_b_1,
     },
     {
         name: "輝くノーウェンのタリスマン",
@@ -548,7 +568,7 @@ export const b_talismans: ItemTemplate[] = [
             'plusDefense': 200,
             'plusHitPoint': 25000,
         },
-        icon: unknown,
+        icon: talisman_b_1,
     },
     {
         name: "洗練されたノーウェンのタリスマン",
@@ -558,7 +578,7 @@ export const b_talismans: ItemTemplate[] = [
             'plusDefense': 300,
             'plusHitPoint': 50000,
         },
-        icon: unknown,
+        icon: talisman_b_1,
     },
     {
         name: "鮮血のタリスマン",
@@ -568,7 +588,7 @@ export const b_talismans: ItemTemplate[] = [
             'plusDefense': 400,
             'plusHitPoint': 75000,
         },
-        icon: unknown,
+        icon: talisman_b_1,
     },
     {
         name: "深紅のタリスマン",
@@ -578,7 +598,7 @@ export const b_talismans: ItemTemplate[] = [
             'plusDefense': 1000,
             'multiplyPotionRecovery': 10,
         },
-        icon: unknown,
+        icon: talisman_b_1,
     }
 ]
 export const j_talismans: ItemTemplate[] = [
@@ -588,7 +608,7 @@ export const j_talismans: ItemTemplate[] = [
             'plusAllStatus': 200,
             'plusAttack': 200,
         },
-        icon: unknown,
+        icon: talisman_j_1,
     },
     {
         name: "輝くへスぺロスのタリスマン",
@@ -596,7 +616,7 @@ export const j_talismans: ItemTemplate[] = [
             'plusAllStatus': 300,
             'plusAttack': 400,
         },
-        icon: unknown,
+        icon: talisman_j_1,
     },
     {
         name: "洗練されたヘスペロスのタリスマン",
@@ -604,7 +624,7 @@ export const j_talismans: ItemTemplate[] = [
             'plusAllStatus': 450,
             'plusAttack': 600,
         },
-        icon: unknown,
+        icon: talisman_j_1,
     },
     {
         name: "栄光のタリスマン",
@@ -612,7 +632,7 @@ export const j_talismans: ItemTemplate[] = [
             'plusAllStatus': 600,
             'plusAttack': 800,
         },
-        icon: unknown,
+        icon: talisman_j_1,
     },
     {
         name: "黄金のタリスマン",
@@ -622,7 +642,7 @@ export const j_talismans: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'multiplySkillAttack': 10,
         },
-        icon: unknown,
+        icon: talisman_j_1,
     }
 ]
 export const h_talismans: ItemTemplate[] = [
@@ -633,7 +653,7 @@ export const h_talismans: ItemTemplate[] = [
             'plusDefense': 200,
             'plusHitPoint': 10000,
         },
-        icon: unknown,
+        icon: talisman_h_1,
     },
     {
         name: "輝くカルラスのタリスマン",
@@ -642,7 +662,7 @@ export const h_talismans: ItemTemplate[] = [
             'plusDefense': 400,
             'plusHitPoint': 25000,
         },
-        icon: unknown,
+        icon: talisman_h_1,
     },
     {
         name: "洗練されたカルラスのタリスマン",
@@ -651,7 +671,7 @@ export const h_talismans: ItemTemplate[] = [
             'plusDefense': 600,
             'plusHitPoint': 50000,
         },
-        icon: unknown,
+        icon: talisman_h_1,
     },
     {
         name: "深緑のタリスマン",
@@ -660,7 +680,7 @@ export const h_talismans: ItemTemplate[] = [
             'plusDefense': 800,
             'plusHitPoint': 75000,
         },
-        icon: unknown,
+        icon: talisman_h_1,
     },
     {
         name: "翡翠のタリスマン",
@@ -670,7 +690,7 @@ export const h_talismans: ItemTemplate[] = [
             'multiplyDefense': 10,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: talisman_h_1,
     }
 ]
 export const g_talismans: ItemTemplate[] = [
@@ -681,7 +701,7 @@ export const g_talismans: ItemTemplate[] = [
             'plusAttack': 200,
             'plusHitPoint': 10000,
         },
-        icon: unknown,
+        icon: talisman_g_1,
     },
     {
         name: "輝くディエガのタリスマン",
@@ -690,7 +710,7 @@ export const g_talismans: ItemTemplate[] = [
             'plusAttack': 400,
             'plusHitPoint': 25000,
         },
-        icon: unknown,
+        icon: talisman_g_1,
     },
     {
         name: "洗練されたディエガのタリスマン",
@@ -699,7 +719,7 @@ export const g_talismans: ItemTemplate[] = [
             'plusAttack': 600,
             'plusHitPoint': 50000,
         },
-        icon: unknown,
+        icon: talisman_g_1,
     },
     {
         name: "紺碧のタリスマン	",
@@ -708,7 +728,7 @@ export const g_talismans: ItemTemplate[] = [
             'plusAttack': 800,
             'plusHitPoint': 75000,
         },
-        icon: unknown,
+        icon: talisman_g_1,
     },
     {
         name: "蒼穹のタリスマン",
@@ -718,7 +738,7 @@ export const g_talismans: ItemTemplate[] = [
             'multiplyAttack': 10,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: talisman_g_1,
     }
 ]
 export const i_talismans: ItemTemplate[] = [
@@ -728,7 +748,7 @@ export const i_talismans: ItemTemplate[] = [
             'plusAllStatus': 200,
             'plusDefense': 200,
         },
-        icon: unknown,
+        icon: talisman_i_1,
     },
     {
         name: "輝くカシムのタリスマン",
@@ -736,7 +756,7 @@ export const i_talismans: ItemTemplate[] = [
             'plusAllStatus': 300,
             'plusDefense': 400,
         },
-        icon: unknown,
+        icon: talisman_i_1,
     },
     {
         name: "洗練されたカシムのタリスマン",
@@ -744,7 +764,7 @@ export const i_talismans: ItemTemplate[] = [
             'plusAllStatus': 450,
             'plusDefense': 600,
         },
-        icon: unknown,
+        icon: talisman_i_1,
     },
     {
         name: "紫闇のタリスマン",
@@ -752,7 +772,7 @@ export const i_talismans: ItemTemplate[] = [
             'plusAllStatus': 600,
             'plusDefense': 800,
         },
-        icon: unknown,
+        icon: talisman_i_1,
     },
     {
         name: "紫紺のタリスマン",
@@ -762,7 +782,7 @@ export const i_talismans: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'multiplySkillAttack': 10,
         },
-        icon: unknown,
+        icon: talisman_i_1,
     }
 ]
 
