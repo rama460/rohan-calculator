@@ -596,7 +596,7 @@ export const skills: Skill[] = [
             "24分間、片手銃器の攻撃力及びオプション攻撃力が90%増加。体力の90%の近距離攻撃力が増加。",
             "27分間、片手銃器の攻撃力及びオプション攻撃力が120%増加。体力の120%の近距離攻撃力が増加。",
             "30分間、片手銃器の攻撃力及びオプション攻撃力が150%増加。体力の150%の近距離攻撃力が増加。",
-            "30分間、片手銃器の攻撃力及びオプション攻撃力が200%増加。体力の200%の近距離攻撃力が増加。",
+            "30分間、片手銃器の攻撃力及びオプション攻撃力が210%増加。体力の210%の近距離攻撃力が増加。",
             "120分間、片手銃器の攻撃力及びオプション攻撃力が300%増加。体力の300%の近距離攻撃力が増加。"
         ],
         attributes: {
@@ -621,8 +621,8 @@ export const skills: Skill[] = [
                 plusMeleeAttackMultiplyVitality: 150,
             },
             5: {
-                multiplyWeaponAttack: 200,
-                plusMeleeAttackMultiplyVitality: 200,
+                multiplyWeaponAttack: 210,
+                plusMeleeAttackMultiplyVitality: 210,
             },
             6: {
                 multiplyWeaponAttack: 300,
@@ -692,25 +692,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyHitPoint: 10,
+                multiplyVitality: 10,
             },
             1: {
-                multiplyHitPoint: 15,
+                multiplyVitality: 15,
             },
             2: {
-                multiplyHitPoint: 20,
+                multiplyVitality: 20,
             },
             3: {
-                multiplyHitPoint: 25,
+                multiplyVitality: 25,
             },
             4: {
-                multiplyHitPoint: 30,
+                multiplyVitality: 30,
             },
             5: {
-                multiplyHitPoint: 45,
+                multiplyVitality: 45,
             },
             6: {
-                multiplyHitPoint: 60,
+                multiplyVitality: 60,
             }
         }
     },
