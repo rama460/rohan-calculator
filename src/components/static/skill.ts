@@ -96,6 +96,7 @@ import savage_rampage_force from "../../assets/skills/savage_rampage_force.png";
 import savage_ferocious from "../../assets/skills/savage_ferocious.png";
 import savage_monster_mind from "../../assets/skills/savage_monster_mind.png";
 import savage_brutality from "../../assets/skills/savage_brutality.png";
+import unknown from "../../assets/unknown.png";
 import { BuiltinOptionKeyType } from "./options";
 
 export type Skill = {
@@ -1396,6 +1397,48 @@ export const skills: Skill[] = [
         }
     },
     {
+        name: "sprint",
+        displayName: "スプリント",
+        icon: unknown,
+        type: "Buff",
+        raceid: 2,
+        jobid: 0,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "18秒間、使用者の移動速度を20%増加させます。",
+            "21秒間、使用者の移動速度を40%増加させます。",
+            "24秒間、使用者の移動速度を60%増加させます。",
+            "27秒間、使用者の移動速度を80%増加させます。",
+            "30秒間、使用者の移動速度を100%増加させます。",
+            "30秒間、使用者の移動速度を120%増加させます。",
+            "30秒間、使用者の移動速度を140%増加させます。",
+        ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 20,
+            },
+            1: {
+                multiplyMovementSpeed: 40,
+            },
+            2: {
+                multiplyMovementSpeed: 60,
+            },
+            3: {
+                multiplyMovementSpeed: 80,
+            },
+            4: {
+                multiplyMovementSpeed: 100,
+            },
+            5: {
+                multiplyMovementSpeed: 120,
+            },
+            6: {
+                multiplyMovementSpeed: 140,
+            }
+        }
+    },
+    {
         name: "evade",
         displayName: "イベイド",
         icon: archer_evade,
@@ -1493,6 +1536,132 @@ export const skills: Skill[] = [
                 plusRangeAttackMultiplyAgility: 313
             }
         },
+    },
+    {
+        name: "siegeShot",
+        displayName: "シージショット",
+        icon: unknown,
+        type: "Buff",
+        raceid: 2,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "10秒間、移動できない代わりに遠距離攻撃のダメージを30%増加させます。",
+            "10秒間、移動できない代わりに遠距離攻撃のダメージを30%増加させます。",
+            "10秒間、移動できない代わりに遠距離攻撃のダメージを30%増加させます。",
+            "10秒間、移動できない代わりに遠距離攻撃のダメージを30%増加させます。",
+            "10秒間、移動できない代わりに遠距離攻撃のダメージを30%増加させます。",
+            "10秒間、移動できない代わりに遠距離攻撃のダメージを50%増加させます。",
+            "10秒間、移動できない代わりに遠距離攻撃のダメージを100%増加させます。",
+        ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: 30,
+            },
+            1: {
+                multiplyIncreaseDamageDealt: 30,
+            },
+            2: {
+                multiplyIncreaseDamageDealt: 30,
+            },
+            3: {
+                multiplyIncreaseDamageDealt: 30,
+            },
+            4: {
+                multiplyIncreaseDamageDealt: 30,
+            },
+            5: {
+                multiplyIncreaseDamageDealt: 50,
+            },
+            6: {
+                multiplyIncreaseDamageDealt: 100,
+            }
+        }
+    },
+    {
+        name: "speedWind",
+        displayName: "スピードウィンド",
+        icon: unknown,
+        type: "Buff",
+        raceid: 2,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "30秒間、使用者の攻撃速度を50%増加させます。",
+            "30秒間、使用者の攻撃速度を70%増加させます。",
+            "30秒間、使用者の攻撃速度を90%増加させます。",
+            "30秒間、使用者の攻撃速度を110%増加させます。",
+            "30秒間、使用者の攻撃速度を130%増加させます。",
+            "30秒間、使用者の攻撃速度を150%増加させます。",
+            "30秒間、使用者の攻撃速度を200%増加させます。",
+        ],
+        attributes: {
+            0: {
+                multiplyAttackSpeed: 50,
+            },
+            1: {
+                multiplyAttackSpeed: 70,
+            },
+            2: {
+                multiplyAttackSpeed: 90,
+            },
+            3: {
+                multiplyAttackSpeed: 110,
+            },
+            4: {
+                multiplyAttackSpeed: 130,
+            },
+            5: {
+                multiplyAttackSpeed: 150,
+            },
+            6: {
+                multiplyAttackSpeed: 200,
+            }
+        }
+    },
+    {
+        name: "kaelsBolt",
+        displayName: "カエールボルト",
+        icon: unknown,
+        type: "Buff",
+        raceid: 2,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "50秒間、ボルトの攻撃力が10%増加します。対象のHPが20%未満の場合、10%増加したダメージを与えます。",
+            "50秒間、ボルトの攻撃力が20%増加します。対象のHPが20%未満の場合、20%増加したダメージを与えます。",
+            "50秒間、ボルトの攻撃力が30%増加します。対象のHPが20%未満の場合、30%増加したダメージを与えます。",
+            "50秒間、ボルトの攻撃力が40%増加します。対象のHPが20%未満の場合、40%増加したダメージを与えます。",
+            "50秒間、ボルトの攻撃力が50%増加します。対象のHPが20%未満の場合、50%増加したダメージを与えます。",
+            "50秒間、ボルトの攻撃力が70%増加します。対象のHPが30%未満の場合、50%増加したダメージを与えます。",
+            "50秒間、ボルトの攻撃力が100%増加します。対象のHPが50%未満の場合、50%増加したダメージを与えます。",
+        ],
+        attributes: {
+            0: {
+                multiplyArrowAttack: 10,
+            },
+            1: {
+                multiplyArrowAttack: 20,
+            },
+            2: {
+                multiplyArrowAttack: 30,
+            },
+            3: {
+                multiplyArrowAttack: 40,
+            },
+            4: {
+                multiplyArrowAttack: 50,
+            },
+            5: {
+                multiplyArrowAttack: 50,
+            },
+            6: {
+                multiplyArrowAttack: 50,
+            }
+        }
     },
     {
         name: "alacrityBlow",
@@ -1620,6 +1789,28 @@ export const skills: Skill[] = [
             }
         }
     },
+    {
+        name: "deathChaser",
+        displayName: "デスチェイサー",
+        icon: unknown,
+        type: "Buff",
+        raceid: 2,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "60秒間、対象に10秒の間死の標識を表示し、受けるダメージを100%増加させる。",
+            "60秒間、対象に15秒の間死の標識を表示し、受けるダメージを110%増加させる。",
+            "60秒間、対象に20秒の間死の標識を表示し、受けるダメージを120%増加させる。",
+            "60秒間、対象に25秒の間死の標識を表示し、受けるダメージを130%増加させる。",
+            "60秒間、対象に30秒の間死の標識を表示し、受けるダメージを140%増加させる。",
+            "60秒間、対象に35秒の間死の標識を表示し、受けるダメージを160%増加させる。",
+            "60秒間、対象に40秒の間死の標識を表示し、受けるダメージを200%増加させる。",
+        ],
+        // TODO: implement custom option for attack target debuff
+        attributes: {
+        }
+    },
     // スカウト
     {
         name: "bowMastery",
@@ -1730,6 +1921,55 @@ export const skills: Skill[] = [
             },
             6: {
                 multiplyAgility: 60,
+            }
+        }
+    },
+    {
+        name: "kaelsArrow",
+        displayName: "カエールアロー",
+        icon: unknown,
+        type: "Buff",
+        raceid: 2,
+        jobid: 2,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "50秒間、矢の攻撃力が10%増加します。攻撃速度を10%増加させます。",
+            "50秒間、矢の攻撃力が20%増加します。攻撃速度を12%増加させます。",
+            "50秒間、矢の攻撃力が30%増加します。攻撃速度を14%増加させます。",
+            "50秒間、矢の攻撃力が40%増加します。攻撃速度を16%増加させます。",
+            "50秒間、矢の攻撃力が50%増加します。攻撃速度を18%増加させます。",
+            "50秒間、矢の攻撃力が70%増加します。攻撃速度を20%増加させます。",
+            "50秒間、矢の攻撃力が100%増加します。攻撃速度を25%増加させます。",
+        ],
+        attributes: {
+            0: {
+                multiplyArrowAttack: 10,
+                multiplyAttackSpeed: 10,
+            },
+            1: {
+                multiplyArrowAttack: 20,
+                multiplyAttackSpeed: 12,
+            },
+            2: {
+                multiplyArrowAttack: 30,
+                multiplyAttackSpeed: 14,
+            },
+            3: {
+                multiplyArrowAttack: 40,
+                multiplyAttackSpeed: 16,
+            },
+            4: {
+                multiplyArrowAttack: 50,
+                multiplyAttackSpeed: 18,
+            },
+            5: {
+                multiplyArrowAttack: 70,
+                multiplyAttackSpeed: 20,
+            },
+            6: {
+                multiplyArrowAttack: 100,
+                multiplyAttackSpeed: 25,
             }
         }
     },
@@ -1898,6 +2138,48 @@ export const skills: Skill[] = [
             },
             6: {
                 multiplyIncreaseDamageDealt: 20,
+            }
+        }
+    },
+    {
+        name: "cataclysm",
+        displayName: "カタクリズム",
+        icon: unknown,
+        type: "Buff",
+        raceid: 2,
+        jobid: 2,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "60秒間攻撃力を70%増加し、スキル攻撃命中時に対象の特殊バフを1つ削除する。",
+            "60秒間攻撃力を80%増加し、スキル攻撃命中時に対象の特殊バフを1つ削除する。",
+            "60秒間攻撃力を90%増加し、スキル攻撃命中時に対象の特殊バフを1つ削除する。",
+            "60秒間攻撃力を100%増加し、スキル攻撃命中時に対象の特殊バフを1つ削除する。",
+            "60秒間攻撃力を110%増加し、スキル攻撃命中時に対象の特殊バフを1つ削除する。",
+            "60秒間攻撃力を120%増加し、スキル攻撃命中時に対象の特殊バフを1つ削除する。",
+            "60秒間攻撃力を150%増加し、スキル攻撃命中時に対象の特殊バフを1つ削除する。",
+        ],
+        attributes: {
+            0: {
+                multiplyAttack: 70,
+            },
+            1: {
+                multiplyAttack: 80,
+            },
+            2: {
+                multiplyAttack: 90,
+            },
+            3: {
+                multiplyAttack: 100,
+            },
+            4: {
+                multiplyAttack: 110,
+            },
+            5: {
+                multiplyAttack: 120,
+            },
+            6: {
+                multiplyAttack: 150,
             }
         }
     },
