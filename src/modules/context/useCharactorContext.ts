@@ -283,7 +283,11 @@ const calcRangeAttack = (state: Charactor, action: CharactorAction) => {
                 Math.floor(calcLvAttack(action.bases.level) * 0.75) +
                 Math.floor(state.status.agility * 3 * 0.75) +
                 calcRangeMasteryAttack(state, action) +
-                Math.floor((action.equiomentOptions["rangeAttack"] + action.equiomentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
+                Math.floor((action.equiomentOptions["rangeAttack"] +
+                    // FIXME: multiply arrow attack options are isolated and multiply each other.
+                    // for example, enchant arrow and kael's arrow option values are not sum but multiply each other.
+                    Math.floor(action.equiomentOptions["arrowAttack"] * (100 + action.skillOptions["multiplyArrowAttack"]) / 100) +
+                    action.equiomentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
                     action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
                 ) * (100 + action.equiomentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
             ) * (
@@ -295,7 +299,9 @@ const calcRangeAttack = (state: Charactor, action: CharactorAction) => {
             (
                 calcLvAttack(action.bases.level) +
                 state.status.agility * 3 +
-                Math.floor((action.equiomentOptions["rangeAttack"] + action.equiomentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
+                Math.floor((action.equiomentOptions["rangeAttack"] +
+                    Math.floor(action.equiomentOptions["arrowAttack"] * (100 + action.skillOptions["multiplyArrowAttack"]) / 100) +
+                    action.equiomentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
                     action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
                 ))
             ) * (

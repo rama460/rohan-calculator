@@ -32,6 +32,13 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'absolute',
     },
+    'arrowAttack': {
+        name: 'arrowAttack',
+        displayColor: 'white',
+        displayName: '矢攻撃力',
+        unit: 'number',
+        operationType: 'absolute',
+    },
     'physicalDefense': {
         name: 'physicalDefense',
         displayColor: 'white',
