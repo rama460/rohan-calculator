@@ -767,6 +767,49 @@ export const skills: Skill[] = [
     // エルフ
     // ヒーラー
     {
+        name: "recovery",
+        displayName: "リカバリー",
+        icon: unknown,
+        type: "Buff",
+        raceid: 1,
+        jobid: 0,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "3分間、対象のMP回復量を20%増加させます。",
+            "6分間、対象のMP回復量を30%増加させます。",
+            "9分間、対象のMP回復量を40%増加させます。",
+            "12分間、対象のMP回復量を50%増加させます。",
+            "15分間、対象のMP回復量を60%増加させます。",
+            "18分間、対象のMP回復量を70%増加させます。",
+            "60分間、対象のMP回復量を80%増加させます。",
+        ],
+        attributes: {
+            0: {
+                multiplyMagicPointRecovery: 20,
+            },
+            1: {
+                multiplyMagicPointRecovery: 30,
+            },
+            2: {
+                multiplyMagicPointRecovery: 40,
+            },
+            3: {
+                multiplyMagicPointRecovery: 50,
+            },
+            4: {
+                multiplyMagicPointRecovery: 60,
+            },
+            5: {
+                multiplyMagicPointRecovery: 70,
+            },
+            6: {
+                multiplyMagicPointRecovery: 80,
+            }
+        }
+
+    },
+    {
         name: "intelligenceBlow",
         displayName: "インテリジェンスブロー",
         icon: healer_intelligence_blow,
@@ -1118,6 +1161,76 @@ export const skills: Skill[] = [
                 multiplyStunResistRate: 30,
             }
 
+        }
+    },
+    {
+        name: "heavensDawn",
+        displayName: "ヘブンズドーン",
+        icon: unknown,
+        type: "Group",
+        raceid: 1,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "能力値と攻撃力、攻撃速度10%増加。クリティカル確率、命中率2%増加。",
+            "能力値と攻撃力、攻撃速度12%増加。クリティカル確率、命中率3%増加。",
+            "能力値と攻撃力、攻撃速度14%増加。クリティカル確率、命中率4%増加。",
+            "能力値と攻撃力、攻撃速度16%増加。クリティカル確率、命中率5%増加。",
+            "能力値と攻撃力、攻撃速度18%増加。クリティカル確率、命中率6%増加。",
+            "能力値と攻撃力、攻撃速度20%増加。クリティカル確率、命中率8%増加。",
+            "能力値と攻撃力、攻撃速度30%増加。クリティカル確率、命中率10%増加。",
+        ],
+        attributes: {
+            0: {
+                multiplyAllStatus: 10,
+                multiplyAttack: 10,
+                multiplyAttackSpeed: 10,
+                multiplyCriticalRate: 2,
+                multiplyAccuracy: 2,
+            },
+            1: {
+                multiplyAllStatus: 12,
+                multiplyAttack: 12,
+                multiplyAttackSpeed: 12,
+                multiplyCriticalRate: 3,
+                multiplyAccuracy: 3,
+            },
+            2: {
+                multiplyAllStatus: 14,
+                multiplyAttack: 14,
+                multiplyAttackSpeed: 14,
+                multiplyCriticalRate: 4,
+                multiplyAccuracy: 4,
+            },
+            3: {
+                multiplyAllStatus: 16,
+                multiplyAttack: 16,
+                multiplyAttackSpeed: 16,
+                multiplyCriticalRate: 5,
+                multiplyAccuracy: 5,
+            },
+            4: {
+                multiplyAllStatus: 18,
+                multiplyAttack: 18,
+                multiplyAttackSpeed: 18,
+                multiplyCriticalRate: 6,
+                multiplyAccuracy: 6,
+            },
+            5: {
+                multiplyAllStatus: 20,
+                multiplyAttack: 20,
+                multiplyAttackSpeed: 20,
+                multiplyCriticalRate: 8,
+                multiplyAccuracy: 8,
+            },
+            6: {
+                multiplyAllStatus: 30,
+                multiplyAttack: 30,
+                multiplyAttackSpeed: 30,
+                multiplyCriticalRate: 10,
+                multiplyAccuracy: 10,
+            }
         }
     },
     // テンプラー

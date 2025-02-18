@@ -667,6 +667,20 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
+    'multiplyHitPointRecovery': {
+        name: 'multiplyHitPointRecovery',
+        displayColor: 'green',
+        displayName: 'HP回復量',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyMagicPointRecovery': {
+        name: 'multiplyMagicPointRecovery',
+        displayColor: 'green',
+        displayName: 'MP回復量',
+        unit: 'percent',
+        operationType: 'multiply'
+    }
 
 
 } as const;
