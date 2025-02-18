@@ -21,7 +21,10 @@ export type OptionContext = {
     [key in BuiltinOptionKeyType]: number
 }
 
-export const initialOptionContext: OptionContext = Object.assign({}, ...BuiltinOptionKeys.map((key) => ({ [key]: 0 }))) as OptionContext;
+export const initialOptionContext: OptionContext = Object.assign(
+    {}, ...BuiltinOptionKeys.map((key: BuiltinOptionKeyType) => (
+        { [key]: key === "attackSpeed" ? 2000 : 0 }
+    ))) as OptionContext;
 
 export const initialCharactor: Charactor = {
     status: {
@@ -197,6 +200,10 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
             state.detail["meleeAttack"] = calcMeleeAttack(state, action)
             state.detail["rangeAttack"] = calcRangeAttack(state, action)
             state.detail["magicAttack"] = calcMagicAttack(state, action)
+            state.detail["attackSpeed"] = Math.floor(
+                action.equiomentOptions["attackSpeed"] *
+                (100) / (100 + action.equiomentOptions["multiplyAttackSpeed"] + action.skillOptions["multiplyAttackSpeed"] + action.synergyOptions["multiplyAttackSpeed"])
+            )
             break;
         default:
             throw new Error("Invalid action");

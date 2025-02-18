@@ -7,6 +7,7 @@ import { BuiltinOptionKeyType } from "../static/options";
 import { reduceEquipments, reduceSkills, reduceSynergy } from "../../modules/context/reduce";
 import { BasesContext, BasesDispatchContext, basesReducer, initialBases } from "../../modules/context/useBasesContext";
 import { SynergyContext, SynergyDispatchContext, synergyReducer } from "../../modules/context/useSynergyContext";
+import { BuiltinWeaponTypes, WeaponTemplate } from "../static/items";
 
 interface ContextProps {
     children: React.ReactNode
@@ -25,7 +26,9 @@ export const Context: React.FC<ContextProps> = ({ children }) => {
 
     React.useEffect(() => {
         const options = reduceEquipments(Object.values(equipments));
-        setOptionContext(options);
+        const weapon: WeaponTemplate | null = equipments.weapon as WeaponTemplate | null;
+        options.attackSpeed = weapon ? BuiltinWeaponTypes[weapon.type].attackSpeed : 2000;
+        setOptionContext({ ...options });
         charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equiomentOptions: options, skillOptions: skillContext, synergyOptions: synergyContext });
 
     }, [equipments]);

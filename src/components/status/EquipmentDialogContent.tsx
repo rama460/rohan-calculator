@@ -53,15 +53,10 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
 
     React.useEffect(() => {
         setCurrentItem({
-            name: name,
-            icon: selectedItemTemplate.icon,
-            availableRaces: selectedItemTemplate.availableRaces,
             enchantLevel: enchantLevel,
             baseOptions: ArrayToHash(baseOptions),
             additionalOptions: ArrayToHash(additionalOptions),
-            synergyKey: selectedItemTemplate.synergyKey,
-            synergyOptions: selectedItemTemplate.synergyOptions
-
+            ...selectedItemTemplate
         })
     }, [baseOptions, additionalOptions])
 

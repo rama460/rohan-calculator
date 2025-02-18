@@ -53,6 +53,13 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'absolute',
     },
+    'attackSpeed': {
+        name: 'attackSpeed',
+        displayColor: 'white',
+        displayName: '攻撃速度',
+        unit: 'number',
+        operationType: 'absolute',
+    },
     'plusAllStatus': {
         name: 'plusAllStatus',
         displayColor: 'green',
