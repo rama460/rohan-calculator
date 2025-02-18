@@ -97,7 +97,81 @@ export const getInitialBaseOtions = (itemTemplate: ItemTemplate, enchantLevel: n
 }
 
 export type SynergyKey = "roha" | "variant" | "chaos" | "megas" | "abyss" | "void" | "hesperos" | "karlas" | "diegas" | "kasim" | "onyxArmor";
-export type WeaponType = "sword" | "dagger" | "bow" | "staff" | "spear" | "axe" | "mace" | "crossbow" | "bow"
+export type WeaponType = "sword" | "dagger" | "blunt" | "axe" | "katar" | "zen" | "dualsword" | "polearm" | "bow" | "crossbow" | "wand" | "staff"
+export const BuiltinWeaponTypes = {
+    "sword": {
+        name: "sword",
+        displayName: "片手剣",
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        attackSpeed: 900,
+    },
+    "dagger": {
+        name: "dagger",
+        displayName: "短剣",
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        attackSpeed: 700,
+    },
+    "blunt": {
+        name: "blunt",
+        displayName: "片手鈍器",
+        availableRaces: ["Human", "Elf", "Giant"],
+        attackSpeed: 900,
+    },
+    "axe": {
+        name: "axe",
+        displayName: "片手斧",
+        availableRaces: ["Human", "Giant"],
+        attackSpeed: 1200,
+    },
+    "katar": {
+        name: "katar",
+        displayName: "カタール",
+        availableRaces: ["Dan"],
+        attackSpeed: 700,
+    },
+    "zen": {
+        name: "zen",
+        displayName: "ゼン",
+        availableRaces: ["Dekan"],
+        attackSpeed: 1300,
+    },
+    "dualsword": {
+        name: "dualsword",
+        displayName: "デュアルソード",
+        availableRaces: ["Giant"],
+        attackSpeed: 900,
+    },
+    "polearm": {
+        name: "polearm",
+        displayName: "ポールアーム",
+        availableRaces: ["Giant"],
+        attackSpeed: 1600,
+    },
+    "bow": {
+        name: "bow",
+        displayName: "弓",
+        availableRaces: ["HalfElf"],
+        attackSpeed: 1000,
+    },
+    "crossbow": {
+        name: "crossbow",
+        displayName: "石弓",
+        availableRaces: ["HalfElf"],
+        attackSpeed: 1800,
+    },
+    "wand": {
+        name: "wand",
+        displayName: "ワンド",
+        availableRaces: ["Elf", "DarkElf"],
+        attackSpeed: 2000,
+    },
+    "staff": {
+        name: "staff",
+        displayName: "スタッフ",
+        availableRaces: ["Elf", "DarkElf"],
+        attackSpeed: 2500,
+    },
+}
 export type WeaponTemplate = {
     type: WeaponType;
 } & ItemTemplate;
