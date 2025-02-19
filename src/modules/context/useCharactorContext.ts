@@ -167,7 +167,9 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equipmentOptions["plusPhysicalDefense"] + action.skillOptions["plusPhysicalDefense"] + action.synergyOptions["plusPhysicalDefense"] +
                 action.equipmentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
                 (100 + action.equipmentOptions["multiplyPhysicalDefense"] + action.skillOptions["multiplyPhysicalDefense"] + action.synergyOptions["multiplyPhysicalDefense"] +
-                    action.equipmentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
+                    action.equipmentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"] +
+                    action.equipmentOptions["multiplyArmorDefense"] + action.skillOptions["multiplyArmorDefense"] + action.synergyOptions["multiplyArmorDefense"]
+                ) / 100)
             state.detail["magicalDefense"] = Math.floor(((
                 action.bases.level > 70 ? action.bases.level * 3 : (action.bases.level > 50 ? action.bases.level * 2 : action.bases.level)) +
                 Math.floor(state.status.mentality) * 2 +
@@ -176,7 +178,8 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.equipmentOptions["plusMagicalDefense"] + action.skillOptions["plusMagicalDefense"] + action.synergyOptions["plusMagicalDefense"] +
                 action.equipmentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
                 (100 + action.equipmentOptions["multiplyMagicalDefense"] + action.skillOptions["multiplyMagicalDefense"] + action.synergyOptions["multiplyMagicalDefense"] +
-                    action.equipmentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
+                    action.equipmentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"] +
+                    action.equipmentOptions["multiplyArmorDefense"] + action.skillOptions["multiplyArmorDefense"] + action.synergyOptions["multiplyArmorDefense"]) / 100)
 
             state.detail["accuracy"] = Math.floor((
                 state.status.agility +
