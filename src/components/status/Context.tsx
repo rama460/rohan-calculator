@@ -29,23 +29,24 @@ export const Context: React.FC<ContextProps> = ({ children }) => {
         const weapon: WeaponTemplate | null = equipments.weapon as WeaponTemplate | null;
         options.attackSpeed = weapon ? BuiltinWeaponTypes[weapon.type].attackSpeed : 2000;
         setOptionContext({ ...options });
-        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equiomentOptions: options, skillOptions: skillContext, synergyOptions: synergyContext });
+        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: options, skillOptions: skillContext, synergyOptions: synergyContext });
 
     }, [equipments]);
     React.useEffect(() => {
         const options = reduceSkills(appliedSkills);
         setSkillContext(options);
-        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equiomentOptions: optionContext, skillOptions: options, synergyOptions: synergyContext });
+        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: optionContext, skillOptions: options, synergyOptions: synergyContext });
     }, [appliedSkills]);
     React.useEffect(() => {
-        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equiomentOptions: optionContext, skillOptions: skillContext, synergyOptions: synergyContext });
+        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: optionContext, skillOptions: skillContext, synergyOptions: synergyContext });
     }, [statuses]);
     React.useEffect(() => {
         const options = reduceSynergy(synergy);
         setSynergyContext(options);
-        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equiomentOptions: optionContext, skillOptions: skillContext, synergyOptions: options });
+        charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: optionContext, skillOptions: skillContext, synergyOptions: options });
     }, [synergy]);
 
+    // FIXME: refactor this terrible contexts
     return (
         <BasesContext.Provider value={bases}>
             <BasesDispatchContext.Provider value={basesDispatch}>

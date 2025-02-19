@@ -67,7 +67,7 @@ export type CharactorAction =
         type: "UPDATE_STATUS"
         bases: Bases
         statuses: Statuses
-        equiomentOptions: { [key in BuiltinOptionKeyType]: number }
+        equipmentOptions: { [key in BuiltinOptionKeyType]: number }
         skillOptions: { [key in BuiltinOptionKeyType]: number }
         synergyOptions: { [key in BuiltinOptionKeyType]: number }
     }
@@ -80,114 +80,114 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.statuses["strength"].base +
                 action.statuses["strength"].meta +
                 action.statuses["strength"].initial +
-                action.equiomentOptions["plusStrength"] +
-                action.equiomentOptions["plusAllStatus"] +
+                action.equipmentOptions["plusStrength"] +
+                action.equipmentOptions["plusAllStatus"] +
                 action.skillOptions["plusStrength"] +
                 action.skillOptions["plusAllStatus"] +
                 action.synergyOptions["plusStrength"] +
                 action.synergyOptions["plusAllStatus"]) *
-                (100 + action.equiomentOptions["multiplyStrength"] + action.equiomentOptions["multiplyAllStatus"] + action.skillOptions["multiplyStrength"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyStrength"] + action.synergyOptions["multiplyAllStatus"]) / 100);
+                (100 + action.equipmentOptions["multiplyStrength"] + action.equipmentOptions["multiplyAllStatus"] + action.skillOptions["multiplyStrength"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyStrength"] + action.synergyOptions["multiplyAllStatus"]) / 100);
             state.status["vitality"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["vitality"].base +
                 action.statuses["vitality"].meta +
                 action.statuses["vitality"].initial +
-                action.equiomentOptions["plusVitality"] +
-                action.equiomentOptions["plusAllStatus"] +
+                action.equipmentOptions["plusVitality"] +
+                action.equipmentOptions["plusAllStatus"] +
                 action.skillOptions["plusVitality"] +
                 action.skillOptions["plusAllStatus"] +
                 action.synergyOptions["plusVitality"] +
                 action.synergyOptions["plusAllStatus"]) *
-                (100 + action.equiomentOptions["multiplyVitality"] + action.equiomentOptions["multiplyAllStatus"] + action.skillOptions["multiplyVitality"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyVitality"] + action.synergyOptions["multiplyAllStatus"]) / 100);
+                (100 + action.equipmentOptions["multiplyVitality"] + action.equipmentOptions["multiplyAllStatus"] + action.skillOptions["multiplyVitality"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyVitality"] + action.synergyOptions["multiplyAllStatus"]) / 100);
             state.status["intelligence"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["intelligence"].base +
                 action.statuses["intelligence"].meta +
                 action.statuses["intelligence"].initial +
-                action.equiomentOptions["plusIntelligence"] +
-                action.equiomentOptions["plusAllStatus"] +
+                action.equipmentOptions["plusIntelligence"] +
+                action.equipmentOptions["plusAllStatus"] +
                 action.skillOptions["plusIntelligence"] +
                 action.skillOptions["plusAllStatus"] +
                 action.synergyOptions["plusIntelligence"] +
                 action.synergyOptions["plusAllStatus"]) *
-                (100 + action.equiomentOptions["multiplyIntelligence"] + action.equiomentOptions["multiplyAllStatus"] + action.skillOptions["multiplyIntelligence"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyIntelligence"] + action.synergyOptions["multiplyAllStatus"]) / 100);
+                (100 + action.equipmentOptions["multiplyIntelligence"] + action.equipmentOptions["multiplyAllStatus"] + action.skillOptions["multiplyIntelligence"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyIntelligence"] + action.synergyOptions["multiplyAllStatus"]) / 100);
             state.status["agility"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["agility"].base +
                 action.statuses["agility"].meta +
                 action.statuses["agility"].initial +
-                action.equiomentOptions["plusAgility"] +
-                action.equiomentOptions["plusAllStatus"] +
+                action.equipmentOptions["plusAgility"] +
+                action.equipmentOptions["plusAllStatus"] +
                 action.skillOptions["plusAgility"] +
                 action.skillOptions["plusAllStatus"] +
                 action.synergyOptions["plusAgility"] +
                 action.synergyOptions["plusAllStatus"]) *
-                (100 + action.equiomentOptions["multiplyAgility"] + action.equiomentOptions["multiplyAllStatus"] + action.skillOptions["multiplyAgility"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyAgility"] + action.synergyOptions["multiplyAllStatus"]) / 100);
+                (100 + action.equipmentOptions["multiplyAgility"] + action.equipmentOptions["multiplyAllStatus"] + action.skillOptions["multiplyAgility"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyAgility"] + action.synergyOptions["multiplyAllStatus"]) / 100);
             state.status["mentality"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["mentality"].base +
                 action.statuses["mentality"].meta +
                 action.statuses["mentality"].initial +
-                action.equiomentOptions["plusMentality"] +
-                action.equiomentOptions["plusAllStatus"] +
+                action.equipmentOptions["plusMentality"] +
+                action.equipmentOptions["plusAllStatus"] +
                 action.skillOptions["plusMentality"] +
                 action.skillOptions["plusAllStatus"] +
                 action.synergyOptions["plusMentality"] +
                 action.synergyOptions["plusAllStatus"]) *
-                (100 + action.equiomentOptions["multiplyMentality"] + action.equiomentOptions["multiplyAllStatus"] + action.skillOptions["multiplyMentality"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyMentality"] + action.synergyOptions["multiplyAllStatus"]) / 100);
+                (100 + action.equipmentOptions["multiplyMentality"] + action.equipmentOptions["multiplyAllStatus"] + action.skillOptions["multiplyMentality"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyMentality"] + action.synergyOptions["multiplyAllStatus"]) / 100);
             state.status["dexterity"] = Math.floor((
                 (action.bases.heroLevel > 0 ? 100 : 0) +
                 action.statuses["dexterity"].base +
                 action.statuses["dexterity"].meta +
                 action.statuses["dexterity"].initial +
-                action.equiomentOptions["plusDexterity"] +
-                action.equiomentOptions["plusAllStatus"] +
+                action.equipmentOptions["plusDexterity"] +
+                action.equipmentOptions["plusAllStatus"] +
                 action.skillOptions["plusDexterity"] +
                 action.skillOptions["plusAllStatus"] +
                 action.synergyOptions["plusDexterity"] +
                 action.synergyOptions["plusAllStatus"]) *
-                (100 + action.equiomentOptions["multiplyDexterity"] + action.equiomentOptions["multiplyAllStatus"] + action.skillOptions["multiplyDexterity"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyDexterity"] + action.synergyOptions["multiplyAllStatus"]) / 100);
+                (100 + action.equipmentOptions["multiplyDexterity"] + action.equipmentOptions["multiplyAllStatus"] + action.skillOptions["multiplyDexterity"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyDexterity"] + action.synergyOptions["multiplyAllStatus"]) / 100);
             state.detail["hitPoint"] = Math.floor((
                 action.bases.level * races[action.bases.raceid].hitPointPerLevel + (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
                 Math.floor(state.status.vitality) * 20 +
-                action.equiomentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
-                (100 + action.equiomentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100
+                action.equipmentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
+                (100 + action.equipmentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100
             )
             state.detail["magicPoint"] = Math.floor((
                 action.bases.level * races[action.bases.raceid].magicPointPerLevel + Math.floor((Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 / 2) +
                 Math.floor(state.status.mentality) * 10 +
-                action.equiomentOptions["plusMagicPoint"] + action.skillOptions["plusMagicPoint"] + action.synergyOptions["plusMagicPoint"]) *
-                (100 + action.equiomentOptions["multiplyMagicPoint"] + action.skillOptions["multiplyMagicPoint"] + action.synergyOptions["multiplyMagicPoint"]) / 100
+                action.equipmentOptions["plusMagicPoint"] + action.skillOptions["plusMagicPoint"] + action.synergyOptions["plusMagicPoint"]) *
+                (100 + action.equipmentOptions["multiplyMagicPoint"] + action.skillOptions["multiplyMagicPoint"] + action.synergyOptions["multiplyMagicPoint"]) / 100
             )
             state.detail["physicalDefense"] = Math.floor(((
                 action.bases.level > 70 ? action.bases.level * 3 : (action.bases.level > 50 ? action.bases.level * 2 : action.bases.level)) +
                 Math.floor(state.status.vitality) * 2 +
                 Math.floor(state.status.strength) +
-                action.equiomentOptions["physicalDefense"] + action.skillOptions["physicalDefense"] + action.synergyOptions["physicalDefense"] +
-                action.equiomentOptions["plusPhysicalDefense"] + action.skillOptions["plusPhysicalDefense"] + action.synergyOptions["plusPhysicalDefense"] +
-                action.equiomentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
-                (100 + action.equiomentOptions["multiplyPhysicalDefense"] + action.skillOptions["multiplyPhysicalDefense"] + action.synergyOptions["multiplyPhysicalDefense"] +
-                    action.equiomentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
+                action.equipmentOptions["physicalDefense"] + action.skillOptions["physicalDefense"] + action.synergyOptions["physicalDefense"] +
+                action.equipmentOptions["plusPhysicalDefense"] + action.skillOptions["plusPhysicalDefense"] + action.synergyOptions["plusPhysicalDefense"] +
+                action.equipmentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
+                (100 + action.equipmentOptions["multiplyPhysicalDefense"] + action.skillOptions["multiplyPhysicalDefense"] + action.synergyOptions["multiplyPhysicalDefense"] +
+                    action.equipmentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
             state.detail["magicalDefense"] = Math.floor(((
                 action.bases.level > 70 ? action.bases.level * 3 : (action.bases.level > 50 ? action.bases.level * 2 : action.bases.level)) +
                 Math.floor(state.status.mentality) * 2 +
                 Math.floor(state.status.intelligence) +
-                action.equiomentOptions["magicalDefense"] + action.skillOptions["magicalDefense"] + action.synergyOptions["magicalDefense"] +
-                action.equiomentOptions["plusMagicalDefense"] + action.skillOptions["plusMagicalDefense"] + action.synergyOptions["plusMagicalDefense"] +
-                action.equiomentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
-                (100 + action.equiomentOptions["multiplyMagicalDefense"] + action.skillOptions["multiplyMagicalDefense"] + action.synergyOptions["multiplyMagicalDefense"] +
-                    action.equiomentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
+                action.equipmentOptions["magicalDefense"] + action.skillOptions["magicalDefense"] + action.synergyOptions["magicalDefense"] +
+                action.equipmentOptions["plusMagicalDefense"] + action.skillOptions["plusMagicalDefense"] + action.synergyOptions["plusMagicalDefense"] +
+                action.equipmentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
+                (100 + action.equipmentOptions["multiplyMagicalDefense"] + action.skillOptions["multiplyMagicalDefense"] + action.synergyOptions["multiplyMagicalDefense"] +
+                    action.equipmentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"]) / 100)
 
             state.detail["accuracy"] = Math.floor((
                 state.status.agility +
                 Math.floor(action.bases.level / 2) +
-                action.equiomentOptions["plusAccuracy"] + action.skillOptions["plusAccuracy"] + action.synergyOptions["plusAccuracy"]) *
-                (100 + action.equiomentOptions["multiplyAccuracy"] + action.skillOptions["multiplyAccuracy"] + action.synergyOptions["multiplyAccuracy"]) / 100)
+                action.equipmentOptions["plusAccuracy"] + action.skillOptions["plusAccuracy"] + action.synergyOptions["plusAccuracy"]) *
+                (100 + action.equipmentOptions["multiplyAccuracy"] + action.skillOptions["multiplyAccuracy"] + action.synergyOptions["multiplyAccuracy"]) / 100)
             state.detail["dodging"] = Math.floor((
                 (state.status.dexterity * 1.2) +
                 Math.floor(action.bases.level / 2) +
-                action.equiomentOptions["plusDodging"] + action.skillOptions["plusDodging"] + action.synergyOptions["plusDodging"]) *
-                (100 + action.equiomentOptions["multiplyDodging"] + action.skillOptions["multiplyDodging"] + action.synergyOptions["multiplyDodging"]) / 100)
+                action.equipmentOptions["plusDodging"] + action.skillOptions["plusDodging"] + action.synergyOptions["plusDodging"]) *
+                (100 + action.equipmentOptions["multiplyDodging"] + action.skillOptions["multiplyDodging"] + action.synergyOptions["multiplyDodging"]) / 100)
             state.detail["hitPointRecovery"] = Math.floor(1)
             state.detail["magicPointRecovery"] = Math.floor(1)
             state.detail["resistance"] = Math.floor(
@@ -195,14 +195,14 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
             )
             state.detail["movementSpeed"] = Math.floor(
                 races[action.bases.raceid].movementSpeed *
-                (100 + action.equiomentOptions["multiplyMovementSpeed"] + action.synergyOptions["multiplyMovementSpeed"]) / 100 *
+                (100 + action.equipmentOptions["multiplyMovementSpeed"] + action.synergyOptions["multiplyMovementSpeed"]) / 100 *
                 (100 + action.skillOptions["multiplyMovementSpeed"]) / 100)
             state.detail["meleeAttack"] = calcMeleeAttack(state, action)
             state.detail["rangeAttack"] = calcRangeAttack(state, action)
             state.detail["magicAttack"] = calcMagicAttack(state, action)
             state.detail["attackSpeed"] = Math.floor(
-                action.equiomentOptions["attackSpeed"] *
-                (100) / (100 + action.equiomentOptions["multiplyAttackSpeed"] + action.skillOptions["multiplyAttackSpeed"] + action.synergyOptions["multiplyAttackSpeed"])
+                action.equipmentOptions["attackSpeed"] *
+                (100) / (100 + action.equipmentOptions["multiplyAttackSpeed"] + action.skillOptions["multiplyAttackSpeed"] + action.synergyOptions["multiplyAttackSpeed"])
             )
             break;
         default:
@@ -258,24 +258,24 @@ const calcMeleeAttack = (state: Charactor, action: CharactorAction) => {
                 Math.floor(calcLvAttack(action.bases.level) * 0.75) +
                 Math.floor(state.status.strength * 3 * 0.75) +
                 calcMeleeMasteryAttack(state, action) +
-                Math.floor((action.equiomentOptions["meleeAttack"] + action.equiomentOptions["plusMeleeAttack"] + action.skillOptions["plusMeleeAttack"] + action.synergyOptions["plusMeleeAttack"] +
-                    action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
-                ) * (100 + action.equiomentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
+                Math.floor((action.equipmentOptions["meleeAttack"] + action.equipmentOptions["plusMeleeAttack"] + action.skillOptions["plusMeleeAttack"] + action.synergyOptions["plusMeleeAttack"] +
+                    action.equipmentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
+                ) * (100 + action.equipmentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
             ) * (
-                100 + action.equiomentOptions["multiplyMeleeAttack"] + action.skillOptions["multiplyMeleeAttack"] + action.synergyOptions["multiplyMeleeAttack"]
-                + action.equiomentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
+                100 + action.equipmentOptions["multiplyMeleeAttack"] + action.skillOptions["multiplyMeleeAttack"] + action.synergyOptions["multiplyMeleeAttack"]
+                + action.equipmentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
             ) / 100)
     } else {
         return Math.floor(
             (
                 calcLvAttack(action.bases.level) +
                 state.status.strength * 3 +
-                Math.floor((action.equiomentOptions["meleeAttack"] + action.equiomentOptions["plusMeleeAttack"] + action.skillOptions["plusMeleeAttack"] + action.synergyOptions["plusMeleeAttack"] +
-                    action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
+                Math.floor((action.equipmentOptions["meleeAttack"] + action.equipmentOptions["plusMeleeAttack"] + action.skillOptions["plusMeleeAttack"] + action.synergyOptions["plusMeleeAttack"] +
+                    action.equipmentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
                 ))
             ) * (
-                100 + action.equiomentOptions["multiplyMeleeAttack"] + action.skillOptions["multiplyMeleeAttack"] + action.synergyOptions["multiplyMeleeAttack"]
-                + action.equiomentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
+                100 + action.equipmentOptions["multiplyMeleeAttack"] + action.skillOptions["multiplyMeleeAttack"] + action.synergyOptions["multiplyMeleeAttack"]
+                + action.equipmentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
             ) / 100)
     }
 }
@@ -290,30 +290,30 @@ const calcRangeAttack = (state: Charactor, action: CharactorAction) => {
                 Math.floor(calcLvAttack(action.bases.level) * 0.75) +
                 Math.floor(state.status.agility * 3 * 0.75) +
                 calcRangeMasteryAttack(state, action) +
-                Math.floor((action.equiomentOptions["rangeAttack"] +
+                Math.floor((action.equipmentOptions["rangeAttack"] +
                     // FIXME: multiply arrow attack options are isolated and multiply each other.
                     // for example, enchant arrow and kael's arrow option values are not sum but multiply each other.
-                    Math.floor(action.equiomentOptions["arrowAttack"] * (100 + action.skillOptions["multiplyArrowAttack"]) / 100) +
-                    action.equiomentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
-                    action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
-                ) * (100 + action.equiomentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
+                    Math.floor(action.equipmentOptions["arrowAttack"] * (100 + action.skillOptions["multiplyArrowAttack"]) / 100) +
+                    action.equipmentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
+                    action.equipmentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
+                ) * (100 + action.equipmentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
             ) * (
-                100 + action.equiomentOptions["multiplyRangeAttack"] + action.skillOptions["multiplyRangeAttack"] + action.synergyOptions["multiplyRangeAttack"]
-                + action.equiomentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
+                100 + action.equipmentOptions["multiplyRangeAttack"] + action.skillOptions["multiplyRangeAttack"] + action.synergyOptions["multiplyRangeAttack"]
+                + action.equipmentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
             ) / 100)
     } else {
         return Math.floor(
             (
                 calcLvAttack(action.bases.level) +
                 state.status.agility * 3 +
-                Math.floor((action.equiomentOptions["rangeAttack"] +
-                    Math.floor(action.equiomentOptions["arrowAttack"] * (100 + action.skillOptions["multiplyArrowAttack"]) / 100) +
-                    action.equiomentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
-                    action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
+                Math.floor((action.equipmentOptions["rangeAttack"] +
+                    Math.floor(action.equipmentOptions["arrowAttack"] * (100 + action.skillOptions["multiplyArrowAttack"]) / 100) +
+                    action.equipmentOptions["plusRangeAttack"] + action.skillOptions["plusRangeAttack"] + action.synergyOptions["plusRangeAttack"] +
+                    action.equipmentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
                 ))
             ) * (
-                100 + action.equiomentOptions["multiplyRangeAttack"] + action.skillOptions["multiplyRangeAttack"] + action.synergyOptions["multiplyRangeAttack"]
-                + action.equiomentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
+                100 + action.equipmentOptions["multiplyRangeAttack"] + action.skillOptions["multiplyRangeAttack"] + action.synergyOptions["multiplyRangeAttack"]
+                + action.equipmentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
             ) / 100)
     }
 }
@@ -328,24 +328,24 @@ const calcMagicAttack = (state: Charactor, action: CharactorAction) => {
                 Math.floor(calcLvAttack(action.bases.level) * 0.75) +
                 Math.floor(state.status.intelligence * 3 * 0.75) +
                 calcMagicMasteryAttack(state, action) +
-                Math.floor((action.equiomentOptions["magicAttack"] + action.equiomentOptions["plusMagicAttack"] + action.skillOptions["plusMagicAttack"] + action.synergyOptions["plusMagicAttack"] +
-                    action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
-                ) * (100 + action.equiomentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
+                Math.floor((action.equipmentOptions["magicAttack"] + action.equipmentOptions["plusMagicAttack"] + action.skillOptions["plusMagicAttack"] + action.synergyOptions["plusMagicAttack"] +
+                    action.equipmentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
+                ) * (100 + action.equipmentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
             ) * (
-                100 + action.equiomentOptions["multiplyMagicAttack"] + action.skillOptions["multiplyMagicAttack"] + action.synergyOptions["multiplyMagicAttack"]
-                + action.equiomentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
+                100 + action.equipmentOptions["multiplyMagicAttack"] + action.skillOptions["multiplyMagicAttack"] + action.synergyOptions["multiplyMagicAttack"]
+                + action.equipmentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
             ) / 100)
     } else {
         return Math.floor(
             (
                 calcLvAttack(action.bases.level) +
                 state.status.intelligence * 3 +
-                Math.floor((action.equiomentOptions["magicAttack"] + action.equiomentOptions["plusMagicAttack"] + action.skillOptions["plusMagicAttack"] + action.synergyOptions["plusMagicAttack"] +
-                    action.equiomentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
+                Math.floor((action.equipmentOptions["magicAttack"] + action.equipmentOptions["plusMagicAttack"] + action.skillOptions["plusMagicAttack"] + action.synergyOptions["plusMagicAttack"] +
+                    action.equipmentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
                 ))
             ) * (
-                100 + action.equiomentOptions["multiplyMagicAttack"] + action.skillOptions["multiplyMagicAttack"] + action.synergyOptions["multiplyMagicAttack"]
-                + action.equiomentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
+                100 + action.equipmentOptions["multiplyMagicAttack"] + action.skillOptions["multiplyMagicAttack"] + action.synergyOptions["multiplyMagicAttack"]
+                + action.equipmentOptions["multiplyAttack"] + action.skillOptions["multiplyAttack"] + action.synergyOptions["multiplyAttack"]
             ) / 100)
     }
 }
