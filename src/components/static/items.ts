@@ -220,12 +220,19 @@ export const shields: ItemTemplate[] = [
 ]
 export const arrows: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "トルマリンの矢",
         icon: unknown,
         fixedBaseOptions: {
+            'arrowAttack': 180
         },
-    }
-
+    },
+    {
+        name: "トルマリンのボルト",
+        icon: unknown,
+        fixedBaseOptions: {
+            'arrowAttack': 300
+        },
+    },
 ]
 
 const onyxArmorSynergisticOptions = {
