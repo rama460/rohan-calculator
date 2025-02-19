@@ -4,6 +4,7 @@ import { races } from "../static/races";
 import Grid from "@mui/material/Grid2";
 import { useStatusesDispatch } from "../../modules/context/useStatusesContext";
 import { useBasesDispatch } from "../../modules/context/useBasesContext";
+import { titles } from "../static/titles";
 
 interface BasePanelProps {
     level: number;
@@ -30,6 +31,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
         setJobid(Number(event.target.value as string));
         basesDispatch({ type: "SET_JOBID", jobid: Number(event.target.value) });
     }
+    const [title, setTitle] = React.useState("none");
 
     return (
         <React.Fragment>
@@ -120,14 +122,25 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                         </Typography>
                         <FormControl size="small" >
                             <Select
-                                value={jobid}
+                                defaultValue="none"
+                                value={title}
+                                onChange={(event) => {
+                                    setTitle(event.target.value as string)
+                                    basesDispatch({ type: "SET_TITLE", title: event.target.value as string });
+                                }}
                             >
+                                <MenuItem value="none">なし</MenuItem>
+                                {
+                                    titles.map((title) => (
+                                        <MenuItem value={title.name}>{title.displayName}</MenuItem>
+                                    ))
+                                }
                             </Select>
                         </FormControl>
                     </Box>
                 </Grid>
             </Grid>
-        </React.Fragment>
+        </React.Fragment >
     );
 }
 export default BasePanel;

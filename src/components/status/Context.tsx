@@ -4,10 +4,11 @@ import { initialStatuses, StatusesContext, StatusesDispatchContext, statusesRedu
 import { AppliedSkillsContext, AppliedSkillsDispatchContext, skillsReducer } from "../../modules/context/useSkillsContext";
 import { EquipmentsContext, EquipmentsDispatchContext, equipmentsReducer, initialEquipments } from "../../modules/context/useEquipmentsContext";
 import { BuiltinOptionKeyType } from "../static/options";
-import { reduceEquipments, reduceSkills, reduceSynergy } from "../../modules/context/reduce";
+import { reduceOptions } from "../../modules/context/reduce";
 import { BasesContext, BasesDispatchContext, basesReducer, initialBases } from "../../modules/context/useBasesContext";
 import { SynergyContext, SynergyDispatchContext, synergyReducer } from "../../modules/context/useSynergyContext";
 import { BuiltinWeaponTypes, WeaponTemplate } from "../static/items";
+import { titles } from "../static/titles";
 
 interface ContextProps {
     children: React.ReactNode
@@ -25,15 +26,19 @@ export const Context: React.FC<ContextProps> = ({ children }) => {
     const [charactor, charactorDispatch] = React.useReducer(charactorReducer, initialCharactor);
 
     React.useEffect(() => {
-        const options = reduceEquipments(Object.values(equipments));
+        const options = reduceOptions([
+            ...Object.values(equipments).map((item) => item?.baseOptions ?? {}),
+            ...Object.values(equipments).map((item) => item?.additionalOptions ?? {}),
+            titles.find((title) => title.name === bases.title)?.options ?? {}
+        ]);
         const weapon: WeaponTemplate | null = equipments.weapon as WeaponTemplate | null;
         options.attackSpeed = weapon ? BuiltinWeaponTypes[weapon.type].attackSpeed : 2000;
         setOptionContext({ ...options });
         charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: options, skillOptions: skillContext, synergyOptions: synergyContext });
 
-    }, [equipments]);
+    }, [equipments, bases]);
     React.useEffect(() => {
-        const options = reduceSkills(appliedSkills);
+        const options = reduceOptions(appliedSkills.map((skill) => skill.attributes));
         setSkillContext(options);
         charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: optionContext, skillOptions: options, synergyOptions: synergyContext });
     }, [appliedSkills]);
@@ -41,7 +46,7 @@ export const Context: React.FC<ContextProps> = ({ children }) => {
         charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: optionContext, skillOptions: skillContext, synergyOptions: synergyContext });
     }, [statuses]);
     React.useEffect(() => {
-        const options = reduceSynergy(synergy);
+        const options = reduceOptions(Object.values(synergy).map((values) => values.map((value) => value ?? {})).flat());
         setSynergyContext(options);
         charactorDispatch({ type: "UPDATE_STATUS", bases, statuses, equipmentOptions: optionContext, skillOptions: skillContext, synergyOptions: options });
     }, [synergy]);
