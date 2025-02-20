@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid2";
 import { useStatusesDispatch } from "../../modules/context/useStatusesContext";
 import { useBasesDispatch } from "../../modules/context/useBasesContext";
 import { titles } from "../static/titles";
+import useQueryObject from "../../modules/context/useQueryState";
 
 interface BasePanelProps {
     level: number;
@@ -31,8 +32,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
         setJobid(Number(event.target.value as string));
         basesDispatch({ type: "SET_JOBID", jobid: Number(event.target.value) });
     }
-    const [title, setTitle] = React.useState("none");
-
+    const [title, setTitle] = useQueryObject("title", "none");
     return (
         <React.Fragment>
             <Grid container columnSpacing={2}>

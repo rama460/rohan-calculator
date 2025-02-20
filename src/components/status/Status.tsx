@@ -5,16 +5,16 @@ import EquipmentPanel from "./EquipmentPanel";
 import StatusPanel from "./StatusPanel";
 import CharactorPanel from "./CharactorPanel";
 import BuffPanel from "./BuffPanel";
-import React from "react";
 import BorderedTitleBox from "../common/BorderedTitleBox";
 import { Context } from "./Context";
+import useQueryObject from "../../modules/context/useQueryState";
 
 
 export const Status = () => {
-    const [level, setLevel] = React.useState(115);
-    const [heroLevel, setHeroLevel] = React.useState(50);
-    const [raceid, setRaceid] = React.useState<number>(0);
-    const [jobid, setJobid] = React.useState<number>(0);
+    const [level, setLevel] = useQueryObject("level", 115);
+    const [heroLevel, setHeroLevel] = useQueryObject("heroLevel", 50);
+    const [raceid, setRaceid] = useQueryObject("raceid", 0);
+    const [jobid, setJobid] = useQueryObject("jobid", 0);
     return (
         <Context>
 

@@ -2,6 +2,7 @@ import { Box, TextField, Typography } from "@mui/material";
 import React from "react";
 import { StatusType, useStatusesDispatch } from "../../modules/context/useStatusesContext";
 import { useCharactorContext } from "../../modules/context/useCharactorContext";
+import useQueryObject from "../../modules/context/useQueryState";
 
 interface StatusFieldProps {
     name: StatusType;
@@ -9,8 +10,8 @@ interface StatusFieldProps {
 }
 
 export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) => {
-    const [base, setBase] = React.useState(0);
-    const [meta, setMeta] = React.useState(0);
+    const [base, setBase] = useQueryObject(`${name}_base`, 0);
+    const [meta, setMeta] = useQueryObject(`${name}_meta`, 0);
     const statusesDispatch = useStatusesDispatch();
     const charactor = useCharactorContext();
     const handleBaseChange = (event: React.ChangeEvent<HTMLInputElement>) => {

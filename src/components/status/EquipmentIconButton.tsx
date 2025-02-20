@@ -9,6 +9,8 @@ import anyBackground from "../../assets/backgrounds/any.png"
 import { Item, ItemTemplate } from "../static/items";
 import { Equipments, useEquipments, useEquipmentsDispatch } from "../../modules/context/useEquipmentsContext";
 import { useSynergyDispatch } from "../../modules/context/useSynergyContext";
+import useQueryObject from "../../modules/context/useQueryState";
+
 
 interface EquipmentIconButtonProps {
     equipmentType: keyof Equipments
@@ -23,7 +25,7 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
     const equipments = useEquipments();
     const synergyDispatch = useSynergyDispatch();
     const [selectedItem, setSelectedItem] = React.useState<Item | null>(null);
-    const [equippedItem, setEquippedItem] = React.useState<Item | null>(null);
+    const [equippedItem, setEquippedItem] = useQueryObject<Item | null>(equipmentType, null);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [synergyCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);
