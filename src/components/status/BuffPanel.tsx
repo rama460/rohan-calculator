@@ -2,18 +2,18 @@ import Grid from "@mui/material/Grid2";
 import BuffIconButton from "./BuffIconButton";
 import { skills } from "../static/skill";
 import BorderedTitleBox from "../common/BorderedTitleBox";
+import { useBasesContext } from "../../modules/context/useBasesContext";
 interface BuffPanelProps {
-    raceid: number;
-    jobid: number;
 }
 
-export const BuffPanel: React.FC<BuffPanelProps> = ({ raceid, jobid }) => {
+export const BuffPanel: React.FC<BuffPanelProps> = () => {
+    const bases = useBasesContext();
     return (
         <Grid container spacing={4}>
             <Grid size={{ md: 6, xs: 12 }}>
                 <BorderedTitleBox title="Self Buff">
                     <Grid container spacing={2}>
-                        {skills.filter(skill => skill.raceid === raceid && (skill.jobid === jobid || skill.jobid === 0) && (skill.type === "Buff" || skill.type === "Passive")).map((skill) => (
+                        {skills.filter(skill => skill.raceid === bases.raceid && (skill.jobid === bases.jobid || skill.jobid === 0) && (skill.type === "Buff" || skill.type === "Passive")).map((skill) => (
                             <Grid size={{ md: 6, xs: 6 }}>
                                 <BuffIconButton skill={skill} />
                             </Grid>

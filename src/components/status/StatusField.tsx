@@ -1,5 +1,5 @@
 import { Box, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusType, useStatusesDispatch } from "../../modules/context/useStatusesContext";
 import { useCharactorContext } from "../../modules/context/useCharactorContext";
 import useQueryObject from "../../modules/context/useQueryState";
@@ -16,12 +16,16 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
     const charactor = useCharactorContext();
     const handleBaseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBase(Number(event.target.value));
-        statusesDispatch({ type: "UPDATE_BASE", key: name as StatusType, value: Number(event.target.value) });
     }
     const handleMetaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMeta(Number(event.target.value));
-        statusesDispatch({ type: "UPDATE_META", key: name as StatusType, value: Number(event.target.value) });
     }
+    useEffect(() => {
+        statusesDispatch({ type: "UPDATE_BASE", key: name as StatusType, value: base });
+    }, [base]);
+    useEffect(() => {
+        statusesDispatch({ type: "UPDATE_META", key: name as StatusType, value: meta });
+    }, [meta]);
 
     return (
         <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>

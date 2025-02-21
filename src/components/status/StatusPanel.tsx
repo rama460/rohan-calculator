@@ -4,12 +4,10 @@ import StatusField from "./StatusField";
 import React from "react";
 import StatusFieldTitle from "./StatusFieldTitle";
 import { Statuses, StatusType, useStatusesContext } from "../../modules/context/useStatusesContext";
+import { useBasesContext } from "../../modules/context/useBasesContext";
 
 
 interface StatusPanelProps {
-    level: number;
-    heroLevel: number;
-    raceid: number;
 }
 
 const gainedPoint = (level: number, heroLevel: number, statuses: Statuses) => {
@@ -27,12 +25,13 @@ const gainedPoint = (level: number, heroLevel: number, statuses: Statuses) => {
 }
 
 
-export const StatusPanel: React.FC<StatusPanelProps> = ({ level, heroLevel }) => {
+export const StatusPanel: React.FC<StatusPanelProps> = ({ }) => {
     const statuses = useStatusesContext();
-    const [point, setPoint] = React.useState(gainedPoint(level, heroLevel, statuses));
+    const bases = useBasesContext();
+    const [point, setPoint] = React.useState(gainedPoint(bases.level, bases.heroLevel, statuses));
     React.useEffect(() => {
-        setPoint(gainedPoint(level, heroLevel, statuses));
-    }, [level, heroLevel, statuses]);
+        setPoint(gainedPoint(bases.level, bases.heroLevel, statuses));
+    }, [bases.level, bases.heroLevel, statuses]);
 
     return (
         <Grid container columnSpacing={4}>

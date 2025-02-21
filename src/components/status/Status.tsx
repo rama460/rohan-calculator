@@ -7,32 +7,22 @@ import CharactorPanel from "./CharactorPanel";
 import BuffPanel from "./BuffPanel";
 import BorderedTitleBox from "../common/BorderedTitleBox";
 import { Context } from "./Context";
-import useQueryObject from "../../modules/context/useQueryState";
 
 
 export const Status = () => {
-    const [level, setLevel] = useQueryObject("level", 115);
-    const [heroLevel, setHeroLevel] = useQueryObject("heroLevel", 50);
-    const [raceid, setRaceid] = useQueryObject("raceid", 0);
-    const [jobid, setJobid] = useQueryObject("jobid", 0);
     return (
         <Context>
-
             <Box sx={{ width: "100vw", paddingTop: "100px" }}>
                 <Container maxWidth="md">
                     <Grid container rowSpacing={1} columnSpacing={5}>
                         <Grid size={{ md: 12, xs: 12 }}>
                             <BorderedTitleBox title="Base">
-                                <BasePanel level={level} heroLevel={heroLevel} raceid={raceid} jobid={jobid} setLevel={setLevel} setHeroLevel={setHeroLevel} setRaceid={setRaceid} setJobid={setJobid} />
+                                <BasePanel />
                             </BorderedTitleBox>
                         </Grid>
                         <Grid size={{ md: 12, xs: 12 }}>
                             <BorderedTitleBox title="Status">
-                                <StatusPanel
-                                    level={level}
-                                    heroLevel={heroLevel}
-                                    raceid={raceid}
-                                />
+                                <StatusPanel />
                             </BorderedTitleBox>
                         </Grid>
                         <Grid size={{ md: 6, xs: 12 }}>
@@ -52,7 +42,7 @@ export const Status = () => {
                         </Grid>
                         <Grid size={{ md: 12, xs: 12 }}>
                             <BorderedTitleBox title="Buff">
-                                <BuffPanel raceid={raceid} jobid={jobid} />
+                                <BuffPanel />
                             </BorderedTitleBox>
                         </Grid>
 

@@ -1,5 +1,5 @@
 import { Button, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import React from "react"
+import React, { memo } from "react"
 import { ItemTemplate, Item, getInitialBaseOtions } from '../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
@@ -26,13 +26,17 @@ const ArrayToHash = (array: { name: BuiltinOptionKeyType, value: number }[]): { 
 }
 
 
-export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ itemTemplates, currentItem, setCurrentItem }) => {
+export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = memo(({ itemTemplates, currentItem, setCurrentItem }) => {
     const bases = useBasesContext();
+
     const availableItemTemplates = itemTemplates.filter((template) => template.availableRaces?.some(
         (r) => r === races[bases.raceid].name) ?? true)
+    console.log(availableItemTemplates)
+    console.log(currentItem)
     const [name, setName] = React.useState(
-        currentItem ? currentItem.name :
-            availableItemTemplates[0].name);
+        currentItem ? currentItem.name : (
+            availableItemTemplates.length > 0 ?
+                availableItemTemplates[0].name : "none"));
     const [enchantLevel, setEnchantLevel] = React.useState(
         currentItem ? currentItem.enchantLevel :
             0);
@@ -114,4 +118,4 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
             </Button>
         </React.Fragment >
     );
-}
+})

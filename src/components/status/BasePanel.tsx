@@ -1,5 +1,5 @@
 import { Box, Checkbox, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { races } from "../static/races";
 import Grid from "@mui/material/Grid2";
 import { useStatusesDispatch } from "../../modules/context/useStatusesContext";
@@ -8,30 +8,47 @@ import { titles } from "../static/titles";
 import useQueryObject from "../../modules/context/useQueryState";
 
 interface BasePanelProps {
-    level: number;
-    heroLevel: number;
-    raceid: number;
-    jobid: number;
-    setLevel: (level: number) => void;
-    setHeroLevel: (heroLevel: number) => void;
-    setRaceid: (raceid: number) => void;
-    setJobid: (jobid: number) => void;
 }
 
 
-export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, jobid, setLevel, setHeroLevel, setRaceid, setJobid }) => {
+export const BasePanel: React.FC<BasePanelProps> = () => {
+
+    const [level, setLevel] = useQueryObject("level", 115);
+    const [heroLevel, setHeroLevel] = useQueryObject("heroLevel", 50);
+    const [raceid, setRaceid] = useQueryObject("raceid", 0);
+    const [jobid, setJobid] = useQueryObject("jobid", 0);
     const [transcended, setTranscended] = React.useState(false);
+
     const basesDispatch = useBasesDispatch();
     const statusesDispatch = useStatusesDispatch();
     const handleRaceChange = (event: SelectChangeEvent) => {
         setRaceid(Number(event.target.value as string));
-        statusesDispatch({ type: "UPDATE_INITIAL", value: races[Number(event.target.value)].initialStatus });
-        basesDispatch({ type: "SET_RACEID", raceid: Number(event.target.value) });
     }
     const handleJobChange = (event: SelectChangeEvent) => {
         setJobid(Number(event.target.value as string));
-        basesDispatch({ type: "SET_JOBID", jobid: Number(event.target.value) });
     }
+    const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setLevel(Number(event.target.value));
+        if (Number(event.target.value) < 50) {
+            setJobid(0);
+        }
+    }
+    const handleHeroLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setHeroLevel(Number(event.target.value));
+    }
+    useEffect(() => {
+        statusesDispatch({ type: "UPDATE_INITIAL", value: races[raceid].initialStatus });
+        basesDispatch({ type: "SET_RACEID", raceid: raceid });
+    }, [raceid])
+    useEffect(() => {
+        basesDispatch({ type: "SET_JOBID", jobid: jobid });
+    }, [jobid])
+    useEffect(() => {
+        basesDispatch({ type: "SET_LEVEL", level: level });
+    }, [level])
+    useEffect(() => {
+        basesDispatch({ type: "SET_HERO_LEVEL", heroLevel: heroLevel });
+    }, [heroLevel])
     const [title, setTitle] = useQueryObject("title", "none");
     return (
         <React.Fragment>
@@ -47,13 +64,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                             defaultValue={115}
                             sx={{ width: "80px", }}
                             slotProps={{ htmlInput: { min: 1, max: 115 } }}
-                            onChange={(event) => {
-                                setLevel(Number(event.target.value));
-                                basesDispatch({ type: "SET_LEVEL", level: Number(event.target.value) });
-                                if (Number(event.target.value) < 50) {
-                                    setJobid(0);
-                                }
-                            }}
+                            onChange={handleLevelChange}
                         />
                         <Typography variant="body1" sx={{ textAlign: "left" }}>
                             征服者レベル:
@@ -66,10 +77,7 @@ export const BasePanel: React.FC<BasePanelProps> = ({ level, heroLevel, raceid, 
                             disabled={level < 115}
                             sx={{ width: "80px", }}
                             slotProps={{ htmlInput: { min: 0, max: 50 } }}
-                            onChange={(event) => {
-                                setHeroLevel(Number(event.target.value));
-                                basesDispatch({ type: "SET_HERO_LEVEL", heroLevel: Number(event.target.value) });
-                            }}
+                            onChange={handleHeroLevelChange}
                         />
                     </Box>
                 </Grid>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import IconButton from "../common/IconButton"
 import Tooltip from "../common/Tooltip"
 import EquipmentTooltipContent from "./EquipmentTooltipContent"
@@ -9,7 +9,7 @@ import anyBackground from "../../assets/backgrounds/any.png"
 import { Item, ItemTemplate } from "../static/items";
 import { Equipments, useEquipments, useEquipmentsDispatch } from "../../modules/context/useEquipmentsContext";
 import { useSynergyDispatch } from "../../modules/context/useSynergyContext";
-import useQueryObject from "../../modules/context/useQueryState";
+import useQueryItemObject from "../../modules/context/useQueryItemState";
 
 
 interface EquipmentIconButtonProps {
@@ -19,23 +19,23 @@ interface EquipmentIconButtonProps {
     items: ItemTemplate[]
 }
 
-export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items }) => {
+export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = memo(({ equipmentType, title, backgroundImage = anyBackground, items }) => {
 
     const equipmentDispatch = useEquipmentsDispatch();
     const equipments = useEquipments();
     const synergyDispatch = useSynergyDispatch();
     const [selectedItem, setSelectedItem] = React.useState<Item | null>(null);
-    const [equippedItem, setEquippedItem] = useQueryObject<Item | null>(equipmentType, null);
+    const [equippedItem, setEquippedItem] = useQueryItemObject(equipmentType, null, items);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [synergyCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);
+    console.log(equipmentType)
     const handleConfirm = () => {
         setOpenDialog(false);
         if (!selectedItem) {
             return;
         }
         setEquippedItem(selectedItem);
-        equipmentDispatch({ type: "SET", key: equipmentType, item: selectedItem });
     }
     const handleRemove = () => {
         setEquippedItem(null);
@@ -49,6 +49,12 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
             setSelectedItem(equippedItem);
         }
     }
+    useEffect(() => {
+        if (equippedItem) {
+            equipmentDispatch({ type: "SET", key: equipmentType, item: equippedItem });
+        }
+    }, [equippedItem])
+
     useEffect(() => {
         if (equippedItem && equippedItem?.synergyKey && equippedItem?.synergyOptions) {
             const count = Object.values(equipments).filter((item) => item?.synergyKey === equippedItem.synergyKey).length ?? 0;
@@ -70,6 +76,6 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
 
         </>
     );
-}
+})
 
 export default EquipmentIconButton;

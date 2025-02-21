@@ -24,8 +24,8 @@ function useQueryObject<T>(key: string, defaultValue: T) {
             const newParams = new URLSearchParams(prev);
             newParams.set(key, compressed);
             return newParams;
-        });
-    }, [key, state, setSearchParams]);
+        }, { replace: true });
+    }, [state]);
 
     return [state, setState] as const;
 }

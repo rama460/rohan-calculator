@@ -48,7 +48,6 @@ export const EquipmentPanel: React.FC = ({
                     title='アクセサリ1'
                     backgroundImage={background_accessory}
                     items={accessories}
-                //synergyDependentItems={[equippedAccessory2, equippedAccessory3, equippedAccessory4]}
                 />
             </div>
             <div style={{ gridColumn: 1, gridRow: 4 }}>
@@ -57,7 +56,6 @@ export const EquipmentPanel: React.FC = ({
                     title='アクセサリ2'
                     backgroundImage={background_accessory}
                     items={accessories}
-                //synergyDependentItems={[equippedAccessory1, equippedAccessory3, equippedAccessory4]}
                 />
             </div>
             <div style={{ gridColumn: 3, gridRow: 3 }}>
@@ -66,7 +64,6 @@ export const EquipmentPanel: React.FC = ({
                     title='アクセサリ3'
                     backgroundImage={background_accessory}
                     items={accessories}
-                //synergyDependentItems={[equippedAccessory1, equippedAccessory2, equippedAccessory4]}
                 />
             </div>
             <div style={{ gridColumn: 3, gridRow: 4 }}>
@@ -75,7 +72,6 @@ export const EquipmentPanel: React.FC = ({
                     title='アクセサリ4'
                     backgroundImage={background_accessory}
                     items={accessories}
-                //synergyDependentItems={[equippedAccessory1, equippedAccessory2, equippedAccessory3]}
                 />
             </div>
             <div style={{ gridColumn: 1, gridRow: 5 }}>
@@ -91,28 +87,24 @@ export const EquipmentPanel: React.FC = ({
                 <EquipmentIconButton equipmentType='glasses' title='メガネ'
                     backgroundImage={background_glasses}
                     items={glasses}
-                //synergyDependentItems={[equippedHat, equippedEarrings, equippedCostume]}
                 />
             </div>
             <div style={{ gridColumn: 5, gridRow: 1 }}>
                 <EquipmentIconButton equipmentType='hat' title='帽子'
                     backgroundImage={background_hat}
                     items={hats}
-                //synergyDependentItems={[equippedGlasses, equippedEarrings, equippedCostume]}
                 />
             </div>
             <div style={{ gridColumn: 6, gridRow: 1 }}>
                 <EquipmentIconButton equipmentType='earrings' title='耳飾り'
                     backgroundImage={background_earrings}
                     items={earrings}
-                //synergyDependentItems={[equippedGlasses, equippedHat, equippedCostume]}
                 />
             </div>
             <div style={{ gridColumn: 5, gridRow: 2 }}>
                 <EquipmentIconButton equipmentType='costume' title='コスチューム'
                     backgroundImage={background_costume}
                     items={costumes}
-                //synergyDependentItems={[equippedGlasses, equippedHat, equippedEarrings]}
                 />
             </div>
             <div style={{ gridColumn: 5, gridRow: 4 }}>
