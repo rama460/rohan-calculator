@@ -18,6 +18,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
     const [raceid, setRaceid] = useQueryObject("raceid", 0);
     const [jobid, setJobid] = useQueryObject("jobid", 0);
     const [transcended, setTranscended] = React.useState(false);
+    const [title, setTitle] = useQueryObject("title", "none");
 
     const basesDispatch = useBasesDispatch();
     const statusesDispatch = useStatusesDispatch();
@@ -49,7 +50,9 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
     useEffect(() => {
         basesDispatch({ type: "SET_HERO_LEVEL", heroLevel: heroLevel });
     }, [heroLevel])
-    const [title, setTitle] = useQueryObject("title", "none");
+    useEffect(() => {
+        basesDispatch({ type: "SET_TITLE", title: title });
+    }, [title])
     return (
         <React.Fragment>
             <Grid container columnSpacing={2}>
@@ -134,7 +137,6 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                                 value={title}
                                 onChange={(event) => {
                                     setTitle(event.target.value as string)
-                                    basesDispatch({ type: "SET_TITLE", title: event.target.value as string });
                                 }}
                             >
                                 <MenuItem value="none">なし</MenuItem>
