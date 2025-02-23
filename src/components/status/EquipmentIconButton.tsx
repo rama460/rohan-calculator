@@ -29,7 +29,6 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
     const [openDialog, setOpenDialog] = React.useState(false);
     const [synergyCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);
-    console.log(equipmentType)
     const handleConfirm = () => {
         setOpenDialog(false);
         if (!selectedItem) {

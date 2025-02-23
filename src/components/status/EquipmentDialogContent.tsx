@@ -31,8 +31,6 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = mem
 
     const availableItemTemplates = itemTemplates.filter((template) => template.availableRaces?.some(
         (r) => r === races[bases.raceid].name) ?? true)
-    console.log(availableItemTemplates)
-    console.log(currentItem)
     const [name, setName] = React.useState(
         currentItem ? currentItem.name : (
             availableItemTemplates.length > 0 ?

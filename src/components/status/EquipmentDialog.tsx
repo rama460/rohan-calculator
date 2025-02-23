@@ -14,6 +14,7 @@ interface EquipmentDialogProps {
 }
 
 export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ isOpen, onConfirm, onRemove, onCancel, title, equippedItem, children }) => {
+    console.log(title)
     return (
         <React.Fragment>
             <Dialog
