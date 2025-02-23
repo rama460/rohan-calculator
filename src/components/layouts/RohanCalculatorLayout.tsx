@@ -16,7 +16,7 @@ export const RohanCalculatorLayout: React.FC = () => {
             <RohanCaluculatorDrawer open={open} toggleDrawer={toggleDrawer} />
             <BrowserRouter>
                 <Routes>
-                    <Route path="" Component={Status} />
+                    <Route path={__APP_CONFIG__.basename} Component={Status} />
                 </Routes>
             </BrowserRouter>
         </React.Fragment >
