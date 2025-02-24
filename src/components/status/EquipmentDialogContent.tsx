@@ -69,6 +69,17 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
         setName(event.target.value as string);
         const selectedItemTemplate: ItemTemplate = availableItemTemplates.find((itemTemplate) => itemTemplate.name === event.target.value) || itemTemplates[0];
         setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, enchantLevel)));
+        if (!selectedItemTemplate.sockets)
+            setCraftedOptions([]);
+        else if (craftedOptions.length > selectedItemTemplate.sockets) {
+            setCraftedOptions(craftedOptions.slice(0, selectedItemTemplate.sockets));
+        } else {
+            setCraftedOptions([
+                ...craftedOptions,
+                ...Array.from(
+                    { length: selectedItemTemplate.sockets - craftedOptions.length }, (_) => ({ name: "none" as BuiltinOptionKeyType, value: 0 })
+                )]);
+        }
         setSelectedItemTemplate(selectedItemTemplate);
     };
 
