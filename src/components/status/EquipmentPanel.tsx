@@ -17,8 +17,7 @@ import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earring
 
 
 
-export const EquipmentPanel: React.FC = ({
-}) => {
+export const EquipmentPanel: React.FC = () => {
     const style: React.CSSProperties = {
         display: "grid",
         gridTemplateColumns: "repeat(9, 34px)",

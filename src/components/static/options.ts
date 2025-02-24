@@ -1,3 +1,5 @@
+import { Equipments } from "../../modules/context/useEquipmentsContext";
+
 export type Option = {
     name: string;
     displayColor: string;
@@ -6,11 +8,29 @@ export type Option = {
     operationType: OptionOperationType;
 };
 
+export const getDisplayOptionName = (Option: Option) => {
+    let name = Option.displayName;
+    if (Option.unit === "percent") {
+        name += "%";
+    }
+    if (Option.operationType !== "absolute") {
+        name = `+${name}`
+    }
+    return name;
+}
 
 export type OptionUnit = "percent" | "number" | "static";
 export type OptionOperationType = "absolute" | "plus" | "multiply";
 
+
 export const BuiltinOptions = {
+    'none': {
+        name: 'none',
+        displayColor: 'white',
+        displayName: 'なし',
+        unit: 'number',
+        operationType: 'absolute',
+    },
     'meleeAttack': {
         name: 'meleeAttack',
         displayColor: 'white',
@@ -126,14 +146,14 @@ export const BuiltinOptions = {
     'plusHitPointMultiplyStrength': {
         name: 'plusHitPointMultiplyStrength',
         displayColor: 'green',
-        displayName: 'HP',
+        displayName: '力依存HP増加',
         unit: 'number',
         operationType: 'plus'
     },
     'plusHitPointMultiplyAgility': {
         name: 'plusHitPointMultiplyAgility',
         displayColor: 'green',
-        displayName: 'HP',
+        displayName: '敏捷性依存HP増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -397,6 +417,13 @@ export const BuiltinOptions = {
         operationType: 'multiply'
     },
     // not affecting to displayed status
+    'plusDamageReflection': {
+        name: 'plusDamageReflection',
+        displayColor: 'green',
+        displayName: 'ダメージ反射',
+        unit: 'number',
+        operationType: 'plus'
+    },
     'multiplyDamageReflectionRate': {
         name: 'multiplyDamageReflectionRate',
         displayColor: 'green',
@@ -498,14 +525,14 @@ export const BuiltinOptions = {
     'multiplyDecreaseCriticalDamageTakenMultiplyVitality': {
         name: 'multiplyDecreaseCriticalDamageTakenMultiplyVitality',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ減少率',
+        displayName: '体力依存クリティカルダメージ減少率増加',
         unit: 'percent',
         operationType: 'multiply'
     },
     'multiplyDecreaseCriticalDamageTakenMultiplyIntelligence': {
         name: 'multiplyDecreaseCriticalDamageTakenMultiplyIntelligence',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ減少率',
+        displayName: '知能依存クリティカルダメージ減少率増加',
         unit: 'percent',
         operationType: 'multiply'
     },
@@ -520,42 +547,42 @@ export const BuiltinOptions = {
     'plusCriticalDamageMultiplyAgility': {
         name: 'plusCriticalDamageMultiplyAgility',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ',
+        displayName: '敏捷依存クリティカルダメージ増加',
         unit: 'percent',
         operationType: 'multiply'
     },
     'plusCriticalDamageMultiplyDexterity': {
         name: 'plusCriticalDamageMultiplyDexterity',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ',
+        displayName: '瞬発力依存クリティカルダメージ増加',
         unit: 'percent',
         operationType: 'multiply'
     },
     'plusCriticalDamageMultiplyVitality': {
         name: 'plusCriticalDamageMultiplyVitality',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ',
+        displayName: '体力依存クリティカルダメージ増加',
         unit: 'percent',
         operationType: 'multiply'
     },
     'plusCriticalDamageMultiplyIntelligence': {
         name: 'plusCriticalDamageMultiplyIntelligence',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ',
+        displayName: '知能依存クリティカルダメージ増加',
         unit: 'percent',
         operationType: 'multiply'
     },
     'plusCriticalDamageMultiplyMentality': {
         name: 'plusCriticalDamageMultiplyMentality',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ',
+        displayName: '精神力依存クリティカルダメージ増加',
         unit: 'percent',
         operationType: 'multiply'
     },
     'plusCriticalDamageMultiplyStrength': {
         name: 'plusCriticalDamageMultiplyStrength',
         displayColor: 'green',
-        displayName: 'クリティカルダメージ',
+        displayName: '力依存クリティカルダメージ増加',
         unit: 'percent',
         operationType: 'multiply'
     },
@@ -586,7 +613,7 @@ export const BuiltinOptions = {
     'plusMeleeAttackMultiplyStrength': {
         name: 'plusMeleeAttackMultiplyStrength',
         displayColor: 'green',
-        displayName: '近接攻撃力',
+        displayName: '力依存近接攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -594,7 +621,7 @@ export const BuiltinOptions = {
     'plusMeleeAttackMultiplyVitality': {
         name: 'plusMeleeAttackMultiplyVitality',
         displayColor: 'green',
-        displayName: '近接攻撃力',
+        displayName: '体力依存近接攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -602,14 +629,14 @@ export const BuiltinOptions = {
     'plusMagicAttackMultiplyMentality': {
         name: 'plusMagicAttackMultiplyMentality',
         displayColor: 'green',
-        displayName: '魔法攻撃力',
+        displayName: '精神力依存魔法攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },
     'plusMagicAttackMultiplyIntelligence': {
         name: 'plusMagicAttackMultiplyIntelligence',
         displayColor: 'green',
-        displayName: '魔法攻撃力',
+        displayName: '知能依存魔法攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -617,7 +644,7 @@ export const BuiltinOptions = {
     'plusMeleeAttackMultiplyIntelligence': {
         name: 'plusMeleeAttackMultiplyIntelligence',
         displayColor: 'green',
-        displayName: '近接攻撃力',
+        displayName: '知能依存近接攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -625,7 +652,7 @@ export const BuiltinOptions = {
     'plusRangeAttackMultiplyAgility': {
         name: 'plusRangeAttackMultiplyAgility',
         displayColor: 'green',
-        displayName: '遠距離攻撃力',
+        displayName: '敏捷性依存遠距離攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -633,7 +660,7 @@ export const BuiltinOptions = {
     'plusMeleeAttackMultiplyDexterity': {
         name: 'plusMeleeAttackMultiplyDexterity',
         displayColor: 'green',
-        displayName: '近接攻撃力',
+        displayName: '瞬発力依存近接攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -641,7 +668,7 @@ export const BuiltinOptions = {
     'plusDefenseMultiplyIntelligence': {
         name: 'plusDefenseMultiplyIntelligence',
         displayColor: 'green',
-        displayName: '防御力',
+        displayName: '知能依存防御力増加',
         unit: 'number',
         operationType: 'plus'
     },
@@ -691,7 +718,62 @@ export const BuiltinOptions = {
 
 
 } as const;
-
-
+export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {
+    if (type == "weapon") {
+        return CraftedWeaponOptions;
+    }
+    if (type == "gauntlet" || type == "helmet" || type == "tunic" || type == "leggings" || type == "boots") {
+        return CraftedArmorOptions;
+    }
+    if (type == "shield") {
+        return { ...CraftedShieldOptions, ...CraftedGarterOptions };
+    }
+    return {};
+}
+export type CraftedOptions = {
+    [key in BuiltinOptionKeyType]?: number;
+}
+export const CraftedWeaponOptions: CraftedOptions = {
+    "multiplyAttackSpeed": 38,
+    "multiplyCriticalRate": 18,
+    "multiplyMovementSpeed": 38,
+    "multiplyCriticalDamage": 15,
+    "plusDodging": 90,
+    "plusAccuracy": 90,
+    "plusStrength": 100,
+    "plusVitality": 100,
+    "plusIntelligence": 100,
+    "plusAgility": 100,
+    "plusMentality": 100,
+    "plusDexterity": 100,
+    "multiplyHitPointAbsorbDamageRate": 21,
+    "multiplyMagicPointAbsorbDamageRate": 21
+}
+export const CraftedArmorOptions: CraftedOptions = {
+    "plusStrength": 80,
+    "plusVitality": 80,
+    "plusIntelligence": 80,
+    "plusAgility": 80,
+    "plusMentality": 80,
+    "plusDexterity": 80,
+    "plusDamageReflection": 600,
+    "multiplyStunResistRate": 12,
+    "plusPhysicalDefense": 350,
+    "plusMagicalDefense": 350
+}
+export const CraftedGarterOptions: CraftedOptions = {
+    "multiplyHitPoint": 20,
+    "multiplyMeleeAttack": 20,
+    "multiplyRangeAttack": 20,
+    "multiplyMagicAttack": 20,
+    "multiplyHitPointAbsorbDamageRate": 10,
+    "multiplyCriticalRate": 10
+}
+export const CraftedShieldOptions: CraftedOptions = {
+    "multiplyHitPoint": 20,
+    "multiplyMagicPointAbsorbDamageRate": 10,
+    "multiplyStunResistRate": 30,
+    "multiplyDecreaseDamageTaken": 20
+}
 export const BuiltinOptionKeys = Object.keys(BuiltinOptions) as Array<keyof typeof BuiltinOptions>;
 export type BuiltinOptionKeyType = (typeof BuiltinOptionKeys)[number];

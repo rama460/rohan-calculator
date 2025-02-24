@@ -29,6 +29,7 @@ export const Context: React.FC<ContextProps> = ({ children }) => {
         const options = reduceOptions([
             ...Object.values(equipments).map((item) => item?.baseOptions ?? {}),
             ...Object.values(equipments).map((item) => item?.additionalOptions ?? {}),
+            ...Object.values(equipments).map((item) => item?.craftedOptions ?? {}),
             titles.find((title) => title.name === bases.title)?.options ?? {}
         ]);
         const weapon: WeaponTemplate | null = equipments.weapon as WeaponTemplate | null;

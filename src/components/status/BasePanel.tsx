@@ -30,6 +30,9 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
     }
     const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLevel(Number(event.target.value));
+        if (Number(event.target.value) < 115) {
+            setHeroLevel(0);
+        }
         if (Number(event.target.value) < 50) {
             setJobid(0);
         }

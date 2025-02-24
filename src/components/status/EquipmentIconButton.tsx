@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import IconButton from "../common/IconButton"
 import Tooltip from "../common/Tooltip"
 import EquipmentTooltipContent from "./EquipmentTooltipContent"
@@ -20,12 +20,13 @@ interface EquipmentIconButtonProps {
 }
 
 export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items }) => {
-
+    // TODO: consider to reload the race dependent base options
+    // when the race id is changed.
     const equipmentDispatch = useEquipmentsDispatch();
     const equipments = useEquipments();
     const synergyDispatch = useSynergyDispatch();
-    const [selectedItem, setSelectedItem] = React.useState<Item | null>(null);
     const [equippedItem, setEquippedItem] = useQueryItemObject(equipmentType, null, items);
+    const [selectedItem, setSelectedItem] = React.useState<Item | null>(equippedItem ?? null);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [synergyCount, setSynergisticCount] = React.useState(0);
     const handleOpen = () => setOpenDialog(true);
@@ -63,20 +64,18 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
             setSynergisticCount(0);
         }
     }, [equipments])
-    return useMemo(() => {
-        return (
-            <>
-                <Tooltip content={
-                    equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergyCount={synergyCount} title={title} /> : <DefaultEquipmentTooltipContent content={title} />} >
-                    <IconButton backgroundImage={backgroundImage} image={equippedItem?.icon} onClick={handleOpen} />
-                </Tooltip>
-                <EquipmentDialog isOpen={openDialog} onConfirm={handleConfirm} onRemove={handleRemove} onCancel={handleCancel} title={title} equippedItem={equippedItem} >
-                    <EquipmentDialogContent itemTemplates={items} currentItem={selectedItem} setCurrentItem={setSelectedItem} />
-                </EquipmentDialog>
+    return (
+        <>
+            <Tooltip content={
+                equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergyCount={synergyCount} title={title} /> : <DefaultEquipmentTooltipContent content={title} />} >
+                <IconButton backgroundImage={backgroundImage} image={equippedItem?.icon} onClick={handleOpen} />
+            </Tooltip>
+            <EquipmentDialog isOpen={openDialog} onConfirm={handleConfirm} onRemove={handleRemove} onCancel={handleCancel} title={title} equippedItem={equippedItem} >
+                <EquipmentDialogContent equipmentType={equipmentType} itemTemplates={items} currentItem={selectedItem} setCurrentItem={setSelectedItem} />
+            </EquipmentDialog>
 
-            </>
-        )
-    }, [equippedItem, selectedItem, openDialog, title, backgroundImage, items, synergyCount]);
+        </>
+    )
 }
 
 export default EquipmentIconButton;

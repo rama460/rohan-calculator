@@ -1,4 +1,4 @@
-import React, { memo, useRef } from "react";
+import React, { useRef } from "react";
 
 // ツールチップ内に表示するためのprops
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
     children: React.ReactNode;
 };
 
-export const Tooltip: React.FC<Props> = memo((props) => {
+export const Tooltip: React.FC<Props> = (props) => {
     const ref = useRef<HTMLDivElement>(null);
     const handleMouseEnter = () => {
         if (!ref.current) return;
@@ -39,7 +39,7 @@ export const Tooltip: React.FC<Props> = memo((props) => {
             </div>
         </div>
     );
-});
+};
 
 Tooltip.displayName = "Tooltip";
 

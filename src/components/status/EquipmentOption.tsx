@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { BuiltinOptionKeys, BuiltinOptionKeyType, BuiltinOptions } from "../static/options";
+import { BuiltinOptionKeys, BuiltinOptionKeyType, BuiltinOptions, getDisplayOptionName } from "../static/options";
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from "react";
 
@@ -30,12 +30,12 @@ export const EquipmentOption: React.FC<EquipmentOptionProps> = ({ name, value, i
         <Box display="flex" justifyContent="space-between" alignItems="center" gap={2} sx={equipmentOptionStyle}>
             <FormControl size="small">
                 <Select
-                    defaultValue={name}
+                    defaultValue="none"
                     value={name}
                     onChange={handleOptionChange}
                 >
-                    {BuiltinOptionKeys.filter((n) => !(options.some((option) => option.name === n)) || n == name).map((name) => (
-                        <MenuItem value={name}>{BuiltinOptions[name].displayName}</MenuItem>
+                    {BuiltinOptionKeys.filter((n) => !(options.some((option) => option.name === n)) || n == name || n == "none").map((name) => (
+                        <MenuItem value={name}>{getDisplayOptionName(BuiltinOptions[name])}</MenuItem>
                     ))}
                 </Select>
             </FormControl>

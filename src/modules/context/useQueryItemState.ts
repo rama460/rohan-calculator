@@ -4,6 +4,8 @@ import { BuiltinOptionKeyType } from "../../components/static/options";
 import { useSearchParams } from "react-router-dom";
 import LZString from "lz-string";
 import { debounce } from "@mui/material";
+import { races } from "../../components/static/races";
+import { useBasesContext } from "./useBasesContext";
 
 export type QueryItemState = {
     name: string;
@@ -11,6 +13,9 @@ export type QueryItemState = {
         [key in BuiltinOptionKeyType]?: number;
     }
     additionalOptions?: {
+        [key in BuiltinOptionKeyType]?: number;
+    }
+    craftedOptions?: {
         [key in BuiltinOptionKeyType]?: number;
     }
     enchantLevel?: number;
@@ -57,9 +62,13 @@ const queryFromItem = (item: Item | null) => {
     if (Object.keys(item.additionalOptions).length > 0) {
         query.additionalOptions = item.additionalOptions;
     }
+    if (Object.keys(item.craftedOptions).length > 0) {
+        query.craftedOptions = item.craftedOptions;
+    }
     if (item.enchantLevel > 0) {
         query.enchantLevel = item.enchantLevel;
     }
+
     return query;
 }
 
@@ -70,10 +79,18 @@ const queryToItem = (query: QueryItemState, items: ItemTemplate[]) => {
     if (!itemTemplate) {
         throw new Error(`Item not found: ${query.name}`);
     }
+    const bases = useBasesContext();
+    const baseOptions = {
+        ...itemTemplate.fixedBaseOptions ?? {},
+        ...itemTemplate.enchantableBaseOptions?.[query.enchantLevel ?? 0] ?? {},
+        ...itemTemplate.raceBaseOptions?.[races[bases.raceid].name] ?? {},
+        ...itemTemplate.raceEnchantableBaseOptions?.[races[bases.raceid].name]?.[query.enchantLevel ?? 0] ?? {},
+    }
     const item: Item = {
         name: query.name,
-        baseOptions: itemTemplate.fixedBaseOptions ?? itemTemplate.enchantableBaseOptions?.[query.enchantLevel ?? 0] ?? {},
+        baseOptions: baseOptions,
         additionalOptions: query.additionalOptions ?? {},
+        craftedOptions: query.craftedOptions ?? {},
         enchantLevel: query.enchantLevel ?? 0,
         icon: itemTemplate.icon,
         availableRaces: itemTemplate.availableRaces,
@@ -91,7 +108,6 @@ const queryToItem = (query: QueryItemState, items: ItemTemplate[]) => {
 function useQueryItemObject(key: keyof typeof QueryKeyAbbrev, defaultValue: Item | null, items: ItemTemplate[]) {
     const [searchParams, setSearchParams] = useSearchParams();
     const savedValue = searchParams.get(QueryKeyAbbrev[key]);
-
     // 圧縮データを解凍
     const initialValue = savedValue
         ? queryToItem(JSON.parse(LZString.decompressFromEncodedURIComponent(savedValue)), items) : defaultValue;
