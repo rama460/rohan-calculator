@@ -1675,7 +1675,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "variant"
     },
     {
-        name: "カルガンチュアアイ",
+        name: "ガルガンチュアアイ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
             'plusDefense': 7500,
@@ -1723,7 +1723,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "variant"
     },
     {
-        name: "カルガンチュアサークレット",
+        name: "ガルガンチュアサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
             'plusDefense': 7500,
@@ -1771,7 +1771,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "variant"
     },
     {
-        name: "カルガンチュアイヤリング",
+        name: "ガルガンチュアイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
             'plusDefense': 7500,
