@@ -8,17 +8,17 @@ import { races } from "../../components/static/races";
 import { useBasesContext } from "./useBasesContext";
 
 export type QueryItemState = {
-    name: string;
-    baseOptions?: {
+    n: string;
+    b?: {
         [key in BuiltinOptionKeyType]?: number;
     }
-    additionalOptions?: {
+    a?: {
         [key in BuiltinOptionKeyType]?: number;
     }
-    craftedOptions?: {
+    c?: {
         [key in BuiltinOptionKeyType]?: number;
     }
-    enchantLevel?: number;
+    e?: number;
 }
 
 const QueryKeyAbbrev = {
@@ -57,16 +57,16 @@ const queryFromItem = (item: Item | null) => {
         return null;
     }
     const query: QueryItemState = {
-        name: item.name,
+        n: item.name,
     }
     if (Object.keys(item.additionalOptions).length > 0) {
-        query.additionalOptions = item.additionalOptions;
+        query.a = item.additionalOptions;
     }
     if (Object.keys(item.craftedOptions).length > 0) {
-        query.craftedOptions = item.craftedOptions;
+        query.c = item.craftedOptions;
     }
     if (item.enchantLevel > 0) {
-        query.enchantLevel = item.enchantLevel;
+        query.e = item.enchantLevel;
     }
 
     return query;
@@ -75,23 +75,23 @@ const queryFromItem = (item: Item | null) => {
 const queryToItem = (query: QueryItemState, items: ItemTemplate[]) => {
     if (!query)
         return null;
-    const itemTemplate = items.find((item) => item.name === query.name);
+    const itemTemplate = items.find((item) => item.name === query.n);
     if (!itemTemplate) {
-        throw new Error(`Item not found: ${query.name}`);
+        throw new Error(`Item not found: ${query.n}`);
     }
     const bases = useBasesContext();
     const baseOptions = {
         ...itemTemplate.fixedBaseOptions ?? {},
-        ...itemTemplate.enchantableBaseOptions?.[query.enchantLevel ?? 0] ?? {},
+        ...itemTemplate.enchantableBaseOptions?.[query.e ?? 0] ?? {},
         ...itemTemplate.raceBaseOptions?.[races[bases.raceid].name] ?? {},
-        ...itemTemplate.raceEnchantableBaseOptions?.[races[bases.raceid].name]?.[query.enchantLevel ?? 0] ?? {},
+        ...itemTemplate.raceEnchantableBaseOptions?.[races[bases.raceid].name]?.[query.e ?? 0] ?? {},
     }
     const item: Item = {
-        name: query.name,
+        name: query.n,
         baseOptions: baseOptions,
-        additionalOptions: query.additionalOptions ?? {},
-        craftedOptions: query.craftedOptions ?? {},
-        enchantLevel: query.enchantLevel ?? 0,
+        additionalOptions: query.a ?? {},
+        craftedOptions: query.c ?? {},
+        enchantLevel: query.e ?? 0,
         icon: itemTemplate.icon,
         availableRaces: itemTemplate.availableRaces,
         synergyKey: itemTemplate.synergyKey,
