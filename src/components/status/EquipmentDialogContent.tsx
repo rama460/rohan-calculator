@@ -81,7 +81,6 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
             ...selectedItemTemplate
         })
     }, [baseOptions, additionalOptions, craftedOptions])
-    console.log(selectedItemTemplate)
     return (
         <React.Fragment>
             <FormControl size="small" sx={{ margin: "10px" }}>
