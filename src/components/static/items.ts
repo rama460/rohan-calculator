@@ -145,7 +145,7 @@ export const getInitialBaseOtions = (itemTemplate: ItemTemplate, raceid: number,
     return baseOptions
 }
 
-export type SynergyKey = "roha" | "variant" | "chaos" | "megas" | "abyss" | "void" | "hesperos" | "karlas" | "diegas" | "kasim" | "onyxArmor" | "ignielArmor";
+export type SynergyKey = "roha" | "variant" | "gargantua" | "catastrophe" | "chaos" | "megas" | "hesperos" | "karlas" | "diegas" | "kasim" | "onyxArmor" | "ignielArmor";
 export type WeaponType = "sword" | "dagger" | "blunt" | "axe" | "katar" | "zen" | "dualsword" | "polearm" | "bow" | "crossbow" | "wand" | "staff"
 export const BuiltinWeaponTypes = {
     "sword": {
@@ -1618,6 +1618,37 @@ const variantSynergisticOptions = {
         'multiplySkillAttack': 100,
     }
 }
+
+const gargantuaSynergisticOptions = {
+    2: {
+        'multiplyDamageNegationRate': 10,
+        'multiplyDecreaseCriticalDamageRate': 25,
+        "multiplySkillAttack": 75,
+        'multiplyHitPoint': 150,
+    },
+    3: {
+        'multiplyDamageReflectionRate': 40,
+        'multiplySkillDefense': 100,
+        'multiplyPVPAttack': 75,
+        'multiplyPVPDefense': 25,
+    }
+}
+
+const catastropheSynergisticOptions = {
+    2: {
+        'multiplyCriticalRate': 10,
+        'multiplyAttack': 25,
+        'multiplySkillAttack': 25,
+        'multiplyHitPoint': 150,
+    },
+    3: {
+        'multiplySkillAttack': 75,
+        'multiplySkillDefense': 75,
+        'multiplyPVPAttack': 100,
+        'multiplyPVPDefense': 25,
+    }
+}
+
 export const glasses: ItemTemplate[] = [
     {
         name: "ロハの眼帯",
@@ -1642,6 +1673,28 @@ export const glasses: ItemTemplate[] = [
         icon: glasses_variant,
         synergyOptions: variantSynergisticOptions,
         synergyKey: "variant"
+    },
+    {
+        name: "カルガンチュアアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: gargantuaSynergisticOptions,
+        synergyKey: "gargantua"
+    },
+    {
+        name: "カタストロフアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: catastropheSynergisticOptions,
+        synergyKey: "catastrophe"
     }
 ]
 export const hats: ItemTemplate[] = [
@@ -1668,9 +1721,29 @@ export const hats: ItemTemplate[] = [
         icon: hat_variant,
         synergyOptions: variantSynergisticOptions,
         synergyKey: "variant"
+    },
+    {
+        name: "カルガンチュアサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: gargantuaSynergisticOptions,
+        synergyKey: "gargantua"
+    },
+    {
+        name: "カタストロフサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: catastropheSynergisticOptions,
+        synergyKey: "catastrophe"
     }
-
-
 ]
 export const earrings: ItemTemplate[] = [
     {
@@ -1696,6 +1769,28 @@ export const earrings: ItemTemplate[] = [
         icon: earrings_variant,
         synergyOptions: variantSynergisticOptions,
         synergyKey: "variant"
+    },
+    {
+        name: "カルガンチュアイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: gargantuaSynergisticOptions,
+        synergyKey: "gargantua"
+    },
+    {
+        name: "カタストロフイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: catastropheSynergisticOptions,
+        synergyKey: "catastrophe"
     }
 
 
