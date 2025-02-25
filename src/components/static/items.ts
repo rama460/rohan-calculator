@@ -1,5 +1,29 @@
 import unknown from "../../assets/unknown.png";
 
+import bow_grand_kaiser_onixy from "../../assets/items/bow_grand_kaiser_onixy.png";
+import dagger_zeta_obsidian from "../../assets/items/dagger_zeta_obsidian.png";
+
+import helmet_grand_kaiser_onixy from "../../assets/items/helmet_grand_kaiser_onixy.png";
+import helmet_igniel from "../../assets/items/helmet_igniel.png";
+
+import gauntlet_grand_kaiser_onixy from "../../assets/items/gauntlet_grand_kaiser_onixy.png";
+import gauntlet_igniel from "../../assets/items/gauntlet_igniel.png";
+
+import tunic_grand_kaiser_onixy from "../../assets/items/tunic_grand_kaiser_onixy.png";
+import tunic_igniel from "../../assets/items/tunic_igniel.png";
+
+import leggings_grand_kaiser_onixy from "../../assets/items/leggings_grand_kaiser_onixy.png";
+import leggings_igniel from "../../assets/items/leggings_igniel.png";
+
+import boots_grand_kaiser_onixy from "../../assets/items/boots_grand_kaiser_onixy.png";
+import boots_igniel from "../../assets/items/boots_igniel.png";
+
+import shield_zeta_obsidian from "../../assets/items/shield_zeta_obsidian.png";
+import guarder_zeno_opaniel from "../../assets/items/guarder_zeno_opaniel.png";
+
+import arrow_tourmaline from "../../assets/items/arrow_tourmaline.png";
+import arrow_tourmaline_bolt from "../../assets/items/arrow_tourmaline_bolt.png";
+
 import accessory_chaos_ring from "../../assets/items/accessory_chaos_ring.png";
 import accessory_chaos_brooch from "../../assets/items/accessory_chaos_brooch.png";
 import accessory_chaos_bracelet from "../../assets/items/accessory_chaos_bracelet.png";
@@ -18,7 +42,26 @@ import talisman_g_1 from "../../assets/items/talisman_g_1.png";
 import talisman_h_1 from "../../assets/items/talisman_h_1.png";
 import talisman_i_1 from "../../assets/items/talisman_i_1.png";
 import talisman_j_1 from "../../assets/items/talisman_j_1.png";
+import talisman_n_1 from "../../assets/items/talisman_n_1.png";
 
+import talisman_q_8th_private from "../../assets/items/talisman_q_8th_private.png";
+import talisman_q_7th_private from "../../assets/items/talisman_q_7th_private.png";
+import talisman_q_6th_private from "../../assets/items/talisman_q_6th_private.png";
+import talisman_q_5th_private from "../../assets/items/talisman_q_5th_private.png";
+import talisman_q_4th_private from "../../assets/items/talisman_q_4th_private.png";
+import talisman_q_3rd_private from "../../assets/items/talisman_q_3rd_private.png";
+import talisman_q_2nd_private from "../../assets/items/talisman_q_2nd_private.png";
+import talisman_q_1st_private from "../../assets/items/talisman_q_1st_private.png";
+import talisman_q_1star_officer from "../../assets/items/talisman_q_1star_officer.png";
+import talisman_q_2star_officer from "../../assets/items/talisman_q_2star_officer.png";
+import talisman_q_3star_officer from "../../assets/items/talisman_q_3star_officer.png";
+import talisman_q_4star_officer from "../../assets/items/talisman_q_4star_officer.png";
+import talisman_q_5star_officer from "../../assets/items/talisman_q_5star_officer.png";
+import talisman_q_commander from "../../assets/items/talisman_q_commander.png";
+import talisman_q_supreme_commander from "../../assets/items/talisman_q_supreme_commander.png";
+
+import talisman_r_victorious from "../../assets/items/talisman_r_victorious.png";
+import talisman_s_1 from "../../assets/items/talisman_s_1.png";
 import { BuiltinOptionKeyType } from "./options";
 import { RaceName, races } from "./races";
 
@@ -228,7 +271,7 @@ export type WeaponTemplate = {
 export const weapons: WeaponTemplate[] = [
     {
         name: "グランドカイザーオニキスボウ",
-        icon: unknown,
+        icon: bow_grand_kaiser_onixy,
         type: "bow",
         availableRaces: ["HalfElf"],
         enchantableBaseOptions: [
@@ -255,15 +298,80 @@ export const weapons: WeaponTemplate[] = [
             },
         ],
         sockets: 4
+    },
+    {
+        name: "ゼータオブシディアンダガー",
+        icon: dagger_zeta_obsidian,
+        type: "dagger",
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        enchantableBaseOptions: {
+            0: {
+                "meleeAttack": 1428,
+                "plusAttack": 150,
+            },
+            1: {
+                "meleeAttack": 1569,
+                "rangeAttack": 141,
+                "magicAttack": 141,
+                "plusAttack": 291,
+            },
+            2: {
+                "meleeAttack": 1583,
+                "rangeAttack": 155,
+                "magicAttack": 155,
+                "plusAttack": 305,
+            },
+            3: {
+                "meleeAttack": 1599,
+                "rangeAttack": 171,
+                "magicAttack": 171,
+                "plusAttack": 321,
+            },
+            4: {
+                "meleeAttack": 1616,
+                "rangeAttack": 188,
+                "magicAttack": 188,
+                "plusAttack": 338,
+            },
+            5: {
+                "meleeAttack": 1635,
+                "rangeAttack": 207,
+                "magicAttack": 207,
+                "plusAttack": 357,
+            },
+            6: {
+                "meleeAttack": 1656,
+                "rangeAttack": 228,
+                "magicAttack": 228,
+                "plusAttack": 378,
+            },
+            7: {
+                "meleeAttack": 1679,
+                "rangeAttack": 251,
+                "magicAttack": 251,
+                "plusAttack": 401,
+            },
+            8: {
+                "meleeAttack": 1703,
+                "rangeAttack": 275,
+                "magicAttack": 275,
+                "plusAttack": 425,
+            },
+            9: {
+                "meleeAttack": 1731,
+                "rangeAttack": 303,
+                "magicAttack": 303,
+                "plusAttack": 453,
+            },
+        },
     }
 
 ]
 
-// FIXME: base defence (physicalDefence/MagicalDefence) is defferent between the each races
 export const shields: ItemTemplate[] = [
     {
         name: "ゼノオパニエルガーダー",
-        icon: unknown,
+        icon: guarder_zeno_opaniel,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 337,
@@ -312,7 +420,7 @@ export const shields: ItemTemplate[] = [
     },
     {
         name: "ゼータオブシディアンシールド",
-        icon: unknown,
+        icon: shield_zeta_obsidian,
         raceEnchantableBaseOptions: {
             "Human": {
                 18: {
@@ -334,14 +442,14 @@ export const shields: ItemTemplate[] = [
 export const arrows: ItemTemplate[] = [
     {
         name: "トルマリンの矢",
-        icon: unknown,
+        icon: arrow_tourmaline,
         fixedBaseOptions: {
             'arrowAttack': 180
         },
     },
     {
         name: "トルマリンのボルト",
-        icon: unknown,
+        icon: arrow_tourmaline_bolt,
         fixedBaseOptions: {
             'arrowAttack': 300
         },
@@ -372,7 +480,7 @@ const ignielArmorSynergisticOptions = {
 export const helmets: ItemTemplate[] = [
     {
         name: "グランドカイザーオニキスヘルメット(敏)",
-        icon: unknown,
+        icon: helmet_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
         raceBaseOptions: {
             "Human": {
@@ -416,7 +524,7 @@ export const helmets: ItemTemplate[] = [
     },
     {
         name: "イグニエルのヘルメット(防)",
-        icon: unknown,
+        icon: helmet_igniel,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 257,
@@ -612,7 +720,7 @@ export const helmets: ItemTemplate[] = [
 export const gauntlets: ItemTemplate[] = [
     {
         name: "グランドカイザーオニキスガントレット(敏)",
-        icon: unknown,
+        icon: gauntlet_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
         raceBaseOptions: {
             "Human": {
@@ -656,7 +764,7 @@ export const gauntlets: ItemTemplate[] = [
     },
     {
         name: "イグニエルのガントレット(防)",
-        icon: unknown,
+        icon: gauntlet_igniel,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 197,
@@ -853,7 +961,7 @@ export const gauntlets: ItemTemplate[] = [
 export const tunics: ItemTemplate[] = [
     {
         name: "グランドカイザーオニキスチュニック(敏)",
-        icon: unknown,
+        icon: tunic_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
         raceBaseOptions: {
             "Human": {
@@ -897,7 +1005,7 @@ export const tunics: ItemTemplate[] = [
     },
     {
         name: "イグニエルのチュニック(防)",
-        icon: unknown,
+        icon: tunic_igniel,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 352,
@@ -1094,7 +1202,7 @@ export const tunics: ItemTemplate[] = [
 export const leggings: ItemTemplate[] = [
     {
         name: "グランドカイザーオニキスレギンス(敏)",
-        icon: unknown,
+        icon: leggings_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
         raceBaseOptions: {
             "Human": {
@@ -1138,7 +1246,7 @@ export const leggings: ItemTemplate[] = [
     },
     {
         name: "イグニエルのレギンス(防)",
-        icon: unknown,
+        icon: leggings_igniel,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 304,
@@ -1334,7 +1442,7 @@ export const leggings: ItemTemplate[] = [
 export const boots: ItemTemplate[] = [
     {
         name: "グランドカイザーオニキスブーツ(敏)",
-        icon: unknown,
+        icon: boots_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
         raceBaseOptions: {
             "Human": {
@@ -1378,7 +1486,7 @@ export const boots: ItemTemplate[] = [
     },
     {
         name: "イグニエルのブーツ(防)",
-        icon: unknown,
+        icon: boots_igniel,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 197,
@@ -2331,7 +2439,7 @@ export const n_talismans: ItemTemplate[] = [
                 'plusAllStatus': 600,
             },
         },
-        icon: unknown,
+        icon: talisman_n_1,
     },
 ]
 export const e_talismans: ItemTemplate[] = [
@@ -2465,7 +2573,7 @@ export const r_talismans: ItemTemplate[] = [
             'plusAllStatus': 1000,
             'plusHitPoint': 300000,
         },
-        icon: unknown,
+        icon: talisman_r_victorious,
     }
 ]
 export const w_talismans: ItemTemplate[] = [
@@ -2508,7 +2616,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusHitPoint': 2500,
             'plusMagicPoint': 500,
         },
-        icon: unknown,
+        icon: talisman_q_8th_private,
     },
     {
         name: "7等兵階級章",
@@ -2517,7 +2625,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusMagicPoint': 1000,
 
         },
-        icon: unknown,
+        icon: talisman_q_7th_private,
     },
     {
         name: "6等兵階級章",
@@ -2525,7 +2633,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusHitPoint': 7500,
             'plusMagicPoint': 1500,
         },
-        icon: unknown,
+        icon: talisman_q_6th_private,
     },
     {
         name: "5等兵階級章",
@@ -2533,7 +2641,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusHitPoint': 10500,
             'plusMagicPoint': 2000,
         },
-        icon: unknown,
+        icon: talisman_q_5th_private,
     },
     {
         name: "4等兵階級章",
@@ -2541,7 +2649,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusHitPoint': 12500,
             'plusMagicPoint': 2500,
         },
-        icon: unknown,
+        icon: talisman_q_4th_private,
     },
     {
         name: "3等兵階級章",
@@ -2549,7 +2657,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusHitPoint': 15000,
             'plusMagicPoint': 3000,
         },
-        icon: unknown,
+        icon: talisman_q_3rd_private,
     },
     {
         name: "2等兵階級章",
@@ -2557,7 +2665,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusHitPoint': 17500,
             'plusMagicPoint': 3500,
         },
-        icon: unknown,
+        icon: talisman_q_2nd_private,
     },
     {
         name: "1等兵階級章",
@@ -2565,7 +2673,7 @@ export const q_talismans: ItemTemplate[] = [
             'plusHitPoint': 20000,
             'plusMagicPoint': 4000,
         },
-        icon: unknown,
+        icon: talisman_q_1st_private,
     },
     {
         name: "1将校階級章",
@@ -2575,7 +2683,7 @@ export const q_talismans: ItemTemplate[] = [
             'multiplySkillAttack': 5,
 
         },
-        icon: unknown,
+        icon: talisman_q_1star_officer,
     },
     {
         name: "2将校階級章",
@@ -2585,7 +2693,7 @@ export const q_talismans: ItemTemplate[] = [
             'multiplySkillAttack': 10,
             'multiplySkillDefense': 5,
         },
-        icon: unknown,
+        icon: talisman_q_2star_officer,
     },
     {
         name: "3将校階級章",
@@ -2595,7 +2703,7 @@ export const q_talismans: ItemTemplate[] = [
             'multiplySkillAttack': 15,
             'multiplySkillDefense': 10,
         },
-        icon: unknown,
+        icon: talisman_q_3star_officer,
     },
     {
         name: "4将校階級章",
@@ -2605,7 +2713,7 @@ export const q_talismans: ItemTemplate[] = [
             'multiplySkillAttack': 20,
             'multiplySkillDefense': 15,
         },
-        icon: unknown,
+        icon: talisman_q_4star_officer,
     },
     {
         name: "5将校階級章",
@@ -2615,7 +2723,7 @@ export const q_talismans: ItemTemplate[] = [
             'multiplySkillAttack': 25,
             'multiplySkillDefense': 20,
         },
-        icon: unknown,
+        icon: talisman_q_5star_officer,
     },
     {
         name: "軍団長階級章",
@@ -2625,7 +2733,7 @@ export const q_talismans: ItemTemplate[] = [
             'multiplySkillAttack': 35,
             'multiplySkillDefense': 30,
         },
-        icon: unknown,
+        icon: talisman_q_commander,
     },
     {
         name: "司令官階級章",
@@ -2635,7 +2743,7 @@ export const q_talismans: ItemTemplate[] = [
             'multiplySkillAttack': 50,
             'multiplySkillDefense': 40,
         },
-        icon: unknown,
+        icon: talisman_q_supreme_commander,
     },
     {
         name: "元帥階級章",
@@ -2658,7 +2766,7 @@ export const s_talismans: ItemTemplate[] = [
             'plusDefense': 10000,
             'multiplySkillAttack': 25,
         },
-        icon: unknown,
+        icon: talisman_s_1,
     }
 
 ]
