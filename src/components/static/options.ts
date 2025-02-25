@@ -714,9 +714,14 @@ export const BuiltinOptions = {
         displayName: 'MP回復量',
         unit: 'percent',
         operationType: 'multiply'
-    }
-
-
+    },
+    'multiplyWeightLimit': {
+        name: 'multiplyWeightLimit',
+        displayColor: 'green',
+        displayName: '重量制限',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
 } as const;
 export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {
     if (type == "weapon") {

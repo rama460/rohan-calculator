@@ -2772,9 +2772,102 @@ export const s_talismans: ItemTemplate[] = [
 ]
 export const pets: ItemTemplate[] = [
     {
-        name: "サンプル",
+        name: "ロイヤルドラゴン",
         icon: unknown,
-        fixedBaseOptions: {
+        enchantableBaseOptions: {
+            0: {
+                'multiplyMovementSpeed': 30,
+                'multiplyWeightLimit': 30,
+            },
+            1: {
+                'multiplyMovementSpeed': 35,
+                'multiplyWeightLimit': 40,
+            },
+            2: {
+                'multiplyMovementSpeed': 40,
+                'multiplyWeightLimit': 50,
+            },
+        },
+    },
+    {
+        name: "スィートフェアリー",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'plusAllStatus': 20,
+                'multiplyWeightLimit': 30,
+            },
+            1: {
+                'plusAllStatus': 25,
+                'multiplyWeightLimit': 40,
+            },
+            2: {
+                'plusAllStatus': 30,
+                'multiplyWeightLimit': 50,
+            },
+        },
+    },
+    {
+        name: "ホーリーライオン",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'multiplyDecreaseCriticalDamageTaken': 15,
+                'multiplyAttackSpeed': 15,
+                'multiplyHitPoint': 30,
+                'multiplyWeightLimit': 30,
+            },
+            1: {
+                'multiplyDecreaseCriticalDamageTaken': 17,
+                'multiplyAttackSpeed': 17,
+                'multiplyHitPoint': 35,
+                'multiplyWeightLimit': 40,
+            },
+            2: {
+                'multiplyDecreaseCriticalDamageTaken': 20,
+                'multiplyAttackSpeed': 20,
+                'multiplyHitPoint': 40,
+                'multiplyWeightLimit': 50,
+            },
+        },
+    },
+    {
+        name: "ホワイトユニコーン",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'multiplyPhysicalBlockRate': 15,
+                'multiplyWeightLimit': 30,
+            },
+            1: {
+                'multiplyPhysicalBlockRate': 17,
+                'multiplyWeightLimit': 40,
+            },
+            2: {
+                'multiplyPhysicalBlockRate': 20,
+                'multiplyWeightLimit': 50,
+            }
+        },
+    },
+    {
+        name: "三尾狐",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'plusAllStatus': 14,
+                'multiplyAttackSpeed': 10,
+                'multiplyWeightLimit': 30,
+            },
+            1: {
+                'plusAllStatus': 20,
+                'multiplyAttackSpeed': 15,
+                'multiplyWeightLimit': 40,
+            },
+            2: {
+                'plusAllStatus': 30,
+                'multiplyAttackSpeed': 20,
+                'multiplyWeightLimit': 50,
+            }
         },
     }
 
