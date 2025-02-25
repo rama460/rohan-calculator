@@ -3596,7 +3596,7 @@ export const skills: Skill[] = [
         name: "darkEyes",
         displayName: "ダークアイズ",
         icon: mage_dark_eyes,
-        type: "Buff",
+        type: "Group",
         raceid: 5,
         jobid: 0,
         min: 1,

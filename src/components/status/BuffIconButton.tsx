@@ -13,7 +13,7 @@ interface BuffIconButtonProps {
 export const BuffIconButton: React.FC<BuffIconButtonProps> = ({ skill }) => {
     const skillsDispatch = useAppliedSkillsDispatch();
     const [checked, setChecked] = React.useState(false);
-    const [level, setLevel] = React.useState(7);
+    const [level, setLevel] = React.useState(skill.max);
     const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLevel(Number(event.target.value));
         if (checked) {
