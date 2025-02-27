@@ -1729,8 +1729,8 @@ const variantSynergisticOptions = {
 
 const gargantuaSynergisticOptions = {
     2: {
-        'multiplyDamageNegationRate': 10,
-        'multiplyDecreaseCriticalDamageRate': 25,
+        'multiplyNegationRate': 10,
+        'multiplyDecreaseCriticalDamageTaken': 25,
         "multiplySkillAttack": 75,
         'multiplyHitPoint': 150,
     },
