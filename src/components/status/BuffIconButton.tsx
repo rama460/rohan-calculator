@@ -36,7 +36,7 @@ export const BuffIconButton: React.FC<BuffIconButtonProps> = ({ skill }) => {
     return (
         <Box display="flex" alignItems="center" gap={2}>
             <Checkbox size="small" checked={checked} onChange={handleCheckChange} />
-            <Tooltip content={<BuffTooltipContent name={skill.name} descriptions={skill.descriptions} level={level} />} >
+            <Tooltip content={<BuffTooltipContent name={skill.displayName} descriptions={skill.descriptions} level={level} />} >
                 <IconButton backgroundImage={skill.icon} onClick={handleCheckChange} />
             </Tooltip>
             <TextField

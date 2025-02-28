@@ -104,8 +104,8 @@ export type Skill = {
     displayName: string;
     icon: string;
     type: SkillType;
-    raceid: number;
-    jobid: number;
+    raceid?: number;
+    jobid?: number;
     min: number;
     max: number;
     descriptions: string[];
@@ -116,7 +116,7 @@ export type Skill = {
     }
 }
 
-export type SkillType = "Passive" | "Active" | "Buff" | "Group" | "Other";
+export type SkillType = "Passive" | "Active" | "Buff" | "Group" | "Guild" | "Cash";
 
 export type AppliedSkill = {
     name: string;
@@ -4701,5 +4701,441 @@ export const skills: Skill[] = [
                 multiplyVitality: 15
             }
         }
-    }
+    },
+    // 課金バフ
+    {
+        name: "proofOfBrave",
+        displayName: "勇者の証",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 5,
+        descriptions: [
+            "1時間、近距離攻撃力が10%上がります。",
+            "1時間、近距離攻撃力が20%上がります。",
+            "1時間、近距離攻撃力が30%上がります。",
+            "1時間、近距離攻撃力が50%上がります。",
+            "1時間、近距離攻撃力が100%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyMeleeAttack: 10,
+            },
+            1: {
+                multiplyMeleeAttack: 20,
+            },
+            2: {
+                multiplyMeleeAttack: 30,
+            },
+            3: {
+                multiplyMeleeAttack: 50,
+            },
+            4: {
+                multiplyMeleeAttack: 100,
+            }
+        },
+    },
+    {
+        name: "proofOfWisdom",
+        displayName: "賢者の証",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 5,
+        descriptions: [
+            "1時間、魔法攻撃力が10%上がります。",
+            "1時間、魔法攻撃力が20%上がります。",
+            "1時間、魔法攻撃力が30%上がります。",
+            "1時間、魔法攻撃力が50%上がります。",
+            "1時間、魔法攻撃力が100%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyMagicAttack: 10,
+            },
+            1: {
+                multiplyMagicAttack: 20,
+            },
+            2: {
+                multiplyMagicAttack: 30,
+            },
+            3: {
+                multiplyMagicAttack: 50,
+            },
+            4: {
+                multiplyMagicAttack: 100,
+            }
+        }
+    },
+    {
+        name: "proofOfMasterArcher",
+        displayName: "名射手の証",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 5,
+        descriptions: [
+            "1時間、遠距離攻撃力が10%上がります。",
+            "1時間、遠距離攻撃力が20%上がります。",
+            "1時間、遠距離攻撃力が30%上がります。",
+            "1時間、遠距離攻撃力が50%上がります。",
+            "1時間、遠距離攻撃力が100%上がります。",
+        ],
+        attributes: {
+            0: {
+                "multiplyRangeAttack": 10,
+            },
+            1: {
+                "multiplyRangeAttack": 20,
+            },
+            2: {
+                "multiplyRangeAttack": 30,
+            },
+            3: {
+                "multiplyRangeAttack": 50,
+            },
+            4: {
+                "multiplyRangeAttack": 100,
+            }
+        }
+    },
+    {
+        name: "galeProtect",
+        displayName: "ゲイルの保護",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 5,
+        descriptions: [
+            "1時間の間、物理防御力が10%上がります。",
+            "1時間の間、物理防御力が20%上がります。",
+            "1時間の間、物理防御力が30%上がります。",
+            "1時間の間、物理防御力が50%上がります。",
+            "1時間の間、物理防御力が100%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyPhysicalDefense: 10,
+            },
+            1: {
+                multiplyPhysicalDefense: 20,
+            },
+            2: {
+                multiplyPhysicalDefense: 30,
+            },
+            3: {
+                multiplyPhysicalDefense: 50,
+            },
+            4: {
+                multiplyPhysicalDefense: 100,
+            }
+        }
+    },
+    {
+        name: "phloxProtect",
+        displayName: "フロックスの保護",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 5,
+        descriptions: [
+            "1時間の間、魔法防御力が10%上がります。",
+            "1時間の間、魔法防御力が20%上がります。",
+            "1時間の間、魔法防御力が30%上がります。",
+            "1時間の間、魔法防御力が50%上がります。",
+            "1時間の間、魔法防御力が100%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyMagicalDefense: 10,
+            },
+            1: {
+                multiplyMagicalDefense: 20,
+            },
+            2: {
+                multiplyMagicalDefense: 30,
+            },
+            3: {
+                multiplyMagicalDefense: 50,
+            },
+            4: {
+                multiplyMagicalDefense: 100,
+            }
+        }
+    },
+    {
+        name: "lifeForceCrystal",
+        displayName: "生命力の結晶",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 5,
+        descriptions: [
+            "1時間の間、HPが10%上がります。",
+            "1時間の間、HPが20%上がります。",
+            "1時間の間、HPが30%上がります。",
+            "1時間の間、HPが50%上がります。",
+            "1時間の間、HPが100%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyHitPoint: 10,
+            },
+            1: {
+                multiplyHitPoint: 20,
+            },
+            2: {
+                multiplyHitPoint: 30,
+            },
+            3: {
+                multiplyHitPoint: 50,
+            },
+            4: {
+                multiplyHitPoint: 100,
+            }
+        }
+    },
+    {
+        name: "manaForceCrystal",
+        displayName: "マナの結晶",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 5,
+        descriptions: [
+            "1時間の間、MPが10%上がります。",
+            "1時間の間、MPが20%上がります。",
+            "1時間の間、MPが30%上がります。",
+            "1時間の間、MPが50%上がります。",
+            "1時間の間、MPが100%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyMagicPoint: 10,
+            },
+            1: {
+                multiplyMagicPoint: 20,
+            },
+            2: {
+                multiplyMagicPoint: 30,
+            },
+            3: {
+                multiplyMagicPoint: 50,
+            },
+            4: {
+                multiplyMagicPoint: 100,
+            }
+        }
+    },
+    {
+        name: "silvasFootstep",
+        displayName: "シルバの足取り",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 4,
+        descriptions: [
+            "10分間、移動速度が30%上がります。",
+            "10分間、移動速度が60%上がります。",
+            "10分間、移動速度が100%上がります。",
+            "1時間、移動速度が100%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 30,
+            },
+            1: {
+                multiplyMovementSpeed: 60,
+            },
+            2: {
+                multiplyMovementSpeed: 100,
+            },
+            3: {
+                multiplyMovementSpeed: 100,
+            }
+        }
+    },
+    {
+        name: "proofOfAssassin",
+        displayName: "アサシンの証",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 3,
+        descriptions: [
+            "30分間、クリティカル確率が1%上がります。",
+            "30分間、クリティカル確率が2%上がります。",
+            "30分間、クリティカル確率が3%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 1,
+            },
+            1: {
+                multiplyCriticalRate: 2,
+            },
+            2: {
+                multiplyCriticalRate: 3,
+            }
+        }
+    },
+    {
+        name: "secretOfFatal",
+        displayName: "致命打の秘訣",
+        icon: unknown,
+        type: "Cash",
+        min: 1,
+        max: 4,
+        descriptions: [
+            "1時間、クリティカル攻撃時のダメージが10%上がります。",
+            "1時間、クリティカル攻撃時のダメージが20%上がります。",
+            "1時間、クリティカル攻撃時のダメージが30%上がります。",
+            "1時間、クリティカル攻撃時のダメージが50%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyCriticalDamage: 10,
+            },
+            1: {
+                multiplyCriticalDamage: 20,
+            },
+            2: {
+                multiplyCriticalDamage: 30,
+            },
+            3: {
+                multiplyCriticalDamage: 50,
+            }
+        }
+    },
+    // ギルドバフ
+    {
+        name: "enhancedAttack",
+        displayName: "エンハンスドアタック",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "2時間の間、ギルドメンバーの攻撃力10%増加。",
+        ],
+        attributes: {
+            0: {
+                multiplyAttack: 10,
+            }
+        }
+    },
+    {
+        name: "enhancedDefense",
+        displayName: "エンハンスドディフェンス",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "2時間の間、ギルドメンバーの防御力10%増加。",
+        ],
+        attributes: {
+            0: {
+                multiplyDefense: 10,
+            }
+        }
+    },
+    {
+        name: "guildBless",
+        displayName: "ギルドブレス",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "1時間の間、ギルドメンバーのHPを3000増加させる。",
+        ],
+        attributes: {
+            0: {
+                plusHitPoint: 3000,
+            }
+        }
+    },
+    {
+        name: "guildPotionValue",
+        displayName: "ギルドポーションバリュー",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "1時間の間、ギルドメンバーのポーション効果20%増加。再使用時間50%短縮。",
+        ],
+        attributes: {
+            0: {
+                multiplyPotionRecovery: 20,
+            }
+        }
+    },
+    {
+        name: "crazyRide",
+        displayName: "クレイジーライド",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "4時間の間、ギルドメンバーの乗り物の移動速度20%増加。クリティカル攻撃が当たっても落ちない。",
+        ],
+        attributes: {
+            0: {
+                multiplyRideSpeed: 20,
+            }
+        }
+    },
+    {
+        name: "speedMastery",
+        displayName: "スピードマスタリー",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "2時間の間、ギルドメンバーの攻撃速度10%上昇。",
+        ],
+        attributes: {
+            0: {
+                multiplyAttackSpeed: 10,
+            }
+        }
+    },
+    {
+        name: "movementMastery",
+        displayName: "ムーブメントマスタリー",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "2時間の間、ギルドメンバーの移動速度20%増加。",
+        ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 10,
+            }
+        }
+    },
+    {
+        name: "akaneMastery",
+        displayName: "アケインマスタリー",
+        icon: unknown,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "2時間の間、ギルドメンバーの1次ステータス10%増加。",
+        ],
+        attributes: {
+            0: {
+                "multiplyAllStatus": 10,
+            }
+        }
+    },
+
+
 ]
