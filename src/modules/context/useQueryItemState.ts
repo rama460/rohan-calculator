@@ -50,6 +50,7 @@ const QueryKeyAbbrev = {
     talismanQ: "tq",
     talismanS: "ts",
     pet: "p",
+    ride: "ri"
 }
 
 const queryFromItem = (item: Item | null) => {

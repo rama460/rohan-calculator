@@ -2872,3 +2872,20 @@ export const pets: ItemTemplate[] = [
     }
 
 ]
+
+export const rides = [
+    {
+        name: "80%乗り物",
+        icon: unknown,
+        fixedBaseOptions: {
+            'multiplyRideSpeed': 80,
+        }
+    },
+    {
+        name: "100%乗り物",
+        icon: unknown,
+        fixedBaseOptions: {
+            'multiplyRideSpeed': 100,
+        },
+    }
+]

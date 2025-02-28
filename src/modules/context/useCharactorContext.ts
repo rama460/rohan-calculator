@@ -198,7 +198,8 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
             )
             state.detail["movementSpeed"] = Math.floor(
                 races[action.bases.raceid].movementSpeed *
-                (100 + action.equipmentOptions["multiplyMovementSpeed"] + action.synergyOptions["multiplyMovementSpeed"]) / 100 *
+                (100 + action.equipmentOptions["multiplyMovementSpeed"] + action.synergyOptions["multiplyMovementSpeed"] +
+                    action.equipmentOptions["multiplyRideSpeed"] + action.synergyOptions["multiplyRideSpeed"] + action.skillOptions["multiplyRideSpeed"]) / 100 *
                 (100 + action.skillOptions["multiplyMovementSpeed"]) / 100)
             state.detail["meleeAttack"] = calcMeleeAttack(state, action)
             state.detail["rangeAttack"] = calcRangeAttack(state, action)

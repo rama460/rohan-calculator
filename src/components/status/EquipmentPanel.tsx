@@ -13,7 +13,7 @@ import background_glasses from '../../assets/backgrounds/glasses.png'
 import background_costume from '../../assets/backgrounds/costume.png'
 import React from "react";
 import EquipmentIconButton from './EquipmentIconButton.tsx'
-import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
+import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
 
 
 
@@ -142,7 +142,9 @@ export const EquipmentPanel: React.FC = () => {
             <div style={{ gridColumn: 8, gridRow: 1 }}>
                 <EquipmentIconButton equipmentType='pet' title='ペット' items={pets} />
             </div>
-
+            <div style={{ gridColumn: 9, gridRow: 1 }}>
+                <EquipmentIconButton equipmentType='ride' title='乗り物' items={rides} />
+            </div>
         </div >
     );
 }

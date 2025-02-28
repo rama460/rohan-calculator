@@ -31,6 +31,7 @@ export type Equipments = {
     talismanQ: Item | null;
     talismanS: Item | null;
     pet: Item | null;
+    ride: Item | null;
 }
 
 export const initialEquipments: Equipments = {
@@ -62,6 +63,7 @@ export const initialEquipments: Equipments = {
     talismanQ: null,
     talismanS: null,
     pet: null,
+    ride: null
 
 }
 
