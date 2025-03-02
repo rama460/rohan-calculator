@@ -4,7 +4,7 @@ import { BuiltinOptionKeyType } from "../../components/static/options";
 import { useSearchParams } from "react-router-dom";
 import LZString from "lz-string";
 import { debounce } from "@mui/material";
-import { races } from "../../components/static/races";
+import { RaceNameOrTrinityJobName, races } from "../../components/static/races";
 import { useBasesContext } from "./useBasesContext";
 
 export type QueryItemState = {
@@ -80,12 +80,16 @@ const queryToItem = (query: QueryItemState, items: ItemTemplate[]) => {
     if (!itemTemplate) {
         throw new Error(`Item not found: ${query.n}`);
     }
+    // FIXME: This cause a bug race dependent options are not correctly loaded
+    // when browser is reloaded because queryToItem is only called once and
+    // at that time the raceid is always 0.1
     const bases = useBasesContext();
+    const racenameOrTrinityJobname = (races[bases.raceid].name !== "Trinity" ? races[bases.raceid].name : races[bases.raceid].jobs[bases.jobid].name) as RaceNameOrTrinityJobName
     const baseOptions = {
         ...itemTemplate.fixedBaseOptions ?? {},
         ...itemTemplate.enchantableBaseOptions?.[query.e ?? 0] ?? {},
-        ...itemTemplate.raceBaseOptions?.[races[bases.raceid].name] ?? {},
-        ...itemTemplate.raceEnchantableBaseOptions?.[races[bases.raceid].name]?.[query.e ?? 0] ?? {},
+        ...itemTemplate.raceBaseOptions?.[racenameOrTrinityJobname] ?? {},
+        ...itemTemplate.raceEnchantableBaseOptions?.[racenameOrTrinityJobname]?.[query.e ?? 0] ?? {},
     }
     const item: Item = {
         name: query.n,
@@ -114,7 +118,6 @@ function useQueryItemObject(key: keyof typeof QueryKeyAbbrev, defaultValue: Item
         ? queryToItem(JSON.parse(LZString.decompressFromEncodedURIComponent(savedValue)), items) : defaultValue;
 
     const [state, setState] = useState<Item | null>(initialValue);
-
     const updateParams = debounce((newState) => {
         if (!newState && searchParams.has(key)) {
             setSearchParams((prev) => {

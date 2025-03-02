@@ -51,7 +51,7 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
         currentItem ? availableItemTemplates.find((template) => (template.name === currentItem.name)) ?? availableItemTemplates[0] : availableItemTemplates[0])
     const [baseOptions, setBaseOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
         currentItem ? hashToArray(currentItem.baseOptions) :
-            hashToArray(getInitialBaseOtions(availableItemTemplates[0], bases.raceid, enchantLevel))
+            hashToArray(getInitialBaseOtions(availableItemTemplates[0], bases.raceid, bases.jobid, enchantLevel))
     );
     const [craftedOptions, setCraftedOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
         currentItem ? hashToArray(currentItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : (
@@ -68,7 +68,7 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
     const handleChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
         const selectedItemTemplate: ItemTemplate = availableItemTemplates.find((itemTemplate) => itemTemplate.name === event.target.value) || itemTemplates[0];
-        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, enchantLevel)));
+        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, bases.jobid, enchantLevel)));
         if (!selectedItemTemplate.sockets)
             setCraftedOptions([]);
         else if (craftedOptions.length > selectedItemTemplate.sockets) {
@@ -117,7 +117,7 @@ export const EquipmentDialogContent: React.FC<EquipmentDialogContentProps> = ({ 
                             size="small"
                             type="number"
                             onChange={(event) => {
-                                setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, Number(event.target.value))));
+                                setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, bases.jobid, Number(event.target.value))));
                                 setEnchantLevel(Number(event.target.value));
                             }}
                             sx={{ width: "70px" }}

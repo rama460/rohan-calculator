@@ -1,4 +1,5 @@
 export type RaceName = "Human" | "Elf" | "HalfElf" | "Dan" | "Dekan" | "DarkElf" | "Giant" | "Trinity";
+export type RaceNameOrTrinityJobName = "Human" | "Elf" | "HalfElf" | "Dan" | "Dekan" | "DarkElf" | "Giant" | "Noir" | "Rumir";
 export type Race = {
     id: number;
     name: RaceName;
@@ -6,6 +7,7 @@ export type Race = {
     abbrev: string;
     jobs: {
         id: number;
+        name: string;
         displayName: string;
     }[];
     initialStatus: {
@@ -29,14 +31,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "Knight",
                 displayName: "ナイト",
             },
             {
                 id: 1,
+                name: "Guardian",
                 displayName: "ガーディアン",
             },
             {
                 id: 2,
+                name: "Defender",
                 displayName: "ディフェンダー",
             },
         ],
@@ -60,14 +65,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "Healer",
                 displayName: "ヒーラー"
             },
             {
                 id: 1,
+                name: "Priest",
                 displayName: "プリースト",
             },
             {
                 id: 2,
+                name: "Templar",
                 displayName: "テンプラー",
             },
         ],
@@ -91,14 +99,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "Archer",
                 displayName: "アーチャー",
             },
             {
                 id: 1,
+                name: "Ranger",
                 displayName: "レンジャー",
             },
             {
                 id: 2,
+                name: "Scout",
                 displayName: "スカウト",
             },
         ],
@@ -122,14 +133,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "Assassin",
                 displayName: "アサシン",
             },
             {
                 id: 1,
+                name: "Avenger",
                 displayName: "アヴェンジャー",
             },
             {
                 id: 2,
+                name: "Predator",
                 displayName: "プレデター",
             },
         ],
@@ -153,14 +167,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "DragonFighter",
                 displayName: "ドラゴンファイター"
             },
             {
                 id: 1,
+                name: "DragonKnight",
                 displayName: "ドラゴンナイト",
             },
             {
                 id: 2,
+                name: "DragonSage",
                 displayName: "ドラゴンセージ",
             },
         ],
@@ -184,14 +201,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "Mage",
                 displayName: "メイジ",
             },
             {
                 id: 1,
+                name: "Warlock",
                 displayName: "ウォーロック",
             },
             {
                 id: 2,
+                name: "Wizard",
                 displayName: "ウィザード",
             },
         ],
@@ -215,14 +235,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "Warrior",
                 displayName: "ウォリアー",
             },
             {
                 id: 1,
+                name: "Berserker",
                 displayName: "バーサーカー",
             },
             {
                 id: 2,
+                name: "Savage",
                 displayName: "サベージ",
             },
         ],
@@ -246,14 +269,17 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
+                name: "Mar",
                 displayName: "メル",
             },
             {
                 id: 1,
+                name: "Rumir",
                 displayName: "ルミール",
             },
             {
                 id: 2,
+                name: "Noir",
                 displayName: "ノワール",
             },
         ],

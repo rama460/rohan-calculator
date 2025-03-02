@@ -508,10 +508,17 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
+    'muptiplyDecreaseDamageTakenPenetration': {
+        name: 'muptiplyDecreaseDamageTakenPenetration',
+        displayColor: 'green',
+        displayName: 'ダメージ減少率貫通',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
     'multiplyDecreaseDamageTakenMultiplyMentality': {
         name: 'multiplyDecreaseDamageTakenMultiplyMentality',
         displayColor: 'green',
-        displayName: 'ダメージ減少率',
+        displayName: '精神依存ダメージ減少率',
         unit: 'percent',
         operationType: 'multiply'
     },
