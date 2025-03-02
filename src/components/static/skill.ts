@@ -96,6 +96,18 @@ import savage_rampage_force from "../../assets/skills/savage_rampage_force.png";
 import savage_ferocious from "../../assets/skills/savage_ferocious.png";
 import savage_monster_mind from "../../assets/skills/savage_monster_mind.png";
 import savage_brutality from "../../assets/skills/savage_brutality.png";
+// cash buff
+import cash_proof_of_brave from "../../assets/skills/cash_proof_of_brave.png";
+import cash_proof_of_master_archer from "../../assets/skills/cash_proof_of_master_archer.png";
+import cash_proof_of_wisdom from "../../assets/skills/cash_proof_of_wisdom.png";
+import cash_gale_protect from "../../assets/skills/cash_gale_protect.png";
+import cash_phlox_protect from "../../assets/skills/cash_phlox_protect.png";
+import cash_life_force_crystal from "../../assets/skills/cash_life_force_crystal.png";
+import cash_mana_force_crystal from "../../assets/skills/cash_mana_force_crystal.png";
+import cash_silvas_footstep from "../../assets/skills/cash_silvas_footstep.png";
+import cash_proof_of_assassin from "../../assets/skills/cash_proof_of_assassin.png";
+import cash_secret_of_fatal from "../../assets/skills/cash_secret_of_fatal.png";
+// guild buff
 import guild_enhanced_attack from "../../assets/skills/guild_enhanced_attack.png";
 import guild_enhanced_defense from "../../assets/skills/guild_enhanced_defense.png";
 import guild_guild_bless from "../../assets/skills/guild_guild_bless.png";
@@ -4716,7 +4728,7 @@ export const skills: Skill[] = [
     {
         name: "proofOfBrave",
         displayName: "勇者の証",
-        icon: unknown,
+        icon: cash_proof_of_brave,
         type: "Cash",
         min: 1,
         max: 5,
@@ -4748,7 +4760,7 @@ export const skills: Skill[] = [
     {
         name: "proofOfWisdom",
         displayName: "賢者の証",
-        icon: unknown,
+        icon: cash_proof_of_wisdom,
         type: "Cash",
         min: 1,
         max: 5,
@@ -4780,7 +4792,7 @@ export const skills: Skill[] = [
     {
         name: "proofOfMasterArcher",
         displayName: "名射手の証",
-        icon: unknown,
+        icon: cash_proof_of_master_archer,
         type: "Cash",
         min: 1,
         max: 5,
@@ -4812,7 +4824,7 @@ export const skills: Skill[] = [
     {
         name: "galeProtect",
         displayName: "ゲイルの保護",
-        icon: unknown,
+        icon: cash_gale_protect,
         type: "Cash",
         min: 1,
         max: 5,
@@ -4844,7 +4856,7 @@ export const skills: Skill[] = [
     {
         name: "phloxProtect",
         displayName: "フロックスの保護",
-        icon: unknown,
+        icon: cash_phlox_protect,
         type: "Cash",
         min: 1,
         max: 5,
@@ -4876,7 +4888,7 @@ export const skills: Skill[] = [
     {
         name: "lifeForceCrystal",
         displayName: "生命力の結晶",
-        icon: unknown,
+        icon: cash_life_force_crystal,
         type: "Cash",
         min: 1,
         max: 5,
@@ -4908,7 +4920,7 @@ export const skills: Skill[] = [
     {
         name: "manaForceCrystal",
         displayName: "マナの結晶",
-        icon: unknown,
+        icon: cash_mana_force_crystal,
         type: "Cash",
         min: 1,
         max: 5,
@@ -4940,7 +4952,7 @@ export const skills: Skill[] = [
     {
         name: "silvasFootstep",
         displayName: "シルバの足取り",
-        icon: unknown,
+        icon: cash_silvas_footstep,
         type: "Cash",
         min: 1,
         max: 4,
@@ -4968,7 +4980,7 @@ export const skills: Skill[] = [
     {
         name: "proofOfAssassin",
         displayName: "アサシンの証",
-        icon: unknown,
+        icon: cash_proof_of_assassin,
         type: "Cash",
         min: 1,
         max: 3,
@@ -4992,7 +5004,7 @@ export const skills: Skill[] = [
     {
         name: "secretOfFatal",
         displayName: "致命打の秘訣",
-        icon: unknown,
+        icon: cash_secret_of_fatal,
         type: "Cash",
         min: 1,
         max: 4,
