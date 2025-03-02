@@ -96,6 +96,16 @@ import savage_rampage_force from "../../assets/skills/savage_rampage_force.png";
 import savage_ferocious from "../../assets/skills/savage_ferocious.png";
 import savage_monster_mind from "../../assets/skills/savage_monster_mind.png";
 import savage_brutality from "../../assets/skills/savage_brutality.png";
+import guild_enhanced_attack from "../../assets/skills/guild_enhanced_attack.png";
+import guild_enhanced_defense from "../../assets/skills/guild_enhanced_defense.png";
+import guild_guild_bless from "../../assets/skills/guild_guild_bless.png";
+import guild_guild_boost from "../../assets/skills/guild_guild_boost.png";
+import guild_guild_potion_value from "../../assets/skills/guild_guild_potion_value.png";
+import guild_movement_mastery from "../../assets/skills/guild_movement_mastery.png";
+import guild_speed_mastery from "../../assets/skills/guild_speed_mastery.png";
+import guild_crasy_ride from "../../assets/skills/guild_crasy_ride.png";
+import guild_akane_mastery from "../../assets/skills/guild_akane_mastery.png";
+
 import unknown from "../../assets/unknown.png";
 import { BuiltinOptionKeyType } from "./options";
 
@@ -5011,7 +5021,7 @@ export const skills: Skill[] = [
     {
         name: "enhancedAttack",
         displayName: "エンハンスドアタック",
-        icon: unknown,
+        icon: guild_enhanced_attack,
         type: "Guild",
         min: 1,
         max: 1,
@@ -5027,7 +5037,7 @@ export const skills: Skill[] = [
     {
         name: "enhancedDefense",
         displayName: "エンハンスドディフェンス",
-        icon: unknown,
+        icon: guild_enhanced_defense,
         type: "Guild",
         min: 1,
         max: 1,
@@ -5043,7 +5053,7 @@ export const skills: Skill[] = [
     {
         name: "guildBless",
         displayName: "ギルドブレス",
-        icon: unknown,
+        icon: guild_guild_bless,
         type: "Guild",
         min: 1,
         max: 1,
@@ -5059,7 +5069,7 @@ export const skills: Skill[] = [
     {
         name: "guildPotionValue",
         displayName: "ギルドポーションバリュー",
-        icon: unknown,
+        icon: guild_guild_potion_value,
         type: "Guild",
         min: 1,
         max: 1,
@@ -5073,9 +5083,25 @@ export const skills: Skill[] = [
         }
     },
     {
+        name: "guildBoost",
+        displayName: "ギルドブースト",
+        icon: guild_guild_boost,
+        type: "Guild",
+        min: 1,
+        max: 1,
+        descriptions: [
+            "2時間の間、ギルドメンバーのクリティカル攻撃率を2%上昇する。",
+        ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 2,
+            }
+        }
+    },
+    {
         name: "crazyRide",
         displayName: "クレイジーライド",
-        icon: unknown,
+        icon: guild_crasy_ride,
         type: "Guild",
         min: 1,
         max: 1,
@@ -5091,7 +5117,7 @@ export const skills: Skill[] = [
     {
         name: "speedMastery",
         displayName: "スピードマスタリー",
-        icon: unknown,
+        icon: guild_speed_mastery,
         type: "Guild",
         min: 1,
         max: 1,
@@ -5107,7 +5133,7 @@ export const skills: Skill[] = [
     {
         name: "movementMastery",
         displayName: "ムーブメントマスタリー",
-        icon: unknown,
+        icon: guild_movement_mastery,
         type: "Guild",
         min: 1,
         max: 1,
@@ -5123,7 +5149,7 @@ export const skills: Skill[] = [
     {
         name: "akaneMastery",
         displayName: "アケインマスタリー",
-        icon: unknown,
+        icon: guild_akane_mastery,
         type: "Guild",
         min: 1,
         max: 1,
