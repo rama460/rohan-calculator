@@ -107,6 +107,7 @@ import cash_mana_force_crystal from "../../assets/skills/cash_mana_force_crystal
 import cash_silvas_footstep from "../../assets/skills/cash_silvas_footstep.png";
 import cash_proof_of_assassin from "../../assets/skills/cash_proof_of_assassin.png";
 import cash_secret_of_fatal from "../../assets/skills/cash_secret_of_fatal.png";
+import cash_mareas_breath from "../../assets/skills/cash_mareas_breath.png";
 // guild buff
 import guild_enhanced_attack from "../../assets/skills/guild_enhanced_attack.png";
 import guild_enhanced_defense from "../../assets/skills/guild_enhanced_defense.png";
@@ -5026,6 +5027,34 @@ export const skills: Skill[] = [
             },
             3: {
                 multiplyCriticalDamage: 50,
+            }
+        }
+    },
+    {
+        name: "mareasBreath",
+        displayName: "マレアの息吹",
+        icon: cash_mareas_breath,
+        type: "Cash",
+        min: 1,
+        max: 4,
+        descriptions: [
+            "2時間、全ての能力値が10%上がります。",
+            "2時間、全ての能力値が20%上がります。",
+            "2時間、全ての能力値が30%上がります。",
+            "2時間、全ての能力値が50%上がります。",
+        ],
+        attributes: {
+            0: {
+                multiplyAllStatus: 10,
+            },
+            1: {
+                multiplyAllStatus: 20,
+            },
+            2: {
+                multiplyAllStatus: 30,
+            },
+            3: {
+                multiplyAllStatus: 50,
             }
         }
     },
