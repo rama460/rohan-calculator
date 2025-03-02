@@ -96,6 +96,15 @@ import savage_rampage_force from "../../assets/skills/savage_rampage_force.png";
 import savage_ferocious from "../../assets/skills/savage_ferocious.png";
 import savage_monster_mind from "../../assets/skills/savage_monster_mind.png";
 import savage_brutality from "../../assets/skills/savage_brutality.png";
+import mar_tune_of_life from "../../assets/skills/mar_tune_of_life.png";
+import mar_potential_power from "../../assets/skills/mar_potential_power.png";
+import rumir_arrendal_mastery from "../../assets/skills/rumir_arrendal_mastery.png";
+import rumir_prism_spear from "../../assets/skills/rumir_prism_spear.png";
+import rumir_favor_of_tree from "../../assets/skills/rumir_favor_of_tree.png";
+import rumir_vine_protection from "../../assets/skills/rumir_vine_protection.png";
+import rumir_blessed_crown from "../../assets/skills/rumir_blessed_crown.png";
+import rumir_life_circulation from "../../assets/skills/rumir_life_circulation.png";
+import rumir_growth_acceleration from "../../assets/skills/rumir_growth_acceleration.png";
 // cash buff
 import cash_proof_of_brave from "../../assets/skills/cash_proof_of_brave.png";
 import cash_proof_of_master_archer from "../../assets/skills/cash_proof_of_master_archer.png";
@@ -4725,6 +4734,444 @@ export const skills: Skill[] = [
             }
         }
     },
+    // トリニティ
+    // メル
+    {
+        name: "tuneOfLife",
+        displayName: "チューンオブライフ",
+        icon: mar_tune_of_life,
+        type: "Buff",
+        raceid: 7,
+        jobid: 0,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "18分間、使用者の全ての攻撃力を10%増加します。",
+            "21分間、使用者の全ての攻撃力を14%増加します。",
+            "24分間、使用者の全ての攻撃力を18%増加します。",
+            "27分間、使用者の全ての攻撃力を22%増加します。",
+            "30分間、使用者の全ての攻撃力を26%増加します。",
+            "30分間、使用者の全ての攻撃力を30%増加します。",
+            "120分間、使用者の全ての攻撃力を40%増加します。",
+        ],
+        attributes: {
+            0: {
+                multiplyAttack: 10,
+            },
+            1: {
+                multiplyAttack: 14,
+            },
+            2: {
+                multiplyAttack: 18,
+            },
+            3: {
+                multiplyAttack: 22,
+            },
+            4: {
+                multiplyAttack: 26,
+            },
+            5: {
+                multiplyAttack: 30,
+            },
+            6: {
+                multiplyAttack: 40,
+            }
+        }
+    },
+    {
+        name: "potentialPower",
+        displayName: "ポテンシャルパワー",
+        icon: mar_potential_power,
+        type: "Passive",
+        raceid: 7,
+        jobid: 0,
+        min: 1,
+        max: 5,
+        descriptions: [
+            "使用していないスキルポイント1につきHP+500、MP+500、パッシブ",
+            "使用していないスキルポイント1につきHP+1000、MP+1000、パッシブ",
+            "使用していないスキルポイント1につきHP+1500、MP+1500、パッシブ",
+            "使用していないスキルポイント1につきHP+2000、MP+2000、パッシブ",
+            "使用していないスキルポイント1につきHP+2500、MP+2500、パッシブ",
+        ],
+        // TODO: implement custom logic
+        attributes: {
+        }
+    },
+    // ルミール
+    {
+        name: "arrendalMastery",
+        displayName: "アレンダルマスタリー",
+        icon: rumir_arrendal_mastery,
+        type: "Buff",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "アレンダル及びオプション攻撃力が40%増加。精神力の25%ほど魔法攻撃力が増加。ヒール回復量が20%増加。",
+            "アレンダル及びオプション攻撃力が79%増加。精神力の50%ほど魔法攻撃力が増加。ヒール回復量が40%増加。",
+            "アレンダル及びオプション攻撃力が118%増加。精神力の75%ほど魔法攻撃力が増加。ヒール回復量が60%増加。",
+            "アレンダル及びオプション攻撃力が158%増加。精神力の99%ほど魔法攻撃力が増加。ヒール回復量が80%増加。",
+            "アレンダル及びオプション攻撃力が197%増加。精神力の125%ほど魔法攻撃力が増加。ヒール回復量が100%増加。",
+            "アレンダル及びオプション攻撃力が276%増加。精神力の174%ほど魔法攻撃力が増加。ヒール回復量が120%増加。",
+            "アレンダル及びオプション攻撃力が394%増加。精神力の249%ほど魔法攻撃力が増加。ヒール回復量が150%増加。",
+        ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 40,
+                plusMagicAttackMultiplyMentality: 25,
+                multiplyHealingAmount: 20,
+            },
+            1: {
+                multiplyWeaponAttack: 79,
+                plusMagicAttackMultiplyMentality: 50,
+                multiplyHealingAmount: 40,
+            },
+            2: {
+                multiplyWeaponAttack: 118,
+                plusMagicAttackMultiplyMentality: 75,
+                multiplyHealingAmount: 60,
+            },
+            3: {
+                multiplyWeaponAttack: 158,
+                plusMagicAttackMultiplyMentality: 99,
+                multiplyHealingAmount: 80,
+            },
+            4: {
+                multiplyWeaponAttack: 197,
+                plusMagicAttackMultiplyMentality: 125,
+                multiplyHealingAmount: 100,
+            },
+            5: {
+                multiplyWeaponAttack: 276,
+                plusMagicAttackMultiplyMentality: 174,
+                multiplyHealingAmount: 120,
+            },
+            6: {
+                multiplyWeaponAttack: 394,
+                plusMagicAttackMultiplyMentality: 249,
+                multiplyHealingAmount: 150,
+            }
+        }
+    },
+    {
+        name: "prismSpear",
+        displayName: "プリズムスピア",
+        icon: rumir_prism_spear,
+        type: "Buff",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "18分間、通常攻撃を範囲化し、攻撃対象に敵2体追加します。さらに攻撃速度が20%増加します。",
+            "21分間、通常攻撃を範囲化し、攻撃対象に敵2体追加します。さらに攻撃速度が25%増加します。",
+            "24分間、通常攻撃を範囲化し、攻撃対象に敵3体追加します。さらに攻撃速度が30%増加します。",
+            "27分間、通常攻撃を範囲化し、攻撃対象に敵3体追加します。さらに攻撃速度が35%増加します。",
+            "30分間、通常攻撃を範囲化し、攻撃対象に敵4体追加します。さらに攻撃速度が40%増加します。",
+            "30分間、通常攻撃を範囲化し、攻撃対象に敵4体追加します。さらに攻撃速度が50%増加します。",
+            "120分間、通常攻撃を範囲化し、攻撃対象に敵5体追加します。さらに攻撃速度が70%増加します。",
+        ],
+        attributes: {
+            0: {
+                multiplyAttackSpeed: 20,
+            },
+            1: {
+                multiplyAttackSpeed: 25,
+            },
+            2: {
+                multiplyAttackSpeed: 30,
+            },
+            3: {
+                multiplyAttackSpeed: 35,
+            },
+            4: {
+                multiplyAttackSpeed: 40,
+            },
+            5: {
+                multiplyAttackSpeed: 50,
+            },
+            6: {
+                multiplyAttackSpeed: 70,
+            }
+        }
+    },
+    {
+        name: "favorOfTree",
+        displayName: "フェイバーオブツリー",
+        icon: rumir_favor_of_tree,
+        type: "Buff",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "15分間、使用者の体力を精神力の10%ほど増加します。",
+            "18分間、使用者の体力を精神力の13%ほど増加します。",
+            "21分間、使用者の体力を精神力の16%ほど増加します。",
+            "24分間、使用者の体力を精神力の20%ほど増加します。",
+            "27分間、使用者の体力を精神力の25%ほど増加します。",
+            "30分間、使用者の体力を精神力の30%ほど増加します。",
+            "120分間、使用者の体力を精神力の40%ほど増加します。",
+        ],
+        attributes: {
+            0: {
+                'plusVitalityMultiplyMentality': 10,
+            },
+            1: {
+                'plusVitalityMultiplyMentality': 13,
+            },
+            2: {
+                'plusVitalityMultiplyMentality': 16,
+            },
+            3: {
+                'plusVitalityMultiplyMentality': 20,
+            },
+            4: {
+                'plusVitalityMultiplyMentality': 25,
+            },
+            5: {
+                'plusVitalityMultiplyMentality': 30,
+            },
+            6: {
+                'plusVitalityMultiplyMentality': 40,
+            }
+        }
+    },
+    {
+        name: "vineProtection",
+        displayName: "ヴァインプロテクション",
+        icon: rumir_vine_protection,
+        type: "Buff",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "15分間、使用者が受けるダメージを10%減少させ、精神力を10%増加させます。",
+            "18分間、使用者が受けるダメージを12%減少させ、精神力を15%増加させます。",
+            "21分間、使用者が受けるダメージを14%減少させ、精神力を20%増加させます。",
+            "24分間、使用者が受けるダメージを16%減少させ、精神力を25%増加させます。",
+            "27分間、使用者が受けるダメージを18%減少させ、精神力を30%増加させます。",
+            "30分間、使用者が受けるダメージを20%減少させ、精神力を40%増加させます。",
+            "120分間、使用者が受けるダメージを25%減少させ、精神力を50%増加させます。",
+        ],
+        attributes: {
+            0: {
+                multiplyDecreaseDamageTaken: 10,
+                multiplyMentality: 10,
+            },
+            1: {
+                multiplyDecreaseDamageTaken: 12,
+                multiplyMentality: 15,
+            },
+            2: {
+                multiplyDecreaseDamageTaken: 14,
+                multiplyMentality: 20,
+            },
+            3: {
+                multiplyDecreaseDamageTaken: 16,
+                multiplyMentality: 25,
+            },
+            4: {
+                multiplyDecreaseDamageTaken: 18,
+                multiplyMentality: 30,
+            },
+            5: {
+                multiplyDecreaseDamageTaken: 20,
+                multiplyMentality: 40,
+            },
+            6: {
+                multiplyDecreaseDamageTaken: 25,
+                multiplyMentality: 50,
+            }
+        }
+    },
+    {
+        name: "blessedCrown",
+        displayName: "ブレスドクラウン",
+        icon: rumir_blessed_crown,
+        type: "Group",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "15分間、パーティーメンバーの全ての能力値を3%増加させます。",
+            "18分間、パーティーメンバーの全ての能力値を6%増加させます。",
+            "21分間、パーティーメンバーの全ての能力値を9%増加させます。",
+            "24分間、パーティーメンバーの全ての能力値を12%増加させます。",
+            "27分間、パーティーメンバーの全ての能力値を15%増加させます。",
+            "30分間、パーティーメンバーの全ての能力値を20%増加させます。",
+            "120分間、パーティーメンバーの全ての能力値を25%増加させます。",
+        ],
+        attributes: {
+            0: {
+                multiplyAllStatus: 3,
+            },
+            1: {
+                multiplyAllStatus: 6,
+            },
+            2: {
+                multiplyAllStatus: 9,
+            },
+            3: {
+                multiplyAllStatus: 12,
+            },
+            4: {
+                multiplyAllStatus: 15,
+            },
+            5: {
+                multiplyAllStatus: 20,
+            },
+            6: {
+                multiplyAllStatus: 25,
+            }
+        }
+    },
+    {
+        name: "lifeCirculation",
+        displayName: "ライフサーキュレーション",
+        icon: rumir_life_circulation,
+        type: "Buff",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "HPの40%を消費し、200TPを生成し、20秒間移動速度が5%上昇します。",
+            "HPの40%を消費し、230TPを生成し、20秒間移動速度が10%上昇します。",
+            "HPの30%を消費し、260TPを生成し、20秒間移動速度が15%上昇します。",
+            "HPの30%を消費し、290TPを生成し、20秒間移動速度が20%上昇します。",
+            "HPの20%を消費し、320TPを生成し、20秒間移動速度が25%上昇します。",
+            "HPの20%を消費し、350TPを生成し、20秒間移動速度が35%上昇します。",
+            "HPの10%を消費し、600TPを生成し、20秒間移動速度が50%上昇します。",
+        ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 5,
+            },
+            1: {
+                multiplyMovementSpeed: 10,
+            },
+            2: {
+                multiplyMovementSpeed: 15,
+            },
+            3: {
+                multiplyMovementSpeed: 20,
+            },
+            4: {
+                multiplyMovementSpeed: 25,
+            },
+            5: {
+                multiplyMovementSpeed: 35,
+            },
+            6: {
+                multiplyMovementSpeed: 50,
+            }
+        }
+    },
+    {
+        name: "growthAcceleration",
+        displayName: "グロースアクセレーション",
+        icon: rumir_growth_acceleration,
+        type: "Group",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "30秒間、パーティーメンバーの攻撃力と攻撃速度をそれぞ5%ほど増加します。300TPを消費します。",
+            "30秒間、パーティーメンバーの攻撃力と攻撃速度をそれぞ8%ほど増加します。300TPを消費します。",
+            "30秒間、パーティーメンバーの攻撃力と攻撃速度をそれぞ11%ほど増加します。300TPを消費します。",
+            "30秒間、パーティーメンバーの攻撃力と攻撃速度をそれぞ14%ほど増加します。300TPを消費します。",
+            "30秒間、パーティーメンバーの攻撃力と攻撃速度をそれぞ17%ほど増加します。300TPを消費します。",
+            "30秒間、パーティーメンバーの攻撃力と攻撃速度をそれぞ20%ほど増加します。300TPを消費します。",
+            "30秒間、パーティーメンバーの攻撃力と攻撃速度をそれぞ30%ほど増加します。300TPを消費します。",
+        ],
+        attributes: {
+            0: {
+                multiplyAttack: 5,
+                multiplyAttackSpeed: 5,
+            },
+            1: {
+                multiplyAttack: 8,
+                multiplyAttackSpeed: 8,
+            },
+            2: {
+                multiplyAttack: 11,
+                multiplyAttackSpeed: 11,
+            },
+            3: {
+                multiplyAttack: 14,
+                multiplyAttackSpeed: 14,
+            },
+            4: {
+                multiplyAttack: 17,
+                multiplyAttackSpeed: 17,
+            },
+            5: {
+                multiplyAttack: 20,
+                multiplyAttackSpeed: 20,
+            },
+            6: {
+                multiplyAttack: 30,
+                multiplyAttackSpeed: 30,
+            }
+        }
+    },
+    {
+        name: "eternalAria",
+        displayName: "エターナルアリア",
+        icon: unknown,
+        type: "Buff",
+        raceid: 7,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "60秒間TPを消耗せずにスキル使用可能。精神力10%増加、攻撃速度25%増加。",
+            "60秒間TPを消耗せずにスキル使用可能。精神力13%増加、攻撃速度30%増加。",
+            "60秒間TPを消耗せずにスキル使用可能。精神力16%増加、攻撃速度35%増加。",
+            "60秒間TPを消耗せずにスキル使用可能。精神力19%増加、攻撃速度40%増加。",
+            "60秒間TPを消耗せずにスキル使用可能。精神力22%増加、攻撃速度50%増加。",
+            "60秒間TPを消耗せずにスキル使用可能。精神力25%増加、攻撃速度70%増加。",
+            "60秒間TPを消耗せずにスキル使用可能。精神力30%増加、攻撃速度100%増加。",
+        ],
+        attributes: {
+            0: {
+                multiplyMentality: 10,
+                multiplyAttackSpeed: 25,
+            },
+            1: {
+                multiplyMentality: 13,
+                multiplyAttackSpeed: 30,
+            },
+            2: {
+                multiplyMentality: 16,
+                multiplyAttackSpeed: 35,
+            },
+            3: {
+                multiplyMentality: 19,
+                multiplyAttackSpeed: 40,
+            },
+            4: {
+                multiplyMentality: 22,
+                multiplyAttackSpeed: 50,
+            },
+            5: {
+                multiplyMentality: 25,
+                multiplyAttackSpeed: 70,
+            },
+            6: {
+                multiplyMentality: 30,
+                multiplyAttackSpeed: 100,
+            }
+        }
+
+    },
+    // ノワール
     // 課金バフ
     {
         name: "proofOfBrave",
@@ -5203,6 +5650,5 @@ export const skills: Skill[] = [
             }
         }
     },
-
 
 ]

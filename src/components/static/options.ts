@@ -632,7 +632,7 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'plus'
     },
-    // staff mastery
+    // staff / arrendal mastery
     'plusMagicAttackMultiplyMentality': {
         name: 'plusMagicAttackMultiplyMentality',
         displayColor: 'green',
@@ -671,7 +671,6 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'plus'
     },
-
     'plusDefenseMultiplyIntelligence': {
         name: 'plusDefenseMultiplyIntelligence',
         displayColor: 'green',
@@ -679,7 +678,13 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'plus'
     },
-
+    'plusVitalityMultiplyMentality': {
+        name: 'plusVitalityMultiplyMentality',
+        displayColor: 'green',
+        displayName: '精神力依存体力増加',
+        unit: 'number',
+        operationType: 'plus'
+    },
     'multiplyHitPointAbsorbDamageRate': {
         name: 'multiplyHitPointAbsorbDamageRate',
         displayColor: 'green',
@@ -729,6 +734,14 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
+    'multiplyHealingAmount': {
+        name: 'multiplyHealingAmount',
+        displayColor: 'green',
+        displayName: 'ヒール回復量',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+
 } as const;
 export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {
     if (type == "weapon") {
