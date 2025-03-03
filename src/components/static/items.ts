@@ -3248,7 +3248,7 @@ const gargantuaSynergisticOptions = {
 
 const catastropheSynergisticOptions = {
     2: {
-        'multiplyCriticalRate': 10,
+        'plusCriticalRate': 10,
         'multiplyAttack': 25,
         'multiplySkillAttack': 25,
         'multiplyHitPoint': 150,

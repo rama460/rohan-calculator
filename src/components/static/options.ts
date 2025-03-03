@@ -452,6 +452,13 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
+    'plusCriticalRate': {
+        name: 'plusCriticalRate',
+        displayColor: 'green',
+        displayName: 'クリティカル率',
+        unit: 'percent',
+        operationType: 'plus'
+    },
     'multiplyCriticalRate': {
         name: 'multiplyCriticalRate',
         displayColor: 'green',
@@ -760,7 +767,7 @@ export type CraftedOptions = {
 }
 export const CraftedWeaponOptions: CraftedOptions = {
     "multiplyAttackSpeed": 38,
-    "multiplyCriticalRate": 18,
+    "plusCriticalRate": 18,
     "multiplyMovementSpeed": 38,
     "multiplyCriticalDamage": 15,
     "plusDodging": 90,
@@ -792,7 +799,7 @@ export const CraftedGarterOptions: CraftedOptions = {
     "multiplyRangeAttack": 20,
     "multiplyMagicAttack": 20,
     "multiplyHitPointAbsorbDamageRate": 10,
-    "multiplyCriticalRate": 10
+    "plusCriticalRate": 10
 }
 export const CraftedShieldOptions: CraftedOptions = {
     "multiplyHitPoint": 20,

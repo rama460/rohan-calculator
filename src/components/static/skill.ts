@@ -12,6 +12,7 @@ import defender_blunt_mastery from "../../assets/skills/defender_blunt_mastery.p
 import defender_shield_mastery from "../../assets/skills/defender_shield_mastery.png";
 import defender_eternal_stamina from "../../assets/skills/defender_eternal_stamina.png";
 import defender_morale_expansion from "../../assets/skills/defender_morale_expansion.png";
+import healer_recovery from "../../assets/skills/healer_recovery.png";
 import healer_intelligence_blow from "../../assets/skills/healer_intelligence_blow.png";
 import healer_mental_barrier from "../../assets/skills/healer_mental_barrier.png";
 import priest_mental_blow from "../../assets/skills/priest_mental_blow.png";
@@ -21,6 +22,7 @@ import priest_staff_mastery from "../../assets/skills/priest_staff_mastery.png";
 import priest_marea_battle from "../../assets/skills/priest_marea_battle.png";
 import priest_marea_grace from "../../assets/skills/priest_marea_grace.png";
 import priest_blessing_of_nature from "../../assets/skills/priest_blessing_of_nature.png";
+import priest_heavens_dawn from "../../assets/skills/priest_heavens_dawn.png";
 import templer_blue_fountain from "../../assets/skills/templer_blue_fountain.png";
 import templer_brain_blow from "../../assets/skills/templer_brain_blow.png";
 import templer_blunt_mastery from "../../assets/skills/templer_blunt_mastery.png";
@@ -29,17 +31,25 @@ import archer_enchant_arrow from "../../assets/skills/archer_enchant_arrow.png";
 import archer_agility from "../../assets/skills/archer_agility.png";
 import archer_fatal from "../../assets/skills/archer_fatal.png";
 import archer_evade from "../../assets/skills/archer_evade.png";
+import archer_sprint from "../../assets/skills/archer_sprint.png";
 import ranger_crossbow_mastery from "../../assets/skills/ranger_crossbow_mastery.png";
+import ranger_siege_shot from "../../assets/skills/ranger_siege_shot.png";
+import ranger_speed_wind from "../../assets/skills/ranger_speed_wind.png";
+import ranger_kaels_bolt from "../../assets/skills/ranger_kaels_bolt.png";
 import ranger_alacrity_blow from "../../assets/skills/ranger_alacrity_blow.png";
 import ranger_rank_shot from "../../assets/skills/ranger_rank_shot.png";
+import ranger_premium_shot from "../../assets/skills/ranger_premium_shot.png";
 import ranger_wing_foot from "../../assets/skills/ranger_wing_foot.png";
+import ranger_death_chaser from "../../assets/skills/ranger_death_chaser.png";
 import scout_bow_mastery from "../../assets/skills/scout_bow_mastery.png";
 import scout_sharp_melee from "../../assets/skills/scout_sharp_melee.png";
 import scout_alacrity_blow from "../../assets/skills/scout_alacrity_blow.png";
+import scout_kaels_arrow from "../../assets/skills/scout_kaels_arrow.png";
 import scout_ghost_arrow from "../../assets/skills/scout_ghost_arrow.png";
 import scout_rank_shot from "../../assets/skills/scout_rank_shot.png";
 import scout_rainforce_action from "../../assets/skills/scout_rainforce_action.png";
 import scout_scatter_shot from "../../assets/skills/scout_scatter_shot.png";
+import scout_cataclysm from "../../assets/skills/scout_cataclysm.png";
 import assassin_parry from "../../assets/skills/assassin_parry.png";
 import assassin_mirror_shield from "../../assets/skills/assassin_mirror_shield.png";
 import assassin_avoid from "../../assets/skills/assassin_avoid.png";
@@ -451,31 +461,31 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 1,
+                plusCriticalRate: 1,
                 multiplyPhysicalBlockRate: 5,
             },
             1: {
-                multiplyCriticalRate: 2,
+                plusCriticalRate: 2,
                 multiplyPhysicalBlockRate: 7,
             },
             2: {
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
                 multiplyPhysicalBlockRate: 9,
             },
             3: {
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
                 multiplyPhysicalBlockRate: 11,
             },
             4: {
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
                 multiplyPhysicalBlockRate: 13,
             },
             5: {
-                multiplyCriticalRate: 7,
+                plusCriticalRate: 7,
                 multiplyPhysicalBlockRate: 15,
             },
             6: {
-                multiplyCriticalRate: 10,
+                plusCriticalRate: 10,
                 multiplyPhysicalBlockRate: 20,
             }
         }
@@ -584,31 +594,31 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 1,
+                plusCriticalRate: 1,
                 multiplyAttack: 5,
             },
             1: {
-                multiplyCriticalRate: 2,
+                plusCriticalRate: 2,
                 multiplyAttack: 8,
             },
             2: {
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
                 multiplyAttack: 11,
             },
             3: {
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
                 multiplyAttack: 14,
             },
             4: {
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
                 multiplyAttack: 17,
             },
             5: {
-                multiplyCriticalRate: 6,
+                plusCriticalRate: 6,
                 multiplyAttack: 20,
             },
             6: {
-                multiplyCriticalRate: 7,
+                plusCriticalRate: 7,
                 multiplyAttack: 25,
             }
         }
@@ -801,7 +811,7 @@ export const skills: Skill[] = [
     {
         name: "recovery",
         displayName: "リカバリー",
-        icon: unknown,
+        icon: healer_recovery,
         type: "Buff",
         raceid: 1,
         jobid: 0,
@@ -1198,7 +1208,7 @@ export const skills: Skill[] = [
     {
         name: "heavensDawn",
         displayName: "ヘブンズドーン",
-        icon: unknown,
+        icon: priest_heavens_dawn,
         type: "Group",
         raceid: 1,
         jobid: 1,
@@ -1218,49 +1228,49 @@ export const skills: Skill[] = [
                 multiplyAllStatus: 10,
                 multiplyAttack: 10,
                 multiplyAttackSpeed: 10,
-                multiplyCriticalRate: 2,
+                plusCriticalRate: 2,
                 multiplyAccuracy: 2,
             },
             1: {
                 multiplyAllStatus: 12,
                 multiplyAttack: 12,
                 multiplyAttackSpeed: 12,
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
                 multiplyAccuracy: 3,
             },
             2: {
                 multiplyAllStatus: 14,
                 multiplyAttack: 14,
                 multiplyAttackSpeed: 14,
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
                 multiplyAccuracy: 4,
             },
             3: {
                 multiplyAllStatus: 16,
                 multiplyAttack: 16,
                 multiplyAttackSpeed: 16,
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
                 multiplyAccuracy: 5,
             },
             4: {
                 multiplyAllStatus: 18,
                 multiplyAttack: 18,
                 multiplyAttackSpeed: 18,
-                multiplyCriticalRate: 6,
+                plusCriticalRate: 6,
                 multiplyAccuracy: 6,
             },
             5: {
                 multiplyAllStatus: 20,
                 multiplyAttack: 20,
                 multiplyAttackSpeed: 20,
-                multiplyCriticalRate: 8,
+                plusCriticalRate: 8,
                 multiplyAccuracy: 8,
             },
             6: {
                 multiplyAllStatus: 30,
                 multiplyAttack: 30,
                 multiplyAttackSpeed: 30,
-                multiplyCriticalRate: 10,
+                plusCriticalRate: 10,
                 multiplyAccuracy: 10,
             }
         }
@@ -1544,7 +1554,7 @@ export const skills: Skill[] = [
     {
         name: "sprint",
         displayName: "スプリント",
-        icon: unknown,
+        icon: archer_sprint,
         type: "Buff",
         raceid: 2,
         jobid: 0,
@@ -1685,7 +1695,7 @@ export const skills: Skill[] = [
     {
         name: "siegeShot",
         displayName: "シージショット",
-        icon: unknown,
+        icon: ranger_siege_shot,
         type: "Buff",
         raceid: 2,
         jobid: 1,
@@ -1727,7 +1737,7 @@ export const skills: Skill[] = [
     {
         name: "speedWind",
         displayName: "スピードウィンド",
-        icon: unknown,
+        icon: ranger_speed_wind,
         type: "Buff",
         raceid: 2,
         jobid: 1,
@@ -1769,7 +1779,7 @@ export const skills: Skill[] = [
     {
         name: "kaelsBolt",
         displayName: "カエールボルト",
-        icon: unknown,
+        icon: ranger_kaels_bolt,
         type: "Buff",
         raceid: 2,
         jobid: 1,
@@ -1893,6 +1903,48 @@ export const skills: Skill[] = [
         }
     },
     {
+        name: "premiumShot",
+        displayName: "プレミアムショット",
+        icon: ranger_premium_shot,
+        type: "Buff",
+        raceid: 2,
+        jobid: 1,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "60秒間使用者の基本的な攻撃クリティカル確率が10%増加します。",
+            "60秒間使用者の基本的な攻撃クリティカル確率が20%増加します。",
+            "60秒間使用者の基本的な攻撃クリティカル確率が30%増加します。",
+            "60秒間使用者の基本的な攻撃クリティカル確率が40%増加します。",
+            "60秒間使用者の基本的な攻撃クリティカル確率が50%増加します。",
+            "60秒間使用者の基本的な攻撃クリティカル確率が70%増加します。",
+            "60秒間使用者の基本的な攻撃クリティカル確率が100%増加します。",
+        ],
+        attributes: {
+            0: {
+                multiplyCriticalRate: 10,
+            },
+            1: {
+                multiplyCriticalRate: 20,
+            },
+            2: {
+                multiplyCriticalRate: 30,
+            },
+            3: {
+                multiplyCriticalRate: 40,
+            },
+            4: {
+                multiplyCriticalRate: 50,
+            },
+            5: {
+                multiplyCriticalRate: 70,
+            },
+            6: {
+                multiplyCriticalRate: 100,
+            }
+        }
+    },
+    {
         name: "wingFoot",
         displayName: "ウイングフット",
         icon: ranger_wing_foot,
@@ -1937,7 +1989,7 @@ export const skills: Skill[] = [
     {
         name: "deathChaser",
         displayName: "デスチェイサー",
-        icon: unknown,
+        icon: ranger_death_chaser,
         type: "Buff",
         raceid: 2,
         jobid: 1,
@@ -2072,7 +2124,7 @@ export const skills: Skill[] = [
     {
         name: "kaelsArrow",
         displayName: "カエールアロー",
-        icon: unknown,
+        icon: scout_kaels_arrow,
         type: "Buff",
         raceid: 2,
         jobid: 2,
@@ -2289,7 +2341,7 @@ export const skills: Skill[] = [
     {
         name: "cataclysm",
         displayName: "カタクリズム",
-        icon: unknown,
+        icon: scout_cataclysm,
         type: "Buff",
         raceid: 2,
         jobid: 2,
@@ -2518,25 +2570,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
             },
             1: {
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
             },
             2: {
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
             },
             3: {
-                multiplyCriticalRate: 6,
+                plusCriticalRate: 6,
             },
             4: {
-                multiplyCriticalRate: 7,
+                plusCriticalRate: 7,
             },
             5: {
-                multiplyCriticalRate: 8,
+                plusCriticalRate: 8,
             },
             6: {
-                multiplyCriticalRate: 9,
+                plusCriticalRate: 9,
             }
         }
     },
@@ -2681,37 +2733,37 @@ export const skills: Skill[] = [
             0: {
                 multiplyWeaponAttack: 39,
                 plusMeleeAttackMultiplyDexterity: 10,
-                multiplyCriticalRate: 2,
+                plusCriticalRate: 2,
             },
             1: {
                 multiplyWeaponAttack: 79,
                 plusMeleeAttackMultiplyDexterity: 20,
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
             },
             2: {
                 multiplyWeaponAttack: 118,
                 plusMeleeAttackMultiplyDexterity: 30,
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
             },
             3: {
                 multiplyWeaponAttack: 157,
                 plusMeleeAttackMultiplyDexterity: 40,
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
             },
             4: {
                 multiplyWeaponAttack: 197,
                 plusMeleeAttackMultiplyDexterity: 50,
-                multiplyCriticalRate: 6,
+                plusCriticalRate: 6,
             },
             5: {
                 multiplyWeaponAttack: 275,
                 plusMeleeAttackMultiplyDexterity: 70,
-                multiplyCriticalRate: 10,
+                plusCriticalRate: 10,
             },
             6: {
                 multiplyWeaponAttack: 393,
                 plusMeleeAttackMultiplyDexterity: 100,
-                multiplyCriticalRate: 15,
+                plusCriticalRate: 15,
             }
         }
     },
@@ -3144,25 +3196,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 1,
+                plusCriticalRate: 1,
             },
             1: {
-                multiplyCriticalRate: 2,
+                plusCriticalRate: 2,
             },
             2: {
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
             },
             3: {
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
             },
             4: {
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
             },
             5: {
-                multiplyCriticalRate: 7,
+                plusCriticalRate: 7,
             },
             6: {
-                multiplyCriticalRate: 10,
+                plusCriticalRate: 10,
             }
         }
     },
@@ -3662,25 +3714,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
             },
             1: {
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
             },
             2: {
-                multiplyCriticalRate: 6,
+                plusCriticalRate: 6,
             },
             3: {
-                multiplyCriticalRate: 7,
+                plusCriticalRate: 7,
             },
             4: {
-                multiplyCriticalRate: 8,
+                plusCriticalRate: 8,
             },
             5: {
-                multiplyCriticalRate: 10,
+                plusCriticalRate: 10,
             },
             6: {
-                multiplyCriticalRate: 15,
+                plusCriticalRate: 15,
             }
         }
     },
@@ -4270,25 +4322,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
             },
             1: {
-                multiplyCriticalRate: 4,
+                plusCriticalRate: 4,
             },
             2: {
-                multiplyCriticalRate: 5,
+                plusCriticalRate: 5,
             },
             3: {
-                multiplyCriticalRate: 6,
+                plusCriticalRate: 6,
             },
             4: {
-                multiplyCriticalRate: 7,
+                plusCriticalRate: 7,
             },
             5: {
-                multiplyCriticalRate: 8,
+                plusCriticalRate: 8,
             },
             6: {
-                multiplyCriticalRate: 10,
+                plusCriticalRate: 10,
             }
         }
     },
@@ -5439,13 +5491,13 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 1,
+                plusCriticalRate: 1,
             },
             1: {
-                multiplyCriticalRate: 2,
+                plusCriticalRate: 2,
             },
             2: {
-                multiplyCriticalRate: 3,
+                plusCriticalRate: 3,
             }
         }
     },
@@ -5582,7 +5634,7 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyCriticalRate: 2,
+                plusCriticalRate: 2,
             }
         }
     },
