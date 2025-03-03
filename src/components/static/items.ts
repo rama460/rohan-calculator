@@ -73,6 +73,8 @@ import talisman_q_supreme_commander from "../../assets/items/talisman_q_supreme_
 
 import talisman_r_victorious from "../../assets/items/talisman_r_victorious.png";
 import talisman_s_1 from "../../assets/items/talisman_s_1.png";
+import talisman_w_mask from "../../assets/items/talisman_w_mask.png";
+
 import { BuiltinOptionKeyType } from "./options";
 import { RaceNameOrTrinityJobName, races } from "./races";
 
@@ -4109,7 +4111,7 @@ export const w_talismans: ItemTemplate[] = [
                 'plusDefense': 3500,
             },
         },
-        icon: unknown,
+        icon: talisman_w_mask,
     }
 
 ]
