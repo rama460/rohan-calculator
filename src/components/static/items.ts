@@ -379,6 +379,7 @@ export const weapons: WeaponTemplate[] = [
                 "plusAttack": 453,
             },
         },
+        sockets: 4
     }
 
 ]
@@ -861,7 +862,7 @@ export const shields: ItemTemplate[] = [
             },
             "Elf": {
                 18: {
-                    "physicalDefense": 606,
+                    "physicalDefense": 696,
                     "magicalDefense": 726,
                 }
             },
