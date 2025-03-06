@@ -115,6 +115,10 @@ import rumir_vine_protection from "../../assets/skills/rumir_vine_protection.png
 import rumir_blessed_crown from "../../assets/skills/rumir_blessed_crown.png";
 import rumir_life_circulation from "../../assets/skills/rumir_life_circulation.png";
 import rumir_growth_acceleration from "../../assets/skills/rumir_growth_acceleration.png";
+import noir_arrendal_mastery from "../../assets/skills/noir_arrendal_mastery.png";
+import noir_trinity_force from "../../assets/skills/noir_trinity_force.png";
+import noir_dark_assimilation from "../../assets/skills/noir_dark_assimilation.png";
+import noir_spirit_concentration from "../../assets/skills/noir_spirit_concentration.png";
 // cash buff
 import cash_proof_of_brave from "../../assets/skills/cash_proof_of_brave.png";
 import cash_proof_of_master_archer from "../../assets/skills/cash_proof_of_master_archer.png";
@@ -5245,6 +5249,230 @@ export const skills: Skill[] = [
 
     },
     // ノワール
+    {
+        name: "arrendalMastery",
+        displayName: "アレンダルマスタリー",
+        icon: noir_arrendal_mastery,
+        type: "Buff",
+        raceid: 7,
+        jobid: 2,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "アレンダル及びオプション攻撃力が50%増加。力の50%ほど近距離攻撃力が増加",
+            "アレンダル及びオプション攻撃力が70%増加。力の70%ほど近距離攻撃力が増加",
+            "アレンダル及びオプション攻撃力が100%増加。力の100%ほど近距離攻撃力が増加",
+            "アレンダル及びオプション攻撃力が140%増加。力の140%ほど近距離攻撃力が増加",
+            "アレンダル及びオプション攻撃力が190%増加。力の190%ほど近距離攻撃力が増加",
+            "アレンダル及びオプション攻撃力が250%増加。力の250%ほど近距離攻撃力が増加",
+            "アレンダル及びオプション攻撃力が350%増加。力の350%ほど近距離攻撃力が増加",
+        ],
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 50,
+                plusMeleeAttackMultiplyStrength: 50,
+            },
+            1: {
+                multiplyWeaponAttack: 70,
+                plusMeleeAttackMultiplyStrength: 70,
+            },
+            2: {
+                multiplyWeaponAttack: 100,
+                plusMeleeAttackMultiplyStrength: 100,
+            },
+            3: {
+                multiplyWeaponAttack: 140,
+                plusMeleeAttackMultiplyStrength: 140,
+            },
+            4: {
+                multiplyWeaponAttack: 190,
+                plusMeleeAttackMultiplyStrength: 190,
+            },
+            5: {
+                multiplyWeaponAttack: 250,
+                plusMeleeAttackMultiplyStrength: 250,
+            },
+            6: {
+                multiplyWeaponAttack: 350,
+                plusMeleeAttackMultiplyStrength: 350,
+            }
+        }
+    },
+    {
+        name: "trinityForce",
+        displayName: "トリニティフォース",
+        icon: noir_trinity_force,
+        type: "Buff",
+        raceid: 7,
+        jobid: 2,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "15分間、通常攻撃を範囲化し、10メートル内の対象に70%減少したダメージを与えます。あまた、通常攻撃時にTP100を生成します。",
+            "18分間、通常攻撃を範囲化し、10メートル内の対象に70%減少したダメージを与えます。あまた、通常攻撃時にTP125を生成します。",
+            "21分間、通常攻撃を範囲化し、10メートル内の対象に70%減少したダメージを与えます。あまた、通常攻撃時にTP150を生成します。",
+            "24分間、通常攻撃を範囲化し、10メートル内の対象に70%減少したダメージを与えます。あまた、通常攻撃時にTP175を生成します。",
+            "27分間、通常攻撃を範囲化し、10メートル内の対象に60%減少したダメージを与えます。あまた、通常攻撃時にTP200を生成します。",
+            "30分間、通常攻撃を範囲化し、10メートル内の対象に60%減少したダメージを与えます。あまた、通常攻撃時にTP225を生成します。",
+            "120分間、通常攻撃を範囲化し、10メートル内の対象に50%減少したダメージを与えます。あまた、通常攻撃時にTP300を生成します。",
+        ],
+        attributes: {
+            0: {
+                multiplyIncreaseDamageDealt: -70,
+            },
+            1: {
+                multiplyIncreaseDamageDealt: -70,
+            },
+            2: {
+                multiplyIncreaseDamageDealt: -70,
+            },
+            3: {
+                multiplyIncreaseDamageDealt: -70,
+            },
+            4: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            5: {
+                multiplyIncreaseDamageDealt: -60,
+            },
+            6: {
+                multiplyIncreaseDamageDealt: -50,
+            }
+        }
+    },
+    {
+        name: "darkAssimilation",
+        displayName: "ダークアシミレーション",
+        icon: noir_dark_assimilation,
+        type: "Buff",
+        raceid: 7,
+        jobid: 2,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "15分間、使用者の近距離攻撃力が10%増加します。",
+            "18分間、使用者の近距離攻撃力が14%増加します。",
+            "21分間、使用者の近距離攻撃力が18%増加します。",
+            "24分間、使用者の近距離攻撃力が22%増加します。",
+            "27分間、使用者の近距離攻撃力が24%増加します。",
+            "30分間、使用者の近距離攻撃力が30%増加します。",
+            "120分間、使用者の近距離攻撃力が40%増加します。",
+        ],
+        attributes: {
+            0: {
+                multiplyMeleeAttack: 10,
+            },
+            1: {
+                multiplyMeleeAttack: 14,
+            },
+            2: {
+                multiplyMeleeAttack: 18,
+            },
+            3: {
+                multiplyMeleeAttack: 22,
+            },
+            4: {
+                multiplyMeleeAttack: 24,
+            },
+            5: {
+                multiplyMeleeAttack: 30,
+            },
+            6: {
+                multiplyMeleeAttack: 40,
+            }
+        }
+    },
+    {
+        name: "spiritConcentration",
+        displayName: "スピリットコンセントレーション",
+        icon: noir_spirit_concentration,
+        type: "Buff",
+        raceid: 7,
+        jobid: 2,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "15分間、使用者の力を10%ほど増加します。",
+            "18分間、使用者の力を15%ほど増加します。",
+            "21分間、使用者の力を20%ほど増加します。",
+            "24分間、使用者の力を25%ほど増加します。",
+            "27分間、使用者の力を30%ほど増加します。",
+            "30分間、使用者の力を40%ほど増加します。",
+            "120分間、使用者の力を60%ほど増加します。",
+        ],
+        attributes: {
+            0: {
+                multiplyStrength: 10,
+            },
+            1: {
+                multiplyStrength: 15,
+            },
+            2: {
+                multiplyStrength: 20,
+            },
+            3: {
+                multiplyStrength: 25,
+            },
+            4: {
+                multiplyStrength: 30,
+            },
+            5: {
+                multiplyStrength: 40,
+            },
+            6: {
+                multiplyStrength: 60,
+            }
+        }
+    },
+    {
+        name: "silentNoise",
+        displayName: "サイレントノイズ",
+        icon: unknown,
+        type: "Buff",
+        raceid: 7,
+        jobid: 2,
+        min: 1,
+        max: 7,
+        descriptions: [
+            "60秒間、移動速度25%増加、攻撃速度40%増加、全ての射程距離5m増加。",
+            "60秒間、移動速度30%増加、攻撃速度50%増加、全ての射程距離6m増加。",
+            "60秒間、移動速度35%増加、攻撃速度60%増加、全ての射程距離7m増加。",
+            "60秒間、移動速度40%増加、攻撃速度70%増加、全ての射程距離8m増加。",
+            "60秒間、移動速度45%増加、攻撃速度80%増加、全ての射程距離9m増加。",
+            "60秒間、移動速度50%増加、攻撃速度90%増加、全ての射程距離10m増加。",
+            "60秒間、移動速度60%増加、攻撃速度110%増加、全ての射程距離15m増加。",
+        ],
+        attributes: {
+            0: {
+                multiplyMovementSpeed: 25,
+                multiplyAttackSpeed: 40,
+            },
+            1: {
+                multiplyMovementSpeed: 30,
+                multiplyAttackSpeed: 50,
+            },
+            2: {
+                multiplyMovementSpeed: 35,
+                multiplyAttackSpeed: 60,
+            },
+            3: {
+                multiplyMovementSpeed: 40,
+                multiplyAttackSpeed: 70,
+            },
+            4: {
+                multiplyMovementSpeed: 45,
+                multiplyAttackSpeed: 80,
+            },
+            5: {
+                multiplyMovementSpeed: 50,
+                multiplyAttackSpeed: 90,
+            },
+            6: {
+                multiplyMovementSpeed: 60,
+                multiplyAttackSpeed: 110,
+            }
+        }
+    },
     // 課金バフ
     {
         name: "proofOfBrave",
