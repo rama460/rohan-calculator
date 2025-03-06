@@ -911,8 +911,29 @@ export const skills: Skill[] = [
             "30分間、使用者の物理防御力を知能と精神の35%ほど増加させます。",
             "90分間、使用者の物理防御力を知能と精神の50%ほど増加させます。",
         ],
-        // TODO: implement custom option
-        attributes: {}
+        attributes: {
+            0: {
+                plusPhysicalDefenseMultiplyIntelligenceAndMentality: 5,
+            },
+            1: {
+                plusPhysicalDefenseMultiplyIntelligenceAndMentality: 10,
+            },
+            2: {
+                plusPhysicalDefenseMultiplyIntelligenceAndMentality: 15,
+            },
+            3: {
+                plusPhysicalDefenseMultiplyIntelligenceAndMentality: 20,
+            },
+            4: {
+                plusPhysicalDefenseMultiplyIntelligenceAndMentality: 25,
+            },
+            5: {
+                plusPhysicalDefenseMultiplyIntelligenceAndMentality: 35,
+            },
+            6: {
+                plusPhysicalDefenseMultiplyIntelligenceAndMentality: 50,
+            }
+        }
     },
     // プリースト
     {

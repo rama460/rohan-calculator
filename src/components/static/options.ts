@@ -748,6 +748,13 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
+    'plusPhysicalDefenseMultiplyIntelligenceAndMentality': {
+        name: 'plusPhysicalDefenseMultiplyIntelligenceAndMentality',
+        displayColor: 'green',
+        displayName: '知能・精神力依存物理防御力増加',
+        unit: 'number',
+        operationType: 'plus'
+    }
 
 } as const;
 export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {

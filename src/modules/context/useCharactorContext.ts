@@ -165,7 +165,11 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 Math.floor(state.status.strength) +
                 action.equipmentOptions["physicalDefense"] + action.skillOptions["physicalDefense"] + action.synergyOptions["physicalDefense"] +
                 action.equipmentOptions["plusPhysicalDefense"] + action.skillOptions["plusPhysicalDefense"] + action.synergyOptions["plusPhysicalDefense"] +
-                action.equipmentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"]) *
+                action.equipmentOptions["plusDefense"] + action.skillOptions["plusDefense"] + action.synergyOptions["plusDefense"] +
+                Math.floor((state.status.intelligence + state.status.mentality) * (
+                    action.equipmentOptions["plusPhysicalDefenseMultiplyIntelligenceAndMentality"] +
+                    action.skillOptions["plusPhysicalDefenseMultiplyIntelligenceAndMentality"] +
+                    action.synergyOptions["plusPhysicalDefenseMultiplyIntelligenceAndMentality"]) / 100)) *
                 (100 + action.equipmentOptions["multiplyPhysicalDefense"] + action.skillOptions["multiplyPhysicalDefense"] + action.synergyOptions["multiplyPhysicalDefense"] +
                     action.equipmentOptions["multiplyDefense"] + action.skillOptions["multiplyDefense"] + action.synergyOptions["multiplyDefense"] +
                     action.equipmentOptions["multiplyArmorDefense"] + action.skillOptions["multiplyArmorDefense"] + action.synergyOptions["multiplyArmorDefense"]
