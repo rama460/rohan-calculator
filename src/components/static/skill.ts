@@ -1403,8 +1403,50 @@ export const skills: Skill[] = [
             "30分間、片手鈍器及びオプション攻撃力が550%増加。攻撃速度40%増加。知能の411%と魔法攻撃力ほど近距離攻撃力が増加。",
             "120分間、片手鈍器及びオプション攻撃力が782%増加。攻撃速度60%増加。知能の587%と魔法攻撃力ほど近距離攻撃力が増加。",
         ],
-        // TODO: implement custom option
-        attributes: {}
+        attributes: {
+            0: {
+                multiplyWeaponAttack: 87,
+                multiplyAttackSpeed: 10,
+                plusMeleeAttackMultiplyIntelligence: 58,
+                plusMeleeAttackMultiplyMagicAttack: 100,
+            },
+            1: {
+                multiplyWeaponAttack: 164,
+                multiplyAttackSpeed: 15,
+                plusMeleeAttackMultiplyIntelligence: 118,
+                plusMeleeAttackMultiplyMagicAttack: 100,
+            },
+            2: {
+                multiplyWeaponAttack: 242,
+                multiplyAttackSpeed: 20,
+                plusMeleeAttackMultiplyIntelligence: 176,
+                plusMeleeAttackMultiplyMagicAttack: 100,
+            },
+            3: {
+                multiplyWeaponAttack: 319,
+                multiplyAttackSpeed: 25,
+                plusMeleeAttackMultiplyIntelligence: 235,
+                plusMeleeAttackMultiplyMagicAttack: 100,
+            },
+            4: {
+                multiplyWeaponAttack: 396,
+                multiplyAttackSpeed: 30,
+                plusMeleeAttackMultiplyIntelligence: 294,
+                plusMeleeAttackMultiplyMagicAttack: 100,
+            },
+            5: {
+                multiplyWeaponAttack: 550,
+                multiplyAttackSpeed: 40,
+                plusMeleeAttackMultiplyIntelligence: 411,
+                plusMeleeAttackMultiplyMagicAttack: 100,
+            },
+            6: {
+                multiplyWeaponAttack: 782,
+                multiplyAttackSpeed: 60,
+                plusMeleeAttackMultiplyIntelligence: 587,
+                plusMeleeAttackMultiplyMagicAttack: 100,
+            }
+        }
     },
     {
         name: "equality",

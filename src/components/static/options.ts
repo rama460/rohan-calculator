@@ -654,11 +654,19 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'plus'
     },
-    // zen mastery for dragon sage
+    // zen / blunt mastery for dragon sage
     'plusMeleeAttackMultiplyIntelligence': {
         name: 'plusMeleeAttackMultiplyIntelligence',
         displayColor: 'green',
         displayName: '知能依存近接攻撃力増加',
+        unit: 'number',
+        operationType: 'plus'
+    },
+    // blunt mastery for templer
+    'plusMeleeAttackMultiplyMagicAttack': {
+        name: 'plusMeleeAttackMultiplyMagicAttack',
+        displayColor: 'green',
+        displayName: '魔法攻撃力依存近接攻撃力増加',
         unit: 'number',
         operationType: 'plus'
     },

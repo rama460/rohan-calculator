@@ -237,6 +237,8 @@ const calcMeleeMasteryAttack = (state: Charactor, action: CharactorAction) => {
         return Math.floor(state.status.strength * action.skillOptions.plusMeleeAttackMultiplyStrength / 100)
     else if (action.skillOptions.plusMeleeAttackMultiplyVitality > 0)
         return Math.floor(state.status.vitality * action.skillOptions.plusMeleeAttackMultiplyVitality / 100)
+    else if (action.skillOptions.plusMeleeAttackMultiplyIntelligence > 0)
+        return Math.floor(state.status.intelligence * action.skillOptions.plusMeleeAttackMultiplyIntelligence / 100)
     else
         return 0
 }
@@ -266,6 +268,8 @@ const calcMeleeAttack = (state: Charactor, action: CharactorAction) => {
                 Math.floor(calcLvAttack(action.bases.level) * 0.75) +
                 Math.floor(state.status.strength * 3 * 0.75) +
                 calcMeleeMasteryAttack(state, action) +
+                // templer blunt mastery
+                Math.floor(calcMagicAttack(state, action) * action.skillOptions["plusMeleeAttackMultiplyMagicAttack"] / 100) +
                 Math.floor((action.equipmentOptions["meleeAttack"] + action.equipmentOptions["plusMeleeAttack"] + action.skillOptions["plusMeleeAttack"] + action.synergyOptions["plusMeleeAttack"] +
                     action.equipmentOptions["plusAttack"] + action.skillOptions["plusAttack"] + action.synergyOptions["plusAttack"]
                 ) * (100 + action.equipmentOptions["multiplyWeaponAttack"] + action.skillOptions["multiplyWeaponAttack"] + action.synergyOptions["multiplyWeaponAttack"]) / 100)
