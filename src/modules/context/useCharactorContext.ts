@@ -151,13 +151,19 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.bases.level * races[action.bases.raceid].hitPointPerLevel + (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
                 Math.floor(state.status.vitality) * 20 +
                 action.equipmentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
-                (100 + action.equipmentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100
+                (100 + action.equipmentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100 +
+                action.skillOptions["plusHitPointMultiplyLevel"] * action.bases.level +
+                action.skillOptions["plusHitPointMultiplyHeroLevel"] * action.bases.heroLevel +
+                action.skillOptions["plusHitPointMultiplyStrength"] * state.status.strength +
+                action.skillOptions["plusHitPointMultiplyAgility"] * state.status.agility
             )
             state.detail["magicPoint"] = Math.floor((
                 action.bases.level * races[action.bases.raceid].magicPointPerLevel + Math.floor((Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 / 2) +
                 Math.floor(state.status.mentality) * 10 +
                 action.equipmentOptions["plusMagicPoint"] + action.skillOptions["plusMagicPoint"] + action.synergyOptions["plusMagicPoint"]) *
-                (100 + action.equipmentOptions["multiplyMagicPoint"] + action.skillOptions["multiplyMagicPoint"] + action.synergyOptions["multiplyMagicPoint"]) / 100
+                (100 + action.equipmentOptions["multiplyMagicPoint"] + action.skillOptions["multiplyMagicPoint"] + action.synergyOptions["multiplyMagicPoint"]) / 100 +
+                action.skillOptions["plusMagicPointMultiplyLevel"] * action.bases.level +
+                action.skillOptions["plusMagicPointMultiplyHeroLevel"] * action.bases.heroLevel
             )
             state.detail["physicalDefense"] = Math.floor(((
                 action.bases.level > 70 ? action.bases.level * 3 : (action.bases.level > 50 ? action.bases.level * 2 : action.bases.level)) +

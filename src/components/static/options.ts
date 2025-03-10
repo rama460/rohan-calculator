@@ -762,7 +762,35 @@ export const BuiltinOptions = {
         displayName: '知能・精神力依存物理防御力増加',
         unit: 'number',
         operationType: 'plus'
-    }
+    },
+    'plusHitPointMultiplyLevel': {
+        name: 'plusHitPointMultiplyLevel',
+        displayColor: 'green',
+        displayName: 'レベル依存HP増加',
+        unit: 'number',
+        operationType: 'plus'
+    },
+    'plusHitPointMultiplyHeroLevel': {
+        name: 'plusHitPointMultiplyHeroLevel',
+        displayColor: 'green',
+        displayName: '征服者レベル依存HP増加',
+        unit: 'number',
+        operationType: 'plus'
+    },
+    'plusMagicPointMultiplyLevel': {
+        name: 'plusMagicPointMultiplyLevel',
+        displayColor: 'green',
+        displayName: 'レベル依存MP増加',
+        unit: 'number',
+        operationType: 'plus'
+    },
+    'plusMagicPointMultiplyHeroLevel': {
+        name: 'plusMagicPointMultiplyHeroLevel',
+        displayColor: 'green',
+        displayName: '征服者レベル依存MP増加',
+        unit: 'number',
+        operationType: 'plus'
+    },
 
 } as const;
 export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {

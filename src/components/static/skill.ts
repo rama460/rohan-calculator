@@ -1184,8 +1184,36 @@ export const skills: Skill[] = [
             "パーティーメンバー及び使用者の最大HPを使用者レベルの250倍増加させます。",
             "パーティーメンバー及び使用者の最大HPを使用者レベルの350倍増加させます。",
         ],
-        // TODO: implement custom option
-        attributes: {}
+        attributes: {
+            0: {
+                plusHitPointMultiplyLevel: 40,
+                plusHitPointMultiplyHeroLevel: 40,
+            },
+            1: {
+                plusHitPointMultiplyLevel: 60,
+                plusHitPointMultiplyHeroLevel: 60,
+            },
+            2: {
+                plusHitPointMultiplyLevel: 70,
+                plusHitPointMultiplyHeroLevel: 70,
+            },
+            3: {
+                plusHitPointMultiplyLevel: 160,
+                plusHitPointMultiplyHeroLevel: 160,
+            },
+            4: {
+                plusHitPointMultiplyLevel: 200,
+                plusHitPointMultiplyHeroLevel: 200,
+            },
+            5: {
+                plusHitPointMultiplyLevel: 250,
+                plusHitPointMultiplyHeroLevel: 250,
+            },
+            6: {
+                plusHitPointMultiplyLevel: 350,
+                plusHitPointMultiplyHeroLevel: 350,
+            }
+        }
     },
     {
         name: "blessingOfNature",
@@ -3740,8 +3768,36 @@ export const skills: Skill[] = [
             "30分間、使用者のレベルの250倍ほどHPとMPを増加させます。",
             "30分間、使用者のレベルの300倍ほどHPとMPを増加させます。",
         ],
-        // TODO: implement custom option
-        attributes: {}
+        attributes: {
+            0: {
+                plusHitPointMultiplyLevel: 150,
+                plusMagicPointMultiplyLevel: 150,
+            },
+            1: {
+                plusHitPointMultiplyLevel: 170,
+                plusMagicPointMultiplyLevel: 170,
+            },
+            2: {
+                plusHitPointMultiplyLevel: 190,
+                plusMagicPointMultiplyLevel: 190,
+            },
+            3: {
+                plusHitPointMultiplyLevel: 210,
+                plusMagicPointMultiplyLevel: 210,
+            },
+            4: {
+                plusHitPointMultiplyLevel: 230,
+                plusMagicPointMultiplyLevel: 230,
+            },
+            5: {
+                plusHitPointMultiplyLevel: 250,
+                plusMagicPointMultiplyLevel: 250,
+            },
+            6: {
+                plusHitPointMultiplyLevel: 300,
+                plusMagicPointMultiplyLevel: 300,
+            }
+        }
     },
     {
         name: "darkEyes",
