@@ -6,6 +6,8 @@ import { useStatusesDispatch } from "../../modules/context/useStatusesContext";
 import { useBasesDispatch } from "../../modules/context/useBasesContext";
 import { titles } from "../static/titles";
 import useQueryObject from "../../modules/context/useQueryState";
+import Tooltip from "../common/Tooltip";
+import TitleTooltipContent from "./TitleTooltipContent";
 
 interface BasePanelProps {
 }
@@ -134,22 +136,24 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                         <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>
                             称号:
                         </Typography>
-                        <FormControl size="small" >
-                            <Select
-                                defaultValue="none"
-                                value={title}
-                                onChange={(event) => {
-                                    setTitle(event.target.value as string)
-                                }}
-                            >
-                                <MenuItem value="none">なし</MenuItem>
-                                {
-                                    titles.map((title) => (
-                                        <MenuItem value={title.name}>{title.displayName}</MenuItem>
-                                    ))
-                                }
-                            </Select>
-                        </FormControl>
+                        <Tooltip content={<TitleTooltipContent title={title} />}>
+                            <FormControl size="small" >
+                                <Select
+                                    defaultValue="none"
+                                    value={title}
+                                    onChange={(event) => {
+                                        setTitle(event.target.value as string)
+                                    }}
+                                >
+                                    <MenuItem value="none">なし</MenuItem>
+                                    {
+                                        titles.map((title) => (
+                                            <MenuItem value={title.name}>{title.displayName}</MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </FormControl>
+                        </Tooltip>
                     </Box>
                 </Grid>
             </Grid>
