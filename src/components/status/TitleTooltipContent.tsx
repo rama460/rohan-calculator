@@ -19,15 +19,19 @@ export const TitleTooltipContent: React.FC<TitleTooltipContentProps> = ({ title 
     }
     const tilteOptions = titles.filter((t) => t.name === title)[0];
     return (
-        <Box sx={{ display: "flex", flexDirection: "row" }} gap={1}>
-            <div style={style}>
-                {titles.filter((t) => t.name === title)[0].displayName}
-                <br />
-                {...Object.entries(tilteOptions.options).map(([name, value]) => (
-                    <EquipmentTooltipContentRow name={BuiltinOptions[name as BuiltinOptionKeyType].displayName} value={value.toString()} color={BuiltinOptions[name as BuiltinOptionKeyType].displayColor} operationType={BuiltinOptions[name as BuiltinOptionKeyType].operationType} />
-                ))}
-            </div>
-        </Box>
+        <>
+            {title !== "none" ? (
+                <Box sx={{ display: "flex", flexDirection: "row" }} gap={1}>
+                    <div style={style}>
+                        {titles.filter((t) => t.name === title)[0].displayName}
+                        <br />
+                        {...Object.entries(tilteOptions.options).map(([name, value]) => (
+                            <EquipmentTooltipContentRow name={BuiltinOptions[name as BuiltinOptionKeyType].displayName} value={value.toString()} color={BuiltinOptions[name as BuiltinOptionKeyType].displayColor} operationType={BuiltinOptions[name as BuiltinOptionKeyType].operationType} />
+                        ))}
+                    </div>
+                </Box>) : (<></>)
+            }
+        </>
     );
 }
 export default TitleTooltipContent; 
