@@ -3,7 +3,6 @@ import IconButton from "../common/IconButton"
 import Tooltip from "../common/Tooltip"
 import EquipmentTooltipContent from "./EquipmentTooltipContent"
 import EquipmentDialog from "./EquipmentDialog";
-import { EquipmentDialogContent } from "./EquipmentDialogContent";
 import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent";
 import anyBackground from "../../assets/backgrounds/any.png"
 import { Item, ItemTemplate } from "../static/items";
@@ -70,9 +69,18 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
                 equippedItem ? <EquipmentTooltipContent currentItem={equippedItem} synergyCount={synergyCount} title={title} /> : <DefaultEquipmentTooltipContent content={title} />} >
                 <IconButton backgroundImage={backgroundImage} image={equippedItem?.icon} onClick={handleOpen} />
             </Tooltip>
-            <EquipmentDialog isOpen={openDialog} onConfirm={handleConfirm} onRemove={handleRemove} onCancel={handleCancel} title={title} equippedItem={equippedItem} >
-                <EquipmentDialogContent equipmentType={equipmentType} itemTemplates={items} currentItem={selectedItem} setCurrentItem={setSelectedItem} />
-            </EquipmentDialog>
+            <EquipmentDialog
+                equipmentType={equipmentType}
+                isOpen={openDialog}
+                onCancel={handleCancel}
+                onConfirm={handleConfirm}
+                onRemove={handleRemove}
+                title={title}
+                selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
+                equippedItem={equippedItem}
+                itemTemplates={items}
+            />
 
         </>
     )
