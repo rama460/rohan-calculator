@@ -35,7 +35,6 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
             <TextField
                 type="number"
                 size="small"
-                defaultValue={0}
                 value={base}
                 sx={{ width: "100px", }}
                 slotProps={{ htmlInput: { min: 0 } }}
@@ -44,7 +43,6 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
             <TextField
                 type="number"
                 size="small"
-                defaultValue={0}
                 value={meta}
                 sx={{ width: "100px", }}
                 slotProps={{ htmlInput: { min: 0 } }}

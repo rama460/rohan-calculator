@@ -69,7 +69,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                         <TextField
                             type="number"
                             size="small"
-                            defaultValue={115}
+                            value={level}
                             sx={{ width: "80px", }}
                             slotProps={{ htmlInput: { min: 1, max: 115 } }}
                             onChange={handleLevelChange}
@@ -80,7 +80,6 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                         <TextField
                             type="number"
                             size="small"
-                            defaultValue={50}
                             value={level == 115 ? heroLevel : 0}
                             disabled={level < 115}
                             sx={{ width: "80px", }}
@@ -100,7 +99,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                                 onChange={handleRaceChange}
                             >
                                 {races.map((race) => (
-                                    <MenuItem value={race.id}>{race.displayName}</MenuItem>
+                                    <MenuItem key={race.id} value={race.id}>{race.displayName}</MenuItem>
                                 ))}
                             </Select>
                         </FormControl>
@@ -114,7 +113,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                                 onChange={handleJobChange}
                             >
                                 {races[Number(raceid)].jobs.map((job) => (
-                                    <MenuItem value={job.id}>{job.displayName}</MenuItem>
+                                    <MenuItem key={job.id} value={job.id}>{job.displayName}</MenuItem>
                                 ))}
                             </Select>
                         </FormControl>
@@ -145,10 +144,10 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                                         setTitle(event.target.value as string)
                                     }}
                                 >
-                                    <MenuItem value="none">なし</MenuItem>
+                                    <MenuItem key={-1} value="none">なし</MenuItem>
                                     {
-                                        titles.map((title) => (
-                                            <MenuItem value={title.name}>{title.displayName}</MenuItem>
+                                        titles.map((title, index) => (
+                                            <MenuItem key={index} value={title.name}>{title.displayName}</MenuItem>
                                         ))
                                     }
                                 </Select>

@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react"
 import { ItemTemplate, Item, getInitialBaseOtions } from '../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
@@ -118,75 +118,71 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
                 <DialogTitle sx={{ fontSize: "30px" }} >
                     {title}
                 </DialogTitle>
-                <DialogContent>
-                    <DialogContentText
-                        sx={{ fontSize: "25px", textAlign: "center" }}
-                    >
-                        <FormControl size="small" sx={{ margin: "10px" }}>
-                            <InputLabel>Name</InputLabel>
-                            <Select
-                                value={name}
-                                label="Name"
-                                onChange={handleChange}
-                            >
-                                {availableItemTemplates.map(
-                                    (itemTemplate) => (
-                                        <MenuItem value={itemTemplate.name}>{itemTemplate.name}</MenuItem>
-                                    )
-                                )}
-                            </Select>
-                        </FormControl>
-                        {
-                            selectedItemTemplate.enchantableBaseOptions || selectedItemTemplate.raceEnchantableBaseOptions ? (
-                                <FormControl size="small" sx={{ margin: "10px" }}>
-                                    <TextField
-                                        value={enchantLevel}
-                                        label="強化値"
-                                        size="small"
-                                        type="number"
-                                        onChange={(event) => {
-                                            setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, bases.jobid, Number(event.target.value))));
-                                            setEnchantLevel(Number(event.target.value));
-                                        }}
-                                        sx={{ width: "70px" }}
-                                        slotProps={{ htmlInput: { min: 0 } }}
-                                    />
-                                </FormControl>
-                            ) : (<></>)
-                        }
-                        <Divider />
-                        <Typography >基本オプション</Typography>
-                        {baseOptions.map((option, index) => (
-                            <EquipmentBaseOption name={option.name} value={option.value} index={index} options={baseOptions} setOptions={setBaseOptions} />
-                        ))}
-                        {
-                            selectedItemTemplate.sockets && selectedItemTemplate.sockets > 0 ? (
-                                <>
-                                    <Divider />
-                                    <Typography>
-                                        生産オプション
-                                    </Typography>
-                                    {
-                                        craftedOptions.map((option, index) => (
-                                            <EquipmentCraftedOption name={option.name} value={option.value} equipmentType={equipmentType} index={index} options={craftedOptions} setOptions={setCraftedOptions} />
-                                        ))
-                                    }
-                                </>) : (<></>)
-                        }
-                        <Divider />
-                        <Typography>追加オプション</Typography>
-                        {
-                            additionalOptions.map((option, index) => (
-                                <EquipmentOption name={option.name} value={option.value} index={index} options={additionalOptions} setOptions={setAdditionalOptions} />
-                            ))
-                        }
-                        <Button onClick={() => {
-                            additionalOptions.push({ name: "none", value: 0 });
-                            setAdditionalOptions([...additionalOptions]);
-                        }}>
-                            <AddIcon />
-                        </Button>
-                    </DialogContentText>
+                <DialogContent sx={{ textAlign: "center" }}>
+                    <FormControl size="small" sx={{ margin: "10px" }}>
+                        <InputLabel>Name</InputLabel>
+                        <Select
+                            value={name}
+                            label="Name"
+                            onChange={handleChange}
+                        >
+                            {availableItemTemplates.map(
+                                (itemTemplate, index) => (
+                                    <MenuItem key={index} value={itemTemplate.name}>{itemTemplate.name}</MenuItem>
+                                )
+                            )}
+                        </Select>
+                    </FormControl>
+                    {
+                        selectedItemTemplate.enchantableBaseOptions || selectedItemTemplate.raceEnchantableBaseOptions ? (
+                            <FormControl size="small" sx={{ margin: "10px" }}>
+                                <TextField
+                                    value={enchantLevel}
+                                    label="強化値"
+                                    size="small"
+                                    type="number"
+                                    onChange={(event) => {
+                                        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, bases.jobid, Number(event.target.value))));
+                                        setEnchantLevel(Number(event.target.value));
+                                    }}
+                                    sx={{ width: "70px" }}
+                                    slotProps={{ htmlInput: { min: 0 } }}
+                                />
+                            </FormControl>
+                        ) : (<></>)
+                    }
+                    <Divider />
+                    <Typography >基本オプション</Typography>
+                    {baseOptions.map((option, index) => (
+                        <EquipmentBaseOption key={index} name={option.name} value={option.value} index={index} options={baseOptions} setOptions={setBaseOptions} />
+                    ))}
+                    {
+                        selectedItemTemplate.sockets && selectedItemTemplate.sockets > 0 ? (
+                            <>
+                                <Divider />
+                                <Typography>
+                                    生産オプション
+                                </Typography>
+                                {
+                                    craftedOptions.map((option, index) => (
+                                        <EquipmentCraftedOption key={index} name={option.name} value={option.value} equipmentType={equipmentType} index={index} options={craftedOptions} setOptions={setCraftedOptions} />
+                                    ))
+                                }
+                            </>) : (<></>)
+                    }
+                    <Divider />
+                    <Typography>追加オプション</Typography>
+                    {
+                        additionalOptions.map((option, index) => (
+                            <EquipmentOption key={index} name={option.name} value={option.value} index={index} options={additionalOptions} setOptions={setAdditionalOptions} />
+                        ))
+                    }
+                    <Button onClick={() => {
+                        additionalOptions.push({ name: "none", value: 0 });
+                        setAdditionalOptions([...additionalOptions]);
+                    }}>
+                        <AddIcon />
+                    </Button>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleReset} >
@@ -203,7 +199,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
                     </Button>
                 </DialogActions>
             </Dialog>
-        </React.Fragment>
+        </React.Fragment >
     );
 }
 export default EquipmentDialog;

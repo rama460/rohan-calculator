@@ -24,14 +24,14 @@ export const BuffTooltipContent: React.FC<BuffTooltipContentProps> = ({ name, de
                     {name}
                 </Typography>
                 {descriptions.map((description, index) => (
-                    level === index + 1 ? <Typography variant="body2" sx={
+                    level === index + 1 ? <Typography key={index} variant="body2" sx={
                         {
                             textDecoration: "underline",
                             fontWeight: "bold",
 
                         }
                     }>{description}</Typography> :
-                        <Typography variant="body2">{description}</Typography>
+                        <Typography key={index} variant="body2">{description}</Typography>
                 ))}
             </Box>
         </Box>

@@ -73,7 +73,6 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ }) => {
                     <TextField
                         type="number"
                         size="small"
-                        defaultValue={0}
                         value={point}
                         sx={{ width: "100px", }}
                         slotProps={{ htmlInput: { min: 0, readOnly: true } }}

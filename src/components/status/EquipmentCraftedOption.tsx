@@ -39,9 +39,9 @@ export const EquipmentCraftedOption: React.FC<EquipmentCraftedOptionProps> = ({ 
                     value={name}
                     onChange={handleOptionChange}
                 >
-                    <MenuItem value="none">なし</MenuItem>
-                    {Object.keys(getCraftedOptions(equipmentType)).filter((n) => !(options.some((option) => option.name === n)) || n == name).map((name) => (
-                        <MenuItem value={name}>{BuiltinOptions[name as BuiltinOptionKeyType]?.displayName ?? "なし"}</MenuItem>
+                    <MenuItem key={-1} value="none">なし</MenuItem>
+                    {Object.keys(getCraftedOptions(equipmentType)).filter((n) => !(options.some((option) => option.name === n)) || n == name).map((name, index) => (
+                        <MenuItem key={index} value={name}>{BuiltinOptions[name as BuiltinOptionKeyType]?.displayName ?? "なし"}</MenuItem>
                     ))}
                 </Select>
             </FormControl>
@@ -49,7 +49,6 @@ export const EquipmentCraftedOption: React.FC<EquipmentCraftedOptionProps> = ({ 
                 <TextField
                     type="number"
                     size="small"
-                    defaultValue={value}
                     value={value}
                     onChange={(event) => {
                         options[index] = { name: name as BuiltinOptionKeyType, value: Number(event.target.value) };

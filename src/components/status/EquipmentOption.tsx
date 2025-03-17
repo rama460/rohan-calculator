@@ -34,8 +34,8 @@ export const EquipmentOption: React.FC<EquipmentOptionProps> = ({ name, value, i
                     value={name}
                     onChange={handleOptionChange}
                 >
-                    {BuiltinOptionKeys.filter((n) => !(options.some((option) => option.name === n)) || n == name || n == "none").map((name) => (
-                        <MenuItem value={name}>{getDisplayOptionName(BuiltinOptions[name])}</MenuItem>
+                    {BuiltinOptionKeys.filter((n) => !(options.some((option) => option.name === n)) || n == name || n == "none").map((name, index) => (
+                        <MenuItem key={index} value={name}>{getDisplayOptionName(BuiltinOptions[name])}</MenuItem>
                     ))}
                 </Select>
             </FormControl>
@@ -43,7 +43,6 @@ export const EquipmentOption: React.FC<EquipmentOptionProps> = ({ name, value, i
                 <TextField
                     type="number"
                     size="small"
-                    defaultValue={value}
                     value={value}
                     onChange={(event) => {
                         options[index] = { name: name as BuiltinOptionKeyType, value: Number(event.target.value) };

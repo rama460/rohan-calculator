@@ -30,7 +30,6 @@ export const EquipmentBaseOption: React.FC<EquipmentBaseOptionProps> = ({ name, 
                 <TextField
                     type="number"
                     size="small"
-                    defaultValue={value}
                     value={value}
                     onChange={(event) => {
                         options[index] = { name: name as BuiltinOptionKeyType, value: Number(event.target.value) };
