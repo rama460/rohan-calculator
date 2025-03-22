@@ -1,34 +1,44 @@
 import { Box, Checkbox, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import { races } from "../static/races";
 import Grid from "@mui/material/Grid2";
-import { useStatusesDispatch } from "../../modules/context/useStatusesContext";
-import { useBasesDispatch } from "../../modules/context/useBasesContext";
 import { titles } from "../static/titles";
-import useQueryObject from "../../modules/context/useQueryState";
 import Tooltip from "../common/Tooltip";
 import TitleTooltipContent from "./TitleTooltipContent";
+import { useAtom } from "jotai";
+import { baseOptionStateFamily, titleNameState } from "../../modules/state/bases";
+import { buffStateFamily } from "../../modules/state/skills";
+import { skills } from "../static/skill";
 
 interface BasePanelProps {
 }
 
 
 export const BasePanel: React.FC<BasePanelProps> = () => {
-
-    const [level, setLevel] = useQueryObject("level", 115);
-    const [heroLevel, setHeroLevel] = useQueryObject("heroLevel", 50);
-    const [raceid, setRaceid] = useQueryObject("raceid", 0);
-    const [jobid, setJobid] = useQueryObject("jobid", 0);
+    console.log("render BasePanel");
+    const [level, setLevel] = useAtom(baseOptionStateFamily("level"));
+    const [heroLevel, setHeroLevel] = useAtom(baseOptionStateFamily("heroLevel"));
+    const [raceid, setRaceid] = useAtom(baseOptionStateFamily("raceid"));
+    const [jobid, setJobid] = useAtom(baseOptionStateFamily("jobid"));
     const [transcended, setTranscended] = React.useState(false);
-    const [title, setTitle] = useQueryObject("title", "none");
-
-    const basesDispatch = useBasesDispatch();
-    const statusesDispatch = useStatusesDispatch();
+    const [title, setTitle] = useAtom(titleNameState);
+    const [buffStatuses, setBuffStatuses] = useAtom(buffStateFamily("Self"));
     const handleRaceChange = (event: SelectChangeEvent) => {
         setRaceid(Number(event.target.value as string));
+        // unset all buffs
+        setBuffStatuses([])
     }
     const handleJobChange = (event: SelectChangeEvent) => {
+        console.log("job changed")
         setJobid(Number(event.target.value as string));
+        // unset all buffs associated with the job, but remain the base job buffs (jobid = 0) 
+        setBuffStatuses([...buffStatuses.filter((b) => {
+            const skillSpec = skills.find(skill => skill.name === b.name)
+            if (!skillSpec) {
+                return false;
+            }
+            return skillSpec.raceid === raceid && (skillSpec.jobid === Number(event.target.value) || skillSpec.jobid === 0);;
+        })]);
     }
     const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLevel(Number(event.target.value));
@@ -42,22 +52,6 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
     const handleHeroLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setHeroLevel(Number(event.target.value));
     }
-    useEffect(() => {
-        statusesDispatch({ type: "UPDATE_INITIAL", value: races[raceid].initialStatus });
-        basesDispatch({ type: "SET_RACEID", raceid: raceid });
-    }, [raceid])
-    useEffect(() => {
-        basesDispatch({ type: "SET_JOBID", jobid: jobid });
-    }, [jobid])
-    useEffect(() => {
-        basesDispatch({ type: "SET_LEVEL", level: level });
-    }, [level])
-    useEffect(() => {
-        basesDispatch({ type: "SET_HERO_LEVEL", heroLevel: heroLevel });
-    }, [heroLevel])
-    useEffect(() => {
-        basesDispatch({ type: "SET_TITLE", title: title });
-    }, [title])
     return (
         <React.Fragment>
             <Grid container columnSpacing={2}>
@@ -129,7 +123,6 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                             checked={(level < 115 || heroLevel < 50) ? false : transcended}
                             onChange={() => {
                                 setTranscended(!transcended)
-                                basesDispatch({ type: "SET_TRANSCENDED", transcended: !transcended });
                             }}
                         />
                         <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>

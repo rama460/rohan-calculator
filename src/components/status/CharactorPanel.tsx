@@ -1,56 +1,55 @@
 import Grid from "@mui/material/Grid2";
 import CharactorParameterField from "./CharactorParameterField";
-import { useCharactorContext } from "../../modules/context/useCharactorContext";
 
 
 interface CharactorPanelProps {
 }
 
 export const CharactorPanel: React.FC<CharactorPanelProps> = () => {
-    const charactor = useCharactorContext()
+    console.log("render CharactorPanel");
     return (
         <Grid container columnSpacing={4}>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="近距離攻撃力" value={charactor.detail.meleeAttack} />
+                <CharactorParameterField name="meleeAttack" title="近距離攻撃力" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="全体 抵抗" value={charactor.detail.resistance} />
+                <CharactorParameterField name="resistance" title="全体 抵抗" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="遠距離攻撃力" value={charactor.detail.rangeAttack} />
+                <CharactorParameterField name="rangeAttack" title="遠距離攻撃力" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="命中率" value={charactor.detail.accuracy} />
+                <CharactorParameterField name="accuracy" title="命中率" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="魔法攻撃力" value={charactor.detail.magicAttack} />
+                <CharactorParameterField name="magicAttack" title="魔法攻撃力" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="回避率" value={charactor.detail.dodging} />
+                <CharactorParameterField name="dodging" title="回避率" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="物理防御力" value={charactor.detail.physicalDefense} />
+                <CharactorParameterField name="physicalDefense" title="物理防御力" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="移動速度" value={charactor.detail.movementSpeed} />
+                <CharactorParameterField name="movementSpeed" title="移動速度" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="魔法防御力" value={charactor.detail.magicalDefense} />
+                <CharactorParameterField name="magicalDefense" title="魔法防御力" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="攻撃速度" value={charactor.detail.attackSpeed} />
+                <CharactorParameterField name="attackSpeed" title="攻撃速度" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="HP" value={charactor.detail.hitPoint} />
+                <CharactorParameterField name="hitPoint" title="HP" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="HP回復" value={0} />
+                <CharactorParameterField name="hitPointRecovery" title="HP回復" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="MP" value={charactor.detail.magicPoint} />
+                <CharactorParameterField name="magicPoint" title="MP" />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <CharactorParameterField name="MP回復" value={0} />
+                <CharactorParameterField name="magicPointRecovery" title="MP回復" />
             </Grid>
         </Grid>
     )

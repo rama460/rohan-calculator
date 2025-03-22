@@ -1,4 +1,4 @@
-import { Equipments } from "../../modules/context/useEquipmentsContext";
+import { Equipments } from "../../modules/state/items";
 
 export type Option = {
     name: string;
@@ -28,6 +28,48 @@ export const BuiltinOptions = {
         name: 'none',
         displayColor: 'white',
         displayName: 'なし',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'strength': {
+        name: 'strength',
+        displayColor: 'white',
+        displayName: '力',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'vitality': {
+        name: 'vitality',
+        displayColor: 'white',
+        displayName: '体力',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'intelligence': {
+        name: 'intelligence',
+        displayColor: 'white',
+        displayName: '知能',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'agility': {
+        name: 'agility',
+        displayColor: 'white',
+        displayName: '敏捷性',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'mentality': {
+        name: 'mentality',
+        displayColor: 'white',
+        displayName: '精神力',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'dexterity': {
+        name: 'dexterity',
+        displayColor: 'white',
+        displayName: '瞬発力',
         unit: 'number',
         operationType: 'absolute',
     },
@@ -600,8 +642,28 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
-
-    // weapon master
+    // weapon mastery
+    'meleeMastery': {
+        name: 'meleeMastery',
+        displayColor: 'green',
+        displayName: '近接武器マスタリー',
+        unit: 'number',
+        operationType: 'absolute'
+    },
+    'rangeMastery': {
+        name: 'rangeMastery',
+        displayColor: 'green',
+        displayName: '遠距離武器マスタリー',
+        unit: 'number',
+        operationType: 'absolute'
+    },
+    'magicMastery': {
+        name: 'magicMastery',
+        displayColor: 'green',
+        displayName: '魔法武器マスタリー',
+        unit: 'number',
+        operationType: 'absolute'
+    },
     'multiplyWeaponAttack': {
         name: 'multiplyWeaponAttack',
         displayColor: 'green',

@@ -2,7 +2,7 @@ import { Box, Button, FormControl, MenuItem, Select, SelectChangeEvent, TextFiel
 import { BuiltinOptionKeyType, BuiltinOptions, getCraftedOptions } from "../static/options";
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from "react";
-import { Equipments } from "../../modules/context/useEquipmentsContext";
+import { Equipments } from "../../modules/state/items";
 
 interface EquipmentCraftedOptionProps {
     name: BuiltinOptionKeyType;

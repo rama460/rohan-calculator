@@ -64,8 +64,8 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
                     <EquipmentTooltipContentRow key={index} {...row} />
                 ))}
             </div>
-            {currentItem.synergyOptions && Object.entries(currentItem.synergyOptions).map(([requiredCount, options]) => (
-                <div style={style}>
+            {currentItem.synergyOptions && Object.entries(currentItem.synergyOptions).map(([requiredCount, options], index) => (
+                <div key={index} style={style}>
                     <div style={synergyCount >= Number(requiredCount) ? enabledStyle : disabledStyle}>
                         {requiredCount}セット：{Object.entries(options).map(([key, value], index) => (
                             <EquipmentTooltipContentRow key={index} name={BuiltinOptions[key as BuiltinOptionKeyType].displayName} value={value.toString()} color={BuiltinOptions[key as BuiltinOptionKeyType].displayColor} operationType={BuiltinOptions[key as BuiltinOptionKeyType].operationType} />
