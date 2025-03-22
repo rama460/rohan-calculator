@@ -3,35 +3,13 @@ import Grid from "@mui/material/Grid2";
 import StatusField from "./StatusField";
 import React from "react";
 import StatusFieldTitle from "./StatusFieldTitle";
-import { Statuses, StatusType, useStatusesContext } from "../../modules/context/useStatusesContext";
-import { useBasesContext } from "../../modules/context/useBasesContext";
+import { useAtomValue } from "jotai";
+import { remainingPointsState } from "../../modules/state/statuses";
 
 
-interface StatusPanelProps {
-}
-
-const gainedPoint = (level: number, heroLevel: number, statuses: Statuses) => {
-    const used = Object.keys(statuses).reduce((acc, key) => (
-        acc + statuses[key as StatusType].base
-    ), 0);
-    if (level < 51)
-        return (level - 1) * 4 - used;
-    else if (level < 71)
-        return 196 + (level - 50) * 6 - used;
-    else if (level < 101)
-        return 196 + 120 + (level - 70) * 8 - used;
-    else
-        return 196 + 120 + 240 + (level - 100) * 10 + heroLevel * 10 - used;
-}
-
-
-export const StatusPanel: React.FC<StatusPanelProps> = ({ }) => {
-    const statuses = useStatusesContext();
-    const bases = useBasesContext();
-    const [point, setPoint] = React.useState(gainedPoint(bases.level, bases.heroLevel, statuses));
-    React.useEffect(() => {
-        setPoint(gainedPoint(bases.level, bases.heroLevel, statuses));
-    }, [bases.level, bases.heroLevel, statuses]);
+export const StatusPanel: React.FC = ({ }) => {
+    console.log("render StatusPanel");
+    const remainingPoints = useAtomValue(remainingPointsState);
 
     return (
         <Grid container columnSpacing={4}>
@@ -73,7 +51,7 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({ }) => {
                     <TextField
                         type="number"
                         size="small"
-                        value={point}
+                        value={remainingPoints}
                         sx={{ width: "100px", }}
                         slotProps={{ htmlInput: { min: 0, readOnly: true } }}
                     />

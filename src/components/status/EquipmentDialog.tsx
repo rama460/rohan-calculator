@@ -4,11 +4,12 @@ import { ItemTemplate, Item, getInitialBaseOtions } from '../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
 import { BuiltinOptionKeyType } from "../static/options.ts";
-import { useBasesContext } from "../../modules/context/useBasesContext.ts";
 import { races } from "../static/races.ts";
 import EquipmentBaseOption from "./EquipmentBaseOption.tsx";
-import { Equipments } from "../../modules/context/useEquipmentsContext.ts";
 import EquipmentCraftedOption from "./EquipmentCraftedOption.tsx";
+import { useAtomValue } from "jotai";
+import { jobidState, raceidState } from "../../modules/state/bases.ts";
+import { Equipments } from "../../modules/state/items.ts";
 
 // FIXME: refactor this big component
 interface EquipmentDialogProps {
@@ -18,9 +19,9 @@ interface EquipmentDialogProps {
     onRemove: () => void;
     onCancel: () => void;
     title: string;
-    selectedItem: Item | null;
+    selectedItem: Item | undefined;
     setSelectedItem: (item: Item) => void;
-    equippedItem: Item | null;
+    equippedItem: Item | undefined;
     itemTemplates: ItemTemplate[];
 }
 // FIXME: Reconsider the data structure of Item / Options, and states in this component
@@ -42,11 +43,12 @@ const ArrayToHash = (array: { name: BuiltinOptionKeyType, value: number }[]): { 
 
 
 export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType, isOpen, onConfirm, onRemove, onCancel, title, selectedItem, setSelectedItem, equippedItem, itemTemplates }) => {
-    const bases = useBasesContext();
+    const raceid = useAtomValue(raceidState);
+    const jobid = useAtomValue(jobidState);
 
     const availableItemTemplates = itemTemplates.filter((template) => template.availableRaces?.some(
         //    (r) => (r === races[bases.raceid].name || r === races[bases.raceid].jobs[bases.jobid].name)) ?? false)
-        (r) => (r === races[bases.raceid].name)) ?? true)
+        (r) => (r === races[raceid].name)) ?? true)
     const [name, setName] = React.useState(
         selectedItem ? selectedItem.name : (
             availableItemTemplates.length > 0 ?
@@ -58,7 +60,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         selectedItem ? availableItemTemplates.find((template) => (template.name === selectedItem.name)) ?? availableItemTemplates[0] : availableItemTemplates[0])
     const [baseOptions, setBaseOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
         selectedItem ? hashToArray(selectedItem.baseOptions) :
-            hashToArray(getInitialBaseOtions(availableItemTemplates[0], bases.raceid, bases.jobid, enchantLevel))
+            hashToArray(getInitialBaseOtions(availableItemTemplates[0], raceid, jobid, enchantLevel))
     );
     const [craftedOptions, setCraftedOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
         selectedItem ? hashToArray(selectedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : (
@@ -74,7 +76,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
     const handleChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
         const selectedItemTemplate: ItemTemplate = availableItemTemplates.find((itemTemplate) => itemTemplate.name === event.target.value) || itemTemplates[0];
-        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, bases.jobid, enchantLevel)));
+        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, raceid, jobid, enchantLevel)));
         if (!selectedItemTemplate.sockets)
             setCraftedOptions([]);
         else if (craftedOptions.length > selectedItemTemplate.sockets) {
@@ -90,7 +92,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
     };
 
     const handleReset = () => {
-        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, bases.jobid, enchantLevel)));
+        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, raceid, jobid, enchantLevel)));
         setCraftedOptions(
             selectedItemTemplate.sockets ?
                 Array.from(
@@ -142,7 +144,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
                                     size="small"
                                     type="number"
                                     onChange={(event) => {
-                                        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, bases.raceid, bases.jobid, Number(event.target.value))));
+                                        setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, raceid, jobid, Number(event.target.value))));
                                         setEnchantLevel(Number(event.target.value));
                                     }}
                                     sx={{ width: "70px" }}

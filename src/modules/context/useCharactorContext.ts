@@ -148,7 +148,8 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.synergyOptions["plusAllStatus"]) *
                 (100 + action.equipmentOptions["multiplyDexterity"] + action.equipmentOptions["multiplyAllStatus"] + action.skillOptions["multiplyDexterity"] + action.skillOptions["multiplyAllStatus"] + action.synergyOptions["multiplyDexterity"] + action.synergyOptions["multiplyAllStatus"]) / 100);
             state.detail["hitPoint"] = Math.floor((
-                action.bases.level * races[action.bases.raceid].hitPointPerLevel + (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
+                action.bases.level * races[action.bases.raceid].hitPointPerLevel +
+                (Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 +
                 Math.floor(state.status.vitality) * 20 +
                 action.equipmentOptions["plusHitPoint"] + action.skillOptions["plusHitPoint"] + action.synergyOptions["plusHitPoint"]) *
                 (100 + action.equipmentOptions["multiplyHitPoint"] + action.skillOptions["multiplyHitPoint"] + action.synergyOptions["multiplyHitPoint"]) / 100 +
@@ -158,7 +159,8 @@ export const charactorReducer = (state: Charactor, action: CharactorAction): Cha
                 action.skillOptions["plusHitPointMultiplyAgility"] * state.status.agility
             )
             state.detail["magicPoint"] = Math.floor((
-                action.bases.level * races[action.bases.raceid].magicPointPerLevel + Math.floor((Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 / 2) +
+                action.bases.level * races[action.bases.raceid].magicPointPerLevel +
+                Math.floor((Math.floor(action.bases.level / 5) * (Math.floor(action.bases.level / 5) + 1)) * 5 / 2) +
                 Math.floor(state.status.mentality) * 10 +
                 action.equipmentOptions["plusMagicPoint"] + action.skillOptions["plusMagicPoint"] + action.synergyOptions["plusMagicPoint"]) *
                 (100 + action.equipmentOptions["multiplyMagicPoint"] + action.skillOptions["multiplyMagicPoint"] + action.synergyOptions["multiplyMagicPoint"]) / 100 +

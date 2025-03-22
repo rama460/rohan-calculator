@@ -1,58 +1,32 @@
 import Grid from "@mui/material/Grid2";
-import BuffIconButton from "./BuffIconButton";
 import { skills } from "../static/skill";
-import BorderedTitleBox from "../common/BorderedTitleBox";
-import { useBasesContext } from "../../modules/context/useBasesContext";
+import { useAtomValue } from "jotai";
+import { jobidState, raceidState } from "../../modules/state/bases";
+import { BuffGroup } from "./BuffGroup";
 interface BuffPanelProps {
 }
 
 export const BuffPanel: React.FC<BuffPanelProps> = () => {
-    const bases = useBasesContext();
+    console.log("render BuffPanel");
+    const raceid = useAtomValue(raceidState);
+    const jobid = useAtomValue(jobidState);
+    const selfBuffs = skills.filter(skill => skill.origin === "Self" && skill.raceid === raceid && (skill.jobid === jobid || skill.jobid === 0));
+    const groupBuff = skills.filter(skill => skill.origin === "Group");
+    const cashBuff = skills.filter(skill => skill.origin === "Cash");
+    const guildBuff = skills.filter(skill => skill.origin === "Guild");
     return (
         <Grid container spacing={4}>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BorderedTitleBox title="自バフ">
-                    <Grid container spacing={2}>
-                        {skills.filter(skill => skill.raceid === bases.raceid && (skill.jobid === bases.jobid || skill.jobid === 0) && (skill.type === "Buff" || skill.type === "Passive")).map((skill, index) => (
-                            <Grid key={index} size={{ md: 6, xs: 6 }}>
-                                <BuffIconButton skill={skill} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </BorderedTitleBox>
+                <BuffGroup buffOrigin="Self" buffs={selfBuffs} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BorderedTitleBox title="PTバフ">
-                    <Grid container spacing={2}>
-                        {skills.filter(skill => skill.type === "Group").map((skill, index) => (
-                            <Grid key={index} size={{ md: 6, xs: 6 }}>
-                                <BuffIconButton skill={skill} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </BorderedTitleBox>
+                <BuffGroup buffOrigin="Group" buffs={groupBuff} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BorderedTitleBox title="課金バフ">
-                    <Grid container spacing={2}>
-                        {skills.filter(skill => skill.type === "Cash").map((skill, index) => (
-                            <Grid key={index} size={{ md: 6, xs: 6 }}>
-                                <BuffIconButton skill={skill} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </BorderedTitleBox>
+                <BuffGroup buffOrigin="Cash" buffs={cashBuff} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BorderedTitleBox title="ギルドバフ">
-                    <Grid container spacing={2}>
-                        {skills.filter(skill => skill.type === "Guild").map((skill, index) => (
-                            <Grid key={index} size={{ md: 6, xs: 6 }}>
-                                <BuffIconButton skill={skill} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </BorderedTitleBox>
+                <BuffGroup buffOrigin="Guild" buffs={guildBuff} />
             </Grid>
         </Grid >
     )

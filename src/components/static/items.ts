@@ -202,8 +202,23 @@ export const getInitialBaseOtions = (itemTemplate: ItemTemplate, raceid: number,
     }
     return baseOptions
 }
-
-export type SynergyKey = "roha" | "variant" | "gargantua" | "catastrophe" | "chaos" | "megas" | "hesperos" | "karlas" | "diegas" | "kasim" | "onyxArmor" | "obsidianArmor" | "celestiteArmor" | "ignielArmor";
+export const synergyKeyNames = [
+    "roha",
+    "variant",
+    "gargantua",
+    "catastrophe",
+    "chaos",
+    "megas",
+    "hesperos",
+    "karlas",
+    "diegas",
+    "kasim",
+    "onyxArmor",
+    "obsidianArmor",
+    "celestiteArmor",
+    "ignielArmor"
+] as const;
+export type SynergyKey = typeof synergyKeyNames[number];
 export type WeaponType = keyof typeof BuiltinWeaponTypes;
 export const BuiltinWeaponTypes = {
     "sword": {
@@ -7134,7 +7149,7 @@ export const pets: ItemTemplate[] = [
 
 ]
 
-export const rides = [
+export const rides: ItemTemplate[] = [
     {
         name: "80%乗り物",
         icon: unknown,
@@ -7150,3 +7165,35 @@ export const rides = [
         },
     }
 ]
+export const itemTemplates = {
+    helmet: helmets,
+    gauntlet: gauntlets,
+    tunic: tunics,
+    leggings: leggings,
+    boots: boots,
+    weapon: weapons,
+    shield: shields,
+    arrow: arrows,
+    accessory1: accessories,
+    accessory2: accessories,
+    accessory3: accessories,
+    accessory4: accessories,
+    glasses: glasses,
+    hat: hats,
+    earrings: earrings,
+    costume: costumes,
+    talismanH: h_talismans,
+    talismanG: g_talismans,
+    talismanI: i_talismans,
+    talismanB: b_talismans,
+    talismanJ: j_talismans,
+    talismanN: n_talismans,
+    talismanE: e_talismans,
+    talismanR: r_talismans,
+    talismanW: w_talismans,
+    talismanQ: q_talismans,
+    talismanS: s_talismans,
+    pet: pets,
+    ride: rides
+
+}

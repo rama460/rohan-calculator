@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import IconButton from "../common/IconButton"
 import Tooltip from "../common/Tooltip"
 import EquipmentTooltipContent from "./EquipmentTooltipContent"
 import EquipmentDialog from "./EquipmentDialog";
 import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent";
 import anyBackground from "../../assets/backgrounds/any.png"
-import { Item, ItemTemplate } from "../static/items";
-import { Equipments, useEquipments, useEquipmentsDispatch } from "../../modules/context/useEquipmentsContext";
-import { useSynergyDispatch } from "../../modules/context/useSynergyContext";
-import useQueryItemObject from "../../modules/context/useQueryItemState";
+import { ItemTemplate } from "../static/items";
+import { useAtom, useAtomValue } from "jotai";
+import { Equipments, equipmentStateFamily, equipmentSynergyCountState, selectedItemStateFamily } from "../../modules/state/items";
 
 
 interface EquipmentIconButtonProps {
@@ -19,15 +18,12 @@ interface EquipmentIconButtonProps {
 }
 
 export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items }) => {
-    // TODO: consider to reload the race dependent base options
-    // when the race id is changed.
-    const equipmentDispatch = useEquipmentsDispatch();
-    const equipments = useEquipments();
-    const synergyDispatch = useSynergyDispatch();
-    const [equippedItem, setEquippedItem] = useQueryItemObject(equipmentType, null, items);
-    const [selectedItem, setSelectedItem] = React.useState<Item | null>(equippedItem ?? null);
+    const [equippedItem, setEquippedItem] = useAtom(equipmentStateFamily(equipmentType));
+    const [selectedItem, setSelectedItem] = useAtom(selectedItemStateFamily(equipmentType));
+    const synergyCount = useAtomValue(equipmentSynergyCountState(equipmentType));
+
     const [openDialog, setOpenDialog] = React.useState(false);
-    const [synergyCount, setSynergisticCount] = React.useState(0);
+
     const handleOpen = () => setOpenDialog(true);
     const handleConfirm = () => {
         setOpenDialog(false);
@@ -37,9 +33,8 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
         setEquippedItem(selectedItem);
     }
     const handleRemove = () => {
-        setEquippedItem(null);
+        setEquippedItem(undefined);
         setOpenDialog(false);
-        equipmentDispatch({ type: "REMOVE", key: equipmentType });
     }
     const handleCancel = () => {
         // FIXME: cancelするとダイアログが閉じる前に一瞬表示データが戻ってしまう
@@ -48,21 +43,6 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
             setSelectedItem(equippedItem);
         }
     }
-    useEffect(() => {
-        if (equippedItem) {
-            equipmentDispatch({ type: "SET", key: equipmentType, item: equippedItem });
-        }
-    }, [equippedItem])
-
-    useEffect(() => {
-        if (equippedItem && equippedItem?.synergyKey && equippedItem?.synergyOptions) {
-            const count = Object.values(equipments).filter((item) => item?.synergyKey === equippedItem.synergyKey).length ?? 0;
-            setSynergisticCount(count);
-            synergyDispatch({ type: "UPDATE", synergyOption: equippedItem.synergyOptions, count: count, synergyKey: equippedItem.synergyKey });
-        } else {
-            setSynergisticCount(0);
-        }
-    }, [equipments])
     return (
         <>
             <Tooltip content={
