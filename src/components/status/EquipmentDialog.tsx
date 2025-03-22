@@ -8,7 +8,7 @@ import { races } from "../static/races.ts";
 import EquipmentBaseOption from "./EquipmentBaseOption.tsx";
 import EquipmentCraftedOption from "./EquipmentCraftedOption.tsx";
 import { useAtomValue } from "jotai";
-import { jobidState, raceidState } from "../../modules/state/bases.ts";
+import { baseOptionStateFamily } from "../../modules/state/bases.ts";
 import { Equipments } from "../../modules/state/items.ts";
 
 // FIXME: refactor this big component
@@ -40,11 +40,19 @@ const ArrayToHash = (array: { name: BuiltinOptionKeyType, value: number }[]): { 
     return Object.assign({}, ...array.map((option) => ({ [option.name]: option.value })));
 }
 
-
+// FIXME: This component has some problems about synchronization between the state and the UI
+// ASIS:
+// - allways the state is remained as the last state when dialog closed
+// TOBE:
+// - if item is equipped
+//   - the dialog should be displayed value due to the equipped Item
+//   - so always initialize the state using equipped item when dialog opened 
+// - if item is not equipped
+//   - the dialog should be displayed value due to the last state dialog closed
 
 export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType, isOpen, onConfirm, onRemove, onCancel, title, selectedItem, setSelectedItem, equippedItem, itemTemplates }) => {
-    const raceid = useAtomValue(raceidState);
-    const jobid = useAtomValue(jobidState);
+    const raceid = useAtomValue(baseOptionStateFamily("raceid"));
+    const jobid = useAtomValue(baseOptionStateFamily("jobid"));
 
     const availableItemTemplates = itemTemplates.filter((template) => template.availableRaces?.some(
         //    (r) => (r === races[bases.raceid].name || r === races[bases.raceid].jobs[bases.jobid].name)) ?? false)

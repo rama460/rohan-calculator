@@ -231,24 +231,16 @@ const calculateMagicPointRecovery = (_: (key: BuiltinOptionKeyType | BaseOptionK
     return 1
 }
 // FIXME: expression is incorrect
-// see below correct expression in the comments
-/*
-            state.detail["movementSpeed"] = Math.floor(
-                races[action.bases.raceid].movementSpeed *
-                (100 + action.equipmentOptions["multiplyMovementSpeed"] + action.synergyOptions["multiplyMovementSpeed"] +
-                    action.equipmentOptions["multiplyRideSpeed"] + action.synergyOptions["multiplyRideSpeed"] + action.skillOptions["multiplyRideSpeed"]) / 100 *
-                (100 + action.skillOptions["multiplyMovementSpeed"]) / 100)
-*/
+// correct expression is some parameters are multiplied not added
 
 const calculateMovementSpeed = (getter: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
     return Math.floor(races[getter("raceid")].movementSpeed *
-        Math.floor((100 + getter("multiplyMovementSpeed")) / 100) *
-        Math.floor((100 + getter("multiplyRideSpeed")) / 100)
+        (100 + getter("multiplyMovementSpeed") + getter("multiplyRideSpeed")) / 100
     )
 }
 const calculateAttackSpeed = (getter: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
     return Math.floor(
-        getter("attackSpeed") * (100) /
+        (getter("attackSpeed") === 0 ? 2000 : getter("attackSpeed")) * (100) /
         (100 + getter("multiplyAttackSpeed"))
     )
 }

@@ -6,7 +6,7 @@ import { titles } from "../static/titles";
 import Tooltip from "../common/Tooltip";
 import TitleTooltipContent from "./TitleTooltipContent";
 import { useAtom } from "jotai";
-import { heroLevelState, jobidState, levelState, raceidState, titleNameState } from "../../modules/state/bases";
+import { baseOptionStateFamily, titleNameState } from "../../modules/state/bases";
 import { buffStateFamily } from "../../modules/state/skills";
 import { skills } from "../static/skill";
 
@@ -16,10 +16,10 @@ interface BasePanelProps {
 
 export const BasePanel: React.FC<BasePanelProps> = () => {
     console.log("render BasePanel");
-    const [level, setLevel] = useAtom(levelState);
-    const [heroLevel, setHeroLevel] = useAtom(heroLevelState);
-    const [raceid, setRaceid] = useAtom(raceidState);
-    const [jobid, setJobid] = useAtom(jobidState);
+    const [level, setLevel] = useAtom(baseOptionStateFamily("level"));
+    const [heroLevel, setHeroLevel] = useAtom(baseOptionStateFamily("heroLevel"));
+    const [raceid, setRaceid] = useAtom(baseOptionStateFamily("raceid"));
+    const [jobid, setJobid] = useAtom(baseOptionStateFamily("jobid"));
     const [transcended, setTranscended] = React.useState(false);
     const [title, setTitle] = useAtom(titleNameState);
     const [buffStatuses, setBuffStatuses] = useAtom(buffStateFamily("Self"));

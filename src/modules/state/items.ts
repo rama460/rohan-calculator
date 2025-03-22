@@ -1,11 +1,10 @@
-import { atomFamily } from "jotai/utils";
+import { atomFamily, atomWithDefault } from "jotai/utils";
 import { atom } from "jotai";
-import { Item, itemTemplates, SynergyKey } from "../../components/static/items";
-import { BuiltinOptionKeyType } from "../../components/static/options";
-import { jobidState, raceidState } from "./bases";
+import { BuiltinWeaponTypes, Item, itemTemplates, SynergyKey, WeaponType } from "../../components/static/items";
+import { BuiltinOptionKeyType, BuiltinOptions } from "../../components/static/options";
+import { baseOptionStateFamily } from "./bases";
 import { RaceNameOrTrinityJobName, races } from "../../components/static/races";
 import { atomWithCompressedHash } from "./common";
-
 export const equipmentSlotNames = [
     "helmet",
     "gauntlet",
@@ -65,23 +64,43 @@ const minifiedEquipmentsState = atomFamily((param: keyof Equipments) =>
 
 export const equipmentStateFamily = atomFamily((param: keyof Equipments) =>
     atom(
-        (get) => unminifiedItem(get(minifiedEquipmentsState(param)), get(raceidState), get(jobidState), param),
-        (_, set, newValue: Item | undefined) =>
-            set(minifiedEquipmentsState(param), minifyItem(newValue))
+        (get) => unminifiedItem(get(minifiedEquipmentsState(param)), get(baseOptionStateFamily("raceid")), get(baseOptionStateFamily("jobid")), param),
+        (get, set, newValue: Item | undefined) =>
+            set(minifiedEquipmentsState(param), minifyItem(newValue, get(baseOptionStateFamily("raceid")), get(baseOptionStateFamily("jobid")), param))
     )
 );
-const minifyItem = (item: Item | undefined): MinifiedItem | undefined => {
+const minifyItem = (item: Item | undefined, raceid: number, jobid: number, equipmentType: keyof Equipments): MinifiedItem | undefined => {
     if (!item) {
         return undefined;
     }
     const minified: MinifiedItem = {
         n: item.name,
     }
+    const itemTemplate = itemTemplates[equipmentType].find((item) => item.name === minified.n);
+    if (!itemTemplate) {
+        throw new Error(`Item not found: ${minified.n}`);
+    }
+    const racenameOrTrinityJobname = (races[raceid].name !== "Trinity" ? races[raceid].name : races[raceid].jobs[jobid].name) as RaceNameOrTrinityJobName
+    const baseOptions = {
+        ...itemTemplate.fixedBaseOptions ?? {},
+        ...itemTemplate.enchantableBaseOptions?.[minified.e ?? 0] ?? {},
+        ...itemTemplate.raceBaseOptions?.[racenameOrTrinityJobname] ?? {},
+        ...itemTemplate.raceEnchantableBaseOptions?.[racenameOrTrinityJobname]?.[minified.e ?? 0] ?? {},
+    }
+    const updatedBaseOptions: {
+        [key in BuiltinOptionKeyType]?: number
+    } = Object.assign({}, ...Object.entries(item.baseOptions).filter(
+        ([key, value]) => baseOptions[key as BuiltinOptionKeyType] !== value)
+        .map(([key, value]) => ({ [key]: value })))
+
+    if (Object.keys(updatedBaseOptions).length > 0) {
+        minified.b = minifyOptions(updatedBaseOptions);
+    }
     if (Object.keys(item.additionalOptions).length > 0) {
-        minified.a = item.additionalOptions;
+        minified.a = minifyOptions(item.additionalOptions);
     }
     if (Object.keys(item.craftedOptions).length > 0) {
-        minified.c = item.craftedOptions;
+        minified.c = minifyOptions(item.craftedOptions);
     }
     if (item.enchantLevel > 0) {
         minified.e = item.enchantLevel;
@@ -105,28 +124,35 @@ const unminifiedItem = (minified: MinifiedItem | undefined, raceid: number, jobi
         ...itemTemplate.raceBaseOptions?.[racenameOrTrinityJobname] ?? {},
         ...itemTemplate.raceEnchantableBaseOptions?.[racenameOrTrinityJobname]?.[minified.e ?? 0] ?? {},
     }
+    Object.entries(minified.b ?? {}).map(([key, value]) => {
+        baseOptions[getOptionNameForId(Number(key))] = value
+    })
     const item: Item = {
         name: minified.n,
         baseOptions: baseOptions,
-        additionalOptions: minified.a ?? {},
-        craftedOptions: minified.c ?? {},
+        additionalOptions: minified.a ? unminifyOptions(minified.a) : {},
+        craftedOptions: minified.c ? unminifyOptions(minified.c) : {},
         enchantLevel: minified.e ?? 0,
         icon: itemTemplate.icon,
         availableRaces: itemTemplate.availableRaces,
         synergyKey: itemTemplate.synergyKey,
         synergyOptions: itemTemplate.synergyOptions,
     }
-    if ("type" in itemTemplate)
+    if ("type" in itemTemplate && equipmentType === "weapon")
         return {
             ...item,
             type: itemTemplate.type,
+            baseOptions: "attackSpeed" in item.baseOptions ? { ...item.baseOptions } :
+                { ...item.baseOptions, attackSpeed: BuiltinWeaponTypes[itemTemplate.type as WeaponType].attackSpeed }
         }
     return item;
 
 }
 
-export const selectedItemStateFamily = atomFamily((_: keyof Equipments) =>
-    atom<Item | undefined>(undefined)
+export const selectedItemStateFamily = atomFamily((key: keyof Equipments) =>
+    atomWithDefault<Item | undefined>((get) => {
+        return get(equipmentStateFamily(key));
+    })
 );
 
 export const equipmentSynergyCountState = atomFamily((param: keyof Equipments) =>
@@ -160,3 +186,19 @@ export const equipmentSynergyStateFamily = atomFamily((param: SynergyKey) =>
 
     })
 );
+
+
+function getOptionIdForName(name: BuiltinOptionKeyType): number {
+    return Object.keys(BuiltinOptions).findIndex((key) => key === name) ?? 0;
+}
+function getOptionNameForId(id: number): BuiltinOptionKeyType {
+    return Object.keys(BuiltinOptions)[id] as BuiltinOptionKeyType
+}
+
+const minifyOptions = (options: { [key in BuiltinOptionKeyType]?: number }): { [id: number]: number } => {
+    return Object.assign({}, ...Object.entries(options).map(([name, value]) => ({ [getOptionIdForName(name as BuiltinOptionKeyType)]: value })))
+}
+const unminifyOptions = (options: { [id: number]: number }): { [key in BuiltinOptionKeyType]?: number } => {
+    const c = Object.assign({}, ...Object.entries(options).map(([id, value]) => ({ [getOptionNameForId(Number(id))]: value })))
+    return c
+}

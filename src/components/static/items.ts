@@ -109,6 +109,7 @@ export type BaseItemTemplate = {
         };
     };
     synergyKey?: SynergyKey;
+    type?: WeaponType;
 }
 export type FixedItemTemplate = {
     fixedBaseOptions: {
@@ -170,6 +171,7 @@ export type Item = {
         };
     };
     synergyKey?: SynergyKey;
+    type?: WeaponType;
 }
 
 export type ItemTemplate = FixedItemTemplate | EnchantableItemTemplate | SetItemTemplate | RaceItemTemplate | RaceEnchantableItemTemplate;

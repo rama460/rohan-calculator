@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 import { atomFamily } from "jotai/utils";
-import { heroLevelState, levelState, raceidState } from "./bases";
+import { baseOptionStateFamily } from "./bases";
 import { races } from "../../components/static/races";
 
 export const statuses = [
@@ -27,19 +27,19 @@ export type Statuses = {
 
 
 export const baseStatusState = atomFamily((param: StatusType) =>
-    atomWithHash<number>(`${param}_base`, 0)
+    atomWithHash<number>(`${param[0]}b`, 0)
 );
 export const metaStatusState = atomFamily((param: StatusType) =>
-    atomWithHash<number>(`${param}_meta`, 0)
+    atomWithHash<number>(`${param[0]}m`, 0)
 );
 
 export const initialStatusState = atomFamily((param: StatusType) => {
-    return atom<number>((get) => races[get(raceidState)].initialStatus[param]);
+    return atom<number>((get) => races[get(baseOptionStateFamily("raceid"))].initialStatus[param]);
 });
 
 export const remainingPointsState = atom((get) => {
-    const level = get(levelState);
-    const heroLevel = get(heroLevelState);
+    const level = get(baseOptionStateFamily("level"));
+    const heroLevel = get(baseOptionStateFamily("heroLevel"));
     const used = statuses.map(
         (status) => get(baseStatusState(status))
     ).reduce((acc, cur) => acc + cur, 0);
