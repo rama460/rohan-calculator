@@ -6,6 +6,7 @@ import StatusPanel from "./StatusPanel";
 import CharactorPanel from "./CharactorPanel";
 import BuffPanel from "./BuffPanel";
 import BorderedTitleBox from "../common/BorderedTitleBox";
+import { DetailPanel } from "./DetailPanel";
 
 
 export const Status = () => {
@@ -34,13 +35,18 @@ export const Status = () => {
                         </BorderedTitleBox>
                     </Grid>
                     <Grid size={{ md: 12, xs: 12 }}>
-                        <BorderedTitleBox title="Details">
+                        <BorderedTitleBox title="Charactor">
                             <CharactorPanel />
                         </BorderedTitleBox>
                     </Grid>
                     <Grid size={{ md: 12, xs: 12 }}>
                         <BorderedTitleBox title="Buff">
                             <BuffPanel />
+                        </BorderedTitleBox>
+                    </Grid>
+                    <Grid size={{ md: 12, xs: 12 }}>
+                        <BorderedTitleBox title="Details">
+                            <DetailPanel />
                         </BorderedTitleBox>
                     </Grid>
 

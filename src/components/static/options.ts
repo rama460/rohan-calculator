@@ -31,6 +31,8 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'absolute',
     },
+    // statuses total of meta, base, init.
+    // not include value from equipment, title, etc.
     'strength': {
         name: 'strength',
         displayColor: 'white',
