@@ -223,11 +223,15 @@ const calculateResistance = (getter: (key: BuiltinOptionKeyType | BaseOptionKeyT
         (calculateMentality(getter) + calculateIntelligence(getter)) / 15
     )
 }
-const calculateHitPointRecovery = (_: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
-    return 1
+const calculateHitPointRecovery = (getter: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
+    return Math.floor((calculateHitPoint(getter) - (calculateVitality(getter) -
+        Math.floor(races[getter("raceid")].initialStatus.vitality * (100 + getter("multiplyVitality") + getter("multiplyAllStatus")) / 100)) * 20) / 15) +
+        Math.floor((calculateVitality(getter) - races[getter("raceid")].initialStatus.vitality * ((100 + getter("multiplyVitality") + getter("multiplyAllStatus")) / 100)) * 1.2)
 }
-const calculateMagicPointRecovery = (_: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
-    return 1
+const calculateMagicPointRecovery = (getter: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
+    return Math.floor((calculateMagicPoint(getter) - (calculateMentality(getter) -
+        Math.floor(races[getter("raceid")].initialStatus.mentality * (100 + getter("multiplyMentality") + getter("multiplyAllStatus")) / 100)) * 10) / 15) +
+        Math.floor((calculateMentality(getter) - races[getter("raceid")].initialStatus.mentality * ((100 + getter("multiplyMentality") + getter("multiplyAllStatus")) / 100)) * 8 / 15) + 1
 }
 // FIXME: expression is incorrect
 // correct expression is some parameters are multiplied not added
