@@ -25,12 +25,12 @@ export type Statuses = {
     [key in StatusType]: Status
 }
 
-
+// primitive atom for status panel on url hash always starts with "s"
 export const baseStatusState = atomFamily((param: StatusType) =>
-    atomWithHash<number>(`${param[0]}b`, 0)
+    atomWithHash<number>(`s${param[0]}b`, 0)
 );
 export const metaStatusState = atomFamily((param: StatusType) =>
-    atomWithHash<number>(`${param[0]}m`, 0)
+    atomWithHash<number>(`s${param[0]}m`, 0)
 );
 
 export const initialStatusState = atomFamily((param: StatusType) => {

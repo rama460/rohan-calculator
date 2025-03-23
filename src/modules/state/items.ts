@@ -42,6 +42,7 @@ export type Equipments = {
     [key in typeof equipmentSlotNames[number]]: Item | undefined;
 }
 
+// primitive atom for equipment panel on url hash always starts with "e"
 export const minifiedEquipmentKeyMap: {
     [key in keyof Equipments]: string
 } = {

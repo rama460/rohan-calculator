@@ -3,8 +3,9 @@ import { SkillOrigin, skills } from "../../components/static/skill";
 import { atom } from "jotai";
 import { atomWithCompressedHash } from "./common";
 
+// primitive atom for buff panel on url hash always starts with "B"
 export const buffStateMinifiedMamily = atomFamily((origin: SkillOrigin) => {
-    return atomWithCompressedHash<{ n: number, l: number }[]>(origin, []);
+    return atomWithCompressedHash<{ n: number, l: number }[]>(`B${origin[0]}`, []);
 })
 export const buffStateFamily = atomFamily((origin: SkillOrigin) => {
     return atom(
