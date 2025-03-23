@@ -7,7 +7,7 @@ import { equipmentSlotNames, equipmentStateFamily, equipmentSynergyStateFamily, 
 import { baseStatusState, initialStatusState, metaStatusState, statuses, StatusType } from "./statuses";
 import { SKillOriginNames, skills } from "../../components/static/skill";
 import { buffStateFamily } from "./skills";
-import { titleOptionState } from "./bases";
+import { heroLevelBOnusState, titleOptionState } from "./bases";
 
 
 
@@ -71,7 +71,8 @@ export const allOptionAggregorStateFamily = atomFamily((key: BuiltinOptionKeyTyp
         const v = get(equipmentOptionStateFamily(key)) +
             get(equipmentSynergyOptionStateFamily(key)) +
             get(buffOptionStateFamily(key)) +
-            get(titleOptionState(key));
+            get(titleOptionState(key)) +
+            get(heroLevelBOnusState(key));
         if (statuses.some((status) => status === key)) {
             return v + get(baseStatusState(key as StatusType)) +
                 get(metaStatusState(key as StatusType)) +

@@ -19,6 +19,16 @@ export const titleOptionState = atomFamily((param: BuiltinOptionKeyType) =>
     })
 );
 
+export const heroLevelBOnusState = atomFamily((param: BuiltinOptionKeyType) =>
+    atom((get) => {
+        const heroLevel = get(baseOptionStateFamily("heroLevel"));
+        if (heroLevel > 0 && param == "plusAllStatus") {
+            return 100;
+        }
+        return 0;
+    })
+);
+
 const baseDefaults = {
     level: 115,
     heroLevel: 50,
