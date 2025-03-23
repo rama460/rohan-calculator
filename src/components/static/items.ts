@@ -3952,6 +3952,208 @@ export const helmets: ItemTemplate[] = [
         synergyKey: "onyxArmor"
     },
     {
+        name: "イグニエルのヘルメット(攻)",
+        icon: helmet_igniel,
+        raceBaseOptions: {
+            "Human": {
+                "physicalDefense": 257,
+                "magicalDefense": 158,
+            },
+            "Elf": {
+                "physicalDefense": 210,
+                "magicalDefense": 219,
+            },
+            "HalfElf": {
+                "physicalDefense": 210,
+                "magicalDefense": 175,
+            },
+            "Dan": {
+                "physicalDefense": 228,
+                "magicalDefense": 158,
+            },
+            "Dekan": {
+                "physicalDefense": 228,
+                "magicalDefense": 184,
+            },
+            "DarkElf": {
+                "physicalDefense": 175,
+                "magicalDefense": 219,
+            },
+            "Giant": {
+                "physicalDefense": 269,
+                "magicalDefense": 140,
+            },
+            "Rumir": {
+                "physicalDefense": 263,
+                "magicalDefense": 322,
+            },
+            "Noir": {
+                "physicalDefense": 322,
+                "magicalDefense": 263,
+            }
+        },
+        enchantableBaseOptions: {
+            0: {
+                "multiplySkillAttack": 5,
+                "plusDefense": 150,
+                "plusAllStatus": 32,
+            },
+            1: {
+                "multiplySkillAttack": 6,
+                "plusDefense": 157,
+                "plusAllStatus": 37,
+            },
+            2: {
+                "multiplySkillAttack": 7,
+                "plusDefense": 165,
+                "plusAllStatus": 37,
+            },
+            3: {
+                "multiplySkillAttack": 8,
+                "plusDefense": 174,
+                "plusAllStatus": 42,
+            },
+            4: {
+                "multiplySkillAttack": 9,
+                "plusDefense": 184,
+                "plusAllStatus": 47,
+            },
+            5: {
+                "multiplySkillAttack": 10,
+                "plusDefense": 195,
+                "plusAllStatus": 52,
+            },
+            6: {
+                "multiplySkillAttack": 11,
+                "plusDefense": 280,
+                "plusAllStatus": 58,
+            },
+            7: {
+                "multiplySkillAttack": 12,
+                "plusDefense": 289,
+                "plusAllStatus": 64,
+            },
+            8: {
+                "multiplySkillAttack": 13,
+                "plusDefense": 299,
+                "plusAllStatus": 70,
+            },
+            9: {
+                "multiplySkillAttack": 14,
+                "plusDefense": 310,
+                "plusAllStatus": 77,
+            },
+            10: {
+                "multiplySkillAttack": 15,
+                "plusDefense": 322,
+                "plusAllStatus": 84,
+            },
+            11: {
+                "multiplySkillAttack": 16,
+                "plusDefense": 335,
+                "plusAllStatus": 91,
+            },
+            12: {
+                "multiplySkillAttack": 17,
+                "plusDefense": 460,
+                "plusAllStatus": 99,
+            },
+            13: {
+                "multiplySkillAttack": 18,
+                "plusDefense": 471,
+                "plusAllStatus": 107,
+            },
+            14: {
+                "multiplySkillAttack": 19,
+                "plusDefense": 483,
+                "plusAllStatus": 116,
+            },
+            15: {
+                "multiplySkillAttack": 20,
+                "plusDefense": 496,
+                "plusAllStatus": 125,
+            },
+            16: {
+                "multiplySkillAttack": 21,
+                "plusDefense": 510,
+                "plusAllStatus": 134,
+            },
+            17: {
+                "multiplySkillAttack": 22,
+                "plusDefense": 525,
+                "plusAllStatus": 144,
+            },
+            18: {
+                "multiplySkillAttack": 23,
+                "plusDefense": 640,
+                "plusAllStatus": 154,
+            },
+            19: {
+                "multiplySkillAttack": 24,
+                "plusDefense": 653,
+                "plusAllStatus": 179,
+            },
+            20: {
+                "multiplySkillAttack": 25,
+                "plusDefense": 667,
+                "plusAllStatus": 206,
+            },
+            21: {
+                "multiplySkillAttack": 26,
+                "plusDefense": 682,
+                "plusAllStatus": 220,
+            },
+            22: {
+                "multiplySkillAttack": 27,
+                "plusDefense": 698,
+                "plusAllStatus": 235,
+            },
+            23: {
+                "multiplySkillAttack": 28,
+                "plusDefense": 715,
+                "plusAllStatus": 259,
+            },
+            24: {
+                "multiplySkillAttack": 29,
+                "plusDefense": 820,
+                "plusAllStatus": 288,
+            },
+            25: {
+                "multiplySkillAttack": 30,
+                "plusDefense": 835,
+                "plusAllStatus": 307,
+            },
+            26: {
+                "multiplySkillAttack": 31,
+                "plusDefense": 851,
+                "plusAllStatus": 328,
+            },
+            27: {
+                "multiplySkillAttack": 32,
+                "plusDefense": 868,
+                "plusAllStatus": 362,
+            },
+            28: {
+                "multiplySkillAttack": 33,
+                "plusDefense": 886,
+                "plusAllStatus": 395,
+            },
+            29: {
+                "multiplySkillAttack": 34,
+                "plusDefense": 905,
+                "plusAllStatus": 412,
+            },
+            30: {
+                "multiplySkillAttack": 35,
+                "plusDefense": 1000,
+                "plusAllStatus": 432,
+            }
+        },
+        sockets: 3,
+        synergyKey: "ignielArmor",
+        synergyOptions: ignielArmorSynergisticOptions
+    },
+    {
         name: "イグニエルのヘルメット(防)",
         icon: helmet_igniel,
         raceBaseOptions: {
@@ -4400,6 +4602,208 @@ export const gauntlets: ItemTemplate[] = [
         sockets: 2,
         synergyOptions: onyxArmorSynergisticOptions,
         synergyKey: "onyxArmor"
+    },
+    {
+        name: "イグニエルのガントレット(攻)",
+        icon: gauntlet_igniel,
+        raceBaseOptions: {
+            "Human": {
+                "physicalDefense": 197,
+                "magicalDefense": 120,
+            },
+            "Elf": {
+                "physicalDefense": 161,
+                "magicalDefense": 168,
+            },
+            "HalfElf": {
+                "physicalDefense": 161,
+                "magicalDefense": 134,
+            },
+            "Dan": {
+                "physicalDefense": 174,
+                "magicalDefense": 120,
+            },
+            "Dekan": {
+                "physicalDefense": 174,
+                "magicalDefense": 141,
+            },
+            "DarkElf": {
+                "physicalDefense": 134,
+                "magicalDefense": 168,
+            },
+            "Giant": {
+                "physicalDefense": 206,
+                "magicalDefense": 107
+            },
+            "Rumir": {
+                "physicalDefense": 201,
+                "magicalDefense": 246,
+            },
+            "Noir": {
+                "physicalDefense": 246,
+                "magicalDefense": 201,
+            },
+        },
+        enchantableBaseOptions: {
+            0: {
+                "multiplyPVPAttack": 5,
+                "plusDefense": 150,
+                "plusAllStatus": 32,
+            },
+            1: {
+                "multiplyPVPAttack": 6,
+                "plusDefense": 157,
+                "plusAllStatus": 37,
+            },
+            2: {
+                "multiplyPVPAttack": 7,
+                "plusDefense": 165,
+                "plusAllStatus": 37,
+            },
+            3: {
+                "multiplyPVPAttack": 8,
+                "plusDefense": 174,
+                "plusAllStatus": 42,
+            },
+            4: {
+                "multiplyPVPAttack": 9,
+                "plusDefense": 184,
+                "plusAllStatus": 47,
+            },
+            5: {
+                "multiplyPVPAttack": 10,
+                "plusDefense": 195,
+                "plusAllStatus": 52,
+            },
+            6: {
+                "multiplyPVPAttack": 11,
+                "plusDefense": 280,
+                "plusAllStatus": 58,
+            },
+            7: {
+                "multiplyPVPAttack": 12,
+                "plusDefense": 289,
+                "plusAllStatus": 64,
+            },
+            8: {
+                "multiplyPVPAttack": 13,
+                "plusDefense": 299,
+                "plusAllStatus": 70,
+            },
+            9: {
+                "multiplyPVPAttack": 14,
+                "plusDefense": 310,
+                "plusAllStatus": 77,
+            },
+            10: {
+                "multiplyPVPAttack": 15,
+                "plusDefense": 322,
+                "plusAllStatus": 84,
+            },
+            11: {
+                "multiplyPVPAttack": 16,
+                "plusDefense": 335,
+                "plusAllStatus": 91,
+            },
+            12: {
+                "multiplyPVPAttack": 17,
+                "plusDefense": 460,
+                "plusAllStatus": 99,
+            },
+            13: {
+                "multiplyPVPAttack": 18,
+                "plusDefense": 471,
+                "plusAllStatus": 107,
+            },
+            14: {
+                "multiplyPVPAttack": 19,
+                "plusDefense": 483,
+                "plusAllStatus": 116,
+            },
+            15: {
+                "multiplyPVPAttack": 20,
+                "plusDefense": 496,
+                "plusAllStatus": 125,
+            },
+            16: {
+                "multiplyPVPAttack": 21,
+                "plusDefense": 510,
+                "plusAllStatus": 134,
+            },
+            17: {
+                "multiplyPVPAttack": 22,
+                "plusDefense": 525,
+                "plusAllStatus": 144,
+            },
+            18: {
+                "multiplyPVPAttack": 23,
+                "plusDefense": 640,
+                "plusAllStatus": 154,
+            },
+            19: {
+                "multiplyPVPAttack": 24,
+                "plusDefense": 653,
+                "plusAllStatus": 179,
+            },
+            20: {
+                "multiplyPVPAttack": 25,
+                "plusDefense": 667,
+                "plusAllStatus": 206,
+            },
+            21: {
+                "multiplyPVPAttack": 26,
+                "plusDefense": 682,
+                "plusAllStatus": 220,
+            },
+            22: {
+                "multiplyPVPAttack": 27,
+                "plusDefense": 698,
+                "plusAllStatus": 235,
+            },
+            23: {
+                "multiplyPVPAttack": 28,
+                "plusDefense": 715,
+                "plusAllStatus": 259,
+            },
+            24: {
+                "multiplyPVPAttack": 29,
+                "plusDefense": 820,
+                "plusAllStatus": 288,
+            },
+            25: {
+                "multiplyPVPAttack": 30,
+                "plusDefense": 835,
+                "plusAllStatus": 307,
+            },
+            26: {
+                "multiplyPVPAttack": 31,
+                "plusDefense": 851,
+                "plusAllStatus": 328,
+            },
+            27: {
+                "multiplyPVPAttack": 32,
+                "plusDefense": 868,
+                "plusAllStatus": 362,
+            },
+            28: {
+                "multiplyPVPAttack": 33,
+                "plusDefense": 886,
+                "plusAllStatus": 395,
+            },
+            29: {
+                "multiplyPVPAttack": 34,
+                "plusDefense": 905,
+                "plusAllStatus": 412,
+            },
+            30: {
+                "multiplyPVPAttack": 35,
+                "plusDefense": 1000,
+                "plusAllStatus": 432,
+            }
+        },
+        sockets: 3,
+        synergyKey: "ignielArmor",
+        synergyOptions: ignielArmorSynergisticOptions
     },
     {
         name: "イグニエルのガントレット(防)",
@@ -4854,6 +5258,208 @@ export const tunics: ItemTemplate[] = [
         synergyKey: "onyxArmor"
     },
     {
+        name: "イグニエルのチュニック(攻)",
+        icon: tunic_igniel,
+        raceBaseOptions: {
+            "Human": {
+                "physicalDefense": 352,
+                "magicalDefense": 216,
+            },
+            "Elf": {
+                "physicalDefense": 288,
+                "magicalDefense": 300,
+            },
+            "HalfElf": {
+                "physicalDefense": 288,
+                "magicalDefense": 240,
+            },
+            "Dan": {
+                "physicalDefense": 312,
+                "magicalDefense": 216,
+            },
+            "Dekan": {
+                "physicalDefense": 312,
+                "magicalDefense": 252,
+            },
+            "DarkElf": {
+                "physicalDefense": 240,
+                "magicalDefense": 300,
+            },
+            "Giant": {
+                "physicalDefense": 368,
+                "magicalDefense": 192,
+            },
+            "Rumir": {
+                "physicalDefense": 360,
+                "magicalDefense": 440,
+            },
+            "Noir": {
+                "physicalDefense": 440,
+                "magicalDefense": 360,
+            },
+        },
+        enchantableBaseOptions: {
+            0: {
+                "multiplyPVEAttack": 5,
+                "plusDefense": 150,
+                "plusAllStatus": 32,
+            },
+            1: {
+                "multiplyPVEAttack": 6,
+                "plusDefense": 157,
+                "plusAllStatus": 37,
+            },
+            2: {
+                "multiplyPVEAttack": 7,
+                "plusDefense": 165,
+                "plusAllStatus": 37,
+            },
+            3: {
+                "multiplyPVEAttack": 8,
+                "plusDefense": 174,
+                "plusAllStatus": 42,
+            },
+            4: {
+                "multiplyPVEAttack": 9,
+                "plusDefense": 184,
+                "plusAllStatus": 47,
+            },
+            5: {
+                "multiplyPVEAttack": 10,
+                "plusDefense": 195,
+                "plusAllStatus": 52,
+            },
+            6: {
+                "multiplyPVEAttack": 11,
+                "plusDefense": 280,
+                "plusAllStatus": 58,
+            },
+            7: {
+                "multiplyPVEAttack": 12,
+                "plusDefense": 289,
+                "plusAllStatus": 64,
+            },
+            8: {
+                "multiplyPVEAttack": 13,
+                "plusDefense": 299,
+                "plusAllStatus": 70,
+            },
+            9: {
+                "multiplyPVEAttack": 14,
+                "plusDefense": 310,
+                "plusAllStatus": 77,
+            },
+            10: {
+                "multiplyPVEAttack": 15,
+                "plusDefense": 322,
+                "plusAllStatus": 84,
+            },
+            11: {
+                "multiplyPVEAttack": 16,
+                "plusDefense": 335,
+                "plusAllStatus": 91,
+            },
+            12: {
+                "multiplyPVEAttack": 17,
+                "plusDefense": 460,
+                "plusAllStatus": 99,
+            },
+            13: {
+                "multiplyPVEAttack": 18,
+                "plusDefense": 471,
+                "plusAllStatus": 107,
+            },
+            14: {
+                "multiplyPVEAttack": 19,
+                "plusDefense": 483,
+                "plusAllStatus": 116,
+            },
+            15: {
+                "multiplyPVEAttack": 20,
+                "plusDefense": 496,
+                "plusAllStatus": 125,
+            },
+            16: {
+                "multiplyPVEAttack": 21,
+                "plusDefense": 510,
+                "plusAllStatus": 134,
+            },
+            17: {
+                "multiplyPVEAttack": 22,
+                "plusDefense": 525,
+                "plusAllStatus": 144,
+            },
+            18: {
+                "multiplyPVEAttack": 23,
+                "plusDefense": 640,
+                "plusAllStatus": 154,
+            },
+            19: {
+                "multiplyPVEAttack": 24,
+                "plusDefense": 653,
+                "plusAllStatus": 179,
+            },
+            20: {
+                "multiplyPVEAttack": 25,
+                "plusDefense": 667,
+                "plusAllStatus": 206,
+            },
+            21: {
+                "multiplyPVEAttack": 26,
+                "plusDefense": 682,
+                "plusAllStatus": 220,
+            },
+            22: {
+                "multiplyPVEAttack": 27,
+                "plusDefense": 698,
+                "plusAllStatus": 235,
+            },
+            23: {
+                "multiplyPVEAttack": 28,
+                "plusDefense": 715,
+                "plusAllStatus": 259,
+            },
+            24: {
+                "multiplyPVEAttack": 29,
+                "plusDefense": 820,
+                "plusAllStatus": 288,
+            },
+            25: {
+                "multiplyPVEAttack": 30,
+                "plusDefense": 835,
+                "plusAllStatus": 307,
+            },
+            26: {
+                "multiplyPVEAttack": 31,
+                "plusDefense": 851,
+                "plusAllStatus": 328,
+            },
+            27: {
+                "multiplyPVEAttack": 32,
+                "plusDefense": 868,
+                "plusAllStatus": 362,
+            },
+            28: {
+                "multiplyPVEAttack": 33,
+                "plusDefense": 886,
+                "plusAllStatus": 395,
+            },
+            29: {
+                "multiplyPVEAttack": 34,
+                "plusDefense": 905,
+                "plusAllStatus": 412,
+            },
+            30: {
+                "multiplyPVEAttack": 35,
+                "plusDefense": 1000,
+                "plusAllStatus": 432,
+            }
+        },
+        sockets: 3,
+        synergyKey: "ignielArmor",
+        synergyOptions: ignielArmorSynergisticOptions
+    },
+    {
         name: "イグニエルのチュニック(防)",
         icon: tunic_igniel,
         raceBaseOptions: {
@@ -5047,7 +5653,7 @@ export const tunics: ItemTemplate[] = [
             },
             30: {
                 "multiplyDefense": 35,
-                "plusAttack": 1000,
+                "plusDefense": 1000,
                 "plusAllStatus": 432,
             },
         },
@@ -5303,6 +5909,208 @@ export const leggings: ItemTemplate[] = [
         sockets: 2,
         synergyOptions: onyxArmorSynergisticOptions,
         synergyKey: "onyxArmor"
+    },
+    {
+        name: "イグニエルのレギンス(攻)",
+        icon: leggings_igniel,
+        raceBaseOptions: {
+            "Human": {
+                "physicalDefense": 304,
+                "magicalDefense": 186,
+            },
+            "Elf": {
+                "physicalDefense": 249,
+                "magicalDefense": 259,
+            },
+            "HalfElf": {
+                "physicalDefense": 249,
+                "magicalDefense": 207,
+            },
+            "Dan": {
+                "physicalDefense": 269,
+                "magicalDefense": 186,
+            },
+            "Dekan": {
+                "physicalDefense": 269,
+                "magicalDefense": 217,
+            },
+            "DarkElf": {
+                "physicalDefense": 207,
+                "magicalDefense": 259,
+            },
+            "Giant": {
+                "physicalDefense": 318,
+                "magicalDefense": 166,
+            },
+            "Rumir": {
+                "physicalDefense": 311,
+                "magicalDefense": 380,
+            },
+            "Noir": {
+                "physicalDefense": 380,
+                "magicalDefense": 311,
+            }
+        },
+        enchantableBaseOptions: {
+            0: {
+                "multiplyAttack": 5,
+                "plusDefense": 150,
+                "plusAllStatus": 32,
+            },
+            1: {
+                "multiplyAttack": 6,
+                "plusDefense": 157,
+                "plusAllStatus": 37,
+            },
+            2: {
+                "multiplyAttack": 7,
+                "plusDefense": 165,
+                "plusAllStatus": 37,
+            },
+            3: {
+                "multiplyAttack": 8,
+                "plusDefense": 174,
+                "plusAllStatus": 42,
+            },
+            4: {
+                "multiplyAttack": 9,
+                "plusDefense": 184,
+                "plusAllStatus": 47,
+            },
+            5: {
+                "multiplyAttack": 10,
+                "plusDefense": 195,
+                "plusAllStatus": 52,
+            },
+            6: {
+                "multiplyAttack": 11,
+                "plusDefense": 280,
+                "plusAllStatus": 58,
+            },
+            7: {
+                "multiplyAttack": 12,
+                "plusDefense": 289,
+                "plusAllStatus": 64,
+            },
+            8: {
+                "multiplyAttack": 13,
+                "plusDefense": 299,
+                "plusAllStatus": 70,
+            },
+            9: {
+                "multiplyAttack": 14,
+                "plusDefense": 310,
+                "plusAllStatus": 77,
+            },
+            10: {
+                "multiplyAttack": 15,
+                "plusDefense": 322,
+                "plusAllStatus": 84,
+            },
+            11: {
+                "multiplyAttack": 16,
+                "plusDefense": 335,
+                "plusAllStatus": 91,
+            },
+            12: {
+                "multiplyAttack": 17,
+                "plusDefense": 460,
+                "plusAllStatus": 99,
+            },
+            13: {
+                "multiplyAttack": 18,
+                "plusDefense": 471,
+                "plusAllStatus": 107,
+            },
+            14: {
+                "multiplyAttack": 19,
+                "plusDefense": 483,
+                "plusAllStatus": 116,
+            },
+            15: {
+                "multiplyAttack": 20,
+                "plusDefense": 496,
+                "plusAllStatus": 125,
+            },
+            16: {
+                "multiplyAttack": 21,
+                "plusDefense": 510,
+                "plusAllStatus": 134,
+            },
+            17: {
+                "multiplyAttack": 22,
+                "plusDefense": 525,
+                "plusAllStatus": 144,
+            },
+            18: {
+                "multiplyAttack": 23,
+                "plusDefense": 640,
+                "plusAllStatus": 154,
+            },
+            19: {
+                "multiplyAttack": 24,
+                "plusDefense": 653,
+                "plusAllStatus": 179,
+            },
+            20: {
+                "multiplyAttack": 25,
+                "plusDefense": 667,
+                "plusAllStatus": 206,
+            },
+            21: {
+                "multiplyAttack": 26,
+                "plusDefense": 682,
+                "plusAllStatus": 220,
+            },
+            22: {
+                "multiplyAttack": 27,
+                "plusDefense": 698,
+                "plusAllStatus": 235,
+            },
+            23: {
+                "multiplyAttack": 28,
+                "plusDefense": 715,
+                "plusAllStatus": 259,
+            },
+            24: {
+                "multiplyAttack": 29,
+                "plusDefense": 820,
+                "plusAllStatus": 288,
+            },
+            25: {
+                "multiplyAttack": 30,
+                "plusDefense": 835,
+                "plusAllStatus": 307,
+            },
+            26: {
+                "multiplyAttack": 31,
+                "plusDefense": 851,
+                "plusAllStatus": 328,
+            },
+            27: {
+                "multiplyAttack": 32,
+                "plusDefense": 868,
+                "plusAllStatus": 362,
+            },
+            28: {
+                "multiplyAttack": 33,
+                "plusDefense": 886,
+                "plusAllStatus": 395,
+            },
+            29: {
+                "multiplyAttack": 34,
+                "plusDefense": 905,
+                "plusAllStatus": 412,
+            },
+            30: {
+                "multiplyAttack": 35,
+                "plusDefense": 1000,
+                "plusAllStatus": 432,
+            }
+        },
+        sockets: 3,
+        synergyKey: "ignielArmor",
+        synergyOptions: ignielArmorSynergisticOptions
     },
     {
         name: "イグニエルのレギンス(防)",
@@ -5753,6 +6561,208 @@ export const boots: ItemTemplate[] = [
         sockets: 2,
         synergyOptions: onyxArmorSynergisticOptions,
         synergyKey: "onyxArmor"
+    },
+    {
+        name: "イグニエルのブーツ(攻)",
+        icon: boots_igniel,
+        raceBaseOptions: {
+            "Human": {
+                "physicalDefense": 197,
+                "magicalDefense": 120,
+            },
+            "Elf": {
+                "physicalDefense": 161,
+                "magicalDefense": 168,
+            },
+            "HalfElf": {
+                "physicalDefense": 161,
+                "magicalDefense": 134,
+            },
+            "Dan": {
+                "physicalDefense": 174,
+                "magicalDefense": 120,
+            },
+            "Dekan": {
+                "physicalDefense": 174,
+                "magicalDefense": 141,
+            },
+            "DarkElf": {
+                "physicalDefense": 134,
+                "magicalDefense": 168,
+            },
+            "Giant": {
+                "physicalDefense": 206,
+                "magicalDefense": 107
+            },
+            "Rumir": {
+                "physicalDefense": 201,
+                "magicalDefense": 246,
+            },
+            "Noir": {
+                "physicalDefense": 246,
+                "magicalDefense": 201,
+            }
+        },
+        enchantableBaseOptions: {
+            0: {
+                "multiplyPVPAttack": 5,
+                "plusDefense": 150,
+                "plusAllStatus": 32,
+            },
+            1: {
+                "multiplyPVPAttack": 6,
+                "plusDefense": 157,
+                "plusAllStatus": 37,
+            },
+            2: {
+                "multiplyPVPAttack": 7,
+                "plusDefense": 165,
+                "plusAllStatus": 37,
+            },
+            3: {
+                "multiplyPVPAttack": 8,
+                "plusDefense": 174,
+                "plusAllStatus": 42,
+            },
+            4: {
+                "multiplyPVPAttack": 9,
+                "plusDefense": 184,
+                "plusAllStatus": 47,
+            },
+            5: {
+                "multiplyPVPAttack": 10,
+                "plusDefense": 195,
+                "plusAllStatus": 52,
+            },
+            6: {
+                "multiplyPVPAttack": 11,
+                "plusDefense": 280,
+                "plusAllStatus": 58,
+            },
+            7: {
+                "multiplyPVPAttack": 12,
+                "plusDefense": 289,
+                "plusAllStatus": 64,
+            },
+            8: {
+                "multiplyPVPAttack": 13,
+                "plusDefense": 299,
+                "plusAllStatus": 70,
+            },
+            9: {
+                "multiplyPVPAttack": 14,
+                "plusDefense": 310,
+                "plusAllStatus": 77,
+            },
+            10: {
+                "multiplyPVPAttack": 15,
+                "plusDefense": 322,
+                "plusAllStatus": 84,
+            },
+            11: {
+                "multiplyPVPAttack": 16,
+                "plusDefense": 335,
+                "plusAllStatus": 91
+            },
+            12: {
+                "multiplyPVPAttack": 17,
+                "plusDefense": 460,
+                "plusAllStatus": 99,
+            },
+            13: {
+                "multiplyPVPAttack": 18,
+                "plusDefense": 471,
+                "plusAllStatus": 107,
+            },
+            14: {
+                "multiplyPVPAttack": 19,
+                "plusDefense": 483,
+                "plusAllStatus": 116,
+            },
+            15: {
+                "multiplyPVPAttack": 20,
+                "plusDefense": 496,
+                "plusAllStatus": 125,
+            },
+            16: {
+                "multiplyPVPAttack": 21,
+                "plusDefense": 510,
+                "plusAllStatus": 134,
+            },
+            17: {
+                "multiplyPVPAttack": 22,
+                "plusDefense": 525,
+                "plusAllStatus": 144,
+            },
+            18: {
+                "multiplyPVPAttack": 23,
+                "plusDefense": 640,
+                "plusAllStatus": 154,
+            },
+            19: {
+                "multiplyPVPAttack": 24,
+                "plusDefense": 653,
+                "plusAllStatus": 179,
+            },
+            20: {
+                "multiplyPVPAttack": 25,
+                "plusDefense": 667,
+                "plusAllStatus": 206,
+            },
+            21: {
+                "multiplyPVPAttack": 26,
+                "plusDefense": 682,
+                "plusAllStatus": 220,
+            },
+            22: {
+                "multiplyPVPAttack": 27,
+                "plusDefense": 698,
+                "plusAllStatus": 235,
+            },
+            23: {
+                "multiplyPVPAttack": 28,
+                "plusDefense": 715,
+                "plusAllStatus": 259,
+            },
+            24: {
+                "multiplyPVPAttack": 29,
+                "plusDefense": 820,
+                "plusAllStatus": 288,
+            },
+            25: {
+                "multiplyPVPAttack": 30,
+                "plusDefense": 835,
+                "plusAllStatus": 307,
+            },
+            26: {
+                "multiplyPVPAttack": 31,
+                "plusDefense": 851,
+                "plusAllStatus": 328,
+            },
+            27: {
+                "multiplyPVPAttack": 32,
+                "plusDefense": 868,
+                "plusAllStatus": 362,
+            },
+            28: {
+                "multiplyPVPAttack": 33,
+                "plusDefense": 886,
+                "plusAllStatus": 395,
+            },
+            29: {
+                "multiplyPVPAttack": 34,
+                "plusDefense": 905,
+                "plusAllStatus": 412,
+            },
+            30: {
+                "multiplyPVPAttack": 35,
+                "plusDefense": 1000,
+                "plusAllStatus": 432,
+            }
+        },
+        sockets: 3,
+        synergyKey: "ignielArmor",
+        synergyOptions: ignielArmorSynergisticOptions
     },
     {
         name: "イグニエルのブーツ(防)",
