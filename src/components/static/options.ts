@@ -673,6 +673,27 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
+    'multiplyMeleeWeaponAttack': {
+        name: 'multiplyMeleeWeaponAttack',
+        displayColor: 'green',
+        displayName: '近接武器攻撃力',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyRangeWeaponAttack': {
+        name: 'multiplyRangeWeaponAttack',
+        displayColor: 'green',
+        displayName: '遠距離武器攻撃力',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyMagicWeaponAttack': {
+        name: 'multiplyMagicWeaponAttack',
+        displayColor: 'green',
+        displayName: '魔法武器攻撃力',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
     'multiplySubWeaponAttack': {
         name: 'multiplySubWeaponAttack',
         displayColor: 'green',

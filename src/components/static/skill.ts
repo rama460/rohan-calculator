@@ -428,37 +428,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 19,
+                multiplyMeleeWeaponAttack: 19,
                 plusMeleeAttackMultiplyStrength: 14,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 38,
+                multiplyMeleeWeaponAttack: 38,
                 plusMeleeAttackMultiplyStrength: 28,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 58,
+                multiplyMeleeWeaponAttack: 58,
                 plusMeleeAttackMultiplyStrength: 42,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 77,
+                multiplyMeleeWeaponAttack: 77,
                 plusMeleeAttackMultiplyStrength: 56,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 96,
+                multiplyMeleeWeaponAttack: 96,
                 plusMeleeAttackMultiplyStrength: 70,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 136,
+                multiplyMeleeWeaponAttack: 136,
                 plusMeleeAttackMultiplyStrength: 98,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 192,
+                multiplyMeleeWeaponAttack: 192,
                 plusMeleeAttackMultiplyStrength: 139,
                 meleeMastery: 1,
             }
@@ -673,37 +673,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 30,
+                multiplyMeleeWeaponAttack: 30,
                 plusMeleeAttackMultiplyVitality: 30,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 60,
+                multiplyMeleeWeaponAttack: 60,
                 plusMeleeAttackMultiplyVitality: 60,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 90,
+                multiplyMeleeWeaponAttack: 90,
                 plusMeleeAttackMultiplyVitality: 90,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 120,
+                multiplyMeleeWeaponAttack: 120,
                 plusMeleeAttackMultiplyVitality: 120,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 150,
+                multiplyMeleeWeaponAttack: 150,
                 plusMeleeAttackMultiplyVitality: 150,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 210,
+                multiplyMeleeWeaponAttack: 210,
                 plusMeleeAttackMultiplyVitality: 210,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 300,
+                multiplyMeleeWeaponAttack: 300,
                 plusMeleeAttackMultiplyVitality: 300,
                 meleeMastery: 1,
             }
@@ -1131,43 +1131,43 @@ export const skills: Skill[] = [
         attributes: {
             0: {
                 multiplyMagicPointAbsorbDamageRate: 30,
-                multiplyWeaponAttack: 64,
+                multiplyMagicWeaponAttack: 64,
                 plusMagicAttackMultiplyMentality: 33,
                 magicMastery: 1,
             },
             1: {
                 multiplyMagicPointAbsorbDamageRate: 30,
-                multiplyWeaponAttack: 128,
+                multiplyMagicWeaponAttack: 128,
                 plusMagicAttackMultiplyMentality: 67,
                 magicMastery: 1,
             },
             2: {
                 multiplyMagicPointAbsorbDamageRate: 30,
-                multiplyWeaponAttack: 193,
+                multiplyMagicWeaponAttack: 193,
                 plusMagicAttackMultiplyMentality: 100,
                 magicMastery: 1,
             },
             3: {
                 multiplyMagicPointAbsorbDamageRate: 30,
-                multiplyWeaponAttack: 257,
+                multiplyMagicWeaponAttack: 257,
                 plusMagicAttackMultiplyMentality: 133,
                 magicMastery: 1,
             },
             4: {
                 multiplyMagicPointAbsorbDamageRate: 30,
-                multiplyWeaponAttack: 321,
+                multiplyMagicWeaponAttack: 321,
                 plusMagicAttackMultiplyMentality: 167,
                 magicMastery: 1,
             },
             5: {
                 multiplyMagicPointAbsorbDamageRate: 30,
-                multiplyWeaponAttack: 449,
+                multiplyMagicWeaponAttack: 449,
                 plusMagicAttackMultiplyMentality: 233,
                 magicMastery: 1,
             },
             6: {
                 multiplyMagicPointAbsorbDamageRate: 30,
-                multiplyWeaponAttack: 642,
+                multiplyMagicWeaponAttack: 642,
                 plusMagicAttackMultiplyMentality: 333,
                 magicMastery: 1,
             }
@@ -1489,49 +1489,49 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 87,
+                multiplyMeleeWeaponAttack: 87,
                 multiplyAttackSpeed: 10,
                 plusMeleeAttackMultiplyIntelligence: 58,
                 plusMeleeAttackMultiplyMagicAttack: 100,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 164,
+                multiplyMeleeWeaponAttack: 164,
                 multiplyAttackSpeed: 15,
                 plusMeleeAttackMultiplyIntelligence: 118,
                 plusMeleeAttackMultiplyMagicAttack: 100,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 242,
+                multiplyMeleeWeaponAttack: 242,
                 multiplyAttackSpeed: 20,
                 plusMeleeAttackMultiplyIntelligence: 176,
                 plusMeleeAttackMultiplyMagicAttack: 100,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 319,
+                multiplyMeleeWeaponAttack: 319,
                 multiplyAttackSpeed: 25,
                 plusMeleeAttackMultiplyIntelligence: 235,
                 plusMeleeAttackMultiplyMagicAttack: 100,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 396,
+                multiplyMeleeWeaponAttack: 396,
                 multiplyAttackSpeed: 30,
                 plusMeleeAttackMultiplyIntelligence: 294,
                 plusMeleeAttackMultiplyMagicAttack: 100,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 550,
+                multiplyMeleeWeaponAttack: 550,
                 multiplyAttackSpeed: 40,
                 plusMeleeAttackMultiplyIntelligence: 411,
                 plusMeleeAttackMultiplyMagicAttack: 100,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 782,
+                multiplyMeleeWeaponAttack: 782,
                 multiplyAttackSpeed: 60,
                 plusMeleeAttackMultiplyIntelligence: 587,
                 plusMeleeAttackMultiplyMagicAttack: 100,
@@ -1821,43 +1821,43 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 54,
+                multiplyRangeWeaponAttack: 54,
                 multiplyAttackSpeed: 10,
                 plusRangeAttackMultiplyAgility: 31,
                 rangeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 108,
+                multiplyRangeWeaponAttack: 108,
                 multiplyAttackSpeed: 10,
                 plusRangeAttackMultiplyAgility: 63,
                 rangeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 161,
+                multiplyRangeWeaponAttack: 161,
                 multiplyAttackSpeed: 10,
                 plusRangeAttackMultiplyAgility: 94,
                 rangeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 215,
+                multiplyRangeWeaponAttack: 215,
                 multiplyAttackSpeed: 10,
                 plusRangeAttackMultiplyAgility: 125,
                 rangeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 269,
+                multiplyRangeWeaponAttack: 269,
                 multiplyAttackSpeed: 10,
                 plusRangeAttackMultiplyAgility: 157,
                 rangeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 377,
+                multiplyRangeWeaponAttack: 377,
                 multiplyAttackSpeed: 30,
                 plusRangeAttackMultiplyAgility: 219,
                 rangeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 538,
+                multiplyRangeWeaponAttack: 538,
                 multiplyAttackSpeed: 50,
                 plusRangeAttackMultiplyAgility: 313,
                 rangeMastery: 1,
@@ -2210,37 +2210,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 49,
+                multiplyRangeWeaponAttack: 49,
                 plusRangeAttackMultiplyAgility: 29,
                 rangeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 98,
+                multiplyRangeWeaponAttack: 98,
                 plusRangeAttackMultiplyAgility: 57,
                 rangeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 148,
+                multiplyRangeWeaponAttack: 148,
                 plusRangeAttackMultiplyAgility: 86,
                 rangeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 197,
+                multiplyRangeWeaponAttack: 197,
                 plusRangeAttackMultiplyAgility: 114,
                 rangeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 246,
+                multiplyRangeWeaponAttack: 246,
                 plusRangeAttackMultiplyAgility: 143,
                 rangeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 344,
+                multiplyRangeWeaponAttack: 344,
                 plusRangeAttackMultiplyAgility: 200,
                 rangeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 492,
+                multiplyRangeWeaponAttack: 492,
                 plusRangeAttackMultiplyAgility: 286,
                 rangeMastery: 1,
             }
@@ -2866,37 +2866,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 41,
+                multiplyMeleeWeaponAttack: 41,
                 plusMeleeAttackMultiplyDexterity: 10,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 82,
+                multiplyMeleeWeaponAttack: 82,
                 plusMeleeAttackMultiplyDexterity: 20,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 124,
+                multiplyMeleeWeaponAttack: 124,
                 plusMeleeAttackMultiplyDexterity: 30,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 165,
+                multiplyMeleeWeaponAttack: 165,
                 plusMeleeAttackMultiplyDexterity: 40,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 206,
+                multiplyMeleeWeaponAttack: 206,
                 plusMeleeAttackMultiplyDexterity: 50,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 288,
+                multiplyMeleeWeaponAttack: 288,
                 plusMeleeAttackMultiplyDexterity: 70,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 412,
+                multiplyMeleeWeaponAttack: 412,
                 plusMeleeAttackMultiplyDexterity: 100,
                 meleeMastery: 1,
             }
@@ -2943,43 +2943,43 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 39,
+                multiplyMeleeWeaponAttack: 39,
                 plusMeleeAttackMultiplyDexterity: 10,
                 plusCriticalRate: 2,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 79,
+                multiplyMeleeWeaponAttack: 79,
                 plusMeleeAttackMultiplyDexterity: 20,
                 plusCriticalRate: 3,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 118,
+                multiplyMeleeWeaponAttack: 118,
                 plusMeleeAttackMultiplyDexterity: 30,
                 plusCriticalRate: 4,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 157,
+                multiplyMeleeWeaponAttack: 157,
                 plusMeleeAttackMultiplyDexterity: 40,
                 plusCriticalRate: 5,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 197,
+                multiplyMeleeWeaponAttack: 197,
                 plusMeleeAttackMultiplyDexterity: 50,
                 plusCriticalRate: 6,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 275,
+                multiplyMeleeWeaponAttack: 275,
                 plusMeleeAttackMultiplyDexterity: 70,
                 plusCriticalRate: 10,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 393,
+                multiplyMeleeWeaponAttack: 393,
                 plusMeleeAttackMultiplyDexterity: 100,
                 plusCriticalRate: 15,
                 meleeMastery: 1,
@@ -3117,37 +3117,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 100,
+                multiplyMeleeWeaponAttack: 100,
                 plusMeleeAttackMultiplyVitality: 250,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 200,
+                multiplyMeleeWeaponAttack: 200,
                 plusMeleeAttackMultiplyVitality: 450,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 300,
+                multiplyMeleeWeaponAttack: 300,
                 plusMeleeAttackMultiplyVitality: 650,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 400,
+                multiplyMeleeWeaponAttack: 400,
                 plusMeleeAttackMultiplyVitality: 850,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 500,
+                multiplyMeleeWeaponAttack: 500,
                 plusMeleeAttackMultiplyVitality: 1050,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 600,
+                multiplyMeleeWeaponAttack: 600,
                 plusMeleeAttackMultiplyVitality: 1250,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 710,
+                multiplyMeleeWeaponAttack: 710,
                 plusMeleeAttackMultiplyVitality: 1500,
                 meleeMastery: 1,
             }
@@ -3520,37 +3520,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 75,
+                multiplyMeleeWeaponAttack: 75,
                 plusMeleeAttackMultiplyIntelligence: 57,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 150,
+                multiplyMeleeWeaponAttack: 150,
                 plusMeleeAttackMultiplyIntelligence: 114,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 224,
+                multiplyMeleeWeaponAttack: 224,
                 plusMeleeAttackMultiplyIntelligence: 171,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 299,
+                multiplyMeleeWeaponAttack: 299,
                 plusMeleeAttackMultiplyIntelligence: 228,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 374,
+                multiplyMeleeWeaponAttack: 374,
                 plusMeleeAttackMultiplyIntelligence: 285,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 524,
+                multiplyMeleeWeaponAttack: 524,
                 plusMeleeAttackMultiplyIntelligence: 399,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 748,
+                multiplyMeleeWeaponAttack: 748,
                 plusMeleeAttackMultiplyIntelligence: 570,
                 meleeMastery: 1,
             }
@@ -4093,43 +4093,43 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 76,
+                multiplyMagicWeaponAttack: 76,
                 multiplyAttackSpeed: 10,
                 plusMagicAttackMultiplyIntelligence: 58,
                 magicMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 151,
+                multiplyMagicWeaponAttack: 151,
                 multiplyAttackSpeed: 10,
                 plusMagicAttackMultiplyIntelligence: 115,
                 magicMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 227,
+                multiplyMagicWeaponAttack: 227,
                 multiplyAttackSpeed: 10,
                 plusMagicAttackMultiplyIntelligence: 173,
                 magicMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 302,
+                multiplyMagicWeaponAttack: 302,
                 multiplyAttackSpeed: 10,
                 plusMagicAttackMultiplyIntelligence: 230,
                 magicMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 378,
+                multiplyMagicWeaponAttack: 378,
                 multiplyAttackSpeed: 10,
                 plusMagicAttackMultiplyIntelligence: 288,
                 magicMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 529,
+                multiplyMagicWeaponAttack: 529,
                 multiplyAttackSpeed: 30,
                 plusMagicAttackMultiplyIntelligence: 403,
                 magicMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 755,
+                multiplyMagicWeaponAttack: 755,
                 multiplyAttackSpeed: 50,
                 plusMagicAttackMultiplyIntelligence: 576,
                 magicMastery: 1,
@@ -4246,37 +4246,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 72,
+                multiplyMagicWeaponAttack: 72,
                 plusMagicAttackMultiplyMentality: 47,
                 magicMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 144,
+                multiplyMagicWeaponAttack: 144,
                 plusMagicAttackMultiplyMentality: 95,
                 magicMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 216,
+                multiplyMagicWeaponAttack: 216,
                 plusMagicAttackMultiplyMentality: 142,
                 magicMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 288,
+                multiplyMagicWeaponAttack: 288,
                 plusMagicAttackMultiplyMentality: 190,
                 magicMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 360,
+                multiplyMagicWeaponAttack: 360,
                 plusMagicAttackMultiplyMentality: 237,
                 magicMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 504,
+                multiplyMagicWeaponAttack: 504,
                 plusMagicAttackMultiplyMentality: 332,
                 magicMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 720,
+                multiplyMagicWeaponAttack: 720,
                 plusMagicAttackMultiplyMentality: 474,
                 magicMastery: 1,
             }
@@ -4678,37 +4678,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 49,
+                multiplyMeleeWeaponAttack: 49,
                 plusMeleeAttackMultiplyStrength: 37,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 98,
+                multiplyMeleeWeaponAttack: 98,
                 plusMeleeAttackMultiplyStrength: 75,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 147,
+                multiplyMeleeWeaponAttack: 147,
                 plusMeleeAttackMultiplyStrength: 112,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 196,
+                multiplyMeleeWeaponAttack: 196,
                 plusMeleeAttackMultiplyStrength: 150,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 246,
+                multiplyMeleeWeaponAttack: 246,
                 plusMeleeAttackMultiplyStrength: 187,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 344,
+                multiplyMeleeWeaponAttack: 344,
                 plusMeleeAttackMultiplyStrength: 262,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 491,
+                multiplyMeleeWeaponAttack: 491,
                 plusMeleeAttackMultiplyStrength: 374,
                 meleeMastery: 1,
             }
@@ -4915,43 +4915,43 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 52,
+                multiplyMeleeWeaponAttack: 52,
                 multiplyAttackSpeed: 2,
                 plusMeleeAttackMultiplyStrength: 24,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 84,
+                multiplyMeleeWeaponAttack: 84,
                 multiplyAttackSpeed: 6,
                 plusMeleeAttackMultiplyStrength: 48,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 116,
+                multiplyMeleeWeaponAttack: 116,
                 multiplyAttackSpeed: 10,
                 plusMeleeAttackMultiplyStrength: 73,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 147,
+                multiplyMeleeWeaponAttack: 147,
                 multiplyAttackSpeed: 14,
                 plusMeleeAttackMultiplyStrength: 97,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 180,
+                multiplyMeleeWeaponAttack: 180,
                 multiplyAttackSpeed: 18,
                 plusMeleeAttackMultiplyStrength: 121,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 243,
+                multiplyMeleeWeaponAttack: 243,
                 multiplyAttackSpeed: 22,
                 plusMeleeAttackMultiplyStrength: 169,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 338,
+                multiplyMeleeWeaponAttack: 338,
                 multiplyAttackSpeed: 30,
                 plusMeleeAttackMultiplyStrength: 242,
                 meleeMastery: 1,
@@ -5210,43 +5210,43 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 40,
+                multiplyMagicWeaponAttack: 40,
                 plusMagicAttackMultiplyMentality: 25,
                 multiplyHealingAmount: 20,
                 magicMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 79,
+                multiplyMagicWeaponAttack: 79,
                 plusMagicAttackMultiplyMentality: 50,
                 multiplyHealingAmount: 40,
                 magicMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 118,
+                multiplyMagicWeaponAttack: 118,
                 plusMagicAttackMultiplyMentality: 75,
                 multiplyHealingAmount: 60,
                 magicMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 158,
+                multiplyMagicWeaponAttack: 158,
                 plusMagicAttackMultiplyMentality: 99,
                 multiplyHealingAmount: 80,
                 magicMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 197,
+                multiplyMagicWeaponAttack: 197,
                 plusMagicAttackMultiplyMentality: 125,
                 multiplyHealingAmount: 100,
                 magicMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 276,
+                multiplyMagicWeaponAttack: 276,
                 plusMagicAttackMultiplyMentality: 174,
                 multiplyHealingAmount: 120,
                 magicMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 394,
+                multiplyMagicWeaponAttack: 394,
                 plusMagicAttackMultiplyMentality: 249,
                 multiplyHealingAmount: 150,
                 magicMastery: 1,
@@ -5598,37 +5598,37 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyWeaponAttack: 50,
+                multiplyMeleeWeaponAttack: 50,
                 plusMeleeAttackMultiplyStrength: 50,
                 meleeMastery: 1,
             },
             1: {
-                multiplyWeaponAttack: 70,
+                multiplyMeleeWeaponAttack: 70,
                 plusMeleeAttackMultiplyStrength: 70,
                 meleeMastery: 1,
             },
             2: {
-                multiplyWeaponAttack: 100,
+                multiplyMeleeWeaponAttack: 100,
                 plusMeleeAttackMultiplyStrength: 100,
                 meleeMastery: 1,
             },
             3: {
-                multiplyWeaponAttack: 140,
+                multiplyMeleeWeaponAttack: 140,
                 plusMeleeAttackMultiplyStrength: 140,
                 meleeMastery: 1,
             },
             4: {
-                multiplyWeaponAttack: 190,
+                multiplyMeleeWeaponAttack: 190,
                 plusMeleeAttackMultiplyStrength: 190,
                 meleeMastery: 1,
             },
             5: {
-                multiplyWeaponAttack: 250,
+                multiplyMeleeWeaponAttack: 250,
                 plusMeleeAttackMultiplyStrength: 250,
                 meleeMastery: 1,
             },
             6: {
-                multiplyWeaponAttack: 350,
+                multiplyMeleeWeaponAttack: 350,
                 plusMeleeAttackMultiplyStrength: 350,
                 meleeMastery: 1,
             }

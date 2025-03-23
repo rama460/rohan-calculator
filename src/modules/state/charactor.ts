@@ -94,7 +94,7 @@ const calculateMeleeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
             (
                 getter("meleeAttack") + getter("plusMeleeAttack") + getter("plusAttack")
             ) * (
-                100 + getter("multiplyWeaponAttack")
+                100 + getter("multiplyWeaponAttack") + getter("multiplyMeleeWeaponAttack")
             ) / 100
         )
     ) * (
@@ -108,7 +108,7 @@ const calculateMeleeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
                 (
                     getter("meleeAttack") + getter("plusMeleeAttack") + getter("plusAttack")
                 ) * (
-                    100 + getter("multiplyWeaponAttack")
+                    100 + getter("multiplyWeaponAttack") + getter("multiplyMeleeWeaponAttack")
                 ) / 100
             )
         ) * (
@@ -128,7 +128,7 @@ const calculateMagicAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
             (
                 getter("magicAttack") + getter("plusMagicAttack") + getter("plusAttack")
             ) * (
-                100 + getter("multiplyWeaponAttack")
+                100 + getter("multiplyWeaponAttack") + getter("multiplyMagicWeaponAttack")
             ) / 100
         )
     ) * (
@@ -143,7 +143,7 @@ const calculateMagicAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
                 (
                     getter("magicAttack") + getter("plusMagicAttack") + getter("plusAttack")
                 ) * (
-                    100 + getter("multiplyWeaponAttack")
+                    100 + getter("multiplyWeaponAttack") + getter("multiplyMagicWeaponAttack")
                 ) / 100
             )
         ) * (
@@ -164,7 +164,7 @@ const calculateRangeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
                 getter("rangeAttack") + getter("plusRangeAttack") + getter("plusAttack") +
                 Math.floor(getter("arrowAttack") * (100 + getter("multiplyArrowAttack")) / 100)
             ) * (
-                100 + getter("multiplyWeaponAttack")
+                100 + getter("multiplyWeaponAttack") + getter("multiplyRangeWeaponAttack")
             ) / 100
         )
     ) * (
@@ -180,7 +180,7 @@ const calculateRangeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
                     getter("rangeAttack") + getter("plusRangeAttack") + getter("plusAttack") +
                     Math.floor(getter("arrowAttack") * (100 + getter("multiplyArrowAttack")) / 100)
                 ) * (
-                    100 + getter("multiplyWeaponAttack")
+                    100 + getter("multiplyWeaponAttack") + getter("multiplyRangeWeaponAttack")
                 ) / 100
             )
         ) * (
