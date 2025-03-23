@@ -881,7 +881,7 @@ export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {
     if (type == "shield") {
         return { ...CraftedShieldOptions, ...CraftedGarterOptions };
     }
-    return {};
+    throw new Error(`Unknown type: ${type}`);
 }
 export type CraftedOptions = {
     [key in BuiltinOptionKeyType]?: number;

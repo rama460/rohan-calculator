@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { BuiltinOptionKeyType, BuiltinOptions, getCraftedOptions } from "../static/options";
+import { BuiltinOptionKeyType, BuiltinOptions, getCraftedOptions, getDisplayOptionName } from "../static/options";
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from "react";
 import { Equipments } from "../../modules/state/items";
@@ -41,7 +41,7 @@ export const EquipmentCraftedOption: React.FC<EquipmentCraftedOptionProps> = ({ 
                 >
                     <MenuItem key={-1} value="none">なし</MenuItem>
                     {Object.keys(getCraftedOptions(equipmentType)).filter((n) => !(options.some((option) => option.name === n)) || n == name).map((name, index) => (
-                        <MenuItem key={index} value={name}>{BuiltinOptions[name as BuiltinOptionKeyType]?.displayName ?? "なし"}</MenuItem>
+                        <MenuItem key={index} value={name}>{getDisplayOptionName(BuiltinOptions[name as BuiltinOptionKeyType])}</MenuItem>
                     ))}
                 </Select>
             </FormControl>
