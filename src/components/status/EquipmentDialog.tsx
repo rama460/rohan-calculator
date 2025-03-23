@@ -68,7 +68,8 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         selectedItem ? availableItemTemplates.find((template) => (template.name === selectedItem.name)) ?? availableItemTemplates[0] : availableItemTemplates[0])
     const [baseOptions, setBaseOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
         selectedItem ? hashToArray(selectedItem.baseOptions) :
-            hashToArray(getInitialBaseOtions(availableItemTemplates[0], raceid, jobid, enchantLevel))
+            availableItemTemplates.length > 0 ?
+                hashToArray(getInitialBaseOtions(availableItemTemplates[0], raceid, jobid, enchantLevel)) : []
     );
     const [craftedOptions, setCraftedOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
         selectedItem ? hashToArray(selectedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : (

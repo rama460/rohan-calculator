@@ -7167,6 +7167,156 @@ export const rides: ItemTemplate[] = [
         },
     }
 ]
+
+export const runes: ItemTemplate[] = [
+    {
+        name: "攻撃のルーン",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'multiplyAttack': 2,
+            },
+            1: {
+                'multiplyAttack': 4,
+            },
+            2: {
+                'multiplyAttack': 6,
+            },
+            3: {
+                'multiplyAttack': 9,
+            },
+            4: {
+                'multiplyAttack': 12,
+            },
+            5: {
+                'multiplyAttack': 15,
+            },
+            6: {
+                'multiplyAttack': 18,
+            },
+        }
+    },
+    {
+        name: "迅速のルーン",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'multiplyMovementSpeed': 5,
+            },
+            1: {
+                'multiplyMovementSpeed': 10,
+            },
+            2: {
+                'multiplyMovementSpeed': 15,
+            },
+            3: {
+                'multiplyMovementSpeed': 20,
+            },
+            4: {
+                'multiplyMovementSpeed': 30,
+            },
+            5: {
+                'multiplyMovementSpeed': 40,
+            },
+            6: {
+                'multiplyMovementSpeed': 50,
+            },
+        }
+    },
+    {
+        name: "全能のルーン",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'multiplyAllStatus': 1,
+            },
+            1: {
+                'multiplyAllStatus': 2,
+            },
+            2: {
+                'multiplyAllStatus': 3,
+            },
+            3: {
+                'multiplyAllStatus': 5,
+            },
+            4: {
+                'multiplyAllStatus': 7,
+            },
+            5: {
+                'multiplyAllStatus': 10,
+            },
+            6: {
+                'multiplyAllStatus': 13,
+            },
+        }
+    },
+    {
+        name: "活力のルーン",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                "multiplyHitPoint": 4,
+                "multiplyMagicPoint": 4,
+            },
+            1: {
+                "multiplyHitPoint": 8,
+                "multiplyMagicPoint": 8,
+            },
+            2: {
+                "multiplyHitPoint": 12,
+                "multiplyMagicPoint": 12,
+            },
+            3: {
+                "multiplyHitPoint": 18,
+                "multiplyMagicPoint": 18,
+            },
+            4: {
+                "multiplyHitPoint": 24,
+                "multiplyMagicPoint": 24,
+            },
+            5: {
+                "multiplyHitPoint": 30,
+                "multiplyMagicPoint": 30,
+            },
+            6: {
+                "multiplyHitPoint": 36,
+                "multiplyMagicPoint": 36,
+            },
+        }
+    },
+    {
+        name: "調和のルーン",
+        icon: unknown,
+        enchantableBaseOptions: {}
+    },
+    {
+        name: "貫通のルーン",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                "multiplyDefensePenetration": 2,
+            },
+            1: {
+                "multiplyDefensePenetration": 4,
+            },
+            2: {
+                "multiplyDefensePenetration": 6,
+            },
+            3: {
+                "multiplyDefensePenetration": 9,
+            },
+            4: {
+                "multiplyDefensePenetration": 12,
+            },
+            5: {
+                "multiplyDefensePenetration": 15,
+            },
+            6: {
+                "multiplyDefensePenetration": 18,
+            },
+        }
+    }
+]
 export const itemTemplates = {
     helmet: helmets,
     gauntlet: gauntlets,
@@ -7196,6 +7346,11 @@ export const itemTemplates = {
     talismanQ: q_talismans,
     talismanS: s_talismans,
     pet: pets,
-    ride: rides
-
+    ride: rides,
+    rune1: runes,
+    rune2: runes,
+    rune3: runes,
+    rune4: runes,
+    rune5: runes,
+    rune6: runes,
 }

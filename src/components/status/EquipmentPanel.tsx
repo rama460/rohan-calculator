@@ -13,7 +13,7 @@ import background_glasses from '../../assets/backgrounds/glasses.png'
 import background_costume from '../../assets/backgrounds/costume.png'
 import React from "react";
 import EquipmentIconButton from './EquipmentIconButton.tsx'
-import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
+import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, runes, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
 import { EquipmentResetButton } from './EquipmentResetButton.tsx'
 
 
@@ -23,7 +23,7 @@ export const EquipmentPanel: React.FC = () => {
     const style: React.CSSProperties = {
         display: "grid",
         gridTemplateColumns: "repeat(9, 34px)",
-        gridTemplateRows: "repeat(5, 34px)",
+        gridTemplateRows: "repeat(7, 34px)",
         gap: "5px",
     }
     return (
@@ -148,6 +148,24 @@ export const EquipmentPanel: React.FC = () => {
                 </div>
                 <div style={{ gridColumn: 9, gridRow: 1 }}>
                     <EquipmentIconButton equipmentType='ride' title='乗り物' items={rides} />
+                </div>
+                <div style={{ gridColumn: 5, gridRow: 7 }}>
+                    <EquipmentIconButton equipmentType='rune1' title='ルーン1' items={runes} />
+                </div>
+                <div style={{ gridColumn: 6, gridRow: 7 }}>
+                    <EquipmentIconButton equipmentType='rune2' title='ルーン2' items={runes} />
+                </div>
+                <div style={{ gridColumn: 7, gridRow: 7 }}>
+                    <EquipmentIconButton equipmentType='rune3' title='ルーン3' items={runes} />
+                </div>
+                <div style={{ gridColumn: 8, gridRow: 7 }}>
+                    <EquipmentIconButton equipmentType='rune4' title='ルーン4' items={runes} />
+                </div>
+                <div style={{ gridColumn: 9, gridRow: 7 }}>
+                    <EquipmentIconButton equipmentType='rune5' title='ルーン5' items={runes} />
+                </div>
+                <div style={{ gridColumn: 10, gridRow: 7 }}>
+                    <EquipmentIconButton equipmentType='rune6' title='ルーン6' items={runes} />
                 </div>
             </div >
         </>

@@ -853,6 +853,20 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'plus'
     },
+    'multiplyDefensePenetration': {
+        name: 'multiplyDefensePenetration',
+        displayColor: 'green',
+        displayName: '防御貫通率',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyDecreaseDamageTakenPenetration': {
+        name: 'multiplyDecreaseDamageTakenPenetration',
+        displayColor: 'green',
+        displayName: 'ダメージ減少率貫通',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
 
 } as const;
 export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {
@@ -884,7 +898,9 @@ export const CraftedWeaponOptions: CraftedOptions = {
     "plusMentality": 100,
     "plusDexterity": 100,
     "multiplyHitPointAbsorbDamageRate": 21,
-    "multiplyMagicPointAbsorbDamageRate": 21
+    "multiplyMagicPointAbsorbDamageRate": 21,
+    "multiplyDefensePenetration": 30,
+    "multiplyDecreaseDamageTakenPenetration": 30
 }
 export const CraftedArmorOptions: CraftedOptions = {
     "plusStrength": 80,
@@ -904,7 +920,9 @@ export const CraftedGarterOptions: CraftedOptions = {
     "multiplyRangeAttack": 20,
     "multiplyMagicAttack": 20,
     "multiplyHitPointAbsorbDamageRate": 10,
-    "plusCriticalRate": 10
+    "plusCriticalRate": 10,
+    "multiplyDefensePenetration": 20,
+    "multiplyDecreaseDamageTakenPenetration": 20
 }
 export const CraftedShieldOptions: CraftedOptions = {
     "multiplyHitPoint": 20,

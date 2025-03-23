@@ -35,6 +35,12 @@ export const equipmentSlotNames = [
     "talismanS",
     "pet",
     "ride",
+    "rune1",
+    "rune2",
+    "rune3",
+    "rune4",
+    "rune5",
+    "rune6",
 ] as const;
 
 export type EquipmentSlotType = typeof equipmentSlotNames[number];
@@ -75,6 +81,12 @@ export const minifiedEquipmentKeyMap: {
     talismanS: "ets",
     pet: "ep",
     ride: "er",
+    rune1: "er1",
+    rune2: "er2",
+    rune3: "er3",
+    rune4: "er4",
+    rune5: "er5",
+    rune6: "er6",
 }
 
 export type MinifiedItem = {

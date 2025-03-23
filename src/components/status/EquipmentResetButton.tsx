@@ -35,6 +35,12 @@ export const EquipmentResetButton: React.FC = () => {
             talismanS: undefined,
             pet: undefined,
             ride: undefined,
+            rune1: undefined,
+            rune2: undefined,
+            rune3: undefined,
+            rune4: undefined,
+            rune5: undefined,
+            rune6: undefined,
         })}>
             リセット
         </Button>
