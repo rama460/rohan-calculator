@@ -236,3 +236,9 @@ const minifyOptions = (options: { [key in BuiltinOptionKeyType]?: number }): { [
 const unminifyOptions = (options: { [id: number]: number | undefined }): { [key in BuiltinOptionKeyType]?: number } => {
     return Object.assign({}, ...Object.entries(options).map(([id, value]) => ({ [getOptionNameForId(Number(id))]: value })))
 }
+
+export const setAllEquipmentState = atom(null, (_get, set, update: Equipments) => {
+    equipmentSlotNames.forEach((name) => {
+        set(equipmentStateFamily(name), update[name]);
+    })
+})

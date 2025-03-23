@@ -4,6 +4,7 @@ import { Skill, SkillOrigin } from "../static/skill";
 import BuffIconButton from "./BuffIconButton";
 import { useAtom } from "jotai";
 import { buffStateFamily } from "../../modules/state/skills";
+import { Button } from "@mui/material";
 interface BuffGroupProps {
     buffOrigin: SkillOrigin;
     buffs: Skill[];
@@ -24,6 +25,8 @@ export const BuffGroup: React.FC<BuffGroupProps> = ({ buffOrigin, buffs }) => {
     }
     return (
         <BorderedTitleBox title={buffOrigin}>
+            <Button onClick={() => setBuffStatuses([...buffs.map((buff) => ({ name: buff.name, level: buff.max }))])}>フルバフ</Button>
+            <Button onClick={() => setBuffStatuses([])}>リセット</Button>
             <Grid container spacing={2}>
                 {buffs.map((buff, index) => (
                     <Grid key={index} size={{ md: 6, xs: 6 }}>

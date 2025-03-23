@@ -53,3 +53,10 @@ export const remainingPointsState = atom((get) => {
         return 196 + 120 + 240 + (level - 100) * 10 + heroLevel * 10 - used;
 });
 
+export const resetAllStatusState = atom(null, (_, set) => {
+    statuses.forEach((status) => {
+        set(baseStatusState(status), 0);
+        set(metaStatusState(status), 0);
+    });
+}
+);
