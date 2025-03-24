@@ -3672,6 +3672,48 @@ export const shields: ItemTemplate[] = [
 ]
 export const arrows: ItemTemplate[] = [
     {
+        name: "ベロライトの矢",
+        icon: unknown,
+        fixedBaseOptions: {
+            'arrowAttack': 300
+        }
+    },
+    {
+        name: "ベロライトのボルト",
+        icon: unknown,
+        fixedBaseOptions: {
+            'arrowAttack': 450
+        }
+    },
+    {
+        name: "サドリウムの矢",
+        icon: unknown,
+        fixedBaseOptions: {
+            'arrowAttack': 250
+        },
+    },
+    {
+        name: "サドリウムのボルト",
+        icon: unknown,
+        fixedBaseOptions: {
+            'arrowAttack': 400
+        },
+    },
+    {
+        name: "アパタイトの矢",
+        icon: unknown,
+        fixedBaseOptions: {
+            'arrowAttack': 210
+        },
+    },
+    {
+        name: "アパタイトのボルト",
+        icon: unknown,
+        fixedBaseOptions: {
+            'arrowAttack': 350
+        },
+    },
+    {
         name: "トルマリンの矢",
         icon: arrow_tourmaline,
         fixedBaseOptions: {
