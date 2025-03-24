@@ -75,22 +75,43 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'absolute',
     },
-    'meleeAttack': {
-        name: 'meleeAttack',
+    'weaponBaseMeleeAttack': {
+        name: 'weaponBaseMeleeAttack',
         displayColor: 'white',
         displayName: '近接攻撃力',
         unit: 'number',
         operationType: 'absolute',
     },
-    'rangeAttack': {
-        name: 'rangeAttack',
+    'weaponBaseRangeAttack': {
+        name: 'weaponBaseRangeAttack',
         displayColor: 'white',
         displayName: '遠距離攻撃力',
         unit: 'number',
         operationType: 'absolute',
     },
-    'magicAttack': {
-        name: 'magicAttack',
+    'weaponBaseMagicAttack': {
+        name: 'weaponBaseMagicAttack',
+        displayColor: 'white',
+        displayName: '魔法攻撃力',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'weaponEnchantMeleeAttack': {
+        name: 'weaponEnchantMeleeAttack',
+        displayColor: 'white',
+        displayName: '近接攻撃力',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'weaponEnchantRangeAttack': {
+        name: 'weaponEnchantrangeAttack',
+        displayColor: 'white',
+        displayName: '遠距離攻撃力',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'weaponEnchantMagicAttack': {
+        name: 'weaponEnchantmagicAttack',
         displayColor: 'white',
         displayName: '魔法攻撃力',
         unit: 'number',
