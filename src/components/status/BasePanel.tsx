@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
 import { races } from "../static/races";
 import Grid from "@mui/material/Grid2";
@@ -20,7 +20,6 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
     const [heroLevel, setHeroLevel] = useAtom(baseOptionStateFamily("heroLevel"));
     const [raceid, setRaceid] = useAtom(baseOptionStateFamily("raceid"));
     const [jobid, setJobid] = useAtom(baseOptionStateFamily("jobid"));
-    const [transcended, setTranscended] = React.useState(false);
     const [title, setTitle] = useAtom(titleNameState);
     const [buffStatuses, setBuffStatuses] = useAtom(buffStateFamily("Self"));
     const handleRaceChange = (event: SelectChangeEvent) => {
