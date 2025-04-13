@@ -230,10 +230,13 @@ export const synergyKeyNames = [
     "immortal1",
     "variant",
     "extend",
+    "megalith",
     "gargantua",
     "disaster",
+    "tempest",
     "catastrophe",
     "goliath",
+    "nephilim",
     "chaos",
     "megas",
     "hesperos",
@@ -7167,44 +7170,6 @@ const nosferatuSynergisticOptions = {
     }
 }
 
-const extendSynergisticOptions = {
-    2: {
-        'multiplyPotionRecovery': 100,
-        'multiplyNegationRate': 10,
-    },
-    3: {
-        'multiplyPVPDefense': 25,
-        'multiplyPVEDefense': 20,
-        'multiplySkillDefense': 60,
-    }
-}
-
-const disasterSynergisticOptions = {
-    2: {
-        'multiplyHitPoint': 50,
-        'multiplySkillAttack': 25,
-    },
-    3: {
-        'multiplyCriticalRate': 10,
-        'multiplySkillAttack': 50,
-        'multiplyPVPAttack': 100,
-        'multiplyPVPDefense': 15,
-    }
-}
-
-const goliathSynergisticOptions = {
-    2: {
-        'multiplyHitPoint': 50,
-        'multiplySkillDefense': 25,
-    },
-    3: {
-        'multiplyDecreaseCriticalDamageTaken': 25,
-        'multiplySkillDefense': 75,
-        'multiplyPVPDefense': 20,
-        'multiplyHitPoint': 100,
-    }
-}
-
 const ganes4haSynergisticOptions = {
     4: {
         'plusAllStatus': 1000,
@@ -7414,18 +7379,28 @@ const variantSynergisticOptions = {
     }
 }
 
-const gargantuaSynergisticOptions = {
+const extendSynergisticOptions = {
     2: {
+        'multiplyPotionRecovery': 100,
         'multiplyNegationRate': 10,
-        'multiplyDecreaseCriticalDamageTaken': 25,
-        "multiplySkillAttack": 75,
-        'multiplyHitPoint': 150,
     },
     3: {
-        'multiplyDamageReflectionRate': 40,
-        'multiplySkillDefense': 100,
-        'multiplyPVPAttack': 75,
         'multiplyPVPDefense': 25,
+        'multiplyPVEDefense': 20,
+        'multiplySkillDefense': 60,
+    }
+}
+
+const megalithSynergisticOptions = {
+    2: {
+        'multiplyPotionRecovery': 50,
+        'multiplyNegationRate': 5,
+        'multiplyDamageReflectionRate': 25,
+    },
+    3: {
+        'plusHitPoint': 200000,
+        'plusAttack': 20000,
+        'plusDefense': 20000,
     }
 }
 
@@ -7441,6 +7416,70 @@ const catastropheSynergisticOptions = {
         'multiplySkillDefense': 75,
         'multiplyPVPAttack': 100,
         'multiplyPVPDefense': 25,
+    }
+}
+
+const disasterSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 50,
+        'multiplySkillAttack': 25,
+    },
+    3: {
+        'multiplyCriticalRate': 10,
+        'multiplySkillAttack': 50,
+        'multiplyPVPAttack': 100,
+        'multiplyPVPDefense': 15,
+    }
+}
+
+const tempestSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 25,
+        'multiplySkillAttack': 25,
+    },
+    3: {
+        'plusHitPoint': 100000,
+        'plusAttack': 25000,
+        'plusDefense': 15000,
+    }
+}
+const gargantuaSynergisticOptions = {
+    2: {
+        'multiplyNegationRate': 10,
+        'multiplyDecreaseCriticalDamageTaken': 25,
+        "multiplySkillAttack": 75,
+        'multiplyHitPoint': 150,
+    },
+    3: {
+        'multiplyDamageReflectionRate': 40,
+        'multiplySkillDefense': 100,
+        'multiplyPVPAttack': 75,
+        'multiplyPVPDefense': 25,
+    }
+}
+
+const goliathSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 50,
+        'multiplySkillDefense': 25,
+    },
+    3: {
+        'multiplyDecreaseCriticalDamageTaken': 25,
+        'multiplySkillDefense': 75,
+        'multiplyPVPDefense': 20,
+        'multiplyHitPoint': 100,
+    }
+}
+
+const nephilimSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 25,
+        'multiplySkillDefense': 25,
+    },
+    3: {
+        'plusHitPoint': 100000,
+        'plusAttack': 15000,
+        'plusDefense': 25000,
     }
 }
 
@@ -7595,6 +7634,39 @@ export const glasses: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
         synergyKey: "goliath"
+    },
+    {
+        name: "メガリスアイ",
+        fixedBaseOptions: {
+            'plusAttack': 175,
+            'plusDefense': 75,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: megalithSynergisticOptions,
+        synergyKey: "megalith"
+    },
+    {
+        name: "テンペストアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 75,
+            'plusAttack': 250,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: tempestSynergisticOptions,
+        synergyKey: "tempest"
+    },
+    {
+        name: "ネフィリムアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 75,
+            'plusDefense': 250,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: nephilimSynergisticOptions,
+        synergyKey: "nephilim"
     },
     {
         name: "ガネーシャの眼鏡Ⅳ",
@@ -7942,6 +8014,39 @@ export const hats: ItemTemplate[] = [
         synergyKey: "goliath"
     },
     {
+        name: "メガリスサークレット",
+        fixedBaseOptions: {
+            'plusAttack': 175,
+            'plusDefense': 75,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: megalithSynergisticOptions,
+        synergyKey: "megalith"
+    },
+    {
+        name: "テンペストサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 75,
+            'plusAttack': 250,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: tempestSynergisticOptions,
+        synergyKey: "tempest"
+    },
+    {
+        name: "ネフィリムサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 75,
+            'plusDefense': 250,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: nephilimSynergisticOptions,
+        synergyKey: "nephilim"
+    },
+    {
         name: "ガネーシャの冠Ⅳ",
         fixedBaseOptions: {
             'plusAllStatus': 900,
@@ -8285,6 +8390,39 @@ export const earrings: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
         synergyKey: "goliath"
+    },
+    {
+        name: "メガリスイヤリング",
+        fixedBaseOptions: {
+            'plusAttack': 175,
+            'plusDefense': 75,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: megalithSynergisticOptions,
+        synergyKey: "megalith"
+    },
+    {
+        name: "テンペストイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 75,
+            'plusAttack': 250,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: tempestSynergisticOptions,
+        synergyKey: "tempest"
+    },
+    {
+        name: "ネフィリムイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 75,
+            'plusDefense': 250,
+            'plusHitPoint': 2000,
+        },
+        icon: unknown,
+        synergyOptions: nephilimSynergisticOptions,
+        synergyKey: "nephilim"
     },
     {
         name: "ガネーシャのイヤリングⅣ",
