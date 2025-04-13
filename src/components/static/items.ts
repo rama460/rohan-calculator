@@ -212,6 +212,22 @@ export const synergyKeyNames = [
     "apocalypse",
     "hellfire",
     "nosferatu",
+    "ganesha4",
+    "ganesha3",
+    "ganesha2",
+    "ganesha1",
+    "annihilate4",
+    "annihilate3",
+    "annihilate2",
+    "annihilate1",
+    "crimson4",
+    "crimson3",
+    "crimson2",
+    "crimson1",
+    "immortal4",
+    "immortal3",
+    "immortal2",
+    "immortal1",
     "variant",
     "extend",
     "gargantua",
@@ -7189,6 +7205,187 @@ const goliathSynergisticOptions = {
     }
 }
 
+const ganes4haSynergisticOptions = {
+    4: {
+        'plusAllStatus': 1000,
+    }
+}
+const ganes3haSynergisticOptions = {
+    4: {
+        'plusAllStatus': 1000,
+    }
+}
+const ganes2haSynergisticOptions = {
+    4: {
+        'plusAllStatus': 1000,
+    }
+}
+const ganes1haSynergisticOptions = {
+    4: {
+        'plusAllStatus': 1000,
+    }
+}
+const annihilate4haSynergisticOptions = {
+    2: {
+        'plusHitPoint': 4500,
+        'multiplyPVEAttack': 25,
+        'multiplyPVPAttack': 15,
+        'multiplySkillAttack': 25,
+    },
+    4: {
+        'plusHitPoint': 4500,
+        'multiplyPVEAttack': 30,
+        'multiplyPVPAttack': 75,
+        'multiplySkillAttack': 30,
+    }
+}
+const annihilate3haSynergisticOptions = {
+    2: {
+        'plusHitPoint': 4000,
+        'multiplyPVEAttack': 20,
+        'multiplyPVPAttack': 15,
+        'multiplySkillAttack': 20,
+    },
+    4: {
+        'plusHitPoint': 4000,
+        'multiplyPVEAttack': 25,
+        'multiplyPVPAttack': 75,
+        'multiplySkillAttack': 25,
+    }
+}
+const annihilate2haSynergisticOptions = {
+    2: {
+        'plusHitPoint': 3500,
+        'multiplyPVEAttack': 20,
+        'multiplyPVPAttack': 15,
+        'multiplySkillAttack': 20,
+    },
+    4: {
+        'plusHitPoint': 3500,
+        'multiplyPVEAttack': 20,
+        'multiplyPVPAttack': 75,
+        'multiplySkillAttack': 20,
+    }
+}
+const annihilate1haSynergisticOptions = {
+    2: {
+        'plusHitPoint': 3000,
+        'multiplyPVEAttack': 15,
+        'multiplyPVPAttack': 15,
+        'multiplySkillAttack': 15,
+    },
+    4: {
+        'plusHitPoint': 3000,
+        'multiplyPVEAttack': 20,
+        'multiplyPVPAttack': 75,
+        'multiplySkillAttack': 20,
+    }
+}
+const crimson4haSynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 30,
+        'multiplySkillDefense': 30,
+        'multiplyHitPoint': 50,
+    },
+    4: {
+        'multiplyPVPAttack': 30,
+        'multiplyPVPDefense': 20,
+        'multiplyPVEDefense': 20,
+    }
+}
+const crimson3haSynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 30,
+        'multiplySkillDefense': 30,
+        'multiplyHitPoint': 25,
+    },
+    4: {
+        'multiplyPVPAttack': 25,
+        'multiplyPVPDefense': 20,
+        'multiplyPVEDefense': 20,
+    }
+}
+const crimson2haSynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 30,
+        'multiplySkillDefense': 30,
+        'multiplyHitPoint': 15,
+    },
+    4: {
+        'multiplyPVPAttack': 20,
+        'multiplyPVPDefense': 20,
+        'multiplyPVEDefense': 20,
+    }
+}
+const crimson1haSynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 30,
+        'multiplySkillDefense': 30,
+    },
+    4: {
+        'multiplyPVPAttack': 20,
+        'multiplyPVPDefense': 20,
+        'multiplyPVEDefense': 20
+    }
+}
+
+const immortal4haSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 50,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 35,
+        'multiplyDamageReflectionRate': 15,
+    },
+    4: {
+        'multiplyHitPoint': 50,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 35,
+        'multiplyDamageReflectionRate': 20,
+    }
+}
+const immortal3haSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 25,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 30,
+        'multiplyDamageReflectionRate': 15,
+    },
+    4: {
+        'multiplyHitPoint': 25,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 30,
+        'multiplyDamageReflectionRate': 15,
+    }
+}
+const immortal2haSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 15,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 30,
+        'multiplyDamageReflectionRate': 10,
+    },
+    4: {
+        'multiplyHitPoint': 15,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 30,
+        'multiplyDamageReflectionRate': 15,
+    }
+}
+const immortal1haSynergisticOptions = {
+    2: {
+        'plusHitPoint': 3000,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 30,
+        'multiplyDamageReflectionRate': 10,
+    },
+    4: {
+        'plusHitPoint': 3000,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 30,
+        'multiplyDamageReflectionRate': 10,
+    }
+}
+
 const chaosSynergisticOptions = {
     2: {
         'multiplySkillAttack': 20,
@@ -7398,7 +7595,199 @@ export const glasses: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
         synergyKey: "goliath"
-    }
+    },
+    {
+        name: "ガネーシャの眼鏡Ⅳ",
+        fixedBaseOptions: {
+            'plusAllStatus': 900,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: ganes4haSynergisticOptions,
+        synergyKey: "ganesha4"
+    },
+    {
+        name: "ガネーシャの眼鏡Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 750,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 4500,
+        },
+        icon: unknown,
+        synergyOptions: ganes3haSynergisticOptions,
+        synergyKey: "ganesha3"
+    },
+    {
+        name: "ガネーシャの眼鏡Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 600,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 2500,
+        },
+        icon: unknown,
+        synergyOptions: ganes2haSynergisticOptions,
+        synergyKey: "ganesha2"
+    },
+    {
+        name: "ガネーシャの眼鏡",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 1000,
+        },
+        icon: unknown,
+        synergyOptions: ganes1haSynergisticOptions,
+        synergyKey: "ganesha1"
+    },
+    {
+        name: "アナイアレイトアイⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 1600,
+            'plusDefense': 850,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate4haSynergisticOptions,
+        synergyKey: "annihilate4"
+    },
+    {
+        name: "アナイアレイトアイⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 1350,
+            'plusDefense': 750,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate3haSynergisticOptions,
+        synergyKey: "annihilate3"
+    },
+    {
+        name: "アナイアレイトアイⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 1100,
+            'plusDefense': 650,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate2haSynergisticOptions,
+        synergyKey: "annihilate2"
+    },
+    {
+        name: "アナイアレイトアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 950,
+            'plusDefense': 550,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate1haSynergisticOptions,
+        synergyKey: "annihilate1"
+    },
+    {
+        name: "紅蓮の眼鏡Ⅳ",
+        fixedBaseOptions: {
+            'plusAllStatus': 250,
+            'plusAttack': 800,
+            'plusDefense': 1600,
+            'plusHitPoint': 8000,
+        },
+        icon: unknown,
+        synergyOptions: crimson4haSynergisticOptions,
+        synergyKey: "crimson4"
+    },
+    {
+        name: "紅蓮の眼鏡Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 225,
+            'plusAttack': 700,
+            'plusDefense': 1400,
+            'plusHitPoint': 7000,
+        },
+        icon: unknown,
+        synergyOptions: crimson3haSynergisticOptions,
+        synergyKey: "crimson3"
+    },
+    {
+        name: "紅蓮の眼鏡Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: crimson2haSynergisticOptions,
+        synergyKey: "crimson2"
+    },
+    {
+        name: "紅蓮の眼鏡",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: crimson1haSynergisticOptions,
+        synergyKey: "crimson1"
+    },
+    {
+        name: "イモータルアイⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 850,
+            'plusDefense': 1600,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: immortal4haSynergisticOptions,
+        synergyKey: "immortal4"
+    },
+    {
+        name: "イモータルアイⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 750,
+            'plusDefense': 1350,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: immortal3haSynergisticOptions,
+        synergyKey: "immortal3"
+    },
+    {
+        name: "イモータルアイⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 650,
+            'plusDefense': 1100,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: immortal2haSynergisticOptions,
+        synergyKey: "immortal2"
+    },
+    {
+        name: "イモータルアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 550,
+            'plusDefense': 950,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: immortal1haSynergisticOptions,
+        synergyKey: "immortal1"
+    },
 ]
 export const hats: ItemTemplate[] = [
     {
@@ -7551,7 +7940,199 @@ export const hats: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
         synergyKey: "goliath"
-    }
+    },
+    {
+        name: "ガネーシャの冠Ⅳ",
+        fixedBaseOptions: {
+            'plusAllStatus': 900,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: ganes4haSynergisticOptions,
+        synergyKey: "ganesha4"
+    },
+    {
+        name: "ガネーシャの冠Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 750,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 4500,
+        },
+        icon: unknown,
+        synergyOptions: ganes3haSynergisticOptions,
+        synergyKey: "ganesha3"
+    },
+    {
+        name: "ガネーシャの冠Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 600,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 2500,
+        },
+        icon: unknown,
+        synergyOptions: ganes2haSynergisticOptions,
+        synergyKey: "ganesha2"
+    },
+    {
+        name: "ガネーシャの冠",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 1000,
+        },
+        icon: unknown,
+        synergyOptions: ganes1haSynergisticOptions,
+        synergyKey: "ganesha1"
+    },
+    {
+        name: "アナイアレイトサークレットⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 1600,
+            'plusDefense': 850,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate4haSynergisticOptions,
+        synergyKey: "annihilate4"
+    },
+    {
+        name: "アナイアレイトサークレットⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 1350,
+            'plusDefense': 750,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate3haSynergisticOptions,
+        synergyKey: "annihilate3"
+    },
+    {
+        name: "アナイアレイトサークレットⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 1100,
+            'plusDefense': 650,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate2haSynergisticOptions,
+        synergyKey: "annihilate2"
+    },
+    {
+        name: "アナイアレイトサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 950,
+            'plusDefense': 550,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate1haSynergisticOptions,
+        synergyKey: "annihilate1"
+    },
+    {
+        name: "紅蓮の帽子Ⅳ",
+        fixedBaseOptions: {
+            'plusAllStatus': 250,
+            'plusAttack': 800,
+            'plusDefense': 1600,
+            'plusHitPoint': 8000,
+        },
+        icon: unknown,
+        synergyOptions: crimson4haSynergisticOptions,
+        synergyKey: "crimson4"
+    },
+    {
+        name: "紅蓮の帽子Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 225,
+            'plusAttack': 700,
+            'plusDefense': 1400,
+            'plusHitPoint': 7000,
+        },
+        icon: unknown,
+        synergyOptions: crimson3haSynergisticOptions,
+        synergyKey: "crimson3"
+    },
+    {
+        name: "紅蓮の帽子Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: crimson2haSynergisticOptions,
+        synergyKey: "crimson2"
+    },
+    {
+        name: "紅蓮の帽子",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: crimson1haSynergisticOptions,
+        synergyKey: "crimson1"
+    },
+    {
+        name: "イモータルサークレットⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 850,
+            'plusDefense': 1600,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: immortal4haSynergisticOptions,
+        synergyKey: "immortal4"
+    },
+    {
+        name: "イモータルサークレットⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 750,
+            'plusDefense': 1350,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: immortal3haSynergisticOptions,
+        synergyKey: "immortal3"
+    },
+    {
+        name: "イモータルサークレットⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 650,
+            'plusDefense': 1100,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: immortal2haSynergisticOptions,
+        synergyKey: "immortal2"
+    },
+    {
+        name: "イモータルサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 550,
+            'plusDefense': 950,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: immortal1haSynergisticOptions,
+        synergyKey: "immortal1"
+    },
 ]
 export const earrings: ItemTemplate[] = [
     {
@@ -7704,7 +8285,199 @@ export const earrings: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
         synergyKey: "goliath"
-    }
+    },
+    {
+        name: "ガネーシャのイヤリングⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 900,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: ganes4haSynergisticOptions,
+        synergyKey: "ganesha4"
+    },
+    {
+        name: "ガネーシャのイヤリングⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 750,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 4500,
+        },
+        icon: unknown,
+        synergyOptions: ganes3haSynergisticOptions,
+        synergyKey: "ganesha3"
+    },
+    {
+        name: "ガネーシャのイヤリングⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 600,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 2500,
+        },
+        icon: unknown,
+        synergyOptions: ganes2haSynergisticOptions,
+        synergyKey: "ganesha2"
+    },
+    {
+        name: "ガネーシャのイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 1000,
+        },
+        icon: unknown,
+        synergyOptions: ganes1haSynergisticOptions,
+        synergyKey: "ganesha1"
+    },
+    {
+        name: "アナイアレイトイヤリングⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 1600,
+            'plusDefense': 850,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate4haSynergisticOptions,
+        synergyKey: "annihilate4"
+    },
+    {
+        name: "アナイアレイトイヤリングⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 1350,
+            'plusDefense': 750,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate3haSynergisticOptions,
+        synergyKey: "annihilate3"
+    },
+    {
+        name: "アナイアレイトイヤリングⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 1100,
+            'plusDefense': 650,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate2haSynergisticOptions,
+        synergyKey: "annihilate2"
+    },
+    {
+        name: "アナイアレイトイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 950,
+            'plusDefense': 550,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate1haSynergisticOptions,
+        synergyKey: "annihilate1"
+    },
+    {
+        name: "紅蓮の耳飾りⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 250,
+            'plusAttack': 800,
+            'plusDefense': 1600,
+            'plusHitPoint': 8000,
+        },
+        icon: unknown,
+        synergyOptions: crimson4haSynergisticOptions,
+        synergyKey: "crimson4"
+    },
+    {
+        name: "紅蓮の耳飾りⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 225,
+            'plusAttack': 700,
+            'plusDefense': 1400,
+            'plusHitPoint': 7000,
+        },
+        icon: unknown,
+        synergyOptions: crimson3haSynergisticOptions,
+        synergyKey: "crimson3"
+    },
+    {
+        name: "紅蓮の耳飾りⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: crimson2haSynergisticOptions,
+        synergyKey: "crimson2"
+    },
+    {
+        name: "紅蓮の耳飾り",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: crimson1haSynergisticOptions,
+        synergyKey: "crimson1"
+    },
+    {
+        name: "イモータルイヤリングⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 850,
+            'plusDefense': 1600,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: immortal4haSynergisticOptions,
+        synergyKey: "immortal4"
+    },
+    {
+        name: "イモータルイヤリングⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 750,
+            'plusDefense': 1350,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: immortal3haSynergisticOptions,
+        synergyKey: "immortal3"
+    },
+    {
+        name: "イモータルイヤリングⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 650,
+            'plusDefense': 1100,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: immortal2haSynergisticOptions,
+        synergyKey: "immortal2"
+    },
+    {
+        name: "イモータルイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 550,
+            'plusDefense': 950,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: immortal1haSynergisticOptions,
+        synergyKey: "immortal1"
+    },
 ]
 export const costumes: ItemTemplate[] = [
     {
@@ -7792,6 +8565,138 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "nosferatu"
     },
     {
+        name: "ガネーシャの鎧Ⅳ",
+        fixedBaseOptions: {
+            'plusAllStatus': 900,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: ganes4haSynergisticOptions,
+        synergyKey: "ganesha4"
+    },
+    {
+        name: "ガネーシャの鎧Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 750,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 4500,
+        },
+        icon: unknown,
+        synergyOptions: ganes3haSynergisticOptions,
+        synergyKey: "ganesha3"
+    },
+    {
+        name: "ガネーシャの鎧Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 600,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 2500,
+        },
+        icon: unknown,
+        synergyOptions: ganes2haSynergisticOptions,
+        synergyKey: "ganesha2"
+    },
+    {
+        name: "ガネーシャの鎧",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 1000,
+        },
+        icon: unknown,
+        synergyOptions: ganes1haSynergisticOptions,
+        synergyKey: "ganesha1"
+    },
+    {
+        name: "アナイアレイトアーマーⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 1600,
+            'plusDefense': 850,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate4haSynergisticOptions,
+        synergyKey: "annihilate4"
+    },
+    {
+        name: "アナイアレイトアーマーⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 1350,
+            'plusDefense': 750,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate3haSynergisticOptions,
+        synergyKey: "annihilate3"
+    },
+    {
+        name: "アナイアレイトアーマーⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 1100,
+            'plusDefense': 650,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate2haSynergisticOptions,
+        synergyKey: "annihilate2"
+    },
+    {
+        name: "アナイアレイトアーマー",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 950,
+            'plusDefense': 550,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: annihilate1haSynergisticOptions,
+        synergyKey: "annihilate1"
+    },
+    {
+        name: "紅蓮の鎧Ⅳ",
+        fixedBaseOptions: {
+            'plusAllStatus': 250,
+            'plusAttack': 800,
+            'plusDefense': 1600,
+            'plusHitPoint': 8000,
+        },
+        icon: unknown,
+        synergyOptions: crimson4haSynergisticOptions,
+        synergyKey: "crimson4"
+    },
+    {
+        name: "紅蓮の鎧Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 225,
+            'plusAttack': 700,
+            'plusDefense': 1400,
+            'plusHitPoint': 7000,
+        },
+        icon: unknown,
+        synergyOptions: crimson3haSynergisticOptions,
+        synergyKey: "crimson3"
+    },
+    {
+        name: "紅蓮の鎧Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 200,
+            'plusAttack': 600,
+            'plusDefense': 1200,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: crimson2haSynergisticOptions,
+        synergyKey: "crimson2"
+    },
+    {
         name: "紅蓮の鎧",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -7800,7 +8705,57 @@ export const costumes: ItemTemplate[] = [
             'plusHitPoint': 5000,
         },
         icon: unknown,
-    }
+        synergyOptions: crimson1haSynergisticOptions,
+        synergyKey: "crimson1"
+    },
+    {
+        name: "イモータルアーマーⅣ",
+        fixedBaseOptions: {
+            'plusAllStatus': 230,
+            'plusAttack': 850,
+            'plusDefense': 1600,
+            'plusHitPoint': 6000,
+        },
+        icon: unknown,
+        synergyOptions: immortal4haSynergisticOptions,
+        synergyKey: "immortal4"
+    },
+    {
+        name: "イモータルアーマーⅢ",
+        fixedBaseOptions: {
+            'plusAllStatus': 205,
+            'plusAttack': 750,
+            'plusDefense': 1350,
+            'plusHitPoint': 5000,
+        },
+        icon: unknown,
+        synergyOptions: immortal3haSynergisticOptions,
+        synergyKey: "immortal3"
+    },
+    {
+        name: "イモータルアーマーⅡ",
+        fixedBaseOptions: {
+            'plusAllStatus': 180,
+            'plusAttack': 650,
+            'plusDefense': 1100,
+            'plusHitPoint': 4000,
+        },
+        icon: unknown,
+        synergyOptions: immortal2haSynergisticOptions,
+        synergyKey: "immortal2"
+    },
+    {
+        name: "イモータルアーマー",
+        fixedBaseOptions: {
+            'plusAllStatus': 155,
+            'plusAttack': 550,
+            'plusDefense': 950,
+            'plusHitPoint': 3000,
+        },
+        icon: unknown,
+        synergyOptions: immortal1haSynergisticOptions,
+        synergyKey: "immortal1"
+    },
 
 ]
 export const accessories: ItemTemplate[] = [
