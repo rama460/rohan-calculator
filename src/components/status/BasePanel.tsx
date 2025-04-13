@@ -116,16 +116,6 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                 <Grid size={{ md: 6, xs: 12 }}>
                     <Box display="flex" alignItems="center" gap={2}>
                         <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>
-                            超越者:
-                        </Typography>
-                        <Checkbox
-                            disabled={level < 115 || heroLevel < 50}
-                            checked={(level < 115 || heroLevel < 50) ? false : transcended}
-                            onChange={() => {
-                                setTranscended(!transcended)
-                            }}
-                        />
-                        <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>
                             称号:
                         </Typography>
                         <Tooltip content={<TitleTooltipContent title={title} />}>
