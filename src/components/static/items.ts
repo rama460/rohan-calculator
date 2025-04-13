@@ -206,9 +206,18 @@ export const getInitialBaseOtions = (itemTemplate: ItemTemplate, raceid: number,
 }
 export const synergyKeyNames = [
     "roha",
+    "on",
+    "edne",
+    "siva",
+    "apocalypse",
+    "hellfire",
+    "nosferatu",
     "variant",
+    "extend",
     "gargantua",
+    "disaster",
     "catastrophe",
+    "goliath",
     "chaos",
     "megas",
     "hesperos",
@@ -7057,6 +7066,129 @@ const rohaSynergisticOptions = {
     }
 }
 
+const edneSynergisticOptions = {
+    3: {
+        'multiplyHitPoint': 50,
+        'multiplySkillDefense': 60,
+        'multiplyPVEAttack': 50,
+        'multiplyPotionRecovery': 100,
+    },
+    4: {
+        'multiplyPVPAttack': 85,
+        'multiplySkillAttack': 70,
+        'multiplyNegationRate': 10,
+    }
+}
+
+const onSynergisticOptions = {
+    3: {
+        'multiplyHitPoint': 120,
+        'multiplySkillDefense': 60,
+        'multiplyPVEAttack': 50,
+        'multiplyPVEDefense': 20,
+    },
+    4: {
+        'multiplyPVPDefense': 25,
+        'multiplyPVPAttack': 50,
+        'multiplyDamageReflectionRate': 25,
+        'multiplySkillAttack': 40,
+    }
+}
+
+const sivaSynergisticOptions = {
+    3: {
+        'plusAllStatus': 1000,
+        'multiplyHitPoint': 50,
+    },
+    4: {
+        'multiplySkillAttack': 20,
+        'multiplySkillDefense': 10,
+        'multiplyNegationRate': 10,
+        'multiplyPotionRecovery': 100,
+    }
+}
+
+const apocalypseSynergisticOptions = {
+    2: {
+        'plusHitPoint': 5000,
+        'multiplyPVEAttack': 30,
+        'multiplyPVPAttack': 15,
+        'multiplySkillAttack': 30,
+    },
+    4: {
+        'plusHitPoint': 5000,
+        'multiplyPVEAttack': 45,
+        'multiplyPVPAttack': 75,
+        'multiplySkillAttack': 45,
+    }
+}
+
+const hellfireSynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 30,
+        'multiplySkillDefense': 30,
+        'multiplyHitPoint': 50,
+    },
+    4: {
+        'multiplyPVPAttack': 30,
+        'multiplyPVPDefense': 20,
+        'multiplyPVEDefense': 20,
+    }
+}
+
+const nosferatuSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 75,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 45,
+        'multiplyDamageReflectionRate': 20,
+    },
+    4: {
+        'multiplyHitPoint': 75,
+        'multiplyPVPDefense': 10,
+        'multiplySkillDefense': 45,
+        'multiplyDamageReflectionRate': 20,
+    }
+}
+
+const extendSynergisticOptions = {
+    2: {
+        'multiplyPotionRecovery': 100,
+        'multiplyNegationRate': 10,
+    },
+    3: {
+        'multiplyPVPDefense': 25,
+        'multiplyPVEDefense': 20,
+        'multiplySkillDefense': 60,
+    }
+}
+
+const disasterSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 50,
+        'multiplySkillAttack': 25,
+    },
+    3: {
+        'multiplyCriticalRate': 10,
+        'multiplySkillAttack': 50,
+        'multiplyPVPAttack': 100,
+        'multiplyPVPDefense': 15,
+    }
+}
+
+const goliathSynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 50,
+        'multiplySkillDefense': 25,
+    },
+    3: {
+        'multiplyDecreaseCriticalDamageTaken': 25,
+        'multiplySkillDefense': 75,
+        'multiplyPVPDefense': 20,
+        'multiplyHitPoint': 100,
+    }
+}
+
 const chaosSynergisticOptions = {
     2: {
         'multiplySkillAttack': 20,
@@ -7161,6 +7293,111 @@ export const glasses: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: catastropheSynergisticOptions,
         synergyKey: "catastrophe"
+    },
+    {
+        name: "エドネの眼帯",
+        fixedBaseOptions: {
+            'plusAllStatus': 700,
+            'plusAttack': 1700,
+            'plusDefense': 1200,
+            'plusHitPoint': 13000,
+        },
+        icon: unknown,
+        synergyOptions: edneSynergisticOptions,
+        synergyKey: "edne"
+    },
+    {
+        name: "オンの眼鏡",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 1200,
+            'plusDefense': 2200,
+            'plusHitPoint': 15000,
+        },
+        icon: unknown,
+        synergyOptions: onSynergisticOptions,
+        synergyKey: "on"
+    },
+    {
+        name: "シヴァの眼鏡",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 9500,
+        },
+        icon: unknown,
+        synergyOptions: sivaSynergisticOptions,
+        synergyKey: "siva"
+    },
+    {
+        name: "アポカリプスアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 2000,
+            'plusDefense': 1000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: apocalypseSynergisticOptions,
+        synergyKey: "apocalypse"
+    },
+    {
+        name: "劫火の眼帯",
+        fixedBaseOptions: {
+            'plusAllStatus': 300,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 10000,
+        },
+        icon: unknown,
+        synergyOptions: hellfireSynergisticOptions,
+        synergyKey: "hellfire"
+    },
+    {
+        name: "ノスフェラトゥアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: nosferatuSynergisticOptions,
+        synergyKey: "nosferatu"
+    },
+    {
+        name: "エクステンドアイ",
+        fixedBaseOptions: {
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: extendSynergisticOptions,
+        synergyKey: "extend"
+    },
+    {
+        name: "ディザスターアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 150,
+            'plusAttack': 5000,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: disasterSynergisticOptions,
+        synergyKey: "disaster"
+    },
+    {
+        name: "ゴライアスアイ",
+        fixedBaseOptions: {
+            'plusAllStatus': 150,
+            'plusDefense': 5000,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: goliathSynergisticOptions,
+        synergyKey: "goliath"
     }
 ]
 export const hats: ItemTemplate[] = [
@@ -7209,6 +7446,111 @@ export const hats: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: catastropheSynergisticOptions,
         synergyKey: "catastrophe"
+    },
+    {
+        name: "エドネの冠",
+        fixedBaseOptions: {
+            'plusAllStatus': 700,
+            'plusAttack': 1700,
+            'plusDefense': 1200,
+            'plusHitPoint': 13000,
+        },
+        icon: unknown,
+        synergyOptions: edneSynergisticOptions,
+        synergyKey: "edne"
+    },
+    {
+        name: "オンの冠",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 1200,
+            'plusDefense': 2200,
+            'plusHitPoint': 15000,
+        },
+        icon: unknown,
+        synergyOptions: onSynergisticOptions,
+        synergyKey: "on"
+    },
+    {
+        name: "シヴァの冠",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 9500,
+        },
+        icon: unknown,
+        synergyOptions: sivaSynergisticOptions,
+        synergyKey: "siva"
+    },
+    {
+        name: "アポカリプスサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 2000,
+            'plusDefense': 1000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: apocalypseSynergisticOptions,
+        synergyKey: "apocalypse"
+    },
+    {
+        name: "劫火の帽子",
+        fixedBaseOptions: {
+            'plusAllStatus': 300,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 10000,
+        },
+        icon: unknown,
+        synergyOptions: hellfireSynergisticOptions,
+        synergyKey: "hellfire"
+    },
+    {
+        name: "ノスフェラトゥサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: nosferatuSynergisticOptions,
+        synergyKey: "nosferatu"
+    },
+    {
+        name: "エクステンドサークレット",
+        fixedBaseOptions: {
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: extendSynergisticOptions,
+        synergyKey: "extend"
+    },
+    {
+        name: "ディザスターサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 150,
+            'plusAttack': 5000,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: disasterSynergisticOptions,
+        synergyKey: "disaster"
+    },
+    {
+        name: "ゴライアスサークレット",
+        fixedBaseOptions: {
+            'plusAllStatus': 150,
+            'plusDefense': 5000,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: goliathSynergisticOptions,
+        synergyKey: "goliath"
     }
 ]
 export const earrings: ItemTemplate[] = [
@@ -7257,9 +7599,112 @@ export const earrings: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: catastropheSynergisticOptions,
         synergyKey: "catastrophe"
+    },
+    {
+        name: "エドネの耳飾り",
+        fixedBaseOptions: {
+            'plusAllStatus': 700,
+            'plusAttack': 1700,
+            'plusDefense': 1200,
+            'plusHitPoint': 13000,
+        },
+        icon: unknown,
+        synergyOptions: edneSynergisticOptions,
+        synergyKey: "edne"
+    },
+    {
+        name: "オンの耳飾り",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 1200,
+            'plusDefense': 2200,
+            'plusHitPoint': 15000,
+        },
+        icon: unknown,
+        synergyOptions: onSynergisticOptions,
+        synergyKey: "on"
+    },
+    {
+        name: "シヴァのイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 9500,
+        },
+        icon: unknown,
+        synergyOptions: sivaSynergisticOptions,
+        synergyKey: "siva"
+    },
+    {
+        name: "アポカリプスイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 2000,
+            'plusDefense': 1000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: apocalypseSynergisticOptions,
+        synergyKey: "apocalypse"
+    },
+    {
+        name: "劫火の耳飾り",
+        fixedBaseOptions: {
+            'plusAllStatus': 300,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 10000,
+        },
+        icon: unknown,
+        synergyOptions: hellfireSynergisticOptions,
+        synergyKey: "hellfire"
+    },
+    {
+        name: "ノスフェラトゥイヤリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: nosferatuSynergisticOptions,
+        synergyKey: "nosferatu"
+    },
+    {
+        name: "エクステンドイアリング",
+        fixedBaseOptions: {
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: extendSynergisticOptions,
+        synergyKey: "extend"
+    },
+    {
+        name: "ディザスターイアリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 150,
+            'plusAttack': 5000,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: disasterSynergisticOptions,
+        synergyKey: "disaster"
+    },
+    {
+        name: "ゴライアスイアリング",
+        fixedBaseOptions: {
+            'plusAllStatus': 150,
+            'plusDefense': 5000,
+            'plusHitPoint': 40000,
+        },
+        icon: unknown,
+        synergyOptions: goliathSynergisticOptions,
+        synergyKey: "goliath"
     }
-
-
 ]
 export const costumes: ItemTemplate[] = [
     {
@@ -7273,6 +7718,78 @@ export const costumes: ItemTemplate[] = [
         icon: costume_roha,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
+    },
+    {
+        name: "エドネの鎧",
+        fixedBaseOptions: {
+            'plusAllStatus': 700,
+            'plusAttack': 1700,
+            'plusDefense': 1200,
+            'plusHitPoint': 13000,
+        },
+        icon: unknown,
+        synergyOptions: edneSynergisticOptions,
+        synergyKey: "edne"
+    },
+    {
+        name: "オンの鎧",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 1200,
+            'plusDefense': 2200,
+            'plusHitPoint': 15000,
+        },
+        icon: unknown,
+        synergyOptions: onSynergisticOptions,
+        synergyKey: "on"
+    },
+    {
+        name: "シヴァの鎧",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 100,
+            'plusDefense': 100,
+            'plusHitPoint': 9500,
+        },
+        icon: unknown,
+        synergyOptions: sivaSynergisticOptions,
+        synergyKey: "siva"
+    },
+    {
+        name: "アポカリプスアーマー",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 2000,
+            'plusDefense': 1000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: apocalypseSynergisticOptions,
+        synergyKey: "apocalypse"
+    },
+    {
+        name: "劫火の鎧",
+        fixedBaseOptions: {
+            'plusAllStatus': 300,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 10000,
+        },
+        icon: unknown,
+        synergyOptions: hellfireSynergisticOptions,
+        synergyKey: "hellfire"
+    },
+    {
+        name: "ノスフェラトゥアーマー",
+        fixedBaseOptions: {
+            'plusAllStatus': 275,
+            'plusAttack': 1000,
+            'plusDefense': 2000,
+            'plusHitPoint': 7500,
+        },
+        icon: unknown,
+        synergyOptions: nosferatuSynergisticOptions,
+        synergyKey: "nosferatu"
     },
     {
         name: "紅蓮の鎧",
