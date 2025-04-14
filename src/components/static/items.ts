@@ -47,6 +47,7 @@ import glasses_variant from "../../assets/items/glasses_variant.png";
 import earrings_roha from "../../assets/items/earrings_roha.png";
 import earrings_variant from "../../assets/items/earrings_variant.png";
 import costume_roha from "../../assets/items/costume_roha.png";
+import constume_victorious from "../../assets/items/costume_victorious.png";
 
 import talisman_b_1 from "../../assets/items/talisman_b_1.png";
 import talisman_g_1 from "../../assets/items/talisman_g_1.png";
@@ -8629,6 +8630,16 @@ export const costumes: ItemTemplate[] = [
         icon: costume_roha,
         synergyOptions: rohaSynergisticOptions,
         synergyKey: "roha"
+    },
+    {
+        name: "ヴィクトリアス・アーマー",
+        fixedBaseOptions: {
+            'plusAllStatus': 800,
+            'multiplyPVPAttack': 40,
+            'multiplyPVPDefense': 10,
+            'multiplyHitPoint': 50,
+        },
+        icon: constume_victorious,
     },
     {
         name: "エドネの鎧",
