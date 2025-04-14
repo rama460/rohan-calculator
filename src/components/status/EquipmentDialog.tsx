@@ -130,6 +130,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
                     {title}
                 </DialogTitle>
                 <DialogContent sx={{ textAlign: "center" }}>
+                    <img src={selectedItemTemplate.icon} alt={selectedItemTemplate.name} style={{ width: "32px", height: "32px", padding: "15px", textAlign: "left" }} />
                     <FormControl size="small" sx={{ margin: "10px" }}>
                         <InputLabel>Name</InputLabel>
                         <Select
