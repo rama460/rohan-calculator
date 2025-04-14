@@ -9583,6 +9583,26 @@ export const w_talismans: ItemTemplate[] = [
                 'plusAttack': 3500,
                 'plusDefense': 3500,
             },
+            6: {
+                'plusAttack': 4000,
+                'plusDefense': 4000,
+            },
+            7: {
+                'plusAttack': 4500,
+                'plusDefense': 4500,
+            },
+            8: {
+                'plusAttack': 5000,
+                'plusDefense': 5000,
+            },
+            9: {
+                'plusAttack': 5500,
+                'plusDefense': 5500,
+            },
+            10: {
+                'plusAttack': 6000,
+                'plusDefense': 6000,
+            }
         },
         icon: talisman_w_mask,
     }
