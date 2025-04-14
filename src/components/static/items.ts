@@ -9637,7 +9637,7 @@ export const q_talismans: ItemTemplate[] = [
     {
         name: "5等兵階級章",
         fixedBaseOptions: {
-            'plusHitPoint': 10500,
+            'plusHitPoint': 10000,
             'plusMagicPoint': 2000,
         },
         icon: talisman_q_5th_private,
