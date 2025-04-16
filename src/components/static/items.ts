@@ -48,12 +48,42 @@ import accessory_chaos_necklace from "../../assets/items/accessory_chaos_necklac
 
 import hat_roha from "../../assets/items/hat_roha.png";
 import hat_variant from "../../assets/items/hat_variant.png";
+import hat_on from "../../assets/items/hat_on.png";
+import hat_edne from "../../assets/items/hat_edne.png";
+import hat_siva from "../../assets/items/hat_siva.png";
+import hat_apocalypse from "../../assets/items/hat_apocalypse.png";
+import hat_hellfire from "../../assets/items/hat_hellfire.png";
+import hat_nosferatu from "../../assets/items/hat_nosferatu.png";
+import hat_extend from "../../assets/items/hat_extend.png";
+
 import glasses_roha from "../../assets/items/glasses_roha.png";
 import glasses_variant from "../../assets/items/glasses_variant.png";
+import glasses_on from "../../assets/items/glasses_on.png";
+import glasses_edne from "../../assets/items/glasses_edne.png";
+import glasses_siva from "../../assets/items/glasses_siva.png";
+import glasses_apocalypse from "../../assets/items/glasses_apocalypse.png";
+import glasses_hellfire from "../../assets/items/glasses_hellfire.png";
+import glasses_nosferatu from "../../assets/items/glasses_nosferatu.png";
+import glasses_extend from "../../assets/items/glasses_extend.png";
+
 import earrings_roha from "../../assets/items/earrings_roha.png";
 import earrings_variant from "../../assets/items/earrings_variant.png";
+import earrings_on from "../../assets/items/earrings_on.png";
+import earrings_edne from "../../assets/items/earrings_edne.png";
+import earrings_siva from "../../assets/items/earrings_siva.png";
+import earrings_apocalypse from "../../assets/items/earrings_apocalypse.png";
+import earrings_hellfire from "../../assets/items/earrings_hellfire.png";
+import earrings_nosferatu from "../../assets/items/earrings_nosferatu.png";
+import earrings_extend from "../../assets/items/earrings_extend.png";
+
 import costume_roha from "../../assets/items/costume_roha.png";
 import constume_victorious from "../../assets/items/costume_victorious.png";
+import costume_on from "../../assets/items/costume_on.png";
+import costume_edne from "../../assets/items/costume_edne.png";
+import costume_siva from "../../assets/items/costume_siva.png";
+import costume_apocalypse from "../../assets/items/costume_apocalypse.png";
+import costume_hellfire from "../../assets/items/costume_hellfire.png";
+import costume_nosferatu from "../../assets/items/costume_nosferatu.png";
 
 import talisman_b_1 from "../../assets/items/talisman_b_1.png";
 import talisman_g_1 from "../../assets/items/talisman_g_1.png";
@@ -7552,7 +7582,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 13000,
         },
-        icon: unknown,
+        icon: glasses_edne,
         synergyOptions: edneSynergisticOptions,
         synergyKey: "edne"
     },
@@ -7564,7 +7594,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 2200,
             'plusHitPoint': 15000,
         },
-        icon: unknown,
+        icon: glasses_on,
         synergyOptions: onSynergisticOptions,
         synergyKey: "on"
     },
@@ -7576,7 +7606,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 9500,
         },
-        icon: unknown,
+        icon: glasses_siva,
         synergyOptions: sivaSynergisticOptions,
         synergyKey: "siva"
     },
@@ -7588,7 +7618,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: glasses_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
         synergyKey: "apocalypse"
     },
@@ -7600,7 +7630,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 10000,
         },
-        icon: unknown,
+        icon: glasses_hellfire,
         synergyOptions: hellfireSynergisticOptions,
         synergyKey: "hellfire"
     },
@@ -7612,7 +7642,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: glasses_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
         synergyKey: "nosferatu"
     },
@@ -7623,7 +7653,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 40000,
         },
-        icon: unknown,
+        icon: glasses_extend,
         synergyOptions: extendSynergisticOptions,
         synergyKey: "extend"
     },
@@ -7690,7 +7720,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: glasses_siva,
         synergyOptions: ganes4haSynergisticOptions,
         synergyKey: "ganesha4"
     },
@@ -7702,7 +7732,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 4500,
         },
-        icon: unknown,
+        icon: glasses_siva,
         synergyOptions: ganes3haSynergisticOptions,
         synergyKey: "ganesha3"
     },
@@ -7714,7 +7744,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 2500,
         },
-        icon: unknown,
+        icon: glasses_siva,
         synergyOptions: ganes2haSynergisticOptions,
         synergyKey: "ganesha2"
     },
@@ -7726,7 +7756,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 1000,
         },
-        icon: unknown,
+        icon: glasses_siva,
         synergyOptions: ganes1haSynergisticOptions,
         synergyKey: "ganesha1"
     },
@@ -7738,7 +7768,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 850,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: glasses_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
         synergyKey: "annihilate4"
     },
@@ -7750,7 +7780,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 750,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: glasses_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
         synergyKey: "annihilate3"
     },
@@ -7762,7 +7792,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 650,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: glasses_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
         synergyKey: "annihilate2"
     },
@@ -7774,7 +7804,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 550,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: glasses_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
         synergyKey: "annihilate1"
     },
@@ -7786,7 +7816,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 8000,
         },
-        icon: unknown,
+        icon: glasses_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
         synergyKey: "crimson4"
     },
@@ -7798,7 +7828,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1400,
             'plusHitPoint': 7000,
         },
-        icon: unknown,
+        icon: glasses_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
         synergyKey: "crimson3"
     },
@@ -7810,7 +7840,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: glasses_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
         synergyKey: "crimson2"
     },
@@ -7822,7 +7852,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: glasses_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
         synergyKey: "crimson1"
     },
@@ -7834,7 +7864,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: glasses_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
         synergyKey: "immortal4"
     },
@@ -7846,7 +7876,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1350,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: glasses_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
         synergyKey: "immortal3"
     },
@@ -7858,7 +7888,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 1100,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: glasses_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
         synergyKey: "immortal2"
     },
@@ -7870,7 +7900,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 950,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: glasses_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
         synergyKey: "immortal1"
     },
@@ -7930,7 +7960,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 13000,
         },
-        icon: unknown,
+        icon: hat_edne,
         synergyOptions: edneSynergisticOptions,
         synergyKey: "edne"
     },
@@ -7942,7 +7972,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 2200,
             'plusHitPoint': 15000,
         },
-        icon: unknown,
+        icon: hat_on,
         synergyOptions: onSynergisticOptions,
         synergyKey: "on"
     },
@@ -7954,7 +7984,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 9500,
         },
-        icon: unknown,
+        icon: hat_siva,
         synergyOptions: sivaSynergisticOptions,
         synergyKey: "siva"
     },
@@ -7966,7 +7996,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: hat_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
         synergyKey: "apocalypse"
     },
@@ -7978,7 +8008,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 10000,
         },
-        icon: unknown,
+        icon: hat_hellfire,
         synergyOptions: hellfireSynergisticOptions,
         synergyKey: "hellfire"
     },
@@ -7990,7 +8020,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: hat_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
         synergyKey: "nosferatu"
     },
@@ -8001,7 +8031,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 40000,
         },
-        icon: unknown,
+        icon: hat_extend,
         synergyOptions: extendSynergisticOptions,
         synergyKey: "extend"
     },
@@ -8068,7 +8098,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: hat_siva,
         synergyOptions: ganes4haSynergisticOptions,
         synergyKey: "ganesha4"
     },
@@ -8080,7 +8110,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 4500,
         },
-        icon: unknown,
+        icon: hat_siva,
         synergyOptions: ganes3haSynergisticOptions,
         synergyKey: "ganesha3"
     },
@@ -8092,7 +8122,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 2500,
         },
-        icon: unknown,
+        icon: hat_siva,
         synergyOptions: ganes2haSynergisticOptions,
         synergyKey: "ganesha2"
     },
@@ -8104,7 +8134,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 1000,
         },
-        icon: unknown,
+        icon: hat_siva,
         synergyOptions: ganes1haSynergisticOptions,
         synergyKey: "ganesha1"
     },
@@ -8116,7 +8146,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 850,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: hat_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
         synergyKey: "annihilate4"
     },
@@ -8128,7 +8158,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 750,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: hat_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
         synergyKey: "annihilate3"
     },
@@ -8140,7 +8170,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 650,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: hat_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
         synergyKey: "annihilate2"
     },
@@ -8152,7 +8182,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 550,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: hat_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
         synergyKey: "annihilate1"
     },
@@ -8164,7 +8194,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 8000,
         },
-        icon: unknown,
+        icon: hat_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
         synergyKey: "crimson4"
     },
@@ -8176,7 +8206,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1400,
             'plusHitPoint': 7000,
         },
-        icon: unknown,
+        icon: hat_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
         synergyKey: "crimson3"
     },
@@ -8188,7 +8218,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: hat_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
         synergyKey: "crimson2"
     },
@@ -8200,7 +8230,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: hat_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
         synergyKey: "crimson1"
     },
@@ -8212,7 +8242,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: hat_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
         synergyKey: "immortal4"
     },
@@ -8224,7 +8254,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1350,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: hat_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
         synergyKey: "immortal3"
     },
@@ -8236,7 +8266,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 1100,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: hat_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
         synergyKey: "immortal2"
     },
@@ -8248,7 +8278,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 950,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: hat_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
         synergyKey: "immortal1"
     },
@@ -8308,7 +8338,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 13000,
         },
-        icon: unknown,
+        icon: earrings_edne,
         synergyOptions: edneSynergisticOptions,
         synergyKey: "edne"
     },
@@ -8320,7 +8350,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 2200,
             'plusHitPoint': 15000,
         },
-        icon: unknown,
+        icon: earrings_on,
         synergyOptions: onSynergisticOptions,
         synergyKey: "on"
     },
@@ -8332,7 +8362,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 9500,
         },
-        icon: unknown,
+        icon: earrings_siva,
         synergyOptions: sivaSynergisticOptions,
         synergyKey: "siva"
     },
@@ -8344,7 +8374,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: earrings_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
         synergyKey: "apocalypse"
     },
@@ -8356,7 +8386,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 10000,
         },
-        icon: unknown,
+        icon: earrings_hellfire,
         synergyOptions: hellfireSynergisticOptions,
         synergyKey: "hellfire"
     },
@@ -8368,7 +8398,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: earrings_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
         synergyKey: "nosferatu"
     },
@@ -8379,7 +8409,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 40000,
         },
-        icon: unknown,
+        icon: earrings_extend,
         synergyOptions: extendSynergisticOptions,
         synergyKey: "extend"
     },
@@ -8446,7 +8476,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: earrings_siva,
         synergyOptions: ganes4haSynergisticOptions,
         synergyKey: "ganesha4"
     },
@@ -8458,7 +8488,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 4500,
         },
-        icon: unknown,
+        icon: earrings_siva,
         synergyOptions: ganes3haSynergisticOptions,
         synergyKey: "ganesha3"
     },
@@ -8470,7 +8500,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 2500,
         },
-        icon: unknown,
+        icon: earrings_siva,
         synergyOptions: ganes2haSynergisticOptions,
         synergyKey: "ganesha2"
     },
@@ -8482,7 +8512,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 1000,
         },
-        icon: unknown,
+        icon: earrings_siva,
         synergyOptions: ganes1haSynergisticOptions,
         synergyKey: "ganesha1"
     },
@@ -8494,7 +8524,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 850,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: earrings_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
         synergyKey: "annihilate4"
     },
@@ -8506,7 +8536,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 750,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: earrings_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
         synergyKey: "annihilate3"
     },
@@ -8518,7 +8548,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 650,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: earrings_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
         synergyKey: "annihilate2"
     },
@@ -8530,7 +8560,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 550,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: earrings_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
         synergyKey: "annihilate1"
     },
@@ -8542,7 +8572,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 8000,
         },
-        icon: unknown,
+        icon: earrings_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
         synergyKey: "crimson4"
     },
@@ -8554,7 +8584,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1400,
             'plusHitPoint': 7000,
         },
-        icon: unknown,
+        icon: earrings_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
         synergyKey: "crimson3"
     },
@@ -8566,7 +8596,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: earrings_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
         synergyKey: "crimson2"
     },
@@ -8578,7 +8608,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: earrings_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
         synergyKey: "crimson1"
     },
@@ -8590,7 +8620,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: earrings_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
         synergyKey: "immortal4"
     },
@@ -8602,7 +8632,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1350,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: earrings_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
         synergyKey: "immortal3"
     },
@@ -8614,7 +8644,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 1100,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: earrings_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
         synergyKey: "immortal2"
     },
@@ -8626,7 +8656,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 950,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: earrings_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
         synergyKey: "immortal1"
     },
@@ -8662,7 +8692,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 13000,
         },
-        icon: unknown,
+        icon: costume_edne,
         synergyOptions: edneSynergisticOptions,
         synergyKey: "edne"
     },
@@ -8674,7 +8704,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 2200,
             'plusHitPoint': 15000,
         },
-        icon: unknown,
+        icon: costume_on,
         synergyOptions: onSynergisticOptions,
         synergyKey: "on"
     },
@@ -8686,7 +8716,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 9500,
         },
-        icon: unknown,
+        icon: costume_siva,
         synergyOptions: sivaSynergisticOptions,
         synergyKey: "siva"
     },
@@ -8698,7 +8728,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: costume_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
         synergyKey: "apocalypse"
     },
@@ -8710,7 +8740,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 10000,
         },
-        icon: unknown,
+        icon: costume_hellfire,
         synergyOptions: hellfireSynergisticOptions,
         synergyKey: "hellfire"
     },
@@ -8722,7 +8752,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 2000,
             'plusHitPoint': 7500,
         },
-        icon: unknown,
+        icon: costume_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
         synergyKey: "nosferatu"
     },
@@ -8734,7 +8764,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: costume_siva,
         synergyOptions: ganes4haSynergisticOptions,
         synergyKey: "ganesha4"
     },
@@ -8746,7 +8776,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 4500,
         },
-        icon: unknown,
+        icon: costume_siva,
         synergyOptions: ganes3haSynergisticOptions,
         synergyKey: "ganesha3"
     },
@@ -8758,7 +8788,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 2500,
         },
-        icon: unknown,
+        icon: costume_siva,
         synergyOptions: ganes2haSynergisticOptions,
         synergyKey: "ganesha2"
     },
@@ -8770,7 +8800,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 100,
             'plusHitPoint': 1000,
         },
-        icon: unknown,
+        icon: costume_siva,
         synergyOptions: ganes1haSynergisticOptions,
         synergyKey: "ganesha1"
     },
@@ -8782,7 +8812,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 850,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: costume_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
         synergyKey: "annihilate4"
     },
@@ -8794,7 +8824,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 750,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: costume_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
         synergyKey: "annihilate3"
     },
@@ -8806,7 +8836,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 650,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: costume_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
         synergyKey: "annihilate2"
     },
@@ -8818,7 +8848,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 550,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: costume_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
         synergyKey: "annihilate1"
     },
@@ -8830,7 +8860,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 8000,
         },
-        icon: unknown,
+        icon: costume_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
         synergyKey: "crimson4"
     },
@@ -8842,7 +8872,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1400,
             'plusHitPoint': 7000,
         },
-        icon: unknown,
+        icon: costume_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
         synergyKey: "crimson3"
     },
@@ -8854,7 +8884,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: costume_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
         synergyKey: "crimson2"
     },
@@ -8866,7 +8896,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1200,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: costume_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
         synergyKey: "crimson1"
     },
@@ -8878,7 +8908,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1600,
             'plusHitPoint': 6000,
         },
-        icon: unknown,
+        icon: costume_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
         synergyKey: "immortal4"
     },
@@ -8890,7 +8920,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1350,
             'plusHitPoint': 5000,
         },
-        icon: unknown,
+        icon: costume_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
         synergyKey: "immortal3"
     },
@@ -8902,7 +8932,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 1100,
             'plusHitPoint': 4000,
         },
-        icon: unknown,
+        icon: costume_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
         synergyKey: "immortal2"
     },
@@ -8914,7 +8944,7 @@ export const costumes: ItemTemplate[] = [
             'plusDefense': 950,
             'plusHitPoint': 3000,
         },
-        icon: unknown,
+        icon: costume_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
         synergyKey: "immortal1"
     },
