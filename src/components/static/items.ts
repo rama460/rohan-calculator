@@ -34,6 +34,12 @@ import guarder_igniel from "../../assets/items/guarder_igniel.png";
 
 import arrow_tourmaline from "../../assets/items/arrow_tourmaline.png";
 import arrow_tourmaline_bolt from "../../assets/items/arrow_tourmaline_bolt.png";
+import arrow_appetite from "../../assets/items/arrow_appetite.png";
+import arrow_appetite_bolt from "../../assets/items/arrow_appetite_bolt.png";
+import arrow_sadrium from "../../assets/items/arrow_sadrium.png";
+import arrow_sadrium_bolt from "../../assets/items/arrow_sadrium_bolt.png";
+import arrow_verolite from "../../assets/items/arrow_verolite.png";
+import arrow_verolite_bolt from "../../assets/items/arrow_verolite_bolt.png";
 
 import accessory_chaos_ring from "../../assets/items/accessory_chaos_ring.png";
 import accessory_chaos_brooch from "../../assets/items/accessory_chaos_brooch.png";
@@ -75,6 +81,13 @@ import talisman_q_supreme_commander from "../../assets/items/talisman_q_supreme_
 import talisman_r_victorious from "../../assets/items/talisman_r_victorious.png";
 import talisman_s_1 from "../../assets/items/talisman_s_1.png";
 import talisman_w_mask from "../../assets/items/talisman_w_mask.png";
+
+import rune_all_status from "../../assets/items/rune_all_status.png";
+import rune_attack from "../../assets/items/rune_attack.png";
+import rune_defense_penetration from "../../assets/items/rune_defense_penetration.png";
+import rune_hp_mp from "../../assets/items/rune_hp_mp.png";
+import rune_movement_speed from "../../assets/items/rune_movement_speed.png";
+import rune_pt_mkill from "../../assets/items/rune_pt_mkill.png";
 
 import { BuiltinOptionKeyType } from "./options";
 import { RaceNameOrTrinityJobName, races } from "./races";
@@ -3702,42 +3715,42 @@ export const shields: ItemTemplate[] = [
 export const arrows: ItemTemplate[] = [
     {
         name: "ベロライトの矢",
-        icon: unknown,
+        icon: arrow_verolite,
         fixedBaseOptions: {
             'arrowAttack': 300
         }
     },
     {
         name: "ベロライトのボルト",
-        icon: unknown,
+        icon: arrow_verolite_bolt,
         fixedBaseOptions: {
             'arrowAttack': 450
         }
     },
     {
         name: "サドリウムの矢",
-        icon: unknown,
+        icon: arrow_sadrium,
         fixedBaseOptions: {
             'arrowAttack': 250
         },
     },
     {
         name: "サドリウムのボルト",
-        icon: unknown,
+        icon: arrow_sadrium_bolt,
         fixedBaseOptions: {
             'arrowAttack': 400
         },
     },
     {
         name: "アパタイトの矢",
-        icon: unknown,
+        icon: arrow_appetite,
         fixedBaseOptions: {
             'arrowAttack': 210
         },
     },
     {
         name: "アパタイトのボルト",
-        icon: unknown,
+        icon: arrow_appetite_bolt,
         fixedBaseOptions: {
             'arrowAttack': 350
         },
@@ -9892,7 +9905,7 @@ export const rides: ItemTemplate[] = [
 export const runes: ItemTemplate[] = [
     {
         name: "攻撃のルーン",
-        icon: unknown,
+        icon: rune_attack,
         enchantableBaseOptions: {
             0: {
                 'multiplyAttack': 2,
@@ -9919,7 +9932,7 @@ export const runes: ItemTemplate[] = [
     },
     {
         name: "迅速のルーン",
-        icon: unknown,
+        icon: rune_movement_speed,
         enchantableBaseOptions: {
             0: {
                 'multiplyMovementSpeed': 5,
@@ -9946,7 +9959,7 @@ export const runes: ItemTemplate[] = [
     },
     {
         name: "全能のルーン",
-        icon: unknown,
+        icon: rune_all_status,
         enchantableBaseOptions: {
             0: {
                 'multiplyAllStatus': 1,
@@ -9973,7 +9986,7 @@ export const runes: ItemTemplate[] = [
     },
     {
         name: "活力のルーン",
-        icon: unknown,
+        icon: rune_hp_mp,
         enchantableBaseOptions: {
             0: {
                 "multiplyHitPoint": 4,
@@ -10007,12 +10020,12 @@ export const runes: ItemTemplate[] = [
     },
     {
         name: "調和のルーン",
-        icon: unknown,
+        icon: rune_pt_mkill,
         enchantableBaseOptions: {}
     },
     {
         name: "貫通のルーン",
-        icon: unknown,
+        icon: rune_defense_penetration,
         enchantableBaseOptions: {
             0: {
                 "multiplyDefensePenetration": 2,
