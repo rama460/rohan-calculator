@@ -7847,10 +7847,10 @@ export const glasses: ItemTemplate[] = [
     {
         name: "紅蓮の眼鏡",
         fixedBaseOptions: {
-            'plusAllStatus': 200,
-            'plusAttack': 600,
-            'plusDefense': 1200,
-            'plusHitPoint': 5000,
+            'plusAllStatus': 150,
+            'plusAttack': 550,
+            'plusDefense': 1000,
+            'plusHitPoint': 4500,
         },
         icon: glasses_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
@@ -8225,10 +8225,10 @@ export const hats: ItemTemplate[] = [
     {
         name: "紅蓮の帽子",
         fixedBaseOptions: {
-            'plusAllStatus': 200,
-            'plusAttack': 600,
-            'plusDefense': 1200,
-            'plusHitPoint': 5000,
+            'plusAllStatus': 150,
+            'plusAttack': 550,
+            'plusDefense': 1000,
+            'plusHitPoint': 4500,
         },
         icon: hat_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
@@ -8603,10 +8603,10 @@ export const earrings: ItemTemplate[] = [
     {
         name: "紅蓮の耳飾り",
         fixedBaseOptions: {
-            'plusAllStatus': 200,
-            'plusAttack': 600,
-            'plusDefense': 1200,
-            'plusHitPoint': 5000,
+            'plusAllStatus': 150,
+            'plusAttack': 550,
+            'plusDefense': 1000,
+            'plusHitPoint': 4500,
         },
         icon: earrings_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
