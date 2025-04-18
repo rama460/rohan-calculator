@@ -15,11 +15,15 @@ import React from "react";
 import EquipmentIconButton from './EquipmentIconButton.tsx'
 import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, runes, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
 import { EquipmentResetButton } from './EquipmentResetButton.tsx'
+import { useAtomValue } from 'jotai'
+import { baseOptionStateFamily } from '../../modules/state/bases.ts'
 
 
 
 export const EquipmentPanel: React.FC = () => {
     console.log('render EquipmentPanel')
+    const jobid = useAtomValue(baseOptionStateFamily("jobid"));
+    const raceid = useAtomValue(baseOptionStateFamily("raceid"));
     const style: React.CSSProperties = {
         display: "grid",
         gridTemplateColumns: "repeat(9, 34px)",
@@ -81,7 +85,16 @@ export const EquipmentPanel: React.FC = () => {
                     <EquipmentIconButton equipmentType='weapon' title='武器' backgroundImage={background_weapon} items={weapons} />
                 </div>
                 <div style={{ gridColumn: 2, gridRow: 5 }}>
-                    <EquipmentIconButton equipmentType='shield' title='盾' backgroundImage={background_shield} items={shields} />
+                    <EquipmentIconButton
+                        equipmentType='shield'
+                        title='盾'
+                        backgroundImage={background_shield}
+                        items={
+                            shields.concat(
+                                raceid === 0 && jobid === 1 ? weapons.filter((w) => w.type == "dagger") : []
+                            )
+                        }
+                    />
                 </div>
                 <div style={{ gridColumn: 3, gridRow: 5 }}>
                     <EquipmentIconButton equipmentType='arrow' title='矢' backgroundImage={background_arrow} items={arrows} />

@@ -2,10 +2,10 @@ import { atomFamily } from "jotai/utils";
 import { BuiltinOptionKeyType } from "../../components/static/options";
 import { atom } from "jotai";
 import { Atom } from "jotai";
-import { Item, synergyKeyNames } from "../../components/static/items";
-import { equipmentSlotNames, equipmentStateFamily, equipmentSynergyStateFamily, SynergyOption } from "./items";
+import { Item, SynergyKey, synergyKeyNames } from "../../components/static/items";
+import { equipmentSlotNames, EquipmentSlotType, equipmentStateFamily, equipmentSynergyStateFamily, SynergyOption } from "./items";
 import { baseStatusState, initialStatusState, metaStatusState, statuses, StatusType } from "./statuses";
-import { SKillOriginNames, skills } from "../../components/static/skill";
+import { SkillOrigin, SKillOriginNames, skills } from "../../components/static/skill";
 import { buffStateFamily } from "./skills";
 import { heroLevelBOnusState, titleOptionState } from "./bases";
 
@@ -14,18 +14,18 @@ import { heroLevelBOnusState, titleOptionState } from "./bases";
 const atomWithAggregator = <T, K, V, U>(
     atomFamilyKeys: readonly T[],
     atomfamily: (key: T) => Atom<K | undefined>,
-    aggregator: (param: (K | undefined)[], key: U) => V,
+    aggregator: (keys: readonly T[], params: (K | undefined)[], key: U) => V,
     aggregationKey: U
 ) => {
     return atom((get) => {
-        return aggregator(atomFamilyKeys.map((key) => get(atomfamily(key))), aggregationKey)
+        return aggregator(atomFamilyKeys, atomFamilyKeys.map((key) => get(atomfamily(key))), aggregationKey)
     });
 }
 
 export const atomWithAggregatorFamily = <T, K, V, U>(
     targetTypeNames: readonly T[],
     targetStateFamily: (key: T) => Atom<K | undefined>,
-    aggregator: (params: (K | undefined)[], key: U) => V
+    aggregator: (keys: readonly T[], params: (K | undefined)[], key: U) => V
 ) => {
 
     return atomFamily((key: U) => {
@@ -34,15 +34,28 @@ export const atomWithAggregatorFamily = <T, K, V, U>(
     });
 }
 
-const equipmentOptionAggregator = (params: (Item | undefined)[], aggregationKey: BuiltinOptionKeyType) => {
-    return params.filter((param) => param !== undefined).map((param) => {
+const equipmentOptionAggregator = (keys: readonly EquipmentSlotType[], params: (Item | undefined)[], aggregationKey: BuiltinOptionKeyType) => {
+    const zip = <T, U>(a: readonly T[], b: U[]): [T, U][] => {
+        if (a.length !== b.length) throw new Error("Arrays must be of the same length");
+        return a.map((val, i) => [val, b[i]]);
+    }
+    return zip(keys, params).filter(([_, param]) => param !== undefined).map(([key, param]) => {
+        if (key === "shield" && param !== undefined && "type" in param) {
+            if (aggregationKey === "weaponBaseMeleeAttack" || aggregationKey === "weaponBaseRangeAttack" || aggregationKey === "weaponBaseMagicAttack") {
+                return Math.floor((param?.baseOptions[aggregationKey] ?? 0) * 0.2) + Math.floor((param?.craftedOptions[aggregationKey] ?? 0) * 0.2);
+            } else if (aggregationKey === "weaponEnchantMeleeAttack" || aggregationKey === "weaponEnchantRangeAttack" || aggregationKey === "weaponEnchantMagicAttack") {
+                return Math.floor((param?.baseOptions[aggregationKey] ?? 0) * 1.5) + Math.floor((param?.additionalOptions[aggregationKey] ?? 0) * 1.5) + Math.floor((param?.craftedOptions[aggregationKey] ?? 0) * 1.5);
+            } else {
+                return Math.floor((param?.additionalOptions[aggregationKey] ?? 0) * 0.5) + Math.floor((param?.craftedOptions[aggregationKey] ?? 0) * 0.5) + Math.floor((param?.baseOptions[aggregationKey] ?? 0) * 0.5);
+            }
+        }
         return (param?.additionalOptions[aggregationKey] ?? 0) + (param?.craftedOptions[aggregationKey] ?? 0) + (param?.baseOptions[aggregationKey] ?? 0);
     }).reduce((acc, cur) => {
         return acc + cur;
     }, 0);
 }
 
-const synergyOptionAggregator = (params: (SynergyOption[] | undefined)[], aggregationKey: BuiltinOptionKeyType) => {
+const synergyOptionAggregator = (_: readonly SynergyKey[], params: (SynergyOption[] | undefined)[], aggregationKey: BuiltinOptionKeyType) => {
     return params.filter((p) => p !== undefined).map((params) => {
         return params.map((param) => {
             return param[aggregationKey] ?? 0;
@@ -54,7 +67,7 @@ const synergyOptionAggregator = (params: (SynergyOption[] | undefined)[], aggreg
     }, 0);
 }
 
-const buffOptionAggregator = (params: ({ name: string, level: number }[] | undefined)[], aggregationKey: BuiltinOptionKeyType) => {
+const buffOptionAggregator = (_: readonly SkillOrigin[], params: ({ name: string, level: number }[] | undefined)[], aggregationKey: BuiltinOptionKeyType) => {
     return params.filter((param) => param !== undefined).map((params) => {
         return params.map((param) => {
             return skills.find((skill) => skill.name === param.name)?.attributes[param.level - 1]?.[aggregationKey] ?? 0;

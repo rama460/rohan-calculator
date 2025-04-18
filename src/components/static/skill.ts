@@ -291,25 +291,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyAttack: 3,
+                multiplyBaseMeleeWeaponAttack: 3,
             },
             1: {
-                multiplyAttack: 6,
+                multiplyBaseMeleeWeaponAttack: 6,
             },
             2: {
-                multiplyAttack: 9,
+                multiplyBaseMeleeWeaponAttack: 9,
             },
             3: {
-                multiplyAttack: 12,
+                multiplyBaseMeleeWeaponAttack: 12,
             },
             4: {
-                multiplyAttack: 15,
+                multiplyBaseMeleeWeaponAttack: 15,
             },
             5: {
-                multiplyAttack: 18,
+                multiplyBaseMeleeWeaponAttack: 18,
             },
             6: {
-                multiplyAttack: 21,
+                multiplyBaseMeleeWeaponAttack: 21,
             },
         },
     },
@@ -423,7 +423,7 @@ export const skills: Skill[] = [
             "24分間、短剣・片手剣の攻撃力及びオプション攻撃力が58%増加。力の42%ほど近距離攻撃力が増加。",
             "27分間、短剣・片手剣の攻撃力及びオプション攻撃力が77%増加。力の56%ほど近距離攻撃力が増加。",
             "30分間、短剣・片手剣の攻撃力及びオプション攻撃力が96%増加。力の70%ほど近距離攻撃力が増加。",
-            "30分間、短剣・片手剣の攻撃力及びオプション攻撃力が136%増加。力の98%ほど近距離攻撃力が増加。",
+            "30分間、短剣・片手剣の攻撃力及びオプション攻撃力が134%増加。力の98%ほど近距離攻撃力が増加。",
             "90分間、短剣・片手剣の攻撃力及びオプション攻撃力が192%増加。力の139%ほど近距離攻撃力が増加。",
         ],
         attributes: {
@@ -453,7 +453,7 @@ export const skills: Skill[] = [
                 meleeMastery: 1,
             },
             5: {
-                multiplyMeleeWeaponAttack: 136,
+                multiplyMeleeWeaponAttack: 134,
                 plusMeleeAttackMultiplyStrength: 98,
                 meleeMastery: 1,
             },

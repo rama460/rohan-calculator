@@ -715,17 +715,17 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
-    'multiplySubWeaponAttack': {
-        name: 'multiplySubWeaponAttack',
-        displayColor: 'green',
-        displayName: 'サブ武器攻撃力',
-        unit: 'percent',
-        operationType: 'multiply'
-    },
     'multiplyArrowAttack': {
         name: 'multiplyArrowAttack',
         displayColor: 'green',
         displayName: '矢攻撃力',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyBaseMeleeWeaponAttack': {
+        name: 'multiplyBaseMeleeWeaponAttack',
+        displayColor: 'green',
+        displayName: 'ベース武器近接武器攻撃力',
         unit: 'percent',
         operationType: 'multiply'
     },

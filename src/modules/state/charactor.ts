@@ -93,7 +93,10 @@ const calculateMeleeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
         Math.floor(
             (
                 Math.floor(
-                    getter("weaponBaseMeleeAttack") * (100 + getter("multiplyWeaponAttack")) / 100
+                    (
+                        Math.floor(getter("weaponBaseMeleeAttack") * (100 + getter("multiplyBaseMeleeWeaponAttack")) / 100)
+
+                    ) * (100 + getter("multiplyWeaponAttack")) / 100
                 ) +
                 getter("weaponEnchantMeleeAttack") + getter("plusMeleeAttack") + getter("plusAttack")
             ) * (
@@ -109,7 +112,10 @@ const calculateMeleeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
             calculateStrength(getter) * 3 +
             Math.floor(
                 (
-                    getter("weaponBaseMeleeAttack") * (100 + getter("multiplyWeaponAttack")) / 100 +
+                    (
+                        Math.floor(getter("weaponBaseMeleeAttack") * (100 + getter("multiplyBaseMeleeWeaponAttack")) / 100)
+
+                    ) * (100 + getter("multiplyWeaponAttack")) / 100 +
                     getter("weaponEnchantMeleeAttack") + getter("plusMeleeAttack") + getter("plusAttack")
                 ) * (
                     100 + getter("multiplyMeleeWeaponAttack")

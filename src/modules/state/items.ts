@@ -120,13 +120,20 @@ const minifyItem = (item: Item | undefined, raceid: number, jobid: number, equip
     if (!item) {
         return undefined;
     }
-    const minified: MinifiedItem = {
-        n: itemTemplates[equipmentType].findIndex((i) => i.name === item.name) ?? 0,
+    const items = (equipmentType === "shield" && raceid === 0 && jobid === 1) ?
+        itemTemplates[equipmentType].concat(itemTemplates["weapon"]) : itemTemplates[equipmentType];
+    const index = items.findIndex((i) => i.name === item.name);
+    if (index === -1) {
+        throw new Error(`Item not found: ${item.name}`);
     }
-    const itemTemplate = itemTemplates[equipmentType].find((i) => i.name === item.name);
+    const minified: MinifiedItem = {
+        n: index
+    }
+    const itemTemplate = items.at(index);
     if (!itemTemplate) {
         throw new Error(`Item not found: ${minified.n}`);
     }
+
     const racenameOrTrinityJobname = (races[raceid].name !== "Trinity" ? races[raceid].name : races[raceid].jobs[jobid].name) as RaceNameOrTrinityJobName
     const baseOptions = {
         ...itemTemplate.fixedBaseOptions ?? {},
@@ -160,7 +167,8 @@ const minifyItem = (item: Item | undefined, raceid: number, jobid: number, equip
 const unminifiedItem = (minified: MinifiedItem | undefined, raceid: number, jobid: number, equipmentType: keyof Equipments): Item | undefined => {
     if (!minified)
         return undefined;
-    const itemTemplate = itemTemplates[equipmentType].at(minified.n);
+    const itemTemplate = (equipmentType == "shield" && raceid === 0 && jobid === 1) ?
+        itemTemplates[equipmentType].concat(itemTemplates["weapon"]).at(minified.n) : itemTemplates[equipmentType].at(minified.n);
     if (!itemTemplate) {
         throw new Error(`Item not found: ${minified.n}`);
     }
@@ -185,7 +193,7 @@ const unminifiedItem = (minified: MinifiedItem | undefined, raceid: number, jobi
         synergyKey: itemTemplate.synergyKey,
         synergyOptions: itemTemplate.synergyOptions,
     }
-    if ("type" in itemTemplate && equipmentType === "weapon")
+    if ("type" in itemTemplate)
         return {
             ...item,
             type: itemTemplate.type,
