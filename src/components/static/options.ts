@@ -1,4 +1,5 @@
 import { Equipments } from "../../modules/state/items";
+import { Item } from "./items";
 
 export type Option = {
     name: string;
@@ -913,7 +914,7 @@ export const BuiltinOptions = {
     },
 
 } as const;
-export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {
+export const getCraftedOptions = (type: keyof Equipments, item: Item | undefined): CraftedOptions => {
     if (type == "weapon") {
         return CraftedWeaponOptions;
     }
@@ -921,6 +922,10 @@ export const getCraftedOptions = (type: keyof Equipments): CraftedOptions => {
         return CraftedArmorOptions;
     }
     if (type == "shield") {
+        if (item && "type" in item) {
+            // for guardian dual sword style
+            return CraftedWeaponOptions;
+        }
         return { ...CraftedShieldOptions, ...CraftedGarterOptions };
     }
     throw new Error(`Unknown type: ${type}`);

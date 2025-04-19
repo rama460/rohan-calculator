@@ -2,7 +2,8 @@ import { Box, Button, FormControl, MenuItem, Select, SelectChangeEvent, TextFiel
 import { BuiltinOptionKeyType, BuiltinOptions, getCraftedOptions, getDisplayOptionName } from "../static/options";
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from "react";
-import { Equipments } from "../../modules/state/items";
+import { Equipments, selectedItemStateFamily } from "../../modules/state/items";
+import { useAtomValue } from "jotai";
 
 interface EquipmentCraftedOptionProps {
     name: BuiltinOptionKeyType;
@@ -13,6 +14,7 @@ interface EquipmentCraftedOptionProps {
     setOptions: (options: { name: BuiltinOptionKeyType, value: number }[]) => void;
 }
 export const EquipmentCraftedOption: React.FC<EquipmentCraftedOptionProps> = ({ name, value, equipmentType, index, options, setOptions }) => {
+    const item = useAtomValue(selectedItemStateFamily(equipmentType));
     const EquipmentCraftedOptionStyle: React.CSSProperties = {
         margin: "10px",
     }
@@ -20,7 +22,7 @@ export const EquipmentCraftedOption: React.FC<EquipmentCraftedOptionProps> = ({ 
         // assign the new value to the same index as the old value
         options[index] = {
             name: event.target.value as BuiltinOptionKeyType,
-            value: getCraftedOptions(equipmentType)[event.target.value as BuiltinOptionKeyType] ?? 0
+            value: getCraftedOptions(equipmentType, item)[event.target.value as BuiltinOptionKeyType] ?? 0
         };
         setOptions([...options])
     }
@@ -40,7 +42,7 @@ export const EquipmentCraftedOption: React.FC<EquipmentCraftedOptionProps> = ({ 
                     onChange={handleOptionChange}
                 >
                     <MenuItem key={-1} value="none">なし</MenuItem>
-                    {Object.keys(getCraftedOptions(equipmentType)).filter((n) => !(options.some((option) => option.name === n)) || n == name).map((name, index) => (
+                    {Object.keys(getCraftedOptions(equipmentType, item)).filter((n) => !(options.some((option) => option.name === n)) || n == name).map((name, index) => (
                         <MenuItem key={index} value={name}>{getDisplayOptionName(BuiltinOptions[name as BuiltinOptionKeyType])}</MenuItem>
                     ))}
                 </Select>

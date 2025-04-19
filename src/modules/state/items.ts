@@ -193,13 +193,22 @@ const unminifiedItem = (minified: MinifiedItem | undefined, raceid: number, jobi
         synergyKey: itemTemplate.synergyKey,
         synergyOptions: itemTemplate.synergyOptions,
     }
-    if ("type" in itemTemplate)
+    if ("type" in itemTemplate && equipmentType === "weapon") {
         return {
             ...item,
             type: itemTemplate.type,
             baseOptions: "attackSpeed" in item.baseOptions ? { ...item.baseOptions } :
                 { ...item.baseOptions, attackSpeed: BuiltinWeaponTypes[itemTemplate.type as WeaponType].attackSpeed }
         }
+    } else if ("type" in itemTemplate && equipmentType === "shield") {
+        // this is only for guardian dual sword style
+        // no need to append attack speed
+        // because it is already set in the main weapon
+        return {
+            ...item,
+            type: itemTemplate.type,
+        }
+    }
     return item;
 
 }
