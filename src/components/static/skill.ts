@@ -653,7 +653,7 @@ export const skills: Skill[] = [
     },
     // ディフェンダー
     {
-        name: "bluntMastery",
+        name: "bluntMasteryDef",
         displayName: "ブラントマスタリー",
         icon: defender_blunt_mastery,
         category: "Buff",
