@@ -266,8 +266,8 @@ const unminifyOptions = (options: { [id: number]: number | undefined }): { [key 
     return Object.assign({}, ...Object.entries(options).map(([id, value]) => ({ [getOptionNameForId(Number(id))]: value })))
 }
 
-export const setAllEquipmentState = atom(null, (_get, set, update: Equipments) => {
+export const resetAllEquipmentState = atom(null, (_get, set) => {
     equipmentSlotNames.forEach((name) => {
-        set(equipmentStateFamily(name), update[name]);
+        set(equipmentStateFamily(name), undefined);
     })
 })

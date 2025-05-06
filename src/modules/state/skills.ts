@@ -4,13 +4,13 @@ import { atom } from "jotai";
 import { atomWithCompressedHash } from "./common";
 
 // primitive atom for buff panel on url hash always starts with "B"
-export const buffStateMinifiedMamily = atomFamily((origin: SkillOrigin) => {
+const buffStateMinifiedFamily = atomFamily((origin: SkillOrigin) => {
     return atomWithCompressedHash<{ n: number, l: number }[]>(`B${origin[0]}${origin[1]}`, []);
 })
 export const buffStateFamily = atomFamily((origin: SkillOrigin) => {
     return atom(
         (get) => {
-            const minified = get(buffStateMinifiedMamily(origin))
+            const minified = get(buffStateMinifiedFamily(origin))
             return minified.map((buff) => {
                 return {
                     name: skills.at(buff.n)?.name ?? "",
@@ -19,7 +19,7 @@ export const buffStateFamily = atomFamily((origin: SkillOrigin) => {
             })
         },
         (_, set, update: { name: string, level: number }[]) => {
-            set(buffStateMinifiedMamily(origin), update.map((buff) => {
+            set(buffStateMinifiedFamily(origin), update.map((buff) => {
                 return {
                     n: skills.findIndex((skill) => skill.name === buff.name),
                     l: buff.level,

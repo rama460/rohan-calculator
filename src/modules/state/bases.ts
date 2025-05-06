@@ -42,3 +42,11 @@ export const baseOptionStateFamily = atomFamily((param: BaseOptionKeyType) =>
     atomWithHash(`b${param[0]}`, baseDefaults[param])
 );
 ``
+
+export const resetBaseState = atom(null, (_, set) => {
+    set(baseOptionStateFamily("level"), baseDefaults.level);
+    set(baseOptionStateFamily("heroLevel"), baseDefaults.heroLevel);
+    set(baseOptionStateFamily("raceid"), baseDefaults.raceid);
+    set(baseOptionStateFamily("jobid"), baseDefaults.jobid);
+    set(titleNameState, "none");
+});
