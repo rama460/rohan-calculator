@@ -10,15 +10,15 @@ interface CharactorParameterFieldProps {
 export const CharactorParameterField: React.FC<CharactorParameterFieldProps> = ({ name, title }) => {
     const value = useAtomValue(charactorStateFamily(name));
     return (
-        <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
+        <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={1}>
             <Typography variant="caption" sx={{ textAlign: "left" }}>
                 {title}
             </Typography>
             <TextField
-                type="number"
+                type="text"
                 size="small"
                 value={value}
-                sx={{ width: "80px", "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}
+                sx={{ width: "70px", "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}
                 slotProps={{ htmlInput: { min: 0, readOnly: true } }}
             />
         </Box>

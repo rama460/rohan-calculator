@@ -8,7 +8,7 @@ interface CharactorPanelProps {
 export const CharactorPanel: React.FC<CharactorPanelProps> = () => {
     console.log("render CharactorPanel");
     return (
-        <Grid container columnSpacing={4}>
+        <Grid container columnSpacing={2}>
             <Grid size={{ md: 6, xs: 6 }}>
                 <CharactorParameterField name="meleeAttack" title="近距離攻撃力" />
             </Grid>

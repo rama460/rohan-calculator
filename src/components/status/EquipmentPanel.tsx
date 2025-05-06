@@ -151,7 +151,7 @@ export const EquipmentPanel: React.FC = () => {
                 <div style={{ gridColumn: 9, gridRow: 5 }}>
                     <EquipmentIconButton equipmentType='talismanQ' title='タリスマン タイプQ' items={q_talismans} />
                 </div>
-                <div style={{ gridColumn: 10, gridRow: 5 }}>
+                <div style={{ gridColumn: 9, gridRow: 3 }}>
                     <EquipmentIconButton equipmentType='talismanS' title='タリスマン タイプS' items={s_talismans} />
                 </div>
                 <div style={{ gridColumn: 8, gridRow: 1 }}>
@@ -160,22 +160,22 @@ export const EquipmentPanel: React.FC = () => {
                 <div style={{ gridColumn: 9, gridRow: 1 }}>
                     <EquipmentIconButton equipmentType='ride' title='乗り物' items={rides} />
                 </div>
-                <div style={{ gridColumn: 5, gridRow: 7 }}>
+                <div style={{ gridColumn: 4, gridRow: 7 }}>
                     <EquipmentIconButton equipmentType='rune1' title='ルーン1' items={runes} />
                 </div>
-                <div style={{ gridColumn: 6, gridRow: 7 }}>
+                <div style={{ gridColumn: 5, gridRow: 7 }}>
                     <EquipmentIconButton equipmentType='rune2' title='ルーン2' items={runes} />
                 </div>
-                <div style={{ gridColumn: 7, gridRow: 7 }}>
+                <div style={{ gridColumn: 6, gridRow: 7 }}>
                     <EquipmentIconButton equipmentType='rune3' title='ルーン3' items={runes} />
                 </div>
-                <div style={{ gridColumn: 8, gridRow: 7 }}>
+                <div style={{ gridColumn: 7, gridRow: 7 }}>
                     <EquipmentIconButton equipmentType='rune4' title='ルーン4' items={runes} />
                 </div>
-                <div style={{ gridColumn: 9, gridRow: 7 }}>
+                <div style={{ gridColumn: 8, gridRow: 7 }}>
                     <EquipmentIconButton equipmentType='rune5' title='ルーン5' items={runes} />
                 </div>
-                <div style={{ gridColumn: 10, gridRow: 7 }}>
+                <div style={{ gridColumn: 9, gridRow: 7 }}>
                     <EquipmentIconButton equipmentType='rune6' title='ルーン6' items={runes} />
                 </div>
             </div >

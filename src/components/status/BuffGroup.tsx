@@ -27,7 +27,7 @@ export const BuffGroup: React.FC<BuffGroupProps> = ({ title, buffOrigin, buffs }
         <Card>
             <CardContent>
                 <Box display="flex" alignItems="center" justifyContent={"space-between"}>
-                    <Typography variant="h6">
+                    <Typography variant="subtitle2">
                         {title}
                     </Typography>
                     <Box>
