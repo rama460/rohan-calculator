@@ -86,7 +86,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                     <Typography variant="caption" sx={{ textAlign: "left" }}>
                         種族:
                     </Typography>
-                    <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 11, height: 5, padding: 1 } }}>
+                    <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}>
                         <Select
                             value={raceid.toString()}
                             onChange={handleRaceChange}
