@@ -4,6 +4,7 @@ import { baseOptionStateFamily, titleNameState } from "./bases";
 import { baseStatusState, metaStatusState } from "./statuses";
 import { equipmentStateFamily } from "./items";
 import { Item } from "../../components/static/items";
+import { BuffState, buffStateFamily } from "./skills";
 
 type StoredCharactorContext = {
     title: string;
@@ -58,7 +59,10 @@ type StoredCharactorContext = {
     rune4?: Item;
     rune5?: Item;
     rune6?: Item;
-
+    selfBuffStatuses: BuffState[];
+    groupBuffStatuses: BuffState[];
+    cashBuffStatuses: BuffState[];
+    guildBuffStatuses: BuffState[];
 
 }
 
@@ -151,8 +155,12 @@ export const useStorageContext = (name: string) => {
     const [rune4, setRune4] = useAtom(equipmentStateFamily("rune4"));
     const [rune5, setRune5] = useAtom(equipmentStateFamily("rune5"));
     const [rune6, setRune6] = useAtom(equipmentStateFamily("rune6"));
+    // buffs
+    const [selfBuffStatuses, setSelfBuffStatuses] = useAtom(buffStateFamily("Self"));
+    const [groupBuffStatuses, setGroupBuffStatuses] = useAtom(buffStateFamily("Group"));
+    const [cashBuffStatuses, setCashBuffStatuses] = useAtom(buffStateFamily("Cash"));
+    const [guildBuffStatuses, setGuildBuffStatuses] = useAtom(buffStateFamily("Guild"));
 
-    //
     const loadContext = () => {
         setTitle(context.title);
         setLevel(context.level);
@@ -206,6 +214,10 @@ export const useStorageContext = (name: string) => {
         setRune4(context.rune4);
         setRune5(context.rune5);
         setRune6(context.rune6);
+        setSelfBuffStatuses(context.selfBuffStatuses);
+        setGroupBuffStatuses(context.groupBuffStatuses);
+        setCashBuffStatuses(context.cashBuffStatuses);
+        setGuildBuffStatuses(context.guildBuffStatuses);
     }
     const saveContext = () => {
         setContext({
@@ -261,7 +273,11 @@ export const useStorageContext = (name: string) => {
             rune3,
             rune4,
             rune5,
-            rune6
+            rune6,
+            selfBuffStatuses,
+            groupBuffStatuses,
+            cashBuffStatuses,
+            guildBuffStatuses,
         });
     }
     return [loadContext, saveContext] as const;
