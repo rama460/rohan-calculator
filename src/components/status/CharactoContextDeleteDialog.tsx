@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Skeleton, Typography } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
 import React from "react"
 import { contextNames, contextState } from "../../modules/state/storage";
 import { useAtomValue, useSetAtom } from "jotai";
@@ -12,14 +12,8 @@ interface CharactorContextDeleteDialogProps {
 
 export const CharactorContextDeleteDialog: React.FC<CharactorContextDeleteDialogProps> = ({ isOpen, setIsOpen }) => {
     const names = useAtomValue(contextNames);
-    if (names.length === 0) {
-        return <Skeleton />
-    }
     const [name, setName] = React.useState(names[0]);
     const setContext = useSetAtom(contextState(name));
-    console.log(names)
-    console.log(names[0])
-    console.log(name)
     const handleDelete = () => {
         setIsOpen(false);
         setName(names[0]);
