@@ -11,14 +11,14 @@ export const CharactorParameterField: React.FC<CharactorParameterFieldProps> = (
     const value = useAtomValue(charactorStateFamily(name));
     return (
         <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
-            <Typography variant="body1" sx={{ textAlign: "left" }}>
+            <Typography variant="caption" sx={{ textAlign: "left" }}>
                 {title}
             </Typography>
             <TextField
                 type="number"
                 size="small"
                 value={value}
-                sx={{ width: "120px", }}
+                sx={{ width: "80px", "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}
                 slotProps={{ htmlInput: { min: 0, readOnly: true } }}
             />
         </Box>

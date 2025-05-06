@@ -22,7 +22,7 @@ export const BuffIconButton: React.FC<BuffIconButtonProps> = ({ buffSpec, buffSt
     }
 
     return (
-        <Box display="flex" alignItems="center" gap={2}>
+        <Box display="flex" alignItems="center" gap={1}>
             <Checkbox size="small" checked={!!buffState} onChange={handleCheckChange} />
             <Tooltip content={<BuffTooltipContent name={buffSpec.displayName} descriptions={buffSpec.descriptions} level={level} />} >
                 <IconButton backgroundImage={buffSpec.icon} onClick={handleCheckChange} />
@@ -33,7 +33,7 @@ export const BuffIconButton: React.FC<BuffIconButtonProps> = ({ buffSpec, buffSt
                 value={buffState?.level || level}
                 onChange={handleLevelChange}
                 sx={{
-                    width: "50px",
+                    width: "50px", "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 }
                 }}
                 slotProps={{ htmlInput: { min: buffSpec.min, max: buffSpec.max } }}
             />

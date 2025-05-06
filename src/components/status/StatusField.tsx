@@ -21,15 +21,15 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
     }
 
     return (
-        <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
-            <Typography variant="body1" sx={{ textAlign: "center", width: "60px" }}>
+        <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={0}>
+            <Typography variant="caption" sx={{ textAlign: "center", width: "60px" }}>
                 {displayName}
             </Typography>
             <TextField
                 type="number"
                 size="small"
                 value={base}
-                sx={{ width: "100px", }}
+                sx={{ width: "70px", "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }}
                 slotProps={{ htmlInput: { min: 0 } }}
                 onChange={handleBaseChange}
             />
@@ -37,7 +37,7 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
                 type="number"
                 size="small"
                 value={meta}
-                sx={{ width: "100px", }}
+                sx={{ width: "70px", "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }}
                 slotProps={{ htmlInput: { min: 0 } }}
                 onChange={handleMetaChange}
             />
@@ -45,7 +45,7 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
                 type="number"
                 size="small"
                 value={total}
-                sx={{ width: "100px", }}
+                sx={{ width: "70px", "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }}
             />
         </Box>
     );

@@ -1,7 +1,6 @@
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
 import { races } from "../static/races";
-import Grid from "@mui/material/Grid2";
 import { titles } from "../static/titles";
 import Tooltip from "../common/Tooltip";
 import TitleTooltipContent from "./TitleTooltipContent";
@@ -53,91 +52,92 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
     }
     return (
         <React.Fragment>
-            <Grid container columnSpacing={2}>
-                <Grid size={{ md: 6, xs: 12 }}>
-                    <Box display="flex" alignItems="center" justifyContent={"space-between"}>
-                        <Typography variant="body1" sx={{ textAlign: "left" }}>
-                            Lv:
-                        </Typography>
-                        <TextField
-                            type="number"
-                            size="small"
-                            value={level}
-                            sx={{ width: "80px", }}
-                            slotProps={{ htmlInput: { min: 1, max: 115 } }}
-                            onChange={handleLevelChange}
-                        />
-                        <Typography variant="body1" sx={{ textAlign: "left" }}>
-                            征服者レベル:
-                        </Typography>
-                        <TextField
-                            type="number"
-                            size="small"
-                            value={level == 115 ? heroLevel : 0}
-                            disabled={level < 115}
-                            sx={{ width: "80px", }}
-                            slotProps={{ htmlInput: { min: 0, max: 50 } }}
-                            onChange={handleHeroLevelChange}
-                        />
-                    </Box>
-                </Grid>
-                <Grid size={{ md: 6, xs: 12 }}>
-                    <Box display="flex" alignItems="center" justifyContent={"space-between"}>
-                        <Typography variant="body1" sx={{ textAlign: "left" }}>
-                            種族:
-                        </Typography>
-                        <FormControl size="small">
+            <Box display="flex" alignItems="center" justifyContent={"space-between"}>
+                <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="caption" sx={{ textAlign: "left" }}>
+                        Lv:
+                    </Typography>
+                    <TextField
+                        type="number"
+                        size="small"
+                        value={level}
+                        sx={{ width: "50px", "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}
+                        slotProps={{ htmlInput: { min: 1, max: 115 } }}
+                        onChange={handleLevelChange}
+                    />
+                </Box>
+                <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="caption" sx={{ textAlign: "left" }}>
+                        征服者Lv:
+                    </Typography>
+
+                    <TextField
+                        type="number"
+                        size="small"
+                        value={level == 115 ? heroLevel : 0}
+                        disabled={level < 115}
+                        sx={{ width: "50px", "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}
+                        slotProps={{ htmlInput: { min: 0, max: 50 } }}
+                        onChange={handleHeroLevelChange}
+                    />
+                </Box>
+
+                <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="caption" sx={{ textAlign: "left" }}>
+                        種族:
+                    </Typography>
+                    <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 11, height: 5, padding: 1 } }}>
+                        <Select
+                            value={raceid.toString()}
+                            onChange={handleRaceChange}
+                        >
+                            {races.map((race) => (
+                                <MenuItem key={race.id} value={race.id}>{race.displayName}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Box>
+
+                <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="caption" sx={{ textAlign: "left" }}>
+                        職業:
+                    </Typography>
+                    <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }}>
+                        <Select
+                            value={jobid.toString()}
+                            disabled={level < 50}
+                            onChange={handleJobChange}
+                        >
+                            {races[Number(raceid)].jobs.map((job) => (
+                                <MenuItem key={job.id} value={job.id}>{job.displayName}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Box>
+                <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="caption" sx={{ textAlign: "left", width: "48px" }}>
+                        称号:
+                    </Typography>
+                    <Tooltip content={<TitleTooltipContent title={title} />}>
+                        <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }} >
                             <Select
-                                value={raceid.toString()}
-                                onChange={handleRaceChange}
+                                defaultValue="none"
+                                value={title}
+                                onChange={(event) => {
+                                    setTitle(event.target.value as string)
+                                }}
                             >
-                                {races.map((race) => (
-                                    <MenuItem key={race.id} value={race.id}>{race.displayName}</MenuItem>
-                                ))}
+                                <MenuItem key={-1} value="none">なし</MenuItem>
+                                {
+                                    titles.map((title, index) => (
+                                        <MenuItem key={index} value={title.name}>{title.displayName}</MenuItem>
+                                    ))
+                                }
                             </Select>
                         </FormControl>
-                        <Typography variant="body1" sx={{ textAlign: "left" }}>
-                            職業:
-                        </Typography>
-                        <FormControl size="small">
-                            <Select
-                                value={jobid.toString()}
-                                disabled={level < 50}
-                                onChange={handleJobChange}
-                            >
-                                {races[Number(raceid)].jobs.map((job) => (
-                                    <MenuItem key={job.id} value={job.id}>{job.displayName}</MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Box>
-                </Grid>
-                <Grid size={{ md: 6, xs: 12 }}>
-                    <Box display="flex" alignItems="center" gap={2}>
-                        <Typography variant="body1" sx={{ textAlign: "left", width: "48px" }}>
-                            称号:
-                        </Typography>
-                        <Tooltip content={<TitleTooltipContent title={title} />}>
-                            <FormControl size="small" >
-                                <Select
-                                    defaultValue="none"
-                                    value={title}
-                                    onChange={(event) => {
-                                        setTitle(event.target.value as string)
-                                    }}
-                                >
-                                    <MenuItem key={-1} value="none">なし</MenuItem>
-                                    {
-                                        titles.map((title, index) => (
-                                            <MenuItem key={index} value={title.name}>{title.displayName}</MenuItem>
-                                        ))
-                                    }
-                                </Select>
-                            </FormControl>
-                        </Tooltip>
-                    </Box>
-                </Grid>
-            </Grid>
+                    </Tooltip>
+                </Box>
+            </Box>
         </React.Fragment >
     );
 }

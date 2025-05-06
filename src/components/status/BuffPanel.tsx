@@ -15,18 +15,18 @@ export const BuffPanel: React.FC<BuffPanelProps> = () => {
     const cashBuff = skills.filter(skill => skill.origin === "Cash");
     const guildBuff = skills.filter(skill => skill.origin === "Guild");
     return (
-        <Grid container spacing={4}>
+        <Grid container spacing={1}>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BuffGroup buffOrigin="Self" buffs={selfBuffs} />
+                <BuffGroup title="自バフ" buffOrigin="Self" buffs={selfBuffs} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BuffGroup buffOrigin="Group" buffs={groupBuff} />
+                <BuffGroup title="PTバフ" buffOrigin="Group" buffs={groupBuff} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BuffGroup buffOrigin="Cash" buffs={cashBuff} />
+                <BuffGroup title="課金バフ" buffOrigin="Cash" buffs={cashBuff} />
             </Grid>
             <Grid size={{ md: 6, xs: 12 }}>
-                <BuffGroup buffOrigin="Guild" buffs={guildBuff} />
+                <BuffGroup title="ギルドバフ" buffOrigin="Guild" buffs={guildBuff} />
             </Grid>
         </Grid >
     )

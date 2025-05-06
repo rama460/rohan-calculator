@@ -5,7 +5,6 @@ import React from "react";
 import StatusFieldTitle from "./StatusFieldTitle";
 import { useAtomValue } from "jotai";
 import { remainingPointsState } from "../../modules/state/statuses";
-import { StatusResetButton } from "./StatusResetButton";
 
 
 export const StatusPanel: React.FC = ({ }) => {
@@ -14,8 +13,7 @@ export const StatusPanel: React.FC = ({ }) => {
 
     return (
         <>
-            <StatusResetButton />
-            <Grid container columnSpacing={4}>
+            <Grid container columnSpacing={1}>
                 <Grid size={{ md: 6, xs: 12 }}>
                     <StatusFieldTitle />
                 </Grid>
@@ -48,14 +46,14 @@ export const StatusPanel: React.FC = ({ }) => {
                 </Grid>
                 <Grid size={{ md: 6, xs: 12 }}>
                     <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
-                        <Typography variant="body1" sx={{ textAlign: "left" }}>
+                        <Typography variant="caption" sx={{ textAlign: "left" }}>
                             POINT
                         </Typography>
                         <TextField
                             type="number"
                             size="small"
                             value={remainingPoints}
-                            sx={{ width: "100px", }}
+                            sx={{ width: "100px", "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }}
                             slotProps={{ htmlInput: { min: 0, readOnly: true } }}
                         />
                     </Box>

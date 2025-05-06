@@ -23,7 +23,7 @@ export const EquipmentBaseOption: React.FC<EquipmentBaseOptionProps> = ({ name, 
 
     return (
         <Box display="flex" justifyContent="space-between" alignItems="center" gap={2} sx={equipmentOptionStyle}>
-            <Typography variant="body1" sx={{ textAlign: "left", width: "200px" }}>
+            <Typography variant="caption" sx={{ textAlign: "left", width: "200px" }}>
                 {BuiltinOptions[name].displayName}
             </Typography>
             <Box display="flex" justifyContent="center" alignItems="center" gap={2}>

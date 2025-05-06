@@ -20,7 +20,7 @@ export const BuffTooltipContent: React.FC<BuffTooltipContentProps> = ({ name, de
     return (
         <Box style={style}>
             <Box style={contentStyle}>
-                <Typography variant="body1">
+                <Typography variant="caption">
                     {name}
                 </Typography>
                 {descriptions.map((description, index) => (
