@@ -2,6 +2,7 @@ import unknown from "../../assets/unknown.png";
 
 import bow_grand_kaiser_onixy from "../../assets/items/bow_grand_kaiser_onixy.png";
 import dagger_zeta_obsidian from "../../assets/items/dagger_zeta_obsidian.png";
+import staff_zeta_obsidian from "../../assets/items/staff_zeta_obsidian.png";
 
 import helmet_magnus_celestite from "../../assets/items/helmet_magnus_celestite.png";
 import helmet_zeta_obsidian from "../../assets/items/helmet_zeta_obsidian.png";
@@ -3154,36 +3155,6 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
-        name: "グランドカイザーオニキスボウ",
-        icon: bow_grand_kaiser_onixy,
-        type: "bow",
-        availableRaces: ["HalfElf"],
-        fixedBaseOptions: {
-            "weaponBaseRangeAttack": 1174,
-        },
-        enchantableBaseOptions: {
-            16: {
-                "weaponEnchantMeleeAttack": 411,
-                "weaponEnchantRangeAttack": 411,
-                "weaponEnchantMagicAttack": 411,
-                "plusAttack": 551
-            }
-        },
-        sockets: 4
-    },
-    {
-        name: "グランドカイザーオニキスダガー",
-        icon: unknown,
-        type: "dagger",
-        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
-        enchantableBaseOptions: [
-            {
-                "meleeAttack": 1174,
-            },
-        ],
-        sockets: 4
-    },
-    {
         name: "ゼータオブシディアンダガー",
         icon: dagger_zeta_obsidian,
         type: "dagger",
@@ -3251,7 +3222,100 @@ export const weapons: WeaponTemplate[] = [
             },
         },
         sockets: 4
-    }
+    },
+    {
+        name: "ゼータオブシディアンスタッフ",
+        icon: staff_zeta_obsidian,
+        type: "staff",
+        availableRaces: ["Elf", "DarkElf"],
+        fixedBaseOptions: {
+            "weaponBaseMagicAttack": 2328,
+        },
+        enchantableBaseOptions: {
+            0: {
+                "plusAttack": 375,
+            },
+            1: {
+                "weaponEnchantMeleeAttack": 230,
+                "weaponEnchantRangeAttack": 230,
+                "weaponEnchantMagicAttack": 230,
+                "plusAttack": 605,
+            },
+            2: {
+                "weaponEnchantMeleeAttack": 253,
+                "weaponEnchantRangeAttack": 253,
+                "weaponEnchantMagicAttack": 253,
+                "plusAttack": 628,
+            },
+            3: {
+                "weaponEnchantMeleeAttack": 279,
+                "weaponEnchantRangeAttack": 279,
+                "weaponEnchantMagicAttack": 279,
+                "plusAttack": 654,
+            },
+            4: {
+                "weaponEnchantMeleeAttack": 307,
+                "weaponEnchantRangeAttack": 307,
+                "weaponEnchantMagicAttack": 307,
+                "plusAttack": 682,
+            },
+            5: {
+                "weaponEnchantMeleeAttack": 337,
+                "weaponEnchantRangeAttack": 337,
+                "weaponEnchantMagicAttack": 337,
+                "plusAttack": 712,
+            },
+            6: {
+                "weaponEnchantMeleeAttack": 371,
+                "weaponEnchantRangeAttack": 371,
+                "weaponEnchantMagicAttack": 371,
+                "plusAttack": 746,
+            },
+            7: {
+                "weaponEnchantMeleeAttack": 408,
+                "weaponEnchantRangeAttack": 408,
+                "weaponEnchantMagicAttack": 408,
+                "plusAttack": 783,
+            },
+            8: {
+                "weaponEnchantMeleeAttack": 449,
+                "weaponEnchantRangeAttack": 449,
+                "weaponEnchantMagicAttack": 449,
+                "plusAttack": 824,
+            }
+        },
+        sockets: 4
+    },
+    {
+        name: "グランドカイザーオニキスボウ",
+        icon: bow_grand_kaiser_onixy,
+        type: "bow",
+        availableRaces: ["HalfElf"],
+        fixedBaseOptions: {
+            "weaponBaseRangeAttack": 1174,
+        },
+        enchantableBaseOptions: {
+            16: {
+                "weaponEnchantMeleeAttack": 411,
+                "weaponEnchantRangeAttack": 411,
+                "weaponEnchantMagicAttack": 411,
+                "plusAttack": 551
+            }
+        },
+        sockets: 4
+    },
+    {
+        name: "グランドカイザーオニキスダガー",
+        icon: unknown,
+        type: "dagger",
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        enchantableBaseOptions: [
+            {
+                "weaponBaseMeleeAttack": 1174,
+            },
+        ],
+        sockets: 4
+    },
 
 ]
 
@@ -3641,79 +3705,79 @@ export const shields: ItemTemplate[] = [
             },
             18: {
                 'multiplySkillDefense': 27,
-                'plusAllStatus': 197,
+                'plusAllStatus': 183,
                 'plusDefense': 640,
                 'multiplyAttackSpeed': 20
             },
             19: {
                 'multiplySkillDefense': 28,
-                'plusAllStatus': 224,
+                'plusAllStatus': 195,
                 'plusDefense': 653,
                 'multiplyAttackSpeed': 20
             },
             20: {
                 'multiplySkillDefense': 30,
-                'plusAllStatus': 238,
+                'plusAllStatus': 207,
                 'plusDefense': 667,
                 'multiplyAttackSpeed': 20
             },
             21: {
                 'multiplySkillDefense': 31,
-                'plusAllStatus': 253,
+                'plusAllStatus': 219,
                 'plusDefense': 682,
                 'multiplyAttackSpeed': 20
             },
             22: {
                 'multiplySkillDefense': 32,
-                'plusAllStatus': 306,
+                'plusAllStatus': 233,
                 'plusDefense': 698,
                 'multiplyAttackSpeed': 20
             },
             23: {
                 'multiplySkillDefense': 33,
-                'plusAllStatus': 325,
+                'plusAllStatus': 247,
                 'plusDefense': 715,
                 'multiplyAttackSpeed': 20
             },
             24: {
                 'multiplySkillDefense': 35,
-                'plusAllStatus': 346,
+                'plusAllStatus': 261,
                 'plusDefense': 820,
                 'multiplyAttackSpeed': 20
             },
             25: {
                 'multiplySkillDefense': 36,
-                'plusAllStatus': 413,
+                'plusAllStatus': 276,
                 'plusDefense': 835,
                 'multiplyAttackSpeed': 20
             },
             26: {
                 'multiplySkillDefense': 37,
-                'plusAllStatus': 438,
+                'plusAllStatus': 293,
                 'plusDefense': 851,
                 'multiplyAttackSpeed': 20
             },
             27: {
                 'multiplySkillDefense': 38,
-                'plusAllStatus': 465,
+                'plusAllStatus': 309,
                 'plusDefense': 868,
                 'multiplyAttackSpeed': 20
             },
             28: {
                 'multiplySkillDefense': 40,
-                'plusAllStatus': 549,
+                'plusAllStatus': 327,
                 'plusDefense': 886,
                 'multiplyAttackSpeed': 20
             },
             29: {
                 'multiplySkillDefense': 41,
-                'plusAllStatus': 583,
+                'plusAllStatus': 346,
                 'plusDefense': 905,
                 'multiplyAttackSpeed': 20
             },
             30: {
                 'multiplySkillDefense': 42,
-                'plusAllStatus': 618,
+                'plusAllStatus': 365,
                 'plusDefense': 1000,
                 'multiplyAttackSpeed': 20
             }
@@ -3722,21 +3786,313 @@ export const shields: ItemTemplate[] = [
         sockets: 3
     },
     {
-        name: "ゼータオブシディアンシールド",
-        icon: shield_zeta_obsidian,
-        raceEnchantableBaseOptions: {
+        name: "マグヌスセレスタイトシールド",
+        icon: unknown,
+        availableRaces: ["Human", "Elf"],
+        fixedBaseOptions: {
+            'multiplyAllStatus': 10,
+            'multiplyHealingAmount': 200,
+            'multiplyPVPDefense': 5,
+            'multiplyPVEDefense': 5,
+        },
+        raceBaseOptions: {
             "Human": {
-                18: {
-                    "physicalDefense": 851,
-                    "magicalDefense": 522,
-                }
+                "physicalDefense": 1022,
+                "magicalDefense": 627,
             },
             "Elf": {
-                18: {
-                    "physicalDefense": 696,
-                    "magicalDefense": 726,
-                }
+                'physicalDefense': 836,
+                'magicalDefense': 871,
+            }
+        },
+        enchantableBaseOptions: {
+            0: {
+                'multiplySkillDefense': 10,
             },
+            1: {
+                'multiplySkillDefense': 12,
+            },
+            2: {
+                'multiplySkillDefense': 14,
+            },
+            3: {
+                'multiplySkillDefense': 16,
+            },
+            4: {
+                'multiplySkillDefense': 18,
+            },
+            5: {
+                'multiplySkillDefense': 20,
+            },
+            6: {
+                'multiplySkillDefense': 22,
+            },
+            7: {
+                'multiplySkillDefense': 24,
+            },
+            8: {
+                'multiplySkillDefense': 26,
+            },
+            9: {
+                'multiplySkillDefense': 28,
+            },
+            10: {
+                'multiplySkillDefense': 30,
+            },
+            11: {
+                'multiplySkillDefense': 31,
+            },
+            12: {
+                'multiplySkillDefense': 32,
+            },
+            13: {
+                'multiplySkillDefense': 33,
+            },
+            14: {
+                'multiplySkillDefense': 34,
+            },
+            15: {
+                'multiplySkillDefense': 35,
+            },
+            16: {
+                'multiplySkillDefense': 36,
+            },
+            17: {
+                'multiplySkillDefense': 37,
+            },
+            18: {
+                'multiplySkillDefense': 38,
+            },
+            19: {
+                'multiplySkillDefense': 39,
+            },
+            20: {
+                'multiplySkillDefense': 40,
+            },
+            21: {
+                'multiplySkillDefense': 41,
+            },
+            22: {
+                'multiplySkillDefense': 42,
+            },
+            23: {
+                'multiplySkillDefense': 43,
+            },
+            24: {
+                'multiplySkillDefense': 44,
+            },
+            25: {
+                'multiplySkillDefense': 45,
+            },
+            26: {
+                'multiplySkillDefense': 46,
+            },
+            27: {
+                'multiplySkillDefense': 47,
+            },
+            28: {
+                'multiplySkillDefense': 48,
+            },
+            29: {
+                'multiplySkillDefense': 49,
+            },
+            30: {
+                'multiplySkillDefense': 50,
+            }
+        },
+        sockets: 3
+    },
+    {
+        name: "ゼータオブシディアンシールド",
+        icon: shield_zeta_obsidian,
+        availableRaces: ["Human", "Elf"],
+        raceBaseOptions: {
+            "Human": {
+                "physicalDefense": 851,
+                "magicalDefense": 522,
+            },
+            "Elf": {
+                "physicalDefense": 696,
+                "magicalDefense": 726,
+            },
+        },
+        sockets: 3
+    },
+    {
+        name: "イグニエルのシールド",
+        icon: unknown,
+        availableRaces: ["Human", "Elf"],
+        fixedBaseOptions: {
+            'multiplyPVPDefense': 5,
+            'multiplyPVEDefense': 5,
+        },
+        raceBaseOptions: {
+            "Human": {
+                "physicalDefense": 337,
+                "magicalDefense": 207,
+            },
+            "Elf": {
+                "physicalDefense": 276,
+                "magicalDefense": 288,
+            },
+        },
+        enchantableBaseOptions: {
+            0: {
+                'multiplySkillDefense': 5,
+                'plusDefense': 150,
+                'plusAllStatus': 50,
+            },
+            1: {
+                'multiplySkillDefense': 6,
+                'plusDefense': 157,
+                'plusAllStatus': 55,
+            },
+            2: {
+                'multiplySkillDefense': 7,
+                'plusDefense': 165,
+                'plusAllStatus': 60,
+            },
+            3: {
+                'multiplySkillDefense': 8,
+                'plusDefense': 174,
+                'plusAllStatus': 65,
+            },
+            4: {
+                'multiplySkillDefense': 10,
+                'plusDefense': 184,
+                'plusAllStatus': 70,
+            },
+            5: {
+                'multiplySkillDefense': 11,
+                'plusDefense': 195,
+                'plusAllStatus': 76,
+            },
+            6: {
+                'multiplySkillDefense': 12,
+                'plusDefense': 280,
+                'plusAllStatus': 82,
+            },
+            7: {
+                'multiplySkillDefense': 14,
+                'plusDefense': 289,
+                'plusAllStatus': 88,
+            },
+            8: {
+                'multiplySkillDefense': 15,
+                'plusDefense': 299,
+                'plusAllStatus': 95,
+            },
+            // 以下現品確認ずみ
+            9: {
+                'multiplySkillDefense': 16,
+                'plusDefense': 310,
+                'plusAllStatus': 102,
+            },
+            10: {
+                'multiplySkillDefense': 17,
+                'plusDefense': 322,
+                'plusAllStatus': 109,
+            },
+            11: {
+                'multiplySkillDefense': 18,
+                'plusDefense': 335,
+                'plusAllStatus': 117,
+            },
+            12: {
+                'multiplySkillDefense': 20,
+                'plusDefense': 460,
+                'plusAllStatus': 125,
+            },
+            13: {
+                'multiplySkillDefense': 21,
+                'plusDefense': 471,
+                'plusAllStatus': 134,
+            },
+            14: {
+                'multiplySkillDefense': 22,
+                'plusDefense': 483,
+                'plusAllStatus': 143,
+            },
+            15: {
+                'multiplySkillDefense': 23,
+                'plusDefense': 496,
+                'plusAllStatus': 152,
+            },
+            16: {
+                'multiplySkillDefense': 25,
+                'plusDefense': 510,
+                'plusAllStatus': 162,
+            },
+            17: {
+                'multiplySkillDefense': 26,
+                'plusDefense': 525,
+                'plusAllStatus': 172,
+            },
+            18: {
+                'multiplySkillDefense': 27,
+                'plusDefense': 640,
+                'plusAllStatus': 183,
+            },
+            19: {
+                'multiplySkillDefense': 28,
+                'plusDefense': 653,
+                'plusAllStatus': 195,
+            },
+            20: {
+                'multiplySkillDefense': 30,
+                'plusDefense': 667,
+                'plusAllStatus': 207,
+            },
+            21: {
+                'multiplySkillDefense': 31,
+                'plusDefense': 682,
+                'plusAllStatus': 219,
+            },
+            22: {
+                'multiplySkillDefense': 32,
+                'plusDefense': 698,
+                'plusAllStatus': 233,
+            },
+            23: {
+                'multiplySkillDefense': 33,
+                'plusDefense': 715,
+                'plusAllStatus': 247,
+            },
+            24: {
+                'multiplySkillDefense': 35,
+                'plusDefense': 820,
+                'plusAllStatus': 261,
+            },
+            25: {
+                'multiplySkillDefense': 36,
+                'plusDefense': 835,
+                'plusAllStatus': 276,
+            },
+            26: {
+                'multiplySkillDefense': 37,
+                'plusDefense': 851,
+                'plusAllStatus': 293,
+            },
+            27: {
+                'multiplySkillDefense': 38,
+                'plusDefense': 868,
+                'plusAllStatus': 309,
+            },
+            28: {
+                'multiplySkillDefense': 40,
+                'plusDefense': 886,
+                'plusAllStatus': 327,
+            },
+            29: {
+                'multiplySkillDefense': 41,
+                'plusDefense': 905,
+                'plusAllStatus': 346,
+            },
+            30: {
+                'multiplySkillDefense': 42,
+                'plusDefense': 1000,
+                'plusAllStatus': 365,
+            }
         },
         sockets: 3
     }
@@ -5094,53 +5450,64 @@ export const gauntlets: ItemTemplate[] = [
                 "plusDefense": 667,
                 "plusAllStatus": 206,
             },
+            // 以下現品確認済み、↑はrevのもの
             21: {
-                "multiplyPVPDefense": 26,
+                // "multiplyPVPDefense": 26,
+                "multiplyHitPoint": 35,
                 "plusDefense": 682,
                 "plusAllStatus": 220,
             },
             22: {
-                "multiplyPVPDefense": 27,
+                // "multiplyPVPDefense": 27,
+                "multiplyHitPoint": 45,
                 "plusDefense": 698,
                 "plusAllStatus": 235,
             },
             23: {
-                "multiplyPVPDefense": 28,
+                // "multiplyPVPDefense": 28,
+                "multiplyHitPoint": 45,
                 "plusDefense": 715,
                 "plusAllStatus": 259,
             },
             24: {
-                "multiplyPVPDefense": 29,
+                // "multiplyPVPDefense": 29,
+                "multiplyHitPoint": 45,
                 "plusDefense": 820,
                 "plusAllStatus": 288,
             },
             25: {
-                "multiplyPVPDefense": 30,
+                // "multiplyPVPDefense": 30,
+                "multiplyHitPoint": 55,
                 "plusDefense": 835,
                 "plusAllStatus": 307,
             },
             26: {
-                "multiplyPVPDefense": 31,
+                // "multiplyPVPDefense": 31,
+                "multiplyHitPoint": 55,
                 "plusDefense": 851,
                 "plusAllStatus": 328,
             },
             27: {
-                "multiplyPVPDefense": 32,
+                // "multiplyPVPDefense": 32,
+                "multiplyHitPoint": 55,
                 "plusDefense": 868,
                 "plusAllStatus": 362,
             },
             28: {
-                "multiplyPVPDefense": 33,
+                // "multiplyPVPDefense": 33,
+                "multiplyHitPoint": 65,
                 "plusDefense": 886,
                 "plusAllStatus": 395,
             },
             29: {
-                "multiplyPVPDefense": 34,
+                // "multiplyPVPDefense": 34,
+                "multiplyHitPoint": 65,
                 "plusDefense": 905,
                 "plusAllStatus": 412,
             },
             30: {
-                "multiplyPVPDefense": 35,
+                // "multiplyPVPDefense": 35,
+                "multiplyHitPoint": 65,
                 "plusDefense": 1000,
                 "plusAllStatus": 432,
             },
@@ -7054,27 +7421,37 @@ export const boots: ItemTemplate[] = [
                 "plusAllStatus": 206,
             },
             21: {
-                "multiplyPVPDefense": 26,
+                // "multiplyPVPDefense": 26,
+                "multiplyPVPDefense": 15,
+                "multiplyPVEDefense": 15,
                 "plusDefense": 682,
                 "plusAllStatus": 220,
             },
             22: {
-                "multiplyPVPDefense": 27,
+                // "multiplyPVPDefense": 27,
+                "multiplyPVPDefense": 15,
+                "multiplyPVEDefense": 15,
                 "plusDefense": 698,
                 "plusAllStatus": 235,
             },
             23: {
-                "multiplyPVPDefense": 28,
+                // "multiplyPVPDefense": 28,
+                "multiplyPVPDefense": 15,
+                "multiplyPVEDefense": 15,
                 "plusDefense": 715,
                 "plusAllStatus": 259,
             },
             24: {
-                "multiplyPVPDefense": 29,
+                // "multiplyPVPDefense": 29,
+                "multiplyPVPDefense": 15,
+                "multiplyPVEDefense": 15,
                 "plusDefense": 820,
                 "plusAllStatus": 288,
             },
             25: {
-                "multiplyPVPDefense": 30,
+                // "multiplyPVPDefense": 30,
+                "multiplyPVPDefense": 15,
+                "multiplyPVEDefense": 15,
                 "plusDefense": 835,
                 "plusAllStatus": 307,
             },
