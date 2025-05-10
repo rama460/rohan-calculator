@@ -1,8 +1,13 @@
 import unknown from "../../assets/unknown.png";
 
-import bow_grand_kaiser_onixy from "../../assets/items/bow_grand_kaiser_onixy.png";
+
 import dagger_zeta_obsidian from "../../assets/items/dagger_zeta_obsidian.png";
 import staff_zeta_obsidian from "../../assets/items/staff_zeta_obsidian.png";
+import bow_magnus_celestite from "../../assets/items/bow_magnus_celestite.png";
+import bow_grand_kaiser_onixy from "../../assets/items/bow_grand_kaiser_onixy.png";
+import crossbow_magnus_celestite from "../../assets/items/crossbow_magnus_celestite.png";
+import katar_magnus_celestite from "../../assets/items/katar_magnus_celestite.png";
+import blunt_magnus_celestite from "../../assets/items/blunt_magnus_celestite.png";
 
 import helmet_magnus_celestite from "../../assets/items/helmet_magnus_celestite.png";
 import helmet_zeta_obsidian from "../../assets/items/helmet_zeta_obsidian.png";
@@ -23,13 +28,17 @@ import leggings_magnus_celestite from "../../assets/items/leggings_magnus_celest
 import leggings_zeta_obsidian from "../../assets/items/leggings_zeta_obsidian.png";
 import leggings_grand_kaiser_onixy from "../../assets/items/leggings_grand_kaiser_onixy.png";
 import leggings_igniel from "../../assets/items/leggings_igniel.png";
+import leggings_igniel_attack from "../../assets/items/leggings_igniel_attack.png";
 
 import boots_magnus_celestite from "../../assets/items/boots_magnus_celestite.png";
 import boots_zeta_obsidian from "../../assets/items/boots_zeta_obsidian.png";
 import boots_grand_kaiser_onixy from "../../assets/items/boots_grand_kaiser_onixy.png";
 import boots_igniel from "../../assets/items/boots_igniel.png";
+import boots_igniel_attack from "../../assets/items/boots_igniel_attack.png";
 
+import shield_magnus_celestite from "../../assets/items/shield_magnus_celestite.png";
 import shield_zeta_obsidian from "../../assets/items/shield_zeta_obsidian.png";
+import shield_igniel from "../../assets/items/shield_igniel.png";
 import guarder_zeno_opaniel from "../../assets/items/guarder_zeno_opaniel.png";
 import guarder_igniel from "../../assets/items/guarder_igniel.png";
 
@@ -46,6 +55,12 @@ import accessory_chaos_ring from "../../assets/items/accessory_chaos_ring.png";
 import accessory_chaos_brooch from "../../assets/items/accessory_chaos_brooch.png";
 import accessory_chaos_bracelet from "../../assets/items/accessory_chaos_bracelet.png";
 import accessory_chaos_necklace from "../../assets/items/accessory_chaos_necklace.png";
+import accessory_magus_ring from "../../assets/items/accessory_magus_ring.png";
+import accessory_magus_brooch from "../../assets/items/accessory_magus_brooch.png";
+import accessory_magus_bracelet from "../../assets/items/accessory_magus_bracelet.png";
+import accessory_magus_necklace from "../../assets/items/accessory_magus_necklace.png";
+import accessory_abyssal_jewel from "../../assets/items/accessory_abyssal_jewel.png";
+import accessory_nihility_inverted_cross from "../../assets/items/accessory_nihility_inverted_cross.png";
 
 import hat_roha from "../../assets/items/hat_roha.png";
 import hat_variant from "../../assets/items/hat_variant.png";
@@ -56,6 +71,7 @@ import hat_apocalypse from "../../assets/items/hat_apocalypse.png";
 import hat_hellfire from "../../assets/items/hat_hellfire.png";
 import hat_nosferatu from "../../assets/items/hat_nosferatu.png";
 import hat_extend from "../../assets/items/hat_extend.png";
+import hat_megalith from "../../assets/items/hat_megalith.png";
 
 import glasses_roha from "../../assets/items/glasses_roha.png";
 import glasses_variant from "../../assets/items/glasses_variant.png";
@@ -66,6 +82,7 @@ import glasses_apocalypse from "../../assets/items/glasses_apocalypse.png";
 import glasses_hellfire from "../../assets/items/glasses_hellfire.png";
 import glasses_nosferatu from "../../assets/items/glasses_nosferatu.png";
 import glasses_extend from "../../assets/items/glasses_extend.png";
+import glasses_megalith from "../../assets/items/glasses_megalith.png";
 
 import earrings_roha from "../../assets/items/earrings_roha.png";
 import earrings_variant from "../../assets/items/earrings_variant.png";
@@ -76,6 +93,7 @@ import earrings_apocalypse from "../../assets/items/earrings_apocalypse.png";
 import earrings_hellfire from "../../assets/items/earrings_hellfire.png";
 import earrings_nosferatu from "../../assets/items/earrings_nosferatu.png";
 import earrings_extend from "../../assets/items/earrings_extend.png";
+import earrings_megalith from "../../assets/items/earrings_megalith.png";
 
 import costume_roha from "../../assets/items/costume_roha.png";
 import constume_victorious from "../../assets/items/costume_victorious.png";
@@ -779,7 +797,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトクラブ",
-        icon: unknown,
+        icon: blunt_magnus_celestite,
         type: "blunt",
         availableRaces: ["Human", "Elf", "Giant"],
         fixedBaseOptions: {
@@ -1561,7 +1579,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトカタール",
-        icon: unknown,
+        icon: katar_magnus_celestite,
         type: "katar",
         availableRaces: ["Dan"],
         fixedBaseOptions: {
@@ -1952,7 +1970,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトボウ",
-        icon: unknown,
+        icon: bow_magnus_celestite,
         type: "bow",
         availableRaces: ["HalfElf"],
         fixedBaseOptions: {
@@ -2147,7 +2165,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトクロスボウ",
-        icon: unknown,
+        icon: crossbow_magnus_celestite,
         type: "crossbow",
         availableRaces: ["HalfElf"],
         fixedBaseOptions: {
@@ -3282,7 +3300,64 @@ export const weapons: WeaponTemplate[] = [
                 "weaponEnchantRangeAttack": 449,
                 "weaponEnchantMagicAttack": 449,
                 "plusAttack": 824,
+            },
+            9: {
+                "weaponEnchantMeleeAttack": 494,
+                "weaponEnchantRangeAttack": 494,
+                "weaponEnchantMagicAttack": 494,
+                "plusAttack": 869,
+            },
+            10: {
+                "weaponEnchantMeleeAttack": 543,
+                "weaponEnchantRangeAttack": 543,
+                "weaponEnchantMagicAttack": 543,
+                "plusAttack": 918,
+            },
+            11: {
+                "weaponEnchantMeleeAttack": 597,
+                "weaponEnchantRangeAttack": 597,
+                "weaponEnchantMagicAttack": 597,
+                "plusAttack": 972,
+            },
+            12: {
+                "weaponEnchantMeleeAttack": 657,
+                "weaponEnchantRangeAttack": 657,
+                "weaponEnchantMagicAttack": 657,
+                "plusAttack": 1032,
+            },
+            13: {
+                "weaponEnchantMeleeAttack": 723,
+                "weaponEnchantRangeAttack": 723,
+                "weaponEnchantMagicAttack": 723,
+                "plusAttack": 1098,
+            },
+            14: {
+                "weaponEnchantMeleeAttack": 795,
+                "weaponEnchantRangeAttack": 795,
+                "weaponEnchantMagicAttack": 795,
+                "plusAttack": 1170,
+            },
+            15: {
+                "weaponEnchantMeleeAttack": 875,
+                "weaponEnchantRangeAttack": 875,
+                "weaponEnchantMagicAttack": 875,
+                "plusAttack": 1250,
+            },
+            16: {
+                "weaponEnchantMeleeAttack": 962,
+                "weaponEnchantRangeAttack": 962,
+                "weaponEnchantMagicAttack": 962,
+                "plusAttack": 1337,
+            },
+            17: {
+                "weaponEnchantMeleeAttack": 1058,
+                "weaponEnchantRangeAttack": 1058,
+                "weaponEnchantMagicAttack": 1058,
+                "plusAttack": 1433,
             }
+
+
+
         },
         sockets: 4
     },
@@ -3787,7 +3862,7 @@ export const shields: ItemTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトシールド",
-        icon: unknown,
+        icon: shield_magnus_celestite,
         availableRaces: ["Human", "Elf"],
         fixedBaseOptions: {
             'multiplyAllStatus': 10,
@@ -3920,7 +3995,7 @@ export const shields: ItemTemplate[] = [
     },
     {
         name: "イグニエルのシールド",
-        icon: unknown,
+        icon: shield_igniel,
         availableRaces: ["Human", "Elf"],
         fixedBaseOptions: {
             'multiplyPVPDefense': 5,
@@ -6421,7 +6496,7 @@ export const leggings: ItemTemplate[] = [
     },
     {
         name: "イグニエルのレギンス(攻)",
-        icon: leggings_igniel,
+        icon: leggings_igniel_attack,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 304,
@@ -7073,7 +7148,7 @@ export const boots: ItemTemplate[] = [
     },
     {
         name: "イグニエルのブーツ(攻)",
-        icon: boots_igniel,
+        icon: boots_igniel_attack,
         raceBaseOptions: {
             "Human": {
                 "physicalDefense": 197,
@@ -7947,7 +8022,7 @@ export const glasses: ItemTemplate[] = [
             'plusAttack': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: glasses_variant,
         synergyOptions: catastropheSynergisticOptions,
         synergyKey: "catastrophe"
     },
@@ -8063,7 +8138,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 75,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: glasses_megalith,
         synergyOptions: megalithSynergisticOptions,
         synergyKey: "megalith"
     },
@@ -8074,7 +8149,7 @@ export const glasses: ItemTemplate[] = [
             'plusAttack': 250,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: glasses_megalith,
         synergyOptions: tempestSynergisticOptions,
         synergyKey: "tempest"
     },
@@ -8085,7 +8160,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 250,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: glasses_megalith,
         synergyOptions: nephilimSynergisticOptions,
         synergyKey: "nephilim"
     },
@@ -8325,7 +8400,7 @@ export const hats: ItemTemplate[] = [
             'plusAttack': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: hat_variant,
         synergyOptions: catastropheSynergisticOptions,
         synergyKey: "catastrophe"
     },
@@ -8441,7 +8516,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 75,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: hat_megalith,
         synergyOptions: megalithSynergisticOptions,
         synergyKey: "megalith"
     },
@@ -8452,7 +8527,7 @@ export const hats: ItemTemplate[] = [
             'plusAttack': 250,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: hat_megalith,
         synergyOptions: tempestSynergisticOptions,
         synergyKey: "tempest"
     },
@@ -8463,7 +8538,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 250,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: hat_megalith,
         synergyOptions: nephilimSynergisticOptions,
         synergyKey: "nephilim"
     },
@@ -8703,7 +8778,7 @@ export const earrings: ItemTemplate[] = [
             'plusAttack': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: earrings_variant,
         synergyOptions: catastropheSynergisticOptions,
         synergyKey: "catastrophe"
     },
@@ -8819,7 +8894,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 75,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: earrings_megalith,
         synergyOptions: megalithSynergisticOptions,
         synergyKey: "megalith"
     },
@@ -8830,7 +8905,7 @@ export const earrings: ItemTemplate[] = [
             'plusAttack': 250,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: earrings_megalith,
         synergyOptions: tempestSynergisticOptions,
         synergyKey: "tempest"
     },
@@ -8841,7 +8916,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 250,
             'plusHitPoint': 2000,
         },
-        icon: unknown,
+        icon: earrings_megalith,
         synergyOptions: nephilimSynergisticOptions,
         synergyKey: "nephilim"
     },
@@ -9379,7 +9454,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: unknown,
+        icon: accessory_magus_ring,
     },
     {
         name: "メイガスブローチ",
@@ -9388,7 +9463,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: unknown,
+        icon: accessory_magus_brooch,
     },
     {
         name: "メイガスブレスレット",
@@ -9397,7 +9472,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: unknown,
+        icon: accessory_magus_bracelet,
 
     },
     {
@@ -9407,7 +9482,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: unknown,
+        icon: accessory_magus_necklace,
 
     },
     {
@@ -9419,7 +9494,7 @@ export const accessories: ItemTemplate[] = [
                 'plusAttack': 550,
             }
         },
-        icon: unknown,
+        icon: accessory_abyssal_jewel,
     },
     {
         name: "深淵の宝珠(白虎)",
@@ -9430,7 +9505,7 @@ export const accessories: ItemTemplate[] = [
                 'plusAttack': 550,
             }
         },
-        icon: unknown,
+        icon: accessory_abyssal_jewel,
     },
     {
         name: "深淵の宝珠(青龍)",
@@ -9441,7 +9516,7 @@ export const accessories: ItemTemplate[] = [
                 'plusAttack': 550,
             }
         },
-        icon: unknown,
+        icon: accessory_abyssal_jewel,
     },
     {
         name: "深淵の宝珠(朱雀)",
@@ -9452,7 +9527,7 @@ export const accessories: ItemTemplate[] = [
                 'plusAttack': 550,
             }
         },
-        icon: unknown,
+        icon: accessory_abyssal_jewel,
     },
     {
         name: "虚無の逆十字",
@@ -9460,7 +9535,7 @@ export const accessories: ItemTemplate[] = [
             'plusStatusAttack': 10000,
             'plusHitPoint': 75000,
         },
-        icon: unknown,
+        icon: accessory_nihility_inverted_cross,
     }
 ]
 
