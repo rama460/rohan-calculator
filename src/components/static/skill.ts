@@ -1986,10 +1986,10 @@ export const skills: Skill[] = [
                 multiplyShortTermArrowAttack: 50,
             },
             5: {
-                multiplyShortTermArrowAttack: 50,
+                multiplyShortTermArrowAttack: 70,
             },
             6: {
-                multiplyShortTermArrowAttack: 50,
+                multiplyShortTermArrowAttack: 100,
             }
         }
     },
