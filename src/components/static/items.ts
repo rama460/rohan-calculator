@@ -3384,14 +3384,34 @@ export const weapons: WeaponTemplate[] = [
         icon: unknown,
         type: "dagger",
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
-        enchantableBaseOptions: [
-            {
+        enchantableBaseOptions: {
+            0: {
                 "weaponBaseMeleeAttack": 1174,
             },
-        ],
+        },
         sockets: 4
     },
-
+    {
+        name: "グランドカイザーオニキスソード",
+        icon: unknown,
+        type: "sword",
+        availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
+        fixedBaseOptions: {
+            "weaponBaseMeleeAttack": 1138,
+        },
+        enchantableBaseOptions: {
+            0: {
+                "plusAttack": 130,
+            },
+            10: {
+                "weaponEnchantMeleeAttack": 218,
+                "weaponEnchantRangeAttack": 218,
+                "weaponEnchantMagicAttack": 218,
+                "plusAttack": 348
+            }
+        },
+        sockets: 4
+    },
 ]
 
 export const shields: ItemTemplate[] = [
