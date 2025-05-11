@@ -1,4 +1,4 @@
-import { atomFamily, atomWithDefault } from "jotai/utils";
+import { atomFamily } from "jotai/utils";
 import { atom } from "jotai";
 import { BuiltinWeaponTypes, Item, itemTemplates, SynergyKey, WeaponType } from "../../components/static/items";
 import { BuiltinOptionKeyType, BuiltinOptions } from "../../components/static/options";
@@ -213,11 +213,6 @@ const unminifiedItem = (minified: MinifiedItem | undefined, raceid: number, jobi
 
 }
 
-export const selectedItemStateFamily = atomFamily((key: keyof Equipments) =>
-    atomWithDefault<Item | undefined>((get) => {
-        return get(equipmentStateFamily(key));
-    })
-);
 
 export const equipmentSynergyCountState = atomFamily((param: keyof Equipments) =>
     atom<number>((get) => {

@@ -1,5 +1,5 @@
 import { Equipments } from "../../modules/state/items";
-import { Item } from "./items";
+import { ItemTemplate } from "./items";
 
 export type Option = {
     name: string;
@@ -914,7 +914,7 @@ export const BuiltinOptions = {
     },
 
 } as const;
-export const getCraftedOptions = (type: keyof Equipments, item: Item | undefined): CraftedOptions => {
+export const getCraftedOptions = (type: keyof Equipments, template: ItemTemplate): CraftedOptions => {
     if (type == "weapon") {
         return CraftedWeaponOptions;
     }
@@ -922,7 +922,7 @@ export const getCraftedOptions = (type: keyof Equipments, item: Item | undefined
         return CraftedArmorOptions;
     }
     if (type == "shield") {
-        if (item && "type" in item) {
+        if ("type" in template) {
             // for guardian dual sword style
             return CraftedWeaponOptions;
         }

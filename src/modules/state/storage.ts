@@ -155,6 +155,7 @@ export const useStorageContext = (name: string) => {
     const [rune4, setRune4] = useAtom(equipmentStateFamily("rune4"));
     const [rune5, setRune5] = useAtom(equipmentStateFamily("rune5"));
     const [rune6, setRune6] = useAtom(equipmentStateFamily("rune6"));
+
     // buffs
     const [selfBuffStatuses, setSelfBuffStatuses] = useAtom(buffStateFamily("Self"));
     const [groupBuffStatuses, setGroupBuffStatuses] = useAtom(buffStateFamily("Group"));

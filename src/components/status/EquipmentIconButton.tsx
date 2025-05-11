@@ -7,7 +7,7 @@ import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent
 import anyBackground from "../../assets/backgrounds/any.png"
 import { ItemTemplate } from "../static/items";
 import { useAtom, useAtomValue } from "jotai";
-import { Equipments, equipmentStateFamily, equipmentSynergyCountState, selectedItemStateFamily } from "../../modules/state/items";
+import { Equipments, equipmentStateFamily, equipmentSynergyCountState } from "../../modules/state/items";
 
 
 interface EquipmentIconButtonProps {
@@ -20,29 +20,11 @@ interface EquipmentIconButtonProps {
 export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items }) => {
     console.log(`render EquipmentIconButton ${equipmentType}`)
     const [equippedItem, setEquippedItem] = useAtom(equipmentStateFamily(equipmentType));
-    const [selectedItem, setSelectedItem] = useAtom(selectedItemStateFamily(equipmentType));
     const synergyCount = useAtomValue(equipmentSynergyCountState(equipmentType));
     const [openDialog, setOpenDialog] = React.useState(false);
 
     const handleOpen = () => setOpenDialog(true);
-    const handleConfirm = () => {
-        setOpenDialog(false);
-        if (!selectedItem) {
-            return;
-        }
-        setEquippedItem(selectedItem);
-    }
-    const handleRemove = () => {
-        setEquippedItem(undefined);
-        setOpenDialog(false);
-    }
-    const handleCancel = () => {
-        // FIXME: cancelするとダイアログが閉じる前に一瞬表示データが戻ってしまう
-        setOpenDialog(false);
-        if (equippedItem) {
-            setSelectedItem(equippedItem);
-        }
-    }
+    const handleClose = () => setOpenDialog(false);
     return (
         <>
             <Tooltip content={
@@ -52,13 +34,10 @@ export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipm
             <EquipmentDialog
                 equipmentType={equipmentType}
                 isOpen={openDialog}
-                onCancel={handleCancel}
-                onConfirm={handleConfirm}
-                onRemove={handleRemove}
+                onClose={handleClose}
                 title={title}
-                selectedItem={selectedItem}
-                setSelectedItem={setSelectedItem}
                 equippedItem={equippedItem}
+                setEquippedItem={setEquippedItem}
                 itemTemplates={items}
             />
 

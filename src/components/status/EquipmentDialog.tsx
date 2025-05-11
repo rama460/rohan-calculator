@@ -15,13 +15,10 @@ import { Equipments } from "../../modules/state/items.ts";
 interface EquipmentDialogProps {
     equipmentType: keyof Equipments
     isOpen: boolean;
-    onConfirm: () => void;
-    onRemove: () => void;
-    onCancel: () => void;
+    onClose: () => void;
     title: string;
-    selectedItem: Item | undefined;
-    setSelectedItem: (item: Item) => void;
     equippedItem: Item | undefined;
+    setEquippedItem: (item: Item | undefined) => void;
     itemTemplates: ItemTemplate[];
 }
 // FIXME: Reconsider the data structure of Item / Options, and states in this component
@@ -40,39 +37,29 @@ const ArrayToHash = (array: { name: BuiltinOptionKeyType, value: number }[]): { 
     return Object.assign({}, ...array.map((option) => ({ [option.name]: option.value })));
 }
 
-// FIXME: This component has some problems about synchronization between the state and the UI
-// ASIS:
-// - allways the state is remained as the last state when dialog closed
-// TOBE:
-// - if item is equipped
-//   - the dialog should be displayed value due to the equipped Item
-//   - so always initialize the state using equipped item when dialog opened 
-// - if item is not equipped
-//   - the dialog should be displayed value due to the last state dialog closed
-
-export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType, isOpen, onConfirm, onRemove, onCancel, title, selectedItem, setSelectedItem, equippedItem, itemTemplates }) => {
+export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType, isOpen, onClose, title, equippedItem, setEquippedItem, itemTemplates }) => {
     const raceid = useAtomValue(baseOptionStateFamily("raceid"));
     const jobid = useAtomValue(baseOptionStateFamily("jobid"));
 
     const availableItemTemplates = itemTemplates.filter((template) => template.availableRaces?.some(
-        //    (r) => (r === races[bases.raceid].name || r === races[bases.raceid].jobs[bases.jobid].name)) ?? false)
-        (r) => (r === races[raceid].name)) ?? true)
+        (r) => (r === races[raceid].name || r === races[raceid].jobs[jobid].name)) ?? true)
+
     const [name, setName] = React.useState(
-        selectedItem ? selectedItem.name : (
+        equippedItem ? equippedItem.name : (
             availableItemTemplates.length > 0 ?
                 availableItemTemplates[0].name : "none"));
     const [enchantLevel, setEnchantLevel] = React.useState(
-        selectedItem ? selectedItem.enchantLevel :
+        equippedItem ? equippedItem.enchantLevel :
             0);
     const [selectedItemTemplate, setSelectedItemTemplate] = React.useState<ItemTemplate>(
-        selectedItem ? availableItemTemplates.find((template) => (template.name === selectedItem.name)) ?? availableItemTemplates[0] : availableItemTemplates[0])
+        equippedItem ? availableItemTemplates.find((template) => (template.name === equippedItem.name)) ?? availableItemTemplates[0] : availableItemTemplates[0])
     const [baseOptions, setBaseOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
-        selectedItem ? hashToArray(selectedItem.baseOptions) :
+        equippedItem ? hashToArray(equippedItem.baseOptions) :
             availableItemTemplates.length > 0 ?
                 hashToArray(getInitialBaseOtions(availableItemTemplates[0], raceid, jobid, enchantLevel)) : []
     );
     const [craftedOptions, setCraftedOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
-        selectedItem ? hashToArray(selectedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : (
+        equippedItem ? hashToArray(equippedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : (
             selectedItemTemplate.sockets ?
                 Array.from(
                     { length: selectedItemTemplate.sockets }, (_) => ({ name: "none", value: 0 })
@@ -80,7 +67,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         )
     );
     const [additionalOptions, setAdditionalOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
-        selectedItem ? hashToArray(selectedItem.additionalOptions) :
+        equippedItem ? hashToArray(equippedItem.additionalOptions) :
             []);
     const handleChange = (event: SelectChangeEvent) => {
         setName(event.target.value as string);
@@ -100,6 +87,16 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         setSelectedItemTemplate(selectedItemTemplate);
     };
 
+    const handleConfirm = () => {
+        setEquippedItem({
+            enchantLevel: enchantLevel,
+            baseOptions: ArrayToHash(baseOptions),
+            additionalOptions: ArrayToHash(additionalOptions),
+            craftedOptions: ArrayToHash(craftedOptions),
+            ...selectedItemTemplate
+        })
+        onClose();
+    }
     const handleReset = () => {
         setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, raceid, jobid, enchantLevel)));
         setCraftedOptions(
@@ -110,15 +107,30 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         setAdditionalOptions([]);
     }
 
+    const handleRemove = () => {
+        setEquippedItem(undefined);
+        onClose();
+    }
+
+    const handleCancel = () => {
+        setName(equippedItem ? equippedItem.name : name);
+        setEnchantLevel(equippedItem ? equippedItem.enchantLevel : enchantLevel);
+        setBaseOptions(equippedItem ? hashToArray(equippedItem.baseOptions) : baseOptions);
+        setCraftedOptions(equippedItem ? hashToArray(equippedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : craftedOptions);
+        setAdditionalOptions(equippedItem ? hashToArray(equippedItem.additionalOptions) : additionalOptions);
+        setSelectedItemTemplate(equippedItem ? availableItemTemplates.find((template) => (template.name === equippedItem.name)) ?? availableItemTemplates[0] : selectedItemTemplate);
+        onClose();
+    }
+
     React.useEffect(() => {
-        setSelectedItem({
-            enchantLevel: enchantLevel,
-            baseOptions: ArrayToHash(baseOptions),
-            additionalOptions: ArrayToHash(additionalOptions),
-            craftedOptions: ArrayToHash(craftedOptions),
-            ...selectedItemTemplate
-        })
-    }, [baseOptions, additionalOptions, craftedOptions])
+        setName(equippedItem ? equippedItem.name : name);
+        setEnchantLevel(equippedItem ? equippedItem.enchantLevel : enchantLevel);
+        setBaseOptions(equippedItem ? hashToArray(equippedItem.baseOptions) : baseOptions);
+        setCraftedOptions(equippedItem ? hashToArray(equippedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : craftedOptions);
+        setAdditionalOptions(equippedItem ? hashToArray(equippedItem.additionalOptions) : additionalOptions);
+        setSelectedItemTemplate(equippedItem ? availableItemTemplates.find((template) => (template.name === equippedItem.name)) ?? availableItemTemplates[0] : selectedItemTemplate);
+
+    }, [equippedItem]);
     return (
         <React.Fragment>
             <Dialog
@@ -177,7 +189,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
                                 </Typography>
                                 {
                                     craftedOptions.map((option, index) => (
-                                        <EquipmentCraftedOption key={index} name={option.name} value={option.value} equipmentType={equipmentType} index={index} options={craftedOptions} setOptions={setCraftedOptions} />
+                                        <EquipmentCraftedOption key={index} name={option.name} value={option.value} equipmentType={equipmentType} template={selectedItemTemplate} index={index} options={craftedOptions} setOptions={setCraftedOptions} />
                                     ))
                                 }
                             </>) : (<></>)
@@ -200,13 +212,13 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
                     <Button onClick={handleReset} >
                         リセット
                     </Button>
-                    <Button onClick={onConfirm} >
+                    <Button onClick={handleConfirm} >
                         装備
                     </Button>
-                    {equippedItem ? <Button onClick={onRemove} >
+                    {equippedItem ? <Button onClick={handleRemove} >
                         解除
                     </Button> : <></>}
-                    <Button onClick={onCancel} >
+                    <Button onClick={handleCancel} >
                         キャンセル
                     </Button>
                 </DialogActions>
