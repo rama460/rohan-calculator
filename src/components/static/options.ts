@@ -675,7 +675,14 @@ export const BuiltinOptions = {
     'multiplyArrowAttack': {
         name: 'multiplyArrowAttack',
         displayColor: 'green',
-        displayName: '矢攻撃力',
+        displayName: '矢攻撃力(永続)',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyShortTermArrowAttack': {
+        name: 'multiplyShortTermArrowAttack',
+        displayColor: 'green',
+        displayName: '矢攻撃力(短期)',
         unit: 'percent',
         operationType: 'multiply'
     },

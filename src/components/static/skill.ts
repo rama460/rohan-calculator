@@ -1971,25 +1971,25 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyArrowAttack: 10,
+                multiplyShortTermArrowAttack: 10,
             },
             1: {
-                multiplyArrowAttack: 20,
+                multiplyShortTermArrowAttack: 20,
             },
             2: {
-                multiplyArrowAttack: 30,
+                multiplyShortTermArrowAttack: 30,
             },
             3: {
-                multiplyArrowAttack: 40,
+                multiplyShortTermArrowAttack: 40,
             },
             4: {
-                multiplyArrowAttack: 50,
+                multiplyShortTermArrowAttack: 50,
             },
             5: {
-                multiplyArrowAttack: 50,
+                multiplyShortTermArrowAttack: 50,
             },
             6: {
-                multiplyArrowAttack: 50,
+                multiplyShortTermArrowAttack: 50,
             }
         }
     },
@@ -2332,31 +2332,31 @@ export const skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyArrowAttack: 10,
+                multiplyShortTermArrowAttack: 10,
                 multiplyAttackSpeed: 10,
             },
             1: {
-                multiplyArrowAttack: 20,
+                multiplyShortTermArrowAttack: 20,
                 multiplyAttackSpeed: 12,
             },
             2: {
-                multiplyArrowAttack: 30,
+                multiplyShortTermArrowAttack: 30,
                 multiplyAttackSpeed: 14,
             },
             3: {
-                multiplyArrowAttack: 40,
+                multiplyShortTermArrowAttack: 40,
                 multiplyAttackSpeed: 16,
             },
             4: {
-                multiplyArrowAttack: 50,
+                multiplyShortTermArrowAttack: 50,
                 multiplyAttackSpeed: 18,
             },
             5: {
-                multiplyArrowAttack: 70,
+                multiplyShortTermArrowAttack: 70,
                 multiplyAttackSpeed: 20,
             },
             6: {
-                multiplyArrowAttack: 100,
+                multiplyShortTermArrowAttack: 100,
                 multiplyAttackSpeed: 25,
             }
         }

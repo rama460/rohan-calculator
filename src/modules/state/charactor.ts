@@ -176,7 +176,7 @@ const calculateRangeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
         Math.floor(
             (
                 Math.floor(
-                    (getter("weaponBaseRangeAttack") + Math.floor(getter("arrowAttack") * (100 + getter("multiplyArrowAttack")) / 100)) *
+                    (getter("weaponBaseRangeAttack") + Math.floor(getter("arrowAttack") * (100 + getter("multiplyArrowAttack")) / 100 * (100 + getter("multiplyShortTermArrowAttack")) / 100)) *
                     (100 + getter("multiplyWeaponAttack")) / 100
                 ) +
                 getter("weaponEnchantRangeAttack") + getter("plusRangeAttack") + getter("plusAttack")
