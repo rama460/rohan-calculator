@@ -5,4 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: process.env.GITHUB_PAGES ? 'rohan-calculator' : './',
   plugins: [react()],
+  define: {
+    __APP_CONFIG__: {
+      basename: process.env.GITHUB_PAGES ? '/rohan-calculator/' : '/',
+    }
+  }
 })
