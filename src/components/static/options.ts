@@ -875,6 +875,21 @@ export const BuiltinOptions = {
         unit: 'percent',
         operationType: 'multiply'
     },
+
+    'shieldPhysicalDefense': {
+        name: 'shieldPhysicalDefense',
+        displayColor: 'white',
+        displayName: '物理防御力(盾)',
+        unit: 'number',
+        operationType: 'absolute',
+    },
+    'shieldMagicalDefense': {
+        name: 'shieldMagicalDefense',
+        displayColor: 'white',
+        displayName: '魔法防御力(盾)',
+        unit: 'number',
+        operationType: 'absolute',
+    },
     // statuses total of meta, base, init.
     // not include value from equipment, title, etc.
     'strength': {

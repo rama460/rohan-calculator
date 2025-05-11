@@ -3892,12 +3892,12 @@ export const shields: ItemTemplate[] = [
         },
         raceBaseOptions: {
             "Human": {
-                "physicalDefense": 1022,
-                "magicalDefense": 627,
+                "shieldPhysicalDefense": 1022,
+                "shieldMagicalDefense": 627,
             },
             "Elf": {
-                'physicalDefense': 836,
-                'magicalDefense': 871,
+                'shieldPhysicalDefense': 836,
+                'shieldMagicalDefense': 871,
             }
         },
         enchantableBaseOptions: {
@@ -4003,12 +4003,12 @@ export const shields: ItemTemplate[] = [
         availableRaces: ["Human", "Elf"],
         raceBaseOptions: {
             "Human": {
-                "physicalDefense": 851,
-                "magicalDefense": 522,
+                "shieldPhysicalDefense": 851,
+                "shieldMagicalDefense": 522,
             },
             "Elf": {
-                "physicalDefense": 696,
-                "magicalDefense": 726,
+                "shieldPhysicalDefense": 696,
+                "shieldMagicalDefense": 726,
             },
         },
         sockets: 3
@@ -4023,12 +4023,12 @@ export const shields: ItemTemplate[] = [
         },
         raceBaseOptions: {
             "Human": {
-                "physicalDefense": 337,
-                "magicalDefense": 207,
+                "shieldPhysicalDefense": 337,
+                "shieldMagicalDefense": 207,
             },
             "Elf": {
-                "physicalDefense": 276,
-                "magicalDefense": 288,
+                "shieldPhysicalDefense": 276,
+                "shieldMagicalDefense": 288,
             },
         },
         enchantableBaseOptions: {

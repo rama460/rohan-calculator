@@ -213,6 +213,7 @@ const calculatePhysicalDefense = (getter: (key: BuiltinOptionKeyType | BaseOptio
         calculateVitality(getter) * 2 +
         calculateStrength(getter) +
         Math.floor((getter("physicalDefense") + getter("plusPhysicalDefense") + getter("plusDefense")) * (100 + getter("multiplyArmorDefense")) / 100) +
+        Math.floor(getter("shieldPhysicalDefense") * (100 + getter("multiplyShieldDefense")) / 100) +
         Math.floor((getter("plusPhysicalDefenseMultiplyIntelligenceAndMentality")) * (calculateIntelligence(getter) + calculateMentality(getter)) / 100)
     ) * (100 + getter("multiplyPhysicalDefense") + getter("multiplyDefense")) / 100);
 }
@@ -221,7 +222,8 @@ const calculateMagicalDefense = (getter: (key: BuiltinOptionKeyType | BaseOption
         (getter("level") > 70 ? getter("level") * 3 : getter("level") > 50 ? getter("level") * 2 : getter("level")) +
         calculateMentality(getter) * 2 +
         calculateIntelligence(getter) +
-        Math.floor((getter("magicalDefense") + getter("plusMagicalDefense") + getter("plusDefense")) * (100 + getter("multiplyArmorDefense")) / 100)
+        Math.floor((getter("magicalDefense") + getter("plusMagicalDefense") + getter("plusDefense")) * (100 + getter("multiplyArmorDefense")) / 100) +
+        Math.floor(getter("shieldMagicalDefense") * (100 + getter("multiplyShieldDefense")) / 100)
     ) * (100 + getter("multiplyMagicalDefense") + getter("multiplyDefense")) / 100);
 }
 const calculateAccuracy = (getter: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
