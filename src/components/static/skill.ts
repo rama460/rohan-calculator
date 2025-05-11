@@ -653,7 +653,7 @@ export const skills: Skill[] = [
     },
     // ディフェンダー
     {
-        name: "bluntMasteryDef",
+        name: "DefenderBluntMastery",
         displayName: "ブラントマスタリー",
         icon: defender_blunt_mastery,
         category: "Buff",
@@ -1110,7 +1110,7 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "staffMastery",
+        name: "PriestStaffMastery",
         displayName: "スタッフマスタリー",
         icon: priest_staff_mastery,
         category: "Buff",
@@ -1469,7 +1469,7 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "bluntMastery",
+        name: "TemplerBluntMastery",
         displayName: "ブラントマスタリー",
         icon: templer_blunt_mastery,
         category: "Buff",
@@ -4073,7 +4073,7 @@ export const skills: Skill[] = [
     },
     // ウォーロック
     {
-        name: "staffMastery",
+        name: "WarrockStaffMastery",
         displayName: "スタッフマスタリー",
         icon: warrock_staff_mastery,
         category: "Buff",
@@ -4226,7 +4226,7 @@ export const skills: Skill[] = [
     },
     // ウィザード
     {
-        name: "staffMastery",
+        name: "WizardStaffMastery",
         displayName: "スタッフマスタリー",
         icon: wizard_staff_mastery,
         category: "Buff",
