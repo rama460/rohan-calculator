@@ -154,7 +154,7 @@ const calculateMagicAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
             // weapons
             Math.floor(
                 (
-                    getter("weaponBaseMagicAttack") * (100 + getter("multiplyWeaponAttack") / 100) +
+                    Math.floor(getter("weaponBaseMagicAttack") * (100 + getter("multiplyWeaponAttack")) / 100) +
                     getter("weaponEnchantMagicAttack") + getter("plusMagicAttack") + getter("plusAttack")
                 ) * (
                     100 + getter("multiplyMagicWeaponAttack")
@@ -162,8 +162,8 @@ const calculateMagicAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKey
             )
         ) * (
             100 + getter("multiplyMagicAttack") + getter("multiplyAttack")
-        ) / 100)
-
+        ) / 100
+    )
 }
 const calculateRangeAttack = (getter: (key: BuiltinOptionKeyType | BaseOptionKeyType) => number): number => {
     const levelAttack = getter("level") > 70 ? getter("level") * 4 : getter("level") > 50 ? getter("level") * 3 : getter("level") * 2
