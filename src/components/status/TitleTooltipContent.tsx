@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { BuiltinOptionKeyType, BuiltinOptions } from '../static/options.ts';
-import { titles } from '../static/titles.ts';
+import { BuiltinOptionKeyType, BuiltinOptions } from '../../static/options.ts';
+import { titles } from '../../static/titles.ts';
 import EquipmentTooltipContentRow from './EquipmentTooltipContentRow.tsx';
 
 interface TitleTooltipContentProps {

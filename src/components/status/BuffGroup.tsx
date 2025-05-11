@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid2";
-import { Skill, SkillOrigin } from "../static/skill";
+import { Skill, SkillOrigin } from "../../static/skill";
 import BuffIconButton from "./BuffIconButton";
 import { useAtom } from "jotai";
 import { buffStateFamily } from "../../modules/state/skills";

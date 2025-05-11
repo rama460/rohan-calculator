@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
 import { atomFamily } from "jotai/utils";
 import { baseOptionStateFamily } from "./bases";
-import { races } from "../../components/static/races";
+import { races } from "../../static/races";
 
 export const statuses = [
     "strength",

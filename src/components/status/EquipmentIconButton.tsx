@@ -5,7 +5,7 @@ import EquipmentTooltipContent from "./EquipmentTooltipContent"
 import EquipmentDialog from "./EquipmentDialog";
 import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent";
 import anyBackground from "../../assets/backgrounds/any.png"
-import { ItemTemplate } from "../static/items";
+import { ItemTemplate } from "../../static/items";
 import { useAtom, useAtomValue } from "jotai";
 import { Equipments, equipmentStateFamily, equipmentSynergyCountState } from "../../modules/state/items";
 

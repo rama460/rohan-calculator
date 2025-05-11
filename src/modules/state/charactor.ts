@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 import { allOptionAggregorStateFamily } from "./options";
 import { atomFamily } from "jotai/utils";
-import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../components/static/options";
+import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../static/options";
 import { BaseOptionKeyType, baseOptionStateFamily } from "./bases";
-import { races } from "../../components/static/races";
+import { races } from "../../static/races";
 
 export const charactorStateNames = [
     "strength",

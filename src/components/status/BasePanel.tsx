@@ -1,13 +1,13 @@
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
-import { races } from "../static/races";
-import { titles } from "../static/titles";
+import { races } from "../../static/races";
+import { titles } from "../../static/titles";
 import Tooltip from "../common/Tooltip";
 import TitleTooltipContent from "./TitleTooltipContent";
 import { useAtom } from "jotai";
 import { baseOptionStateFamily, titleNameState } from "../../modules/state/bases";
 import { buffStateFamily } from "../../modules/state/skills";
-import { skills } from "../static/skill";
+import { skills } from "../../static/skill";
 
 interface BasePanelProps {
 }

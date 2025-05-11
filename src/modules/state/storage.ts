@@ -3,7 +3,7 @@ import { atomFamily, atomWithStorage, RESET } from "jotai/utils";
 import { baseOptionStateFamily, titleNameState } from "./bases";
 import { baseStatusState, metaStatusState } from "./statuses";
 import { equipmentStateFamily } from "./items";
-import { Item } from "../../components/static/items";
+import { Item } from "../../static/items";
 import { BuffState, buffStateFamily } from "./skills";
 
 type StoredCharactorContext = {

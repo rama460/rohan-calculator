@@ -1,6 +1,6 @@
 import { Box, TextField, Typography } from "@mui/material";
 import { useAtomValue } from "jotai";
-import { BuiltinOptionKeyType, BuiltinOptions, getDisplayOptionName } from "../static/options";
+import { BuiltinOptionKeyType, BuiltinOptions, getDisplayOptionName } from "../../static/options";
 import { allOptionAggregorStateFamily } from "../../modules/state/options";
 
 interface DetailParameterFieldProps {

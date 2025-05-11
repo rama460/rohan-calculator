@@ -1,5 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { BuiltinOptionKeyType, BuiltinOptions } from "../static/options";
+import { BuiltinOptionKeyType, BuiltinOptions } from "../../static/options";
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from "react";
 

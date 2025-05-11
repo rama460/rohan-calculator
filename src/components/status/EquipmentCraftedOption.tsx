@@ -1,9 +1,9 @@
 import { Box, Button, FormControl, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { BuiltinOptionKeyType, BuiltinOptions, getCraftedOptions, getDisplayOptionName } from "../static/options";
+import { BuiltinOptionKeyType, BuiltinOptions, getCraftedOptions, getDisplayOptionName } from "../../static/options";
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from "react";
 import { Equipments } from "../../modules/state/items";
-import { ItemTemplate } from "../static/items";
+import { ItemTemplate } from "../../static/items";
 
 interface EquipmentCraftedOptionProps {
     name: BuiltinOptionKeyType;

@@ -1,10 +1,10 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react"
-import { ItemTemplate, Item, getInitialBaseOtions } from '../static/items.ts'
+import { ItemTemplate, Item, getInitialBaseOtions } from '../../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
-import { BuiltinOptionKeyType } from "../static/options.ts";
-import { races } from "../static/races.ts";
+import { BuiltinOptionKeyType } from "../../static/options.ts";
+import { races } from "../../static/races.ts";
 import EquipmentBaseOption from "./EquipmentBaseOption.tsx";
 import EquipmentCraftedOption from "./EquipmentCraftedOption.tsx";
 import { useAtomValue } from "jotai";

@@ -1,4 +1,4 @@
-import { Equipments } from "../../modules/state/items";
+import { Equipments } from "../modules/state/items";
 import { ItemTemplate } from "./items";
 
 export type Option = {

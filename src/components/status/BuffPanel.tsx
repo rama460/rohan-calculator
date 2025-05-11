@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid2";
-import { skills } from "../static/skill";
+import { skills } from "../../static/skill";
 import { useAtomValue } from "jotai";
 import { baseOptionStateFamily } from "../../modules/state/bases";
 import { BuffGroup } from "./BuffGroup";

@@ -3,7 +3,7 @@ import IconButton from "../common/IconButton";
 import Tooltip from "../common/Tooltip";
 import BuffTooltipContent from "./BuffTooltipContent";
 import { Box, Checkbox, TextField } from "@mui/material";
-import { Skill } from "../static/skill";
+import { Skill } from "../../static/skill";
 
 interface BuffIconButtonProps {
     buffSpec: Skill;

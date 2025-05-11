@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
-import { Item } from '../static/items.ts'
+import { Item } from '../../static/items.ts'
 import { EquipmentTooltipContentRowProps, EquipmentTooltipContentRow } from "./EquipmentTooltipContentRow";
 import React from 'react';
-import { BuiltinOptionKeyType, BuiltinOptions } from '../static/options.ts';
-import { races } from '../static/races.ts';
+import { BuiltinOptionKeyType, BuiltinOptions } from '../../static/options.ts';
+import { races } from '../../static/races.ts';
 
 interface EquipmentTooltipContentProps {
     currentItem: Item

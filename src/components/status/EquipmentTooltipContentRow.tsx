@@ -1,5 +1,5 @@
 import React from "react";
-import { OptionOperationType } from "../static/options";
+import { OptionOperationType } from "../../static/options";
 
 
 export type EquipmentTooltipContentRowProps = {

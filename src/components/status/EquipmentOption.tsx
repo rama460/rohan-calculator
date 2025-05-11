@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import { BuiltinOptionKeys, BuiltinOptionKeyType, BuiltinOptions, getDisplayOptionName } from "../static/options";
+import { BuiltinOptionKeys, BuiltinOptionKeyType, BuiltinOptions, getDisplayOptionName } from "../../static/options";
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from "react";
 

@@ -13,7 +13,7 @@ import background_glasses from '../../assets/backgrounds/glasses.png'
 import background_costume from '../../assets/backgrounds/costume.png'
 import React from "react";
 import EquipmentIconButton from './EquipmentIconButton.tsx'
-import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, runes, s_talismans, shields, tunics, w_talismans, weapons } from '../static/items.ts'
+import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, runes, s_talismans, shields, tunics, w_talismans, weapons } from '../../static/items.ts'
 import { useAtomValue } from 'jotai'
 import { baseOptionStateFamily } from '../../modules/state/bases.ts'
 

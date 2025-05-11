@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid2";
-import { BuiltinOptionKeys } from "../static/options";
+import { BuiltinOptionKeys } from "../../static/options";
 import DetailParameterField from "./DetailParameterField";
 
 export const DetailPanel = () => {

@@ -1,9 +1,9 @@
 import { atomFamily } from "jotai/utils";
 import { atom } from "jotai";
-import { BuiltinWeaponTypes, Item, itemTemplates, SynergyKey, WeaponType } from "../../components/static/items";
-import { BuiltinOptionKeyType, BuiltinOptions } from "../../components/static/options";
+import { BuiltinWeaponTypes, Item, itemTemplates, SynergyKey, WeaponType } from "../../static/items";
+import { BuiltinOptionKeyType, BuiltinOptions } from "../../static/options";
 import { baseOptionStateFamily } from "./bases";
-import { RaceNameOrTrinityJobName, races } from "../../components/static/races";
+import { RaceNameOrTrinityJobName, races } from "../../static/races";
 import { atomWithCompressedHash } from "./common";
 export const equipmentSlotNames = [
     "helmet",
