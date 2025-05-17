@@ -3154,7 +3154,7 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "blueDefence",
+        name: "dragonKnightBlueDefence",
         displayName: "ブルーディフェンス",
         icon: dragonknight_blue_defence,
         category: "Buff",
@@ -3557,7 +3557,7 @@ export const skills: Skill[] = [
         }
     },
     {
-        name: "blueDefence",
+        name: "dragonSageBlueDefence",
         displayName: "ブルーディフェンス",
         icon: dragonsage_blue_defence,
         category: "Buff",
