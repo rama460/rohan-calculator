@@ -3097,7 +3097,7 @@ export const skills: Skill[] = [
     },
     // ドラゴンナイト
     {
-        name: "zenMastery",
+        name: "dragonKnightZenMastery",
         displayName: "ゼンマスタリー",
         icon: dragonknight_zen_mastery,
         category: "Buff",
@@ -3500,7 +3500,7 @@ export const skills: Skill[] = [
     },
     // ドラゴンセージ
     {
-        name: "zenMastery",
+        name: "dragonSageZenMastery",
         displayName: "ゼンマスタリー",
         icon: dragonsage_zen_mastery,
         category: "Buff",
