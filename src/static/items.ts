@@ -11,6 +11,8 @@ import blunt_magnus_celestite from "../assets/items/blunt_magnus_celestite.png";
 import dualsword_magnus_celestite from "../assets/items/dualsword_magnus_celestite.png";
 import polearm_magnus_celestite from "../assets/items/polearm_magnus_celestite.png";
 import staff_magnus_celestite from "../assets/items/staff_magnus_celestite.png";
+import zen_magnus_celestite from "../assets/items/zen_magnus_celestite.png";
+import orb_magnus_celestite from "../assets/items/orb_magnus_celestite.png";
 
 import dagger_load_of_element from "../assets/items/dagger_load_of_element.png";
 import sword_load_of_element from "../assets/items/sword_load_of_element.png";
@@ -1800,7 +1802,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトゼン",
-        icon: unknown,
+        icon: zen_magnus_celestite,
         type: "zen",
         availableRaces: ["Dekan"],
         fixedBaseOptions: {
@@ -2582,7 +2584,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトオーブ",
-        icon: unknown,
+        icon: orb_magnus_celestite,
         type: "orb",
         availableRaces: ["Rumir"],
         fixedBaseOptions: {
