@@ -7,7 +7,7 @@ import TitleTooltipContent from "./TitleTooltipContent";
 import { useAtom } from "jotai";
 import { baseOptionStateFamily, titleNameState } from "../../modules/state/bases";
 import { buffStateFamily } from "../../modules/state/skills";
-import { skills } from "../../static/skill";
+import { skills } from "../../static/skills/skill";
 
 interface BasePanelProps {
 }

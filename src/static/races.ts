@@ -269,7 +269,7 @@ export const races: Race[] = [
         jobs: [
             {
                 id: 0,
-                name: "Mar",
+                name: "Mer",
                 displayName: "メル",
             },
             {
