@@ -1,5 +1,5 @@
 import { atomFamily } from "jotai/utils";
-import { SkillOrigin, skills } from "../../static/skill";
+import { SkillOrigin, skills } from "../../static/skills/skill";
 import { atom } from "jotai";
 import { atomWithCompressedHash } from "./common";
 

@@ -8,6 +8,25 @@ import bow_grand_kaiser_onixy from "../assets/items/bow_grand_kaiser_onixy.png";
 import crossbow_magnus_celestite from "../assets/items/crossbow_magnus_celestite.png";
 import katar_magnus_celestite from "../assets/items/katar_magnus_celestite.png";
 import blunt_magnus_celestite from "../assets/items/blunt_magnus_celestite.png";
+import dualsword_magnus_celestite from "../assets/items/dualsword_magnus_celestite.png";
+import polearm_magnus_celestite from "../assets/items/polearm_magnus_celestite.png";
+import staff_magnus_celestite from "../assets/items/staff_magnus_celestite.png";
+import zen_magnus_celestite from "../assets/items/zen_magnus_celestite.png";
+import orb_magnus_celestite from "../assets/items/orb_magnus_celestite.png";
+
+import dagger_load_of_element from "../assets/items/dagger_load_of_element.png";
+import sword_load_of_element from "../assets/items/sword_load_of_element.png";
+import axe_load_of_element from "../assets/items/axe_load_of_element.png";
+import blunt_load_of_element from "../assets/items/blunt_load_of_element.png";
+import dualsword_load_of_element from "../assets/items/dualsword_load_of_element.png";
+import polearm_load_of_element from "../assets/items/polearm_load_of_element.png";
+import katar_load_of_element from "../assets/items/katar_load_of_element.png";
+import zen_load_of_element from "../assets/items/zen_load_of_element.png";
+import staff_load_of_element from "../assets/items/staff_load_of_element.png";
+import bow_load_of_element from "../assets/items/bow_load_of_element.png";
+import crossbow_load_of_element from "../assets/items/crossbow_load_of_element.png";
+import glove_load_of_element from "../assets/items/glove_load_of_element.png";
+import orb_load_of_element from "../assets/items/orb_load_of_element.png";
 
 import helmet_magnus_celestite from "../assets/items/helmet_magnus_celestite.png";
 import helmet_zeta_obsidian from "../assets/items/helmet_zeta_obsidian.png";
@@ -61,6 +80,8 @@ import accessory_magus_bracelet from "../assets/items/accessory_magus_bracelet.p
 import accessory_magus_necklace from "../assets/items/accessory_magus_necklace.png";
 import accessory_abyssal_jewel from "../assets/items/accessory_abyssal_jewel.png";
 import accessory_nihility_inverted_cross from "../assets/items/accessory_nihility_inverted_cross.png";
+import accessory_mass_of_sloth from "../assets/items/accessory_mass_of_sloth.png";
+import accessory_greedy_necklace from "../assets/items/accessory_greedy_necklace.png";
 
 import hat_roha from "../assets/items/hat_roha.png";
 import hat_variant from "../assets/items/hat_variant.png";
@@ -72,6 +93,8 @@ import hat_hellfire from "../assets/items/hat_hellfire.png";
 import hat_nosferatu from "../assets/items/hat_nosferatu.png";
 import hat_extend from "../assets/items/hat_extend.png";
 import hat_megalith from "../assets/items/hat_megalith.png";
+import hat_disaster from "../assets/items/hat_disaster.png";
+import hat_gargantua from "../assets/items/hat_gargantua.png";
 
 import glasses_roha from "../assets/items/glasses_roha.png";
 import glasses_variant from "../assets/items/glasses_variant.png";
@@ -83,6 +106,8 @@ import glasses_hellfire from "../assets/items/glasses_hellfire.png";
 import glasses_nosferatu from "../assets/items/glasses_nosferatu.png";
 import glasses_extend from "../assets/items/glasses_extend.png";
 import glasses_megalith from "../assets/items/glasses_megalith.png";
+import glasses_disaster from "../assets/items/glasses_disaster.png";
+import glasses_gargantua from "../assets/items/glasses_gargantua.png";
 
 import earrings_roha from "../assets/items/earrings_roha.png";
 import earrings_variant from "../assets/items/earrings_variant.png";
@@ -94,6 +119,8 @@ import earrings_hellfire from "../assets/items/earrings_hellfire.png";
 import earrings_nosferatu from "../assets/items/earrings_nosferatu.png";
 import earrings_extend from "../assets/items/earrings_extend.png";
 import earrings_megalith from "../assets/items/earrings_megalith.png";
+import earrings_disaster from "../assets/items/earrings_disaster.png";
+import earrings_gargantua from "../assets/items/earrings_gargantua.png";
 
 import costume_roha from "../assets/items/costume_roha.png";
 import constume_victorious from "../assets/items/costume_victorious.png";
@@ -1189,7 +1216,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトデュアルソード",
-        icon: unknown,
+        icon: dualsword_magnus_celestite,
         type: "dualsword",
         availableRaces: ["Giant"],
         fixedBaseOptions: {
@@ -1384,7 +1411,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトポールアーム",
-        icon: unknown,
+        icon: polearm_magnus_celestite,
         type: "polearm",
         availableRaces: ["Giant"],
         fixedBaseOptions: {
@@ -1775,7 +1802,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトゼン",
-        icon: unknown,
+        icon: zen_magnus_celestite,
         type: "zen",
         availableRaces: ["Dekan"],
         fixedBaseOptions: {
@@ -2361,7 +2388,7 @@ export const weapons: WeaponTemplate[] = [
 
     {
         name: "マグヌスセレスタイトスタッフ",
-        icon: unknown,
+        icon: staff_magnus_celestite,
         type: "staff",
         availableRaces: ["Elf", "DarkElf"],
         fixedBaseOptions: {
@@ -2557,7 +2584,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "マグヌスセレスタイトオーブ",
-        icon: unknown,
+        icon: orb_magnus_celestite,
         type: "orb",
         availableRaces: ["Rumir"],
         fixedBaseOptions: {
@@ -2949,7 +2976,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントダガー",
-        icon: unknown,
+        icon: dagger_load_of_element,
         type: "dagger",
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
         fixedBaseOptions: {
@@ -2964,7 +2991,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントソード",
-        icon: unknown,
+        icon: sword_load_of_element,
         type: "sword",
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
         fixedBaseOptions: {
@@ -2979,7 +3006,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントクラブ",
-        icon: unknown,
+        icon: blunt_load_of_element,
         type: "blunt",
         availableRaces: ["Human", "Elf", "Giant"],
         fixedBaseOptions: {
@@ -2994,7 +3021,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントメイス",
-        icon: unknown,
+        icon: blunt_load_of_element,
         type: "blunt",
         availableRaces: ["Human", "Elf", "Giant"],
         fixedBaseOptions: {
@@ -3009,7 +3036,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントアクス",
-        icon: unknown,
+        icon: axe_load_of_element,
         type: "axe",
         availableRaces: ["Human", "Giant"],
         fixedBaseOptions: {
@@ -3024,7 +3051,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントデュアルソード",
-        icon: unknown,
+        icon: dualsword_load_of_element,
         type: "dualsword",
         availableRaces: ["Giant"],
         fixedBaseOptions: {
@@ -3039,7 +3066,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントポールアーム",
-        icon: unknown,
+        icon: polearm_load_of_element,
         type: "polearm",
         availableRaces: ["Giant"],
         fixedBaseOptions: {
@@ -3054,7 +3081,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントカタール",
-        icon: unknown,
+        icon: katar_load_of_element,
         type: "katar",
         availableRaces: ["Dan"],
         fixedBaseOptions: {
@@ -3069,7 +3096,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントゼン",
-        icon: unknown,
+        icon: zen_load_of_element,
         type: "zen",
         availableRaces: ["Dekan"],
         fixedBaseOptions: {
@@ -3084,7 +3111,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントチャル",
-        icon: unknown,
+        icon: zen_load_of_element,
         type: "zen",
         availableRaces: ["Dekan"],
         fixedBaseOptions: {
@@ -3099,7 +3126,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントスタッフ",
-        icon: unknown,
+        icon: staff_load_of_element,
         type: "staff",
         availableRaces: ["Elf", "DarkElf"],
         fixedBaseOptions: {
@@ -3114,7 +3141,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントボウ",
-        icon: unknown,
+        icon: bow_load_of_element,
         type: "bow",
         availableRaces: ["HalfElf"],
         fixedBaseOptions: {
@@ -3129,7 +3156,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントクロスボウ",
-        icon: unknown,
+        icon: crossbow_load_of_element,
         type: "crossbow",
         availableRaces: ["HalfElf"],
         fixedBaseOptions: {
@@ -3144,7 +3171,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントグローブ",
-        icon: unknown,
+        icon: glove_load_of_element,
         type: "glove",
         availableRaces: ["Noir"],
         fixedBaseOptions: {
@@ -3159,7 +3186,7 @@ export const weapons: WeaponTemplate[] = [
     },
     {
         name: "ロードオブエレメントオーブ",
-        icon: unknown,
+        icon: orb_load_of_element,
         type: "orb",
         availableRaces: ["Rumir"],
         fixedBaseOptions: {
@@ -8031,7 +8058,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: glasses_gargantua,
         synergyOptions: gargantuaSynergisticOptions,
         synergyKey: "gargantua"
     },
@@ -8136,7 +8163,7 @@ export const glasses: ItemTemplate[] = [
             'plusAttack': 5000,
             'plusHitPoint': 40000,
         },
-        icon: unknown,
+        icon: glasses_disaster,
         synergyOptions: disasterSynergisticOptions,
         synergyKey: "disaster"
     },
@@ -8409,7 +8436,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: hat_gargantua,
         synergyOptions: gargantuaSynergisticOptions,
         synergyKey: "gargantua"
     },
@@ -8514,7 +8541,7 @@ export const hats: ItemTemplate[] = [
             'plusAttack': 5000,
             'plusHitPoint': 40000,
         },
-        icon: unknown,
+        icon: hat_disaster,
         synergyOptions: disasterSynergisticOptions,
         synergyKey: "disaster"
     },
@@ -8787,7 +8814,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: earrings_gargantua,
         synergyOptions: gargantuaSynergisticOptions,
         synergyKey: "gargantua"
     },
@@ -8892,7 +8919,7 @@ export const earrings: ItemTemplate[] = [
             'plusAttack': 5000,
             'plusHitPoint': 40000,
         },
-        icon: unknown,
+        icon: earrings_disaster,
         synergyOptions: disasterSynergisticOptions,
         synergyKey: "disaster"
     },
@@ -9556,6 +9583,26 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 75000,
         },
         icon: accessory_nihility_inverted_cross,
+    },
+    {
+        name: "怠惰の塊",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'multiplyHitPoint': 50,
+            'multiplySkillAttack': 25,
+            'multiplyPVPDefense': 5,
+        },
+        icon: accessory_mass_of_sloth,
+    },
+    {
+        name: "貪欲の首輪",
+        fixedBaseOptions: {
+            'plusAllStatus': 750,
+            'multiplyHitPoint': 25,
+            'multiplyPVPAttack': 10,
+            'multiplyPVPDefense': 5,
+        },
+        icon: accessory_greedy_necklace,
     }
 ]
 

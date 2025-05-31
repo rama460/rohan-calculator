@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid2";
-import { Skill, SkillOrigin } from "../../static/skill";
+import { Skill, SkillOrigin } from "../../static/skills/skill";
 import BuffIconButton from "./BuffIconButton";
 import { useAtom } from "jotai";
 import { buffStateFamily } from "../../modules/state/skills";
@@ -37,7 +37,7 @@ export const BuffGroup: React.FC<BuffGroupProps> = ({ title, buffOrigin, buffs }
                     </Box>
                 </Box>
                 <Grid container>
-                    {buffs.map((buff, index) => (
+                    {buffs.filter((buff) => buff.category === "Buff" || buff.category === "Passive").map((buff, index) => (
                         <Grid key={index} size={{ md: 6, xs: 6 }}>
                             <BuffIconButton buffSpec={buff} buffState={buffStatuses.find((state) => state.name === buff.name) ?? undefined} setBuff={setBuff} />
                         </Grid>
