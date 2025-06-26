@@ -295,6 +295,12 @@ export const getInitialBaseOtions = (itemTemplate: ItemTemplate, raceid: number,
     return baseOptions
 }
 export const synergyKeyNames = [
+    "genesis1",
+    "genesis2",
+    "genesis3",
+    "genesisCostume1",
+    "genesisCostume2",
+    "genesisCostume3",
     "roha",
     "on",
     "edne",
@@ -7610,6 +7616,96 @@ export const boots: ItemTemplate[] = [
 
 ]
 
+const genesisCostume1SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 150,
+        'multiplyAttack': 15,
+        'multiplyDefense': 15,
+        'multiplyPotionRecovery': 100,
+    },
+    3: {
+        'multiplySkillAttack': 75,
+        'multiplySkillDefense': 75,
+        'multiplyPVPAttack': 75,
+        'multiplyPVPDefense': 50,
+    }
+}
+
+const genesisCostume2SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 175,
+        'multiplyAttack': 30,
+        'multiplyDefense': 30,
+        'multiplyPotionRecovery': 100,
+    },
+    3: {
+        'multiplySkillAttack': 75,
+        'multiplySkillDefense': 75,
+        'multiplyPVPAttack': 75,
+        'multiplyPVPDefense': 75,
+    }
+}
+
+const genesisCostume3SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 200,
+        'multiplyAttack': 50,
+        'multiplyDefense': 50,
+        'multiplyPotionRecovery': 100,
+    },
+    3: {
+        'multiplySkillAttack': 100,
+        'multiplySkillDefense': 100,
+        'multiplyPVPAttack': 100,
+        'multiplyPVPDefense': 100,
+    }
+}
+
+const genesis1SynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 30,
+        'multiplySkillDefense': 30,
+        'multiplyHitPointAbsorbDamageRate': 10,
+        'multiplyMagicPointAbsorbDamageRate': 10,
+    },
+    4: {
+        'multiplyPVPAttack': 30,
+        'multiplyPVPDefense': 30,
+        'multiplyHitPoint': 150,
+        'multiplyDamageReflectionRate': 20,
+    }
+}
+
+const genesis2SynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 35,
+        'multiplySkillDefense': 35,
+        'multiplyHitPointAbsorbDamageRate': 10,
+        'multiplyMagicPointAbsorbDamageRate': 10,
+    },
+    4: {
+        'multiplyPVPAttack': 35,
+        'multiplyPVPDefense': 35,
+        'multiplyHitPoint': 175,
+        'multiplyDamageReflectionRate': 20,
+    }
+}
+
+const genesis3SynergisticOptions = {
+    2: {
+        'multiplySkillAttack': 40,
+        'multiplySkillDefense': 40,
+        'multiplyHitPointAbsorbDamageRate': 20,
+        'multiplyMagicPointAbsorbDamageRate': 20,
+    },
+    4: {
+        'multiplyPVPAttack': 40,
+        'multiplyPVPDefense': 40,
+        'multiplyHitPoint': 200,
+        'multiplyDamageReflectionRate': 20,
+    }
+}
+
 const rohaSynergisticOptions = {
     3: {
         'multiplyHitPoint': 150,
@@ -8028,6 +8124,42 @@ const nephilimSynergisticOptions = {
 
 export const glasses: ItemTemplate[] = [
     {
+        name: "ジェネシスアイ Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 7500,
+            'plusDefense': 7500,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume3SynergisticOptions,
+        synergyKey: "genesisCostume3"
+    },
+    {
+        name: "ジェネシスアイ Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 7500,
+            'plusDefense': 7500,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume2SynergisticOptions,
+        synergyKey: "genesisCostume2"
+    },
+    {
+        name: "ジェネシスアイ Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 5000,
+            'plusDefense': 5000,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume1SynergisticOptions,
+        synergyKey: "genesisCostume1"
+    },
+    {
         name: "ロハの眼帯",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8406,6 +8538,42 @@ export const glasses: ItemTemplate[] = [
 ]
 export const hats: ItemTemplate[] = [
     {
+        name: "ジェネシスサークレット Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 7500,
+            'plusDefense': 7500,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume3SynergisticOptions,
+        synergyKey: "genesisCostume3"
+    },
+    {
+        name: "ジェネシスサークレット Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 7500,
+            'plusDefense': 7500,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume2SynergisticOptions,
+        synergyKey: "genesisCostume2"
+    },
+    {
+        name: "ジェネシスサークレット Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 5000,
+            'plusDefense': 5000,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume1SynergisticOptions,
+        synergyKey: "genesisCostume1"
+    },
+    {
         name: "ロハの冠",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8783,6 +8951,42 @@ export const hats: ItemTemplate[] = [
     },
 ]
 export const earrings: ItemTemplate[] = [
+    {
+        name: "ジェネシスイヤリング Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 7500,
+            'plusDefense': 7500,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume3SynergisticOptions,
+        synergyKey: "genesisCostume3"
+    },
+    {
+        name: "ジェネシスイヤリング Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 7500,
+            'plusDefense': 7500,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume2SynergisticOptions,
+        synergyKey: "genesisCostume2"
+    },
+    {
+        name: "ジェネシスイヤリング Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 5000,
+            'plusDefense': 5000,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: genesisCostume1SynergisticOptions,
+        synergyKey: "genesisCostume1"
+    },
     {
         name: "ロハの耳飾り",
         fixedBaseOptions: {
@@ -9451,6 +9655,149 @@ export const costumes: ItemTemplate[] = [
 ]
 export const accessories: ItemTemplate[] = [
     {
+        name: "ジェネシスリング Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            "plusAttack": 1500,
+            "plusDefense": 1500,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis3SynergisticOptions,
+        synergyKey: "genesis3"
+    },
+    {
+        name: "ジェネシスブローチ Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            "plusAttack": 1500,
+            "plusDefense": 1500,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis3SynergisticOptions,
+        synergyKey: "genesis3"
+    },
+    {
+        name: "ジェネシスブレスレット Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            "plusAttack": 1500,
+            "plusDefense": 1500,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis3SynergisticOptions,
+        synergyKey: "genesis3"
+    },
+    {
+        name: "ジェネシスネックレス Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            "plusAttack": 1500,
+            "plusDefense": 1500,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis3SynergisticOptions,
+        synergyKey: "genesis3"
+    },
+    {
+        name: "ジェネシスリング Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            "plusAttack": 1250,
+            "plusDefense": 1250,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis2SynergisticOptions,
+        synergyKey: "genesis2"
+    },
+    {
+        name: "ジェネシスブローチ Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            "plusAttack": 1250,
+            "plusDefense": 1250,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis2SynergisticOptions,
+        synergyKey: "genesis2"
+    },
+    {
+        name: "ジェネシスブレスレット Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            "plusAttack": 1250,
+            "plusDefense": 1250,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis2SynergisticOptions,
+        synergyKey: "genesis2"
+    },
+    {
+        name: "ジェネシスネックレス Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            "plusAttack": 1250,
+            "plusDefense": 1250,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis2SynergisticOptions,
+        synergyKey: "genesis2"
+    },
+    {
+        name: "ジェネシスネックレス Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            "plusAttack": 1000,
+            "plusDefense": 1000,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis1SynergisticOptions,
+        synergyKey: "genesis1"
+    },
+    {
+        name: "ジェネシスリング Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            "plusAttack": 1000,
+            "plusDefense": 1000,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis1SynergisticOptions,
+        synergyKey: "genesis1"
+    },
+    {
+        name: "ジェネシスブローチ Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            "plusAttack": 1000,
+            "plusDefense": 1000,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis1SynergisticOptions,
+        synergyKey: "genesis1"
+    },
+    {
+        name: "ジェネシスブレスレット Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            "plusAttack": 1000,
+            "plusDefense": 1000,
+            "plusHitPoint": 100000,
+        },
+        icon: unknown,
+        synergyOptions: genesis1SynergisticOptions,
+        synergyKey: "genesis1"
+    }, {
         name: "ケイオスリング",
         fixedBaseOptions: {
             'plusAllStatus': 750,
