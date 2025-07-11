@@ -264,7 +264,7 @@ export type Item = {
     type?: WeaponType;
 }
 
-export type ItemTemplate = FixedItemTemplate | EnchantableItemTemplate | SetItemTemplate | RaceItemTemplate | RaceEnchantableItemTemplate;
+export type ItemTemplate = FixedItemTemplate | EnchantableItemTemplate | SetItemTemplate | RaceItemTemplate | RaceEnchantableItemTemplate | BaseItemTemplate;
 
 export const getInitialBaseOtions = (itemTemplate: ItemTemplate, raceid: number, jobid: number, enchantLevel: number): { [key in BuiltinOptionKeyType]?: number } => {
     let baseOptions = {};
@@ -9365,6 +9365,11 @@ export const earrings: ItemTemplate[] = [
     },
 ]
 export const costumes: ItemTemplate[] = [
+    {
+        name: "ソケットコスチューム",
+        icon: unknown,
+        sockets: 4
+    },
     {
         name: "ロハの鎧",
         fixedBaseOptions: {
