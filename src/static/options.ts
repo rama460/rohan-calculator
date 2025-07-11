@@ -950,11 +950,24 @@ export const getCraftedOptions = (type: keyof Equipments, template: ItemTemplate
         }
         return { ...CraftedShieldOptions, ...CraftedGarterOptions };
     }
+    if (type == "costume") {
+        return CostumeSocketOptions;
+    }
     throw new Error(`Unknown type: ${type}`);
 }
 export type CraftedOptions = {
     [key in BuiltinOptionKeyType]?: number;
 }
+
+export const CostumeSocketOptions: CraftedOptions = {
+    "plusAllStatus": 2000,
+    "multiplyAttack": 25,
+    "multiplyHitPoint": 50,
+    "multiplyPVPAttack": 25,
+    "multiplyPVPDefense": 25,
+
+}
+
 export const CraftedWeaponOptions: CraftedOptions = {
     "multiplyAttackSpeed": 38,
     "plusCriticalRate": 18,

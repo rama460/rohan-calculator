@@ -42,7 +42,7 @@ export const EquipmentCraftedOption: React.FC<EquipmentCraftedOptionProps> = ({ 
                     onChange={handleOptionChange}
                 >
                     <MenuItem key={-1} value="none">なし</MenuItem>
-                    {Object.keys(getCraftedOptions(equipmentType, template)).filter((n) => !(options.some((option) => option.name === n)) || n == name).map((name, index) => (
+                    {Object.keys(getCraftedOptions(equipmentType, template)).filter((n) => equipmentType === "costume" || !(options.some((option) => option.name === n)) || n == name).map((name, index) => (
                         <MenuItem key={index} value={name}>{getDisplayOptionName(BuiltinOptions[name as BuiltinOptionKeyType])}</MenuItem>
                     ))}
                 </Select>
