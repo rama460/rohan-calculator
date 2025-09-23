@@ -292,8 +292,8 @@ export const races: Race[] = [
             dexterity: 15,
         },
         // TODO: temporary value
-        hitPointPerLevel: 7,
-        magicPointPerLevel: 7,
+        hitPointPerLevel: 6,
+        magicPointPerLevel: 8,
         movementSpeed: 600,
     }
 ]
