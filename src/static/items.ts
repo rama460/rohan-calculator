@@ -3600,50 +3600,50 @@ export const shields: ItemTemplate[] = [
             },
             18: {
                 'multiplySkillDefense': 32,
-                'plusHitPoint': 3172,
-                'plusMagicPoint': 3172,
+                'plusHitPoint': 1724,
+                'plusMagicPoint': 1724,
                 'multiplyAttackSpeed': 15
             },
             19: {
                 'multiplySkillDefense': 33,
-                'plusHitPoint': 4250,
-                'plusMagicPoint': 4250,
+                'plusHitPoint': 1812,
+                'plusMagicPoint': 1812,
                 'multiplyAttackSpeed': 15
             },
             20: {
                 'multiplySkillDefense': 35,
-                'plusHitPoint': 4639,
-                'plusMagicPoint': 4639,
+                'plusHitPoint': 1909,
+                'plusMagicPoint': 1909,
                 'multiplyAttackSpeed': 15
             },
             21: {
                 'multiplySkillDefense': 36,
-                'plusHitPoint': 5067,
-                'plusMagicPoint': 5067,
+                'plusHitPoint': 2016,
+                'plusMagicPoint': 2016,
                 'multiplyAttackSpeed': 15
             },
             22: {
                 'multiplySkillDefense': 37,
-                'plusHitPoint': 6673,
-                'plusMagicPoint': 6673,
+                'plusHitPoint': 2134,
+                'plusMagicPoint': 2134,
                 'multiplyAttackSpeed': 15
             },
             23: {
                 'multiplySkillDefense': 38,
-                'plusHitPoint': 7320,
-                'plusMagicPoint': 7320,
+                'plusHitPoint': 2264,
+                'plusMagicPoint': 2264,
                 'multiplyAttackSpeed': 15
             },
             24: {
                 'multiplySkillDefense': 40,
-                'plusHitPoint': 8033,
-                'plusMagicPoint': 8033,
+                'plusHitPoint': 2406,
+                'plusMagicPoint': 2406,
                 'multiplyAttackSpeed': 15
             },
             25: {
                 'multiplySkillDefense': 41,
-                'plusHitPoint': 10379,
-                'plusMagicPoint': 10379,
+                'plusHitPoint': 2563,
+                'plusMagicPoint': 2563,
                 'multiplyAttackSpeed': 15
             },
             26: {

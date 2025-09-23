@@ -36,7 +36,7 @@ const calculateStrength = (getter: (key: BuiltinOptionKeyType) => number): numbe
 }
 const calculateVitality = (getter: (key: BuiltinOptionKeyType) => number): number => {
     return Math.floor((getter("vitality") + getter("plusVitality") + getter("plusAllStatus")
-        + getter("plusVitalityMultiplyMentality") * calculateMentality(getter) / 100
+        + Math.floor(getter("plusVitalityMultiplyMentality") * calculateMentality(getter) / 100)
     ) * (100 + getter("multiplyVitality") + getter("multiplyAllStatus")) / 100);
 }
 const calculateDexterity = (getter: (key: BuiltinOptionKeyType) => number): number => {
