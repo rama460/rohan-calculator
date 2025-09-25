@@ -10753,6 +10753,150 @@ export const s_talismans: ItemTemplate[] = [
     }
 
 ]
+export const t_talismans: ItemTemplate[] = [
+    {
+        name: "輝く海の遺物",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'plusAllStatus': 10,
+                'plusDefense': 100,
+                'plusAttack': 100,
+                'plusHitPoint': 1000,
+            },
+            1: {
+                'plusAllStatus': 30,
+                'plusDefense': 300,
+                'plusAttack': 300,
+                'plusHitPoint': 3000,
+            },
+            2: {
+                'plusAllStatus': 60,
+                'plusDefense': 600,
+                'plusAttack': 600,
+                'plusHitPoint': 6000,
+            },
+            3: {
+                'plusAllStatus': 90,
+                'plusDefense': 900,
+                'plusAttack': 900,
+                'plusHitPoint': 9000,
+            },
+            4: {
+                'plusAllStatus': 120,
+                'plusDefense': 1200,
+                'plusAttack': 1200,
+                'plusHitPoint': 12000,
+            },
+            5: {
+                'plusAllStatus': 150,
+                'plusDefense': 1500,
+                'plusAttack': 1500,
+                'plusHitPoint': 15000,
+            },
+            6: {
+                'plusAllStatus': 180,
+                'plusDefense': 1800,
+                'plusAttack': 1800,
+                'plusHitPoint': 18000,
+            },
+            7: {
+                'plusAllStatus': 210,
+                'plusDefense': 2100,
+                'plusAttack': 2100,
+                'plusHitPoint': 21000,
+            },
+            8: {
+                'plusAllStatus': 240,
+                'plusDefense': 2400,
+                'plusAttack': 2400,
+                'plusHitPoint': 24000,
+            },
+            9: {
+                'plusAllStatus': 270,
+                'plusDefense': 2700,
+                'plusAttack': 2700,
+                'plusHitPoint': 27000,
+            },
+            10: {
+                'plusAllStatus': 300,
+                'plusDefense': 3000,
+                'plusAttack': 3000,
+                'plusHitPoint': 30000,
+            },
+            11: {
+                'plusAllStatus': 330,
+                'plusDefense': 3300,
+                'plusAttack': 3300,
+                'plusHitPoint': 33000,
+                'multiplyHitPoint': 3,
+            },
+            12: {
+                'plusAllStatus': 360,
+                'plusDefense': 3600,
+                'plusAttack': 3600,
+                'plusHitPoint': 36000,
+                'multiplyHitPoint': 6,
+            },
+            13: {
+                'plusAllStatus': 390,
+                'plusDefense': 3900,
+                'plusAttack': 3900,
+                'plusHitPoint': 39000,
+                'multiplyHitPoint': 9,
+            },
+            14: {
+                'plusAllStatus': 420,
+                'plusDefense': 4200,
+                'plusAttack': 4200,
+                'plusHitPoint': 42000,
+                'multiplyHitPoint': 12,
+            },
+            15: {
+                'plusAllStatus': 450,
+                'plusDefense': 4500,
+                'plusAttack': 4500,
+                'plusHitPoint': 45000,
+                'multiplyHitPoint': 15,
+            },
+            16: {
+                'plusAllStatus': 480,
+                'plusDefense': 4800,
+                'plusAttack': 4800,
+                'plusHitPoint': 48000,
+                'multiplyHitPoint': 18,
+            },
+            17: {
+                'plusAllStatus': 510,
+                'plusDefense': 5100,
+                'plusAttack': 5100,
+                'plusHitPoint': 51000,
+                'multiplyHitPoint': 21,
+            },
+            18: {
+                'plusAllStatus': 540,
+                'plusDefense': 5400,
+                'plusAttack': 5400,
+                'plusHitPoint': 54000,
+                'multiplyHitPoint': 24,
+            },
+            19: {
+                'plusAllStatus': 570,
+                'plusDefense': 5700,
+                'plusAttack': 5700,
+                'plusHitPoint': 57000,
+                'multiplyHitPoint': 27,
+            },
+            20: {
+                'plusAllStatus': 600,
+                'plusDefense': 6000,
+                'plusAttack': 6000,
+                'plusHitPoint': 60000,
+                'multiplyHitPoint': 30,
+            }
+        }
+    }
+]
 export const pets: ItemTemplate[] = [
     {
         name: "ロイヤルドラゴン",
@@ -11050,6 +11194,7 @@ export const itemTemplates = {
     talismanW: w_talismans,
     talismanQ: q_talismans,
     talismanS: s_talismans,
+    talismanT: t_talismans,
     pet: pets,
     ride: rides,
     rune1: runes,
