@@ -302,6 +302,12 @@ export const synergyKeyNames = [
     "genesisCostume1",
     "genesisCostume2",
     "genesisCostume3",
+    "ignisCostume1",
+    "ignisCostume2",
+    "ignisCostume3",
+    "albosCostume1",
+    "albosCostume2",
+    "albosCostume3",
     "roha",
     "on",
     "edne",
@@ -7778,6 +7784,96 @@ const genesis3SynergisticOptions = {
     }
 }
 
+const ignis1SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 150,
+        'multiplyAttack': 15,
+        'multiplyCriticalRate': 10,
+        'multiplyCriticalDamage': 15,
+    },
+    3: {
+        'multiplySkillAttack': 100,
+        'multiplyPVPAttack': 100,
+        'multiplyPVPDefense': 25,
+        'multiplyDamageReflectionRate': 15,
+    }
+}
+
+const ignis2SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 175,
+        'multiplyAttack': 30,
+        'multiplyCriticalRate': 15,
+        'multiplyCriticalDamage': 30,
+    },
+    3: {
+        'multiplySkillAttack': 125,
+        'multiplyPVPAttack': 125,
+        'multiplyPVPDefense': 25,
+        'multiplyDamageReflectionRate': 30,
+    }
+}
+
+const ignis3SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 200,
+        'multiplyAttack': 50,
+        'multiplyCriticalRate': 25,
+        'multiplyCriticalDamage': 50,
+    },
+    3: {
+        'multiplySkillAttack': 150,
+        'multiplyPVPAttack': 150,
+        'multiplyPVPDefense': 50,
+        'multiplyDamageReflectionRate': 50,
+    }
+}
+
+const albos1SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 175,
+        'multiplyDefense': 15,
+        'multiplyDecreaseCriticalDamageTaken': 15,
+        'multiplyPotionRecovery': 50,
+    },
+    3: {
+        'multiplySkillDefense': 100,
+        'multiplyPVPAttack': 50,
+        'multiplyPVPDefense': 75,
+        'multiplyPotionRecovery': 50,
+    }
+}
+
+const albos2SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 200,
+        'multiplyDefense': 30,
+        'multiplyDecreaseCriticalDamageTaken': 15,
+        'multiplyPotionRecovery': 75,
+    },
+    3: {
+        'multiplySkillDefense': 125,
+        'multiplyPVPAttack': 50,
+        'multiplyPVPDefense': 100,
+        'multiplyPotionRecovery': 75,
+    }
+}
+
+const albos3SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 250,
+        'multiplyDefense': 50,
+        'multiplyDecreaseCriticalDamageTaken': 15,
+        'multiplyPotionRecovery': 100,
+    },
+    3: {
+        'multiplySkillDefense': 150,
+        'multiplyPVPAttack': 75,
+        'multiplyPVPDefense': 125,
+        'multiplyPotionRecovery': 100,
+    }
+}
+
 const rohaSynergisticOptions = {
     3: {
         'multiplyHitPoint': 150,
@@ -8209,6 +8305,32 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "genesisCostume3"
     },
     {
+        id: 35,
+        name: "イグニスアイ Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 12500,
+            'plusDefense': 10000,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: ignis3SynergisticOptions,
+        synergyKey: "ignisCostume3"
+    },
+    {
+        id: 36,
+        name: "アルボスアイ Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 10000,
+            'plusDefense': 12500,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: albos3SynergisticOptions,
+        synergyKey: "albosCostume3"
+    },
+    {
         id: 1,
         name: "ジェネシスアイ Ⅱ",
         fixedBaseOptions: {
@@ -8222,6 +8344,32 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "genesisCostume2"
     },
     {
+        id: 37,
+        name: "イグニスアイ Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 10000,
+            'plusDefense': 5000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: ignis2SynergisticOptions,
+        synergyKey: "ignisCostume2"
+    },
+    {
+        id: 38,
+        name: "アルボスアイ Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 5000,
+            'plusDefense': 10000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: albos2SynergisticOptions,
+        synergyKey: "albosCostume2"
+    },
+    {
         id: 2,
         name: "ジェネシスアイ Ⅰ",
         fixedBaseOptions: {
@@ -8233,6 +8381,32 @@ export const glasses: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: genesisCostume1SynergisticOptions,
         synergyKey: "genesisCostume1"
+    },
+    {
+        id: 39,
+        name: "イグニスアイ Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: ignis1SynergisticOptions,
+        synergyKey: "ignisCostume1"
+    },
+    {
+        id: 40,
+        name: "アルボスアイ Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: albos1SynergisticOptions,
+        synergyKey: "albosCostume1"
     },
     {
         id: 3,
@@ -8658,6 +8832,32 @@ export const hats: ItemTemplate[] = [
         synergyKey: "genesisCostume3"
     },
     {
+        id: 35,
+        name: "イグニスサークレット Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 12500,
+            'plusDefense': 10000,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: ignis3SynergisticOptions,
+        synergyKey: "ignisCostume3"
+    },
+    {
+        id: 36,
+        name: "アルボスサークレット Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 10000,
+            'plusDefense': 12500,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: albos3SynergisticOptions,
+        synergyKey: "albosCostume3"
+    },
+    {
         id: 1,
         name: "ジェネシスサークレット Ⅱ",
         fixedBaseOptions: {
@@ -8671,6 +8871,32 @@ export const hats: ItemTemplate[] = [
         synergyKey: "genesisCostume2"
     },
     {
+        id: 37,
+        name: "イグニスサークレット Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 10000,
+            'plusDefense': 5000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: ignis2SynergisticOptions,
+        synergyKey: "ignisCostume2"
+    },
+    {
+        id: 38,
+        name: "アルボスサークレット Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 5000,
+            'plusDefense': 10000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: albos2SynergisticOptions,
+        synergyKey: "albosCostume2"
+    },
+    {
         id: 2,
         name: "ジェネシスサークレット Ⅰ",
         fixedBaseOptions: {
@@ -8682,6 +8908,32 @@ export const hats: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: genesisCostume1SynergisticOptions,
         synergyKey: "genesisCostume1"
+    },
+    {
+        id: 39,
+        name: "イグニスサークレット Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: ignis1SynergisticOptions,
+        synergyKey: "ignisCostume1"
+    },
+    {
+        id: 40,
+        name: "アルボスサークレット Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: albos1SynergisticOptions,
+        synergyKey: "albosCostume1"
     },
     {
         id: 3,
@@ -9107,6 +9359,32 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "genesisCostume3"
     },
     {
+        id: 35,
+        name: "イグニスイヤリング Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 12500,
+            'plusDefense': 10000,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: ignis3SynergisticOptions,
+        synergyKey: "ignisCostume3"
+    },
+    {
+        id: 36,
+        name: "アルボスイヤリング Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 10000,
+            'plusDefense': 12500,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: albos3SynergisticOptions,
+        synergyKey: "albosCostume3"
+    },
+    {
         id: 1,
         name: "ジェネシスイヤリング Ⅱ",
         fixedBaseOptions: {
@@ -9120,6 +9398,31 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "genesisCostume2"
     },
     {
+        id: 37, name: "イグニスイヤリング Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 10000,
+            'plusDefense': 5000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: ignis2SynergisticOptions,
+        synergyKey: "ignisCostume2"
+    },
+    {
+        id: 38,
+        name: "アルボスイヤリング Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 5000,
+            'plusDefense': 10000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: albos2SynergisticOptions,
+        synergyKey: "albosCostume2"
+    },
+    {
         id: 2,
         name: "ジェネシスイヤリング Ⅰ",
         fixedBaseOptions: {
@@ -9131,6 +9434,32 @@ export const earrings: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: genesisCostume1SynergisticOptions,
         synergyKey: "genesisCostume1"
+    },
+    {
+        id: 39,
+        name: "イグニスイヤリング Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: ignis1SynergisticOptions,
+        synergyKey: "ignisCostume1"
+    },
+    {
+        id: 40,
+        name: "アルボスイヤリング Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: albos1SynergisticOptions,
+        synergyKey: "albosCostume1"
     },
     {
         id: 3,
