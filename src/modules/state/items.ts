@@ -33,6 +33,7 @@ export const equipmentSlotNames = [
     "talismanW",
     "talismanQ",
     "talismanS",
+    "talismanT",
     "pet",
     "ride",
     "rune1",
@@ -79,6 +80,7 @@ export const minifiedEquipmentKeyMap: {
     talismanW: "etw",
     talismanQ: "etq",
     talismanS: "ets",
+    talismanT: "ett",
     pet: "ep",
     ride: "er",
     rune1: "er1",
@@ -120,26 +122,26 @@ const minifyItem = (item: Item | undefined, raceid: number, jobid: number, equip
     if (!item) {
         return undefined;
     }
-    const items = (equipmentType === "shield" && raceid === 0 && jobid === 1) ?
-        itemTemplates[equipmentType].concat(itemTemplates["weapon"]) : itemTemplates[equipmentType];
-    const index = items.findIndex((i) => i.name === item.name);
-    if (index === -1) {
+
+    const items = (equipmentType === "shield" && raceid === 0 && jobid === 1 && item.type) ?
+        itemTemplates["weapon"] : itemTemplates[equipmentType];
+    const found = items.find((i) => i.name === item.name);
+    if (found === undefined) {
         throw new Error(`Item not found: ${item.name}`);
     }
+    // if guardian dual sword style, use negative id for shield
+    const index = (equipmentType === "shield" && raceid === 0 && jobid === 1 && item.type) ?
+        - (1 + found.id) : found.id;
     const minified: MinifiedItem = {
         n: index
-    }
-    const itemTemplate = items.at(index);
-    if (!itemTemplate) {
-        throw new Error(`Item not found: ${minified.n}`);
     }
 
     const racenameOrTrinityJobname = (races[raceid].name !== "Trinity" ? races[raceid].name : races[raceid].jobs[jobid].name) as RaceNameOrTrinityJobName
     const baseOptions = {
-        ...itemTemplate.fixedBaseOptions ?? {},
-        ...itemTemplate.enchantableBaseOptions?.[minified.e ?? 0] ?? {},
-        ...itemTemplate.raceBaseOptions?.[racenameOrTrinityJobname] ?? {},
-        ...itemTemplate.raceEnchantableBaseOptions?.[racenameOrTrinityJobname]?.[minified.e ?? 0] ?? {},
+        ...found.fixedBaseOptions ?? {},
+        ...found.enchantableBaseOptions?.[minified.e ?? 0] ?? {},
+        ...found.raceBaseOptions?.[racenameOrTrinityJobname] ?? {},
+        ...found.raceEnchantableBaseOptions?.[racenameOrTrinityJobname]?.[minified.e ?? 0] ?? {},
     }
     const updatedBaseOptions: {
         [key in BuiltinOptionKeyType]?: number
@@ -159,7 +161,6 @@ const minifyItem = (item: Item | undefined, raceid: number, jobid: number, equip
     if (item.enchantLevel > 0) {
         minified.e = item.enchantLevel;
     }
-
     return minified;
 }
 
@@ -167,8 +168,8 @@ const minifyItem = (item: Item | undefined, raceid: number, jobid: number, equip
 const unminifiedItem = (minified: MinifiedItem | undefined, raceid: number, jobid: number, equipmentType: keyof Equipments): Item | undefined => {
     if (!minified)
         return undefined;
-    const itemTemplate = (equipmentType == "shield" && raceid === 0 && jobid === 1) ?
-        itemTemplates[equipmentType].concat(itemTemplates["weapon"]).at(minified.n) : itemTemplates[equipmentType].at(minified.n);
+    const itemTemplate = (minified.n < 0 && equipmentType === "shield" && raceid === 0 && jobid === 1) ?
+        itemTemplates["weapon"].find((i) => i.id === -(1 + minified.n)) : itemTemplates[equipmentType].find((i) => i.id === minified.n);
     if (!itemTemplate) {
         throw new Error(`Item not found: ${minified.n}`);
     }

@@ -169,6 +169,7 @@ import { BuiltinOptionKeyType } from "./options";
 import { RaceNameOrTrinityJobName, races } from "./races";
 
 export type BaseItemTemplate = {
+    id: number;
     name: string;
     icon: string;
     availableRaces?: RaceNameOrTrinityJobName[];
@@ -301,6 +302,12 @@ export const synergyKeyNames = [
     "genesisCostume1",
     "genesisCostume2",
     "genesisCostume3",
+    "ignisCostume1",
+    "ignisCostume2",
+    "ignisCostume3",
+    "albosCostume1",
+    "albosCostume2",
+    "albosCostume3",
     "roha",
     "on",
     "edne",
@@ -438,6 +445,7 @@ export type WeaponTemplate = {
 
 export const weapons: WeaponTemplate[] = [
     {
+        id: 0,
         name: "マグヌスセレスタイトダガー",
         icon: unknown,
         type: "dagger",
@@ -633,6 +641,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 1,
         name: "マグヌスセレスタイトソード",
         icon: unknown,
         type: "sword",
@@ -829,6 +838,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 2,
         name: "マグヌスセレスタイトクラブ",
         icon: blunt_magnus_celestite,
         type: "blunt",
@@ -1026,6 +1036,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 3,
         name: "マグヌスセレスタイトアクス",
         icon: unknown,
         type: "axe",
@@ -1221,6 +1232,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 4,
         name: "マグヌスセレスタイトデュアルソード",
         icon: dualsword_magnus_celestite,
         type: "dualsword",
@@ -1416,6 +1428,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 5,
         name: "マグヌスセレスタイトポールアーム",
         icon: polearm_magnus_celestite,
         type: "polearm",
@@ -1611,6 +1624,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 6,
         name: "マグヌスセレスタイトカタール",
         icon: katar_magnus_celestite,
         type: "katar",
@@ -1807,6 +1821,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 7,
         name: "マグヌスセレスタイトゼン",
         icon: zen_magnus_celestite,
         type: "zen",
@@ -2002,6 +2017,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 8,
         name: "マグヌスセレスタイトボウ",
         icon: bow_magnus_celestite,
         type: "bow",
@@ -2197,6 +2213,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 9,
         name: "マグヌスセレスタイトクロスボウ",
         icon: crossbow_magnus_celestite,
         type: "crossbow",
@@ -2393,6 +2410,7 @@ export const weapons: WeaponTemplate[] = [
     },
 
     {
+        id: 10,
         name: "マグヌスセレスタイトスタッフ",
         icon: staff_magnus_celestite,
         type: "staff",
@@ -2589,6 +2607,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 11,
         name: "マグヌスセレスタイトオーブ",
         icon: orb_magnus_celestite,
         type: "orb",
@@ -2785,6 +2804,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 12,
         name: "マグヌスセレスタイトグローブ",
         icon: unknown,
         type: "glove",
@@ -2981,6 +3001,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 13,
         name: "ロードオブエレメントダガー",
         icon: dagger_load_of_element,
         type: "dagger",
@@ -2996,6 +3017,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 14,
         name: "ロードオブエレメントソード",
         icon: sword_load_of_element,
         type: "sword",
@@ -3011,6 +3033,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 15,
         name: "ロードオブエレメントクラブ",
         icon: blunt_load_of_element,
         type: "blunt",
@@ -3026,6 +3049,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 16,
         name: "ロードオブエレメントメイス",
         icon: blunt_load_of_element,
         type: "blunt",
@@ -3041,6 +3065,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 17,
         name: "ロードオブエレメントアクス",
         icon: axe_load_of_element,
         type: "axe",
@@ -3056,6 +3081,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 18,
         name: "ロードオブエレメントデュアルソード",
         icon: dualsword_load_of_element,
         type: "dualsword",
@@ -3071,6 +3097,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 19,
         name: "ロードオブエレメントポールアーム",
         icon: polearm_load_of_element,
         type: "polearm",
@@ -3086,6 +3113,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 20,
         name: "ロードオブエレメントカタール",
         icon: katar_load_of_element,
         type: "katar",
@@ -3101,6 +3129,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 21,
         name: "ロードオブエレメントゼン",
         icon: zen_load_of_element,
         type: "zen",
@@ -3116,6 +3145,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 22,
         name: "ロードオブエレメントチャル",
         icon: zen_load_of_element,
         type: "zen",
@@ -3131,6 +3161,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 23,
         name: "ロードオブエレメントスタッフ",
         icon: staff_load_of_element,
         type: "staff",
@@ -3146,6 +3177,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 24,
         name: "ロードオブエレメントボウ",
         icon: bow_load_of_element,
         type: "bow",
@@ -3161,6 +3193,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 25,
         name: "ロードオブエレメントクロスボウ",
         icon: crossbow_load_of_element,
         type: "crossbow",
@@ -3176,6 +3209,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 26,
         name: "ロードオブエレメントグローブ",
         icon: glove_load_of_element,
         type: "glove",
@@ -3191,6 +3225,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 27,
         name: "ロードオブエレメントオーブ",
         icon: orb_load_of_element,
         type: "orb",
@@ -3206,6 +3241,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 5
     },
     {
+        id: 28,
         name: "ゼータオブシディアンダガー",
         icon: dagger_zeta_obsidian,
         type: "dagger",
@@ -3275,6 +3311,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 29,
         name: "ゼータオブシディアンスタッフ",
         icon: staff_zeta_obsidian,
         type: "staff",
@@ -3395,6 +3432,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 30,
         name: "グランドカイザーオニキスボウ",
         icon: bow_grand_kaiser_onixy,
         type: "bow",
@@ -3413,6 +3451,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 31,
         name: "グランドカイザーオニキスダガー",
         icon: unknown,
         type: "dagger",
@@ -3425,6 +3464,7 @@ export const weapons: WeaponTemplate[] = [
         sockets: 4
     },
     {
+        id: 32,
         name: "グランドカイザーオニキスソード",
         icon: unknown,
         type: "sword",
@@ -3449,6 +3489,7 @@ export const weapons: WeaponTemplate[] = [
 
 export const shields: ItemTemplate[] = [
     {
+        id: 0,
         name: "ゼノオパニエルガーダー",
         icon: guarder_zeno_opaniel,
         raceBaseOptions: {
@@ -3681,6 +3722,7 @@ export const shields: ItemTemplate[] = [
         sockets: 2
     },
     {
+        id: 1,
         // FIXME: the enchantable option value is not correct
         name: "イグニエルのガーダー",
         icon: guarder_igniel,
@@ -3914,6 +3956,7 @@ export const shields: ItemTemplate[] = [
         sockets: 3
     },
     {
+        id: 2,
         name: "マグヌスセレスタイトシールド",
         icon: shield_magnus_celestite,
         availableRaces: ["Human", "Elf"],
@@ -4031,6 +4074,7 @@ export const shields: ItemTemplate[] = [
         sockets: 3
     },
     {
+        id: 3,
         name: "ゼータオブシディアンシールド",
         icon: shield_zeta_obsidian,
         availableRaces: ["Human", "Elf"],
@@ -4047,6 +4091,7 @@ export const shields: ItemTemplate[] = [
         sockets: 3
     },
     {
+        id: 4,
         name: "イグニエルのシールド",
         icon: shield_igniel,
         availableRaces: ["Human", "Elf"],
@@ -4228,6 +4273,7 @@ export const shields: ItemTemplate[] = [
 ]
 export const arrows: ItemTemplate[] = [
     {
+        id: 0,
         name: "ベロライトの矢",
         icon: arrow_verolite,
         fixedBaseOptions: {
@@ -4235,6 +4281,7 @@ export const arrows: ItemTemplate[] = [
         }
     },
     {
+        id: 1,
         name: "ベロライトのボルト",
         icon: arrow_verolite_bolt,
         fixedBaseOptions: {
@@ -4242,6 +4289,7 @@ export const arrows: ItemTemplate[] = [
         }
     },
     {
+        id: 2,
         name: "サドリウムの矢",
         icon: arrow_sadrium,
         fixedBaseOptions: {
@@ -4249,6 +4297,7 @@ export const arrows: ItemTemplate[] = [
         },
     },
     {
+        id: 3,
         name: "サドリウムのボルト",
         icon: arrow_sadrium_bolt,
         fixedBaseOptions: {
@@ -4256,6 +4305,7 @@ export const arrows: ItemTemplate[] = [
         },
     },
     {
+        id: 4,
         name: "アパタイトの矢",
         icon: arrow_appetite,
         fixedBaseOptions: {
@@ -4263,6 +4313,7 @@ export const arrows: ItemTemplate[] = [
         },
     },
     {
+        id: 5,
         name: "アパタイトのボルト",
         icon: arrow_appetite_bolt,
         fixedBaseOptions: {
@@ -4270,6 +4321,7 @@ export const arrows: ItemTemplate[] = [
         },
     },
     {
+        id: 6,
         name: "トルマリンの矢",
         icon: arrow_tourmaline,
         fixedBaseOptions: {
@@ -4277,6 +4329,7 @@ export const arrows: ItemTemplate[] = [
         },
     },
     {
+        id: 7,
         name: "トルマリンのボルト",
         icon: arrow_tourmaline_bolt,
         fixedBaseOptions: {
@@ -4331,6 +4384,7 @@ const celestiteArmorSynergisticOptions = {
 
 export const helmets: ItemTemplate[] = [
     {
+        id: 0,
         name: "マグヌスセレスタイトヘルメット",
         icon: helmet_magnus_celestite,
         raceBaseOptions: {
@@ -4475,6 +4529,7 @@ export const helmets: ItemTemplate[] = [
         synergyOptions: celestiteArmorSynergisticOptions
     },
     {
+        id: 1,
         name: "ゼータオブシディアンヘルメット",
         icon: helmet_zeta_obsidian,
         raceBaseOptions: {
@@ -4534,6 +4589,7 @@ export const helmets: ItemTemplate[] = [
         synergyOptions: obsidianArmorSynergisticOptions
     },
     {
+        id: 2,
         name: "グランドカイザーオニキスヘルメット(敏)",
         icon: helmet_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
@@ -4578,6 +4634,7 @@ export const helmets: ItemTemplate[] = [
         synergyKey: "onyxArmor"
     },
     {
+        id: 3,
         name: "イグニエルのヘルメット(攻)",
         icon: helmet_igniel,
         raceBaseOptions: {
@@ -4780,6 +4837,7 @@ export const helmets: ItemTemplate[] = [
         synergyOptions: ignielArmorSynergisticOptions
     },
     {
+        id: 4,
         name: "イグニエルのヘルメット(防)",
         icon: helmet_igniel,
         raceBaseOptions: {
@@ -4984,6 +5042,7 @@ export const helmets: ItemTemplate[] = [
 ]
 export const gauntlets: ItemTemplate[] = [
     {
+        id: 0,
         name: "マグヌスセレスタイトガントレット",
         icon: gauntlet_magnus_celestite,
         raceBaseOptions: {
@@ -5127,6 +5186,7 @@ export const gauntlets: ItemTemplate[] = [
         synergyOptions: celestiteArmorSynergisticOptions
     },
     {
+        id: 1,
         name: "ゼータオブシディアンガントレット",
         icon: gauntlet_zeta_obsidian,
         raceBaseOptions: {
@@ -5186,6 +5246,7 @@ export const gauntlets: ItemTemplate[] = [
         synergyOptions: obsidianArmorSynergisticOptions
     },
     {
+        id: 2,
         name: "グランドカイザーオニキスガントレット(敏)",
         icon: gauntlet_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
@@ -5230,6 +5291,7 @@ export const gauntlets: ItemTemplate[] = [
         synergyKey: "onyxArmor"
     },
     {
+        id: 3,
         name: "イグニエルのガントレット(攻)",
         icon: gauntlet_igniel,
         raceBaseOptions: {
@@ -5432,6 +5494,7 @@ export const gauntlets: ItemTemplate[] = [
         synergyOptions: ignielArmorSynergisticOptions
     },
     {
+        id: 4,
         name: "イグニエルのガントレット(防)",
         icon: gauntlet_igniel,
         raceBaseOptions: {
@@ -5648,6 +5711,7 @@ export const gauntlets: ItemTemplate[] = [
 ]
 export const tunics: ItemTemplate[] = [
     {
+        id: 0,
         name: "マグヌスセレスタイトチュニック",
         icon: tunic_magnus_celestite,
         raceBaseOptions: {
@@ -5792,6 +5856,7 @@ export const tunics: ItemTemplate[] = [
         synergyOptions: celestiteArmorSynergisticOptions
     },
     {
+        id: 1,
         name: "ゼータオブシディアンチュニック",
         icon: tunic_zeta_obsidian,
         raceBaseOptions: {
@@ -5851,6 +5916,7 @@ export const tunics: ItemTemplate[] = [
         synergyOptions: obsidianArmorSynergisticOptions
     },
     {
+        id: 2,
         name: "グランドカイザーオニキスチュニック(敏)",
         icon: tunic_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
@@ -5895,6 +5961,7 @@ export const tunics: ItemTemplate[] = [
         synergyKey: "onyxArmor"
     },
     {
+        id: 3,
         name: "イグニエルのチュニック(攻)",
         icon: tunic_igniel,
         raceBaseOptions: {
@@ -6097,6 +6164,7 @@ export const tunics: ItemTemplate[] = [
         synergyOptions: ignielArmorSynergisticOptions
     },
     {
+        id: 4,
         name: "イグニエルのチュニック(防)",
         icon: tunic_igniel,
         raceBaseOptions: {
@@ -6302,6 +6370,7 @@ export const tunics: ItemTemplate[] = [
 ]
 export const leggings: ItemTemplate[] = [
     {
+        id: 0,
         name: "マグヌスセレスタイトレギンス",
         icon: leggings_magnus_celestite,
         raceBaseOptions: {
@@ -6445,6 +6514,7 @@ export const leggings: ItemTemplate[] = [
         synergyOptions: celestiteArmorSynergisticOptions
     },
     {
+        id: 1,
         name: "ゼータオブシディアンレギンス",
         icon: leggings_zeta_obsidian,
         raceBaseOptions: {
@@ -6504,6 +6574,7 @@ export const leggings: ItemTemplate[] = [
         synergyOptions: obsidianArmorSynergisticOptions
     },
     {
+        id: 2,
         name: "グランドカイザーオニキスレギンス(敏)",
         icon: leggings_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
@@ -6548,6 +6619,7 @@ export const leggings: ItemTemplate[] = [
         synergyKey: "onyxArmor"
     },
     {
+        id: 3,
         name: "イグニエルのレギンス(攻)",
         icon: leggings_igniel_attack,
         raceBaseOptions: {
@@ -6750,6 +6822,7 @@ export const leggings: ItemTemplate[] = [
         synergyOptions: ignielArmorSynergisticOptions
     },
     {
+        id: 4,
         name: "イグニエルのレギンス(防)",
         icon: leggings_igniel,
         raceBaseOptions: {
@@ -6954,6 +7027,7 @@ export const leggings: ItemTemplate[] = [
 ]
 export const boots: ItemTemplate[] = [
     {
+        id: 0,
         name: "マグヌスセレスタイトブーツ",
         icon: boots_magnus_celestite,
         raceBaseOptions: {
@@ -7097,6 +7171,7 @@ export const boots: ItemTemplate[] = [
         synergyOptions: celestiteArmorSynergisticOptions
     },
     {
+        id: 1,
         name: "ゼータオブシディアンブーツ",
         icon: boots_zeta_obsidian,
         raceBaseOptions: {
@@ -7156,6 +7231,7 @@ export const boots: ItemTemplate[] = [
         synergyOptions: obsidianArmorSynergisticOptions
     },
     {
+        id: 2,
         name: "グランドカイザーオニキスブーツ(敏)",
         icon: boots_grand_kaiser_onixy,
         availableRaces: ["Human", "Elf", "HalfElf", "Dan", "Dekan", "DarkElf", "Giant"],
@@ -7200,6 +7276,7 @@ export const boots: ItemTemplate[] = [
         synergyKey: "onyxArmor"
     },
     {
+        id: 3,
         name: "イグニエルのブーツ(攻)",
         icon: boots_igniel_attack,
         raceBaseOptions: {
@@ -7402,6 +7479,7 @@ export const boots: ItemTemplate[] = [
         synergyOptions: ignielArmorSynergisticOptions
     },
     {
+        id: 4,
         name: "イグニエルのブーツ(防)",
         icon: boots_igniel,
         raceBaseOptions: {
@@ -7703,6 +7781,96 @@ const genesis3SynergisticOptions = {
         'multiplyPVPDefense': 40,
         'multiplyHitPoint': 200,
         'multiplyDamageReflectionRate': 20,
+    }
+}
+
+const ignis1SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 150,
+        'multiplyAttack': 15,
+        'multiplyCriticalRate': 10,
+        'multiplyCriticalDamage': 15,
+    },
+    3: {
+        'multiplySkillAttack': 100,
+        'multiplyPVPAttack': 100,
+        'multiplyPVPDefense': 25,
+        'multiplyDamageReflectionRate': 15,
+    }
+}
+
+const ignis2SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 175,
+        'multiplyAttack': 30,
+        'multiplyCriticalRate': 15,
+        'multiplyCriticalDamage': 30,
+    },
+    3: {
+        'multiplySkillAttack': 125,
+        'multiplyPVPAttack': 125,
+        'multiplyPVPDefense': 25,
+        'multiplyDamageReflectionRate': 30,
+    }
+}
+
+const ignis3SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 200,
+        'multiplyAttack': 50,
+        'multiplyCriticalRate': 25,
+        'multiplyCriticalDamage': 50,
+    },
+    3: {
+        'multiplySkillAttack': 150,
+        'multiplyPVPAttack': 150,
+        'multiplyPVPDefense': 50,
+        'multiplyDamageReflectionRate': 50,
+    }
+}
+
+const albos1SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 175,
+        'multiplyDefense': 15,
+        'multiplyDecreaseCriticalDamageTaken': 15,
+        'multiplyPotionRecovery': 50,
+    },
+    3: {
+        'multiplySkillDefense': 100,
+        'multiplyPVPAttack': 50,
+        'multiplyPVPDefense': 75,
+        'multiplyPotionRecovery': 50,
+    }
+}
+
+const albos2SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 200,
+        'multiplyDefense': 30,
+        'multiplyDecreaseCriticalDamageTaken': 15,
+        'multiplyPotionRecovery': 75,
+    },
+    3: {
+        'multiplySkillDefense': 125,
+        'multiplyPVPAttack': 50,
+        'multiplyPVPDefense': 100,
+        'multiplyPotionRecovery': 75,
+    }
+}
+
+const albos3SynergisticOptions = {
+    2: {
+        'multiplyHitPoint': 250,
+        'multiplyDefense': 50,
+        'multiplyDecreaseCriticalDamageTaken': 15,
+        'multiplyPotionRecovery': 100,
+    },
+    3: {
+        'multiplySkillDefense': 150,
+        'multiplyPVPAttack': 75,
+        'multiplyPVPDefense': 125,
+        'multiplyPotionRecovery': 100,
     }
 }
 
@@ -8124,6 +8292,7 @@ const nephilimSynergisticOptions = {
 
 export const glasses: ItemTemplate[] = [
     {
+        id: 0,
         name: "ジェネシスアイ Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -8136,6 +8305,33 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "genesisCostume3"
     },
     {
+        id: 35,
+        name: "イグニスアイ Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 12500,
+            'plusDefense': 10000,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: ignis3SynergisticOptions,
+        synergyKey: "ignisCostume3"
+    },
+    {
+        id: 36,
+        name: "アルボスアイ Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 10000,
+            'plusDefense': 12500,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: albos3SynergisticOptions,
+        synergyKey: "albosCostume3"
+    },
+    {
+        id: 1,
         name: "ジェネシスアイ Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 1250,
@@ -8148,6 +8344,33 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "genesisCostume2"
     },
     {
+        id: 37,
+        name: "イグニスアイ Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 10000,
+            'plusDefense': 5000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: ignis2SynergisticOptions,
+        synergyKey: "ignisCostume2"
+    },
+    {
+        id: 38,
+        name: "アルボスアイ Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 5000,
+            'plusDefense': 10000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: albos2SynergisticOptions,
+        synergyKey: "albosCostume2"
+    },
+    {
+        id: 2,
         name: "ジェネシスアイ Ⅰ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8160,6 +8383,33 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "genesisCostume1"
     },
     {
+        id: 39,
+        name: "イグニスアイ Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: ignis1SynergisticOptions,
+        synergyKey: "ignisCostume1"
+    },
+    {
+        id: 40,
+        name: "アルボスアイ Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: albos1SynergisticOptions,
+        synergyKey: "albosCostume1"
+    },
+    {
+        id: 3,
         name: "ロハの眼帯",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8172,6 +8422,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "roha"
     },
     {
+        id: 4,
         name: "ヴァリアントアイ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8184,6 +8435,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "variant"
     },
     {
+        id: 5,
         name: "ガルガンチュアアイ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8195,6 +8447,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "gargantua"
     },
     {
+        id: 6,
         name: "カタストロフアイ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8206,6 +8459,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "catastrophe"
     },
     {
+        id: 7,
         name: "エドネの眼帯",
         fixedBaseOptions: {
             'plusAllStatus': 700,
@@ -8218,6 +8472,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "edne"
     },
     {
+        id: 8,
         name: "オンの眼鏡",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -8230,6 +8485,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "on"
     },
     {
+        id: 9,
         name: "シヴァの眼鏡",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8242,6 +8498,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "siva"
     },
     {
+        id: 10,
         name: "アポカリプスアイ",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -8254,6 +8511,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "apocalypse"
     },
     {
+        id: 11,
         name: "劫火の眼帯",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -8266,6 +8524,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "hellfire"
     },
     {
+        id: 12,
         name: "ノスフェラトゥアイ",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -8278,6 +8537,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "nosferatu"
     },
     {
+        id: 13,
         name: "エクステンドアイ",
         fixedBaseOptions: {
             'plusAttack': 2500,
@@ -8289,6 +8549,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "extend"
     },
     {
+        id: 14,
         name: "ディザスターアイ",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -8300,6 +8561,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "disaster"
     },
     {
+        id: 15,
         name: "ゴライアスアイ",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -8311,6 +8573,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "goliath"
     },
     {
+        id: 16,
         name: "メガリスアイ",
         fixedBaseOptions: {
             'plusAttack': 175,
@@ -8322,6 +8585,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "megalith"
     },
     {
+        id: 17,
         name: "テンペストアイ",
         fixedBaseOptions: {
             'plusAllStatus': 75,
@@ -8333,6 +8597,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "tempest"
     },
     {
+        id: 18,
         name: "ネフィリムアイ",
         fixedBaseOptions: {
             'plusAllStatus': 75,
@@ -8344,6 +8609,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "nephilim"
     },
     {
+        id: 19,
         name: "ガネーシャの眼鏡Ⅳ",
         fixedBaseOptions: {
             'plusAllStatus': 900,
@@ -8356,6 +8622,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "ganesha4"
     },
     {
+        id: 20,
         name: "ガネーシャの眼鏡Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -8368,6 +8635,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "ganesha3"
     },
     {
+        id: 21,
         name: "ガネーシャの眼鏡Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 600,
@@ -8380,6 +8648,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "ganesha2"
     },
     {
+        id: 22,
         name: "ガネーシャの眼鏡",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -8392,6 +8661,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "ganesha1"
     },
     {
+        id: 23,
         name: "アナイアレイトアイⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -8404,6 +8674,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "annihilate4"
     },
     {
+        id: 24,
         name: "アナイアレイトアイⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -8416,6 +8687,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "annihilate3"
     },
     {
+        id: 25,
         name: "アナイアレイトアイⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -8428,6 +8700,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "annihilate2"
     },
     {
+        id: 26,
         name: "アナイアレイトアイ",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -8440,6 +8713,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "annihilate1"
     },
     {
+        id: 27,
         name: "紅蓮の眼鏡Ⅳ",
         fixedBaseOptions: {
             'plusAllStatus': 250,
@@ -8452,6 +8726,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "crimson4"
     },
     {
+        id: 28,
         name: "紅蓮の眼鏡Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 225,
@@ -8464,6 +8739,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "crimson3"
     },
     {
+        id: 29,
         name: "紅蓮の眼鏡Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -8476,6 +8752,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "crimson2"
     },
     {
+        id: 30,
         name: "紅蓮の眼鏡",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -8488,6 +8765,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "crimson1"
     },
     {
+        id: 31,
         name: "イモータルアイⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -8500,6 +8778,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "immortal4"
     },
     {
+        id: 32,
         name: "イモータルアイⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -8512,6 +8791,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "immortal3"
     },
     {
+        id: 33,
         name: "イモータルアイⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -8524,6 +8804,7 @@ export const glasses: ItemTemplate[] = [
         synergyKey: "immortal2"
     },
     {
+        id: 34,
         name: "イモータルアイ",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -8538,6 +8819,7 @@ export const glasses: ItemTemplate[] = [
 ]
 export const hats: ItemTemplate[] = [
     {
+        id: 0,
         name: "ジェネシスサークレット Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -8550,6 +8832,33 @@ export const hats: ItemTemplate[] = [
         synergyKey: "genesisCostume3"
     },
     {
+        id: 35,
+        name: "イグニスサークレット Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 12500,
+            'plusDefense': 10000,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: ignis3SynergisticOptions,
+        synergyKey: "ignisCostume3"
+    },
+    {
+        id: 36,
+        name: "アルボスサークレット Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 10000,
+            'plusDefense': 12500,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: albos3SynergisticOptions,
+        synergyKey: "albosCostume3"
+    },
+    {
+        id: 1,
         name: "ジェネシスサークレット Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 1250,
@@ -8562,6 +8871,33 @@ export const hats: ItemTemplate[] = [
         synergyKey: "genesisCostume2"
     },
     {
+        id: 37,
+        name: "イグニスサークレット Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 10000,
+            'plusDefense': 5000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: ignis2SynergisticOptions,
+        synergyKey: "ignisCostume2"
+    },
+    {
+        id: 38,
+        name: "アルボスサークレット Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 5000,
+            'plusDefense': 10000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: albos2SynergisticOptions,
+        synergyKey: "albosCostume2"
+    },
+    {
+        id: 2,
         name: "ジェネシスサークレット Ⅰ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8574,6 +8910,33 @@ export const hats: ItemTemplate[] = [
         synergyKey: "genesisCostume1"
     },
     {
+        id: 39,
+        name: "イグニスサークレット Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: ignis1SynergisticOptions,
+        synergyKey: "ignisCostume1"
+    },
+    {
+        id: 40,
+        name: "アルボスサークレット Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: albos1SynergisticOptions,
+        synergyKey: "albosCostume1"
+    },
+    {
+        id: 3,
         name: "ロハの冠",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8586,6 +8949,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "roha"
     },
     {
+        id: 4,
         name: "ヴァリアントサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8598,6 +8962,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "variant"
     },
     {
+        id: 5,
         name: "ガルガンチュアサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8609,6 +8974,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "gargantua"
     },
     {
+        id: 6,
         name: "カタストロフサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8620,6 +8986,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "catastrophe"
     },
     {
+        id: 7,
         name: "エドネの冠",
         fixedBaseOptions: {
             'plusAllStatus': 700,
@@ -8632,6 +8999,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "edne"
     },
     {
+        id: 8,
         name: "オンの冠",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -8644,6 +9012,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "on"
     },
     {
+        id: 9,
         name: "シヴァの冠",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8656,6 +9025,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "siva"
     },
     {
+        id: 10,
         name: "アポカリプスサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -8668,6 +9038,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "apocalypse"
     },
     {
+        id: 11,
         name: "劫火の帽子",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -8680,6 +9051,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "hellfire"
     },
     {
+        id: 12,
         name: "ノスフェラトゥサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -8692,6 +9064,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "nosferatu"
     },
     {
+        id: 13,
         name: "エクステンドサークレット",
         fixedBaseOptions: {
             'plusAttack': 2500,
@@ -8703,6 +9076,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "extend"
     },
     {
+        id: 14,
         name: "ディザスターサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -8714,6 +9088,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "disaster"
     },
     {
+        id: 15,
         name: "ゴライアスサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -8725,6 +9100,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "goliath"
     },
     {
+        id: 16,
         name: "メガリスサークレット",
         fixedBaseOptions: {
             'plusAttack': 175,
@@ -8736,6 +9112,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "megalith"
     },
     {
+        id: 17,
         name: "テンペストサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 75,
@@ -8747,6 +9124,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "tempest"
     },
     {
+        id: 18,
         name: "ネフィリムサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 75,
@@ -8758,6 +9136,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "nephilim"
     },
     {
+        id: 19,
         name: "ガネーシャの冠Ⅳ",
         fixedBaseOptions: {
             'plusAllStatus': 900,
@@ -8770,6 +9149,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "ganesha4"
     },
     {
+        id: 20,
         name: "ガネーシャの冠Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -8782,6 +9162,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "ganesha3"
     },
     {
+        id: 21,
         name: "ガネーシャの冠Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 600,
@@ -8794,6 +9175,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "ganesha2"
     },
     {
+        id: 22,
         name: "ガネーシャの冠",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -8806,6 +9188,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "ganesha1"
     },
     {
+        id: 23,
         name: "アナイアレイトサークレットⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -8818,6 +9201,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "annihilate4"
     },
     {
+        id: 24,
         name: "アナイアレイトサークレットⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -8830,6 +9214,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "annihilate3"
     },
     {
+        id: 25,
         name: "アナイアレイトサークレットⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -8842,6 +9227,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "annihilate2"
     },
     {
+        id: 26,
         name: "アナイアレイトサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -8854,6 +9240,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "annihilate1"
     },
     {
+        id: 27,
         name: "紅蓮の帽子Ⅳ",
         fixedBaseOptions: {
             'plusAllStatus': 250,
@@ -8866,6 +9253,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "crimson4"
     },
     {
+        id: 28,
         name: "紅蓮の帽子Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 225,
@@ -8878,6 +9266,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "crimson3"
     },
     {
+        id: 29,
         name: "紅蓮の帽子Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -8890,6 +9279,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "crimson2"
     },
     {
+        id: 30,
         name: "紅蓮の帽子",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -8902,6 +9292,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "crimson1"
     },
     {
+        id: 31,
         name: "イモータルサークレットⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -8914,6 +9305,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "immortal4"
     },
     {
+        id: 32,
         name: "イモータルサークレットⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -8926,6 +9318,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "immortal3"
     },
     {
+        id: 33,
         name: "イモータルサークレットⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -8938,6 +9331,7 @@ export const hats: ItemTemplate[] = [
         synergyKey: "immortal2"
     },
     {
+        id: 34,
         name: "イモータルサークレット",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -8952,6 +9346,7 @@ export const hats: ItemTemplate[] = [
 ]
 export const earrings: ItemTemplate[] = [
     {
+        id: 0,
         name: "ジェネシスイヤリング Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -8964,6 +9359,33 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "genesisCostume3"
     },
     {
+        id: 35,
+        name: "イグニスイヤリング Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 12500,
+            'plusDefense': 10000,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: ignis3SynergisticOptions,
+        synergyKey: "ignisCostume3"
+    },
+    {
+        id: 36,
+        name: "アルボスイヤリング Ⅲ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 10000,
+            'plusDefense': 12500,
+            'plusHitPoint': 100000,
+        },
+        icon: unknown,
+        synergyOptions: albos3SynergisticOptions,
+        synergyKey: "albosCostume3"
+    },
+    {
+        id: 1,
         name: "ジェネシスイヤリング Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 1250,
@@ -8976,6 +9398,32 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "genesisCostume2"
     },
     {
+        id: 37, name: "イグニスイヤリング Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 10000,
+            'plusDefense': 5000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: ignis2SynergisticOptions,
+        synergyKey: "ignisCostume2"
+    },
+    {
+        id: 38,
+        name: "アルボスイヤリング Ⅱ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1250,
+            'plusAttack': 5000,
+            'plusDefense': 10000,
+            'plusHitPoint': 80000,
+        },
+        icon: unknown,
+        synergyOptions: albos2SynergisticOptions,
+        synergyKey: "albosCostume2"
+    },
+    {
+        id: 2,
         name: "ジェネシスイヤリング Ⅰ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -8988,6 +9436,33 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "genesisCostume1"
     },
     {
+        id: 39,
+        name: "イグニスイヤリング Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 7500,
+            'plusDefense': 2500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: ignis1SynergisticOptions,
+        synergyKey: "ignisCostume1"
+    },
+    {
+        id: 40,
+        name: "アルボスイヤリング Ⅰ",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 2500,
+            'plusDefense': 7500,
+            'plusHitPoint': 60000,
+        },
+        icon: unknown,
+        synergyOptions: albos1SynergisticOptions,
+        synergyKey: "albosCostume1"
+    },
+    {
+        id: 3,
         name: "ロハの耳飾り",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9000,6 +9475,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "roha"
     },
     {
+        id: 4,
         name: "ヴァリアントイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9012,6 +9488,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "variant"
     },
     {
+        id: 5,
         name: "ガルガンチュアイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9023,6 +9500,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "gargantua"
     },
     {
+        id: 6,
         name: "カタストロフイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9034,6 +9512,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "catastrophe"
     },
     {
+        id: 7,
         name: "エドネの耳飾り",
         fixedBaseOptions: {
             'plusAllStatus': 700,
@@ -9046,6 +9525,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "edne"
     },
     {
+        id: 8,
         name: "オンの耳飾り",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -9058,6 +9538,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "on"
     },
     {
+        id: 9,
         name: "シヴァのイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9070,6 +9551,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "siva"
     },
     {
+        id: 10,
         name: "アポカリプスイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -9082,6 +9564,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "apocalypse"
     },
     {
+        id: 11,
         name: "劫火の耳飾り",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -9094,6 +9577,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "hellfire"
     },
     {
+        id: 12,
         name: "ノスフェラトゥイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -9106,6 +9590,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "nosferatu"
     },
     {
+        id: 13,
         name: "エクステンドイアリング",
         fixedBaseOptions: {
             'plusAttack': 2500,
@@ -9117,6 +9602,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "extend"
     },
     {
+        id: 14,
         name: "ディザスターイアリング",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -9128,6 +9614,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "disaster"
     },
     {
+        id: 15,
         name: "ゴライアスイアリング",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -9139,6 +9626,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "goliath"
     },
     {
+        id: 16,
         name: "メガリスイヤリング",
         fixedBaseOptions: {
             'plusAttack': 175,
@@ -9150,6 +9638,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "megalith"
     },
     {
+        id: 17,
         name: "テンペストイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 75,
@@ -9161,6 +9650,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "tempest"
     },
     {
+        id: 18,
         name: "ネフィリムイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 75,
@@ -9172,6 +9662,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "nephilim"
     },
     {
+        id: 19,
         name: "ガネーシャのイヤリングⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 900,
@@ -9184,6 +9675,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "ganesha4"
     },
     {
+        id: 20,
         name: "ガネーシャのイヤリングⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9196,6 +9688,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "ganesha3"
     },
     {
+        id: 21,
         name: "ガネーシャのイヤリングⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 600,
@@ -9208,6 +9701,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "ganesha2"
     },
     {
+        id: 22,
         name: "ガネーシャのイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -9220,6 +9714,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "ganesha1"
     },
     {
+        id: 23,
         name: "アナイアレイトイヤリングⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -9232,6 +9727,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "annihilate4"
     },
     {
+        id: 24,
         name: "アナイアレイトイヤリングⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -9244,6 +9740,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "annihilate3"
     },
     {
+        id: 25,
         name: "アナイアレイトイヤリングⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -9256,6 +9753,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "annihilate2"
     },
     {
+        id: 26,
         name: "アナイアレイトイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -9268,6 +9766,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "annihilate1"
     },
     {
+        id: 27,
         name: "紅蓮の耳飾りⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 250,
@@ -9280,6 +9779,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "crimson4"
     },
     {
+        id: 28,
         name: "紅蓮の耳飾りⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 225,
@@ -9292,6 +9792,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "crimson3"
     },
     {
+        id: 29,
         name: "紅蓮の耳飾りⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -9304,6 +9805,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "crimson2"
     },
     {
+        id: 30,
         name: "紅蓮の耳飾り",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -9316,6 +9818,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "crimson1"
     },
     {
+        id: 31,
         name: "イモータルイヤリングⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -9328,6 +9831,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "immortal4"
     },
     {
+        id: 32,
         name: "イモータルイヤリングⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -9340,6 +9844,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "immortal3"
     },
     {
+        id: 33,
         name: "イモータルイヤリングⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -9352,6 +9857,7 @@ export const earrings: ItemTemplate[] = [
         synergyKey: "immortal2"
     },
     {
+        id: 34,
         name: "イモータルイヤリング",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -9366,11 +9872,13 @@ export const earrings: ItemTemplate[] = [
 ]
 export const costumes: ItemTemplate[] = [
     {
+        id: 0,
         name: "ソケットコスチューム",
         icon: unknown,
         sockets: 4
     },
     {
+        id: 1,
         name: "ロハの鎧",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9383,6 +9891,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "roha"
     },
     {
+        id: 2,
         name: "ヴィクトリアス・アーマー",
         fixedBaseOptions: {
             'plusAllStatus': 800,
@@ -9393,6 +9902,7 @@ export const costumes: ItemTemplate[] = [
         icon: constume_victorious,
     },
     {
+        id: 3,
         name: "エドネの鎧",
         fixedBaseOptions: {
             'plusAllStatus': 700,
@@ -9405,6 +9915,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "edne"
     },
     {
+        id: 4,
         name: "オンの鎧",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -9417,6 +9928,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "on"
     },
     {
+        id: 5,
         name: "シヴァの鎧",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9429,6 +9941,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "siva"
     },
     {
+        id: 6,
         name: "アポカリプスアーマー",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -9441,6 +9954,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "apocalypse"
     },
     {
+        id: 7,
         name: "劫火の鎧",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -9453,6 +9967,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "hellfire"
     },
     {
+        id: 8,
         name: "ノスフェラトゥアーマー",
         fixedBaseOptions: {
             'plusAllStatus': 275,
@@ -9465,6 +9980,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "nosferatu"
     },
     {
+        id: 9,
         name: "ガネーシャの鎧Ⅳ",
         fixedBaseOptions: {
             'plusAllStatus': 900,
@@ -9477,6 +9993,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "ganesha4"
     },
     {
+        id: 10,
         name: "ガネーシャの鎧Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9489,6 +10006,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "ganesha3"
     },
     {
+        id: 11,
         name: "ガネーシャの鎧Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 600,
@@ -9501,6 +10019,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "ganesha2"
     },
     {
+        id: 12,
         name: "ガネーシャの鎧",
         fixedBaseOptions: {
             'plusAllStatus': 500,
@@ -9513,6 +10032,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "ganesha1"
     },
     {
+        id: 13,
         name: "アナイアレイトアーマーⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -9525,6 +10045,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "annihilate4"
     },
     {
+        id: 14,
         name: "アナイアレイトアーマーⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -9537,6 +10058,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "annihilate3"
     },
     {
+        id: 15,
         name: "アナイアレイトアーマーⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -9549,6 +10071,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "annihilate2"
     },
     {
+        id: 16,
         name: "アナイアレイトアーマー",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -9561,6 +10084,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "annihilate1"
     },
     {
+        id: 17,
         name: "紅蓮の鎧Ⅳ",
         fixedBaseOptions: {
             'plusAllStatus': 250,
@@ -9573,6 +10097,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "crimson4"
     },
     {
+        id: 18,
         name: "紅蓮の鎧Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 225,
@@ -9585,6 +10110,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "crimson3"
     },
     {
+        id: 19,
         name: "紅蓮の鎧Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -9597,6 +10123,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "crimson2"
     },
     {
+        id: 20,
         name: "紅蓮の鎧",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -9609,6 +10136,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "crimson1"
     },
     {
+        id: 21,
         name: "イモータルアーマーⅣ",
         fixedBaseOptions: {
             'plusAllStatus': 230,
@@ -9621,6 +10149,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "immortal4"
     },
     {
+        id: 22,
         name: "イモータルアーマーⅢ",
         fixedBaseOptions: {
             'plusAllStatus': 205,
@@ -9633,6 +10162,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "immortal3"
     },
     {
+        id: 23,
         name: "イモータルアーマーⅡ",
         fixedBaseOptions: {
             'plusAllStatus': 180,
@@ -9645,6 +10175,7 @@ export const costumes: ItemTemplate[] = [
         synergyKey: "immortal2"
     },
     {
+        id: 24,
         name: "イモータルアーマー",
         fixedBaseOptions: {
             'plusAllStatus': 155,
@@ -9660,6 +10191,7 @@ export const costumes: ItemTemplate[] = [
 ]
 export const accessories: ItemTemplate[] = [
     {
+        id: 0,
         name: "ジェネシスリング Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -9672,6 +10204,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis3"
     },
     {
+        id: 1,
         name: "ジェネシスブローチ Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -9684,6 +10217,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis3"
     },
     {
+        id: 2,
         name: "ジェネシスブレスレット Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -9696,6 +10230,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis3"
     },
     {
+        id: 3,
         name: "ジェネシスネックレス Ⅲ",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -9708,6 +10243,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis3"
     },
     {
+        id: 4,
         name: "ジェネシスリング Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 1250,
@@ -9720,6 +10256,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis2"
     },
     {
+        id: 5,
         name: "ジェネシスブローチ Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 1250,
@@ -9732,6 +10269,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis2"
     },
     {
+        id: 6,
         name: "ジェネシスブレスレット Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 1250,
@@ -9744,6 +10282,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis2"
     },
     {
+        id: 7,
         name: "ジェネシスネックレス Ⅱ",
         fixedBaseOptions: {
             'plusAllStatus': 1250,
@@ -9756,6 +10295,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis2"
     },
     {
+        id: 8,
         name: "ジェネシスネックレス Ⅰ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9768,6 +10308,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis1"
     },
     {
+        id: 9,
         name: "ジェネシスリング Ⅰ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9780,6 +10321,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis1"
     },
     {
+        id: 10,
         name: "ジェネシスブローチ Ⅰ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9792,6 +10334,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "genesis1"
     },
     {
+        id: 11,
         name: "ジェネシスブレスレット Ⅰ",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -9802,7 +10345,9 @@ export const accessories: ItemTemplate[] = [
         icon: unknown,
         synergyOptions: genesis1SynergisticOptions,
         synergyKey: "genesis1"
-    }, {
+    },
+    {
+        id: 12,
         name: "ケイオスリング",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9814,6 +10359,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "chaos"
     },
     {
+        id: 13,
         name: "ケイオスブローチ",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9825,6 +10371,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "chaos"
     },
     {
+        id: 14,
         name: "ケイオスブレスレット",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9836,6 +10383,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "chaos"
     },
     {
+        id: 15,
         name: "ケイオスネックレス",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9847,6 +10395,7 @@ export const accessories: ItemTemplate[] = [
         synergyKey: "chaos"
     },
     {
+        id: 16,
         name: "メイガスリング",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9856,6 +10405,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_magus_ring,
     },
     {
+        id: 17,
         name: "メイガスブローチ",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9865,6 +10415,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_magus_brooch,
     },
     {
+        id: 18,
         name: "メイガスブレスレット",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9875,6 +10426,7 @@ export const accessories: ItemTemplate[] = [
 
     },
     {
+        id: 19,
         name: "メイガスネックレス",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9885,6 +10437,7 @@ export const accessories: ItemTemplate[] = [
 
     },
     {
+        id: 20,
         name: "深淵の宝珠(玄武)",
         enchantableBaseOptions: {
             0: {
@@ -9896,6 +10449,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_abyssal_jewel,
     },
     {
+        id: 21,
         name: "深淵の宝珠(白虎)",
         enchantableBaseOptions: {
             0: {
@@ -9907,6 +10461,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_abyssal_jewel,
     },
     {
+        id: 22,
         name: "深淵の宝珠(青龍)",
         enchantableBaseOptions: {
             0: {
@@ -9918,6 +10473,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_abyssal_jewel,
     },
     {
+        id: 23,
         name: "深淵の宝珠(朱雀)",
         enchantableBaseOptions: {
             0: {
@@ -9929,6 +10485,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_abyssal_jewel,
     },
     {
+        id: 24,
         name: "虚無の逆十字",
         fixedBaseOptions: {
             'plusStatusAttack': 10000,
@@ -9937,6 +10494,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_nihility_inverted_cross,
     },
     {
+        id: 25,
         name: "怠惰の塊",
         fixedBaseOptions: {
             'plusAllStatus': 1500,
@@ -9947,6 +10505,7 @@ export const accessories: ItemTemplate[] = [
         icon: accessory_mass_of_sloth,
     },
     {
+        id: 26,
         name: "貪欲の首輪",
         fixedBaseOptions: {
             'plusAllStatus': 750,
@@ -9961,6 +10520,7 @@ export const accessories: ItemTemplate[] = [
 
 export const b_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "ノーウェンのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -9971,6 +10531,7 @@ export const b_talismans: ItemTemplate[] = [
         icon: talisman_b_1,
     },
     {
+        id: 1,
         name: "輝くノーウェンのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -9981,6 +10542,7 @@ export const b_talismans: ItemTemplate[] = [
         icon: talisman_b_1,
     },
     {
+        id: 2,
         name: "洗練されたノーウェンのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -9991,6 +10553,7 @@ export const b_talismans: ItemTemplate[] = [
         icon: talisman_b_1,
     },
     {
+        id: 3,
         name: "鮮血のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 400,
@@ -10001,6 +10564,7 @@ export const b_talismans: ItemTemplate[] = [
         icon: talisman_b_1,
     },
     {
+        id: 4,
         name: "深紅のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -10013,6 +10577,7 @@ export const b_talismans: ItemTemplate[] = [
 ]
 export const j_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "ヘスペロスのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -10021,6 +10586,7 @@ export const j_talismans: ItemTemplate[] = [
         icon: talisman_j_1,
     },
     {
+        id: 1,
         name: "輝くへスぺロスのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -10029,6 +10595,7 @@ export const j_talismans: ItemTemplate[] = [
         icon: talisman_j_1,
     },
     {
+        id: 2,
         name: "洗練されたヘスペロスのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 450,
@@ -10037,6 +10604,7 @@ export const j_talismans: ItemTemplate[] = [
         icon: talisman_j_1,
     },
     {
+        id: 3,
         name: "栄光のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 600,
@@ -10045,6 +10613,7 @@ export const j_talismans: ItemTemplate[] = [
         icon: talisman_j_1,
     },
     {
+        id: 4,
         name: "黄金のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -10057,6 +10626,7 @@ export const j_talismans: ItemTemplate[] = [
 ]
 export const h_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "カルラスのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -10066,6 +10636,7 @@ export const h_talismans: ItemTemplate[] = [
         icon: talisman_h_1,
     },
     {
+        id: 1,
         name: "輝くカルラスのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -10075,6 +10646,7 @@ export const h_talismans: ItemTemplate[] = [
         icon: talisman_h_1,
     },
     {
+        id: 2,
         name: "洗練されたカルラスのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -10084,6 +10656,7 @@ export const h_talismans: ItemTemplate[] = [
         icon: talisman_h_1,
     },
     {
+        id: 3,
         name: "深緑のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 400,
@@ -10093,6 +10666,7 @@ export const h_talismans: ItemTemplate[] = [
         icon: talisman_h_1,
     },
     {
+        id: 4,
         name: "翡翠のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -10105,6 +10679,7 @@ export const h_talismans: ItemTemplate[] = [
 ]
 export const g_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "ディエガのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 150,
@@ -10114,6 +10689,7 @@ export const g_talismans: ItemTemplate[] = [
         icon: talisman_g_1,
     },
     {
+        id: 1,
         name: "輝くディエガのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -10123,6 +10699,7 @@ export const g_talismans: ItemTemplate[] = [
         icon: talisman_g_1,
     },
     {
+        id: 2,
         name: "洗練されたディエガのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -10132,6 +10709,7 @@ export const g_talismans: ItemTemplate[] = [
         icon: talisman_g_1,
     },
     {
+        id: 3,
         name: "紺碧のタリスマン	",
         fixedBaseOptions: {
             'plusAllStatus': 400,
@@ -10141,6 +10719,7 @@ export const g_talismans: ItemTemplate[] = [
         icon: talisman_g_1,
     },
     {
+        id: 4,
         name: "蒼穹のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -10153,6 +10732,7 @@ export const g_talismans: ItemTemplate[] = [
 ]
 export const i_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "カシムのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 200,
@@ -10161,6 +10741,7 @@ export const i_talismans: ItemTemplate[] = [
         icon: talisman_i_1,
     },
     {
+        id: 1,
         name: "輝くカシムのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 300,
@@ -10169,6 +10750,7 @@ export const i_talismans: ItemTemplate[] = [
         icon: talisman_i_1,
     },
     {
+        id: 2,
         name: "洗練されたカシムのタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 450,
@@ -10177,6 +10759,7 @@ export const i_talismans: ItemTemplate[] = [
         icon: talisman_i_1,
     },
     {
+        id: 3,
         name: "紫闇のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 600,
@@ -10185,6 +10768,7 @@ export const i_talismans: ItemTemplate[] = [
         icon: talisman_i_1,
     },
     {
+        id: 4,
         name: "紫紺のタリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -10198,6 +10782,7 @@ export const i_talismans: ItemTemplate[] = [
 
 export const n_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "黎明のタリスマン",
         enchantableBaseOptions: {
             0: {
@@ -10407,6 +10992,7 @@ export const n_talismans: ItemTemplate[] = [
 ]
 export const e_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "ウォルターのタリスマン",
         enchantableBaseOptions: {
             0: {
@@ -10531,6 +11117,7 @@ export const e_talismans: ItemTemplate[] = [
 ]
 export const r_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "ヴィクトリアス・タリスマン",
         fixedBaseOptions: {
             'plusAllStatus': 1000,
@@ -10541,6 +11128,7 @@ export const r_talismans: ItemTemplate[] = [
 ]
 export const w_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "マスク",
         enchantableBaseOptions: {
             0: {
@@ -10594,6 +11182,7 @@ export const w_talismans: ItemTemplate[] = [
 ]
 export const q_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "8等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 2500,
@@ -10602,6 +11191,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_8th_private,
     },
     {
+        id: 1,
         name: "7等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 5500,
@@ -10611,6 +11201,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_7th_private,
     },
     {
+        id: 2,
         name: "6等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 7500,
@@ -10619,6 +11210,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_6th_private,
     },
     {
+        id: 3,
         name: "5等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 10000,
@@ -10627,6 +11219,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_5th_private,
     },
     {
+        id: 4,
         name: "4等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 12500,
@@ -10635,6 +11228,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_4th_private,
     },
     {
+        id: 5,
         name: "3等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 15000,
@@ -10643,6 +11237,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_3rd_private,
     },
     {
+        id: 6,
         name: "2等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 17500,
@@ -10651,6 +11246,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_2nd_private,
     },
     {
+        id: 7,
         name: "1等兵階級章",
         fixedBaseOptions: {
             'plusHitPoint': 20000,
@@ -10659,6 +11255,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_1st_private,
     },
     {
+        id: 8,
         name: "1将校階級章",
         fixedBaseOptions: {
             'plusHitPoint': 30000,
@@ -10669,6 +11266,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_1star_officer,
     },
     {
+        id: 9,
         name: "2将校階級章",
         fixedBaseOptions: {
             'plusHitPoint': 40000,
@@ -10679,6 +11277,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_2star_officer,
     },
     {
+        id: 10,
         name: "3将校階級章",
         fixedBaseOptions: {
             'plusHitPoint': 50000,
@@ -10689,6 +11288,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_3star_officer,
     },
     {
+        id: 11,
         name: "4将校階級章",
         fixedBaseOptions: {
             'plusHitPoint': 60000,
@@ -10699,6 +11299,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_4star_officer,
     },
     {
+        id: 12,
         name: "5将校階級章",
         fixedBaseOptions: {
             'plusHitPoint': 70000,
@@ -10709,6 +11310,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_5star_officer,
     },
     {
+        id: 13,
         name: "軍団長階級章",
         fixedBaseOptions: {
             'plusHitPoint': 100000,
@@ -10719,6 +11321,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_commander,
     },
     {
+        id: 14,
         name: "司令官階級章",
         fixedBaseOptions: {
             'plusHitPoint': 200000,
@@ -10729,6 +11332,7 @@ export const q_talismans: ItemTemplate[] = [
         icon: talisman_q_supreme_commander,
     },
     {
+        id: 15,
         name: "元帥階級章",
         fixedBaseOptions: {
             'plusHitPoint': 300000,
@@ -10742,6 +11346,7 @@ export const q_talismans: ItemTemplate[] = [
 ]
 export const s_talismans: ItemTemplate[] = [
     {
+        id: 0,
         name: "原初の記録",
         fixedBaseOptions: {
             'plusHitPoint': 100000,
@@ -10753,8 +11358,154 @@ export const s_talismans: ItemTemplate[] = [
     }
 
 ]
+export const t_talismans: ItemTemplate[] = [
+    {
+        id: 0,
+        name: "輝く海の遺物",
+        icon: unknown,
+        enchantableBaseOptions: {
+            0: {
+                'plusAllStatus': 10,
+                'plusDefense': 100,
+                'plusAttack': 100,
+                'plusHitPoint': 1000,
+            },
+            1: {
+                'plusAllStatus': 30,
+                'plusDefense': 300,
+                'plusAttack': 300,
+                'plusHitPoint': 3000,
+            },
+            2: {
+                'plusAllStatus': 60,
+                'plusDefense': 600,
+                'plusAttack': 600,
+                'plusHitPoint': 6000,
+            },
+            3: {
+                'plusAllStatus': 90,
+                'plusDefense': 900,
+                'plusAttack': 900,
+                'plusHitPoint': 9000,
+            },
+            4: {
+                'plusAllStatus': 120,
+                'plusDefense': 1200,
+                'plusAttack': 1200,
+                'plusHitPoint': 12000,
+            },
+            5: {
+                'plusAllStatus': 150,
+                'plusDefense': 1500,
+                'plusAttack': 1500,
+                'plusHitPoint': 15000,
+            },
+            6: {
+                'plusAllStatus': 180,
+                'plusDefense': 1800,
+                'plusAttack': 1800,
+                'plusHitPoint': 18000,
+            },
+            7: {
+                'plusAllStatus': 210,
+                'plusDefense': 2100,
+                'plusAttack': 2100,
+                'plusHitPoint': 21000,
+            },
+            8: {
+                'plusAllStatus': 240,
+                'plusDefense': 2400,
+                'plusAttack': 2400,
+                'plusHitPoint': 24000,
+            },
+            9: {
+                'plusAllStatus': 270,
+                'plusDefense': 2700,
+                'plusAttack': 2700,
+                'plusHitPoint': 27000,
+            },
+            10: {
+                'plusAllStatus': 300,
+                'plusDefense': 3000,
+                'plusAttack': 3000,
+                'plusHitPoint': 30000,
+            },
+            11: {
+                'plusAllStatus': 330,
+                'plusDefense': 3300,
+                'plusAttack': 3300,
+                'plusHitPoint': 33000,
+                'multiplyHitPoint': 3,
+            },
+            12: {
+                'plusAllStatus': 360,
+                'plusDefense': 3600,
+                'plusAttack': 3600,
+                'plusHitPoint': 36000,
+                'multiplyHitPoint': 6,
+            },
+            13: {
+                'plusAllStatus': 390,
+                'plusDefense': 3900,
+                'plusAttack': 3900,
+                'plusHitPoint': 39000,
+                'multiplyHitPoint': 9,
+            },
+            14: {
+                'plusAllStatus': 420,
+                'plusDefense': 4200,
+                'plusAttack': 4200,
+                'plusHitPoint': 42000,
+                'multiplyHitPoint': 12,
+            },
+            15: {
+                'plusAllStatus': 450,
+                'plusDefense': 4500,
+                'plusAttack': 4500,
+                'plusHitPoint': 45000,
+                'multiplyHitPoint': 15,
+            },
+            16: {
+                'plusAllStatus': 480,
+                'plusDefense': 4800,
+                'plusAttack': 4800,
+                'plusHitPoint': 48000,
+                'multiplyHitPoint': 18,
+            },
+            17: {
+                'plusAllStatus': 510,
+                'plusDefense': 5100,
+                'plusAttack': 5100,
+                'plusHitPoint': 51000,
+                'multiplyHitPoint': 21,
+            },
+            18: {
+                'plusAllStatus': 540,
+                'plusDefense': 5400,
+                'plusAttack': 5400,
+                'plusHitPoint': 54000,
+                'multiplyHitPoint': 24,
+            },
+            19: {
+                'plusAllStatus': 570,
+                'plusDefense': 5700,
+                'plusAttack': 5700,
+                'plusHitPoint': 57000,
+                'multiplyHitPoint': 27,
+            },
+            20: {
+                'plusAllStatus': 600,
+                'plusDefense': 6000,
+                'plusAttack': 6000,
+                'plusHitPoint': 60000,
+                'multiplyHitPoint': 30,
+            }
+        }
+    }
+]
 export const pets: ItemTemplate[] = [
     {
+        id: 0,
         name: "ロイヤルドラゴン",
         icon: unknown,
         enchantableBaseOptions: {
@@ -10773,6 +11524,7 @@ export const pets: ItemTemplate[] = [
         },
     },
     {
+        id: 1,
         name: "スィートフェアリー",
         icon: unknown,
         enchantableBaseOptions: {
@@ -10791,6 +11543,7 @@ export const pets: ItemTemplate[] = [
         },
     },
     {
+        id: 2,
         name: "ホーリーライオン",
         icon: unknown,
         enchantableBaseOptions: {
@@ -10815,6 +11568,7 @@ export const pets: ItemTemplate[] = [
         },
     },
     {
+        id: 3,
         name: "ホワイトユニコーン",
         icon: unknown,
         enchantableBaseOptions: {
@@ -10833,6 +11587,7 @@ export const pets: ItemTemplate[] = [
         },
     },
     {
+        id: 4,
         name: "三尾狐",
         icon: unknown,
         enchantableBaseOptions: {
@@ -10858,6 +11613,7 @@ export const pets: ItemTemplate[] = [
 
 export const rides: ItemTemplate[] = [
     {
+        id: 0,
         name: "80%乗り物",
         icon: unknown,
         fixedBaseOptions: {
@@ -10865,6 +11621,7 @@ export const rides: ItemTemplate[] = [
         }
     },
     {
+        id: 1,
         name: "100%乗り物",
         icon: unknown,
         fixedBaseOptions: {
@@ -10875,6 +11632,7 @@ export const rides: ItemTemplate[] = [
 
 export const runes: ItemTemplate[] = [
     {
+        id: 0,
         name: "攻撃のルーン",
         icon: rune_attack,
         enchantableBaseOptions: {
@@ -10902,6 +11660,7 @@ export const runes: ItemTemplate[] = [
         }
     },
     {
+        id: 1,
         name: "迅速のルーン",
         icon: rune_movement_speed,
         enchantableBaseOptions: {
@@ -10929,6 +11688,7 @@ export const runes: ItemTemplate[] = [
         }
     },
     {
+        id: 2,
         name: "全能のルーン",
         icon: rune_all_status,
         enchantableBaseOptions: {
@@ -10956,6 +11716,7 @@ export const runes: ItemTemplate[] = [
         }
     },
     {
+        id: 3,
         name: "活力のルーン",
         icon: rune_hp_mp,
         enchantableBaseOptions: {
@@ -10990,11 +11751,13 @@ export const runes: ItemTemplate[] = [
         }
     },
     {
+        id: 4,
         name: "調和のルーン",
         icon: rune_pt_mkill,
         enchantableBaseOptions: {}
     },
     {
+        id: 5,
         name: "貫通のルーン",
         icon: rune_defense_penetration,
         enchantableBaseOptions: {
@@ -11050,6 +11813,7 @@ export const itemTemplates = {
     talismanW: w_talismans,
     talismanQ: q_talismans,
     talismanS: s_talismans,
+    talismanT: t_talismans,
     pet: pets,
     ride: rides,
     rune1: runes,
