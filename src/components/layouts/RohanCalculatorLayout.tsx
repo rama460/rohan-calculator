@@ -7,12 +7,13 @@ import Costume from "../costume/Costume";
 
 export const RohanCalculatorLayout: React.FC = () => {
     const [open, setOpen] = React.useState(false);
+    const basePath = __APP_CONFIG__.basename;
 
     const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
     };
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={basePath}>
             <RohanCalculatorHeader open={open} toggleDrawer={toggleDrawer} />
             <RohanCalculatorDrawer open={open} toggleDrawer={toggleDrawer} />
             <Routes>
