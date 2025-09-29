@@ -1,7 +1,9 @@
 import React from "react";
-import RohanCaluculatorDrawer from "./RohanCalculatorDrawer";
+import RohanCalculatorDrawer from "./RohanCalculatorDrawer";
 import RohanCalculatorHeader from "./RohanCalculatorHeader";
 import Status from "../status/Status";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Costume from "../costume/Costume";
 
 export const RohanCalculatorLayout: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -10,11 +12,18 @@ export const RohanCalculatorLayout: React.FC = () => {
         setOpen(newOpen);
     };
     return (
-        <React.Fragment>
+        <BrowserRouter>
             <RohanCalculatorHeader open={open} toggleDrawer={toggleDrawer} />
-            <RohanCaluculatorDrawer open={open} toggleDrawer={toggleDrawer} />
-            <Status />
-        </React.Fragment >
-
+            <RohanCalculatorDrawer open={open} toggleDrawer={toggleDrawer} />
+            <Routes>
+                <Route path="/" element={<Status />} />
+                <Route path="/skill" element={<div>Skill</div>} />
+                <Route path="/stats" element={<div>Stats</div>} />
+                <Route path="/costume" element={<Costume />} />
+                <Route path="/config" element={<div>Config</div>} />
+                <Route path="/database" element={<div>Database</div>} />
+            </Routes>
+        </BrowserRouter>
     );
 }
+export default RohanCalculatorLayout;
