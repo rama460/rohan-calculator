@@ -500,6 +500,23 @@ const ParameterComparisonTable: React.FC = () => {
         setVisibleColumns(newVisibility);
     };
 
+    // パラメータによるソート処理（昇順 → 降順 → 非ソートの3段階）
+    const handleParameterSort = (parameter: string) => {
+        if (sortParameter === parameter) {
+            if (sortOrder === 'desc') {
+                setSortOrder('asc');
+            } else if (sortOrder === 'asc') {
+                // 非ソートに戻す
+                setSortParameter(null);
+                setSortOrder('desc');
+            }
+        } else {
+            // 新しいパラメータでソート開始（降順から）
+            setSortParameter(parameter);
+            setSortOrder('desc');
+        }
+    };
+
     // 全シリーズの最終ステータスを計算
     const seriesWithFinalStats = seriesData.map(series => {
         const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
@@ -540,17 +557,39 @@ const ParameterComparisonTable: React.FC = () => {
 
 
     // 列の順序に従ってソートされ、かつ表示状態の列のみをフィルタリング
-    const orderedSeriesWithFinalStats = columnOrder
+    let orderedSeriesWithFinalStats = columnOrder
         .map(index => ({ series: seriesWithFinalStats[index], originalIndex: index }))
         .filter(({ originalIndex }) => visibleColumns[originalIndex]);
+
+    // ソート処理
+    if (sortParameter) {
+        orderedSeriesWithFinalStats = [...orderedSeriesWithFinalStats].sort((a, b) => {
+            const valueA = a.series.finalStats[sortParameter] || 0;
+            const valueB = b.series.finalStats[sortParameter] || 0;
+
+            if (sortOrder === 'desc') {
+                return valueB - valueA;
+            } else {
+                return valueA - valueB;
+            }
+        });
+    }
 
     // 表示用のシリーズデータ
     const displayedSeries = orderedSeriesWithFinalStats.map(({ series }) => series);
 
     return (
         <Box sx={{ mt: 3 }}>
-            <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
+            <Typography variant="h6" sx={{ mb: 1, fontWeight: 'bold' }}>
                 パラメータ別比較（列をドラッグして並び替え可能）
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
+                パラメータ名をクリックするとその値で列をソートできます（降順 → 昇順 → 非ソート）
+                {sortParameter && (
+                    <span style={{ color: '#1976d2', fontWeight: 'bold' }}>
+                        {' '}• 現在のソート: {getDisplayName(sortParameter)} ({sortOrder === 'asc' ? '昇順' : '降順'})
+                    </span>
+                )}
             </Typography>
 
             {/* 列の表示設定 */}
@@ -608,8 +647,24 @@ const ParameterComparisonTable: React.FC = () => {
 
                             return (
                                 <TableRow key={parameter}>
-                                    <TableCell sx={{ fontWeight: 'bold' }}>
+                                    <TableCell
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            cursor: 'pointer',
+                                            '&:hover': {
+                                                backgroundColor: 'rgba(0, 0, 0, 0.04)'
+                                            },
+                                            backgroundColor: sortParameter === parameter ? 'primary.light' : 'inherit',
+                                            color: sortParameter === parameter ? 'primary.contrastText' : 'inherit'
+                                        }}
+                                        onClick={() => handleParameterSort(parameter)}
+                                    >
                                         {getDisplayName(parameter)}
+                                        {sortParameter === parameter && (
+                                            <span style={{ marginLeft: '4px' }}>
+                                                {sortOrder === 'desc' ? '↓' : '↑'}
+                                            </span>
+                                        )}
                                     </TableCell>
                                     {displayedSeries.map(series => {
                                         const value = series.finalStats[parameter] || 0;
