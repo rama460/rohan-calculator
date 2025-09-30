@@ -157,11 +157,11 @@ const SeriesComparisonTable: React.FC = () => {
         const seriesMap = new Map<string, SeriesData>();
 
         [...costumes, ...glasses, ...earrings, ...hats].forEach(item => {
-            if (!item.synergyKey) return;
+            if (!item.synergyKey || !item.seriesName) return;
 
             if (!seriesMap.has(item.synergyKey)) {
                 seriesMap.set(item.synergyKey, {
-                    seriesName: item.synergyKey,
+                    seriesName: item.seriesName,
                     synergyKey: item.synergyKey,
                     totalStats: {},
                     synergyEffects: item.synergyOptions || {}
@@ -394,11 +394,11 @@ const ParameterComparisonTable: React.FC = () => {
         const seriesMap = new Map<string, SeriesData>();
 
         [...costumes, ...glasses, ...earrings, ...hats].forEach(item => {
-            if (!item.synergyKey) return;
+            if (!item.synergyKey || !item.seriesName) return;
 
             if (!seriesMap.has(item.synergyKey)) {
                 seriesMap.set(item.synergyKey, {
-                    seriesName: item.synergyKey,
+                    seriesName: item.seriesName,
                     synergyKey: item.synergyKey,
                     totalStats: {},
                     synergyEffects: item.synergyOptions || {}
@@ -445,8 +445,8 @@ const ParameterComparisonTable: React.FC = () => {
 
     // デフォルト表示するシリーズ名
     const defaultVisibleSeries = [
-        'roha', 'genesisCostume1', 'genesisCostume2', 'genesisCostume3', 'ignisCostume1', 'ignisCostume2', 'ignisCostume3',
-        'albosCostume1', 'albosCostume2', 'albosCostume3', 'variant', 'gargantua', 'catastrophe'
+        'ロハ', 'ジェネシス Ⅰ', 'ジェネシス Ⅱ', 'ジェネシス Ⅲ', 'イグニス Ⅰ', 'イグニス Ⅱ', 'イグニス Ⅲ',
+        'アルボス Ⅰ', 'アルボス Ⅱ', 'アルボス Ⅲ', 'ヴァリアント', 'ガルガンチュア', 'カタストロフ'
     ];
 
     // 列の表示/非表示を管理するstate

@@ -200,6 +200,7 @@ export type BaseItemTemplate = {
         };
     };
     synergyKey?: SynergyKey;
+    seriesName?: string;
     type?: WeaponType;
 }
 export type FixedItemTemplate = {
@@ -351,6 +352,7 @@ export const synergyKeyNames = [
     "celestiteArmor",
     "ignielArmor"
 ] as const;
+
 export type SynergyKey = typeof synergyKeyNames[number];
 export type WeaponType = keyof typeof BuiltinWeaponTypes;
 export const BuiltinWeaponTypes = {
@@ -8302,7 +8304,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume3SynergisticOptions,
-        synergyKey: "genesisCostume3"
+        synergyKey: "genesisCostume3",
+        seriesName: "ジェネシス Ⅲ"
     },
     {
         id: 35,
@@ -8315,7 +8318,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis3SynergisticOptions,
-        synergyKey: "ignisCostume3"
+        synergyKey: "ignisCostume3",
+        seriesName: "イグニス Ⅲ"
     },
     {
         id: 36,
@@ -8328,7 +8332,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos3SynergisticOptions,
-        synergyKey: "albosCostume3"
+        synergyKey: "albosCostume3",
+        seriesName: "アルボス Ⅲ"
     },
     {
         id: 1,
@@ -8341,7 +8346,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume2SynergisticOptions,
-        synergyKey: "genesisCostume2"
+        synergyKey: "genesisCostume2",
+        seriesName: "ジェネシス Ⅱ"
     },
     {
         id: 37,
@@ -8354,7 +8360,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis2SynergisticOptions,
-        synergyKey: "ignisCostume2"
+        synergyKey: "ignisCostume2",
+        seriesName: "イグニス Ⅱ"
     },
     {
         id: 38,
@@ -8367,7 +8374,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos2SynergisticOptions,
-        synergyKey: "albosCostume2"
+        synergyKey: "albosCostume2",
+        seriesName: "アルボス Ⅱ"
     },
     {
         id: 2,
@@ -8380,7 +8388,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume1SynergisticOptions,
-        synergyKey: "genesisCostume1"
+        synergyKey: "genesisCostume1",
+        seriesName: "ジェネシス Ⅰ"
     },
     {
         id: 39,
@@ -8393,7 +8402,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis1SynergisticOptions,
-        synergyKey: "ignisCostume1"
+        synergyKey: "ignisCostume1",
+        seriesName: "イグニス Ⅰ"
     },
     {
         id: 40,
@@ -8406,7 +8416,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos1SynergisticOptions,
-        synergyKey: "albosCostume1"
+        synergyKey: "albosCostume1",
+        seriesName: "アルボス Ⅰ"
     },
     {
         id: 3,
@@ -8419,7 +8430,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_roha,
         synergyOptions: rohaSynergisticOptions,
-        synergyKey: "roha"
+        synergyKey: "roha",
+        seriesName: "ロハ"
     },
     {
         id: 4,
@@ -8432,7 +8444,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_variant,
         synergyOptions: variantSynergisticOptions,
-        synergyKey: "variant"
+        synergyKey: "variant",
+        seriesName: "ヴァリアント"
     },
     {
         id: 5,
@@ -8444,7 +8457,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_gargantua,
         synergyOptions: gargantuaSynergisticOptions,
-        synergyKey: "gargantua"
+        synergyKey: "gargantua",
+        seriesName: "ガルガンチュア"
     },
     {
         id: 6,
@@ -8456,7 +8470,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_variant,
         synergyOptions: catastropheSynergisticOptions,
-        synergyKey: "catastrophe"
+        synergyKey: "catastrophe",
+        seriesName: "カタストロフ"
     },
     {
         id: 7,
@@ -8469,7 +8484,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_edne,
         synergyOptions: edneSynergisticOptions,
-        synergyKey: "edne"
+        synergyKey: "edne",
+        seriesName: "エドネ"
     },
     {
         id: 8,
@@ -8482,7 +8498,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_on,
         synergyOptions: onSynergisticOptions,
-        synergyKey: "on"
+        synergyKey: "on",
+        seriesName: "オン"
     },
     {
         id: 9,
@@ -8495,7 +8512,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_siva,
         synergyOptions: sivaSynergisticOptions,
-        synergyKey: "siva"
+        synergyKey: "siva",
+        seriesName: "シヴァ"
     },
     {
         id: 10,
@@ -8508,7 +8526,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
-        synergyKey: "apocalypse"
+        synergyKey: "apocalypse",
+        seriesName: "アポカリプス"
     },
     {
         id: 11,
@@ -8521,7 +8540,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_hellfire,
         synergyOptions: hellfireSynergisticOptions,
-        synergyKey: "hellfire"
+        synergyKey: "hellfire",
+        seriesName: "劫火"
     },
     {
         id: 12,
@@ -8534,7 +8554,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
-        synergyKey: "nosferatu"
+        synergyKey: "nosferatu",
+        seriesName: "ノスフェラトゥ"
     },
     {
         id: 13,
@@ -8546,7 +8567,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_extend,
         synergyOptions: extendSynergisticOptions,
-        synergyKey: "extend"
+        synergyKey: "extend",
+        seriesName: "エクステンド"
     },
     {
         id: 14,
@@ -8558,7 +8580,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_disaster,
         synergyOptions: disasterSynergisticOptions,
-        synergyKey: "disaster"
+        synergyKey: "disaster",
+        seriesName: "ディザスター"
     },
     {
         id: 15,
@@ -8570,7 +8593,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
-        synergyKey: "goliath"
+        synergyKey: "goliath",
+        seriesName: "ゴライアス"
     },
     {
         id: 16,
@@ -8582,7 +8606,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_megalith,
         synergyOptions: megalithSynergisticOptions,
-        synergyKey: "megalith"
+        synergyKey: "megalith",
+        seriesName: "メガリス"
     },
     {
         id: 17,
@@ -8594,7 +8619,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_megalith,
         synergyOptions: tempestSynergisticOptions,
-        synergyKey: "tempest"
+        synergyKey: "tempest",
+        seriesName: "テンペスト"
     },
     {
         id: 18,
@@ -8606,7 +8632,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_megalith,
         synergyOptions: nephilimSynergisticOptions,
-        synergyKey: "nephilim"
+        synergyKey: "nephilim",
+        seriesName: "ネフィリム"
     },
     {
         id: 19,
@@ -8619,7 +8646,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_siva,
         synergyOptions: ganes4haSynergisticOptions,
-        synergyKey: "ganesha4"
+        synergyKey: "ganesha4",
+        seriesName: "ガネーシャ Ⅳ"
     },
     {
         id: 20,
@@ -8632,7 +8660,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_siva,
         synergyOptions: ganes3haSynergisticOptions,
-        synergyKey: "ganesha3"
+        synergyKey: "ganesha3",
+        seriesName: "ガネーシャ Ⅲ"
     },
     {
         id: 21,
@@ -8645,7 +8674,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_siva,
         synergyOptions: ganes2haSynergisticOptions,
-        synergyKey: "ganesha2"
+        synergyKey: "ganesha2",
+        seriesName: "ガネーシャ Ⅱ"
     },
     {
         id: 22,
@@ -8658,7 +8688,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_siva,
         synergyOptions: ganes1haSynergisticOptions,
-        synergyKey: "ganesha1"
+        synergyKey: "ganesha1",
+        seriesName: "ガネーシャ Ⅰ"
     },
     {
         id: 23,
@@ -8671,7 +8702,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
-        synergyKey: "annihilate4"
+        synergyKey: "annihilate4",
+        seriesName: "アナイアレイト Ⅳ"
     },
     {
         id: 24,
@@ -8684,7 +8716,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
-        synergyKey: "annihilate3"
+        synergyKey: "annihilate3",
+        seriesName: "アナイアレイト Ⅲ"
     },
     {
         id: 25,
@@ -8697,7 +8730,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
-        synergyKey: "annihilate2"
+        synergyKey: "annihilate2",
+        seriesName: "アナイアレイト Ⅱ"
     },
     {
         id: 26,
@@ -8710,7 +8744,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
-        synergyKey: "annihilate1"
+        synergyKey: "annihilate1",
+        seriesName: "アナイアレイト Ⅰ"
     },
     {
         id: 27,
@@ -8723,7 +8758,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
-        synergyKey: "crimson4"
+        synergyKey: "crimson4",
+        seriesName: "紅蓮 Ⅳ"
     },
     {
         id: 28,
@@ -8736,7 +8772,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
-        synergyKey: "crimson3"
+        synergyKey: "crimson3",
+        seriesName: "紅蓮 Ⅲ"
     },
     {
         id: 29,
@@ -8749,7 +8786,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
-        synergyKey: "crimson2"
+        synergyKey: "crimson2",
+        seriesName: "紅蓮 Ⅱ"
     },
     {
         id: 30,
@@ -8762,7 +8800,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
-        synergyKey: "crimson1"
+        synergyKey: "crimson1",
+        seriesName: "紅蓮 Ⅰ"
     },
     {
         id: 31,
@@ -8775,7 +8814,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
-        synergyKey: "immortal4"
+        synergyKey: "immortal4",
+        seriesName: "イモータル Ⅳ"
     },
     {
         id: 32,
@@ -8788,7 +8828,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
-        synergyKey: "immortal3"
+        synergyKey: "immortal3",
+        seriesName: "イモータル Ⅲ"
     },
     {
         id: 33,
@@ -8801,7 +8842,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
-        synergyKey: "immortal2"
+        synergyKey: "immortal2",
+        seriesName: "イモータル Ⅱ"
     },
     {
         id: 34,
@@ -8814,7 +8856,8 @@ export const glasses: ItemTemplate[] = [
         },
         icon: glasses_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
-        synergyKey: "immortal1"
+        synergyKey: "immortal1",
+        seriesName: "イモータル Ⅰ"
     },
 ]
 export const hats: ItemTemplate[] = [
@@ -8829,7 +8872,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume3SynergisticOptions,
-        synergyKey: "genesisCostume3"
+        synergyKey: "genesisCostume3",
+        seriesName: "ジェネシス Ⅲ"
     },
     {
         id: 35,
@@ -8842,7 +8886,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis3SynergisticOptions,
-        synergyKey: "ignisCostume3"
+        synergyKey: "ignisCostume3",
+        seriesName: "イグニス Ⅲ"
     },
     {
         id: 36,
@@ -8855,7 +8900,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos3SynergisticOptions,
-        synergyKey: "albosCostume3"
+        synergyKey: "albosCostume3",
+        seriesName: "アルボス Ⅲ"
     },
     {
         id: 1,
@@ -8868,7 +8914,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume2SynergisticOptions,
-        synergyKey: "genesisCostume2"
+        synergyKey: "genesisCostume2",
+        seriesName: "ジェネシス Ⅱ"
     },
     {
         id: 37,
@@ -8881,7 +8928,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis2SynergisticOptions,
-        synergyKey: "ignisCostume2"
+        synergyKey: "ignisCostume2",
+        seriesName: "イグニス Ⅱ"
     },
     {
         id: 38,
@@ -8894,7 +8942,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos2SynergisticOptions,
-        synergyKey: "albosCostume2"
+        synergyKey: "albosCostume2",
+        seriesName: "アルボス Ⅱ"
     },
     {
         id: 2,
@@ -8907,7 +8956,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume1SynergisticOptions,
-        synergyKey: "genesisCostume1"
+        synergyKey: "genesisCostume1",
+        seriesName: "ジェネシス Ⅰ"
     },
     {
         id: 39,
@@ -8920,7 +8970,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis1SynergisticOptions,
-        synergyKey: "ignisCostume1"
+        synergyKey: "ignisCostume1",
+        seriesName: "イグニス Ⅰ"
     },
     {
         id: 40,
@@ -8933,7 +8984,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos1SynergisticOptions,
-        synergyKey: "albosCostume1"
+        synergyKey: "albosCostume1",
+        seriesName: "アルボス Ⅰ"
     },
     {
         id: 3,
@@ -8946,7 +8998,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_roha,
         synergyOptions: rohaSynergisticOptions,
-        synergyKey: "roha"
+        synergyKey: "roha",
+        seriesName: "ロハ"
     },
     {
         id: 4,
@@ -8959,7 +9012,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_variant,
         synergyOptions: variantSynergisticOptions,
-        synergyKey: "variant"
+        synergyKey: "variant",
+        seriesName: "ヴァリアント"
     },
     {
         id: 5,
@@ -8971,7 +9025,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_gargantua,
         synergyOptions: gargantuaSynergisticOptions,
-        synergyKey: "gargantua"
+        synergyKey: "gargantua",
+        seriesName: "ガルガンチュア"
     },
     {
         id: 6,
@@ -8983,7 +9038,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_variant,
         synergyOptions: catastropheSynergisticOptions,
-        synergyKey: "catastrophe"
+        synergyKey: "catastrophe",
+        seriesName: "カタストロフ"
     },
     {
         id: 7,
@@ -8996,7 +9052,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_edne,
         synergyOptions: edneSynergisticOptions,
-        synergyKey: "edne"
+        synergyKey: "edne",
+        seriesName: "エドネ"
     },
     {
         id: 8,
@@ -9009,7 +9066,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_on,
         synergyOptions: onSynergisticOptions,
-        synergyKey: "on"
+        synergyKey: "on",
+        seriesName: "オン"
     },
     {
         id: 9,
@@ -9022,7 +9080,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_siva,
         synergyOptions: sivaSynergisticOptions,
-        synergyKey: "siva"
+        synergyKey: "siva",
+        seriesName: "シヴァ"
     },
     {
         id: 10,
@@ -9035,7 +9094,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
-        synergyKey: "apocalypse"
+        synergyKey: "apocalypse",
+        seriesName: "アポカリプス"
     },
     {
         id: 11,
@@ -9048,7 +9108,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_hellfire,
         synergyOptions: hellfireSynergisticOptions,
-        synergyKey: "hellfire"
+        synergyKey: "hellfire",
+        seriesName: "劫火"
     },
     {
         id: 12,
@@ -9061,7 +9122,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
-        synergyKey: "nosferatu"
+        synergyKey: "nosferatu",
+        seriesName: "ノスフェラトゥ"
     },
     {
         id: 13,
@@ -9073,7 +9135,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_extend,
         synergyOptions: extendSynergisticOptions,
-        synergyKey: "extend"
+        synergyKey: "extend",
+        seriesName: "エクステンド"
     },
     {
         id: 14,
@@ -9085,7 +9148,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_disaster,
         synergyOptions: disasterSynergisticOptions,
-        synergyKey: "disaster"
+        synergyKey: "disaster",
+        seriesName: "ディザスター"
     },
     {
         id: 15,
@@ -9097,7 +9161,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
-        synergyKey: "goliath"
+        synergyKey: "goliath",
+        seriesName: "ゴライアス"
     },
     {
         id: 16,
@@ -9109,7 +9174,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_megalith,
         synergyOptions: megalithSynergisticOptions,
-        synergyKey: "megalith"
+        synergyKey: "megalith",
+        seriesName: "メガリス"
     },
     {
         id: 17,
@@ -9121,7 +9187,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_megalith,
         synergyOptions: tempestSynergisticOptions,
-        synergyKey: "tempest"
+        synergyKey: "tempest",
+        seriesName: "テンペスト"
     },
     {
         id: 18,
@@ -9133,7 +9200,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_megalith,
         synergyOptions: nephilimSynergisticOptions,
-        synergyKey: "nephilim"
+        synergyKey: "nephilim",
+        seriesName: "ネフィリム"
     },
     {
         id: 19,
@@ -9146,7 +9214,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_siva,
         synergyOptions: ganes4haSynergisticOptions,
-        synergyKey: "ganesha4"
+        synergyKey: "ganesha4",
+        seriesName: "ガネーシャ Ⅳ"
     },
     {
         id: 20,
@@ -9159,7 +9228,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_siva,
         synergyOptions: ganes3haSynergisticOptions,
-        synergyKey: "ganesha3"
+        synergyKey: "ganesha3",
+        seriesName: "ガネーシャ Ⅲ"
     },
     {
         id: 21,
@@ -9172,7 +9242,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_siva,
         synergyOptions: ganes2haSynergisticOptions,
-        synergyKey: "ganesha2"
+        synergyKey: "ganesha2",
+        seriesName: "ガネーシャ Ⅱ"
     },
     {
         id: 22,
@@ -9185,7 +9256,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_siva,
         synergyOptions: ganes1haSynergisticOptions,
-        synergyKey: "ganesha1"
+        synergyKey: "ganesha1",
+        seriesName: "ガネーシャ Ⅰ"
     },
     {
         id: 23,
@@ -9198,7 +9270,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
-        synergyKey: "annihilate4"
+        synergyKey: "annihilate4",
+        seriesName: "アナイアレイト Ⅳ"
     },
     {
         id: 24,
@@ -9211,7 +9284,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
-        synergyKey: "annihilate3"
+        synergyKey: "annihilate3",
+        seriesName: "アナイアレイト Ⅲ"
     },
     {
         id: 25,
@@ -9224,7 +9298,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
-        synergyKey: "annihilate2"
+        synergyKey: "annihilate2",
+        seriesName: "アナイアレイト Ⅱ"
     },
     {
         id: 26,
@@ -9237,7 +9312,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
-        synergyKey: "annihilate1"
+        synergyKey: "annihilate1",
+        seriesName: "アナイアレイト Ⅰ"
     },
     {
         id: 27,
@@ -9250,7 +9326,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
-        synergyKey: "crimson4"
+        synergyKey: "crimson4",
+        seriesName: "紅蓮 Ⅳ"
     },
     {
         id: 28,
@@ -9263,7 +9340,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
-        synergyKey: "crimson3"
+        synergyKey: "crimson3",
+        seriesName: "紅蓮 Ⅲ"
     },
     {
         id: 29,
@@ -9276,7 +9354,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
-        synergyKey: "crimson2"
+        synergyKey: "crimson2",
+        seriesName: "紅蓮 Ⅱ"
     },
     {
         id: 30,
@@ -9289,7 +9368,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
-        synergyKey: "crimson1"
+        synergyKey: "crimson1",
+        seriesName: "紅蓮 Ⅰ"
     },
     {
         id: 31,
@@ -9302,7 +9382,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
-        synergyKey: "immortal4"
+        synergyKey: "immortal4",
+        seriesName: "イモータル Ⅳ"
     },
     {
         id: 32,
@@ -9315,7 +9396,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
-        synergyKey: "immortal3"
+        synergyKey: "immortal3",
+        seriesName: "イモータル Ⅲ"
     },
     {
         id: 33,
@@ -9328,7 +9410,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
-        synergyKey: "immortal2"
+        synergyKey: "immortal2",
+        seriesName: "イモータル Ⅱ"
     },
     {
         id: 34,
@@ -9341,7 +9424,8 @@ export const hats: ItemTemplate[] = [
         },
         icon: hat_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
-        synergyKey: "immortal1"
+        synergyKey: "immortal1",
+        seriesName: "イモータル Ⅰ"
     },
 ]
 export const earrings: ItemTemplate[] = [
@@ -9356,7 +9440,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume3SynergisticOptions,
-        synergyKey: "genesisCostume3"
+        synergyKey: "genesisCostume3",
+        seriesName: "ジェネシス Ⅲ"
     },
     {
         id: 35,
@@ -9369,7 +9454,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis3SynergisticOptions,
-        synergyKey: "ignisCostume3"
+        synergyKey: "ignisCostume3",
+        seriesName: "イグニス Ⅲ"
     },
     {
         id: 36,
@@ -9382,7 +9468,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos3SynergisticOptions,
-        synergyKey: "albosCostume3"
+        synergyKey: "albosCostume3",
+        seriesName: "アルボス Ⅲ"
     },
     {
         id: 1,
@@ -9395,7 +9482,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume2SynergisticOptions,
-        synergyKey: "genesisCostume2"
+        synergyKey: "genesisCostume2",
+        seriesName: "ジェネシス Ⅱ"
     },
     {
         id: 37, name: "イグニスイヤリング Ⅱ",
@@ -9407,7 +9495,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis2SynergisticOptions,
-        synergyKey: "ignisCostume2"
+        synergyKey: "ignisCostume2",
+        seriesName: "イグニス Ⅱ"
     },
     {
         id: 38,
@@ -9420,7 +9509,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos2SynergisticOptions,
-        synergyKey: "albosCostume2"
+        synergyKey: "albosCostume2",
+        seriesName: "アルボス Ⅱ"
     },
     {
         id: 2,
@@ -9433,7 +9523,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: genesisCostume1SynergisticOptions,
-        synergyKey: "genesisCostume1"
+        synergyKey: "genesisCostume1",
+        seriesName: "ジェネシス Ⅰ"
     },
     {
         id: 39,
@@ -9446,7 +9537,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: ignis1SynergisticOptions,
-        synergyKey: "ignisCostume1"
+        synergyKey: "ignisCostume1",
+        seriesName: "イグニス Ⅰ"
     },
     {
         id: 40,
@@ -9459,7 +9551,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: albos1SynergisticOptions,
-        synergyKey: "albosCostume1"
+        synergyKey: "albosCostume1",
+        seriesName: "アルボス Ⅰ"
     },
     {
         id: 3,
@@ -9472,7 +9565,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_roha,
         synergyOptions: rohaSynergisticOptions,
-        synergyKey: "roha"
+        synergyKey: "roha",
+        seriesName: "ロハ"
     },
     {
         id: 4,
@@ -9485,7 +9579,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_variant,
         synergyOptions: variantSynergisticOptions,
-        synergyKey: "variant"
+        synergyKey: "variant",
+        seriesName: "ヴァリアント"
     },
     {
         id: 5,
@@ -9497,7 +9592,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_gargantua,
         synergyOptions: gargantuaSynergisticOptions,
-        synergyKey: "gargantua"
+        synergyKey: "gargantua",
+        seriesName: "ガルガンチュア"
     },
     {
         id: 6,
@@ -9509,7 +9605,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_variant,
         synergyOptions: catastropheSynergisticOptions,
-        synergyKey: "catastrophe"
+        synergyKey: "catastrophe",
+        seriesName: "カタストロフ"
     },
     {
         id: 7,
@@ -9522,7 +9619,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_edne,
         synergyOptions: edneSynergisticOptions,
-        synergyKey: "edne"
+        synergyKey: "edne",
+        seriesName: "エドネ"
     },
     {
         id: 8,
@@ -9535,7 +9633,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_on,
         synergyOptions: onSynergisticOptions,
-        synergyKey: "on"
+        synergyKey: "on",
+        seriesName: "オン"
     },
     {
         id: 9,
@@ -9548,7 +9647,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_siva,
         synergyOptions: sivaSynergisticOptions,
-        synergyKey: "siva"
+        synergyKey: "siva",
+        seriesName: "シヴァ"
     },
     {
         id: 10,
@@ -9561,7 +9661,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
-        synergyKey: "apocalypse"
+        synergyKey: "apocalypse",
+        seriesName: "アポカリプス"
     },
     {
         id: 11,
@@ -9574,7 +9675,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_hellfire,
         synergyOptions: hellfireSynergisticOptions,
-        synergyKey: "hellfire"
+        synergyKey: "hellfire",
+        seriesName: "劫火"
     },
     {
         id: 12,
@@ -9587,7 +9689,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
-        synergyKey: "nosferatu"
+        synergyKey: "nosferatu",
+        seriesName: "ノスフェラトゥ"
     },
     {
         id: 13,
@@ -9599,7 +9702,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_extend,
         synergyOptions: extendSynergisticOptions,
-        synergyKey: "extend"
+        synergyKey: "extend",
+        seriesName: "エクステンド"
     },
     {
         id: 14,
@@ -9611,7 +9715,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_disaster,
         synergyOptions: disasterSynergisticOptions,
-        synergyKey: "disaster"
+        synergyKey: "disaster",
+        seriesName: "ディザスター"
     },
     {
         id: 15,
@@ -9623,7 +9728,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: unknown,
         synergyOptions: goliathSynergisticOptions,
-        synergyKey: "goliath"
+        synergyKey: "goliath",
+        seriesName: "ゴライアス"
     },
     {
         id: 16,
@@ -9635,7 +9741,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_megalith,
         synergyOptions: megalithSynergisticOptions,
-        synergyKey: "megalith"
+        synergyKey: "megalith",
+        seriesName: "メガリス"
     },
     {
         id: 17,
@@ -9647,7 +9754,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_megalith,
         synergyOptions: tempestSynergisticOptions,
-        synergyKey: "tempest"
+        synergyKey: "tempest",
+        seriesName: "テンペスト"
     },
     {
         id: 18,
@@ -9659,7 +9767,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_megalith,
         synergyOptions: nephilimSynergisticOptions,
-        synergyKey: "nephilim"
+        synergyKey: "nephilim",
+        seriesName: "ネフィリム"
     },
     {
         id: 19,
@@ -9672,7 +9781,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_siva,
         synergyOptions: ganes4haSynergisticOptions,
-        synergyKey: "ganesha4"
+        synergyKey: "ganesha4",
+        seriesName: "ガネーシャ Ⅳ"
     },
     {
         id: 20,
@@ -9685,7 +9795,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_siva,
         synergyOptions: ganes3haSynergisticOptions,
-        synergyKey: "ganesha3"
+        synergyKey: "ganesha3",
+        seriesName: "ガネーシャ Ⅲ"
     },
     {
         id: 21,
@@ -9698,7 +9809,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_siva,
         synergyOptions: ganes2haSynergisticOptions,
-        synergyKey: "ganesha2"
+        synergyKey: "ganesha2",
+        seriesName: "ガネーシャ Ⅱ"
     },
     {
         id: 22,
@@ -9711,7 +9823,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_siva,
         synergyOptions: ganes1haSynergisticOptions,
-        synergyKey: "ganesha1"
+        synergyKey: "ganesha1",
+        seriesName: "ガネーシャ Ⅰ"
     },
     {
         id: 23,
@@ -9724,7 +9837,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
-        synergyKey: "annihilate4"
+        synergyKey: "annihilate4",
+        seriesName: "アナイアレイト Ⅳ"
     },
     {
         id: 24,
@@ -9737,7 +9851,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
-        synergyKey: "annihilate3"
+        synergyKey: "annihilate3",
+        seriesName: "アナイアレイト Ⅲ"
     },
     {
         id: 25,
@@ -9750,7 +9865,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
-        synergyKey: "annihilate2"
+        synergyKey: "annihilate2",
+        seriesName: "アナイアレイト Ⅱ"
     },
     {
         id: 26,
@@ -9763,7 +9879,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
-        synergyKey: "annihilate1"
+        synergyKey: "annihilate1",
+        seriesName: "アナイアレイト Ⅰ"
     },
     {
         id: 27,
@@ -9776,7 +9893,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
-        synergyKey: "crimson4"
+        synergyKey: "crimson4",
+        seriesName: "紅蓮 Ⅳ"
     },
     {
         id: 28,
@@ -9789,7 +9907,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
-        synergyKey: "crimson3"
+        synergyKey: "crimson3",
+        seriesName: "紅蓮 Ⅲ"
     },
     {
         id: 29,
@@ -9802,7 +9921,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
-        synergyKey: "crimson2"
+        synergyKey: "crimson2",
+        seriesName: "紅蓮 Ⅱ"
     },
     {
         id: 30,
@@ -9815,7 +9935,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
-        synergyKey: "crimson1"
+        synergyKey: "crimson1",
+        seriesName: "紅蓮 Ⅰ"
     },
     {
         id: 31,
@@ -9828,7 +9949,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
-        synergyKey: "immortal4"
+        synergyKey: "immortal4",
+        seriesName: "イモータル Ⅳ"
     },
     {
         id: 32,
@@ -9841,7 +9963,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
-        synergyKey: "immortal3"
+        synergyKey: "immortal3",
+        seriesName: "イモータル Ⅲ"
     },
     {
         id: 33,
@@ -9854,7 +9977,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
-        synergyKey: "immortal2"
+        synergyKey: "immortal2",
+        seriesName: "イモータル Ⅱ"
     },
     {
         id: 34,
@@ -9867,7 +9991,8 @@ export const earrings: ItemTemplate[] = [
         },
         icon: earrings_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
-        synergyKey: "immortal1"
+        synergyKey: "immortal1",
+        seriesName: "イモータル Ⅰ"
     },
 ]
 export const costumes: ItemTemplate[] = [
@@ -9888,7 +10013,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_roha,
         synergyOptions: rohaSynergisticOptions,
-        synergyKey: "roha"
+        synergyKey: "roha",
+        seriesName: "ロハ"
     },
     {
         id: 2,
@@ -9912,7 +10038,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_edne,
         synergyOptions: edneSynergisticOptions,
-        synergyKey: "edne"
+        synergyKey: "edne",
+        seriesName: "エドネ"
     },
     {
         id: 4,
@@ -9925,7 +10052,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_on,
         synergyOptions: onSynergisticOptions,
-        synergyKey: "on"
+        synergyKey: "on",
+        seriesName: "オン"
     },
     {
         id: 5,
@@ -9938,7 +10066,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_siva,
         synergyOptions: sivaSynergisticOptions,
-        synergyKey: "siva"
+        synergyKey: "siva",
+        seriesName: "シヴァ"
     },
     {
         id: 6,
@@ -9951,7 +10080,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_apocalypse,
         synergyOptions: apocalypseSynergisticOptions,
-        synergyKey: "apocalypse"
+        synergyKey: "apocalypse",
+        seriesName: "アポカリプス"
     },
     {
         id: 7,
@@ -9964,7 +10094,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_hellfire,
         synergyOptions: hellfireSynergisticOptions,
-        synergyKey: "hellfire"
+        synergyKey: "hellfire",
+        seriesName: "劫火"
     },
     {
         id: 8,
@@ -9977,7 +10108,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_nosferatu,
         synergyOptions: nosferatuSynergisticOptions,
-        synergyKey: "nosferatu"
+        synergyKey: "nosferatu",
+        seriesName: "ノスフェラトゥ"
     },
     {
         id: 9,
@@ -9990,7 +10122,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_siva,
         synergyOptions: ganes4haSynergisticOptions,
-        synergyKey: "ganesha4"
+        synergyKey: "ganesha4",
+        seriesName: "ガネーシャ Ⅳ"
     },
     {
         id: 10,
@@ -10003,7 +10136,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_siva,
         synergyOptions: ganes3haSynergisticOptions,
-        synergyKey: "ganesha3"
+        synergyKey: "ganesha3",
+        seriesName: "ガネーシャ Ⅲ"
     },
     {
         id: 11,
@@ -10016,7 +10150,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_siva,
         synergyOptions: ganes2haSynergisticOptions,
-        synergyKey: "ganesha2"
+        synergyKey: "ganesha2",
+        seriesName: "ガネーシャ Ⅱ"
     },
     {
         id: 12,
@@ -10029,7 +10164,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_siva,
         synergyOptions: ganes1haSynergisticOptions,
-        synergyKey: "ganesha1"
+        synergyKey: "ganesha1",
+        seriesName: "ガネーシャ Ⅰ"
     },
     {
         id: 13,
@@ -10042,7 +10178,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_apocalypse,
         synergyOptions: annihilate4haSynergisticOptions,
-        synergyKey: "annihilate4"
+        synergyKey: "annihilate4",
+        seriesName: "アナイアレイト Ⅳ"
     },
     {
         id: 14,
@@ -10055,7 +10192,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_apocalypse,
         synergyOptions: annihilate3haSynergisticOptions,
-        synergyKey: "annihilate3"
+        synergyKey: "annihilate3",
+        seriesName: "アナイアレイト Ⅲ"
     },
     {
         id: 15,
@@ -10068,7 +10206,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_apocalypse,
         synergyOptions: annihilate2haSynergisticOptions,
-        synergyKey: "annihilate2"
+        synergyKey: "annihilate2",
+        seriesName: "アナイアレイト Ⅱ"
     },
     {
         id: 16,
@@ -10081,7 +10220,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_apocalypse,
         synergyOptions: annihilate1haSynergisticOptions,
-        synergyKey: "annihilate1"
+        synergyKey: "annihilate1",
+        seriesName: "アナイアレイト Ⅰ"
     },
     {
         id: 17,
@@ -10094,7 +10234,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_hellfire,
         synergyOptions: crimson4haSynergisticOptions,
-        synergyKey: "crimson4"
+        synergyKey: "crimson4",
+        seriesName: "紅蓮 Ⅳ"
     },
     {
         id: 18,
@@ -10107,7 +10248,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_hellfire,
         synergyOptions: crimson3haSynergisticOptions,
-        synergyKey: "crimson3"
+        synergyKey: "crimson3",
+        seriesName: "紅蓮 Ⅲ"
     },
     {
         id: 19,
@@ -10120,7 +10262,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_hellfire,
         synergyOptions: crimson2haSynergisticOptions,
-        synergyKey: "crimson2"
+        synergyKey: "crimson2",
+        seriesName: "紅蓮 Ⅱ"
     },
     {
         id: 20,
@@ -10133,7 +10276,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_hellfire,
         synergyOptions: crimson1haSynergisticOptions,
-        synergyKey: "crimson1"
+        synergyKey: "crimson1",
+        seriesName: "紅蓮 Ⅰ"
     },
     {
         id: 21,
@@ -10146,7 +10290,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_nosferatu,
         synergyOptions: immortal4haSynergisticOptions,
-        synergyKey: "immortal4"
+        synergyKey: "immortal4",
+        seriesName: "イモータル Ⅳ"
     },
     {
         id: 22,
@@ -10159,7 +10304,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_nosferatu,
         synergyOptions: immortal3haSynergisticOptions,
-        synergyKey: "immortal3"
+        synergyKey: "immortal3",
+        seriesName: "イモータル Ⅲ"
     },
     {
         id: 23,
@@ -10172,7 +10318,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_nosferatu,
         synergyOptions: immortal2haSynergisticOptions,
-        synergyKey: "immortal2"
+        synergyKey: "immortal2",
+        seriesName: "イモータル Ⅱ"
     },
     {
         id: 24,
@@ -10185,7 +10332,8 @@ export const costumes: ItemTemplate[] = [
         },
         icon: costume_nosferatu,
         synergyOptions: immortal1haSynergisticOptions,
-        synergyKey: "immortal1"
+        synergyKey: "immortal1",
+        seriesName: "イモータル Ⅰ"
     },
 
 ]
