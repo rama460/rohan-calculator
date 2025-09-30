@@ -298,10 +298,13 @@ const SeriesComparisonTable: React.FC = () => {
                                             const finalStats: { [key: string]: number } = { ...series.totalStats };
 
                                             const maxSetEffect = Math.min(itemCount, 4);
-                                            if (series.synergyEffects[maxSetEffect]) {
-                                                Object.entries(series.synergyEffects[maxSetEffect]).forEach(([key, value]) => {
-                                                    finalStats[key] = (finalStats[key] || 0) + value;
-                                                });
+                                            // 2セットから最大セットまで累積で加算
+                                            for (let setCount = 2; setCount <= maxSetEffect; setCount++) {
+                                                if (series.synergyEffects[setCount]) {
+                                                    Object.entries(series.synergyEffects[setCount]).forEach(([key, value]) => {
+                                                        finalStats[key] = (finalStats[key] || 0) + value;
+                                                    });
+                                                }
                                             }
 
                                             return Object.entries(finalStats).map(([key, value]) => (
@@ -475,10 +478,13 @@ const ParameterComparisonTable: React.FC = () => {
         const finalStats: { [key: string]: number } = { ...series.totalStats };
 
         const maxSetEffect = Math.min(itemCount, 4);
-        if (series.synergyEffects[maxSetEffect]) {
-            Object.entries(series.synergyEffects[maxSetEffect]).forEach(([key, value]) => {
-                finalStats[key] = (finalStats[key] || 0) + value;
-            });
+        // 2セットから最大セットまで累積で加算
+        for (let setCount = 2; setCount <= maxSetEffect; setCount++) {
+            if (series.synergyEffects[setCount]) {
+                Object.entries(series.synergyEffects[setCount]).forEach(([key, value]) => {
+                    finalStats[key] = (finalStats[key] || 0) + value;
+                });
+            }
         }
 
         return {
