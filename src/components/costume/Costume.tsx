@@ -12,8 +12,16 @@ import {
     Box,
     Tabs,
     Tab,
-    Chip
+    Chip,
+    FormGroup,
+    FormControlLabel,
+    Checkbox,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails
 } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import { costumes, glasses, earrings, hats, ItemTemplate } from '../../static/items';
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import BorderedTitleBox from '../common/BorderedTitleBox';
@@ -313,6 +321,71 @@ const SeriesComparisonTable: React.FC = () => {
     );
 };
 
+// HTML5 Drag and Drop APIを使用したドラッグ可能なヘッダーコンポーネント
+interface DraggableHeaderProps {
+    series: any;
+    index: number;
+    moveColumn: (dragIndex: number, hoverIndex: number) => void;
+}
+
+const DraggableHeader: React.FC<DraggableHeaderProps> = ({ series, index, moveColumn }) => {
+    const [isDragging, setIsDragging] = React.useState(false);
+
+    const handleDragStart = (e: React.DragEvent) => {
+        e.dataTransfer.setData('text/plain', index.toString());
+        setIsDragging(true);
+    };
+
+    const handleDragEnd = () => {
+        setIsDragging(false);
+    };
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        const dragIndex = parseInt(e.dataTransfer.getData('text/plain'));
+        if (dragIndex !== index) {
+            moveColumn(dragIndex, index);
+        }
+    };
+
+    return (
+        <TableCell
+            draggable
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            sx={{
+                fontWeight: 'bold',
+                textAlign: 'center',
+                opacity: isDragging ? 0.5 : 1,
+                cursor: 'move',
+                userSelect: 'none',
+                '&:hover': {
+                    backgroundColor: 'action.hover',
+                },
+            }}
+        >
+            <Box>
+                <Typography variant="caption" display="block">
+                    {series.seriesName}
+                </Typography>
+                <Chip
+                    size="small"
+                    label={`${series.itemCount}点`}
+                    color={series.itemCount === 4 ? "primary" : "secondary"}
+                    variant="outlined"
+                    sx={{ mt: 0.5 }}
+                />
+            </Box>
+        </TableCell>
+    );
+};
+
 const ParameterComparisonTable: React.FC = () => {
     const buildSeriesData = (): SeriesData[] => {
         const seriesMap = new Map<string, SeriesData>();
@@ -362,6 +435,40 @@ const ParameterComparisonTable: React.FC = () => {
 
     const seriesData = buildSeriesData();
 
+    // 列の順序を管理するstate
+    const [columnOrder, setColumnOrder] = React.useState<number[]>(() =>
+        Array.from({ length: seriesData.length }, (_, i) => i)
+    );
+
+    // デフォルト表示するシリーズ名
+    const defaultVisibleSeries = [
+        'roha', 'genesisCostume1', 'genesisCostume2', 'genesisCostume3', 'ignisCostume1', 'ignisCostume2', 'ignisCostume3',
+        'albosCostume1', 'albosCostume2', 'albosCostume3', 'variant', 'gargantua', 'catastrophe'
+    ];
+
+    // 列の表示/非表示を管理するstate
+    const [visibleColumns, setVisibleColumns] = React.useState<boolean[]>(() =>
+        Array.from({ length: seriesData.length }, (_, index) =>
+            defaultVisibleSeries.includes(seriesData[index].seriesName)
+        )
+    );
+
+    // 列を移動する関数
+    const moveColumn = (dragIndex: number, hoverIndex: number) => {
+        const newOrder = [...columnOrder];
+        const draggedItem = newOrder[dragIndex];
+        newOrder.splice(dragIndex, 1);
+        newOrder.splice(hoverIndex, 0, draggedItem);
+        setColumnOrder(newOrder);
+    };
+
+    // 列の表示/非表示を切り替える関数
+    const toggleColumnVisibility = (index: number) => {
+        const newVisibility = [...visibleColumns];
+        newVisibility[index] = !newVisibility[index];
+        setVisibleColumns(newVisibility);
+    };
+
     // 全シリーズの最終ステータスを計算
     const seriesWithFinalStats = seriesData.map(series => {
         const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
@@ -396,51 +503,79 @@ const ParameterComparisonTable: React.FC = () => {
         return value.toLocaleString();
     };
 
-    const getBestSeriesForParameter = (parameter: string) => {
-        const maxValue = Math.max(...seriesWithFinalStats.map(s => s.finalStats[parameter] || 0));
-        return seriesWithFinalStats.find(s => (s.finalStats[parameter] || 0) === maxValue);
-    };
+
+
+    // 列の順序に従ってソートされ、かつ表示状態の列のみをフィルタリング
+    const orderedSeriesWithFinalStats = columnOrder
+        .map(index => ({ series: seriesWithFinalStats[index], originalIndex: index }))
+        .filter(({ originalIndex }) => visibleColumns[originalIndex]);
+
+    // 表示用のシリーズデータ
+    const displayedSeries = orderedSeriesWithFinalStats.map(({ series }) => series);
 
     return (
         <Box sx={{ mt: 3 }}>
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                パラメータ別比較
+                パラメータ別比較（列をドラッグして並び替え可能）
             </Typography>
+
+            {/* 列の表示設定 */}
+            <Accordion sx={{ mb: 2 }}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="subtitle2">列の表示設定</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <FormGroup row>
+                        {seriesData.map((series, index) => (
+                            <FormControlLabel
+                                key={series.synergyKey}
+                                control={
+                                    <Checkbox
+                                        checked={visibleColumns[index]}
+                                        onChange={() => toggleColumnVisibility(index)}
+                                    />
+                                }
+                                label={series.seriesName}
+                            />
+                        ))}
+                    </FormGroup>
+                </AccordionDetails>
+            </Accordion>
             <TableContainer component={Paper} sx={{ mb: 2 }}>
                 <Table size="small">
                     <TableHead>
                         <TableRow>
                             <TableCell sx={{ fontWeight: 'bold' }}>パラメータ</TableCell>
-                            {seriesWithFinalStats.map(series => (
-                                <TableCell key={series.synergyKey} sx={{ fontWeight: 'bold', textAlign: 'center' }}>
-                                    <Box>
-                                        <Typography variant="caption" display="block">
-                                            {series.seriesName}
-                                        </Typography>
-                                        <Chip
-                                            size="small"
-                                            label={`${series.itemCount}点`}
-                                            color={series.itemCount === 4 ? "primary" : "secondary"}
-                                            variant="outlined"
-                                            sx={{ mt: 0.5 }}
-                                        />
-                                    </Box>
-                                </TableCell>
+                            {orderedSeriesWithFinalStats.map(({ series }, displayIndex) => (
+                                <DraggableHeader
+                                    key={series.synergyKey}
+                                    series={series}
+                                    index={displayIndex}
+                                    moveColumn={(dragIndex, hoverIndex) => {
+                                        // 表示されている列のみでのインデックスを元のインデックスに変換
+                                        const dragOriginalIndex = orderedSeriesWithFinalStats[dragIndex].originalIndex;
+                                        const hoverOriginalIndex = orderedSeriesWithFinalStats[hoverIndex].originalIndex;
+
+                                        // 元のmoveColumn関数を使用
+                                        const dragOrderIndex = columnOrder.indexOf(dragOriginalIndex);
+                                        const hoverOrderIndex = columnOrder.indexOf(hoverOriginalIndex);
+                                        moveColumn(dragOrderIndex, hoverOrderIndex);
+                                    }}
+                                />
                             ))}
                             <TableCell sx={{ fontWeight: 'bold', textAlign: 'center' }}>最高値</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {Array.from(allParameters).map(parameter => {
-                            const bestSeries = getBestSeriesForParameter(parameter);
-                            const maxValue = bestSeries?.finalStats[parameter] || 0;
+                            const maxValue = Math.max(...displayedSeries.map(s => s.finalStats[parameter] || 0));
 
                             return (
                                 <TableRow key={parameter}>
                                     <TableCell sx={{ fontWeight: 'bold' }}>
                                         {getDisplayName(parameter)}
                                     </TableCell>
-                                    {seriesWithFinalStats.map(series => {
+                                    {displayedSeries.map(series => {
                                         const value = series.finalStats[parameter] || 0;
                                         const isMax = value === maxValue && value > 0;
 
@@ -461,7 +596,10 @@ const ParameterComparisonTable: React.FC = () => {
                                     })}
                                     <TableCell sx={{ textAlign: 'center', backgroundColor: 'primary.light' }}>
                                         <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'primary.dark' }}>
-                                            {maxValue > 0 ? `${formatValue(maxValue)} (${bestSeries?.seriesName})` : '-'}
+                                            {maxValue > 0 ? (() => {
+                                                const bestSeries = displayedSeries.find(s => (s.finalStats[parameter] || 0) === maxValue);
+                                                return `${formatValue(maxValue)} (${bestSeries?.seriesName})`;
+                                            })() : '-'}
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
