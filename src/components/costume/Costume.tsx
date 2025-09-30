@@ -636,8 +636,8 @@ export const Costume: React.FC = () => {
                         <Tab label="メガネ" id="costume-tab-1" />
                         <Tab label="イヤリング" id="costume-tab-2" />
                         <Tab label="帽子" id="costume-tab-3" />
-                        <Tab label="シリーズ比較" id="costume-tab-4" />
-                        <Tab label="パラメータ比較" id="costume-tab-5" />
+                        <Tab label="シリーズ合計" id="costume-tab-4" />
+                        <Tab label="シリーズ比較" id="costume-tab-5" />
                     </Tabs>
                 </Box>
 
