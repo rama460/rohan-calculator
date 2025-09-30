@@ -390,6 +390,30 @@ const DraggableHeader: React.FC<DraggableHeaderProps> = ({ series, index, moveCo
 };
 
 const ParameterComparisonTable: React.FC = () => {
+    // 数値の高低に応じて色のグラディエーションを生成する関数
+    const getColorGradient = (value: number, minValue: number, maxValue: number) => {
+        if (maxValue === minValue || value === 0) return 'transparent'; // 全て同じ値か0の場合は透明
+
+        const normalized = (value - minValue) / (maxValue - minValue);
+
+        // 数値の大小に応じて色を決定 (赤→黄→緑のグラディエーション)
+        let r, g, b;
+        if (normalized < 0.5) {
+            // 低い値: 赤から黄色へ (0.0 → 0.5)
+            r = 255;
+            g = Math.round(255 * (normalized * 2));
+            b = 0;
+        } else {
+            // 高い値: 黄色から緑へ (0.5 → 1.0)
+            r = Math.round(255 * (2 - normalized * 2));
+            g = 255;
+            b = 0;
+        }
+
+        // 透明度を調整して背景色として使用
+        return `rgba(${r}, ${g}, ${b}, 0.3)`;
+    };
+
     const buildSeriesData = (): SeriesData[] => {
         const seriesMap = new Map<string, SeriesData>();
 
@@ -455,6 +479,10 @@ const ParameterComparisonTable: React.FC = () => {
             defaultVisibleSeries.includes(seriesData[index].seriesName)
         )
     );
+
+    // ソート関連のstate
+    const [sortParameter, setSortParameter] = React.useState<string | null>(null);
+    const [sortOrder, setSortOrder] = React.useState<'asc' | 'desc'>('desc');
 
     // 列を移動する関数
     const moveColumn = (dragIndex: number, hoverIndex: number) => {
@@ -574,7 +602,9 @@ const ParameterComparisonTable: React.FC = () => {
                     </TableHead>
                     <TableBody>
                         {Array.from(allParameters).map(parameter => {
-                            const maxValue = Math.max(...displayedSeries.map(s => s.finalStats[parameter] || 0));
+                            const values = displayedSeries.map(s => s.finalStats[parameter] || 0);
+                            const maxValue = Math.max(...values);
+                            const minValue = Math.min(...values);
 
                             return (
                                 <TableRow key={parameter}>
@@ -583,6 +613,7 @@ const ParameterComparisonTable: React.FC = () => {
                                     </TableCell>
                                     {displayedSeries.map(series => {
                                         const value = series.finalStats[parameter] || 0;
+                                        const backgroundColor = getColorGradient(value, minValue, maxValue);
                                         const isMax = value === maxValue && value > 0;
 
                                         return (
@@ -590,18 +621,26 @@ const ParameterComparisonTable: React.FC = () => {
                                                 key={series.synergyKey}
                                                 sx={{
                                                     textAlign: 'center',
-                                                    backgroundColor: isMax ? 'success.light' : 'transparent',
+                                                    backgroundColor,
+                                                    border: isMax ? '2px solid #2e7d32' : '1px solid rgba(224, 224, 224, 1)',
                                                     fontWeight: isMax ? 'bold' : 'normal'
                                                 }}
                                             >
-                                                <Typography variant="body2" sx={{ color: isMax ? 'success.dark' : 'text.primary' }}>
+                                                <Typography variant="body2" sx={{
+                                                    color: isMax ? '#1b5e20' : 'text.primary',
+                                                    fontWeight: isMax ? 'bold' : 'normal'
+                                                }}>
                                                     {value > 0 ? formatValue(value) : '-'}
                                                 </Typography>
                                             </TableCell>
                                         );
                                     })}
-                                    <TableCell sx={{ textAlign: 'center', backgroundColor: 'primary.light' }}>
-                                        <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'primary.dark' }}>
+                                    <TableCell sx={{
+                                        textAlign: 'center',
+                                        backgroundColor: 'success.main',
+                                        border: '2px solid #1b5e20'
+                                    }}>
+                                        <Typography variant="body2" sx={{ fontWeight: 'bold', color: 'white' }}>
                                             {maxValue > 0 ? (() => {
                                                 const bestSeries = displayedSeries.find(s => (s.finalStats[parameter] || 0) === maxValue);
                                                 return `${formatValue(maxValue)} (${bestSeries?.seriesName})`;
