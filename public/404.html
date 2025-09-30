@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Rohan Calculator</title>
@@ -7,22 +8,24 @@
         // GitHub Pages 404 redirect hack for Single Page Applications
         // Based on: https://github.com/rafgraph/spa-github-pages
         var pathSegmentsToKeep = 1; // For GitHub Pages with repository name in path (/rohan-calculator/)
-        
+
         var l = window.location;
         l.replace(
             l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + 
-            '/?/' + 
+            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
+            '/?/' +
             l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
             (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
             l.hash
         );
     </script>
 </head>
+
 <body>
     <div style="text-align: center; font-family: Arial, sans-serif; margin-top: 50px;">
         <h1>Redirecting...</h1>
         <p>Rohan Calculator にリダイレクト中です...</p>
     </div>
 </body>
+
 </html>
