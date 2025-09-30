@@ -62,7 +62,7 @@ const ItemTable: React.FC<ItemTableProps> = ({ items, categoryName }) => {
                         <TableCell>アイコン</TableCell>
                         <TableCell>アイテム名</TableCell>
                         <TableCell>基本オプション</TableCell>
-                        <TableCell>シナジー</TableCell>
+                        <TableCell>セットオプション</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -502,7 +502,7 @@ const ParameterComparisonTable: React.FC = () => {
 
     const getDisplayName = (optionKey: string) => {
         const option = BuiltinOptions[optionKey as keyof typeof BuiltinOptions];
-        return option ? option.displayName : optionKey;
+        return option ? getDisplayOptionName(option) : optionKey;
     };
 
     const formatValue = (value: number) => {
