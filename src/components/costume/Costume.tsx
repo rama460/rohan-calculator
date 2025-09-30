@@ -18,7 +18,8 @@ import {
     Checkbox,
     Accordion,
     AccordionSummary,
-    AccordionDetails
+    AccordionDetails,
+    Button
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -500,6 +501,25 @@ const ParameterComparisonTable: React.FC = () => {
         setVisibleColumns(newVisibility);
     };
 
+    // すべての列を表示する関数
+    const showAllColumns = () => {
+        setVisibleColumns(new Array(seriesData.length).fill(true));
+    };
+
+    // すべての列を非表示にする関数
+    const hideAllColumns = () => {
+        setVisibleColumns(new Array(seriesData.length).fill(false));
+    };
+
+    // デフォルト表示に戻す関数
+    const resetToDefaultColumns = () => {
+        setVisibleColumns(
+            Array.from({ length: seriesData.length }, (_, index) =>
+                defaultVisibleSeries.includes(seriesData[index].seriesName)
+            )
+        );
+    };
+
     // パラメータによるソート処理（昇順 → 降順 → 非ソートの3段階）
     const handleParameterSort = (parameter: string) => {
         if (sortParameter === parameter) {
@@ -598,6 +618,31 @@ const ParameterComparisonTable: React.FC = () => {
                     <Typography variant="subtitle2">列の表示設定</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
+                    {/* 一括操作ボタン */}
+                    <Box sx={{ mb: 2, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                        <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={showAllColumns}
+                        >
+                            すべて表示
+                        </Button>
+                        <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={hideAllColumns}
+                        >
+                            すべてクリア
+                        </Button>
+                        <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={resetToDefaultColumns}
+                        >
+                            デフォルトに戻す
+                        </Button>
+                    </Box>
+
                     <FormGroup row>
                         {seriesData.map((series, index) => (
                             <FormControlLabel
