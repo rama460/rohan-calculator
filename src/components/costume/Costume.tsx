@@ -669,8 +669,7 @@ const ParameterComparisonTable: React.FC = () => {
             <Typography variant="body2" sx={{ mb: 2, p: 2, backgroundColor: 'info.light', borderRadius: 1 }}>
                 <strong>シリーズ比較について:</strong><br />
                 • 4点セット: コスチューム、メガネ、イヤリング、帽子の全4点で構成<br />
-                • 3点セット: メガネ、イヤリング、帽子の3点で構成（コスチューム部分には任意の装備を設定可能）<br />
-                • 各列のコスチューム設定ボタンから装備を設定することでさらなるステータス強化が可能です
+                • 3点セット: メガネ、イヤリング、帽子の3点で構成されるが、コスチューム部分には任意の装備を設定可能<br />
             </Typography>
             <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
                 パラメータ名をクリックするとその値で列をソートできます（降順 → 昇順 → 非ソート）
