@@ -26,6 +26,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { costumes, glasses, earrings, hats, ItemTemplate } from '../../static/items';
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import BorderedTitleBox from '../common/BorderedTitleBox';
+import { EquipmentIconButton } from '../status/EquipmentIconButton';
+import { useAtomValue } from 'jotai';
+import { equipmentStateFamily } from '../../modules/state/items';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -154,6 +157,8 @@ interface SeriesData {
 }
 
 const SeriesComparisonTable: React.FC = () => {
+    const equippedCostume = useAtomValue(equipmentStateFamily('costume'));
+
     const buildSeriesData = (): SeriesData[] => {
         const seriesMap = new Map<string, SeriesData>();
 
@@ -239,7 +244,7 @@ const SeriesComparisonTable: React.FC = () => {
                                     <Box sx={{ mt: 1 }}>
                                         <Chip
                                             size="small"
-                                            label={itemCount + "点セット"}
+                                            label={itemCount === 3 && !series.costume && equippedCostume ? "3点+コス" : itemCount + "点セット"}
                                             color={itemCount === 4 ? "primary" : "secondary"}
                                             variant="outlined"
                                         />
@@ -330,9 +335,10 @@ interface DraggableHeaderProps {
     series: any;
     index: number;
     moveColumn: (dragIndex: number, hoverIndex: number) => void;
+    equippedCostume?: any;
 }
 
-const DraggableHeader: React.FC<DraggableHeaderProps> = ({ series, index, moveColumn }) => {
+const DraggableHeader: React.FC<DraggableHeaderProps> = ({ series, index, moveColumn, equippedCostume }) => {
     const [isDragging, setIsDragging] = React.useState(false);
 
     const handleDragStart = (e: React.DragEvent) => {
@@ -380,7 +386,12 @@ const DraggableHeader: React.FC<DraggableHeaderProps> = ({ series, index, moveCo
                 </Typography>
                 <Chip
                     size="small"
-                    label={`${series.itemCount}点`}
+                    label={(() => {
+                        if (series.itemCount === 3 && !series.costume && equippedCostume) {
+                            return "3点+コス";
+                        }
+                        return `${series.itemCount}点`;
+                    })()}
                     color={series.itemCount === 4 ? "primary" : "secondary"}
                     variant="outlined"
                     sx={{ mt: 0.5 }}
@@ -537,10 +548,62 @@ const ParameterComparisonTable: React.FC = () => {
         }
     };
 
+    // 装備されたコスチュームの情報を取得
+    const equippedCostume = useAtomValue(equipmentStateFamily('costume'));
+
+    // デバッグ: 装備されたコスチュームの情報を確認
+    React.useEffect(() => {
+        if (equippedCostume) {
+            console.log('装備されたコスチューム:', equippedCostume);
+            console.log('baseOptions:', equippedCostume.baseOptions);
+            console.log('craftedOptions:', equippedCostume.craftedOptions);
+            console.log('additionalOptions:', equippedCostume.additionalOptions);
+        }
+    }, [equippedCostume]);
+
     // 全シリーズの最終ステータスを計算
     const seriesWithFinalStats = seriesData.map(series => {
         const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
         const finalStats: { [key: string]: number } = { ...series.totalStats };
+
+        // 3点セットでコスチュームが装備されている場合、そのステータスを追加
+        if (itemCount === 3 && !series.costume && equippedCostume) {
+            console.log(`${series.seriesName}にコスチューム反映開始:`, equippedCostume.name);
+            const beforeStats = { ...finalStats };
+
+            // baseOptions (基本オプション)
+            if (equippedCostume.baseOptions) {
+                Object.entries(equippedCostume.baseOptions).forEach(([key, value]) => {
+                    if (typeof value === 'number') {
+                        finalStats[key] = (finalStats[key] || 0) + value;
+                        console.log(`baseOptions ${key}: ${value} 追加`);
+                    }
+                });
+            }
+
+            // craftedOptions (製作オプション/ソケットオプション)
+            if (equippedCostume.craftedOptions) {
+                Object.entries(equippedCostume.craftedOptions).forEach(([key, value]) => {
+                    if (typeof value === 'number') {
+                        finalStats[key] = (finalStats[key] || 0) + value;
+                        console.log(`craftedOptions ${key}: ${value} 追加`);
+                    }
+                });
+            }
+
+            // additionalOptions (追加オプション)
+            if (equippedCostume.additionalOptions) {
+                Object.entries(equippedCostume.additionalOptions).forEach(([key, value]) => {
+                    if (typeof value === 'number') {
+                        finalStats[key] = (finalStats[key] || 0) + value;
+                        console.log(`additionalOptions ${key}: ${value} 追加`);
+                    }
+                });
+            }
+
+            console.log(`${series.seriesName} 反映前:`, beforeStats);
+            console.log(`${series.seriesName} 反映後:`, finalStats);
+        }
 
         const maxSetEffect = Math.min(itemCount, 4);
         // 2セットから最大セットまで累積で加算
@@ -602,6 +665,11 @@ const ParameterComparisonTable: React.FC = () => {
         <Box sx={{ mt: 3 }}>
             <Typography variant="h6" sx={{ mb: 1, fontWeight: 'bold' }}>
                 パラメータ別比較（列をドラッグして並び替え可能）
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 2, p: 2, backgroundColor: 'info.light', borderRadius: 1 }}>
+                <strong>シリーズ比較について:</strong><br />
+                • 4点セット: コスチューム、メガネ、イヤリング、帽子の全4点で構成<br />
+                • 3点セット: メガネ、イヤリング、帽子の3点で構成されるが、コスチューム部分には任意の装備を設定可能<br />
             </Typography>
             <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
                 パラメータ名をクリックするとその値で列をソートできます（降順 → 昇順 → 非ソート）
@@ -669,6 +737,7 @@ const ParameterComparisonTable: React.FC = () => {
                                     key={series.synergyKey}
                                     series={series}
                                     index={displayIndex}
+                                    equippedCostume={equippedCostume}
                                     moveColumn={(dragIndex, hoverIndex) => {
                                         // 表示されている列のみでのインデックスを元のインデックスに変換
                                         const dragOriginalIndex = orderedSeriesWithFinalStats[dragIndex].originalIndex;
@@ -682,6 +751,57 @@ const ParameterComparisonTable: React.FC = () => {
                                 />
                             ))}
                             <TableCell sx={{ fontWeight: 'bold', textAlign: 'center' }}>最高値</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ fontWeight: 'bold', backgroundColor: 'action.hover' }}>コスチューム設定</TableCell>
+                            {orderedSeriesWithFinalStats.map(({ series }) => {
+                                const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
+                                return (
+                                    <TableCell key={`costume-${series.synergyKey}`} sx={{ textAlign: 'center', backgroundColor: 'action.hover' }}>
+                                        {itemCount === 4 ? (
+                                            // 4点セットの場合は設定不可のメッセージを表示
+                                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.65rem' }}>
+                                                    セット装備済み
+                                                </Typography>
+                                                <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.6rem' }}>
+                                                    （設定不要）
+                                                </Typography>
+                                            </Box>
+                                        ) : (
+                                            // 3点セットの場合はコスチューム設定可能
+                                            <>
+                                                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                                    <EquipmentIconButton
+                                                        equipmentType="costume"
+                                                        title={`コスチューム (${series.seriesName})`}
+                                                        items={(() => {
+                                                            // 同じシリーズにコスチュームがある場合はそれのみ
+                                                            if (series.costume) {
+                                                                return costumes.filter(costume => costume.synergyKey === series.synergyKey);
+                                                            }
+                                                            // 同じシリーズにコスチュームがない場合は全てのコスチューム
+                                                            else {
+                                                                return costumes;
+                                                            }
+                                                        })()}
+                                                    />
+                                                </Box>
+                                                {!series.costume && (
+                                                    <Typography variant="caption" color="info.main" display="block" sx={{ textAlign: 'center', mt: 0.5, fontSize: '0.65rem' }}>
+                                                        任意装備可能
+                                                    </Typography>
+                                                )}
+                                            </>
+                                        )}
+                                    </TableCell>
+                                );
+                            })}
+                            <TableCell sx={{ backgroundColor: 'action.hover', textAlign: 'center' }}>
+                                <Typography variant="caption" color="text.secondary">
+                                    設定
+                                </Typography>
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
