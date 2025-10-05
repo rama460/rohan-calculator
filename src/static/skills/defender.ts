@@ -21,7 +21,6 @@ import defender_throwing_shield from "../../assets/skills/defender/de_Throwing_S
 import defender_ultimate_bastian from "../../assets/skills/defender/de_Ultimate_Bastian.gif";
 import defender_power_heavy_armor from "../../assets/skills/defender/de_Powered_Heavy_Armor.gif";
 
-
 export const defender_skills: Skill[] = [
     {
         name: "DefenderBluntMastery",

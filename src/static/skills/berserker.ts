@@ -22,7 +22,6 @@ import berserker_madness from "../../assets/skills/berserker/G_BE_Madness.gif";
 import berserker_brandish_weapon from "../../assets/skills/berserker/G_BE_Brandish_Weapon.gif";
 import berserker_gigantic_storm from "../../assets/skills/berserker/G_BE_Gigantic_Storm.gif";
 
-
 export const berserker_skills: Skill[] = [
     {
         name: "polearmMastery",

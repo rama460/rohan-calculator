@@ -23,7 +23,6 @@ import wizard_slow from "../../assets/skills/wizard/DE_Wi_Slow.gif";
 import wizard_mind_training from "../../assets/skills/wizard/DE_Wi_Mind_Training.gif";
 import wizard_extension_spell from "../../assets/skills/wizard/DE_Wi_Extension_Spell.gif";
 
-
 export const wizard_skills: Skill[] = [
     {
         name: "WizardStaffMastery",

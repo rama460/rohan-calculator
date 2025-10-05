@@ -20,7 +20,7 @@ import noir_distortion_claw_gravity from "../../assets/skills/noir/ME_N_Distorti
 import noir_dimension_coat from "../../assets/skills/noir/ME_N_Dimension_Coat.gif";
 import noir_distortion_claw_chaos from "../../assets/skills/noir/ME_N_Distortion_Claw_Chaos.gif";
 import noir_dimension_scar from "../../assets/skills/noir/ME_N_Dimension_Scar.gif";
-import noir_silent_noise from "../../assets/unknown.png"; // Placeholder, replace with actual icon if available
+import noir_silent_noise from "../../assets/unknown.png";
 
 export const noir_skills: Skill[] = [
     {

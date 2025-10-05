@@ -1,9 +1,11 @@
 import { BuiltinOptionKeyType } from "../options";
+import { Job } from "../races";
 import { archer_skills } from "./archer";
 import { assassin_skills } from "./assassin";
 import { avenger_skills } from "./avenger";
 import { berserker_skills } from "./berserker";
 import { cash_skills } from "./cash";
+import { common_skills } from "./common";
 import { defender_skills } from "./defender";
 import { dragonfighter_skills } from "./dragonfighter";
 import { dragonknight_skills } from "./dragonknight";
@@ -113,6 +115,63 @@ export const skills: Skill[] = [
     // 課金バフ
     ...cash_skills,
     // ギルドバフ
-    ...guild_skills
+    ...guild_skills,
+    // 共通
+    ...common_skills,
 
 ]
+
+export const getSkillByJob = (job: Job): Skill[] => {
+    if (job.name === "Knight") {
+        return knight_skills;
+    } else if (job.name === "Guardian") {
+        return [...guardian_skills, ...common_skills];
+    } else if (job.name === "Defender") {
+        return [...defender_skills, ...common_skills];
+    } else if (job.name === "Healer") {
+        return healer_skills;
+    } else if (job.name === "Priest") {
+        return [...priest_skills, ...common_skills];
+    } else if (job.name === "Templar") {
+        return [...templar_skills, ...common_skills];
+    } else if (job.name === "Archer") {
+        return archer_skills;
+    } else if (job.name === "Ranger") {
+        return [...ranger_skills, ...common_skills];
+    } else if (job.name === "Scout") {
+        return [...scout_skills, ...common_skills];
+    } else if (job.name === "Assassin") {
+        return assassin_skills;
+    } else if (job.name === "Avenger") {
+        return [...avenger_skills, ...common_skills];
+    } else if (job.name === "Predator") {
+        return [...predator_skills, ...common_skills];
+    } else if (job.name === "DragonFighter") {
+        return dragonfighter_skills;
+    } else if (job.name === "DragonKnight") {
+        return [...dragonknight_skills, ...common_skills];
+    } else if (job.name === "DragonSage") {
+        return [...dragonsage_skills, ...common_skills];
+    } else if (job.name === "Mage") {
+        return mage_skills;
+    } else if (job.name === "Warlock") {
+        return [...warlock_skills, ...common_skills];
+    } else if (job.name === "Wizard") {
+        return [...wizard_skills, ...common_skills];
+    } else if (job.name === "Warrior") {
+        return warrior_skills;
+    } else if (job.name === "Berserker") {
+        return [...berserker_skills, ...common_skills];
+    } else if (job.name === "Savage") {
+        return [...savage_skills, ...common_skills];
+    } else if (job.name === "Mer") {
+        return mer_skills;
+    } else if (job.name === "Rumir") {
+        return [...rumior_skills, ...common_skills];
+    } else if (job.name === "Noir") {
+        return [...noir_skills, ...common_skills];
+    } else {
+        return [];
+    }
+}
+

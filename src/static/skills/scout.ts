@@ -21,8 +21,6 @@ import scout_rainforce_action from "../../assets/skills/scout/sc_Rainforce_Actio
 import scout_scatter_shot from "../../assets/skills/scout/sc_Scatter_Shot.gif";
 import scout_cataclysm from "../../assets/skills/scout/sc_Cataclysm.gif";
 
-
-
 export const scout_skills: Skill[] = [
     {
         name: "bowMastery",

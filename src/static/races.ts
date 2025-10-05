@@ -1,15 +1,12 @@
 export type RaceName = "Human" | "Elf" | "HalfElf" | "Dan" | "Dekan" | "DarkElf" | "Giant" | "Trinity";
 export type RaceNameOrTrinityJobName = "Human" | "Elf" | "HalfElf" | "Dan" | "Dekan" | "DarkElf" | "Giant" | "Noir" | "Rumir";
+export type JobName = "Knight" | "Guardian" | "Defender" | "Healer" | "Priest" | "Templar" | "Archer" | "Ranger" | "Scout" | "Assassin" | "Avenger" | "Predator" | "DragonFighter" | "DragonKnight" | "DragonSage" | "Mage" | "Warlock" | "Wizard" | "Warrior" | "Berserker" | "Savage" | "Mer" | "Rumir" | "Noir";
 export type Race = {
     id: number;
     name: RaceName;
     displayName: string;
     abbrev: string;
-    jobs: {
-        id: number;
-        name: string;
-        displayName: string;
-    }[];
+    jobs: Job[];
     initialStatus: {
         strength: number;
         vitality: number;
@@ -21,6 +18,11 @@ export type Race = {
     hitPointPerLevel: number;
     magicPointPerLevel: number;
     movementSpeed: number;
+}
+export type Job = {
+    id: number;
+    name: JobName;
+    displayName: string;
 }
 export const races: Race[] = [
     {

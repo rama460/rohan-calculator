@@ -377,8 +377,6 @@ export const knight_skills: Skill[] = [
             },
         }
     },
-
-
     {
         name: "charge",
         displayName: "チャージ",

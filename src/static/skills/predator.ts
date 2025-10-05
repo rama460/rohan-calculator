@@ -23,7 +23,6 @@ import predator_dancing_blade from "../../assets/skills/predator/D_PR_dancing_bl
 import predator_octopus from "../../assets/skills/predator/D_PR_octopus.gif";
 import predator_isolation_stealth from "../../assets/unknown.png";
 
-
 export const predator_skills: Skill[] = [
     {
         name: "awareness",
