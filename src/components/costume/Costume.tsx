@@ -25,10 +25,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { costumes, glasses, earrings, hats, ItemTemplate } from '../../static/items';
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
-import BorderedTitleBox from '../common/BorderedTitleBox';
 import { EquipmentIconButton } from '../status/EquipmentIconButton';
 import { useAtomValue } from 'jotai';
 import { equipmentStateFamily } from '../../modules/state/items';
+import { PageContainer } from '../common/PageContainer';
+import CheckroomIcon from '@mui/icons-material/Checkroom';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -887,7 +888,10 @@ export const Costume: React.FC = () => {
     };
 
     return (
-        <BorderedTitleBox title="コスチューム装備">
+        <PageContainer
+            title="コスチューム装備"
+            icon={<CheckroomIcon sx={{ fontSize: 32 }} />}
+        >
             <Box sx={{ width: '100%' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <Tabs value={tabValue} onChange={handleTabChange} aria-label="costume tabs">
@@ -924,7 +928,7 @@ export const Costume: React.FC = () => {
                     <ParameterComparisonTable />
                 </TabPanel>
             </Box>
-        </BorderedTitleBox>
+        </PageContainer>
     );
 };
 

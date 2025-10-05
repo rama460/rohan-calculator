@@ -75,7 +75,6 @@ export const SkillTreeGrid: React.FC<SkillTreeGridProps> = ({
 
         const x = cellX + iconCenterOffsetX;
         const y = cellY + iconCenterOffsetY;
-        console.log(`Skill: ${skillName}, Grid Position: (${position.row}, ${position.col}), Coordinates: (${x}, ${y})`);
         return { x, y };
     };
     const getDependencyLineStart = (startSkillName: string, endSkillName: string) => {
@@ -93,8 +92,7 @@ export const SkillTreeGrid: React.FC<SkillTreeGridProps> = ({
     }
     const getDependencyLineEnd = (startSkillName: string, endSkillName: string) => {
         const { x: endX, y: endY } = getSkillGridPosition(endSkillName);
-        const { x: startX, y: startY } = getSkillGridPosition(startSkillName);
-        console.log(endSkillName, startSkillName, endX, startX, endY, startY)
+        const { x: startX, y: _ } = getSkillGridPosition(startSkillName);
         if (endX === startX) {
             return { x: endX, y: endY - 75 }; // アイコン上端で終了
         } else if (endX > startX) {
