@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useTheme } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import { SkillIconButton } from './SkillIconButton';
 import { Skill } from '../../static/skills/skill';
 import { checkPrerequisites, SkillConnection, SkillPosition } from './skillTreeData';
@@ -12,6 +12,7 @@ interface SkillTreeGridProps {
     skillLevels: { [skillName: string]: number };
     onSkillChange: (skillName: string, level: number) => void;
     minColumns?: number;
+    jobName?: string;
 }
 
 export const SkillTreeGrid: React.FC<SkillTreeGridProps> = ({
@@ -21,6 +22,7 @@ export const SkillTreeGrid: React.FC<SkillTreeGridProps> = ({
     skillLevels,
     onSkillChange,
     minColumns = 3,
+    jobName,
 }) => {
     const theme = useTheme();
 
@@ -112,6 +114,14 @@ export const SkillTreeGrid: React.FC<SkillTreeGridProps> = ({
                 border: `1px solid ${theme.palette.divider}`
             }}
         >
+            {/* 職業名ヘッダー */}
+            {jobName && (
+                <Box sx={{ textAlign: 'center', py: 2, borderBottom: `1px solid ${theme.palette.divider}` }}>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: theme.palette.primary.main }}>
+                        {jobName}
+                    </Typography>
+                </Box>
+            )}
 
             <Box
                 data-skill-tree-container

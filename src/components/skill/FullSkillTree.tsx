@@ -41,7 +41,14 @@ export const FullSkillTree: React.FC<FullSkillTreeProps> = ({
         <Box sx={{ width: '100%' }}>
 
             {/* スキルツリー表示 */}
-            <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'row' }}>
+            <Box sx={{
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                gap: 2
+            }}>
                 <Box
                     sx={{
                         minHeight: '760px', // 7行 × 90px + gaps
@@ -54,6 +61,7 @@ export const FullSkillTree: React.FC<FullSkillTreeProps> = ({
                         skillLevels={primaryJobSkillLevels}
                         onSkillChange={onSkillChange}
                         minColumns={3}
+                        jobName={primaryJob.displayName}
                     />
                 </Box>
                 {secondaryJob && secondarySkillTree && (
@@ -69,6 +77,7 @@ export const FullSkillTree: React.FC<FullSkillTreeProps> = ({
                             skillLevels={secondaryJobSkillLevels}
                             onSkillChange={onSkillChange}
                             minColumns={4}
+                            jobName={secondaryJob.displayName}
                         />
                     </Box>
                 )}
