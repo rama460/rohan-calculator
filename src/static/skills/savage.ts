@@ -18,9 +18,9 @@ import savage_barbaric_cry from "../../assets/skills/savage/G_S_Barbaric_Cry.gif
 import savage_stoming_cross from "../../assets/skills/savage/G_S_Stoming_Cross.gif";
 import savage_gails_cry from "../../assets/skills/savage/G_S_Gails_Cry.gif";
 import savage_freezing_tornado from "../../assets/skills/savage/G_S_Freezing_Tornado.gif";
-import savage_breage from "../../assets/unknown.png"; // Placeholder, actual icon not provided
-import savage_broken_ground from "../../assets/unknown.png"; // Placeholder, actual icon not provided
-import savage_fury_tempest from "../../assets/unknown.png"; // Placeholder, actual icon not provided
+import savage_breage from "../../assets/unknown.png";
+import savage_broken_ground from "../../assets/unknown.png";
+import savage_fury_tempest from "../../assets/unknown.png";
 
 export const savage_skills: Skill[] = [
     {

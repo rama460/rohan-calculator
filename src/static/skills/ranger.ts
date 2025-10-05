@@ -20,7 +20,6 @@ import ranger_anti_potion from "../../assets/skills/ranger/ra_anti_potion.gif";
 import ranger_silence_shot from "../../assets/skills/ranger/ra_silence_shot.gif";
 import ranger_death_chaser from "../../assets/skills/ranger/ra_death_chaser.gif";
 
-
 export const ranger_skills: Skill[] = [
     {
         name: "crossbowMastery",

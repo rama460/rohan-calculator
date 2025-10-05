@@ -21,7 +21,6 @@ import guardian_stunner from "../../assets/skills/guardian/ga_Stunner.gif";
 import guardian_knights_mind from "../../assets/skills/guardian/ga_Knights_Mind.gif";
 import guardian_overload from "../../assets/skills/guardian/ga_Overload.gif";
 
-
 export const guardian_skills: Skill[] = [
     {
         name: "swordMastery",

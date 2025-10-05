@@ -23,8 +23,6 @@ import warlock_mana_burn_up from "../../assets/skills/warlock/DE_Wa_Mana_Burn_Up
 import warlock_nightmare from "../../assets/skills/warlock/DE_Wa_Nightmare.gif";
 import warlock_spell_liberation from "../../assets/skills/warlock/DE_Wa_Spell_Liberation.gif";
 
-
-
 export const warlock_skills: Skill[] = [
     {
         name: "WarrockStaffMastery",

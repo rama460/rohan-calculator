@@ -42,8 +42,8 @@ export const RohanCaluculatorDrawer: React.FC<DrawerProps> = ({ open, toggleDraw
             displayName: 'スキル',
             path: '/skill',
             icon: <AutoFixHighIcon />,
-            description: 'スキル効果とビルド',
-            status: 'development' as const
+            description: 'スキルツリーとビルドシミュレータ',
+            status: 'ready' as const
         },
         {
             displayName: '統計',

@@ -21,7 +21,6 @@ import priest_blessing_of_nature from "../../assets/skills/priest/npr_Blessing_o
 import priest_judgement from "../../assets/skills/priest/npr_Judgement.gif";
 import priest_heavens_dawn from "../../assets/skills/priest/npr_Heavens_Dawn.gif";
 
-
 export const priest_skills: Skill[] = [
     {
         name: "mentalBlow",
@@ -543,7 +542,6 @@ export const priest_skills: Skill[] = [
             }
         }
     },
-
     {
         name: "blessingOfNature",
         displayName: "プレッシングオブネーチャー",
@@ -589,7 +587,7 @@ export const priest_skills: Skill[] = [
         }
     },
     {
-        name: "judgment",
+        name: "judgement",
         displayName: "ジャッジメント",
         icon: priest_judgement,
         category: "Attack",
