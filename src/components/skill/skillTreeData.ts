@@ -60,6 +60,7 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'protection', to: 'sharpenBlade' },
             { from: 'protection', to: 'blessedShield' },
             { from: 'psychicCrush', to: 'crashAbove' },
+            { from: 'sharpenBlade', to: 'blessedShield' },
             { from: 'sharpenBlade', to: 'invoke' },
             { from: 'blessedShield', to: 'charge' },
             { from: 'blessedShield', to: 'shieldPush' },
@@ -68,6 +69,7 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'charge', to: 'breeding' },
             { from: 'charge', to: 'assaultCrash' },
             { from: 'shieldPush', to: 'changeMind' },
+            { from: 'shieldPush', to: 'charge' },
             { from: 'breeding', to: 'assaultCrash' },
         ]
     },
@@ -182,6 +184,7 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'powerHeavyArmor', to: 'rush' },
             { from: 'powerHeavyArmor', to: 'defenderNature' },
             { from: 'physicalAura', to: 'stoneSkin' },
+            { from: 'physicalAura', to: 'powerHeavyArmor' },
             { from: 'rush', to: 'extension' },
             { from: 'rush', to: 'rohaShelter' },
             { from: 'defenderNature', to: 'rohaShelter' },
@@ -245,6 +248,7 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'groupHeal', to: 'magicBarrier' },
             { from: 'groupHeal', to: 'detect' },
             { from: 'detect', to: 'manaCharge' },
+            { from: 'detect', to: 'instantHeal' },
             { from: 'instantHeal', to: 'manaCharge' },
             { from: 'instantHeal', to: 'mentalBarrier' },
 
@@ -317,7 +321,9 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'nemesis', to: 'mindAir' },
 
             { from: 'perfectHealing', to: 'obligation' },
+            { from: 'soulMeditation', to: 'perfectHealing' },
             { from: 'soulMeditation', to: 'obligation' },
+            { from: 'soulMeditation', to: 'mindAir' },
             { from: 'mindAir', to: 'obligation' },
 
             { from: 'heroicPower', to: 'blessingOfNature' },
@@ -891,7 +897,6 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'criticalImmunity', to: 'mist' },
             { from: 'criticalImmunity', to: 'evolve' },
             { from: 'criticalImmunity', to: 'extlicate' },
-            { from: 'criticalImmunity', to: 'allSuction' },
 
             { from: 'mist', to: 'forceLock' },
             { from: 'evolve', to: 'fastShadow' },
@@ -961,7 +966,6 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'criticalImmunity', to: 'extricate' },
             { from: 'criticalImmunity', to: 'manaGuard' },
             { from: 'criticalImmunity', to: 'evolveSeparation' },
-            { from: 'criticalImmunity', to: 'suction' },
 
             { from: 'manaGuard', to: 'rapidLock' },
             { from: 'evolveSeparation', to: 'manaGuard' },
@@ -988,7 +992,6 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'heroicPower', to: 'wideForefootSwing' },
             { from: 'wideForefootSwing', to: 'combineFlow' },
             { from: 'combineFlow', to: 'reverseScale' },
-            { from: 'reverseScale', to: 'dragonMantle' },
         ]
     },
     {
@@ -1313,7 +1316,9 @@ export const sampleSkillTreeLayouts: SkillTreeLayout[] = [
             { from: 'callBattle', to: 'retaliate' },
 
             { from: 'premiumStrike', to: 'iceWillyWilly' },
+            { from: 'magnitudeSwing', to: 'premiumStrike' },
             { from: 'magnitudeSwing', to: 'iceWillyWilly' },
+            { from: 'magnitudeSwing', to: 'retaliate' },
             { from: 'retaliate', to: 'iceWillyWilly' },
 
             { from: 'heroicPower', to: 'madness' },
