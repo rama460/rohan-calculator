@@ -11263,6 +11263,29 @@ export const e_talismans: ItemTemplate[] = [
         icon: unknown,
     },
 ]
+export const f_talismans: ItemTemplate[] = [
+    {
+        id: 0,
+        name: "万能のお守り",
+        enchantableBaseOptions: {
+            0: {
+                'plusAllStatus': 200,
+            },
+            10: {
+                'plusAllStatus': 300,
+                'plusHitPoint': 150000,
+                'plusMagicPoint': 30000,
+            },
+            20: {
+                'plusAllStatus': 600,
+                'plusHitPoint': 250000,
+                'plusMagicPoint': 100000,
+            },
+        },
+        icon: unknown,
+    }
+]
+
 export const r_talismans: ItemTemplate[] = [
     {
         id: 0,
@@ -11325,6 +11348,31 @@ export const w_talismans: ItemTemplate[] = [
             }
         },
         icon: talisman_w_mask,
+    },
+    {
+        id: 1,
+        name: "天上の証",
+        enchantableBaseOptions: {
+            0: {
+                'plusAllStatus': 200,
+                'plusAttack': 100,
+                'plusDefense': 200,
+            },
+            10: {
+                'plusAllStatus': 300,
+                'plusAttack': 1500,
+                'plusDefense': 1500,
+                'multiplySkillDefense': 5,
+            },
+            20: {
+                'plusAllStatus': 600,
+                'plusAttack': 4000,
+                'plusDefense': 4000,
+                'multiplySkillDefense': 20,
+                'multiplySkillAttack': 20,
+            }
+        },
+        icon: unknown,
     }
 
 ]
@@ -11957,6 +12005,7 @@ export const itemTemplates = {
     talismanJ: j_talismans,
     talismanN: n_talismans,
     talismanE: e_talismans,
+    talismanF: f_talismans,
     talismanR: r_talismans,
     talismanW: w_talismans,
     talismanQ: q_talismans,
