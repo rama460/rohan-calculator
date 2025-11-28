@@ -10721,6 +10721,50 @@ export const b_talismans: ItemTemplate[] = [
             'multiplyPotionRecovery': 10,
         },
         icon: talisman_b_1,
+    },
+    {
+        id: 5,
+        name: "輝く深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 1500,
+            'plusDefense': 1500,
+            'multiplyPotionRecovery': 15,
+        },
+        icon: talisman_b_1,
+    },
+    {
+        id: 6,
+        name: "洗練された深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusAttack': 2000,
+            'plusDefense': 2000,
+            'multiplyPotionRecovery': 20,
+        },
+        icon: talisman_b_1,
+    },
+    {
+        id: 7,
+        name: "歪な深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 500,
+            'plusDefense': 500,
+            'multiplyHitPoint': 15,
+        },
+        icon: talisman_b_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 1000,
+            'plusDefense': 1000,
+            'multiplyHitPoint': 20,
+        },
+        icon: talisman_b_1,
     }
 ]
 export const j_talismans: ItemTemplate[] = [
@@ -10768,6 +10812,50 @@ export const j_talismans: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusHitPoint': 100000,
             'multiplySkillAttack': 10,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 5,
+        name: "輝く黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 1500,
+            'plusHitPoint': 150000,
+            'multiplySkillAttack': 15,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 6,
+        name: "洗練された黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusAttack': 2000,
+            'plusHitPoint': 200000,
+            'multiplySkillAttack': 20,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 7,
+        name: "歪な黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 500,
+            'plusHitPoint': 50000,
+            'multiplyDecreaseCriticalDamageTaken': 15,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 1000,
+            'plusHitPoint': 100000,
+            'multiplyDecreaseCriticalDamageTaken': 20,
         },
         icon: talisman_j_1,
     }
@@ -10823,6 +10911,50 @@ export const h_talismans: ItemTemplate[] = [
             'plusHitPoint': 100000,
         },
         icon: talisman_h_1,
+    },
+    {
+        id: 5,
+        name: "輝く翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusDefense': 1500,
+            'multiplyDefense': 15,
+            'plusHitPoint': 150000,
+        },
+        icon: talisman_h_1,
+    },
+    {
+        id: 6,
+        name: "洗練された翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusDefense': 2000,
+            'multiplyDefense': 20,
+            'plusHitPoint': 200000,
+        },
+        icon: talisman_h_1,
+    },
+    {
+        id: 7,
+        name: "歪な翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusDefense': 500,
+            'plusHitPoint': 50000,
+            'multiplyPVPDefense': 15,
+        },
+        icon: talisman_h_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusDefense': 1000,
+            'plusHitPoint': 100000,
+            'multiplyPVPDefense': 20,
+        },
+        icon: talisman_h_1,
     }
 ]
 export const g_talismans: ItemTemplate[] = [
@@ -10876,6 +11008,50 @@ export const g_talismans: ItemTemplate[] = [
             'plusHitPoint': 100000,
         },
         icon: talisman_g_1,
+    },
+    {
+        id: 5,
+        name: "輝く蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 1500,
+            'multiplyAttack': 15,
+            'plusHitPoint': 150000,
+        },
+        icon: talisman_g_1,
+    },
+    {
+        id: 6,
+        name: "洗練された蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusAttack': 2000,
+            'multiplyAttack': 20,
+            'plusHitPoint': 200000,
+        },
+        icon: talisman_g_1,
+    },
+    {
+        id: 7,
+        name: "歪な蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 500,
+            'plusHitPoint': 50000,
+            'multiplyPVPAttack': 15,
+        },
+        icon: talisman_g_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 1000,
+            'plusHitPoint': 100000,
+            'multiplyPVPAttack': 20,
+        },
+        icon: talisman_g_1,
     }
 ]
 export const i_talismans: ItemTemplate[] = [
@@ -10922,7 +11098,51 @@ export const i_talismans: ItemTemplate[] = [
             'plusAllStatus': 1000,
             'plusDefense': 1000,
             'plusHitPoint': 100000,
-            'multiplySkillAttack': 10,
+            'multiplySkillDefense': 10,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 5,
+        name: "輝く紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusDefense': 1500,
+            'plusHitPoint': 150000,
+            'multiplySkillDefense': 15,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 6,
+        name: "洗練された紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusDefense': 2000,
+            'plusHitPoint': 200000,
+            'multiplySkillDefense': 20,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 7,
+        name: "歪な紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusDefense': 500,
+            'plusHitPoint': 50000,
+            'multiplyCriticalDamage': 15,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusDefense': 1000,
+            'plusHitPoint': 100000,
+            'multiplyCriticalDamage': 20,
         },
         icon: talisman_i_1,
     }
@@ -11271,15 +11491,155 @@ export const f_talismans: ItemTemplate[] = [
             0: {
                 'plusAllStatus': 200,
             },
+            1: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 10000,
+                'plusMagicPoint': 2000,
+            },
+            2: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 20000,
+                'plusMagicPoint': 4000,
+            },
+            3: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 30000,
+                'plusMagicPoint': 6000,
+            },
+            4: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 40000,
+                'plusMagicPoint': 8000,
+            },
+            5: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 50000,
+                'plusMagicPoint': 10000,
+            },
+            6: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 70000,
+                'plusMagicPoint': 14000,
+            },
+            7: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 90000,
+                'plusMagicPoint': 18000,
+            },
+            8: {
+                'plusAllStatus': 200,
+                'plusHitPoint': 110000,
+                'plusMagicPoint': 22000,
+            },
+            9: {
+                'plusAllStatus': 250,
+                'plusHitPoint': 130000,
+                'plusMagicPoint': 26000,
+            },
             10: {
                 'plusAllStatus': 300,
                 'plusHitPoint': 150000,
                 'plusMagicPoint': 30000,
             },
+            11: {
+                'plusAllStatus': 330,
+                'plusHitPoint': 160000,
+                'plusMagicPoint': 37000,
+            },
+            12: {
+                'plusAllStatus': 360,
+                'plusHitPoint': 170000,
+                'plusMagicPoint': 44000,
+            },
+            13: {
+                'plusAllStatus': 390,
+                'plusHitPoint': 180000,
+                'plusMagicPoint': 51000,
+            },
+            14: {
+                'plusAllStatus': 420,
+                'plusHitPoint': 190000,
+                'plusMagicPoint': 58000,
+            },
+            15: {
+                'plusAllStatus': 450,
+                'plusHitPoint': 200000,
+                'plusMagicPoint': 65000,
+            },
+            16: {
+                'plusAllStatus': 480,
+                'plusHitPoint': 210000,
+                'plusMagicPoint': 72000,
+            },
+            17: {
+                'plusAllStatus': 510,
+                'plusHitPoint': 220000,
+                'plusMagicPoint': 79000,
+            },
+            18: {
+                'plusAllStatus': 540,
+                'plusHitPoint': 230000,
+                'plusMagicPoint': 86000,
+            },
+            19: {
+                'plusAllStatus': 570,
+                'plusHitPoint': 240000,
+                'plusMagicPoint': 93000,
+            },
             20: {
                 'plusAllStatus': 600,
                 'plusHitPoint': 250000,
                 'plusMagicPoint': 100000,
+            },
+            21: {
+                'plusAllStatus': 650,
+                'plusHitPoint': 265000,
+                'plusMagicPoint': 110000,
+            },
+            22: {
+                'plusAllStatus': 700,
+                'plusHitPoint': 280000,
+                'plusMagicPoint': 120000,
+            },
+            23: {
+                'plusAllStatus': 750,
+                'plusHitPoint': 295000,
+                'plusMagicPoint': 130000,
+            },
+            24: {
+                'plusAllStatus': 800,
+                'plusHitPoint': 310000,
+                'plusMagicPoint': 140000,
+            },
+            25: {
+                'plusAllStatus': 850,
+                'plusHitPoint': 325000,
+                'plusMagicPoint': 150000,
+            },
+            26: {
+                'plusAllStatus': 900,
+                'plusHitPoint': 340000,
+                'plusMagicPoint': 160000,
+            },
+            27: {
+                'plusAllStatus': 950,
+                'plusHitPoint': 355000,
+                'plusMagicPoint': 170000,
+            },
+            28: {
+                'plusAllStatus': 1000,
+                'plusHitPoint': 370000,
+                'plusMagicPoint': 180000,
+            },
+            29: {
+                'plusAllStatus': 1050,
+                'plusHitPoint': 385000,
+                'plusMagicPoint': 190000,
+            },
+            30: {
+                'plusAllStatus': 1100,
+                'plusHitPoint': 400000,
+                'plusMagicPoint': 200000,
             },
         },
         icon: unknown,
@@ -11358,18 +11718,121 @@ export const w_talismans: ItemTemplate[] = [
                 'plusAttack': 100,
                 'plusDefense': 200,
             },
+            1: {
+                'plusAllStatus': 200,
+                'plusAttack': 150,
+                'plusDefense': 300,
+            },
+            2: {
+                'plusAllStatus': 200,
+                'plusAttack': 200,
+                'plusDefense': 400,
+            },
+            3: {
+                'plusAllStatus': 200,
+                'plusAttack': 300,
+                'plusDefense': 500,
+            },
+            4: {
+                'plusAllStatus': 200,
+                'plusAttack': 400,
+                'plusDefense': 600,
+            },
+            5: {
+                'plusAllStatus': 200,
+                'plusAttack': 500,
+                'plusDefense': 700,
+            },
+            6: {
+                'plusAllStatus': 200,
+                'plusAttack': 600,
+                'plusDefense': 800,
+            },
+            7: {
+                'plusAllStatus': 200,
+                'plusAttack': 700,
+                'plusDefense': 900,
+            },
+            8: {
+                'plusAllStatus': 200,
+                'plusAttack': 800,
+                'plusDefense': 1100,
+            },
+            9: {
+                'plusAllStatus': 250,
+                'plusAttack': 900,
+                'plusDefense': 1300,
+            },
             10: {
                 'plusAllStatus': 300,
                 'plusAttack': 1500,
                 'plusDefense': 1500,
                 'multiplySkillDefense': 5,
             },
+            11: {
+                'plusAllStatus': 330,
+                'plusAttack': 1700,
+                'plusDefense': 1700,
+                'multiplySkillDefense': 6,
+            },
+            12: {
+                'plusAllStatus': 360,
+                'plusAttack': 1900,
+                'plusDefense': 1900,
+                'multiplySkillDefense': 7,
+            },
+            13: {
+                'plusAllStatus': 390,
+                'plusAttack': 2100,
+                'plusDefense': 2100,
+                'multiplySkillDefense': 8,
+            },
+            14: {
+                'plusAllStatus': 420,
+                'plusAttack': 2300,
+                'plusDefense': 2300,
+                'multiplySkillDefense': 9,
+            },
+            15: {
+                'plusAllStatus': 450,
+                'plusAttack': 2500,
+                'plusDefense': 2500,
+                'multiplySkillDefense': 10,
+            },
+            16: {
+                'plusAllStatus': 480,
+                'plusAttack': 2700,
+                'plusDefense': 2700,
+                'multiplySkillDefense': 12,
+                'multiplyAttack': 12,
+            },
+            17: {
+                'plusAllStatus': 510,
+                'plusAttack': 2900,
+                'plusDefense': 2900,
+                'multiplySkillDefense': 14,
+                'multiplyAttack': 14,
+            },
+            18: {
+                'plusAllStatus': 540,
+                'plusAttack': 3100,
+                'plusDefense': 3100,
+                'multiplySkillDefense': 16,
+                'multiplyAttack': 16,
+            },
+            19: {
+                'plusAllStatus': 570,
+                'plusAttack': 3500,
+                'plusDefense': 3500,
+                'multiplySkillDefense': 18,
+                'multiplyAttack': 18,
+            },
             20: {
                 'plusAllStatus': 600,
                 'plusAttack': 4000,
                 'plusDefense': 4000,
                 'multiplySkillDefense': 20,
-                'multiplySkillAttack': 20,
+                'multiplyAttack': 20,
             }
         },
         icon: unknown,
@@ -11699,6 +12162,35 @@ export const t_talismans: ItemTemplate[] = [
         }
     }
 ]
+
+export const k_talismans: ItemTemplate[] = [
+    {
+        id: 0,
+        name: "混沌のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusHitPoint': 100000,
+            'multiplyAttack': 10,
+            'multiplyDefense': 10,
+        },
+        icon: unknown,
+    }
+]
+
+export const l_talismans: ItemTemplate[] = [
+    {
+        id: 0,
+        name: "天地のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusHitPoint': 100000,
+            'multiplyPVPAttack': 10,
+            'multiplyPVPDefense': 10,
+        },
+        icon: unknown,
+    }
+]
+
 export const pets: ItemTemplate[] = [
     {
         id: 0,
@@ -12011,6 +12503,8 @@ export const itemTemplates = {
     talismanQ: q_talismans,
     talismanS: s_talismans,
     talismanT: t_talismans,
+    talismanK: k_talismans,
+    talismanL: l_talismans,
     pet: pets,
     ride: rides,
     rune1: runes,
