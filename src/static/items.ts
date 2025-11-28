@@ -10721,6 +10721,50 @@ export const b_talismans: ItemTemplate[] = [
             'multiplyPotionRecovery': 10,
         },
         icon: talisman_b_1,
+    },
+    {
+        id: 5,
+        name: "輝く深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 1500,
+            'plusDefense': 1500,
+            'multiplyPotionRecovery': 15,
+        },
+        icon: talisman_b_1,
+    },
+    {
+        id: 6,
+        name: "洗練された深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusAttack': 2000,
+            'plusDefense': 2000,
+            'multiplyPotionRecovery': 20,
+        },
+        icon: talisman_b_1,
+    },
+    {
+        id: 7,
+        name: "歪な深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 500,
+            'plusDefense': 500,
+            'multiplyHitPoint': 15,
+        },
+        icon: talisman_b_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された深紅のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 1000,
+            'plusDefense': 1000,
+            'multiplyHitPoint': 20,
+        },
+        icon: talisman_b_1,
     }
 ]
 export const j_talismans: ItemTemplate[] = [
@@ -10768,6 +10812,50 @@ export const j_talismans: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusHitPoint': 100000,
             'multiplySkillAttack': 10,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 5,
+        name: "輝く黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 1500,
+            'plusHitPoint': 150000,
+            'multiplySkillAttack': 15,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 6,
+        name: "洗練された黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusAttack': 2000,
+            'plusHitPoint': 200000,
+            'multiplySkillAttack': 20,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 7,
+        name: "歪な黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 500,
+            'plusHitPoint': 50000,
+            'multiplyDecreaseCriticalDamageTaken': 15,
+        },
+        icon: talisman_j_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された黄金のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 1000,
+            'plusHitPoint': 100000,
+            'multiplyDecreaseCriticalDamageTaken': 20,
         },
         icon: talisman_j_1,
     }
@@ -10823,6 +10911,50 @@ export const h_talismans: ItemTemplate[] = [
             'plusHitPoint': 100000,
         },
         icon: talisman_h_1,
+    },
+    {
+        id: 5,
+        name: "輝く翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusDefense': 1500,
+            'multiplyDefense': 15,
+            'plusHitPoint': 150000,
+        },
+        icon: talisman_h_1,
+    },
+    {
+        id: 6,
+        name: "洗練された翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusDefense': 2000,
+            'multiplyDefense': 20,
+            'plusHitPoint': 200000,
+        },
+        icon: talisman_h_1,
+    },
+    {
+        id: 7,
+        name: "歪な翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusDefense': 500,
+            'plusHitPoint': 50000,
+            'multiplyPVPDefense': 15,
+        },
+        icon: talisman_h_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された翡翠のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusDefense': 1000,
+            'plusHitPoint': 100000,
+            'multiplyPVPDefense': 20,
+        },
+        icon: talisman_h_1,
     }
 ]
 export const g_talismans: ItemTemplate[] = [
@@ -10876,6 +11008,50 @@ export const g_talismans: ItemTemplate[] = [
             'plusHitPoint': 100000,
         },
         icon: talisman_g_1,
+    },
+    {
+        id: 5,
+        name: "輝く蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusAttack': 1500,
+            'multiplyAttack': 15,
+            'plusHitPoint': 150000,
+        },
+        icon: talisman_g_1,
+    },
+    {
+        id: 6,
+        name: "洗練された蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusAttack': 2000,
+            'multiplyAttack': 20,
+            'plusHitPoint': 200000,
+        },
+        icon: talisman_g_1,
+    },
+    {
+        id: 7,
+        name: "歪な蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusAttack': 500,
+            'plusHitPoint': 50000,
+            'multiplyPVPAttack': 15,
+        },
+        icon: talisman_g_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された蒼穹のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusAttack': 1000,
+            'plusHitPoint': 100000,
+            'multiplyPVPAttack': 20,
+        },
+        icon: talisman_g_1,
     }
 ]
 export const i_talismans: ItemTemplate[] = [
@@ -10922,7 +11098,51 @@ export const i_talismans: ItemTemplate[] = [
             'plusAllStatus': 1000,
             'plusDefense': 1000,
             'plusHitPoint': 100000,
-            'multiplySkillAttack': 10,
+            'multiplySkillDefense': 10,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 5,
+        name: "輝く紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1500,
+            'plusDefense': 1500,
+            'plusHitPoint': 150000,
+            'multiplySkillDefense': 15,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 6,
+        name: "洗練された紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 2000,
+            'plusDefense': 2000,
+            'plusHitPoint': 200000,
+            'multiplySkillDefense': 20,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 7,
+        name: "歪な紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 500,
+            'plusDefense': 500,
+            'plusHitPoint': 50000,
+            'multiplyCriticalDamage': 15,
+        },
+        icon: talisman_i_1,
+    },
+    {
+        id: 8,
+        name: "歪曲された紫紺のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusDefense': 1000,
+            'plusHitPoint': 100000,
+            'multiplyCriticalDamage': 20,
         },
         icon: talisman_i_1,
     }
