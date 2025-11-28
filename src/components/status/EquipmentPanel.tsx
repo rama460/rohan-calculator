@@ -13,7 +13,7 @@ import background_glasses from '../../assets/backgrounds/glasses.png'
 import background_costume from '../../assets/backgrounds/costume.png'
 import React from "react";
 import EquipmentIconButton from './EquipmentIconButton.tsx'
-import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, f_talismans, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, runes, s_talismans, shields, t_talismans, tunics, w_talismans, weapons } from '../../static/items.ts'
+import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, f_talismans, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, k_talismans, l_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, runes, s_talismans, shields, t_talismans, tunics, w_talismans, weapons } from '../../static/items.ts'
 import { useAtomValue } from 'jotai'
 import { baseOptionStateFamily } from '../../modules/state/bases.ts'
 
@@ -115,7 +115,7 @@ export const EquipmentPanel: React.FC = () => {
                         items={earrings}
                     />
                 </div>
-                <div style={{ gridColumn: 5, gridRow: 2 }}>
+                <div style={{ gridColumn: 4, gridRow: 2 }}>
                     <EquipmentIconButton equipmentType='costume' title='コスチューム'
                         backgroundImage={background_costume}
                         items={costumes}
@@ -150,6 +150,12 @@ export const EquipmentPanel: React.FC = () => {
                 </div>
                 <div style={{ gridColumn: 9, gridRow: 5 }}>
                     <EquipmentIconButton equipmentType='talismanQ' title='タリスマン タイプQ' items={q_talismans} />
+                </div>
+                <div style={{ gridColumn: 5, gridRow: 3 }}>
+                    <EquipmentIconButton equipmentType='talismanK' title='タリスマン タイプK' items={k_talismans} />
+                </div>
+                <div style={{ gridColumn: 6, gridRow: 3 }}>
+                    <EquipmentIconButton equipmentType='talismanL' title='タリスマン タイプL' items={l_talismans} />
                 </div>
                 <div style={{ gridColumn: 7, gridRow: 3 }}>
                     <EquipmentIconButton equipmentType='talismanF' title='タリスマン タイプF' items={f_talismans} />

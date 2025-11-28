@@ -11699,6 +11699,35 @@ export const t_talismans: ItemTemplate[] = [
         }
     }
 ]
+
+export const k_talismans: ItemTemplate[] = [
+    {
+        id: 0,
+        name: "混沌のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusHitPoint': 100000,
+            'multiplyAttack': 10,
+            'multiplyDefense': 10,
+        },
+        icon: unknown,
+    }
+]
+
+export const l_talismans: ItemTemplate[] = [
+    {
+        id: 0,
+        name: "天地のタリスマン",
+        fixedBaseOptions: {
+            'plusAllStatus': 1000,
+            'plusHitPoint': 100000,
+            'multiplyPVPAttack': 10,
+            'multiplyPVPDefense': 10,
+        },
+        icon: unknown,
+    }
+]
+
 export const pets: ItemTemplate[] = [
     {
         id: 0,
@@ -12011,6 +12040,8 @@ export const itemTemplates = {
     talismanQ: q_talismans,
     talismanS: s_talismans,
     talismanT: t_talismans,
+    talismanK: k_talismans,
+    talismanL: l_talismans,
     pet: pets,
     ride: rides,
     rune1: runes,
