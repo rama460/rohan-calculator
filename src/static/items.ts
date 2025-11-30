@@ -70,14 +70,14 @@ import arrow_sadrium_bolt from "../assets/items/arrow_sadrium_bolt.png";
 import arrow_verolite from "../assets/items/arrow_verolite.png";
 import arrow_verolite_bolt from "../assets/items/arrow_verolite_bolt.png";
 
-import accessory_chaos_ring from "../assets/items/accessory_chaos_ring.png";
-import accessory_chaos_brooch from "../assets/items/accessory_chaos_brooch.png";
-import accessory_chaos_bracelet from "../assets/items/accessory_chaos_bracelet.png";
-import accessory_chaos_necklace from "../assets/items/accessory_chaos_necklace.png";
-import accessory_magus_ring from "../assets/items/accessory_magus_ring.png";
-import accessory_magus_brooch from "../assets/items/accessory_magus_brooch.png";
-import accessory_magus_bracelet from "../assets/items/accessory_magus_bracelet.png";
-import accessory_magus_necklace from "../assets/items/accessory_magus_necklace.png";
+import accessory_ring_1 from "../assets/items/accessory_ring_1.png";
+import accessory_ring_2 from "../assets/items/accessory_ring_2.png";
+import accessory_brooch_1 from "../assets/items/accessory_brooch_1.png";
+import accessory_brooch_2 from "../assets/items/accessory_brooch_2.png";
+import accessory_bracelet_1 from "../assets/items/accessory_bracelet_1.png";
+import accessory_bracelet_2 from "../assets/items/accessory_bracelet_2.png";
+import accessory_necklace_1 from "../assets/items/accessory_necklace_1.png";
+import accessory_necklace_2 from "../assets/items/accessory_necklace_2.png";
 import accessory_abyssal_jewel from "../assets/items/accessory_abyssal_jewel.png";
 import accessory_nihility_inverted_cross from "../assets/items/accessory_nihility_inverted_cross.png";
 import accessory_mass_of_sloth from "../assets/items/accessory_mass_of_sloth.png";
@@ -10480,7 +10480,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: accessory_chaos_ring,
+        icon: accessory_ring_1,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -10492,7 +10492,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: accessory_chaos_brooch,
+        icon: accessory_brooch_1,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -10504,7 +10504,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: accessory_chaos_bracelet,
+        icon: accessory_bracelet_1,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -10516,7 +10516,7 @@ export const accessories: ItemTemplate[] = [
             'plusHitPoint': 100000,
             'plusAttack': 1000,
         },
-        icon: accessory_chaos_necklace,
+        icon: accessory_necklace_1,
         synergyOptions: chaosSynergisticOptions,
         synergyKey: "chaos"
     },
@@ -10528,7 +10528,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: accessory_magus_ring,
+        icon: accessory_ring_2,
     },
     {
         id: 17,
@@ -10538,7 +10538,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: accessory_magus_brooch,
+        icon: accessory_brooch_2,
     },
     {
         id: 18,
@@ -10548,7 +10548,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: accessory_magus_bracelet,
+        icon: accessory_bracelet_2,
 
     },
     {
@@ -10559,7 +10559,7 @@ export const accessories: ItemTemplate[] = [
             'plusAttack': 1000,
             'plusDefense': 1000,
         },
-        icon: accessory_magus_necklace,
+        icon: accessory_necklace_2,
 
     },
     {
