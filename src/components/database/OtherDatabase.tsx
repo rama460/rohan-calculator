@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import { races } from '../../static/races';
 import { titles } from '../../static/titles';
+import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonIcon from '@mui/icons-material/Person';
@@ -79,6 +80,27 @@ export const OtherDatabase: React.FC = () => {
         return 'default';
     };
 
+    const getOptionDisplayName = (optionKey: string, value: number) => {
+        const option = BuiltinOptions[optionKey as keyof typeof BuiltinOptions];
+        if (option) {
+            return `${getDisplayOptionName(option)}: ${value > 0 ? '+' : ''}${value}`;
+        }
+        return `${optionKey}: ${value > 0 ? '+' : ''}${value}`;
+    };
+
+    const getStatDisplayName = (statKey: string, value: number) => {
+        const statMap: Record<string, string> = {
+            strength: '力',
+            vitality: '体力',
+            intelligence: '知能',
+            agility: '敏捷性',
+            mentality: '精神力',
+            dexterity: '瞬発力'
+        };
+        const displayName = statMap[statKey] || statKey;
+        return `${displayName}: ${value}`;
+    };
+
     return (
         <Box>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -139,18 +161,17 @@ export const OtherDatabase: React.FC = () => {
                                                     <Typography variant="subtitle2" gutterBottom>
                                                         初期ステータス
                                                     </Typography>
-                                                    <Grid container spacing={1}>
+                                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                                                         {Object.entries(race.initialStatus).map(([stat, value]) => (
-                                                            <Grid item xs={6} sm={4} key={stat}>
-                                                                <Chip
-                                                                    label={`${stat}: ${value}`}
-                                                                    size="small"
-                                                                    color={getStatColor(value as number) as any}
-                                                                    variant="outlined"
-                                                                />
-                                                            </Grid>
+                                                            <Chip
+                                                                key={stat}
+                                                                label={getStatDisplayName(stat, value as number)}
+                                                                size="small"
+                                                                color={getStatColor(value as number) as any}
+                                                                variant="outlined"
+                                                            />
                                                         ))}
-                                                    </Grid>
+                                                    </Box>
                                                 </Box>
                                             )}
 
@@ -158,32 +179,26 @@ export const OtherDatabase: React.FC = () => {
                                                 <Typography variant="subtitle2" gutterBottom>
                                                     その他情報
                                                 </Typography>
-                                                <Grid container spacing={1}>
-                                                    <Grid item xs={6} sm={4}>
-                                                        <Chip
-                                                            label={`HP/Lv: ${race.hitPointPerLevel}`}
-                                                            size="small"
-                                                            color="info"
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={6} sm={4}>
-                                                        <Chip
-                                                            label={`MP/Lv: ${race.magicPointPerLevel}`}
-                                                            size="small"
-                                                            color="info"
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
-                                                    <Grid item xs={6} sm={4}>
-                                                        <Chip
-                                                            label={`速度: ${race.movementSpeed}`}
-                                                            size="small"
-                                                            color="info"
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
-                                                </Grid>
+                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                                    <Chip
+                                                        label={`HP/Lv: ${race.hitPointPerLevel}`}
+                                                        size="small"
+                                                        color="info"
+                                                        variant="outlined"
+                                                    />
+                                                    <Chip
+                                                        label={`MP/Lv: ${race.magicPointPerLevel}`}
+                                                        size="small"
+                                                        color="info"
+                                                        variant="outlined"
+                                                    />
+                                                    <Chip
+                                                        label={`速度: ${race.movementSpeed}`}
+                                                        size="small"
+                                                        color="info"
+                                                        variant="outlined"
+                                                    />
+                                                </Box>
                                             </Box>
 
                                             {race.jobs && race.jobs.length > 0 && (
@@ -242,9 +257,6 @@ export const OtherDatabase: React.FC = () => {
                                             <Typography variant="h6">
                                                 {title.displayName}
                                             </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                {title.name}
-                                            </Typography>
                                         </Box>
                                     </Box>
                                 </AccordionSummary>
@@ -255,18 +267,17 @@ export const OtherDatabase: React.FC = () => {
                                                 <Typography variant="subtitle2" gutterBottom>
                                                     効果
                                                 </Typography>
-                                                <Grid container spacing={1}>
+                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                                                     {Object.entries(title.options).map(([stat, value]) => (
-                                                        <Grid item xs={12} sm={6} md={4} key={stat}>
-                                                            <Chip
-                                                                label={`${stat}: ${(value as number) > 0 ? '+' : ''}${value}`}
-                                                                size="small"
-                                                                color={getStatColor(value as number) as any}
-                                                                variant="outlined"
-                                                            />
-                                                        </Grid>
+                                                        <Chip
+                                                            key={stat}
+                                                            label={getOptionDisplayName(stat, value as number)}
+                                                            size="small"
+                                                            color={getStatColor(value as number) as any}
+                                                            variant="outlined"
+                                                        />
                                                     ))}
-                                                </Grid>
+                                                </Box>
                                             </Box>
                                         )}
                                     </Stack>

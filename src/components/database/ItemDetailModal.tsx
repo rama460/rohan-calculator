@@ -20,9 +20,11 @@ interface ItemDetailModalProps {
     open: boolean;
     onClose: () => void;
     item: (WeaponTemplate | ItemTemplate) & { category: string } | null;
+    allItems?: ((WeaponTemplate | ItemTemplate) & { category: string })[];
+    onItemClick?: (item: (WeaponTemplate | ItemTemplate) & { category: string }) => void;
 }
 
-export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({ open, onClose, item }) => {
+export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({ open, onClose, item, allItems = [], onItemClick }) => {
     if (!item) return null;
 
     const getWeaponTypeDisplayName = (type?: string) => {
@@ -174,6 +176,46 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({ open, onClose,
         );
     };
 
+    // 関連アイテムを取得
+    const getRelatedItems = () => {
+        if (!allItems.length) return [];
+
+        const related: typeof allItems = [];
+
+        // 同シリーズアイテム
+        if (item.seriesName) {
+            const sameSeriesItems = allItems.filter(i =>
+                i.seriesName === item.seriesName &&
+                !(i.id === item.id && i.category === item.category)
+            ).slice(0, 3);
+            related.push(...sameSeriesItems);
+        }
+
+        // 同カテゴリアイテム（まだ3個未満の場合）
+        if (related.length < 3) {
+            const sameCategoryItems = allItems.filter(i =>
+                i.category === item.category &&
+                !(i.id === item.id && i.category === item.category) &&
+                !related.some(r => r.id === i.id && r.category === i.category)
+            ).slice(0, 3 - related.length);
+            related.push(...sameCategoryItems);
+        }
+
+        // 同タイプアイテム（武器の場合、まだ3個未満の場合）
+        if (related.length < 3 && 'type' in item && item.type) {
+            const sameTypeItems = allItems.filter(i =>
+                'type' in i && i.type === item.type &&
+                !(i.id === item.id && i.category === item.category) &&
+                !related.some(r => r.id === i.id && r.category === i.category)
+            ).slice(0, 3 - related.length);
+            related.push(...sameTypeItems);
+        }
+
+        return related;
+    };
+
+    const relatedItems = getRelatedItems();
+
     return (
         <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
             <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -294,9 +336,54 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({ open, onClose,
                             </Typography>
                             <Chip
                                 label={item.seriesName}
-                                color="warning"
+                                color="info"
                                 variant="outlined"
                             />
+                        </Box>
+                    )}
+
+                    {/* 関連アイテム */}
+                    {relatedItems.length > 0 && (
+                        <Box>
+                            <Typography variant="subtitle2" gutterBottom>
+                                関連アイテム
+                            </Typography>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                                {relatedItems.map((relatedItem) => (
+                                    <Box
+                                        key={`${relatedItem.category}-${relatedItem.id}`}
+                                        onClick={() => onItemClick?.(relatedItem)}
+                                        sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: 1,
+                                            p: 1,
+                                            border: 1,
+                                            borderColor: 'divider',
+                                            borderRadius: 1,
+                                            cursor: onItemClick ? 'pointer' : 'default',
+                                            '&:hover': onItemClick ? {
+                                                backgroundColor: 'action.hover'
+                                            } : {}
+                                        }}
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            image={relatedItem.icon}
+                                            alt={relatedItem.name}
+                                            sx={{ width: 24, height: 24, objectFit: 'contain' }}
+                                        />
+                                        <Typography variant="body2" sx={{ flexGrow: 1 }}>
+                                            {relatedItem.name}
+                                        </Typography>
+                                        <Chip
+                                            label={getCategoryDisplayName(relatedItem.category)}
+                                            size="small"
+                                            variant="outlined"
+                                        />
+                                    </Box>
+                                ))}
+                            </Box>
                         </Box>
                     )}
                 </Stack>

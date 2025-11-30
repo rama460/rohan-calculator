@@ -62,12 +62,19 @@ import {
     k_talismans,
     l_talismans
 } from '../../static/items';
+import { WeaponTemplate, ItemTemplate } from '../../static/items';
 import SearchIcon from '@mui/icons-material/Search';
 import DownloadIcon from '@mui/icons-material/Download';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import TableViewIcon from '@mui/icons-material/TableView';
+import CompareIcon from '@mui/icons-material/Compare';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import { ItemDetailModal } from './ItemDetailModal';
+import { ItemCompareModal } from './ItemCompareModal';
+import { StatisticsModal } from './StatisticsModal';
 import { exportToJSON, exportToCSV, flattenDataForExport } from './exportUtils';
 
 interface ItemDatabaseProps {
@@ -81,9 +88,13 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
     const [categoryFilter, setCategoryFilter] = useState('all');
     const [raceFilter, setRaceFilter] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedItem, setSelectedItem] = useState<(typeof allItems)[0] | null>(null);
+    const [selectedItem, setSelectedItem] = useState<((WeaponTemplate | ItemTemplate) & { category: string }) | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [viewMode, setViewMode] = useState<'card' | 'list' | 'table'>('card');
+    const [compareItems, setCompareItems] = useState<((WeaponTemplate | ItemTemplate) & { category: string })[]>([]);
+    const [compareMode, setCompareMode] = useState(false);
+    const [compareModalOpen, setCompareModalOpen] = useState(false);
+    const [statsModalOpen, setStatsModalOpen] = useState(false);
 
     // 全アイテムデータを統合
     const allItems = useMemo(() => {
@@ -187,6 +198,35 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
         }
     };
 
+    const handleCompareToggle = () => {
+        setCompareMode(!compareMode);
+        if (compareMode) {
+            setCompareItems([]);
+        }
+    };
+
+    const handleItemSelect = (item: typeof allItems[0]) => {
+        if (compareMode) {
+            if (compareItems.find(i => i.id === item.id && i.category === item.category)) {
+                setCompareItems(compareItems.filter(i => !(i.id === item.id && i.category === item.category)));
+            } else if (compareItems.length < 4) {
+                setCompareItems([...compareItems, item]);
+            }
+        } else {
+            handleItemClick(item);
+        }
+    };
+
+    const handleCompareModalOpen = () => {
+        if (compareItems.length >= 2) {
+            setCompareModalOpen(true);
+        }
+    };
+
+    const handleCompareModalClose = () => {
+        setCompareModalOpen(false);
+    };
+
     const handleExportJSON = () => {
         const exportData = flattenDataForExport(filteredItems);
         exportToJSON(exportData, 'rohan-items');
@@ -254,17 +294,29 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
             {paginatedItems.map((item) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={`${item.category}-${item.id}`}>
                     <Card
-                        onClick={() => handleItemClick(item)}
+                        onClick={() => handleItemSelect(item)}
                         sx={{
                             height: '100%',
                             cursor: 'pointer',
                             transition: 'transform 0.2s, box-shadow 0.2s',
+                            border: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 2 : 1,
+                            borderColor: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 'primary.main' : 'divider',
+                            position: 'relative',
                             '&:hover': {
                                 transform: 'translateY(-2px)',
                                 boxShadow: 3
                             }
                         }}
                     >
+                        {compareMode && (
+                            <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1 }}>
+                                {compareItems.find(i => i.id === item.id && i.category === item.category) ? (
+                                    <CheckBoxIcon color="primary" />
+                                ) : (
+                                    <CheckBoxOutlineBlankIcon />
+                                )}
+                            </Box>
+                        )}
                         <CardContent sx={{ flexGrow: 1 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                                 <CardMedia
@@ -338,17 +390,26 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
             {paginatedItems.map((item) => (
                 <ListItem
                     key={`${item.category}-${item.id}`}
-                    onClick={() => handleItemClick(item)}
+                    onClick={() => handleItemSelect(item)}
                     sx={{
                         cursor: 'pointer',
-                        border: 1,
-                        borderColor: 'divider',
+                        border: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 2 : 1,
+                        borderColor: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 'primary.main' : 'divider',
                         borderRadius: 1,
                         mb: 1,
                         '&:hover': {
                             backgroundColor: 'action.hover'
                         }
                     }}
+                    secondaryAction={
+                        compareMode ? (
+                            compareItems.find(i => i.id === item.id && i.category === item.category) ? (
+                                <CheckBoxIcon color="primary" />
+                            ) : (
+                                <CheckBoxOutlineBlankIcon />
+                            )
+                        ) : null
+                    }
                 >
                     <ListItemAvatar>
                         <Avatar
@@ -395,6 +456,7 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
             <Table>
                 <TableHead>
                     <TableRow>
+                        {compareMode && <TableCell>選択</TableCell>}
                         <TableCell>アイコン</TableCell>
                         <TableCell>名前</TableCell>
                         <TableCell>カテゴリ</TableCell>
@@ -406,14 +468,24 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
                     {paginatedItems.map((item) => (
                         <TableRow
                             key={`${item.category}-${item.id}`}
-                            onClick={() => handleItemClick(item)}
+                            onClick={() => handleItemSelect(item)}
                             sx={{
                                 cursor: 'pointer',
+                                backgroundColor: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 'action.selected' : 'inherit',
                                 '&:hover': {
                                     backgroundColor: 'action.hover'
                                 }
                             }}
                         >
+                            {compareMode && (
+                                <TableCell>
+                                    {compareItems.find(i => i.id === item.id && i.category === item.category) ? (
+                                        <CheckBoxIcon color="primary" />
+                                    ) : (
+                                        <CheckBoxOutlineBlankIcon />
+                                    )}
+                                </TableCell>
+                            )}
                             <TableCell>
                                 <Avatar
                                     src={item.icon}
@@ -520,7 +592,7 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
                             </Select>
                         </FormControl>
 
-                        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
                             <ToggleButtonGroup
                                 value={viewMode}
                                 exclusive
@@ -537,6 +609,32 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
                                     <TableViewIcon />
                                 </ToggleButton>
                             </ToggleButtonGroup>
+
+                            <ButtonGroup size="small">
+                                <Button
+                                    startIcon={compareMode ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+                                    onClick={handleCompareToggle}
+                                    variant={compareMode ? "contained" : "outlined"}
+                                    color={compareMode ? "primary" : "inherit"}
+                                >
+                                    比較モード
+                                </Button>
+                                <Button
+                                    startIcon={<CompareIcon />}
+                                    onClick={handleCompareModalOpen}
+                                    variant="outlined"
+                                    disabled={compareItems.length < 2}
+                                >
+                                    比較 ({compareItems.length})
+                                </Button>
+                                <Button
+                                    startIcon={<BarChartIcon />}
+                                    onClick={() => setStatsModalOpen(true)}
+                                    variant="outlined"
+                                >
+                                    統計
+                                </Button>
+                            </ButtonGroup>
 
                             <ButtonGroup size="small">
                                 <Button
@@ -586,6 +684,24 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
                 open={modalOpen}
                 onClose={handleModalClose}
                 item={selectedItem}
+                allItems={allItems}
+                onItemClick={(item) => {
+                    setSelectedItem(item);
+                }}
+            />
+
+            {/* アイテム比較モーダル */}
+            <ItemCompareModal
+                open={compareModalOpen}
+                onClose={handleCompareModalClose}
+                items={compareItems}
+            />
+
+            {/* 統計情報モーダル */}
+            <StatisticsModal
+                open={statsModalOpen}
+                onClose={() => setStatsModalOpen(false)}
+                items={filteredItems}
             />
         </Box>
     );
