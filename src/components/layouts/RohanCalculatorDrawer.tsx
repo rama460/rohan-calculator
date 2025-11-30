@@ -71,7 +71,7 @@ export const RohanCaluculatorDrawer: React.FC<DrawerProps> = ({ open, toggleDraw
             path: '/database',
             icon: <StorageIcon />,
             description: 'アイテム・スキルデータベース',
-            status: 'development' as const
+            status: 'ready' as const
         }
     ];
 
