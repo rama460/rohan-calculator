@@ -137,6 +137,8 @@ import talisman_s_1 from "../assets/items/talisman_s_1.png";
 import talisman_w_mask from "../assets/items/talisman_w_mask.png";
 import talisman_t_1 from "../assets/items/talisman_t_1.png";
 import talisman_f_1 from "../assets/items/talisman_f_1.png";
+import talisman_k_1 from "../assets/items/talisman_k_1.png";
+import talisman_l_1 from "../assets/items/talisman_l_1.png";
 
 import rune_all_status from "../assets/items/rune_all_status.png";
 import rune_attack from "../assets/items/rune_attack.png";
@@ -8333,7 +8335,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: ignis3SynergisticOptions,
         synergyKey: "ignisCostume3",
         seriesName: "イグニス Ⅲ"
@@ -8375,7 +8377,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 5000,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: ignis2SynergisticOptions,
         synergyKey: "ignisCostume2",
         seriesName: "イグニス Ⅱ"
@@ -8417,7 +8419,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 2500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: ignis1SynergisticOptions,
         synergyKey: "ignisCostume1",
         seriesName: "イグニス Ⅰ"
@@ -8901,7 +8903,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: ignis3SynergisticOptions,
         synergyKey: "ignisCostume3",
         seriesName: "イグニス Ⅲ"
@@ -8943,7 +8945,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 5000,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: ignis2SynergisticOptions,
         synergyKey: "ignisCostume2",
         seriesName: "イグニス Ⅱ"
@@ -8985,7 +8987,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 2500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: ignis1SynergisticOptions,
         synergyKey: "ignisCostume1",
         seriesName: "イグニス Ⅰ"
@@ -9469,7 +9471,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: ignis3SynergisticOptions,
         synergyKey: "ignisCostume3",
         seriesName: "イグニス Ⅲ"
@@ -9510,7 +9512,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 5000,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: ignis2SynergisticOptions,
         synergyKey: "ignisCostume2",
         seriesName: "イグニス Ⅱ"
@@ -9552,7 +9554,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 2500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: ignis1SynergisticOptions,
         synergyKey: "ignisCostume1",
         seriesName: "イグニス Ⅰ"
@@ -12190,7 +12192,7 @@ export const k_talismans: ItemTemplate[] = [
             'multiplyAttack': 10,
             'multiplyDefense': 10,
         },
-        icon: unknown,
+        icon: talisman_k_1,
     }
 ]
 
@@ -12204,7 +12206,7 @@ export const l_talismans: ItemTemplate[] = [
             'multiplyPVPAttack': 10,
             'multiplyPVPDefense': 10,
         },
-        icon: unknown,
+        icon: talisman_l_1,
     }
 ]
 
