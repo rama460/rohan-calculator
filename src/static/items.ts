@@ -135,6 +135,8 @@ import talisman_q_supreme_commander from "../assets/items/talisman_q_supreme_com
 import talisman_r_victorious from "../assets/items/talisman_r_victorious.png";
 import talisman_s_1 from "../assets/items/talisman_s_1.png";
 import talisman_w_mask from "../assets/items/talisman_w_mask.png";
+import talisman_t_1 from "../assets/items/talisman_t_1.png";
+import talisman_f_1 from "../assets/items/talisman_f_1.png";
 
 import rune_all_status from "../assets/items/rune_all_status.png";
 import rune_attack from "../assets/items/rune_attack.png";
@@ -8280,7 +8282,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: genesisCostume3SynergisticOptions,
         synergyKey: "genesisCostume3",
         seriesName: "ジェネシス Ⅲ"
@@ -8308,7 +8310,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 12500,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: albos3SynergisticOptions,
         synergyKey: "albosCostume3",
         seriesName: "アルボス Ⅲ"
@@ -8322,7 +8324,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: genesisCostume2SynergisticOptions,
         synergyKey: "genesisCostume2",
         seriesName: "ジェネシス Ⅱ"
@@ -8350,7 +8352,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: albos2SynergisticOptions,
         synergyKey: "albosCostume2",
         seriesName: "アルボス Ⅱ"
@@ -8364,7 +8366,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 5000,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: genesisCostume1SynergisticOptions,
         synergyKey: "genesisCostume1",
         seriesName: "ジェネシス Ⅰ"
@@ -8392,7 +8394,7 @@ export const glasses: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: glasses_1,
         synergyOptions: albos1SynergisticOptions,
         synergyKey: "albosCostume1",
         seriesName: "アルボス Ⅰ"
@@ -8848,7 +8850,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: genesisCostume3SynergisticOptions,
         synergyKey: "genesisCostume3",
         seriesName: "ジェネシス Ⅲ"
@@ -8876,7 +8878,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 12500,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: albos3SynergisticOptions,
         synergyKey: "albosCostume3",
         seriesName: "アルボス Ⅲ"
@@ -8890,7 +8892,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: genesisCostume2SynergisticOptions,
         synergyKey: "genesisCostume2",
         seriesName: "ジェネシス Ⅱ"
@@ -8918,7 +8920,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: albos2SynergisticOptions,
         synergyKey: "albosCostume2",
         seriesName: "アルボス Ⅱ"
@@ -8932,7 +8934,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 5000,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: genesisCostume1SynergisticOptions,
         synergyKey: "genesisCostume1",
         seriesName: "ジェネシス Ⅰ"
@@ -8960,7 +8962,7 @@ export const hats: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: hat_1,
         synergyOptions: albos1SynergisticOptions,
         synergyKey: "albosCostume1",
         seriesName: "アルボス Ⅰ"
@@ -9416,7 +9418,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: genesisCostume3SynergisticOptions,
         synergyKey: "genesisCostume3",
         seriesName: "ジェネシス Ⅲ"
@@ -9444,7 +9446,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 12500,
             'plusHitPoint': 100000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: albos3SynergisticOptions,
         synergyKey: "albosCostume3",
         seriesName: "アルボス Ⅲ"
@@ -9458,7 +9460,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: genesisCostume2SynergisticOptions,
         synergyKey: "genesisCostume2",
         seriesName: "ジェネシス Ⅱ"
@@ -9485,7 +9487,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 10000,
             'plusHitPoint': 80000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: albos2SynergisticOptions,
         synergyKey: "albosCostume2",
         seriesName: "アルボス Ⅱ"
@@ -9499,7 +9501,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 5000,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: genesisCostume1SynergisticOptions,
         synergyKey: "genesisCostume1",
         seriesName: "ジェネシス Ⅰ"
@@ -9527,7 +9529,7 @@ export const earrings: ItemTemplate[] = [
             'plusDefense': 7500,
             'plusHitPoint': 60000,
         },
-        icon: unknown,
+        icon: earrings_1,
         synergyOptions: albos1SynergisticOptions,
         synergyKey: "albosCostume1",
         seriesName: "アルボス Ⅰ"
@@ -10325,7 +10327,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1500,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_ring_2,
         synergyOptions: genesis3SynergisticOptions,
         synergyKey: "genesis3"
     },
@@ -10338,7 +10340,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1500,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_brooch_2,
         synergyOptions: genesis3SynergisticOptions,
         synergyKey: "genesis3"
     },
@@ -10351,7 +10353,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1500,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_bracelet_2,
         synergyOptions: genesis3SynergisticOptions,
         synergyKey: "genesis3"
     },
@@ -10364,7 +10366,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1500,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_necklace_2,
         synergyOptions: genesis3SynergisticOptions,
         synergyKey: "genesis3"
     },
@@ -10377,7 +10379,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1250,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_ring_2,
         synergyOptions: genesis2SynergisticOptions,
         synergyKey: "genesis2"
     },
@@ -10390,7 +10392,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1250,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_brooch_2,
         synergyOptions: genesis2SynergisticOptions,
         synergyKey: "genesis2"
     },
@@ -10403,7 +10405,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1250,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_bracelet_2,
         synergyOptions: genesis2SynergisticOptions,
         synergyKey: "genesis2"
     },
@@ -10416,7 +10418,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1250,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_necklace_2,
         synergyOptions: genesis2SynergisticOptions,
         synergyKey: "genesis2"
     },
@@ -10429,7 +10431,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1000,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_necklace_2,
         synergyOptions: genesis1SynergisticOptions,
         synergyKey: "genesis1"
     },
@@ -10442,7 +10444,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1000,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_ring_2,
         synergyOptions: genesis1SynergisticOptions,
         synergyKey: "genesis1"
     },
@@ -10455,7 +10457,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1000,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_brooch_2,
         synergyOptions: genesis1SynergisticOptions,
         synergyKey: "genesis1"
     },
@@ -10468,7 +10470,7 @@ export const accessories: ItemTemplate[] = [
             "plusDefense": 1000,
             "plusHitPoint": 100000,
         },
-        icon: unknown,
+        icon: accessory_bracelet_2,
         synergyOptions: genesis1SynergisticOptions,
         synergyKey: "genesis1"
     },
@@ -11620,7 +11622,7 @@ export const f_talismans: ItemTemplate[] = [
                 'plusMagicPoint': 200000,
             },
         },
-        icon: unknown,
+        icon: talisman_f_1,
     }
 ]
 
@@ -11999,7 +12001,7 @@ export const t_talismans: ItemTemplate[] = [
     {
         id: 0,
         name: "輝く海の遺物",
-        icon: unknown,
+        icon: talisman_t_1,
         enchantableBaseOptions: {
             0: {
                 'plusAllStatus': 10,
