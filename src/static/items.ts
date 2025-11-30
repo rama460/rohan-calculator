@@ -3289,6 +3289,43 @@ export const weapons: WeaponTemplate[] = [
                 "weaponEnchantMagicAttack": 303,
                 "plusAttack": 453,
             },
+            10: {
+                "weaponEnchantMeleeAttack": 333,
+                "weaponEnchantRangeAttack": 333,
+                "weaponEnchantMagicAttack": 333,
+                "plusAttack": 483,
+            },
+            11: {
+                "weaponEnchantMeleeAttack": 366,
+                "weaponEnchantRangeAttack": 366,
+                "weaponEnchantMagicAttack": 366,
+                "plusAttack": 516,
+            },
+            12: {
+                "weaponEnchantMeleeAttack": 403,
+                "weaponEnchantRangeAttack": 403,
+                "weaponEnchantMagicAttack": 403,
+                "plusAttack": 553,
+            },
+            13: {
+                "weaponEnchantMeleeAttack": 443,
+                "weaponEnchantRangeAttack": 443,
+                "weaponEnchantMagicAttack": 443,
+                "plusAttack": 593,
+            },
+            14: {
+                "weaponEnchantMeleeAttack": 488,
+                "weaponEnchantRangeAttack": 488,
+                "weaponEnchantMagicAttack": 488,
+                "plusAttack": 638,
+            },
+            15: {
+                "weaponEnchantMeleeAttack": 536,
+                "weaponEnchantRangeAttack": 536,
+                "weaponEnchantMagicAttack": 536,
+                "plusAttack": 686,
+            },
+
         },
         sockets: 4
     },
