@@ -20,6 +20,8 @@ import {
     ButtonGroup
 } from '@mui/material';
 import { skills, Skill } from '../../static/skills/skill';
+import { races } from '../../static/races';
+import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -34,8 +36,10 @@ const SKILLS_PER_PAGE = 20;
 
 export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [jobFilter, setJobFilter] = useState('all');
+    const [jobFilter, setJobFilter] = useState('all'); // タイプフィルタ（既存のorigin基準）
     const [categoryFilter, setCategoryFilter] = useState('all');
+    const [raceFilter, setRaceFilter] = useState('all'); // 種族フィルタ（raceid基準）
+    const [professionFilter, setProfessionFilter] = useState('all'); // 職業フィルタ（jobid基準）
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedSkill, setSelectedSkill] = useState<(typeof allSkills)[0] | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
@@ -64,6 +68,43 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
         }));
     }, []);
 
+    // 種族ID から種族データを取得
+    const getRaceById = (raceId?: number) => {
+        if (raceId === undefined) return null;
+        return races.find(race => race.id === raceId);
+    };
+
+    // 職業ID から職業データを取得（種族ID も考慮）
+    const getJobById = (jobId?: number, raceId?: number) => {
+        if (jobId === undefined) return null;
+        const race = getRaceById(raceId);
+        if (!race) return null;
+        return race.jobs.find(job => job.id === jobId);
+    };
+
+    // 選択された種族で利用可能な職業IDsを取得
+    const getAvailableJobIds = (selectedRaceFilter: string) => {
+        if (selectedRaceFilter === 'all') {
+            // 全種族の職業IDを取得
+            const allJobIds = new Set<number>();
+            races.forEach(race => {
+                race.jobs.forEach(job => {
+                    allJobIds.add(job.id);
+                });
+            });
+            return Array.from(allJobIds);
+        }
+
+        const raceId = parseInt(selectedRaceFilter);
+        const race = getRaceById(raceId);
+        return race ? race.jobs.map(job => job.id) : [];
+    };
+
+    // 利用可能な職業リスト
+    const availableJobs = useMemo(() => {
+        return getAvailableJobIds(raceFilter);
+    }, [raceFilter]);
+
     // フィルタリングされたスキル
     const filteredSkills = useMemo(() => {
         let filtered = allSkills;
@@ -77,7 +118,7 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
             );
         }
 
-        // ジョブフィルター
+        // タイプフィルター（既存のjobFilter、originベース）
         if (jobFilter !== 'all') {
             filtered = filtered.filter(skill => skill.jobName === jobFilter);
         }
@@ -87,8 +128,20 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
             filtered = filtered.filter(skill => skill.category === categoryFilter);
         }
 
+        // 種族フィルター（raceidベース）
+        if (raceFilter !== 'all') {
+            const raceId = parseInt(raceFilter);
+            filtered = filtered.filter(skill => skill.raceid === raceId);
+        }
+
+        // 職業フィルター（jobidベース）
+        if (professionFilter !== 'all') {
+            const jobId = parseInt(professionFilter);
+            filtered = filtered.filter(skill => skill.jobid === jobId);
+        }
+
         return filtered;
-    }, [allSkills, searchTerm, jobFilter, categoryFilter]);
+    }, [allSkills, searchTerm, jobFilter, categoryFilter, raceFilter, professionFilter]);
 
     // ページネーション
     const totalPages = Math.ceil(filteredSkills.length / SKILLS_PER_PAGE);
@@ -102,6 +155,17 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
 
     const handleCategoryChange = (event: SelectChangeEvent) => {
         setCategoryFilter(event.target.value);
+        setCurrentPage(1);
+    };
+
+    const handleRaceChange = (event: SelectChangeEvent) => {
+        setRaceFilter(event.target.value);
+        setProfessionFilter('all'); // 種族変更時は職業フィルターをリセット
+        setCurrentPage(1);
+    };
+
+    const handleProfessionChange = (event: SelectChangeEvent) => {
+        setProfessionFilter(event.target.value);
         setCurrentPage(1);
     };
 
@@ -177,6 +241,28 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
         }
     };
 
+    // スキル表示用のヘルパー関数
+    const getSkillRaceDisplayName = (skill: any) => {
+        const race = getRaceById(skill.raceid);
+        return race ? race.displayName : '不明';
+    };
+
+    const getSkillJobDisplayName = (skill: any) => {
+        const job = getJobById(skill.jobid, skill.raceid);
+        return job ? job.displayName : '不明';
+    };
+
+    // スキル効果の表示名を取得する関数
+    const getSkillEffectDisplayName = (key: string, value: number) => {
+        const option = BuiltinOptions[key as keyof typeof BuiltinOptions];
+        if (option) {
+            const displayName = getDisplayOptionName(option);
+            return `${displayName}: ${value}`;
+        }
+        // options.tsに定義されていない場合はそのまま表示
+        return `${key}: ${value}`;
+    };
+
     return (
         <Box>
             {/* 検索・フィルタリングエリア */}
@@ -194,10 +280,10 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
 
                     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                         <FormControl size="small" sx={{ minWidth: 150 }}>
-                            <InputLabel>職業</InputLabel>
+                            <InputLabel>タイプ</InputLabel>
                             <Select
                                 value={jobFilter}
-                                label="職業"
+                                label="タイプ"
                                 onChange={handleJobChange}
                             >
                                 <MenuItem value="all">すべて</MenuItem>
@@ -222,6 +308,45 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
                                 <MenuItem value="Attack">アタック</MenuItem>
                                 <MenuItem value="Other">その他</MenuItem>
                                 <MenuItem value="Debuff">デバフ</MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        <FormControl size="small" sx={{ minWidth: 120 }}>
+                            <InputLabel>種族</InputLabel>
+                            <Select
+                                value={raceFilter}
+                                label="種族"
+                                onChange={handleRaceChange}
+                            >
+                                <MenuItem value="all">すべて</MenuItem>
+                                {races.map((race) => (
+                                    <MenuItem key={race.id} value={race.id.toString()}>
+                                        {race.displayName}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+
+                        <FormControl size="small" sx={{ minWidth: 120 }}>
+                            <InputLabel>職業</InputLabel>
+                            <Select
+                                value={professionFilter}
+                                label="職業"
+                                onChange={handleProfessionChange}
+                            >
+                                <MenuItem value="all">すべて</MenuItem>
+                                {availableJobs.map((jobId) => {
+                                    // 現在選択されている種族での職業名を取得
+                                    const raceId = raceFilter === 'all' ? undefined : parseInt(raceFilter);
+                                    const job = getJobById(jobId, raceId);
+                                    if (!job) return null;
+
+                                    return (
+                                        <MenuItem key={jobId} value={jobId.toString()}>
+                                            {job.displayName}
+                                        </MenuItem>
+                                    );
+                                }).filter(Boolean)}
                             </Select>
                         </FormControl>
 
@@ -269,7 +394,7 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
                                             {skill.displayName || skill.name}
                                         </Typography>
                                         <Box sx={{ display: 'flex', gap: 1, mt: 0.5, alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                                            <Box sx={{ display: 'flex', gap: 1 }}>
+                                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                                                 <Chip
                                                     label={getJobDisplayName(skill.jobName)}
                                                     size="small"
@@ -282,6 +407,26 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
                                                     color={getCategoryColor(skill.category) as any}
                                                     variant="outlined"
                                                 />
+                                                {/* 種族情報 */}
+                                                {skill.raceid !== undefined && (
+                                                    <Chip
+                                                        label={getSkillRaceDisplayName(skill)}
+                                                        size="small"
+                                                        color="secondary"
+                                                        variant="outlined"
+                                                        sx={{ fontSize: '0.7rem', height: 20 }}
+                                                    />
+                                                )}
+                                                {/* 職業情報 */}
+                                                {skill.jobid !== undefined && (
+                                                    <Chip
+                                                        label={getSkillJobDisplayName(skill)}
+                                                        size="small"
+                                                        color="info"
+                                                        variant="outlined"
+                                                        sx={{ fontSize: '0.7rem', height: 20 }}
+                                                    />
+                                                )}
                                             </Box>
                                             <Button
                                                 size="small"
@@ -318,6 +463,33 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
                                         </Typography>
                                     </Box>
 
+                                    {/* 種族・職業情報の詳細表示 */}
+                                    {(skill.raceid !== undefined || skill.jobid !== undefined) && (
+                                        <Box>
+                                            <Typography variant="subtitle2" gutterBottom>
+                                                使用可能情報
+                                            </Typography>
+                                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                                                {skill.raceid !== undefined && (
+                                                    <Chip
+                                                        label={`種族: ${getSkillRaceDisplayName(skill)}`}
+                                                        size="small"
+                                                        color="secondary"
+                                                        variant="outlined"
+                                                    />
+                                                )}
+                                                {skill.jobid !== undefined && (
+                                                    <Chip
+                                                        label={`職業: ${getSkillJobDisplayName(skill)}`}
+                                                        size="small"
+                                                        color="info"
+                                                        variant="outlined"
+                                                    />
+                                                )}
+                                            </Box>
+                                        </Box>
+                                    )}
+
                                     {skill.attributes && Object.keys(skill.attributes).length > 0 && (
                                         <Box>
                                             <Typography variant="subtitle2" gutterBottom>
@@ -326,7 +498,9 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
                                             <Box sx={{ maxHeight: 200, overflow: 'auto' }}>
                                                 {Object.entries(skill.attributes).slice(0, 5).map(([level, effects]) => (
                                                     <Typography key={level} variant="body2" color="text.secondary">
-                                                        Lv.{level}: {Object.entries(effects).map(([key, value]) => `${key}: ${value}`).join(', ')}
+                                                        Lv.{level}: {Object.entries(effects).map(([key, value]) =>
+                                                            getSkillEffectDisplayName(key, value)
+                                                        ).join(', ')}
                                                     </Typography>
                                                 ))}
                                             </Box>
