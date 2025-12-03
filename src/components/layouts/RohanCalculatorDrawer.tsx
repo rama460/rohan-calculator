@@ -19,6 +19,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import StorageIcon from '@mui/icons-material/Storage';
+import FunctionsIcon from '@mui/icons-material/Functions';
 
 interface DrawerProps {
     open: boolean;
@@ -71,6 +72,13 @@ export const RohanCaluculatorDrawer: React.FC<DrawerProps> = ({ open, toggleDraw
             path: '/database',
             icon: <StorageIcon />,
             description: 'アイテム・スキルデータベース',
+            status: 'ready' as const
+        },
+        {
+            displayName: '計算式',
+            path: '/formula',
+            icon: <FunctionsIcon />,
+            description: 'ステータス計算式の詳細解説',
             status: 'ready' as const
         }
     ];

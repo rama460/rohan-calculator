@@ -8,6 +8,7 @@ import Costume from "../costume/Costume";
 import Stats from "../stats/Stats";
 import Config from "../config/Config";
 import Database from "../database/Database";
+import Formula from "../formula/Formula";
 
 export const RohanCalculatorLayout: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -27,6 +28,7 @@ export const RohanCalculatorLayout: React.FC = () => {
                 <Route path="/costume" element={<Costume />} />
                 <Route path="/config" element={<Config />} />
                 <Route path="/database" element={<Database />} />
+                <Route path="/formula" element={<Formula />} />
             </Routes>
         </BrowserRouter>
     );
