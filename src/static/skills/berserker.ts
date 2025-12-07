@@ -146,37 +146,37 @@ export const berserker_skills: Skill[] = [
         attributes: {
             0: {
                 multiplyAttackSpeed: 50,
-                multiplyAttack: 10,
+                multiplyMeleeAttack: 10,
                 multiplyMovementSpeed: 5,
             },
             1: {
                 multiplyAttackSpeed: 60,
-                multiplyAttack: 15,
+                multiplyMeleeAttack: 15,
                 multiplyMovementSpeed: 8,
             },
             2: {
                 multiplyAttackSpeed: 70,
-                multiplyAttack: 20,
+                multiplyMeleeAttack: 20,
                 multiplyMovementSpeed: 11,
             },
             3: {
                 multiplyAttackSpeed: 80,
-                multiplyAttack: 25,
+                multiplyMeleeAttack: 25,
                 multiplyMovementSpeed: 14,
             },
             4: {
                 multiplyAttackSpeed: 90,
-                multiplyAttack: 30,
+                multiplyMeleeAttack: 30,
                 multiplyMovementSpeed: 17,
             },
             5: {
                 multiplyAttackSpeed: 100,
-                multiplyAttack: 40,
-                multiplyMovementSpeed: 20,
+                multiplyMeleeAttack: 40,
+                multiplyRideSpeed: 20,
             },
             6: {
                 multiplyAttackSpeed: 150,
-                multiplyAttack: 50,
+                multiplyMeleeAttack: 50,
                 multiplyMovementSpeed: 30,
             }
         }
@@ -625,48 +625,48 @@ export const berserker_skills: Skill[] = [
         min: 1,
         max: 7,
         descriptions: [
-            "60秒間、攻撃速度10%、ポールアームの攻撃力250%、PVP攻撃力が1%上昇する。",
-            "60秒間、攻撃速度20%、ポールアームの攻撃力300%、PVP攻撃力が2%上昇する。",
-            "60秒間、攻撃速度30%、ポールアームの攻撃力350%、PVP攻撃力が3%上昇する。",
-            "60秒間、攻撃速度40%、ポールアームの攻撃力400%、PVP攻撃力が4%上昇する。",
-            "60秒間、攻撃速度50%、ポールアームの攻撃力450%、PVP攻撃力が5%上昇する。",
-            "60秒間、攻撃速度70%、ポールアームの攻撃力500%、PVP攻撃力が6%上昇する。",
-            "60秒間、攻撃速度100%、ポールアームの攻撃力900%、PVP攻撃力が10%上昇する。",
+            "60秒間、攻撃速度10%、攻撃力250%、PVP攻撃力が1%上昇する。",
+            "60秒間、攻撃速度20%、攻撃力300%、PVP攻撃力が2%上昇する。",
+            "60秒間、攻撃速度30%、攻撃力350%、PVP攻撃力が3%上昇する。",
+            "60秒間、攻撃速度40%、攻撃力400%、PVP攻撃力が4%上昇する。",
+            "60秒間、攻撃速度50%、攻撃力450%、PVP攻撃力が5%上昇する。",
+            "60秒間、攻撃速度70%、攻撃力500%、PVP攻撃力が6%上昇する。",
+            "60秒間、攻撃速度100%、攻撃力900%、PVP攻撃力が10%上昇する。",
         ],
         attributes: {
             0: {
                 multiplyAttackSpeed: 10,
-                multiplyWeaponAttack: 250,
+                multiplyAttack: 250,
                 multiplyPVPAttack: 1
             },
             1: {
                 multiplyAttackSpeed: 20,
-                multiplyWeaponAttack: 300,
+                multiplyAttack: 300,
                 multiplyPVPAttack: 2
             },
             2: {
                 multiplyAttackSpeed: 30,
-                multiplyWeaponAttack: 350,
+                multiplyAttack: 350,
                 multiplyPVPAttack: 3
             },
             3: {
                 multiplyAttackSpeed: 40,
-                multiplyWeaponAttack: 400,
+                multiplyAttack: 400,
                 multiplyPVPAttack: 4
             },
             4: {
                 multiplyAttackSpeed: 50,
-                multiplyWeaponAttack: 450,
+                multiplyAttack: 450,
                 multiplyPVPAttack: 5
             },
             5: {
                 multiplyAttackSpeed: 70,
-                multiplyWeaponAttack: 500,
+                multiplyAttack: 500,
                 multiplyPVPAttack: 6
             },
             6: {
                 multiplyAttackSpeed: 100,
-                multiplyWeaponAttack: 900,
+                multiplyAttack: 900,
                 multiplyPVPAttack: 10
             }
         }

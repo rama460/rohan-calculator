@@ -5196,7 +5196,7 @@ export const gauntlets: ItemTemplate[] = [
                 'plusAllStatus': 953,
             },
             29: {
-                'plusAllStatus': 1013,
+                'plusAllStatus': 1012,
             },
             30: {
                 'plusAllStatus': 1077,
@@ -6524,7 +6524,7 @@ export const leggings: ItemTemplate[] = [
                 'plusAllStatus': 953,
             },
             29: {
-                'plusAllStatus': 1013,
+                'plusAllStatus': 1012,
             },
             30: {
                 'plusAllStatus': 1077,
@@ -7972,13 +7972,13 @@ const apocalypseSynergisticOptions = {
 
 const hellfireSynergisticOptions = {
     2: {
-        'multiplySkillAttack': 30,
-        'multiplySkillDefense': 30,
-        'multiplyHitPoint': 50,
+        'multiplySkillAttack': 50,
+        'multiplySkillDefense': 50,
+        'multiplyHitPoint': 75,
     },
     4: {
-        'multiplyPVPAttack': 30,
-        'multiplyPVPDefense': 20,
+        'multiplyPVPAttack': 50,
+        'multiplyPVPDefense': 25,
         'multiplyPVEDefense': 20,
     }
 }
