@@ -171,6 +171,14 @@ export const SkillIconButton: React.FC<SkillIconButtonProps> = ({
                                 onSkillLevelChange(skill.name, newLevel);
                             }
                         }}
+                        onContextMenu={(e) => {
+                            e.preventDefault(); // コンテキストメニューの表示を防ぐ
+                            // 無効状態でなければ右クリックを処理
+                            if (isPrerequisitesMet || skillLevel > 0) {
+                                const newLevel = skillLevel > 0 ? skillLevel - 1 : 0;
+                                onSkillLevelChange(skill.name, newLevel);
+                            }
+                        }}
                     >
                     </IconButton>
                 </Box>
