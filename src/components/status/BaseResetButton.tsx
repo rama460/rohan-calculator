@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import { useSetAtom } from "jotai";
-import { resetBaseState } from "../../modules/state/bases";
+import { resetCompatibleBaseAtom } from "../../modules/state/legacyCompatibleAtoms";
 
 export const BaseResetButton: React.FC = () => {
-    const resetAllBaseState = useSetAtom(resetBaseState);
+    const resetAllBaseState = useSetAtom(resetCompatibleBaseAtom);
     return (
         <Button onClick={() => resetAllBaseState()}>
             リセット

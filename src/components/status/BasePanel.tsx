@@ -5,22 +5,26 @@ import { titles } from "../../static/titles";
 import Tooltip from "../common/Tooltip";
 import TitleTooltipContent from "./TitleTooltipContent";
 import { useAtom } from "jotai";
-import { baseOptionStateFamily, titleNameState } from "../../modules/state/bases";
-import { buffStateFamily } from "../../modules/state/skills";
+import {
+    compatibleBaseAtomFamily,
+    compatibleBuffsAtomFamily,
+    compatibleTitleAtom,
+} from "../../modules/state/legacyCompatibleAtoms";
 import { skills } from "../../static/skills/skill";
 
-interface BasePanelProps {
-}
-
-
-export const BasePanel: React.FC<BasePanelProps> = () => {
+export const BasePanel: React.FC = () => {
     console.log("render BasePanel");
-    const [level, setLevel] = useAtom(baseOptionStateFamily("level"));
-    const [heroLevel, setHeroLevel] = useAtom(baseOptionStateFamily("heroLevel"));
-    const [raceid, setRaceid] = useAtom(baseOptionStateFamily("raceid"));
-    const [jobid, setJobid] = useAtom(baseOptionStateFamily("jobid"));
-    const [title, setTitle] = useAtom(titleNameState);
-    const [buffStatuses, setBuffStatuses] = useAtom(buffStateFamily("Self"));
+    const [level, setLevel] = useAtom(compatibleBaseAtomFamily("level"));
+    const [heroLevel, setHeroLevel] = useAtom(compatibleBaseAtomFamily("heroLevel"));
+    const [raceid, setRaceid] = useAtom(compatibleBaseAtomFamily("raceid"));
+    const [jobid, setJobid] = useAtom(compatibleBaseAtomFamily("jobid"));
+    const [title, setTitle] = useAtom(compatibleTitleAtom);
+    const [buffStatuses, setBuffStatuses] = useAtom(compatibleBuffsAtomFamily("Self"));
+    const numericLevel = Number(level);
+    const numericHeroLevel = Number(heroLevel);
+    const numericRaceid = Number(raceid);
+    const numericJobid = Number(jobid);
+    const titleName = String(title);
     const handleRaceChange = (event: SelectChangeEvent) => {
         setRaceid(Number(event.target.value as string));
         // unset all buffs
@@ -35,7 +39,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
             if (!skillSpec) {
                 return false;
             }
-            return skillSpec.raceid === raceid && (skillSpec.jobid === Number(event.target.value) || skillSpec.jobid === 0);;
+            return skillSpec.raceid === numericRaceid && (skillSpec.jobid === Number(event.target.value) || skillSpec.jobid === 0);;
         })]);
     }
     const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +64,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                     <TextField
                         type="number"
                         size="small"
-                        value={level}
+                        value={numericLevel}
                         sx={{ width: "50px", "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}
                         slotProps={{ htmlInput: { min: 1, max: 115 } }}
                         onChange={handleLevelChange}
@@ -74,8 +78,8 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                     <TextField
                         type="number"
                         size="small"
-                        value={level == 115 ? heroLevel : 0}
-                        disabled={level < 115}
+                        value={numericLevel == 115 ? numericHeroLevel : 0}
+                        disabled={numericLevel < 115}
                         sx={{ width: "50px", "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}
                         slotProps={{ htmlInput: { min: 0, max: 50 } }}
                         onChange={handleHeroLevelChange}
@@ -88,7 +92,7 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                     </Typography>
                     <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 10, height: 4, padding: 1 } }}>
                         <Select
-                            value={raceid.toString()}
+                            value={numericRaceid.toString()}
                             onChange={handleRaceChange}
                         >
                             {races.map((race) => (
@@ -104,11 +108,11 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                     </Typography>
                     <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }}>
                         <Select
-                            value={jobid.toString()}
-                            disabled={level < 50}
+                            value={numericJobid.toString()}
+                            disabled={numericLevel < 50}
                             onChange={handleJobChange}
                         >
-                            {races[Number(raceid)].jobs.map((job) => (
+                            {races[numericRaceid].jobs.map((job) => (
                                 <MenuItem key={job.id} value={job.id}>{job.displayName}</MenuItem>
                             ))}
                         </Select>
@@ -118,11 +122,11 @@ export const BasePanel: React.FC<BasePanelProps> = () => {
                     <Typography variant="caption" sx={{ textAlign: "left", width: "48px" }}>
                         称号:
                     </Typography>
-                    <Tooltip content={<TitleTooltipContent title={title} />}>
+                    <Tooltip content={<TitleTooltipContent title={titleName} />}>
                         <FormControl size="small" sx={{ "& .MuiInputBase-input": { fontSize: 10, height: 5, padding: 1 } }} >
                             <Select
                                 defaultValue="none"
-                                value={title}
+                                value={titleName}
                                 onChange={(event) => {
                                     setTitle(event.target.value as string)
                                 }}
