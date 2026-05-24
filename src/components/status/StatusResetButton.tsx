@@ -1,9 +1,9 @@
 import { useSetAtom } from "jotai";
-import { resetAllStatusState } from "../../modules/state/statuses";
 import { Button } from "@mui/material";
+import { resetCompatibleStatusAtom } from "../../modules/state/legacyCompatibleAtoms";
 
 export const StatusResetButton: React.FC = () => {
-    const resetAllStatus = useSetAtom(resetAllStatusState);
+    const resetAllStatus = useSetAtom(resetCompatibleStatusAtom);
 
     return (
         <Button onClick={() => resetAllStatus()}>
