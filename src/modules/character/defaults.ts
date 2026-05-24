@@ -1,8 +1,6 @@
 import { SKillOriginNames } from "../../static/skills/skill";
-import { charactorStateNames } from "../state/charactor";
-import { equipmentSlotNames } from "../state/items";
-import { statuses } from "../state/statuses";
 import { AppState, BuffLeafState, CharacterId, CharacterState } from "./types";
+import { characterStatusNames, characterValueKeys, equipmentSlotKeys } from "./constants";
 
 export const DEFAULT_CHARACTER_ID: CharacterId = "main";
 
@@ -14,8 +12,8 @@ export const createDefaultBuffs = (): CharacterState["buffs"] => {
 
 export const createDefaultStatuses = (): CharacterState["statuses"] => {
     const emptyStatuses = Object.fromEntries(
-        statuses.map((status) => [status, 0])
-    ) as Record<(typeof statuses)[number], number>;
+        characterStatusNames.map((status) => [status, 0])
+    ) as Record<(typeof characterStatusNames)[number], number>;
 
     return {
         allocated: { ...emptyStatuses },
@@ -39,7 +37,7 @@ export const createDefaultCharacterState = (
         },
         statuses: createDefaultStatuses(),
         equipment: Object.fromEntries(
-            equipmentSlotNames.map((slot) => [slot, undefined])
+            equipmentSlotKeys.map((slot) => [slot, undefined])
         ) as CharacterState["equipment"],
         buffs: createDefaultBuffs(),
         skillLevels: {
@@ -47,7 +45,7 @@ export const createDefaultCharacterState = (
             secondary: {},
         },
         customFormulas: Object.fromEntries(
-            charactorStateNames.map((key) => [key, undefined])
+            characterValueKeys.map((key) => [key, undefined])
         ) as CharacterState["customFormulas"],
     };
 };
@@ -63,4 +61,3 @@ export const createDefaultAppState = (): AppState => {
         },
     };
 };
-

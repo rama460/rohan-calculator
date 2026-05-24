@@ -1,9 +1,9 @@
 import { getInitialBaseOtions, itemTemplates } from "../../static/items";
 import { EquipmentLeafState, OptionMap, ResolvedEquipment } from "../character/types";
-import { EquipmentSlotType } from "../state/items";
+import { EquipmentSlotKey } from "../character/constants";
 
 export const resolveEquipment = (
-    slot: EquipmentSlotType,
+    slot: EquipmentSlotKey,
     equipment: EquipmentLeafState | undefined,
     raceid: number,
     jobid: number
@@ -39,4 +39,3 @@ export const resolveEquipment = (
         },
     };
 };
-

@@ -1,10 +1,15 @@
 import LZString from "lz-string";
 import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../static/options";
 import { SKillOriginNames, SkillOrigin } from "../../static/skills/skill";
-import { charactorStateNames } from "../state/charactor";
-import { equipmentSlotNames, EquipmentSlotType } from "../state/items";
-import { statuses, StatusType } from "../state/statuses";
 import { createDefaultAppState } from "./defaults";
+import {
+    characterStatusNames,
+    CharacterStatusKey,
+    characterValueKeys,
+    CharacterValueKey,
+    equipmentSlotKeys,
+    EquipmentSlotKey,
+} from "./constants";
 import {
     AppState,
     BuffLeafState,
@@ -44,7 +49,7 @@ type SerializedCharacterState = {
         a: Record<number, number>;
         m: Record<number, number>;
     };
-    e: Partial<Record<EquipmentSlotType, SerializedEquipmentLeafState>>;
+    e: Partial<Record<EquipmentSlotKey, SerializedEquipmentLeafState>>;
     u: Record<SkillOrigin, SerializedBuffLeafState[]>;
     k: {
         p: SkillLevelMap;
@@ -61,12 +66,12 @@ export type SerializedAppState = {
 
 const getOptionId = (key: BuiltinOptionKeyType): number => BuiltinOptionKeys.indexOf(key);
 const getOptionKey = (id: number): BuiltinOptionKeyType | undefined => BuiltinOptionKeys[id];
-const getStatusId = (key: StatusType): number => statuses.indexOf(key);
-const getStatusKey = (id: number): StatusType | undefined => statuses[id];
+const getStatusId = (key: CharacterStatusKey): number => characterStatusNames.indexOf(key);
+const getStatusKey = (id: number): CharacterStatusKey | undefined => characterStatusNames[id];
 const getFormulaId = (key: keyof CharacterState["customFormulas"]): number =>
-    charactorStateNames.indexOf(key);
+    characterValueKeys.indexOf(key);
 const getFormulaKey = (id: number): keyof CharacterState["customFormulas"] | undefined =>
-    charactorStateNames[id];
+    characterValueKeys[id];
 
 const serializeOptionMap = (options?: OptionMap): SerializedOptionMap | undefined => {
     if (!options || Object.keys(options).length === 0) {
@@ -92,16 +97,18 @@ const deserializeOptionMap = (options?: SerializedOptionMap): OptionMap | undefi
     ) as OptionMap;
 };
 
-const serializeStatusMap = (values: Record<StatusType, number>): Record<number, number> => {
+const serializeStatusMap = (values: Record<CharacterStatusKey, number>): Record<number, number> => {
     return Object.fromEntries(
         Object.entries(values)
             .filter(([, value]) => value !== 0)
-            .map(([key, value]) => [getStatusId(key as StatusType), value])
+            .map(([key, value]) => [getStatusId(key as CharacterStatusKey), value])
     );
 };
 
-const deserializeStatusMap = (values: Record<number, number>): Record<StatusType, number> => {
-    const restored = Object.fromEntries(statuses.map((status) => [status, 0])) as Record<StatusType, number>;
+const deserializeStatusMap = (values: Record<number, number>): Record<CharacterStatusKey, number> => {
+    const restored = Object.fromEntries(
+        characterStatusNames.map((status) => [status, 0])
+    ) as Record<CharacterStatusKey, number>;
 
     Object.entries(values).forEach(([id, value]) => {
         const key = getStatusKey(Number(id));
@@ -117,7 +124,7 @@ const serializeEquipment = (
     equipment: CharacterState["equipment"]
 ): SerializedCharacterState["e"] => {
     return Object.fromEntries(
-        equipmentSlotNames.flatMap((slot) => {
+        equipmentSlotKeys.flatMap((slot) => {
             const item = equipment[slot];
             if (!item) {
                 return [];
@@ -151,7 +158,7 @@ const deserializeEquipment = (
     equipment: SerializedCharacterState["e"]
 ): CharacterState["equipment"] => {
     return Object.fromEntries(
-        equipmentSlotNames.flatMap((slot) => {
+        equipmentSlotKeys.flatMap((slot) => {
             const item = equipment[slot];
             if (!item) {
                 return [];
@@ -167,7 +174,7 @@ const deserializeEquipment = (
 
             return [[slot, restored]];
         })
-    ) as Partial<Record<EquipmentSlotType, EquipmentLeafState>>;
+    ) as Partial<Record<EquipmentSlotKey, EquipmentLeafState>>;
 };
 
 const serializeBuffs = (buffs: CharacterState["buffs"]): SerializedCharacterState["u"] => {
@@ -200,7 +207,7 @@ const serializeCustomFormulas = (
     return Object.fromEntries(
         Object.entries(formulas)
             .filter(([, formula]) => formula !== undefined)
-            .map(([key, formula]) => [getFormulaId(key as keyof CharacterState["customFormulas"]), formula])
+            .map(([key, formula]) => [getFormulaId(key as CharacterValueKey), formula])
     );
 };
 
@@ -310,4 +317,3 @@ export const encodeAppState = (state: AppState): string => {
 export const decodeAppState = (value: string): AppState => {
     return deserializeAppState(decodeSerializedAppState(value));
 };
-

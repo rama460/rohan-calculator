@@ -4,10 +4,8 @@ import { ItemTemplate } from "../../static/items";
 import { Title } from "../../static/titles";
 import { SkillOrigin } from "../../static/skills/skill";
 import { Skill } from "../../static/skills/skill";
-import { CharactorStateType } from "../state/charactor";
-import { EquipmentSlotType } from "../state/items";
-import { StatusType } from "../state/statuses";
-import { Formula } from "../state/custom-formulas";
+import type { Formula } from "../state/custom-formulas";
+import { CharacterStatusKey, CharacterValueKey, EquipmentSlotKey } from "./constants";
 
 export type CharacterId = string;
 export type OptionMap = Partial<Record<BuiltinOptionKeyType, number>>;
@@ -22,8 +20,8 @@ export type CharacterBaseState = {
 };
 
 export type CharacterStatusState = {
-    allocated: Record<StatusType, number>;
-    meta: Record<StatusType, number>;
+    allocated: Record<CharacterStatusKey, number>;
+    meta: Record<CharacterStatusKey, number>;
 };
 
 export type EquipmentLeafState = {
@@ -44,13 +42,13 @@ export type CharacterState = {
     name: string;
     base: CharacterBaseState;
     statuses: CharacterStatusState;
-    equipment: Partial<Record<EquipmentSlotType, EquipmentLeafState>>;
+    equipment: Partial<Record<EquipmentSlotKey, EquipmentLeafState>>;
     buffs: Record<SkillOrigin, BuffLeafState[]>;
     skillLevels: {
         primary: SkillLevelMap;
         secondary: SkillLevelMap;
     };
-    customFormulas: Partial<Record<CharactorStateType, Formula>>;
+    customFormulas: Partial<Record<CharacterValueKey, Formula>>;
 };
 
 export type AppState = {
@@ -60,7 +58,7 @@ export type AppState = {
 };
 
 export type ResolvedEquipment = EquipmentLeafState & {
-    slot: EquipmentSlotType;
+    slot: EquipmentSlotKey;
     template: ItemTemplate;
     options: {
         base: OptionMap;
@@ -79,7 +77,7 @@ export type ResolvedCharacter = CharacterState & {
     race: Race;
     job: Job;
     title?: Title;
-    resolvedEquipment: Partial<Record<EquipmentSlotType, ResolvedEquipment>>;
+    resolvedEquipment: Partial<Record<EquipmentSlotKey, ResolvedEquipment>>;
     resolvedBuffs: Record<SkillOrigin, ResolvedBuff[]>;
 };
 
@@ -98,7 +96,7 @@ export type OptionSource = {
     options: OptionMap;
     label?: string;
     characterId?: CharacterId;
-    slot?: EquipmentSlotType;
+    slot?: EquipmentSlotKey;
     origin?: SkillOrigin;
 };
 
@@ -108,5 +106,5 @@ export type CalculatedCharacter = {
     character: CharacterState;
     optionSources: OptionSource[];
     aggregatedOptions: AggregatedOptions;
-    values: Record<CharactorStateType, number>;
+    values: Record<CharacterValueKey, number>;
 };

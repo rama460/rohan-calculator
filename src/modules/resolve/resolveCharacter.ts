@@ -1,7 +1,7 @@
 import { races } from "../../static/races";
 import { titles } from "../../static/titles";
 import { CharacterState, ResolvedCharacter } from "../character/types";
-import { equipmentSlotNames } from "../state/items";
+import { equipmentSlotKeys } from "../character/constants";
 import { resolveBuffs } from "./resolveBuffs";
 import { resolveEquipment } from "./resolveEquipment";
 
@@ -11,7 +11,7 @@ export const resolveCharacter = (character: CharacterState): ResolvedCharacter =
     const title = titles.find((candidate) => candidate.name === character.base.title);
 
     const resolvedEquipment = Object.fromEntries(
-        equipmentSlotNames.flatMap((slot) => {
+        equipmentSlotKeys.flatMap((slot) => {
             const equipment = resolveEquipment(
                 slot,
                 character.equipment[slot],
@@ -32,4 +32,3 @@ export const resolveCharacter = (character: CharacterState): ResolvedCharacter =
         resolvedBuffs: resolveBuffs(character.buffs),
     };
 };
-

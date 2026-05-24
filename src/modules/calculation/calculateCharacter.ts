@@ -1,4 +1,4 @@
-import { charactorStateNames, CharactorStateType } from "../state/charactor";
+import { characterValueKeys, CharacterValueKey } from "../character/constants";
 import { CalculatedCharacter, CharacterState } from "../character/types";
 import { resolveCharacter } from "../resolve";
 import { aggregateOptions } from "./aggregateOptions";
@@ -11,10 +11,10 @@ export const calculateCharacter = (character: CharacterState): CalculatedCharact
     const optionSources = collectOptionSources(resolvedCharacter);
     const aggregatedOptions = aggregateOptions(optionSources);
     const formulaContext = buildFormulaContext(resolvedCharacter, aggregatedOptions);
-    const values = {} as Record<CharactorStateType, number>;
-    const resolving = new Set<CharactorStateType>();
+    const values = {} as Record<CharacterValueKey, number>;
+    const resolving = new Set<CharacterValueKey>();
 
-    const resolveValue = (formulaId: CharactorStateType): number => {
+    const resolveValue = (formulaId: CharacterValueKey): number => {
         if (values[formulaId] !== undefined) {
             return values[formulaId];
         }
@@ -43,7 +43,7 @@ export const calculateCharacter = (character: CharacterState): CalculatedCharact
         return result.result;
     };
 
-    charactorStateNames.forEach(resolveValue);
+    characterValueKeys.forEach(resolveValue);
 
     return {
         character,
@@ -52,4 +52,3 @@ export const calculateCharacter = (character: CharacterState): CalculatedCharact
         values,
     };
 };
-

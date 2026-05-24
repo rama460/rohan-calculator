@@ -1,6 +1,5 @@
 import { BuiltinOptionKeyType } from "../../static/options";
-import { equipmentSlotNames } from "../state/items";
-import { statuses } from "../state/statuses";
+import { characterStatusNames, equipmentSlotKeys } from "../character/constants";
 import { OptionMap, OptionSource, ResolvedCharacter, ResolvedEquipment } from "../character/types";
 
 const weaponBaseAttackKeys: BuiltinOptionKeyType[] = [
@@ -81,7 +80,7 @@ const collectEquipmentSynergySources = (character: ResolvedCharacter): OptionSou
     const counts = new Map<string, number>();
     const firstEquipmentBySynergy = new Map<string, ResolvedEquipment>();
 
-    equipmentSlotNames.forEach((slot) => {
+    equipmentSlotKeys.forEach((slot) => {
         const equipment = character.resolvedEquipment[slot];
         const synergyKey = equipment?.template.synergyKey;
         if (!equipment || !synergyKey) {
@@ -112,7 +111,7 @@ const collectEquipmentSynergySources = (character: ResolvedCharacter): OptionSou
 };
 
 export const collectOptionSources = (character: ResolvedCharacter): OptionSource[] => {
-    const statusSources = statuses.flatMap((status): OptionSource[] => [
+    const statusSources = characterStatusNames.flatMap((status): OptionSource[] => [
         {
             type: "initialStatus",
             characterId: character.id,
@@ -139,7 +138,7 @@ export const collectOptionSources = (character: ResolvedCharacter): OptionSource
         },
     ]);
 
-    const equipmentSources = equipmentSlotNames.flatMap((slot): OptionSource[] => {
+    const equipmentSources = equipmentSlotKeys.flatMap((slot): OptionSource[] => {
         const equipment = character.resolvedEquipment[slot];
         if (!equipment) {
             return [];
@@ -189,4 +188,3 @@ export const collectOptionSources = (character: ResolvedCharacter): OptionSource
         ...heroBonusSources,
     ];
 };
-

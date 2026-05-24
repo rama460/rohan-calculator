@@ -1,5 +1,5 @@
 import { BuiltinOptionKeys } from "../../static/options";
-import { FormulaContext } from "../state/custom-formulas";
+import type { FormulaContext } from "../state/custom-formulas";
 import { AggregatedOptions, ResolvedCharacter } from "../character/types";
 
 export const buildFormulaContext = (
@@ -33,4 +33,3 @@ export const buildFormulaContext = (
         initialStatusDexterity: character.race.initialStatus.dexterity,
     };
 };
-

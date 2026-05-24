@@ -1,8 +1,17 @@
 import { DEFAULT_FORMULAS } from "../../static/default-formulas";
-import { allowedMathFunctions } from "../formula/formula-validator";
-import { removeComments } from "../formula/formula-calculator";
-import { CharactorStateType } from "../state/charactor";
-import { Formula, FormulaContext } from "../state/custom-formulas";
+import { CharacterValueKey } from "../character/constants";
+import type { Formula, FormulaContext } from "../state/custom-formulas";
+
+const allowedMathFunctions = {
+    floor: Math.floor,
+    ceil: Math.ceil,
+    round: Math.round,
+    max: Math.max,
+    min: Math.min,
+    abs: Math.abs,
+    pow: Math.pow,
+    sqrt: Math.sqrt,
+} as const;
 
 export type FormulaEvaluationResult = {
     success: boolean;
@@ -12,9 +21,20 @@ export type FormulaEvaluationResult = {
 
 const intermediateVariablePattern = /\{([^}]+)\}/g;
 
+const removeFormulaComments = (formula: string): string => {
+    return formula
+        .split("\n")
+        .map((line) => {
+            const commentIndex = line.indexOf("//");
+            return commentIndex !== -1 ? line.substring(0, commentIndex) : line;
+        })
+        .join("\n")
+        .trim();
+};
+
 const getFormulaSource = (
-    formulaId: CharactorStateType,
-    customFormulas: Partial<Record<CharactorStateType, Formula>>
+    formulaId: CharacterValueKey,
+    customFormulas: Partial<Record<CharacterValueKey, Formula>>
 ): string => {
     const customFormula = customFormulas[formulaId];
     if (customFormula?.isActive) {
@@ -26,16 +46,16 @@ const getFormulaSource = (
 
 const preprocessFormula = (formula: string): {
     processedFormula: string;
-    intermediateVariables: CharactorStateType[];
+    intermediateVariables: CharacterValueKey[];
 } => {
-    const preprocessedFormula = removeComments(formula);
-    const intermediateVariables = new Set<CharactorStateType>();
+    const preprocessedFormula = removeFormulaComments(formula);
+    const intermediateVariables = new Set<CharacterValueKey>();
     let processedFormula = preprocessedFormula;
     let match: RegExpExecArray | null;
 
     while ((match = intermediateVariablePattern.exec(preprocessedFormula)) !== null) {
         const variableName = match[1];
-        const replacementVar = `__${variableName}` as CharactorStateType;
+        const replacementVar = `__${variableName}` as CharacterValueKey;
         intermediateVariables.add(replacementVar);
         processedFormula = processedFormula.replace(
             new RegExp(`\\{${variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\}`, "g"),
@@ -50,10 +70,10 @@ const preprocessFormula = (formula: string): {
 };
 
 export const evaluateFormula = (
-    formulaId: CharactorStateType,
+    formulaId: CharacterValueKey,
     context: FormulaContext,
-    customFormulas: Partial<Record<CharactorStateType, Formula>>,
-    resolveIntermediate: (formulaId: CharactorStateType) => number
+    customFormulas: Partial<Record<CharacterValueKey, Formula>>,
+    resolveIntermediate: (formulaId: CharacterValueKey) => number
 ): FormulaEvaluationResult => {
     try {
         const formula = getFormulaSource(formulaId, customFormulas);
@@ -91,4 +111,3 @@ export const evaluateFormula = (
         };
     }
 };
-
