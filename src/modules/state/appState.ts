@@ -1,9 +1,6 @@
 import { atom } from "jotai";
 import { atomWithHash } from "jotai-location";
-import { atomFamily } from "jotai/utils";
-import { CharacterBaseState, CharacterState } from "../character/types";
-import { CharacterValueKey } from "../character/constants";
-import { calculateCharacter } from "../calculation";
+import { CharacterState } from "../character/types";
 import { createDefaultAppState } from "../character/defaults";
 import {
     decodeSerializedAppState,
@@ -60,32 +57,16 @@ export const activeCharacterAtom = atom(
     }
 );
 
-export const updateActiveCharacterAtom = atom(
-    null,
-    (get, set, update: (character: CharacterState) => CharacterState) => {
-        set(activeCharacterAtom, update(get(activeCharacterAtom)));
-    }
-);
-
-export const activeCharacterBaseAtomFamily = atomFamily((key: keyof CharacterBaseState) =>
-    atom(
-        (get) => get(activeCharacterAtom).base[key],
-        (_, set, nextValue: CharacterBaseState[typeof key]) => {
-            set(updateActiveCharacterAtom, (character) => ({
-                ...character,
-                base: {
-                    ...character.base,
-                    [key]: nextValue,
-                },
-            }));
-        }
-    )
-);
-
-export const calculatedActiveCharacterAtom = atom((get) =>
-    calculateCharacter(get(activeCharacterAtom))
-);
-
-export const activeCharacterValueAtomFamily = atomFamily((key: CharacterValueKey) =>
-    atom((get) => get(calculatedActiveCharacterAtom).values[key])
-);
+export {
+    activeCharacterAllocatedStatusAtomFamily,
+    activeCharacterBaseAtomFamily,
+    activeCharacterBuffsAtomFamily,
+    activeCharacterCustomFormulaAtomFamily,
+    activeCharacterEquipmentAtomFamily,
+    activeCharacterMetaStatusAtomFamily,
+    activeCharacterNameAtom,
+    activeCharacterSkillLevelsAtomFamily,
+    activeCharacterValueAtomFamily,
+    calculatedActiveCharacterAtom,
+    updateActiveCharacterAtom,
+} from "./activeCharacterAtoms";
