@@ -60,9 +60,11 @@ import {
     s_talismans,
     t_talismans,
     k_talismans,
-    l_talismans
+    l_talismans,
+    sortItemTemplatesForDisplay
 } from '../../static/items';
 import { WeaponTemplate, ItemTemplate } from '../../static/items';
+import { RaceNameOrTrinityJobName } from '../../static/races';
 import SearchIcon from '@mui/icons-material/Search';
 import DownloadIcon from '@mui/icons-material/Download';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
@@ -77,13 +79,9 @@ import { ItemCompareModal } from './ItemCompareModal';
 import { StatisticsModal } from './StatisticsModal';
 import { exportToJSON, exportToCSV, flattenDataForExport } from './exportUtils';
 
-interface ItemDatabaseProps {
-    // プロップスは後で追加可能
-}
-
 const ITEMS_PER_PAGE = 12;
 
-export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
+export const ItemDatabase: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('all');
     const [raceFilter, setRaceFilter] = useState('all');
@@ -99,7 +97,7 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
     // 全アイテムデータを統合
     const allItems = useMemo(() => {
         // タリスマンを統合
-        const allTalismans = [
+        const allTalismans = sortItemTemplatesForDisplay([
             ...b_talismans,
             ...j_talismans,
             ...h_talismans,
@@ -115,22 +113,22 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
             ...t_talismans,
             ...k_talismans,
             ...l_talismans
-        ];
+        ]);
 
         const itemsWithCategory = [
-            ...weapons.map(item => ({ ...item, category: 'weapon' as const })),
-            ...shields.map(item => ({ ...item, category: 'shield' as const })),
-            ...helmets.map(item => ({ ...item, category: 'helmet' as const })),
-            ...gauntlets.map(item => ({ ...item, category: 'gauntlet' as const })),
-            ...tunics.map(item => ({ ...item, category: 'tunic' as const })),
-            ...leggings.map(item => ({ ...item, category: 'legging' as const })),
-            ...boots.map(item => ({ ...item, category: 'boot' as const })),
-            ...arrows.map(item => ({ ...item, category: 'arrow' as const })),
-            ...glasses.map(item => ({ ...item, category: 'glasses' as const })),
-            ...hats.map(item => ({ ...item, category: 'hat' as const })),
-            ...earrings.map(item => ({ ...item, category: 'earring' as const })),
-            ...costumes.map(item => ({ ...item, category: 'costume' as const })),
-            ...accessories.map(item => ({ ...item, category: 'accessory' as const })),
+            ...sortItemTemplatesForDisplay(weapons).map(item => ({ ...item, category: 'weapon' as const })),
+            ...sortItemTemplatesForDisplay(shields).map(item => ({ ...item, category: 'shield' as const })),
+            ...sortItemTemplatesForDisplay(helmets).map(item => ({ ...item, category: 'helmet' as const })),
+            ...sortItemTemplatesForDisplay(gauntlets).map(item => ({ ...item, category: 'gauntlet' as const })),
+            ...sortItemTemplatesForDisplay(tunics).map(item => ({ ...item, category: 'tunic' as const })),
+            ...sortItemTemplatesForDisplay(leggings).map(item => ({ ...item, category: 'legging' as const })),
+            ...sortItemTemplatesForDisplay(boots).map(item => ({ ...item, category: 'boot' as const })),
+            ...sortItemTemplatesForDisplay(arrows).map(item => ({ ...item, category: 'arrow' as const })),
+            ...sortItemTemplatesForDisplay(glasses).map(item => ({ ...item, category: 'glasses' as const })),
+            ...sortItemTemplatesForDisplay(hats).map(item => ({ ...item, category: 'hat' as const })),
+            ...sortItemTemplatesForDisplay(earrings).map(item => ({ ...item, category: 'earring' as const })),
+            ...sortItemTemplatesForDisplay(costumes).map(item => ({ ...item, category: 'costume' as const })),
+            ...sortItemTemplatesForDisplay(accessories).map(item => ({ ...item, category: 'accessory' as const })),
             ...allTalismans.map(item => ({ ...item, category: 'talisman' as const }))
         ];
         return itemsWithCategory;
@@ -155,7 +153,7 @@ export const ItemDatabase: React.FC<ItemDatabaseProps> = () => {
         // 種族フィルター
         if (raceFilter !== 'all') {
             filtered = filtered.filter(item =>
-                !item.availableRaces || item.availableRaces.includes(raceFilter as any)
+                !item.availableRaces || item.availableRaces.includes(raceFilter as RaceNameOrTrinityJobName)
             );
         }
 
