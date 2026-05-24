@@ -12,7 +12,9 @@ export const resolveEquipment = (
         return undefined;
     }
 
-    const template = itemTemplates[slot].find((item) => item.id === equipment.templateId);
+    const template = slot === "shield" && equipment.templateId < 0
+        ? itemTemplates.weapon.find((item) => item.id === -(1 + equipment.templateId))
+        : itemTemplates[slot].find((item) => item.id === equipment.templateId);
     if (!template) {
         return undefined;
     }

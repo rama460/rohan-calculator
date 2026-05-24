@@ -1,14 +1,20 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
+import { getInitialBaseOtions, itemTemplates } from "../../static/items";
+import type { Item } from "../../static/items";
 import { skills, SkillOrigin } from "../../static/skills/skill";
-import type { BuffLeafState, CharacterBaseState } from "../character/types";
+import type { BuffLeafState, CharacterBaseState, EquipmentLeafState, OptionMap, ResolvedEquipment } from "../character/types";
+import { equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
+import { resolveEquipment } from "../resolve/resolveEquipment";
 import {
     activeCharacterBaseAtomFamily,
     activeCharacterBuffsAtomFamily,
     activeCharacterAllocatedStatusAtomFamily,
     activeCharacterMetaStatusAtomFamily,
+    activeCharacterEquipmentAtomFamily,
 } from "./activeCharacterAtoms";
 import { baseOptionStateFamily, BaseOptionKeyType, titleNameState } from "./bases";
+import { equipmentStateFamily, resetAllEquipmentState } from "./items";
 import { BuffState, buffStateFamily } from "./skills";
 import { baseStatusState, metaStatusState, resetAllStatusState, StatusType } from "./statuses";
 
@@ -95,6 +101,94 @@ export const resetCompatibleStatusAtom = atom(null, (_, set) => {
     (["strength", "vitality", "dexterity", "intelligence", "agility", "mentality"] as const).forEach((status) => {
         set(activeCharacterAllocatedStatusAtomFamily(status), 0);
         set(activeCharacterMetaStatusAtomFamily(status), 0);
+    });
+});
+
+const withoutUnchangedOptions = (options: OptionMap, staticOptions: OptionMap): OptionMap => (
+    Object.fromEntries(
+        Object.entries(options).filter(([key, value]) => staticOptions[key as keyof OptionMap] !== value)
+    ) as OptionMap
+);
+
+const toEquipmentLeafState = (
+    item: Item,
+    slot: EquipmentSlotKey,
+    raceid: number,
+    jobid: number
+): EquipmentLeafState | undefined => {
+    const templates = slot === "shield" && item.type ? itemTemplates.weapon : itemTemplates[slot];
+    const template = templates.find((candidate) => candidate.name === item.name);
+    if (!template) {
+        return undefined;
+    }
+
+    const enchantLevel = item.enchantLevel ?? 0;
+    const staticBaseOptions = getInitialBaseOtions(template, raceid, jobid, enchantLevel);
+    const baseOverrides = withoutUnchangedOptions(item.baseOptions, staticBaseOptions);
+    const templateId = slot === "shield" && item.type ? -(1 + template.id) : template.id;
+
+    return {
+        templateId,
+        ...(enchantLevel > 0 ? { enchantLevel } : {}),
+        ...(Object.keys(baseOverrides).length > 0 ? { baseOverrides } : {}),
+        ...(Object.keys(item.additionalOptions).length > 0 ? { additionalOptions: item.additionalOptions } : {}),
+        ...(Object.keys(item.craftedOptions).length > 0 ? { craftedOptions: item.craftedOptions } : {}),
+    };
+};
+
+const toItem = (equipment: ResolvedEquipment): Item => {
+    const item: Item = {
+        name: equipment.template.name,
+        icon: equipment.template.icon,
+        availableRaces: equipment.template.availableRaces,
+        enchantLevel: equipment.enchantLevel ?? 0,
+        baseOptions: equipment.options.base,
+        additionalOptions: equipment.options.additional,
+        craftedOptions: equipment.options.crafted,
+        synergyKey: equipment.template.synergyKey,
+        synergyOptions: equipment.template.synergyOptions,
+    };
+
+    if (equipment.template.type) {
+        return {
+            ...item,
+            type: equipment.template.type,
+        };
+    }
+
+    return item;
+};
+
+export const compatibleEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
+    atom(
+        (get) => {
+            const equipment = resolveEquipment(
+                slot,
+                get(activeCharacterEquipmentAtomFamily(slot)),
+                Number(get(activeCharacterBaseAtomFamily("raceid"))),
+                Number(get(activeCharacterBaseAtomFamily("jobid")))
+            );
+            return equipment ? toItem(equipment) : undefined;
+        },
+        (get, set, item: Item | undefined) => {
+            const equipment = item
+                ? toEquipmentLeafState(
+                    item,
+                    slot,
+                    Number(get(activeCharacterBaseAtomFamily("raceid"))),
+                    Number(get(activeCharacterBaseAtomFamily("jobid")))
+                )
+                : undefined;
+            set(activeCharacterEquipmentAtomFamily(slot), equipment);
+            set(equipmentStateFamily(slot), item);
+        }
+    )
+);
+
+export const resetCompatibleEquipmentAtom = atom(null, (_, set) => {
+    set(resetAllEquipmentState);
+    equipmentSlotKeys.forEach((slot) => {
+        set(activeCharacterEquipmentAtomFamily(slot), undefined);
     });
 });
 
