@@ -1,4 +1,4 @@
-import { getInitialBaseOtions, itemTemplates } from "../../static/items";
+import { BuiltinWeaponTypes, getInitialBaseOtions, itemTemplates } from "../../static/items";
 import { EquipmentLeafState, OptionMap, ResolvedEquipment } from "../character/types";
 import { EquipmentSlotKey } from "../character/constants";
 
@@ -19,6 +19,14 @@ export const resolveEquipment = (
 
     const enchantLevel = equipment.enchantLevel ?? 0;
     const staticBaseOptions = getInitialBaseOtions(template, raceid, jobid, enchantLevel);
+    const baseOptions = {
+        ...staticBaseOptions,
+        ...equipment.baseOverrides,
+    };
+
+    if (slot === "weapon" && template.type && baseOptions.attackSpeed === undefined) {
+        baseOptions.attackSpeed = BuiltinWeaponTypes[template.type].attackSpeed;
+    }
 
     return {
         ...equipment,
@@ -26,10 +34,7 @@ export const resolveEquipment = (
         template,
         enchantLevel,
         options: {
-            base: {
-                ...staticBaseOptions,
-                ...equipment.baseOverrides,
-            } as OptionMap,
+            base: baseOptions as OptionMap,
             additional: {
                 ...equipment.additionalOptions,
             },
