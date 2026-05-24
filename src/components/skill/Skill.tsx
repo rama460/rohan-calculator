@@ -11,16 +11,18 @@ import {
     MenuItem,
     TextField,
     Card,
-    CardContent
+    CardContent,
+    SelectChangeEvent
 } from '@mui/material';
 import { useAtom } from 'jotai';
-import { baseOptionStateFamily } from '../../modules/state/bases';
 import {
-    primaryJobSkillLevelsWithDefaultsAtom,
-    secondaryJobSkillLevelsWithDefaultsAtom,
     skillJobIdAtom,
-    usedSkillPointsAtom
 } from '../../modules/state/skillLevels';
+import {
+    compatibleBaseAtomFamily,
+    compatibleSkillLevelsWithDefaultsAtomFamily,
+    compatibleUsedSkillPointsAtom,
+} from '../../modules/state/legacyCompatibleAtoms';
 import { races } from '../../static/races';
 import { skills } from '../../static/skills/skill';
 import { FullSkillTree } from './FullSkillTree';
@@ -32,26 +34,28 @@ import { PageContainer } from '../common/PageContainer';
 
 export const Skill: React.FC = () => {
 
-    const [raceid, setRaceid] = useAtom(baseOptionStateFamily("raceid"));
+    const [raceid, setRaceid] = useAtom(compatibleBaseAtomFamily("raceid"));
     // Skill画面専用のjobidを使用
     const [jobid, setJobid] = useAtom(skillJobIdAtom);
-    const [characterLevel, setCharacterLevel] = useAtom(baseOptionStateFamily("level"));
+    const [characterLevel, setCharacterLevel] = useAtom(compatibleBaseAtomFamily("level"));
+    const numericRaceId = Number(raceid);
+    const numericCharacterLevel = Number(characterLevel || 1);
     // レベルに基づくスキルポイント計算（level - 1、最低0ポイント）
-    const availableSkillPoints = Math.max((characterLevel || 1) - 1, 0);
+    const availableSkillPoints = Math.max(numericCharacterLevel - 1, 0);
 
     // 現在選択されている種族・職業の情報を取得
-    const currentRace = races.find(r => r.id === raceid) || races[0];
+    const currentRace = races.find(r => r.id === numericRaceId) || races[0];
     const currentPrimaryJob = currentRace.jobs[0];
     const currentSecondaryJob = currentRace.jobs.find(j => j.id !== 0 && j.id === jobid);
 
     // Skill levels using atoms with hash storage
-    const [primaryJobSkillLevels, setPrimaryJobSkillLevels] = useAtom(primaryJobSkillLevelsWithDefaultsAtom);
-    const [secondaryJobSkillLevels, setSecondaryJobSkillLevels] = useAtom(secondaryJobSkillLevelsWithDefaultsAtom);
-    const [usedSkillPoints] = useAtom(usedSkillPointsAtom);
+    const [primaryJobSkillLevels, setPrimaryJobSkillLevels] = useAtom(compatibleSkillLevelsWithDefaultsAtomFamily("primary"));
+    const [secondaryJobSkillLevels, setSecondaryJobSkillLevels] = useAtom(compatibleSkillLevelsWithDefaultsAtomFamily("secondary"));
+    const [usedSkillPoints] = useAtom(compatibleUsedSkillPointsAtom);
 
     // 現在の種族のスキル一覧を取得
     const availableSkills = skills.filter(skill =>
-        skill.raceid === raceid || skill.raceid === -1
+        skill.raceid === numericRaceId || skill.raceid === -1
     );
 
     const remainingSkillPoints = availableSkillPoints - usedSkillPoints;
@@ -59,7 +63,7 @@ export const Skill: React.FC = () => {
     // スキル設定関数（スキルポイント制限付き + 前提条件チェック）
     const setSkill = (skillName: string, level: number) => {
 
-        if (primaryJobSkillLevels.hasOwnProperty(skillName)) {
+        if (Object.prototype.hasOwnProperty.call(primaryJobSkillLevels, skillName)) {
             const currentLevel = primaryJobSkillLevels[skillName];
             const delta = level - currentLevel;
             if (delta > 0 && remainingSkillPoints < delta) {
@@ -68,7 +72,7 @@ export const Skill: React.FC = () => {
             }
             setPrimaryJobSkillLevels({ ...primaryJobSkillLevels, [skillName]: level });
         }
-        else if (secondaryJobSkillLevels.hasOwnProperty(skillName)) {
+        else if (Object.prototype.hasOwnProperty.call(secondaryJobSkillLevels, skillName)) {
             const currentLevel = secondaryJobSkillLevels[skillName];
             const delta = level - currentLevel;
             if (delta > 0 && remainingSkillPoints < delta) {
@@ -86,23 +90,25 @@ export const Skill: React.FC = () => {
     };
 
     // 種族変更ハンドラー
-    const handleRaceChange = (event: any) => {
-        setRaceid(event.target.value);
+    const handleRaceChange = (event: SelectChangeEvent<number>) => {
+        const nextRaceId = Number(event.target.value);
+        setRaceid(nextRaceId);
         setJobid(1); // 種族変更時に職業をリセット（0または適切なデフォルト値）
-        const race = races.find(r => r.id === event.target.value);
+        const race = races.find(r => r.id === nextRaceId);
         setPrimaryJobSkillLevels(getInitialSkillLevelsForJob(race?.jobs[0]));
         setSecondaryJobSkillLevels(getInitialSkillLevelsForJob(race?.jobs[1]));
     };
 
     // 職業変更ハンドラー
-    const handleJobChange = (event: any) => {
-        setJobid(event.target.value);
-        const secondaryJob = currentRace?.jobs.find(j => j.id !== 0 && j.id === event.target.value);
+    const handleJobChange = (event: SelectChangeEvent<number | string>) => {
+        const nextJobId = Number(event.target.value);
+        setJobid(nextJobId);
+        const secondaryJob = currentRace?.jobs.find(j => j.id !== 0 && j.id === nextJobId);
         setSecondaryJobSkillLevels(getInitialSkillLevelsForJob(secondaryJob));
     };
 
     // レベル変更ハンドラー
-    const handleLevelChange = (event: any) => {
+    const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newLevel = parseInt(event.target.value) || 1;
         setCharacterLevel(Math.max(1, Math.min(newLevel, 115))); // 1-115の範囲に制限
     };
@@ -143,7 +149,7 @@ export const Skill: React.FC = () => {
                                     <FormControl size="small" sx={{ minWidth: 120 }}>
                                         <InputLabel>種族</InputLabel>
                                         <Select
-                                            value={raceid}
+                                            value={numericRaceId}
                                             label="種族"
                                             onChange={handleRaceChange}
                                         >
@@ -159,13 +165,13 @@ export const Skill: React.FC = () => {
                                         <FormControl size="small" sx={{ minWidth: 120 }}>
                                             <InputLabel>職業</InputLabel>
                                             <Select
-                                                value={characterLevel! < 50 ? "-1" : jobid}
+                                                value={numericCharacterLevel < 50 ? "-1" : jobid}
                                                 label="職業"
                                                 onChange={handleJobChange}
-                                                disabled={characterLevel! < 50 || currentRace.jobs.length < 2}
+                                                disabled={numericCharacterLevel < 50 || currentRace.jobs.length < 2}
                                                 displayEmpty
                                             >
-                                                {characterLevel! < 50 && (
+                                                {numericCharacterLevel < 50 && (
                                                     <MenuItem value="-1" disabled>
                                                         未選択
                                                     </MenuItem>
@@ -183,7 +189,7 @@ export const Skill: React.FC = () => {
                                         size="small"
                                         label="レベル"
                                         type="number"
-                                        value={characterLevel || 1}
+                                        value={numericCharacterLevel}
                                         onChange={handleLevelChange}
                                         inputProps={{ min: 1, max: 150 }}
                                         sx={{ width: 100 }}
@@ -222,7 +228,7 @@ export const Skill: React.FC = () => {
                     <Card>
                         <CardContent>
                             <FullSkillTree
-                                characterLevel={characterLevel || 1}
+                                characterLevel={numericCharacterLevel}
                                 primaryJob={currentPrimaryJob}
                                 secondaryJob={currentSecondaryJob}
                                 allSkills={availableSkills}

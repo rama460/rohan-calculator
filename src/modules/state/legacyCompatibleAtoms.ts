@@ -3,7 +3,9 @@ import { atomFamily } from "jotai/utils";
 import { getInitialBaseOtions, itemTemplates } from "../../static/items";
 import type { Item } from "../../static/items";
 import { skills, SkillOrigin } from "../../static/skills/skill";
-import type { BuffLeafState, CharacterBaseState, EquipmentLeafState, OptionMap, ResolvedEquipment } from "../character/types";
+import { races } from "../../static/races";
+import { getInitialSkillLevelsForJob } from "../../components/skill/skillTreeData";
+import type { BuffLeafState, CharacterBaseState, EquipmentLeafState, OptionMap, ResolvedEquipment, SkillLevelMap } from "../character/types";
 import { equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
 import { resolveEquipment } from "../resolve/resolveEquipment";
 import {
@@ -12,9 +14,15 @@ import {
     activeCharacterAllocatedStatusAtomFamily,
     activeCharacterMetaStatusAtomFamily,
     activeCharacterEquipmentAtomFamily,
+    activeCharacterSkillLevelsAtomFamily,
 } from "./activeCharacterAtoms";
 import { baseOptionStateFamily, BaseOptionKeyType, titleNameState } from "./bases";
 import { equipmentStateFamily, resetAllEquipmentState } from "./items";
+import {
+    primaryJobSkillLevelsWithDefaultsAtom,
+    secondaryJobSkillLevelsWithDefaultsAtom,
+    skillJobIdAtom,
+} from "./skillLevels";
 import { BuffState, buffStateFamily } from "./skills";
 import { baseStatusState, metaStatusState, resetAllStatusState, StatusType } from "./statuses";
 
@@ -190,6 +198,52 @@ export const resetCompatibleEquipmentAtom = atom(null, (_, set) => {
     equipmentSlotKeys.forEach((slot) => {
         set(activeCharacterEquipmentAtomFamily(slot), undefined);
     });
+});
+
+const getDefaultSkillLevels = (
+    type: "primary" | "secondary",
+    raceid: number,
+    jobid: number
+): SkillLevelMap => {
+    const race = races.find((candidate) => candidate.id === raceid);
+    const job = type === "primary"
+        ? race?.jobs[0]
+        : race?.jobs[jobid];
+    return getInitialSkillLevelsForJob(job);
+};
+
+export const compatibleSkillLevelsWithDefaultsAtomFamily = atomFamily((type: "primary" | "secondary") =>
+    atom(
+        (get) => {
+            const levels = get(activeCharacterSkillLevelsAtomFamily(type));
+            if (Object.keys(levels).length > 0) {
+                return levels;
+            }
+
+            return getDefaultSkillLevels(
+                type,
+                Number(get(activeCharacterBaseAtomFamily("raceid"))),
+                type === "primary" ? 0 : Number(get(skillJobIdAtom))
+            );
+        },
+        (_, set, levels: SkillLevelMap) => {
+            set(activeCharacterSkillLevelsAtomFamily(type), levels);
+            set(
+                type === "primary"
+                    ? primaryJobSkillLevelsWithDefaultsAtom
+                    : secondaryJobSkillLevelsWithDefaultsAtom,
+                levels
+            );
+        }
+    )
+);
+
+export const compatibleUsedSkillPointsAtom = atom((get) => {
+    const primarySkills = get(compatibleSkillLevelsWithDefaultsAtomFamily("primary"));
+    const secondarySkills = get(compatibleSkillLevelsWithDefaultsAtomFamily("secondary"));
+
+    return [...Object.values(primarySkills), ...Object.values(secondarySkills)]
+        .reduce((sum, level) => sum + level, 0);
 });
 
 export const resetCompatibleBaseAtom = atom(null, (_, set) => {
