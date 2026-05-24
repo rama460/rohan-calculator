@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react"
-import { ItemTemplate, Item, getInitialBaseOtions } from '../../static/items.ts'
+import { ItemTemplate, Item, getInitialBaseOtions, sortItemTemplatesForDisplay } from '../../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
 import { BuiltinOptionKeyType } from "../../static/options.ts";
@@ -41,8 +41,10 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
     const raceid = useAtomValue(baseOptionStateFamily("raceid"));
     const jobid = useAtomValue(baseOptionStateFamily("jobid"));
 
-    const availableItemTemplates = itemTemplates.filter((template) => template.availableRaces?.some(
-        (r) => (r === races[raceid].name || r === races[raceid].jobs[jobid].name)) ?? true)
+    const availableItemTemplates = sortItemTemplatesForDisplay(
+        itemTemplates.filter((template) => template.availableRaces?.some(
+            (r) => (r === races[raceid].name || r === races[raceid].jobs[jobid].name)) ?? true)
+    );
 
     const [name, setName] = React.useState(
         equippedItem ? equippedItem.name : (
@@ -62,7 +64,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         equippedItem ? hashToArray(equippedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : (
             selectedItemTemplate.sockets ?
                 Array.from(
-                    { length: selectedItemTemplate.sockets }, (_) => ({ name: "none", value: 0 })
+                    { length: selectedItemTemplate.sockets }, () => ({ name: "none", value: 0 })
                 ) : []
         )
     );
@@ -81,7 +83,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
             setCraftedOptions([
                 ...craftedOptions,
                 ...Array.from(
-                    { length: selectedItemTemplate.sockets - craftedOptions.length }, (_) => ({ name: "none" as BuiltinOptionKeyType, value: 0 })
+                    { length: selectedItemTemplate.sockets - craftedOptions.length }, () => ({ name: "none" as BuiltinOptionKeyType, value: 0 })
                 )]);
         }
         setSelectedItemTemplate(selectedItemTemplate);
@@ -102,7 +104,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         setCraftedOptions(
             selectedItemTemplate.sockets ?
                 Array.from(
-                    { length: selectedItemTemplate.sockets }, (_) => ({ name: "none", value: 0 })
+                    { length: selectedItemTemplate.sockets }, () => ({ name: "none", value: 0 })
                 ) : []);
         setAdditionalOptions([]);
     }
