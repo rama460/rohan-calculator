@@ -1,5 +1,9 @@
 import { BuiltinOptionKeyType } from "../../static/options";
+import { Job, Race } from "../../static/races";
+import { ItemTemplate } from "../../static/items";
+import { Title } from "../../static/titles";
 import { SkillOrigin } from "../../static/skills/skill";
+import { Skill } from "../../static/skills/skill";
 import { CharactorStateType } from "../state/charactor";
 import { EquipmentSlotType } from "../state/items";
 import { StatusType } from "../state/statuses";
@@ -57,6 +61,7 @@ export type AppState = {
 
 export type ResolvedEquipment = EquipmentLeafState & {
     slot: EquipmentSlotType;
+    template: ItemTemplate;
     options: {
         base: OptionMap;
         additional: OptionMap;
@@ -66,10 +71,14 @@ export type ResolvedEquipment = EquipmentLeafState & {
 
 export type ResolvedBuff = BuffLeafState & {
     origin: SkillOrigin;
+    skill: Skill;
     options: OptionMap;
 };
 
 export type ResolvedCharacter = CharacterState & {
+    race: Race;
+    job: Job;
+    title?: Title;
     resolvedEquipment: Partial<Record<EquipmentSlotType, ResolvedEquipment>>;
     resolvedBuffs: Record<SkillOrigin, ResolvedBuff[]>;
 };
@@ -101,4 +110,3 @@ export type CalculatedCharacter = {
     aggregatedOptions: AggregatedOptions;
     values: Record<CharactorStateType, number>;
 };
-
