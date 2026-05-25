@@ -10,7 +10,6 @@ import {
 import {
     primaryJobSkillLevelsWithDefaultsAtom,
     secondaryJobSkillLevelsWithDefaultsAtom,
-    skillJobIdAtom,
 } from "../skillLevels";
 
 const getDefaultSkillLevels = (
@@ -36,7 +35,7 @@ export const compatibleSkillLevelsWithDefaultsAtomFamily = atomFamily((type: "pr
             return getDefaultSkillLevels(
                 type,
                 Number(get(activeCharacterBaseAtomFamily("raceid"))),
-                type === "primary" ? 0 : Number(get(skillJobIdAtom))
+                type === "primary" ? 0 : Number(get(activeCharacterBaseAtomFamily("jobid")))
             );
         },
         (_, set, levels: SkillLevelMap) => {

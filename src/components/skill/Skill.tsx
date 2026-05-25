@@ -16,9 +16,6 @@ import {
 } from '@mui/material';
 import { useAtom } from 'jotai';
 import {
-    skillJobIdAtom,
-} from '../../modules/state/skillLevels';
-import {
     compatibleBaseAtomFamily,
     compatibleSkillLevelsWithDefaultsAtomFamily,
     compatibleUsedSkillPointsAtom,
@@ -35,8 +32,7 @@ import { PageContainer } from '../common/PageContainer';
 export const Skill: React.FC = () => {
 
     const [raceid, setRaceid] = useAtom(compatibleBaseAtomFamily("raceid"));
-    // Skill画面専用のjobidを使用
-    const [jobid, setJobid] = useAtom(skillJobIdAtom);
+    const [jobid, setJobid] = useAtom(compatibleBaseAtomFamily("jobid"));
     const [characterLevel, setCharacterLevel] = useAtom(compatibleBaseAtomFamily("level"));
     const numericRaceId = Number(raceid);
     const numericCharacterLevel = Number(characterLevel || 1);
