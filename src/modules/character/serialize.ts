@@ -51,47 +51,6 @@ export type SerializedAppState = {
     c: SerializedCharacterState[];
 };
 
-type LegacySerializedEquipmentLeafState = {
-    t: number;
-    e?: number;
-    b?: SerializedOptionMap;
-    a?: SerializedOptionMap;
-    c?: SerializedOptionMap;
-};
-
-type LegacySerializedBuffLeafState = {
-    s: number;
-    l: number;
-};
-
-type LegacySerializedCharacterState = {
-    i: CharacterId;
-    n: string;
-    b: {
-        l: number;
-        h: number;
-        r: number;
-        j: number;
-        t: string;
-    };
-    s: {
-        a: Record<number, number>;
-        m: Record<number, number>;
-    };
-    e: Partial<Record<EquipmentSlotKey, LegacySerializedEquipmentLeafState>>;
-    u: Record<SkillOrigin, LegacySerializedBuffLeafState[]>;
-    k: {
-        p: SkillLevelMap;
-        s: SkillLevelMap;
-    };
-};
-
-type LegacySerializedAppState = {
-    v: 1;
-    a: CharacterId;
-    c: Record<CharacterId, LegacySerializedCharacterState>;
-};
-
 const skillOriginIds: Record<SkillOrigin, number> = {
     Self: 0,
     Group: 1,
@@ -354,70 +313,6 @@ export const deserializeCharacterState = (character: SerializedCharacterState): 
     };
 };
 
-const deserializeLegacyCharacterState = (character: LegacySerializedCharacterState): CharacterState => {
-    return {
-        id: character.i,
-        name: character.n,
-        base: {
-            level: character.b.l,
-            heroLevel: character.b.h,
-            raceid: character.b.r,
-            jobid: character.b.j,
-            title: character.b.t,
-        },
-        statuses: {
-            allocated: deserializeStatusMap(character.s.a),
-            meta: deserializeStatusMap(character.s.m),
-        },
-        equipment: Object.fromEntries(
-            equipmentSlotKeys.flatMap((slot) => {
-                const item = character.e[slot];
-                if (!item) {
-                    return [];
-                }
-
-                const restored: EquipmentLeafState = {
-                    templateId: item.t,
-                    enchantLevel: item.e,
-                    baseOverrides: deserializeOptionMap(item.b),
-                    additionalOptions: deserializeOptionMap(item.a),
-                    craftedOptions: deserializeOptionMap(item.c),
-                };
-
-                return [[slot, restored]];
-            })
-        ) as Partial<Record<EquipmentSlotKey, EquipmentLeafState>>,
-        buffs: Object.fromEntries(
-            SKillOriginNames.map((origin) => [
-                origin,
-                (character.u[origin] ?? []).map((buff): BuffLeafState => ({
-                    skillId: buff.s,
-                    level: buff.l,
-                })),
-            ])
-        ) as CharacterState["buffs"],
-        skillLevels: {
-            primary: character.k.p,
-            secondary: character.k.s,
-        },
-    };
-};
-
-const migrateLegacyAppState = (state: LegacySerializedAppState): SerializedAppState => {
-    const appState: AppState = {
-        version: 1,
-        activeCharacterId: state.a,
-        characters: Object.fromEntries(
-            Object.entries(state.c).map(([id, character]) => [
-                id,
-                deserializeLegacyCharacterState(character),
-            ])
-        ),
-    };
-
-    return serializeAppState(appState);
-};
-
 export const serializeAppState = (state: AppState): SerializedAppState => {
     return {
         v: 2,
@@ -449,12 +344,7 @@ export const decodeSerializedAppState = (value: string): SerializedAppState => {
         return serializeAppState(createDefaultAppState());
     }
 
-    const parsed = JSON.parse(decompressed) as SerializedAppState | LegacySerializedAppState;
-    if (parsed.v === 1) {
-        return migrateLegacyAppState(parsed);
-    }
-
-    return parsed;
+    return JSON.parse(decompressed) as SerializedAppState;
 };
 
 export const encodeAppState = (state: AppState): string => {
