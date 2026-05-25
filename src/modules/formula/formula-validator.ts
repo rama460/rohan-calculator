@@ -1,4 +1,4 @@
-import { removeComments } from "./formula-calculator";
+import { removeComments } from "./formula-utils";
 import { BuiltinOptions } from "../../static/options";
 import { CharactorStateType } from "../character/constants";
 

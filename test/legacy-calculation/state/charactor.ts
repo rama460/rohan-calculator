@@ -1,12 +1,12 @@
 import { atom, type Getter } from "jotai";
 import { allOptionAggregorStateFamily } from "./options";
 import { atomFamily } from "jotai/utils";
-import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../static/options";
+import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../../src/static/options";
 import { BaseOptionKeyType, baseOptionStateFamily } from "./bases";
-import { races } from "../../static/races";
-import { FormulaContext, formulaStateFamily } from "./custom-formulas";
+import { races } from "../../../src/static/races";
+import { FormulaContext, formulaStateFamily } from "../../../src/modules/state/custom-formulas";
 import { executeCustomFormula } from "../formula/formula-calculator";
-import { characterValueKeys, type CharactorStateType } from "../character/constants";
+import { characterValueKeys, type CharactorStateType } from "../../../src/modules/character/constants";
 
 export const charactorStateNames = characterValueKeys;
 export type { CharactorStateType };

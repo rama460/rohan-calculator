@@ -4,12 +4,12 @@ import { skills, SKillOriginNames } from "../../src/static/skills/skill";
 import { CharacterValueKey, characterValueKeys, equipmentSlotKeys } from "../../src/modules/character/constants";
 import { CharacterState, ResolvedEquipment } from "../../src/modules/character/types";
 import { resolveCharacter } from "../../src/modules/resolve";
-import { baseOptionStateFamily, titleNameState } from "../../src/modules/state/bases";
-import { charactorStateFamily, CharactorStateType } from "../../src/modules/state/charactor";
+import { baseOptionStateFamily, titleNameState } from "./state/bases";
+import { charactorStateFamily, CharactorStateType } from "./state/charactor";
 import { customFormulaStateFamily, Formula } from "../../src/modules/state/custom-formulas";
-import { equipmentStateFamily, EquipmentSlotType } from "../../src/modules/state/items";
-import { buffStateFamily } from "../../src/modules/state/skills";
-import { baseStatusState, metaStatusState, StatusType } from "../../src/modules/state/statuses";
+import { equipmentStateFamily, EquipmentSlotType } from "./state/items";
+import { buffStateFamily } from "./state/skills";
+import { baseStatusState, metaStatusState, StatusType } from "./state/statuses";
 import { calculateCharacter } from "../../src/modules/calculation/calculateCharacter";
 
 export type CalculationComparisonValue = {

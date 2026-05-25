@@ -1,11 +1,11 @@
 import { atomFamily } from "jotai/utils";
-import { BuiltinOptionKeyType } from "../../static/options";
+import { BuiltinOptionKeyType } from "../../../src/static/options";
 import { atom } from "jotai";
 import { Atom } from "jotai";
-import { Item, SynergyKey, synergyKeyNames } from "../../static/items";
+import { Item, SynergyKey, synergyKeyNames } from "../../../src/static/items";
 import { equipmentSlotNames, EquipmentSlotType, equipmentStateFamily, equipmentSynergyStateFamily, SynergyOption } from "./items";
 import { baseStatusState, initialStatusState, metaStatusState, statuses, StatusType } from "./statuses";
-import { SkillOrigin, SKillOriginNames, skills } from "../../static/skills/skill";
+import { SkillOrigin, SKillOriginNames, skills } from "../../../src/static/skills/skill";
 import { buffStateFamily } from "./skills";
 import { heroLevelBOnusState, titleOptionState } from "./bases";
 
