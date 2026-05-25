@@ -42,7 +42,7 @@ import {
     compatibleCustomFormulasState,
     compatibleIsFormulaCustomizedFamily,
     resetCompatibleCustomFormulaFamily,
-} from '../../modules/state/legacyCompatibleAtoms';
+} from '../../modules/state/compat';
 import { DEFAULT_FORMULAS } from '../../static/default-formulas';
 import { BuiltinOptions } from '../../static/options';
 import { Formula as FormulaType } from '../../modules/state/custom-formulas';

@@ -22,7 +22,7 @@ import {
     compatibleBaseAtomFamily,
     compatibleSkillLevelsWithDefaultsAtomFamily,
     compatibleUsedSkillPointsAtom,
-} from '../../modules/state/legacyCompatibleAtoms';
+} from '../../modules/state/compat';
 import { races } from '../../static/races';
 import { skills } from '../../static/skills/skill';
 import { FullSkillTree } from './FullSkillTree';

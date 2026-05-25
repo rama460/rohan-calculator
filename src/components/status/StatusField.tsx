@@ -6,7 +6,7 @@ import {
     compatibleAllocatedStatusAtomFamily,
     compatibleIsFormulaCustomizedFamily,
     compatibleMetaStatusAtomFamily,
-} from "../../modules/state/legacyCompatibleAtoms";
+} from "../../modules/state/compat";
 import { CharacterValueKey } from "../../modules/character/constants";
 import { activeCharacterValueAtomFamily } from "../../modules/state/appState";
 

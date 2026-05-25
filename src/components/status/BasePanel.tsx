@@ -9,7 +9,7 @@ import {
     compatibleBaseAtomFamily,
     compatibleBuffsAtomFamily,
     compatibleTitleAtom,
-} from "../../modules/state/legacyCompatibleAtoms";
+} from "../../modules/state/compat";
 import { skills } from "../../static/skills/skill";
 
 export const BasePanel: React.FC = () => {

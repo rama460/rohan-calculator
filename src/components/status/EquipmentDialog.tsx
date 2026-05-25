@@ -9,7 +9,7 @@ import EquipmentBaseOption from "./EquipmentBaseOption.tsx";
 import EquipmentCraftedOption from "./EquipmentCraftedOption.tsx";
 import { useAtomValue } from "jotai";
 import { Equipments } from "../../modules/state/items.ts";
-import { compatibleBaseAtomFamily } from "../../modules/state/legacyCompatibleAtoms.ts";
+import { compatibleBaseAtomFamily } from "../../modules/state/compat";
 
 // FIXME: refactor this big component
 interface EquipmentDialogProps {

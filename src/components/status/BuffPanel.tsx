@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid2";
 import { skills } from "../../static/skills/skill";
 import { useAtomValue } from "jotai";
-import { compatibleBaseAtomFamily } from "../../modules/state/legacyCompatibleAtoms";
+import { compatibleBaseAtomFamily } from "../../modules/state/compat";
 import { BuffGroup } from "./BuffGroup";
 
 export const BuffPanel: React.FC = () => {

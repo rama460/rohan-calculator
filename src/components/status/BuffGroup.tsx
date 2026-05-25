@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid2";
 import { Skill, SkillOrigin } from "../../static/skills/skill";
 import BuffIconButton from "./BuffIconButton";
 import { useAtom } from "jotai";
-import { compatibleBuffsAtomFamily } from "../../modules/state/legacyCompatibleAtoms";
+import { compatibleBuffsAtomFamily } from "../../modules/state/compat";
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 interface BuffGroupProps {
     title: string;

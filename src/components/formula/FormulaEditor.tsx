@@ -25,7 +25,7 @@ import { Formula } from '../../modules/state/custom-formulas';
 import {
     compatibleCustomFormulaAtomFamily,
     compatibleFormulaAtomFamily,
-} from '../../modules/state/legacyCompatibleAtoms';
+} from '../../modules/state/compat';
 import { CharactorStateType } from '../../modules/state/charactor';
 import { validateFormula, FormulaContext } from '../../modules/formula/formula-validator';
 

@@ -8,7 +8,7 @@ import anyBackground from "../../assets/backgrounds/any.png"
 import { ItemTemplate } from "../../static/items";
 import { useAtom, useAtomValue } from "jotai";
 import { Equipments, equipmentSynergyCountState } from "../../modules/state/items";
-import { compatibleEquipmentAtomFamily } from "../../modules/state/legacyCompatibleAtoms";
+import { compatibleEquipmentAtomFamily } from "../../modules/state/compat";
 
 
 interface EquipmentIconButtonProps {

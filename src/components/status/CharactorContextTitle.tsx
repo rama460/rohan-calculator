@@ -5,7 +5,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import CharactorContextLoadDialog from "./CharactoContextLoadDialog";
 import CharactorContextSaveDialog from "./CharactoContextSaveDialog";
 import CharactorContextDeleteDialog from "./CharactoContextDeleteDialog";
-import { resetCompatibleCharacterContextAtom } from "../../modules/state/legacyCompatibleAtoms";
+import { resetCompatibleCharacterContextAtom } from "../../modules/state/compat";
 
 interface CharactorContextTitleProps {
     index?: number

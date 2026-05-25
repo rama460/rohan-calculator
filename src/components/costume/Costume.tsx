@@ -27,7 +27,7 @@ import { costumes, glasses, earrings, hats, ItemTemplate, sortItemTemplatesForDi
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import { EquipmentIconButton } from '../status/EquipmentIconButton';
 import { useAtomValue } from 'jotai';
-import { compatibleEquipmentAtomFamily } from '../../modules/state/legacyCompatibleAtoms';
+import { compatibleEquipmentAtomFamily } from '../../modules/state/compat';
 import { PageContainer } from '../common/PageContainer';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 

@@ -1,6 +1,6 @@
 import { Box, TextField, Typography, Chip } from "@mui/material";
 import { CharactorStateType } from "../../modules/state/charactor";
-import { compatibleCustomFormulaAtomFamily } from "../../modules/state/legacyCompatibleAtoms";
+import { compatibleCustomFormulaAtomFamily } from "../../modules/state/compat";
 import { useAtomValue } from "jotai";
 import { CharacterValueKey } from "../../modules/character/constants";
 import { activeCharacterValueAtomFamily } from "../../modules/state/appState";

@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useSetAtom } from "jotai";
-import { resetCompatibleEquipmentAtom } from "../../modules/state/legacyCompatibleAtoms";
+import { resetCompatibleEquipmentAtom } from "../../modules/state/compat";
 
 export const EquipmentResetButton: React.FC = () => {
     const resetAllEquipmentItemState = useSetAtom(resetCompatibleEquipmentAtom);

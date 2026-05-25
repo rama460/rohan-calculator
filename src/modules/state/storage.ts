@@ -9,7 +9,7 @@ import {
     compatibleEquipmentAtomFamily,
     compatibleMetaStatusAtomFamily,
     compatibleTitleAtom,
-} from "./legacyCompatibleAtoms";
+} from "./compat";
 
 type StoredCharactorContext = {
     title: string;
