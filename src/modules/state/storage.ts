@@ -1,10 +1,15 @@
 import { atom, useAtom } from "jotai";
 import { atomFamily, atomWithStorage, RESET } from "jotai/utils";
-import { baseOptionStateFamily, titleNameState } from "./bases";
-import { baseStatusState, metaStatusState } from "./statuses";
-import { equipmentStateFamily } from "./items";
 import { Item } from "../../static/items";
-import { BuffState, buffStateFamily } from "./skills";
+import { BuffState } from "./skills";
+import {
+    compatibleAllocatedStatusAtomFamily,
+    compatibleBaseAtomFamily,
+    compatibleBuffsAtomFamily,
+    compatibleEquipmentAtomFamily,
+    compatibleMetaStatusAtomFamily,
+    compatibleTitleAtom,
+} from "./legacyCompatibleAtoms";
 
 type StoredCharactorContext = {
     title: string;
@@ -83,7 +88,8 @@ export const contextState = atomFamily((name: string) => {
     }, (_, set, newValue: StoredCharactorContext | typeof RESET) => {
         set(storedCharactorContexts, (prev) => {
             if (newValue === RESET) {
-                const { [name]: _, ...rest } = prev;
+                const rest = { ...prev };
+                delete rest[name];
                 return rest;
             }
             return {
@@ -101,66 +107,66 @@ export const useStorageContext = (name: string) => {
     const [context, setContext] = useAtom(contextState(name));
     // hash state on url
     // base
-    const [title, setTitle] = useAtom(titleNameState)
-    const [level, setLevel] = useAtom(baseOptionStateFamily("level"));
-    const [heroLevel, setHeroLevel] = useAtom(baseOptionStateFamily("heroLevel"));
-    const [raceid, setRaceid] = useAtom(baseOptionStateFamily("raceid"));
-    const [jobid, setJobid] = useAtom(baseOptionStateFamily("jobid"));
+    const [title, setTitle] = useAtom(compatibleTitleAtom)
+    const [level, setLevel] = useAtom(compatibleBaseAtomFamily("level"));
+    const [heroLevel, setHeroLevel] = useAtom(compatibleBaseAtomFamily("heroLevel"));
+    const [raceid, setRaceid] = useAtom(compatibleBaseAtomFamily("raceid"));
+    const [jobid, setJobid] = useAtom(compatibleBaseAtomFamily("jobid"));
     // status
-    const [strength, setStrength] = useAtom(baseStatusState("strength"));
-    const [vitality, setVitality] = useAtom(baseStatusState("vitality"));
-    const [dexterity, setDexterity] = useAtom(baseStatusState("dexterity"));
-    const [intelligence, setIntelligence] = useAtom(baseStatusState("intelligence"));
-    const [agility, setAgility] = useAtom(baseStatusState("agility"));
-    const [mentality, setMentality] = useAtom(baseStatusState("mentality"));
-    const [metaStrength, setMetaStrength] = useAtom(metaStatusState("strength"));
-    const [metaVitality, setMetaVitality] = useAtom(metaStatusState("vitality"));
-    const [metaDexterity, setMetaDexterity] = useAtom(metaStatusState("dexterity"));
-    const [metaIntelligence, setMetaIntelligence] = useAtom(metaStatusState("intelligence"));
-    const [metaAgility, setMetaAgility] = useAtom(metaStatusState("agility"));
-    const [metaMentality, setMetaMentality] = useAtom(metaStatusState("mentality"));
+    const [strength, setStrength] = useAtom(compatibleAllocatedStatusAtomFamily("strength"));
+    const [vitality, setVitality] = useAtom(compatibleAllocatedStatusAtomFamily("vitality"));
+    const [dexterity, setDexterity] = useAtom(compatibleAllocatedStatusAtomFamily("dexterity"));
+    const [intelligence, setIntelligence] = useAtom(compatibleAllocatedStatusAtomFamily("intelligence"));
+    const [agility, setAgility] = useAtom(compatibleAllocatedStatusAtomFamily("agility"));
+    const [mentality, setMentality] = useAtom(compatibleAllocatedStatusAtomFamily("mentality"));
+    const [metaStrength, setMetaStrength] = useAtom(compatibleMetaStatusAtomFamily("strength"));
+    const [metaVitality, setMetaVitality] = useAtom(compatibleMetaStatusAtomFamily("vitality"));
+    const [metaDexterity, setMetaDexterity] = useAtom(compatibleMetaStatusAtomFamily("dexterity"));
+    const [metaIntelligence, setMetaIntelligence] = useAtom(compatibleMetaStatusAtomFamily("intelligence"));
+    const [metaAgility, setMetaAgility] = useAtom(compatibleMetaStatusAtomFamily("agility"));
+    const [metaMentality, setMetaMentality] = useAtom(compatibleMetaStatusAtomFamily("mentality"));
     // equipment
-    const [helmet, setHelmet] = useAtom(equipmentStateFamily("helmet"));
-    const [gauntlet, setGaundlet] = useAtom(equipmentStateFamily("gauntlet"));
-    const [tunic, setTunic] = useAtom(equipmentStateFamily("tunic"));
-    const [leggings, setLeggings] = useAtom(equipmentStateFamily("leggings"));
-    const [boots, setBoots] = useAtom(equipmentStateFamily("boots"));
-    const [weapon, setWeapon] = useAtom(equipmentStateFamily("weapon"));
-    const [shield, setShield] = useAtom(equipmentStateFamily("shield"));
-    const [arrow, setArrow] = useAtom(equipmentStateFamily("arrow"));
-    const [accessory1, setAccessory1] = useAtom(equipmentStateFamily("accessory1"));
-    const [accessory2, setAccessory2] = useAtom(equipmentStateFamily("accessory2"));
-    const [accessory3, setAccessory3] = useAtom(equipmentStateFamily("accessory3"));
-    const [accessory4, setAccessory4] = useAtom(equipmentStateFamily("accessory4"));
-    const [glasses, setGlasses] = useAtom(equipmentStateFamily("glasses"));
-    const [hat, setHat] = useAtom(equipmentStateFamily("hat"));
-    const [earrings, setEarrings] = useAtom(equipmentStateFamily("earrings"));
-    const [costume, setCostume] = useAtom(equipmentStateFamily("costume"));
-    const [talismanH, setTalismanH] = useAtom(equipmentStateFamily("talismanH"));
-    const [talismanG, setTalismanG] = useAtom(equipmentStateFamily("talismanG"));
-    const [talismanI, setTalismanI] = useAtom(equipmentStateFamily("talismanI"));
-    const [talismanB, setTalismanB] = useAtom(equipmentStateFamily("talismanB"));
-    const [talismanJ, setTalismanJ] = useAtom(equipmentStateFamily("talismanJ"));
-    const [talismanN, setTalismanN] = useAtom(equipmentStateFamily("talismanN"));
-    const [talismanE, setTalismanE] = useAtom(equipmentStateFamily("talismanE"));
-    const [talismanR, setTalismanR] = useAtom(equipmentStateFamily("talismanR"));
-    const [talismanW, setTalismanW] = useAtom(equipmentStateFamily("talismanW"));
-    const [talismanQ, setTalismanQ] = useAtom(equipmentStateFamily("talismanQ"));
-    const [talismanS, setTalismanS] = useAtom(equipmentStateFamily("talismanS"));
-    const [pet, setPet] = useAtom(equipmentStateFamily("pet"));
-    const [ride, setRide] = useAtom(equipmentStateFamily("ride"));
-    const [rune1, setRune1] = useAtom(equipmentStateFamily("rune1"));
-    const [rune2, setRune2] = useAtom(equipmentStateFamily("rune2"));
-    const [rune3, setRune3] = useAtom(equipmentStateFamily("rune3"));
-    const [rune4, setRune4] = useAtom(equipmentStateFamily("rune4"));
-    const [rune5, setRune5] = useAtom(equipmentStateFamily("rune5"));
-    const [rune6, setRune6] = useAtom(equipmentStateFamily("rune6"));
+    const [helmet, setHelmet] = useAtom(compatibleEquipmentAtomFamily("helmet"));
+    const [gauntlet, setGaundlet] = useAtom(compatibleEquipmentAtomFamily("gauntlet"));
+    const [tunic, setTunic] = useAtom(compatibleEquipmentAtomFamily("tunic"));
+    const [leggings, setLeggings] = useAtom(compatibleEquipmentAtomFamily("leggings"));
+    const [boots, setBoots] = useAtom(compatibleEquipmentAtomFamily("boots"));
+    const [weapon, setWeapon] = useAtom(compatibleEquipmentAtomFamily("weapon"));
+    const [shield, setShield] = useAtom(compatibleEquipmentAtomFamily("shield"));
+    const [arrow, setArrow] = useAtom(compatibleEquipmentAtomFamily("arrow"));
+    const [accessory1, setAccessory1] = useAtom(compatibleEquipmentAtomFamily("accessory1"));
+    const [accessory2, setAccessory2] = useAtom(compatibleEquipmentAtomFamily("accessory2"));
+    const [accessory3, setAccessory3] = useAtom(compatibleEquipmentAtomFamily("accessory3"));
+    const [accessory4, setAccessory4] = useAtom(compatibleEquipmentAtomFamily("accessory4"));
+    const [glasses, setGlasses] = useAtom(compatibleEquipmentAtomFamily("glasses"));
+    const [hat, setHat] = useAtom(compatibleEquipmentAtomFamily("hat"));
+    const [earrings, setEarrings] = useAtom(compatibleEquipmentAtomFamily("earrings"));
+    const [costume, setCostume] = useAtom(compatibleEquipmentAtomFamily("costume"));
+    const [talismanH, setTalismanH] = useAtom(compatibleEquipmentAtomFamily("talismanH"));
+    const [talismanG, setTalismanG] = useAtom(compatibleEquipmentAtomFamily("talismanG"));
+    const [talismanI, setTalismanI] = useAtom(compatibleEquipmentAtomFamily("talismanI"));
+    const [talismanB, setTalismanB] = useAtom(compatibleEquipmentAtomFamily("talismanB"));
+    const [talismanJ, setTalismanJ] = useAtom(compatibleEquipmentAtomFamily("talismanJ"));
+    const [talismanN, setTalismanN] = useAtom(compatibleEquipmentAtomFamily("talismanN"));
+    const [talismanE, setTalismanE] = useAtom(compatibleEquipmentAtomFamily("talismanE"));
+    const [talismanR, setTalismanR] = useAtom(compatibleEquipmentAtomFamily("talismanR"));
+    const [talismanW, setTalismanW] = useAtom(compatibleEquipmentAtomFamily("talismanW"));
+    const [talismanQ, setTalismanQ] = useAtom(compatibleEquipmentAtomFamily("talismanQ"));
+    const [talismanS, setTalismanS] = useAtom(compatibleEquipmentAtomFamily("talismanS"));
+    const [pet, setPet] = useAtom(compatibleEquipmentAtomFamily("pet"));
+    const [ride, setRide] = useAtom(compatibleEquipmentAtomFamily("ride"));
+    const [rune1, setRune1] = useAtom(compatibleEquipmentAtomFamily("rune1"));
+    const [rune2, setRune2] = useAtom(compatibleEquipmentAtomFamily("rune2"));
+    const [rune3, setRune3] = useAtom(compatibleEquipmentAtomFamily("rune3"));
+    const [rune4, setRune4] = useAtom(compatibleEquipmentAtomFamily("rune4"));
+    const [rune5, setRune5] = useAtom(compatibleEquipmentAtomFamily("rune5"));
+    const [rune6, setRune6] = useAtom(compatibleEquipmentAtomFamily("rune6"));
 
     // buffs
-    const [selfBuffStatuses, setSelfBuffStatuses] = useAtom(buffStateFamily("Self"));
-    const [groupBuffStatuses, setGroupBuffStatuses] = useAtom(buffStateFamily("Group"));
-    const [cashBuffStatuses, setCashBuffStatuses] = useAtom(buffStateFamily("Cash"));
-    const [guildBuffStatuses, setGuildBuffStatuses] = useAtom(buffStateFamily("Guild"));
+    const [selfBuffStatuses, setSelfBuffStatuses] = useAtom(compatibleBuffsAtomFamily("Self"));
+    const [groupBuffStatuses, setGroupBuffStatuses] = useAtom(compatibleBuffsAtomFamily("Group"));
+    const [cashBuffStatuses, setCashBuffStatuses] = useAtom(compatibleBuffsAtomFamily("Cash"));
+    const [guildBuffStatuses, setGuildBuffStatuses] = useAtom(compatibleBuffsAtomFamily("Guild"));
 
     const loadContext = () => {
         setTitle(context.title);
@@ -223,11 +229,11 @@ export const useStorageContext = (name: string) => {
     const saveContext = () => {
         setContext({
             ...context,
-            title,
-            level,
-            heroLevel,
-            raceid,
-            jobid,
+            title: String(title),
+            level: Number(level),
+            heroLevel: Number(heroLevel),
+            raceid: Number(raceid),
+            jobid: Number(jobid),
             strength,
             vitality,
             dexterity,
