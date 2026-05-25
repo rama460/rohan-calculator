@@ -2,13 +2,13 @@ import { Box, TextField, Typography, Chip } from "@mui/material";
 import React from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { StatusType } from "../../modules/state/statuses";
-import { charactorStateFamily } from "../../modules/state/charactor";
 import {
     compatibleAllocatedStatusAtomFamily,
     compatibleIsFormulaCustomizedFamily,
     compatibleMetaStatusAtomFamily,
 } from "../../modules/state/legacyCompatibleAtoms";
 import { CharacterValueKey } from "../../modules/character/constants";
+import { activeCharacterValueAtomFamily } from "../../modules/state/appState";
 
 interface StatusFieldProps {
     name: StatusType;
@@ -19,7 +19,7 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
     const [base, setBase] = useAtom(compatibleAllocatedStatusAtomFamily(name));
     const [meta, setMeta] = useAtom(compatibleMetaStatusAtomFamily(name));
     const valueKey = `__${name}` as CharacterValueKey;
-    const total = useAtomValue(charactorStateFamily(valueKey));
+    const total = useAtomValue(activeCharacterValueAtomFamily(valueKey));
     const isCustomized = useAtomValue(compatibleIsFormulaCustomizedFamily(valueKey));
 
     const handleBaseChange = (event: React.ChangeEvent<HTMLInputElement>) => {

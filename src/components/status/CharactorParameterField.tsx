@@ -1,7 +1,9 @@
 import { Box, TextField, Typography, Chip } from "@mui/material";
-import { charactorStateFamily, CharactorStateType } from "../../modules/state/charactor";
+import { CharactorStateType } from "../../modules/state/charactor";
 import { compatibleCustomFormulaAtomFamily } from "../../modules/state/legacyCompatibleAtoms";
 import { useAtomValue } from "jotai";
+import { CharacterValueKey } from "../../modules/character/constants";
+import { activeCharacterValueAtomFamily } from "../../modules/state/appState";
 
 interface CharactorParameterFieldProps {
     name: CharactorStateType;
@@ -9,7 +11,7 @@ interface CharactorParameterFieldProps {
 }
 
 export const CharactorParameterField: React.FC<CharactorParameterFieldProps> = ({ name, title }) => {
-    const value = useAtomValue(charactorStateFamily(name));
+    const value = useAtomValue(activeCharacterValueAtomFamily(name as CharacterValueKey));
     const customFormula = useAtomValue(compatibleCustomFormulaAtomFamily(name));
 
     // カスタマイズされているかどうかをチェック
