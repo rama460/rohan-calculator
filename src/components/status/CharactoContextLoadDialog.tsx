@@ -13,7 +13,7 @@ interface CharactorContextLoadDialogProps {
 export const CharactorContextLoadDialog: React.FC<CharactorContextLoadDialogProps> = ({ isOpen, setIsOpen, setLoadedName }) => {
     const names = useAtomValue(contextNames);
     const [name, setName] = React.useState(names[0]);
-    const [loadContext, _] = useStorageContext(name);
+    const [loadContext] = useStorageContext(name);
 
     const handleLoad = () => {
         setIsOpen(false);
