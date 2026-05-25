@@ -34,6 +34,7 @@ type SerializedEquipmentEntry = [
 ];
 type SerializedBuffEntry = [number, Array<[number, number]>];
 type SerializedSkillLevels = [SkillLevelMap?, SkillLevelMap?];
+const CURRENT_SERIALIZED_APP_STATE_VERSION = 2;
 
 type SerializedCharacterState = {
     i: CharacterId;
@@ -46,10 +47,17 @@ type SerializedCharacterState = {
 };
 
 export type SerializedAppState = {
-    v: 2;
+    v: typeof CURRENT_SERIALIZED_APP_STATE_VERSION;
     a: CharacterId;
     c: SerializedCharacterState[];
 };
+
+const isSerializedAppState = (state: unknown): state is SerializedAppState => (
+    typeof state === "object" &&
+    state !== null &&
+    "v" in state &&
+    (state as { v: unknown }).v === CURRENT_SERIALIZED_APP_STATE_VERSION
+);
 
 const skillOriginIds: Record<SkillOrigin, number> = {
     Self: 0,
@@ -315,10 +323,18 @@ export const deserializeCharacterState = (character: SerializedCharacterState): 
 
 export const serializeAppState = (state: AppState): SerializedAppState => {
     return {
-        v: 2,
+        v: CURRENT_SERIALIZED_APP_STATE_VERSION,
         a: state.activeCharacterId,
         c: Object.values(state.characters).map(serializeCharacterState),
     };
+};
+
+export const migrateSerializedAppState = (state: unknown): SerializedAppState => {
+    if (isSerializedAppState(state)) {
+        return state;
+    }
+
+    return serializeAppState(createDefaultAppState());
 };
 
 export const deserializeAppState = (state: SerializedAppState): AppState => {
@@ -344,7 +360,7 @@ export const decodeSerializedAppState = (value: string): SerializedAppState => {
         return serializeAppState(createDefaultAppState());
     }
 
-    return JSON.parse(decompressed) as SerializedAppState;
+    return migrateSerializedAppState(JSON.parse(decompressed));
 };
 
 export const encodeAppState = (state: AppState): string => {
