@@ -8,12 +8,12 @@ import { races } from "../../static/races.ts";
 import EquipmentBaseOption from "./EquipmentBaseOption.tsx";
 import EquipmentCraftedOption from "./EquipmentCraftedOption.tsx";
 import { useAtomValue } from "jotai";
-import { Equipments } from "../../modules/state/items.ts";
+import { EquipmentSlotKey } from "../../modules/character/constants";
 import { compatibleBaseAtomFamily } from "../../modules/state/compat";
 
 // FIXME: refactor this big component
 interface EquipmentDialogProps {
-    equipmentType: keyof Equipments
+    equipmentType: EquipmentSlotKey
     isOpen: boolean;
     onClose: () => void;
     title: string;

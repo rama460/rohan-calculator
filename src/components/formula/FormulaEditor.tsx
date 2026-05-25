@@ -26,7 +26,7 @@ import {
     compatibleCustomFormulaAtomFamily,
     compatibleFormulaAtomFamily,
 } from '../../modules/state/compat';
-import { CharactorStateType } from '../../modules/state/charactor';
+import { CharactorStateType } from '../../modules/character/constants';
 import { validateFormula, FormulaContext } from '../../modules/formula/formula-validator';
 
 type MonacoApi = {

@@ -1,8 +1,9 @@
 import { FormulaContext, formulaStateFamily } from "../state/custom-formulas";
-import { BuiltinOptions } from "../../static/options";
-import { CharactorStateType } from "../state/charactor";
+import { BuiltinOptionKeyType, BuiltinOptions } from "../../static/options";
+import { CharactorStateType } from "../character/constants";
 import { allOptionAggregorStateFamily } from "../state/options";
 import { allowedMathFunctions } from "./formula-validator";
+import type { Getter } from "jotai";
 /**
  * カスタム計算式の実行エンジン
  * 安全性を考慮してFunction constructorを使用し、限定された変数・関数のみアクセス可能
@@ -55,14 +56,14 @@ function extractRequiredParameters(formula: string): Set<string> {
  * 必要なパラメータのみをatomから取得してコンテキストに追加
  */
 function addRequiredParametersToContext(
-    executionContext: Record<string, any>,
+    executionContext: Record<string, unknown>,
     requiredParams: Set<string>,
-    getter: any
+    getter: Getter
 ): void {
     for (const param of requiredParams) {
         try {
             // atomから値を取得
-            const value = getter(allOptionAggregorStateFamily(param as keyof typeof BuiltinOptions));
+            const value = getter(allOptionAggregorStateFamily(param as BuiltinOptionKeyType));
             executionContext[param] = value;
         } catch (error) {
             // 取得に失敗した場合はデフォルト値を設定
@@ -79,7 +80,7 @@ function addRequiredParametersToContext(
 export function executeCustomFormula(
     formula: string,
     context: FormulaContext,
-    getter: any
+    getter: Getter
 ): { success: boolean; result?: number; error?: string } {
     try {
         // コメントを除去
@@ -175,4 +176,3 @@ export function executeCustomFormula(
         };
     }
 }
-

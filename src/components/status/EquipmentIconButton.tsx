@@ -7,12 +7,12 @@ import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent
 import anyBackground from "../../assets/backgrounds/any.png"
 import { ItemTemplate } from "../../static/items";
 import { useAtom, useAtomValue } from "jotai";
-import { Equipments } from "../../modules/state/items";
+import { EquipmentSlotKey } from "../../modules/character/constants";
 import { compatibleEquipmentAtomFamily, compatibleEquipmentSynergyCountAtomFamily } from "../../modules/state/compat";
 
 
 interface EquipmentIconButtonProps {
-    equipmentType: keyof Equipments
+    equipmentType: EquipmentSlotKey
     title: string
     backgroundImage?: string
     items: ItemTemplate[]

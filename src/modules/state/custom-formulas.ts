@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import { atomFamily, atomWithStorage } from "jotai/utils";
-import { CharactorStateType } from "./charactor";
+import { CharactorStateType } from "../character/constants";
 import { DEFAULT_FORMULAS, DEFAULT_FORMULA_DESCRIPTIONS } from "../../static/default-formulas";
 
 // 計算式の型定義
@@ -70,8 +70,8 @@ export const formulaStateFamily = atomFamily((formulaId: CharactorStateType) => 
 });
 
 // 計算式の値を取得（統合版）
-export const formulaValueFamily = atomFamily((_formulaId: CharactorStateType) => {
-    return atom((_get) => {
+export const formulaValueFamily = atomFamily(() => {
+    return atom(() => {
         // 実際の計算はcharactor.tsで実装される
         // この値は後でcharactor.tsで実装される計算ロジックに置き換える
         return 0; // プレースホルダー
@@ -89,8 +89,9 @@ export const customFormulaStateFamily = atomFamily((formulaId: CharactorStateTyp
             const formulas = get(customFormulasState);
             if (newFormula === null) {
                 // 削除
-                const { [formulaId]: _, ...rest } = formulas;
-                set(customFormulasState, rest as Record<CharactorStateType, Formula>);
+                const rest = { ...formulas };
+                delete rest[formulaId];
+                set(customFormulasState, rest);
             } else {
                 // 追加・更新
                 set(customFormulasState, {
@@ -114,7 +115,7 @@ export const isFormulaCustomizedFamily = atomFamily((formulaId: CharactorStateTy
 export const customizedFormulasState = atom((get) => {
     const formulas = get(customFormulasState);
     return Object.entries(formulas)
-        .filter(([_, formula]) => formula.isActive)
+        .filter(([, formula]) => formula.isActive)
         .reduce((acc, [key, formula]) => {
             acc[key as CharactorStateType] = formula;
             return acc;
@@ -123,13 +124,13 @@ export const customizedFormulasState = atom((get) => {
 
 // カスタム計算式のリセット
 export const resetCustomFormulaFamily = atomFamily((formulaId: CharactorStateType) => {
-    return atom(null, (_, set) => {
+    return atom(null, (_get, set) => {
         set(customFormulaStateFamily(formulaId), null);
     });
 });
 
 // 全てのカスタム計算式のリセット
-export const resetAllCustomFormulasState = atom(null, (_, set) => {
+export const resetAllCustomFormulasState = atom(null, (_get, set) => {
     set(customFormulasState, {} as Record<CharactorStateType, Formula>);
 });
 
@@ -157,7 +158,12 @@ export const exportCustomFormulasState = atom((get) => {
     };
 });
 
-export const importCustomFormulasState = atom(null, (_, set, importData: any) => {
+type CustomFormulaImportData = {
+    version?: number;
+    formulas?: Record<CharactorStateType, Formula>;
+};
+
+export const importCustomFormulasState = atom(null, (_get, set, importData: CustomFormulaImportData) => {
     try {
         if (importData.version === 1 && importData.formulas) {
             set(customFormulasState, importData.formulas);

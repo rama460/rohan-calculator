@@ -34,6 +34,9 @@ export const characterValueKeys = [
 
 export type CharacterValueKey = typeof characterValueKeys[number];
 
+export const charactorStateNames = characterValueKeys;
+export type CharactorStateType = CharacterValueKey;
+
 export const equipmentSlotKeys = [
     "helmet",
     "gauntlet",
@@ -77,4 +80,4 @@ export const equipmentSlotKeys = [
 ] as const;
 
 export type EquipmentSlotKey = typeof equipmentSlotKeys[number];
-
+export type EquipmentMap<T> = Record<EquipmentSlotKey, T>;

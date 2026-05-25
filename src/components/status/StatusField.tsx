@@ -1,17 +1,16 @@
 import { Box, TextField, Typography, Chip } from "@mui/material";
 import React from "react";
 import { useAtom, useAtomValue } from "jotai";
-import { StatusType } from "../../modules/state/statuses";
 import {
     compatibleAllocatedStatusAtomFamily,
     compatibleIsFormulaCustomizedFamily,
     compatibleMetaStatusAtomFamily,
 } from "../../modules/state/compat";
-import { CharacterValueKey } from "../../modules/character/constants";
+import { CharacterStatusKey, CharacterValueKey } from "../../modules/character/constants";
 import { activeCharacterValueAtomFamily } from "../../modules/state/appState";
 
 interface StatusFieldProps {
-    name: StatusType;
+    name: CharacterStatusKey;
     displayName: string;
 }
 

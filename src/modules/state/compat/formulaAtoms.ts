@@ -1,7 +1,7 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { DEFAULT_FORMULAS, DEFAULT_FORMULA_DESCRIPTIONS } from "../../../static/default-formulas";
-import { CharactorStateType } from "../charactor";
+import { CharactorStateType } from "../../character/constants";
 import { customFormulaStateFamily, customFormulasState, Formula } from "../custom-formulas";
 
 export const compatibleCustomFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>

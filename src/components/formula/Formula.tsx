@@ -34,7 +34,7 @@ import {
     Security as DefenseIcon,
     Speed as SpeedIcon
 } from '@mui/icons-material';
-import { CharactorStateType } from '../../modules/state/charactor';
+import { CharactorStateType } from '../../modules/character/constants';
 import { FormulaEditor } from './FormulaEditor';
 import { useAtomValue, useSetAtom } from 'jotai';
 import {
