@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
     Dialog,
     DialogTitle,
@@ -21,9 +21,21 @@ import {
     Help as HelpIcon,
 } from '@mui/icons-material';
 import { useAtom, useAtomValue } from 'jotai';
-import { customFormulaStateFamily, formulaStateFamily, Formula } from '../../modules/state/custom-formulas';
+import { formulaStateFamily, Formula } from '../../modules/state/custom-formulas';
+import { compatibleCustomFormulaAtomFamily } from '../../modules/state/legacyCompatibleAtoms';
 import { CharactorStateType } from '../../modules/state/charactor';
 import { validateFormula, FormulaContext } from '../../modules/formula/formula-validator';
+
+type MonacoApi = {
+    languages: {
+        register: (language: { id: string }) => void;
+        setMonarchTokensProvider: (languageId: string, provider: unknown) => void;
+    };
+    editor: {
+        defineTheme: (themeName: string, themeData: unknown) => void;
+        setTheme: (themeName: string) => void;
+    };
+};
 
 interface FormulaEditorProps {
     open: boolean;
@@ -40,14 +52,13 @@ export const FormulaEditor: React.FC<FormulaEditorProps> = ({
     initialFormula,
     statusType,
 }) => {
-    const [customFormula, setCustomFormula] = useAtom(customFormulaStateFamily(statusType));
+    const [customFormula, setCustomFormula] = useAtom(compatibleCustomFormulaAtomFamily(statusType));
 
     // 初期値の決定：custom formulaがあればそれを使用、なければinitialFormulaを使用
     const [formula, setFormula] = useState(customFormula?.formula || initialFormula);
     const [name, setName] = useState(customFormula?.name || formulaName);
     const [description, setDescription] = useState(customFormula?.description || '');
     const [activeTab, setActiveTab] = useState(0);
-    const editorRef = useRef<any>(null);
 
     // エディターの高さを動的に計算
     const calculateEditorHeight = useMemo(() => {
@@ -68,9 +79,7 @@ export const FormulaEditor: React.FC<FormulaEditorProps> = ({
     }, [open, customFormula, initialFormula, formulaName]);
 
     // Monaco Editorの初期化設定
-    const handleEditorDidMount = (editor: any, monaco: any) => {
-        editorRef.current = editor;
-
+    const handleEditorDidMount = (_editor: unknown, monaco: MonacoApi) => {
         // カスタム言語の定義
         monaco.languages.register({ id: 'rohan-formula' });
 

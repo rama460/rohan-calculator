@@ -37,7 +37,12 @@ import {
 import { CharactorStateType } from '../../modules/state/charactor';
 import { FormulaEditor } from './FormulaEditor';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { isFormulaCustomizedFamily, resetCustomFormulaFamily, customizedFormulasState, customFormulaStateFamily, customFormulasState } from '../../modules/state/custom-formulas';
+import {
+    compatibleCustomFormulaAtomFamily,
+    compatibleCustomFormulasState,
+    compatibleIsFormulaCustomizedFamily,
+    resetCompatibleCustomFormulaFamily,
+} from '../../modules/state/legacyCompatibleAtoms';
 import { DEFAULT_FORMULAS } from '../../static/default-formulas';
 import { BuiltinOptions } from '../../static/options';
 import { Formula as FormulaType } from '../../modules/state/custom-formulas';
@@ -78,8 +83,8 @@ export const Formula: React.FC = () => {
     } | null>(null);
 
     // カスタム計算式の状態
-    const customizedFormulas = useAtomValue(customizedFormulasState);
-    const setCustomFormulas = useSetAtom(customFormulasState);
+    const customizedFormulas = useAtomValue(compatibleCustomFormulasState);
+    const setCustomFormulas = useSetAtom(compatibleCustomFormulasState);
     const [tabValue, setTabValue] = useState(0);
 
     // すべてのカスタム式をリセット
@@ -216,8 +221,8 @@ export const Formula: React.FC = () => {
         formulaName: string;
         originalFormula: string;
     }> = ({ formulaId, formulaName, originalFormula }) => {
-        const isCustomized = useAtomValue(isFormulaCustomizedFamily(formulaId));
-        const resetFormula = useSetAtom(resetCustomFormulaFamily(formulaId));
+        const isCustomized = useAtomValue(compatibleIsFormulaCustomizedFamily(formulaId));
+        const resetFormula = useSetAtom(resetCompatibleCustomFormulaFamily(formulaId));
 
         return (
             <Box display="flex" gap={0.5} alignItems="center">
@@ -266,7 +271,7 @@ export const Formula: React.FC = () => {
             otherVariables: string[];
         };
     }> = ({ formulaId, formulaName, originalFormula, components }) => {
-        const customFormula = useAtomValue(customFormulaStateFamily(formulaId));
+        const customFormula = useAtomValue(compatibleCustomFormulaAtomFamily(formulaId));
 
         // custom formulaがあればそれを使用、なければoriginalを使用
         const displayFormula = customFormula?.formula || originalFormula;

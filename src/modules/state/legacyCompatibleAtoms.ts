@@ -6,7 +6,7 @@ import { skills, SkillOrigin } from "../../static/skills/skill";
 import { races } from "../../static/races";
 import { getInitialSkillLevelsForJob } from "../../components/skill/skillTreeData";
 import type { BuffLeafState, CharacterBaseState, EquipmentLeafState, OptionMap, ResolvedEquipment, SkillLevelMap } from "../character/types";
-import { equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
+import { CharacterValueKey, equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
 import { resolveEquipment } from "../resolve/resolveEquipment";
 import {
     activeCharacterBaseAtomFamily,
@@ -15,8 +15,13 @@ import {
     activeCharacterMetaStatusAtomFamily,
     activeCharacterEquipmentAtomFamily,
     activeCharacterSkillLevelsAtomFamily,
+    activeCharacterCustomFormulaAtomFamily,
+    updateActiveCharacterAtom,
 } from "./activeCharacterAtoms";
+import { activeCharacterAtom } from "./appState";
 import { baseOptionStateFamily, BaseOptionKeyType, titleNameState } from "./bases";
+import { CharactorStateType } from "./charactor";
+import { customFormulaStateFamily, customFormulasState, Formula } from "./custom-formulas";
 import { equipmentStateFamily, resetAllEquipmentState } from "./items";
 import {
     primaryJobSkillLevelsWithDefaultsAtom,
@@ -245,6 +250,40 @@ export const compatibleUsedSkillPointsAtom = atom((get) => {
     return [...Object.values(primarySkills), ...Object.values(secondarySkills)]
         .reduce((sum, level) => sum + level, 0);
 });
+
+export const compatibleCustomFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>
+    atom(
+        (get) => get(activeCharacterCustomFormulaAtomFamily(formulaId as CharacterValueKey)) ?? null,
+        (_, set, formula: Formula | null) => {
+            set(activeCharacterCustomFormulaAtomFamily(formulaId as CharacterValueKey), formula ?? undefined);
+            set(customFormulaStateFamily(formulaId), formula);
+        }
+    )
+);
+
+export const compatibleCustomFormulasState = atom(
+    (get) => get(activeCharacterAtom).customFormulas as Record<CharactorStateType, Formula>,
+    (_, set, formulas: Record<CharactorStateType, Formula>) => {
+        set(updateActiveCharacterAtom, (character) => ({
+            ...character,
+            customFormulas: formulas as Partial<Record<CharacterValueKey, Formula>>,
+        }));
+        set(customFormulasState, formulas);
+    }
+);
+
+export const compatibleIsFormulaCustomizedFamily = atomFamily((formulaId: CharactorStateType) =>
+    atom((get) => {
+        const formula = get(compatibleCustomFormulaAtomFamily(formulaId));
+        return formula !== null && formula.isActive;
+    })
+);
+
+export const resetCompatibleCustomFormulaFamily = atomFamily((formulaId: CharactorStateType) =>
+    atom(null, (_, set) => {
+        set(compatibleCustomFormulaAtomFamily(formulaId), null);
+    })
+);
 
 export const resetCompatibleBaseAtom = atom(null, (_, set) => {
     set(compatibleBaseAtomFamily("level"), 115);

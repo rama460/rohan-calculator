@@ -3,9 +3,9 @@ import React from "react";
 import { useAtom, useAtomValue } from "jotai";
 import { StatusType } from "../../modules/state/statuses";
 import { charactorStateFamily } from "../../modules/state/charactor";
-import { isFormulaCustomizedFamily } from "../../modules/state/custom-formulas";
 import {
     compatibleAllocatedStatusAtomFamily,
+    compatibleIsFormulaCustomizedFamily,
     compatibleMetaStatusAtomFamily,
 } from "../../modules/state/legacyCompatibleAtoms";
 import { CharacterValueKey } from "../../modules/character/constants";
@@ -20,7 +20,7 @@ export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) =
     const [meta, setMeta] = useAtom(compatibleMetaStatusAtomFamily(name));
     const valueKey = `__${name}` as CharacterValueKey;
     const total = useAtomValue(charactorStateFamily(valueKey));
-    const isCustomized = useAtomValue(isFormulaCustomizedFamily(valueKey));
+    const isCustomized = useAtomValue(compatibleIsFormulaCustomizedFamily(valueKey));
 
     const handleBaseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBase(Number(event.target.value));
