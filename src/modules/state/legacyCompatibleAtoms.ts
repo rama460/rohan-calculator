@@ -1,12 +1,12 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
-import { getInitialBaseOtions, itemTemplates } from "../../static/items";
 import type { Item } from "../../static/items";
 import { skills, SkillOrigin } from "../../static/skills/skill";
 import { races } from "../../static/races";
 import { getInitialSkillLevelsForJob } from "../../components/skill/skillTreeData";
-import type { BuffLeafState, CharacterBaseState, EquipmentLeafState, OptionMap, ResolvedEquipment, SkillLevelMap } from "../character/types";
+import type { BuffLeafState, CharacterBaseState, ResolvedEquipment, SkillLevelMap } from "../character/types";
 import { CharacterValueKey, equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
+import { normalizeEquipmentItem } from "../normalize";
 import { resolveEquipment } from "../resolve/resolveEquipment";
 import {
     activeCharacterBaseAtomFamily,
@@ -117,38 +117,6 @@ export const resetCompatibleStatusAtom = atom(null, (_, set) => {
     });
 });
 
-const withoutUnchangedOptions = (options: OptionMap, staticOptions: OptionMap): OptionMap => (
-    Object.fromEntries(
-        Object.entries(options).filter(([key, value]) => staticOptions[key as keyof OptionMap] !== value)
-    ) as OptionMap
-);
-
-const toEquipmentLeafState = (
-    item: Item,
-    slot: EquipmentSlotKey,
-    raceid: number,
-    jobid: number
-): EquipmentLeafState | undefined => {
-    const templates = slot === "shield" && item.type ? itemTemplates.weapon : itemTemplates[slot];
-    const template = templates.find((candidate) => candidate.name === item.name);
-    if (!template) {
-        return undefined;
-    }
-
-    const enchantLevel = item.enchantLevel ?? 0;
-    const staticBaseOptions = getInitialBaseOtions(template, raceid, jobid, enchantLevel);
-    const baseOverrides = withoutUnchangedOptions(item.baseOptions, staticBaseOptions);
-    const templateId = slot === "shield" && item.type ? -(1 + template.id) : template.id;
-
-    return {
-        templateId,
-        ...(enchantLevel > 0 ? { enchantLevel } : {}),
-        ...(Object.keys(baseOverrides).length > 0 ? { baseOverrides } : {}),
-        ...(Object.keys(item.additionalOptions).length > 0 ? { additionalOptions: item.additionalOptions } : {}),
-        ...(Object.keys(item.craftedOptions).length > 0 ? { craftedOptions: item.craftedOptions } : {}),
-    };
-};
-
 const toItem = (equipment: ResolvedEquipment): Item => {
     const item: Item = {
         name: equipment.template.name,
@@ -185,7 +153,7 @@ export const compatibleEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey)
         },
         (get, set, item: Item | undefined) => {
             const equipment = item
-                ? toEquipmentLeafState(
+                ? normalizeEquipmentItem(
                     item,
                     slot,
                     Number(get(activeCharacterBaseAtomFamily("raceid"))),
