@@ -9,7 +9,6 @@ import {
     activeCharacterBaseAtomFamily,
     activeCharacterEquipmentAtomFamily,
 } from "../activeCharacterAtoms";
-import { equipmentStateFamily, resetAllEquipmentState } from "../items";
 
 const toItem = (equipment: ResolvedEquipment): Item => {
     const item: Item = {
@@ -55,7 +54,6 @@ export const compatibleEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey)
                 )
                 : undefined;
             set(activeCharacterEquipmentAtomFamily(slot), equipment);
-            set(equipmentStateFamily(slot), item);
         }
     )
 );
@@ -86,8 +84,7 @@ export const compatibleEquipmentSynergyCountAtomFamily = atomFamily((slot: Equip
     })
 );
 
-export const resetCompatibleEquipmentAtom = atom(null, (_, set) => {
-    set(resetAllEquipmentState);
+export const resetCompatibleEquipmentAtom = atom(null, (_get, set) => {
     equipmentSlotKeys.forEach((slot) => {
         set(activeCharacterEquipmentAtomFamily(slot), undefined);
     });

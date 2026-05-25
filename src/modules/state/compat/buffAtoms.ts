@@ -2,9 +2,8 @@ import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { skills, SkillOrigin } from "../../../static/skills/skill";
 import type { BuffLeafState } from "../../character/types";
-import { normalizeBuffState } from "../../normalize";
+import { BuffState, normalizeBuffState } from "../../normalize";
 import { activeCharacterBuffsAtomFamily } from "../activeCharacterAtoms";
-import { BuffState, buffStateFamily } from "../skills";
 
 const toBuffState = (buff: BuffLeafState): BuffState | undefined => {
     const skill = skills[buff.skillId];
@@ -29,7 +28,6 @@ export const compatibleBuffsAtomFamily = atomFamily((origin: SkillOrigin) =>
                 const nextBuff = normalizeBuffState(buff);
                 return nextBuff ? [nextBuff] : [];
             }));
-            set(buffStateFamily(origin), buffs);
         }
     )
 );

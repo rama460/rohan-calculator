@@ -5,24 +5,22 @@ import {
     activeCharacterAllocatedStatusAtomFamily,
     activeCharacterMetaStatusAtomFamily,
 } from "../activeCharacterAtoms";
-import { baseStatusState, metaStatusState, resetAllStatusState, StatusType } from "../statuses";
+import { characterStatusNames, CharacterStatusKey } from "../../character/constants";
 
-export const compatibleAllocatedStatusAtomFamily = atomFamily((key: StatusType) =>
+export const compatibleAllocatedStatusAtomFamily = atomFamily((key: CharacterStatusKey) =>
     atom(
         (get) => get(activeCharacterAllocatedStatusAtomFamily(key)),
         (_, set, value: number) => {
             set(activeCharacterAllocatedStatusAtomFamily(key), value);
-            set(baseStatusState(key), value);
         }
     )
 );
 
-export const compatibleMetaStatusAtomFamily = atomFamily((key: StatusType) =>
+export const compatibleMetaStatusAtomFamily = atomFamily((key: CharacterStatusKey) =>
     atom(
         (get) => get(activeCharacterMetaStatusAtomFamily(key)),
         (_, set, value: number) => {
             set(activeCharacterMetaStatusAtomFamily(key), value);
-            set(metaStatusState(key), value);
         }
     )
 );
@@ -47,8 +45,7 @@ export const compatibleRemainingPointsAtom = atom((get) => {
 });
 
 export const resetCompatibleStatusAtom = atom(null, (_, set) => {
-    set(resetAllStatusState);
-    (["strength", "vitality", "dexterity", "intelligence", "agility", "mentality"] as const).forEach((status) => {
+    characterStatusNames.forEach((status) => {
         set(activeCharacterAllocatedStatusAtomFamily(status), 0);
         set(activeCharacterMetaStatusAtomFamily(status), 0);
     });

@@ -1,7 +1,7 @@
 import { atom, useAtom } from "jotai";
 import { atomFamily, atomWithStorage, RESET } from "jotai/utils";
 import { Item } from "../../static/items";
-import { BuffState } from "./skills";
+import { BuffState } from "../normalize";
 import {
     compatibleAllocatedStatusAtomFamily,
     compatibleBaseAtomFamily,

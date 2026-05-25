@@ -9,6 +9,8 @@ export const characterStatusNames = [
 
 export type CharacterStatusKey = typeof characterStatusNames[number];
 
+export type BaseOptionKeyType = "level" | "heroLevel" | "raceid" | "jobid";
+
 export const characterValueKeys = [
     "__strength",
     "__vitality",

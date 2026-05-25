@@ -1,6 +1,10 @@
 import { skills } from "../../static/skills/skill";
 import type { BuffLeafState } from "../character/types";
-import type { BuffState } from "../state/skills";
+
+export type BuffState = {
+    name: string;
+    level: number;
+};
 
 export const normalizeBuffState = (buff: BuffState): BuffLeafState | undefined => {
     const skillId = skills.findIndex((skill) => skill.name === buff.name);
