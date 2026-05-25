@@ -60,6 +60,32 @@ export const compatibleEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey)
     )
 );
 
+export const compatibleEquipmentSynergyCountAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
+    atom<number>((get) => {
+        const currentEquipment = resolveEquipment(
+            slot,
+            get(activeCharacterEquipmentAtomFamily(slot)),
+            Number(get(activeCharacterBaseAtomFamily("raceid"))),
+            Number(get(activeCharacterBaseAtomFamily("jobid")))
+        );
+
+        const synergyKey = currentEquipment?.template.synergyKey;
+        if (!synergyKey) {
+            return 0;
+        }
+
+        return equipmentSlotKeys.filter((candidateSlot) => {
+            const equipment = resolveEquipment(
+                candidateSlot,
+                get(activeCharacterEquipmentAtomFamily(candidateSlot)),
+                Number(get(activeCharacterBaseAtomFamily("raceid"))),
+                Number(get(activeCharacterBaseAtomFamily("jobid")))
+            );
+            return equipment?.template.synergyKey === synergyKey;
+        }).length;
+    })
+);
+
 export const resetCompatibleEquipmentAtom = atom(null, (_, set) => {
     set(resetAllEquipmentState);
     equipmentSlotKeys.forEach((slot) => {

@@ -4,12 +4,12 @@ import StatusField from "./StatusField";
 import React from "react";
 import StatusFieldTitle from "./StatusFieldTitle";
 import { useAtomValue } from "jotai";
-import { remainingPointsState } from "../../modules/state/statuses";
+import { compatibleRemainingPointsAtom } from "../../modules/state/compat";
 
 
-export const StatusPanel: React.FC = ({ }) => {
+export const StatusPanel: React.FC = () => {
     console.log("render StatusPanel");
-    const remainingPoints = useAtomValue(remainingPointsState);
+    const remainingPoints = useAtomValue(compatibleRemainingPointsAtom);
 
     return (
         <>

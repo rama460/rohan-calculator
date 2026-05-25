@@ -5,6 +5,7 @@ export {
 export { compatibleBuffsAtomFamily } from "./buffAtoms";
 export {
     compatibleEquipmentAtomFamily,
+    compatibleEquipmentSynergyCountAtomFamily,
     resetCompatibleEquipmentAtom,
 } from "./equipmentAtoms";
 export {
@@ -25,5 +26,6 @@ export {
 export {
     compatibleAllocatedStatusAtomFamily,
     compatibleMetaStatusAtomFamily,
+    compatibleRemainingPointsAtom,
     resetCompatibleStatusAtom,
 } from "./statusAtoms";
