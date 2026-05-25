@@ -27,7 +27,7 @@ import { costumes, glasses, earrings, hats, ItemTemplate, sortItemTemplatesForDi
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import { EquipmentIconButton } from '../status/EquipmentIconButton';
 import { useAtomValue } from 'jotai';
-import { compatibleEquipmentAtomFamily } from '../../modules/state/compat';
+import { uiEquipmentAtomFamily } from '../../modules/state/ui';
 import { PageContainer } from '../common/PageContainer';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 
@@ -163,7 +163,7 @@ const displayEarrings = sortItemTemplatesForDisplay(earrings);
 const displayHats = sortItemTemplatesForDisplay(hats);
 
 const SeriesComparisonTable: React.FC = () => {
-    const equippedCostume = useAtomValue(compatibleEquipmentAtomFamily('costume'));
+    const equippedCostume = useAtomValue(uiEquipmentAtomFamily('costume'));
 
     const buildSeriesData = (): SeriesData[] => {
         const seriesMap = new Map<string, SeriesData>();
@@ -555,7 +555,7 @@ const ParameterComparisonTable: React.FC = () => {
     };
 
     // 装備されたコスチュームの情報を取得
-    const equippedCostume = useAtomValue(compatibleEquipmentAtomFamily('costume'));
+    const equippedCostume = useAtomValue(uiEquipmentAtomFamily('costume'));
 
     // デバッグ: 装備されたコスチュームの情報を確認
     React.useEffect(() => {

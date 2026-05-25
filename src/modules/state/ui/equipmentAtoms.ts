@@ -33,7 +33,7 @@ const toItem = (equipment: ResolvedEquipment): Item => {
     return item;
 };
 
-export const compatibleEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
+export const uiEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
     atom(
         (get) => {
             const equipment = resolveEquipment(
@@ -58,7 +58,7 @@ export const compatibleEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey)
     )
 );
 
-export const compatibleEquipmentSynergyCountAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
+export const uiEquipmentSynergyCountAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
     atom<number>((get) => {
         const currentEquipment = resolveEquipment(
             slot,
@@ -84,7 +84,7 @@ export const compatibleEquipmentSynergyCountAtomFamily = atomFamily((slot: Equip
     })
 );
 
-export const resetCompatibleEquipmentAtom = atom(null, (_get, set) => {
+export const resetUiEquipmentAtom = atom(null, (_get, set) => {
     equipmentSlotKeys.forEach((slot) => {
         set(activeCharacterEquipmentAtomFamily(slot), undefined);
     });

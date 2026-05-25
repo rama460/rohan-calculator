@@ -23,9 +23,9 @@ import {
 import { useAtom, useAtomValue } from 'jotai';
 import { Formula } from '../../modules/state/custom-formulas';
 import {
-    compatibleCustomFormulaAtomFamily,
-    compatibleFormulaAtomFamily,
-} from '../../modules/state/compat';
+    uiCustomFormulaAtomFamily,
+    uiFormulaAtomFamily,
+} from '../../modules/state/ui';
 import { CharactorStateType } from '../../modules/character/constants';
 import { validateFormula, FormulaContext } from '../../modules/formula/formula-validator';
 
@@ -55,7 +55,7 @@ export const FormulaEditor: React.FC<FormulaEditorProps> = ({
     initialFormula,
     statusType,
 }) => {
-    const [customFormula, setCustomFormula] = useAtom(compatibleCustomFormulaAtomFamily(statusType));
+    const [customFormula, setCustomFormula] = useAtom(uiCustomFormulaAtomFamily(statusType));
 
     // 初期値の決定：custom formulaがあればそれを使用、なければinitialFormulaを使用
     const [formula, setFormula] = useState(customFormula?.formula || initialFormula);
@@ -133,26 +133,26 @@ export const FormulaEditor: React.FC<FormulaEditorProps> = ({
     };
 
     // 中間変数の数式を個別に取得
-    const strengthFormula = useAtomValue(compatibleFormulaAtomFamily('__strength'));
-    const vitalityFormula = useAtomValue(compatibleFormulaAtomFamily('__vitality'));
-    const dexterityFormula = useAtomValue(compatibleFormulaAtomFamily('__dexterity'));
-    const intelligenceFormula = useAtomValue(compatibleFormulaAtomFamily('__intelligence'));
-    const agilityFormula = useAtomValue(compatibleFormulaAtomFamily('__agility'));
-    const mentalityFormula = useAtomValue(compatibleFormulaAtomFamily('__mentality'));
-    const hitPointFormula = useAtomValue(compatibleFormulaAtomFamily('__hitPoint'));
-    const magicPointFormula = useAtomValue(compatibleFormulaAtomFamily('__magicPoint'));
-    const meleeAttackFormula = useAtomValue(compatibleFormulaAtomFamily('__meleeAttack'));
-    const magicAttackFormula = useAtomValue(compatibleFormulaAtomFamily('__magicAttack'));
-    const rangeAttackFormula = useAtomValue(compatibleFormulaAtomFamily('__rangeAttack'));
-    const physicalDefenseFormula = useAtomValue(compatibleFormulaAtomFamily('__physicalDefense'));
-    const magicalDefenseFormula = useAtomValue(compatibleFormulaAtomFamily('__magicalDefense'));
-    const accuracyFormula = useAtomValue(compatibleFormulaAtomFamily('__accuracy'));
-    const dodgingFormula = useAtomValue(compatibleFormulaAtomFamily('__dodging'));
-    const resistanceFormula = useAtomValue(compatibleFormulaAtomFamily('__resistance'));
-    const movementSpeedFormula = useAtomValue(compatibleFormulaAtomFamily('__movementSpeed'));
-    const attackSpeedFormula = useAtomValue(compatibleFormulaAtomFamily('__attackSpeed'));
-    const hitPointRecoveryFormula = useAtomValue(compatibleFormulaAtomFamily('__hitPointRecovery'));
-    const magicPointRecoveryFormula = useAtomValue(compatibleFormulaAtomFamily('__magicPointRecovery'));
+    const strengthFormula = useAtomValue(uiFormulaAtomFamily('__strength'));
+    const vitalityFormula = useAtomValue(uiFormulaAtomFamily('__vitality'));
+    const dexterityFormula = useAtomValue(uiFormulaAtomFamily('__dexterity'));
+    const intelligenceFormula = useAtomValue(uiFormulaAtomFamily('__intelligence'));
+    const agilityFormula = useAtomValue(uiFormulaAtomFamily('__agility'));
+    const mentalityFormula = useAtomValue(uiFormulaAtomFamily('__mentality'));
+    const hitPointFormula = useAtomValue(uiFormulaAtomFamily('__hitPoint'));
+    const magicPointFormula = useAtomValue(uiFormulaAtomFamily('__magicPoint'));
+    const meleeAttackFormula = useAtomValue(uiFormulaAtomFamily('__meleeAttack'));
+    const magicAttackFormula = useAtomValue(uiFormulaAtomFamily('__magicAttack'));
+    const rangeAttackFormula = useAtomValue(uiFormulaAtomFamily('__rangeAttack'));
+    const physicalDefenseFormula = useAtomValue(uiFormulaAtomFamily('__physicalDefense'));
+    const magicalDefenseFormula = useAtomValue(uiFormulaAtomFamily('__magicalDefense'));
+    const accuracyFormula = useAtomValue(uiFormulaAtomFamily('__accuracy'));
+    const dodgingFormula = useAtomValue(uiFormulaAtomFamily('__dodging'));
+    const resistanceFormula = useAtomValue(uiFormulaAtomFamily('__resistance'));
+    const movementSpeedFormula = useAtomValue(uiFormulaAtomFamily('__movementSpeed'));
+    const attackSpeedFormula = useAtomValue(uiFormulaAtomFamily('__attackSpeed'));
+    const hitPointRecoveryFormula = useAtomValue(uiFormulaAtomFamily('__hitPointRecovery'));
+    const magicPointRecoveryFormula = useAtomValue(uiFormulaAtomFamily('__magicPointRecovery'));
 
     // formulaContextを作成
     const formulaContext: FormulaContext = useMemo(() => ({

@@ -17,7 +17,7 @@ const toBuffState = (buff: BuffLeafState): BuffState | undefined => {
     };
 };
 
-export const compatibleBuffsAtomFamily = atomFamily((origin: SkillOrigin) =>
+export const uiBuffsAtomFamily = atomFamily((origin: SkillOrigin) =>
     atom(
         (get) => get(activeCharacterBuffsAtomFamily(origin)).flatMap((buff) => {
             const legacyBuff = toBuffState(buff);

@@ -16,10 +16,10 @@ import {
 } from '@mui/material';
 import { useAtom } from 'jotai';
 import {
-    compatibleBaseAtomFamily,
-    compatibleSkillLevelsWithDefaultsAtomFamily,
-    compatibleUsedSkillPointsAtom,
-} from '../../modules/state/compat';
+    uiBaseAtomFamily,
+    uiSkillLevelsWithDefaultsAtomFamily,
+    uiUsedSkillPointsAtom,
+} from '../../modules/state/ui';
 import { races } from '../../static/races';
 import { skills } from '../../static/skills/skill';
 import { FullSkillTree } from './FullSkillTree';
@@ -31,9 +31,9 @@ import { PageContainer } from '../common/PageContainer';
 
 export const Skill: React.FC = () => {
 
-    const [raceid, setRaceid] = useAtom(compatibleBaseAtomFamily("raceid"));
-    const [jobid, setJobid] = useAtom(compatibleBaseAtomFamily("jobid"));
-    const [characterLevel, setCharacterLevel] = useAtom(compatibleBaseAtomFamily("level"));
+    const [raceid, setRaceid] = useAtom(uiBaseAtomFamily("raceid"));
+    const [jobid, setJobid] = useAtom(uiBaseAtomFamily("jobid"));
+    const [characterLevel, setCharacterLevel] = useAtom(uiBaseAtomFamily("level"));
     const numericRaceId = Number(raceid);
     const numericCharacterLevel = Number(characterLevel || 1);
     // レベルに基づくスキルポイント計算（level - 1、最低0ポイント）
@@ -45,9 +45,9 @@ export const Skill: React.FC = () => {
     const currentSecondaryJob = currentRace.jobs.find(j => j.id !== 0 && j.id === jobid);
 
     // Skill levels using atoms with hash storage
-    const [primaryJobSkillLevels, setPrimaryJobSkillLevels] = useAtom(compatibleSkillLevelsWithDefaultsAtomFamily("primary"));
-    const [secondaryJobSkillLevels, setSecondaryJobSkillLevels] = useAtom(compatibleSkillLevelsWithDefaultsAtomFamily("secondary"));
-    const [usedSkillPoints] = useAtom(compatibleUsedSkillPointsAtom);
+    const [primaryJobSkillLevels, setPrimaryJobSkillLevels] = useAtom(uiSkillLevelsWithDefaultsAtomFamily("primary"));
+    const [secondaryJobSkillLevels, setSecondaryJobSkillLevels] = useAtom(uiSkillLevelsWithDefaultsAtomFamily("secondary"));
+    const [usedSkillPoints] = useAtom(uiUsedSkillPointsAtom);
 
     // 現在の種族のスキル一覧を取得
     const availableSkills = skills.filter(skill =>

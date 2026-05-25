@@ -4,7 +4,7 @@ import { DEFAULT_FORMULAS, DEFAULT_FORMULA_DESCRIPTIONS } from "../../../static/
 import { CharactorStateType } from "../../character/constants";
 import { customFormulaStateFamily, customFormulasState, Formula } from "../custom-formulas";
 
-export const compatibleCustomFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>
+export const uiCustomFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>
     atom(
         (get) => get(customFormulaStateFamily(formulaId)),
         (_, set, formula: Formula | null) => {
@@ -13,9 +13,9 @@ export const compatibleCustomFormulaAtomFamily = atomFamily((formulaId: Characto
     )
 );
 
-export const compatibleFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>
+export const uiFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>
     atom((get): Formula => {
-        const customFormula = get(compatibleCustomFormulaAtomFamily(formulaId));
+        const customFormula = get(uiCustomFormulaAtomFamily(formulaId));
 
         if (customFormula?.isActive) {
             return {
@@ -42,22 +42,22 @@ export const compatibleFormulaAtomFamily = atomFamily((formulaId: CharactorState
     })
 );
 
-export const compatibleCustomFormulasState = atom(
+export const uiCustomFormulasState = atom(
     (get) => get(customFormulasState),
     (_, set, formulas: Record<CharactorStateType, Formula>) => {
         set(customFormulasState, formulas);
     }
 );
 
-export const compatibleIsFormulaCustomizedFamily = atomFamily((formulaId: CharactorStateType) =>
+export const uiIsFormulaCustomizedFamily = atomFamily((formulaId: CharactorStateType) =>
     atom((get) => {
-        const formula = get(compatibleCustomFormulaAtomFamily(formulaId));
+        const formula = get(uiCustomFormulaAtomFamily(formulaId));
         return formula !== null && formula.isActive;
     })
 );
 
-export const resetCompatibleCustomFormulaFamily = atomFamily((formulaId: CharactorStateType) =>
+export const resetUiCustomFormulaFamily = atomFamily((formulaId: CharactorStateType) =>
     atom(null, (_, set) => {
-        set(compatibleCustomFormulaAtomFamily(formulaId), null);
+        set(uiCustomFormulaAtomFamily(formulaId), null);
     })
 );

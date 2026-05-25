@@ -7,7 +7,7 @@ import {
 } from "../activeCharacterAtoms";
 import { characterStatusNames, CharacterStatusKey } from "../../character/constants";
 
-export const compatibleAllocatedStatusAtomFamily = atomFamily((key: CharacterStatusKey) =>
+export const uiAllocatedStatusAtomFamily = atomFamily((key: CharacterStatusKey) =>
     atom(
         (get) => get(activeCharacterAllocatedStatusAtomFamily(key)),
         (_, set, value: number) => {
@@ -16,7 +16,7 @@ export const compatibleAllocatedStatusAtomFamily = atomFamily((key: CharacterSta
     )
 );
 
-export const compatibleMetaStatusAtomFamily = atomFamily((key: CharacterStatusKey) =>
+export const uiMetaStatusAtomFamily = atomFamily((key: CharacterStatusKey) =>
     atom(
         (get) => get(activeCharacterMetaStatusAtomFamily(key)),
         (_, set, value: number) => {
@@ -25,7 +25,7 @@ export const compatibleMetaStatusAtomFamily = atomFamily((key: CharacterStatusKe
     )
 );
 
-export const compatibleRemainingPointsAtom = atom((get) => {
+export const uiRemainingPointsAtom = atom((get) => {
     const level = Number(get(activeCharacterBaseAtomFamily("level")));
     const heroLevel = Number(get(activeCharacterBaseAtomFamily("heroLevel")));
     const used = (["strength", "vitality", "dexterity", "intelligence", "agility", "mentality"] as const)
@@ -44,7 +44,7 @@ export const compatibleRemainingPointsAtom = atom((get) => {
     return 196 + 120 + 240 + (level - 100) * 10 + heroLevel * 10 - used;
 });
 
-export const resetCompatibleStatusAtom = atom(null, (_, set) => {
+export const resetUiStatusAtom = atom(null, (_, set) => {
     characterStatusNames.forEach((status) => {
         set(activeCharacterAllocatedStatusAtomFamily(status), 0);
         set(activeCharacterMetaStatusAtomFamily(status), 0);

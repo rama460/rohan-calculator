@@ -20,7 +20,7 @@ const getDefaultSkillLevels = (
     return getInitialSkillLevelsForJob(job);
 };
 
-export const compatibleSkillLevelsWithDefaultsAtomFamily = atomFamily((type: "primary" | "secondary") =>
+export const uiSkillLevelsWithDefaultsAtomFamily = atomFamily((type: "primary" | "secondary") =>
     atom(
         (get) => {
             const levels = get(activeCharacterSkillLevelsAtomFamily(type));
@@ -40,9 +40,9 @@ export const compatibleSkillLevelsWithDefaultsAtomFamily = atomFamily((type: "pr
     )
 );
 
-export const compatibleUsedSkillPointsAtom = atom((get) => {
-    const primarySkills = get(compatibleSkillLevelsWithDefaultsAtomFamily("primary"));
-    const secondarySkills = get(compatibleSkillLevelsWithDefaultsAtomFamily("secondary"));
+export const uiUsedSkillPointsAtom = atom((get) => {
+    const primarySkills = get(uiSkillLevelsWithDefaultsAtomFamily("primary"));
+    const secondarySkills = get(uiSkillLevelsWithDefaultsAtomFamily("secondary"));
 
     return [...Object.values(primarySkills), ...Object.values(secondarySkills)]
         .reduce((sum, level) => sum + level, 0);

@@ -5,7 +5,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import CharactorContextLoadDialog from "./CharactoContextLoadDialog";
 import CharactorContextSaveDialog from "./CharactoContextSaveDialog";
 import CharactorContextDeleteDialog from "./CharactoContextDeleteDialog";
-import { resetCompatibleCharacterContextAtom } from "../../modules/state/compat";
+import { resetUiCharacterContextAtom } from "../../modules/state/ui";
 
 interface CharactorContextTitleProps {
     index?: number
@@ -17,7 +17,7 @@ export const CharactorContextTitle: React.FC<CharactorContextTitleProps> = ({ in
     const [saveDialogOpen, setSaveDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const names = useAtomValue(contextNames);
-    const resetCharacterContext = useSetAtom(resetCompatibleCharacterContextAtom);
+    const resetCharacterContext = useSetAtom(resetUiCharacterContextAtom);
 
     return (
 

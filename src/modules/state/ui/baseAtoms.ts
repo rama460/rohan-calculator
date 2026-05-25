@@ -4,7 +4,7 @@ import { BaseOptionKeyType } from "../../character/constants";
 import type { CharacterBaseState } from "../../character/types";
 import { activeCharacterBaseAtomFamily } from "../activeCharacterAtoms";
 
-export const compatibleBaseAtomFamily = atomFamily((key: BaseOptionKeyType) =>
+export const uiBaseAtomFamily = atomFamily((key: BaseOptionKeyType) =>
     atom(
         (get) => get(activeCharacterBaseAtomFamily(key)),
         (_, set, value: CharacterBaseState[typeof key]) => {
@@ -13,7 +13,7 @@ export const compatibleBaseAtomFamily = atomFamily((key: BaseOptionKeyType) =>
     )
 );
 
-export const compatibleTitleAtom = atom(
+export const uiTitleAtom = atom(
     (get) => get(activeCharacterBaseAtomFamily("title")),
     (_, set, title: string) => {
         set(activeCharacterBaseAtomFamily("title"), title);

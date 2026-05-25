@@ -6,20 +6,20 @@ import Tooltip from "../common/Tooltip";
 import TitleTooltipContent from "./TitleTooltipContent";
 import { useAtom } from "jotai";
 import {
-    compatibleBaseAtomFamily,
-    compatibleBuffsAtomFamily,
-    compatibleTitleAtom,
-} from "../../modules/state/compat";
+    uiBaseAtomFamily,
+    uiBuffsAtomFamily,
+    uiTitleAtom,
+} from "../../modules/state/ui";
 import { skills } from "../../static/skills/skill";
 
 export const BasePanel: React.FC = () => {
     console.log("render BasePanel");
-    const [level, setLevel] = useAtom(compatibleBaseAtomFamily("level"));
-    const [heroLevel, setHeroLevel] = useAtom(compatibleBaseAtomFamily("heroLevel"));
-    const [raceid, setRaceid] = useAtom(compatibleBaseAtomFamily("raceid"));
-    const [jobid, setJobid] = useAtom(compatibleBaseAtomFamily("jobid"));
-    const [title, setTitle] = useAtom(compatibleTitleAtom);
-    const [buffStatuses, setBuffStatuses] = useAtom(compatibleBuffsAtomFamily("Self"));
+    const [level, setLevel] = useAtom(uiBaseAtomFamily("level"));
+    const [heroLevel, setHeroLevel] = useAtom(uiBaseAtomFamily("heroLevel"));
+    const [raceid, setRaceid] = useAtom(uiBaseAtomFamily("raceid"));
+    const [jobid, setJobid] = useAtom(uiBaseAtomFamily("jobid"));
+    const [title, setTitle] = useAtom(uiTitleAtom);
+    const [buffStatuses, setBuffStatuses] = useAtom(uiBuffsAtomFamily("Self"));
     const numericLevel = Number(level);
     const numericHeroLevel = Number(heroLevel);
     const numericRaceid = Number(raceid);

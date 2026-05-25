@@ -1,13 +1,13 @@
 import Grid from "@mui/material/Grid2";
 import { skills } from "../../static/skills/skill";
 import { useAtomValue } from "jotai";
-import { compatibleBaseAtomFamily } from "../../modules/state/compat";
+import { uiBaseAtomFamily } from "../../modules/state/ui";
 import { BuffGroup } from "./BuffGroup";
 
 export const BuffPanel: React.FC = () => {
     console.log("render BuffPanel");
-    const raceid = Number(useAtomValue(compatibleBaseAtomFamily("raceid")));
-    const jobid = Number(useAtomValue(compatibleBaseAtomFamily("jobid")));
+    const raceid = Number(useAtomValue(uiBaseAtomFamily("raceid")));
+    const jobid = Number(useAtomValue(uiBaseAtomFamily("jobid")));
     const selfBuffs = skills.filter(skill => skill.origin === "Self" && skill.raceid === raceid && (skill.jobid === jobid || skill.jobid === 0));
     const groupBuff = skills.filter(skill => skill.origin === "Group");
     const cashBuff = skills.filter(skill => skill.origin === "Cash");
