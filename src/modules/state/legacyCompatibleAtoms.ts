@@ -3,6 +3,7 @@ import { atomFamily } from "jotai/utils";
 import type { Item } from "../../static/items";
 import { skills, SkillOrigin } from "../../static/skills/skill";
 import { races } from "../../static/races";
+import { DEFAULT_FORMULAS, DEFAULT_FORMULA_DESCRIPTIONS } from "../../static/default-formulas";
 import { getInitialSkillLevelsForJob } from "../../components/skill/skillTreeData";
 import type { BuffLeafState, CharacterBaseState, ResolvedEquipment, SkillLevelMap } from "../character/types";
 import { CharacterValueKey, equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
@@ -215,6 +216,35 @@ export const compatibleCustomFormulaAtomFamily = atomFamily((formulaId: Characto
             set(customFormulaStateFamily(formulaId), formula);
         }
     )
+);
+
+export const compatibleFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>
+    atom((get): Formula => {
+        const customFormula = get(compatibleCustomFormulaAtomFamily(formulaId));
+
+        if (customFormula?.isActive) {
+            return {
+                id: formulaId,
+                name: formulaId,
+                formula: customFormula.formula,
+                isCustom: customFormula.isCustom,
+                isActive: customFormula.isActive,
+                description: customFormula.description,
+                createdAt: customFormula.createdAt,
+                updatedAt: customFormula.updatedAt,
+                version: customFormula.version,
+            };
+        }
+
+        return {
+            id: formulaId,
+            name: formulaId,
+            formula: DEFAULT_FORMULAS[formulaId],
+            isCustom: false,
+            isActive: true,
+            description: DEFAULT_FORMULA_DESCRIPTIONS[formulaId],
+        };
+    })
 );
 
 export const compatibleCustomFormulasState = atom(
