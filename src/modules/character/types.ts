@@ -4,7 +4,6 @@ import { ItemTemplate } from "../../static/items";
 import { Title } from "../../static/titles";
 import { SkillOrigin } from "../../static/skills/skill";
 import { Skill } from "../../static/skills/skill";
-import type { Formula } from "../state/custom-formulas";
 import { CharacterStatusKey, CharacterValueKey, EquipmentSlotKey } from "./constants";
 
 export type CharacterId = string;
@@ -48,7 +47,6 @@ export type CharacterState = {
         primary: SkillLevelMap;
         secondary: SkillLevelMap;
     };
-    customFormulas: Partial<Record<CharacterValueKey, Formula>>;
 };
 
 export type AppState = {

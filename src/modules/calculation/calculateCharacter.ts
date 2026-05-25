@@ -9,7 +9,7 @@ import type { Formula } from "../state/custom-formulas";
 
 export const calculateCharacter = (
     character: CharacterState,
-    customFormulas: Partial<Record<CharacterValueKey, Formula>> = character.customFormulas
+    customFormulas: Partial<Record<CharacterValueKey, Formula>> = {}
 ): CalculatedCharacter => {
     const resolvedCharacter = resolveCharacter(character);
     const optionSources = collectOptionSources(resolvedCharacter);

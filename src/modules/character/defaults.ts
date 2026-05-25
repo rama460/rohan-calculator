@@ -1,6 +1,6 @@
 import { SKillOriginNames } from "../../static/skills/skill";
 import { AppState, BuffLeafState, CharacterId, CharacterState } from "./types";
-import { characterStatusNames, characterValueKeys, equipmentSlotKeys } from "./constants";
+import { characterStatusNames, equipmentSlotKeys } from "./constants";
 
 export const DEFAULT_CHARACTER_ID: CharacterId = "main";
 
@@ -44,9 +44,6 @@ export const createDefaultCharacterState = (
             primary: {},
             secondary: {},
         },
-        customFormulas: Object.fromEntries(
-            characterValueKeys.map((key) => [key, undefined])
-        ) as CharacterState["customFormulas"],
     };
 };
 

@@ -238,7 +238,6 @@ export const deserializeCharacterState = (character: SerializedCharacterState): 
             primary: character.k.p,
             secondary: character.k.s,
         },
-        customFormulas: {},
     };
 };
 

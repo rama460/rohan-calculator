@@ -6,7 +6,7 @@ import { CharacterState, ResolvedEquipment } from "../../src/modules/character/t
 import { resolveCharacter } from "../../src/modules/resolve";
 import { baseOptionStateFamily, titleNameState } from "../../src/modules/state/bases";
 import { charactorStateFamily, CharactorStateType } from "../../src/modules/state/charactor";
-import { customFormulaStateFamily } from "../../src/modules/state/custom-formulas";
+import { customFormulaStateFamily, Formula } from "../../src/modules/state/custom-formulas";
 import { equipmentStateFamily, EquipmentSlotType } from "../../src/modules/state/items";
 import { buffStateFamily } from "../../src/modules/state/skills";
 import { baseStatusState, metaStatusState, StatusType } from "../../src/modules/state/statuses";
@@ -24,6 +24,8 @@ export type CalculationComparisonResult = {
     currentValues: Record<CharacterValueKey, number>;
     differences: CalculationComparisonValue[];
 };
+
+export type CustomFormulaMap = Partial<Record<CharacterValueKey, Formula>>;
 
 const toLegacyItem = (equipment: ResolvedEquipment): Item => {
     const item: Item = {
@@ -50,7 +52,8 @@ const toLegacyItem = (equipment: ResolvedEquipment): Item => {
 
 const applyCharacterToLegacyStore = (
     store: ReturnType<typeof createStore>,
-    character: CharacterState
+    character: CharacterState,
+    customFormulas: CustomFormulaMap = {}
 ): void => {
     store.set(titleNameState, character.base.title);
     store.set(baseOptionStateFamily("level"), character.base.level);
@@ -84,7 +87,7 @@ const applyCharacterToLegacyStore = (
         );
     });
 
-    Object.entries(character.customFormulas).forEach(([formulaId, formula]) => {
+    Object.entries(customFormulas).forEach(([formulaId, formula]) => {
         if (formula) {
             store.set(customFormulaStateFamily(formulaId as CharactorStateType), formula);
         }
@@ -92,10 +95,11 @@ const applyCharacterToLegacyStore = (
 };
 
 export const calculateLegacyCharacter = (
-    character: CharacterState
+    character: CharacterState,
+    customFormulas: CustomFormulaMap = {}
 ): Record<CharacterValueKey, number> => {
     const store = createStore();
-    applyCharacterToLegacyStore(store, character);
+    applyCharacterToLegacyStore(store, character, customFormulas);
 
     return Object.fromEntries(
         characterValueKeys.map((key) => [
@@ -106,10 +110,11 @@ export const calculateLegacyCharacter = (
 };
 
 export const compareLegacyCalculation = (
-    character: CharacterState
+    character: CharacterState,
+    customFormulas: CustomFormulaMap = {}
 ): CalculationComparisonResult => {
-    const legacyValues = calculateLegacyCharacter(character);
-    const currentValues = calculateCharacter(character).values;
+    const legacyValues = calculateLegacyCharacter(character, customFormulas);
+    const currentValues = calculateCharacter(character, customFormulas).values;
     const differences = characterValueKeys.flatMap((key): CalculationComparisonValue[] => {
         const legacy = legacyValues[key];
         const current = currentValues[key];
@@ -129,4 +134,3 @@ export const compareLegacyCalculation = (
         differences,
     };
 };
-
