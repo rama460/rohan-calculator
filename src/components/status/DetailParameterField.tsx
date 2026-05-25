@@ -1,14 +1,14 @@
 import { Box, TextField, Typography } from "@mui/material";
 import { useAtomValue } from "jotai";
 import { BuiltinOptionKeyType, BuiltinOptions, getDisplayOptionName } from "../../static/options";
-import { allOptionAggregorStateFamily } from "../../modules/state/options";
+import { calculatedActiveCharacterAtom } from "../../modules/state/appState";
 
 interface DetailParameterFieldProps {
     name: BuiltinOptionKeyType;
 }
 
 export const DetailParameterField: React.FC<DetailParameterFieldProps> = ({ name }) => {
-    const value = useAtomValue(allOptionAggregorStateFamily(name));
+    const value = useAtomValue(calculatedActiveCharacterAtom).aggregatedOptions[name] ?? 0;
     const option = BuiltinOptions[name]
     return (
         <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={2}>
