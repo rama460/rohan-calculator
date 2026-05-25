@@ -61,7 +61,7 @@ import {
     t_talismans,
     k_talismans,
     l_talismans,
-    sortItemTemplatesForDisplay
+    getItemTemplatesForDisplay
 } from '../../static/items';
 import { WeaponTemplate, ItemTemplate } from '../../static/items';
 import { RaceNameOrTrinityJobName } from '../../static/races';
@@ -97,7 +97,7 @@ export const ItemDatabase: React.FC = () => {
     // 全アイテムデータを統合
     const allItems = useMemo(() => {
         // タリスマンを統合
-        const allTalismans = sortItemTemplatesForDisplay([
+        const allTalismans = getItemTemplatesForDisplay([
             ...b_talismans,
             ...j_talismans,
             ...h_talismans,
@@ -116,19 +116,19 @@ export const ItemDatabase: React.FC = () => {
         ]);
 
         const itemsWithCategory = [
-            ...sortItemTemplatesForDisplay(weapons).map(item => ({ ...item, category: 'weapon' as const })),
-            ...sortItemTemplatesForDisplay(shields).map(item => ({ ...item, category: 'shield' as const })),
-            ...sortItemTemplatesForDisplay(helmets).map(item => ({ ...item, category: 'helmet' as const })),
-            ...sortItemTemplatesForDisplay(gauntlets).map(item => ({ ...item, category: 'gauntlet' as const })),
-            ...sortItemTemplatesForDisplay(tunics).map(item => ({ ...item, category: 'tunic' as const })),
-            ...sortItemTemplatesForDisplay(leggings).map(item => ({ ...item, category: 'legging' as const })),
-            ...sortItemTemplatesForDisplay(boots).map(item => ({ ...item, category: 'boot' as const })),
-            ...sortItemTemplatesForDisplay(arrows).map(item => ({ ...item, category: 'arrow' as const })),
-            ...sortItemTemplatesForDisplay(glasses).map(item => ({ ...item, category: 'glasses' as const })),
-            ...sortItemTemplatesForDisplay(hats).map(item => ({ ...item, category: 'hat' as const })),
-            ...sortItemTemplatesForDisplay(earrings).map(item => ({ ...item, category: 'earring' as const })),
-            ...sortItemTemplatesForDisplay(costumes).map(item => ({ ...item, category: 'costume' as const })),
-            ...sortItemTemplatesForDisplay(accessories).map(item => ({ ...item, category: 'accessory' as const })),
+            ...getItemTemplatesForDisplay(weapons).map(item => ({ ...item, category: 'weapon' as const })),
+            ...getItemTemplatesForDisplay(shields).map(item => ({ ...item, category: 'shield' as const })),
+            ...getItemTemplatesForDisplay(helmets).map(item => ({ ...item, category: 'helmet' as const })),
+            ...getItemTemplatesForDisplay(gauntlets).map(item => ({ ...item, category: 'gauntlet' as const })),
+            ...getItemTemplatesForDisplay(tunics).map(item => ({ ...item, category: 'tunic' as const })),
+            ...getItemTemplatesForDisplay(leggings).map(item => ({ ...item, category: 'legging' as const })),
+            ...getItemTemplatesForDisplay(boots).map(item => ({ ...item, category: 'boot' as const })),
+            ...getItemTemplatesForDisplay(arrows).map(item => ({ ...item, category: 'arrow' as const })),
+            ...getItemTemplatesForDisplay(glasses).map(item => ({ ...item, category: 'glasses' as const })),
+            ...getItemTemplatesForDisplay(hats).map(item => ({ ...item, category: 'hat' as const })),
+            ...getItemTemplatesForDisplay(earrings).map(item => ({ ...item, category: 'earring' as const })),
+            ...getItemTemplatesForDisplay(costumes).map(item => ({ ...item, category: 'costume' as const })),
+            ...getItemTemplatesForDisplay(accessories).map(item => ({ ...item, category: 'accessory' as const })),
             ...allTalismans.map(item => ({ ...item, category: 'talisman' as const }))
         ];
         return itemsWithCategory;

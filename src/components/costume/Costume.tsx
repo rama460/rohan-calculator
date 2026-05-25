@@ -23,7 +23,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import { costumes, glasses, earrings, hats, ItemTemplate, sortItemTemplatesForDisplay } from '../../static/items';
+import { costumes, glasses, earrings, hats, ItemTemplate, getItemTemplatesForDisplay } from '../../static/items';
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import { EquipmentIconButton } from '../status/EquipmentIconButton';
 import { useAtomValue } from 'jotai';
@@ -157,10 +157,10 @@ interface SeriesData {
     synergyEffects: { [key: number]: { [key: string]: number } };
 }
 
-const displayCostumes = sortItemTemplatesForDisplay(costumes);
-const displayGlasses = sortItemTemplatesForDisplay(glasses);
-const displayEarrings = sortItemTemplatesForDisplay(earrings);
-const displayHats = sortItemTemplatesForDisplay(hats);
+const displayCostumes = getItemTemplatesForDisplay(costumes);
+const displayGlasses = getItemTemplatesForDisplay(glasses);
+const displayEarrings = getItemTemplatesForDisplay(earrings);
+const displayHats = getItemTemplatesForDisplay(hats);
 
 const SeriesComparisonTable: React.FC = () => {
     const equippedCostume = useAtomValue(uiEquipmentAtomFamily('costume'));

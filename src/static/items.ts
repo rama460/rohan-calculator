@@ -151,8 +151,8 @@ import { BuiltinOptionKeyType } from "./options";
 import { RaceNameOrTrinityJobName, races } from "./races";
 
 export type BaseItemTemplate = {
+    // Stable within each equipment slot; used by URL state. Do not reuse.
     id: number;
-    sortOrder?: number;
     name: string;
     icon: string;
     availableRaces?: RaceNameOrTrinityJobName[];
@@ -251,16 +251,7 @@ export type Item = {
 
 export type ItemTemplate = FixedItemTemplate | EnchantableItemTemplate | SetItemTemplate | RaceItemTemplate | RaceEnchantableItemTemplate | BaseItemTemplate;
 
-export const sortItemTemplatesForDisplay = <T extends ItemTemplate>(templates: readonly T[]): T[] => {
-    return templates
-        .map((template, index) => ({ template, index }))
-        .sort((a, b) => {
-            const orderA = a.template.sortOrder ?? a.index;
-            const orderB = b.template.sortOrder ?? b.index;
-            return orderA === orderB ? a.index - b.index : orderA - orderB;
-        })
-        .map(({ template }) => template);
-};
+export const getItemTemplatesForDisplay = <T extends ItemTemplate>(templates: readonly T[]): T[] => [...templates];
 
 export const getInitialBaseOtions = (itemTemplate: ItemTemplate, raceid: number, jobid: number, enchantLevel: number): { [key in BuiltinOptionKeyType]?: number } => {
     let baseOptions = {};

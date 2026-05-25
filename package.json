@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "compare:legacy": "node test/legacy-calculation/runComparison.mjs"
+    "compare:legacy": "node test/legacy-calculation/runComparison.mjs",
+    "validate:items": "node test/static/validateItemTemplateIds.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

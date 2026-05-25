@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react"
-import { ItemTemplate, Item, getInitialBaseOtions, sortItemTemplatesForDisplay } from '../../static/items.ts'
+import { ItemTemplate, Item, getInitialBaseOtions, getItemTemplatesForDisplay } from '../../static/items.ts'
 import { EquipmentOption } from "./EquipmentOption";
 import AddIcon from '@mui/icons-material/Add';
 import { BuiltinOptionKeyType } from "../../static/options.ts";
@@ -41,7 +41,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
     const raceid = Number(useAtomValue(uiBaseAtomFamily("raceid")));
     const jobid = Number(useAtomValue(uiBaseAtomFamily("jobid")));
 
-    const availableItemTemplates = sortItemTemplatesForDisplay(
+    const availableItemTemplates = getItemTemplatesForDisplay(
         itemTemplates.filter((template) => template.availableRaces?.some(
             (r) => (r === races[raceid].name || r === races[raceid].jobs[jobid].name)) ?? true)
     );
