@@ -83,3 +83,49 @@ export const equipmentSlotKeys = [
 
 export type EquipmentSlotKey = typeof equipmentSlotKeys[number];
 export type EquipmentMap<T> = Record<EquipmentSlotKey, T>;
+
+export const equipmentSlotIds: Record<EquipmentSlotKey, number> = {
+    helmet: 0,
+    gauntlet: 1,
+    tunic: 2,
+    leggings: 3,
+    boots: 4,
+    weapon: 5,
+    shield: 6,
+    arrow: 7,
+    accessory1: 8,
+    accessory2: 9,
+    accessory3: 10,
+    accessory4: 11,
+    glasses: 12,
+    hat: 13,
+    earrings: 14,
+    costume: 15,
+    talismanH: 16,
+    talismanG: 17,
+    talismanI: 18,
+    talismanB: 19,
+    talismanJ: 20,
+    talismanN: 21,
+    talismanE: 22,
+    talismanF: 23,
+    talismanR: 24,
+    talismanW: 25,
+    talismanQ: 26,
+    talismanS: 27,
+    talismanT: 28,
+    talismanK: 29,
+    talismanL: 30,
+    pet: 31,
+    ride: 32,
+    rune1: 33,
+    rune2: 34,
+    rune3: 35,
+    rune4: 36,
+    rune5: 37,
+    rune6: 38,
+};
+
+export const equipmentSlotById = Object.fromEntries(
+    Object.entries(equipmentSlotIds).map(([slot, id]) => [id, slot])
+) as Record<number, EquipmentSlotKey>;
