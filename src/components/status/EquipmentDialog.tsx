@@ -8,8 +8,8 @@ import { races } from "../../static/races.ts";
 import EquipmentBaseOption from "./EquipmentBaseOption.tsx";
 import EquipmentCraftedOption from "./EquipmentCraftedOption.tsx";
 import { useAtomValue } from "jotai";
-import { baseOptionStateFamily } from "../../modules/state/bases.ts";
 import { Equipments } from "../../modules/state/items.ts";
+import { compatibleBaseAtomFamily } from "../../modules/state/legacyCompatibleAtoms.ts";
 
 // FIXME: refactor this big component
 interface EquipmentDialogProps {
@@ -38,8 +38,8 @@ const ArrayToHash = (array: { name: BuiltinOptionKeyType, value: number }[]): { 
 }
 
 export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType, isOpen, onClose, title, equippedItem, setEquippedItem, itemTemplates }) => {
-    const raceid = useAtomValue(baseOptionStateFamily("raceid"));
-    const jobid = useAtomValue(baseOptionStateFamily("jobid"));
+    const raceid = Number(useAtomValue(compatibleBaseAtomFamily("raceid")));
+    const jobid = Number(useAtomValue(compatibleBaseAtomFamily("jobid")));
 
     const availableItemTemplates = sortItemTemplatesForDisplay(
         itemTemplates.filter((template) => template.availableRaces?.some(

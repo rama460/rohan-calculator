@@ -293,3 +293,13 @@ export const resetCompatibleBaseAtom = atom(null, (_, set) => {
     set(compatibleTitleAtom, "none");
     set(compatibleBuffsAtomFamily("Self"), []);
 });
+
+export const resetCompatibleCharacterContextAtom = atom(null, (_, set) => {
+    set(resetCompatibleStatusAtom);
+    set(resetCompatibleEquipmentAtom);
+    set(resetCompatibleBaseAtom);
+    set(compatibleBuffsAtomFamily("Self"), []);
+    set(compatibleBuffsAtomFamily("Group"), []);
+    set(compatibleBuffsAtomFamily("Guild"), []);
+    set(compatibleBuffsAtomFamily("Cash"), []);
+});

@@ -15,14 +15,14 @@ import React from "react";
 import EquipmentIconButton from './EquipmentIconButton.tsx'
 import { accessories, arrows, b_talismans, boots, costumes, e_talismans, earrings, f_talismans, g_talismans, gauntlets, glasses, h_talismans, hats, helmets, i_talismans, j_talismans, k_talismans, l_talismans, leggings, n_talismans, pets, q_talismans, r_talismans, rides, runes, s_talismans, shields, t_talismans, tunics, w_talismans, weapons } from '../../static/items.ts'
 import { useAtomValue } from 'jotai'
-import { baseOptionStateFamily } from '../../modules/state/bases.ts'
+import { compatibleBaseAtomFamily } from '../../modules/state/legacyCompatibleAtoms.ts'
 
 
 
 export const EquipmentPanel: React.FC = () => {
     console.log('render EquipmentPanel')
-    const jobid = useAtomValue(baseOptionStateFamily("jobid"));
-    const raceid = useAtomValue(baseOptionStateFamily("raceid"));
+    const jobid = Number(useAtomValue(compatibleBaseAtomFamily("jobid")));
+    const raceid = Number(useAtomValue(compatibleBaseAtomFamily("raceid")));
     const style: React.CSSProperties = {
         display: "grid",
         gridTemplateColumns: "repeat(9, 34px)",
