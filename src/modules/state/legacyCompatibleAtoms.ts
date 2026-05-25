@@ -6,7 +6,7 @@ import { races } from "../../static/races";
 import { getInitialSkillLevelsForJob } from "../../components/skill/skillTreeData";
 import type { BuffLeafState, CharacterBaseState, ResolvedEquipment, SkillLevelMap } from "../character/types";
 import { CharacterValueKey, equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
-import { normalizeEquipmentItem } from "../normalize";
+import { normalizeBuffState, normalizeEquipmentItem } from "../normalize";
 import { resolveEquipment } from "../resolve/resolveEquipment";
 import {
     activeCharacterBaseAtomFamily,
@@ -49,18 +49,6 @@ export const compatibleTitleAtom = atom(
     }
 );
 
-const toBuffLeafState = (buff: BuffState): BuffLeafState | undefined => {
-    const skillId = skills.findIndex((skill) => skill.name === buff.name);
-    if (skillId < 0) {
-        return undefined;
-    }
-
-    return {
-        skillId,
-        level: buff.level,
-    };
-};
-
 const toBuffState = (buff: BuffLeafState): BuffState | undefined => {
     const skill = skills[buff.skillId];
     if (!skill) {
@@ -81,7 +69,7 @@ export const compatibleBuffsAtomFamily = atomFamily((origin: SkillOrigin) =>
         }),
         (_, set, buffs: BuffState[]) => {
             set(activeCharacterBuffsAtomFamily(origin), buffs.flatMap((buff) => {
-                const nextBuff = toBuffLeafState(buff);
+                const nextBuff = normalizeBuffState(buff);
                 return nextBuff ? [nextBuff] : [];
             }));
             set(buffStateFamily(origin), buffs);
