@@ -5,8 +5,12 @@ import { aggregateOptions } from "./aggregateOptions";
 import { collectOptionSources } from "./collectOptionSources";
 import { evaluateFormula } from "./evaluateFormula";
 import { buildFormulaContext } from "./formulaContext";
+import type { Formula } from "../state/custom-formulas";
 
-export const calculateCharacter = (character: CharacterState): CalculatedCharacter => {
+export const calculateCharacter = (
+    character: CharacterState,
+    customFormulas: Partial<Record<CharacterValueKey, Formula>> = character.customFormulas
+): CalculatedCharacter => {
     const resolvedCharacter = resolveCharacter(character);
     const optionSources = collectOptionSources(resolvedCharacter);
     const aggregatedOptions = aggregateOptions(optionSources);
@@ -28,7 +32,7 @@ export const calculateCharacter = (character: CharacterState): CalculatedCharact
         const result = evaluateFormula(
             formulaId,
             formulaContext,
-            character.customFormulas,
+            customFormulas,
             resolveValue
         );
         resolving.delete(formulaId);

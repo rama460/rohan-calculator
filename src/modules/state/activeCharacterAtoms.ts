@@ -9,6 +9,7 @@ import {
     SkillLevelMap,
 } from "../character/types";
 import type { Formula } from "./custom-formulas";
+import { customFormulasState } from "./custom-formulas";
 import {
     CharacterStatusKey,
     CharacterValueKey,
@@ -130,23 +131,11 @@ export const activeCharacterSkillLevelsAtomFamily = atomFamily((type: "primary" 
     )
 );
 
-export const activeCharacterCustomFormulaAtomFamily = atomFamily((key: CharacterValueKey) =>
-    atom(
-        (get) => get(activeCharacterAtom).customFormulas[key],
-        (_, set, formula: Formula | undefined) => {
-            set(updateActiveCharacterAtom, (character) => ({
-                ...character,
-                customFormulas: {
-                    ...character.customFormulas,
-                    [key]: formula,
-                },
-            }));
-        }
-    )
-);
-
 export const calculatedActiveCharacterAtom = atom((get) =>
-    calculateCharacter(get(activeCharacterAtom))
+    calculateCharacter(
+        get(activeCharacterAtom),
+        get(customFormulasState) as Partial<Record<CharacterValueKey, Formula>>
+    )
 );
 
 export const activeCharacterValueAtomFamily = atomFamily((key: CharacterValueKey) =>

@@ -5,8 +5,6 @@ import { createDefaultAppState } from "./defaults";
 import {
     characterStatusNames,
     CharacterStatusKey,
-    characterValueKeys,
-    CharacterValueKey,
     equipmentSlotKeys,
     EquipmentSlotKey,
 } from "./constants";
@@ -55,7 +53,6 @@ type SerializedCharacterState = {
         p: SkillLevelMap;
         s: SkillLevelMap;
     };
-    f: Partial<Record<number, CharacterState["customFormulas"][keyof CharacterState["customFormulas"]]>>;
 };
 
 export type SerializedAppState = {
@@ -68,11 +65,6 @@ const getOptionId = (key: BuiltinOptionKeyType): number => BuiltinOptionKeys.ind
 const getOptionKey = (id: number): BuiltinOptionKeyType | undefined => BuiltinOptionKeys[id];
 const getStatusId = (key: CharacterStatusKey): number => characterStatusNames.indexOf(key);
 const getStatusKey = (id: number): CharacterStatusKey | undefined => characterStatusNames[id];
-const getFormulaId = (key: keyof CharacterState["customFormulas"]): number =>
-    characterValueKeys.indexOf(key);
-const getFormulaKey = (id: number): keyof CharacterState["customFormulas"] | undefined =>
-    characterValueKeys[id];
-
 const serializeOptionMap = (options?: OptionMap): SerializedOptionMap | undefined => {
     if (!options || Object.keys(options).length === 0) {
         return undefined;
@@ -201,26 +193,6 @@ const deserializeBuffs = (buffs: SerializedCharacterState["u"]): CharacterState[
     ) as CharacterState["buffs"];
 };
 
-const serializeCustomFormulas = (
-    formulas: CharacterState["customFormulas"]
-): SerializedCharacterState["f"] => {
-    return Object.fromEntries(
-        Object.entries(formulas)
-            .filter(([, formula]) => formula !== undefined)
-            .map(([key, formula]) => [getFormulaId(key as CharacterValueKey), formula])
-    );
-};
-
-const deserializeCustomFormulas = (
-    formulas: SerializedCharacterState["f"]
-): CharacterState["customFormulas"] => {
-    return Object.fromEntries(
-        Object.entries(formulas)
-            .map(([id, formula]) => [getFormulaKey(Number(id)), formula] as const)
-            .filter(([key]) => key !== undefined)
-    ) as CharacterState["customFormulas"];
-};
-
 export const serializeCharacterState = (character: CharacterState): SerializedCharacterState => {
     return {
         i: character.id,
@@ -242,7 +214,6 @@ export const serializeCharacterState = (character: CharacterState): SerializedCh
             p: character.skillLevels.primary,
             s: character.skillLevels.secondary,
         },
-        f: serializeCustomFormulas(character.customFormulas),
     };
 };
 
@@ -267,7 +238,7 @@ export const deserializeCharacterState = (character: SerializedCharacterState): 
             primary: character.k.p,
             secondary: character.k.s,
         },
-        customFormulas: deserializeCustomFormulas(character.f),
+        customFormulas: {},
     };
 };
 

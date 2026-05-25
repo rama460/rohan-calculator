@@ -6,7 +6,7 @@ import { races } from "../../static/races";
 import { DEFAULT_FORMULAS, DEFAULT_FORMULA_DESCRIPTIONS } from "../../static/default-formulas";
 import { getInitialSkillLevelsForJob } from "../../components/skill/skillTreeData";
 import type { BuffLeafState, CharacterBaseState, ResolvedEquipment, SkillLevelMap } from "../character/types";
-import { CharacterValueKey, equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
+import { equipmentSlotKeys, EquipmentSlotKey } from "../character/constants";
 import { normalizeBuffState, normalizeEquipmentItem } from "../normalize";
 import { resolveEquipment } from "../resolve/resolveEquipment";
 import {
@@ -16,10 +16,7 @@ import {
     activeCharacterMetaStatusAtomFamily,
     activeCharacterEquipmentAtomFamily,
     activeCharacterSkillLevelsAtomFamily,
-    activeCharacterCustomFormulaAtomFamily,
-    updateActiveCharacterAtom,
 } from "./activeCharacterAtoms";
-import { activeCharacterAtom } from "./appState";
 import { baseOptionStateFamily, BaseOptionKeyType, titleNameState } from "./bases";
 import { CharactorStateType } from "./charactor";
 import { customFormulaStateFamily, customFormulasState, Formula } from "./custom-formulas";
@@ -210,9 +207,8 @@ export const compatibleUsedSkillPointsAtom = atom((get) => {
 
 export const compatibleCustomFormulaAtomFamily = atomFamily((formulaId: CharactorStateType) =>
     atom(
-        (get) => get(activeCharacterCustomFormulaAtomFamily(formulaId as CharacterValueKey)) ?? null,
+        (get) => get(customFormulaStateFamily(formulaId)),
         (_, set, formula: Formula | null) => {
-            set(activeCharacterCustomFormulaAtomFamily(formulaId as CharacterValueKey), formula ?? undefined);
             set(customFormulaStateFamily(formulaId), formula);
         }
     )
@@ -248,12 +244,8 @@ export const compatibleFormulaAtomFamily = atomFamily((formulaId: CharactorState
 );
 
 export const compatibleCustomFormulasState = atom(
-    (get) => get(activeCharacterAtom).customFormulas as Record<CharactorStateType, Formula>,
+    (get) => get(customFormulasState),
     (_, set, formulas: Record<CharactorStateType, Formula>) => {
-        set(updateActiveCharacterAtom, (character) => ({
-            ...character,
-            customFormulas: formulas as Partial<Record<CharacterValueKey, Formula>>,
-        }));
         set(customFormulasState, formulas);
     }
 );
