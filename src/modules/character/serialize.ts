@@ -173,10 +173,19 @@ const deserializeStatusMap = (values?: SerializedOptionMap): Record<CharacterSta
 };
 
 const trimEquipmentEntry = (entry: SerializedEquipmentEntry): SerializedEquipmentEntry => {
-    while (entry.length > 2 && entry[entry.length - 1] === undefined) {
-        entry.pop();
+    let lastDefinedIndex = entry.length - 1;
+    while (lastDefinedIndex > 1 && entry[lastDefinedIndex] === undefined) {
+        lastDefinedIndex -= 1;
     }
-    return entry;
+
+    const trimmed = entry.slice(0, lastDefinedIndex + 1) as SerializedEquipmentEntry;
+    for (let index = 2; index < trimmed.length; index += 1) {
+        if (trimmed[index] === undefined) {
+            trimmed[index] = null;
+        }
+    }
+
+    return trimmed;
 };
 
 const serializeEquipment = (
@@ -191,22 +200,14 @@ const serializeEquipment = (
         const baseOverrides = serializeOptionMap(item.baseOverrides);
         const additionalOptions = serializeOptionMap(item.additionalOptions, true);
         const craftedOptions = serializeOptionMap(item.craftedOptions, true);
-        const entry: SerializedEquipmentEntry = [
+        return [trimEquipmentEntry([
             equipmentSlotIds[slot],
             item.templateId,
             item.enchantLevel && item.enchantLevel !== 0 ? item.enchantLevel : undefined,
             baseOverrides,
             additionalOptions,
             craftedOptions,
-        ];
-
-        for (let index = 2; index < entry.length - 1; index += 1) {
-            if (entry[index] === undefined) {
-                entry[index] = null;
-            }
-        }
-
-        return [trimEquipmentEntry(entry)];
+        ])];
     });
 
     return serialized.length > 0 ? serialized : undefined;
