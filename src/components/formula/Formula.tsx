@@ -3,30 +3,16 @@ import { PageContainer } from '../common/PageContainer';
 import {
     Box,
     Typography,
-    Card,
-    CardContent,
     Stack,
-    Paper,
     Alert,
     Tabs,
     Tab,
     Chip,
-    IconButton,
-    Tooltip,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    List,
-    ListItem,
-    ListItemText,
     Button
 } from '@mui/material';
 import {
     Functions as FunctionsIcon,
-    Refresh as RefreshIcon,
     Settings as SettingsIcon,
-    Code as CodeIcon,
-    ExpandMore as ExpandMoreIcon,
     Restore as RestoreIcon,
     FitnessCenter as StrengthIcon,
     Favorite as HealthIcon,
@@ -38,14 +24,12 @@ import { CharactorStateType } from '../../modules/character/constants';
 import { FormulaEditor } from './FormulaEditor';
 import { useAtomValue, useSetAtom } from 'jotai';
 import {
-    uiCustomFormulaAtomFamily,
     uiCustomFormulasState,
-    uiIsFormulaCustomizedFamily,
-    resetUiCustomFormulaFamily,
 } from '../../modules/state/ui';
 import { DEFAULT_FORMULAS } from '../../static/default-formulas';
 import { Formula as FormulaType } from '../../modules/state/custom-formulas';
-import { FormulaComponents, parseFormulaString } from './formulaDescription';
+import { parseFormulaString } from './formulaDescription';
+import { FormulaCard } from './FormulaCard';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -106,235 +90,6 @@ export const Formula: React.FC = () => {
     const closeEditor = () => {
         setEditorOpen(false);
         setEditingFormula(null);
-    };
-
-
-
-    // フォーミュラカード用アクションボタンコンポーネント
-    const FormulaActions: React.FC<{
-        formulaId: CharactorStateType;
-        formulaName: string;
-        originalFormula: string;
-    }> = ({ formulaId, formulaName, originalFormula }) => {
-        const isCustomized = useAtomValue(uiIsFormulaCustomizedFamily(formulaId));
-        const resetFormula = useSetAtom(resetUiCustomFormulaFamily(formulaId));
-
-        return (
-            <Box display="flex" gap={0.5} alignItems="center">
-                {isCustomized && (
-                    <Chip
-                        label="カスタム"
-                        size="small"
-                        color="primary"
-                        variant="outlined"
-                    />
-                )}
-                <Tooltip title="計算式を編集">
-                    <IconButton
-                        size="small"
-                        onClick={() => openEditor(formulaId, formulaName, originalFormula)}
-                        color="primary"
-                    >
-                        <CodeIcon fontSize="small" />
-                    </IconButton>
-                </Tooltip>
-                {isCustomized && (
-                    <Tooltip title="元の計算式に戻す">
-                        <IconButton
-                            size="small"
-                            onClick={() => resetFormula()}
-                            color="warning"
-                        >
-                            <RefreshIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
-                )}
-            </Box>
-        );
-    };
-
-    // フォーミュラカードコンポーネント（custom formula対応）
-    const FormulaCard: React.FC<{
-        formulaId: CharactorStateType;
-        formulaName: string;
-        originalFormula: string;
-        components: FormulaComponents;
-    }> = ({ formulaId, formulaName, originalFormula, components }) => {
-        const customFormula = useAtomValue(uiCustomFormulaAtomFamily(formulaId));
-
-        // custom formulaがあればそれを使用、なければoriginalを使用
-        const displayFormula = customFormula?.formula || originalFormula;
-
-        // 空でないカテゴリをカウント
-        const componentCount = [
-            components.basicVariables.length,
-            components.specialVariables.length,
-            components.raceVariables.length,
-            components.mathFunctions.length,
-            components.otherVariables.length
-        ].reduce((sum, count) => sum + count, 0);
-
-        return (
-            <Card elevation={2}>
-                <CardContent>
-                    <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
-                        <Typography variant="h6" color="primary">
-                            {formulaName}
-                        </Typography>
-                        <FormulaActions
-                            formulaId={formulaId}
-                            formulaName={formulaName}
-                            originalFormula={originalFormula}
-                        />
-                    </Box>
-
-                    <Paper sx={{ p: 2, mb: 2, backgroundColor: 'grey.50' }}>
-                        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-                            計算式:
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            component="pre"
-                            sx={{
-                                fontFamily: 'monospace',
-                                fontSize: '0.82rem',
-                                whiteSpace: 'pre-wrap',
-                                margin: 0
-                            }}
-                        >
-                            {displayFormula}
-                        </Typography>
-                    </Paper>
-
-                    <Accordion defaultExpanded={false}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography variant="subtitle2">
-                                構成要素 ({componentCount}個の変数・関数を使用)
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Stack spacing={2}>
-                                {components.basicVariables.length > 0 && (
-                                    <Box>
-                                        <Typography variant="body2" fontWeight="bold" color="primary" gutterBottom>
-                                            📊 基本変数
-                                        </Typography>
-                                        <List dense sx={{ pl: 2 }}>
-                                            {components.basicVariables.map((component, idx) => (
-                                                <ListItem key={idx} sx={{ py: 0.2 }}>
-                                                    <ListItemText
-                                                        primary={component}
-                                                        primaryTypographyProps={{
-                                                            variant: 'body2',
-                                                            color: 'text.secondary',
-                                                            sx: { fontFamily: 'monospace', fontSize: '0.8rem' }
-                                                        }}
-                                                    />
-                                                </ListItem>
-                                            ))}
-                                        </List>
-                                    </Box>
-                                )}
-
-                                {components.specialVariables.length > 0 && (
-                                    <Box>
-                                        <Typography variant="body2" fontWeight="bold" color="secondary" gutterBottom>
-                                            ✨ 特殊変数 (計算結果参照)
-                                        </Typography>
-                                        <List dense sx={{ pl: 2 }}>
-                                            {components.specialVariables.map((component, idx) => (
-                                                <ListItem key={idx} sx={{ py: 0.2 }}>
-                                                    <ListItemText
-                                                        primary={component}
-                                                        primaryTypographyProps={{
-                                                            variant: 'body2',
-                                                            color: 'text.secondary',
-                                                            sx: { fontFamily: 'monospace', fontSize: '0.8rem' }
-                                                        }}
-                                                    />
-                                                </ListItem>
-                                            ))}
-                                        </List>
-                                    </Box>
-                                )}
-
-                                {components.raceVariables.length > 0 && (
-                                    <Box>
-                                        <Typography variant="body2" fontWeight="bold" color="info.main" gutterBottom>
-                                            🧬 種族情報
-                                        </Typography>
-                                        <List dense sx={{ pl: 2 }}>
-                                            {components.raceVariables.map((component, idx) => (
-                                                <ListItem key={idx} sx={{ py: 0.2 }}>
-                                                    <ListItemText
-                                                        primary={component}
-                                                        primaryTypographyProps={{
-                                                            variant: 'body2',
-                                                            color: 'text.secondary',
-                                                            sx: { fontFamily: 'monospace', fontSize: '0.8rem' }
-                                                        }}
-                                                    />
-                                                </ListItem>
-                                            ))}
-                                        </List>
-                                    </Box>
-                                )}
-
-                                {components.mathFunctions.length > 0 && (
-                                    <Box>
-                                        <Typography variant="body2" fontWeight="bold" color="success.main" gutterBottom>
-                                            🧮 数学関数
-                                        </Typography>
-                                        <List dense sx={{ pl: 2 }}>
-                                            {components.mathFunctions.map((component, idx) => (
-                                                <ListItem key={idx} sx={{ py: 0.2 }}>
-                                                    <ListItemText
-                                                        primary={component}
-                                                        primaryTypographyProps={{
-                                                            variant: 'body2',
-                                                            color: 'text.secondary',
-                                                            sx: { fontFamily: 'monospace', fontSize: '0.8rem' }
-                                                        }}
-                                                    />
-                                                </ListItem>
-                                            ))}
-                                        </List>
-                                    </Box>
-                                )}
-
-                                {components.otherVariables.length > 0 && (
-                                    <Box>
-                                        <Typography variant="body2" fontWeight="bold" color="warning.main" gutterBottom>
-                                            🔧 その他の変数
-                                        </Typography>
-                                        <List dense sx={{ pl: 2 }}>
-                                            {components.otherVariables.map((component, idx) => (
-                                                <ListItem key={idx} sx={{ py: 0.2 }}>
-                                                    <ListItemText
-                                                        primary={component}
-                                                        primaryTypographyProps={{
-                                                            variant: 'body2',
-                                                            color: 'text.secondary',
-                                                            sx: { fontFamily: 'monospace', fontSize: '0.8rem' }
-                                                        }}
-                                                    />
-                                                </ListItem>
-                                            ))}
-                                        </List>
-                                    </Box>
-                                )}
-
-                                {componentCount === 0 && (
-                                    <Typography variant="body2" color="text.secondary" textAlign="center">
-                                        この計算式は定数のみで構成されています。
-                                    </Typography>
-                                )}
-                            </Stack>
-                        </AccordionDetails>
-                    </Accordion>
-                </CardContent>
-            </Card>
-        );
     };
 
     // デフォルト計算式から基本ステータス計算式を生成
@@ -563,6 +318,7 @@ export const Formula: React.FC = () => {
                                 formulaName={stat.name}
                                 originalFormula={stat.formula}
                                 components={stat.components}
+                                onEdit={openEditor}
                             />
                         ))}
                     </Stack>
@@ -582,6 +338,7 @@ export const Formula: React.FC = () => {
                                 formulaName={stat.name}
                                 originalFormula={stat.formula}
                                 components={stat.components}
+                                onEdit={openEditor}
                             />
                         ))}
                     </Stack>
@@ -601,6 +358,7 @@ export const Formula: React.FC = () => {
                                 formulaName={attack.name}
                                 originalFormula={attack.formula}
                                 components={attack.components}
+                                onEdit={openEditor}
                             />
                         ))}
                     </Stack>
@@ -620,6 +378,7 @@ export const Formula: React.FC = () => {
                                 formulaName={defense.name}
                                 originalFormula={defense.formula}
                                 components={defense.components}
+                                onEdit={openEditor}
                             />
                         ))}
                     </Stack>
@@ -639,6 +398,7 @@ export const Formula: React.FC = () => {
                                 formulaName={other.name}
                                 originalFormula={other.formula}
                                 components={other.components}
+                                onEdit={openEditor}
                             />
                         ))}
                     </Stack>
