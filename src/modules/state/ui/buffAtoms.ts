@@ -23,8 +23,8 @@ const toBuffState = (buff: BuffLeafState): BuffState | undefined => {
 export const uiBuffsAtomFamily = atomFamily((origin: SkillOrigin) =>
     atom(
         (get) => get(activeCharacterBuffsAtomFamily(origin)).flatMap((buff) => {
-            const legacyBuff = toBuffState(buff);
-            return legacyBuff ? [legacyBuff] : [];
+            const uiBuff = toBuffState(buff);
+            return uiBuff ? [uiBuff] : [];
         }),
         (get, set, buffs: BuffState[]) => {
             set(activeCharacterBuffsAtomFamily(origin), buffs.flatMap((buff) => {
