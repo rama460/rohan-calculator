@@ -32,38 +32,6 @@ import {
     ToggleButton,
     ToggleButtonGroup
 } from '@mui/material';
-import {
-    weapons,
-    shields,
-    helmets,
-    gauntlets,
-    tunics,
-    arrows,
-    leggings,
-    boots,
-    glasses,
-    hats,
-    earrings,
-    costumes,
-    accessories,
-    b_talismans,
-    j_talismans,
-    h_talismans,
-    g_talismans,
-    i_talismans,
-    n_talismans,
-    e_talismans,
-    f_talismans,
-    r_talismans,
-    w_talismans,
-    q_talismans,
-    s_talismans,
-    t_talismans,
-    k_talismans,
-    l_talismans,
-    getItemTemplatesForDisplay
-} from '../../static/items';
-import { WeaponTemplate, ItemTemplate } from '../../static/items';
 import { RaceNameOrTrinityJobName } from '../../static/races';
 import SearchIcon from '@mui/icons-material/Search';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -78,6 +46,13 @@ import { ItemDetailModal } from './ItemDetailModal';
 import { ItemCompareModal } from './ItemCompareModal';
 import { StatisticsModal } from './StatisticsModal';
 import { exportToJSON, exportToCSV, flattenDataForExport } from './exportUtils';
+import {
+    getCategoryDisplayName,
+    getItemDatabaseItems,
+    getRaceDisplayName,
+    getWeaponTypeDisplayName,
+    ItemDatabaseItem,
+} from './itemDatabaseData';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -86,53 +61,15 @@ export const ItemDatabase: React.FC = () => {
     const [categoryFilter, setCategoryFilter] = useState('all');
     const [raceFilter, setRaceFilter] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedItem, setSelectedItem] = useState<((WeaponTemplate | ItemTemplate) & { category: string }) | null>(null);
+    const [selectedItem, setSelectedItem] = useState<ItemDatabaseItem | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
     const [viewMode, setViewMode] = useState<'card' | 'list' | 'table'>('card');
-    const [compareItems, setCompareItems] = useState<((WeaponTemplate | ItemTemplate) & { category: string })[]>([]);
+    const [compareItems, setCompareItems] = useState<ItemDatabaseItem[]>([]);
     const [compareMode, setCompareMode] = useState(false);
     const [compareModalOpen, setCompareModalOpen] = useState(false);
     const [statsModalOpen, setStatsModalOpen] = useState(false);
 
-    // 全アイテムデータを統合
-    const allItems = useMemo(() => {
-        // タリスマンを統合
-        const allTalismans = getItemTemplatesForDisplay([
-            ...b_talismans,
-            ...j_talismans,
-            ...h_talismans,
-            ...g_talismans,
-            ...i_talismans,
-            ...n_talismans,
-            ...e_talismans,
-            ...f_talismans,
-            ...r_talismans,
-            ...w_talismans,
-            ...q_talismans,
-            ...s_talismans,
-            ...t_talismans,
-            ...k_talismans,
-            ...l_talismans
-        ]);
-
-        const itemsWithCategory = [
-            ...getItemTemplatesForDisplay(weapons).map(item => ({ ...item, category: 'weapon' as const })),
-            ...getItemTemplatesForDisplay(shields).map(item => ({ ...item, category: 'shield' as const })),
-            ...getItemTemplatesForDisplay(helmets).map(item => ({ ...item, category: 'helmet' as const })),
-            ...getItemTemplatesForDisplay(gauntlets).map(item => ({ ...item, category: 'gauntlet' as const })),
-            ...getItemTemplatesForDisplay(tunics).map(item => ({ ...item, category: 'tunic' as const })),
-            ...getItemTemplatesForDisplay(leggings).map(item => ({ ...item, category: 'legging' as const })),
-            ...getItemTemplatesForDisplay(boots).map(item => ({ ...item, category: 'boot' as const })),
-            ...getItemTemplatesForDisplay(arrows).map(item => ({ ...item, category: 'arrow' as const })),
-            ...getItemTemplatesForDisplay(glasses).map(item => ({ ...item, category: 'glasses' as const })),
-            ...getItemTemplatesForDisplay(hats).map(item => ({ ...item, category: 'hat' as const })),
-            ...getItemTemplatesForDisplay(earrings).map(item => ({ ...item, category: 'earring' as const })),
-            ...getItemTemplatesForDisplay(costumes).map(item => ({ ...item, category: 'costume' as const })),
-            ...getItemTemplatesForDisplay(accessories).map(item => ({ ...item, category: 'accessory' as const })),
-            ...allTalismans.map(item => ({ ...item, category: 'talisman' as const }))
-        ];
-        return itemsWithCategory;
-    }, []);
+    const allItems = useMemo(() => getItemDatabaseItems(), []);
 
     // フィルタリングされたアイテム
     const filteredItems = useMemo(() => {
@@ -233,58 +170,6 @@ export const ItemDatabase: React.FC = () => {
     const handleExportCSV = () => {
         const exportData = flattenDataForExport(filteredItems);
         exportToCSV(exportData, 'rohan-items');
-    };
-
-    const getCategoryDisplayName = (category: string) => {
-        const categoryMap: Record<string, string> = {
-            weapon: '武器',
-            shield: '盾',
-            helmet: 'ヘルメット',
-            gauntlet: 'ガントレット',
-            tunic: 'チュニック',
-            legging: 'レギンス',
-            boot: 'ブーツ',
-            arrow: '矢',
-            glasses: 'メガネ',
-            hat: '帽子',
-            earring: 'イヤリング',
-            costume: 'コスチューム',
-            accessory: 'アクセサリー',
-            talisman: 'タリスマン'
-        };
-        return categoryMap[category] || category;
-    };
-
-    const getRaceDisplayName = (race: string) => {
-        const raceMap: Record<string, string> = {
-            Human: 'ヒューマン',
-            Elf: 'エルフ',
-            HalfElf: 'ハーフエルフ',
-            Dan: 'ダン',
-            Dekan: 'デカン',
-            DarkElf: 'ダークエルフ',
-            Giant: 'ジャイアント'
-        };
-        return raceMap[race] || race;
-    };
-
-    const getWeaponTypeDisplayName = (type?: string) => {
-        const typeMap: Record<string, string> = {
-            dagger: 'ダガー',
-            sword: 'ソード',
-            axe: 'アックス',
-            blunt: 'ブラント',
-            dualsword: 'デュアルソード',
-            polearm: 'ポールアーム',
-            katar: 'カタール',
-            zen: '禅',
-            staff: 'スタッフ',
-            bow: 'ボウ',
-            crossbow: 'クロスボウ',
-            glove: 'グローブ',
-            orb: 'オーブ'
-        };
-        return type ? typeMap[type] || type : '';
     };
 
     const renderCardView = () => (

@@ -8,7 +8,6 @@ import {
     TableRow,
     Paper,
     Typography,
-    Avatar,
     Box,
     Tabs,
     Tab,
@@ -23,13 +22,22 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import { costumes, glasses, earrings, hats, ItemTemplate, getItemTemplatesForDisplay } from '../../static/items';
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import { EquipmentIconButton } from '../status/EquipmentIconButton';
 import { useAtomValue } from 'jotai';
 import { uiEquipmentAtomFamily } from '../../modules/state/ui';
 import { PageContainer } from '../common/PageContainer';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
+import { CostumeItemTable } from './CostumeItemTable';
+import {
+    buildSeriesData,
+    displayCostumes,
+    displayEarrings,
+    displayGlasses,
+    displayHats,
+    SeriesData,
+} from './costumeData';
+import { SeriesComparisonTable } from './SeriesComparisonTable';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -52,289 +60,6 @@ function TabPanel(props: TabPanelProps) {
         </div>
     );
 }
-
-interface ItemTableProps {
-    items: ItemTemplate[];
-    categoryName: string;
-}
-
-const ItemTable: React.FC<ItemTableProps> = ({ items, categoryName }) => {
-    return (
-        <TableContainer component={Paper} sx={{ mb: 2 }}>
-            <Table size="small">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>アイコン</TableCell>
-                        <TableCell>アイテム名</TableCell>
-                        <TableCell>基本オプション</TableCell>
-                        <TableCell>セットオプション</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {items.map((item) => (
-                        <TableRow key={`${categoryName}-${item.id}`}>
-                            <TableCell>
-                                <Avatar
-                                    src={item.icon}
-                                    alt={item.name}
-                                    sx={{ width: 32, height: 32 }}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <Typography variant="body2">{item.name}</Typography>
-                            </TableCell>
-                            <TableCell>
-                                {item.fixedBaseOptions ? (
-                                    <Box>
-                                        {Object.entries(item.fixedBaseOptions).map(([key, value]) => {
-                                            const option = BuiltinOptions[key as keyof typeof BuiltinOptions];
-                                            if (!option || !value) return null;
-                                            return (
-                                                <Typography
-                                                    key={key}
-                                                    variant="caption"
-                                                    display="block"
-                                                    sx={{ color: option.displayColor }}
-                                                >
-                                                    {getDisplayOptionName(option)}: {value}
-                                                </Typography>
-                                            );
-                                        })}
-                                    </Box>
-                                ) : (
-                                    <Typography variant="caption" color="textSecondary">
-                                        なし
-                                    </Typography>
-                                )}
-                            </TableCell>
-                            <TableCell>
-                                {item.synergyOptions ? (
-                                    <Box>
-                                        {Object.entries(item.synergyOptions).map(([setLevel, options]) => (
-                                            <Box key={setLevel} sx={{ mb: 1, border: '1px solid #ddd', padding: 1, borderRadius: 1 }}>
-                                                <Typography variant="caption" color="primary" display="block" sx={{ fontWeight: 'bold' }}>
-                                                    {setLevel}セット効果:
-                                                </Typography>
-                                                {Object.entries(options).map(([optionKey, optionValue]) => {
-                                                    const option = BuiltinOptions[optionKey as keyof typeof BuiltinOptions];
-                                                    if (!option || !optionValue) return null;
-                                                    return (
-                                                        <Typography
-                                                            key={optionKey}
-                                                            variant="caption"
-                                                            display="block"
-                                                            sx={{ color: option.displayColor, ml: 1 }}
-                                                        >
-                                                            {getDisplayOptionName(option)}: {optionValue}
-                                                        </Typography>
-                                                    );
-                                                })}
-                                            </Box>
-                                        ))}
-                                    </Box>
-                                ) : (
-                                    <Typography variant="caption" color="textSecondary">
-                                        なし
-                                    </Typography>
-                                )}
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
-};
-
-interface SeriesData {
-    seriesName: string;
-    synergyKey: string;
-    costume?: ItemTemplate;
-    glasses?: ItemTemplate;
-    earrings?: ItemTemplate;
-    hat?: ItemTemplate;
-    totalStats: { [key: string]: number };
-    synergyEffects: { [key: number]: { [key: string]: number } };
-}
-
-const displayCostumes = getItemTemplatesForDisplay(costumes);
-const displayGlasses = getItemTemplatesForDisplay(glasses);
-const displayEarrings = getItemTemplatesForDisplay(earrings);
-const displayHats = getItemTemplatesForDisplay(hats);
-
-const SeriesComparisonTable: React.FC = () => {
-    const equippedCostume = useAtomValue(uiEquipmentAtomFamily('costume'));
-
-    const buildSeriesData = (): SeriesData[] => {
-        const seriesMap = new Map<string, SeriesData>();
-
-        [...displayCostumes, ...displayGlasses, ...displayEarrings, ...displayHats].forEach(item => {
-            if (!item.synergyKey || !item.seriesName) return;
-
-            if (!seriesMap.has(item.synergyKey)) {
-                seriesMap.set(item.synergyKey, {
-                    seriesName: item.seriesName,
-                    synergyKey: item.synergyKey,
-                    totalStats: {},
-                    synergyEffects: item.synergyOptions || {}
-                });
-            }
-
-            const series = seriesMap.get(item.synergyKey)!;
-
-            if (displayCostumes.includes(item)) {
-                series.costume = item;
-            } else if (displayGlasses.includes(item)) {
-                series.glasses = item;
-            } else if (displayEarrings.includes(item)) {
-                series.earrings = item;
-            } else if (displayHats.includes(item)) {
-                series.hat = item;
-            }
-        });
-
-        seriesMap.forEach(series => {
-            const items = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean) as ItemTemplate[];
-
-            items.forEach(item => {
-                if (item.fixedBaseOptions) {
-                    Object.entries(item.fixedBaseOptions).forEach(([key, value]) => {
-                        series.totalStats[key] = (series.totalStats[key] || 0) + value;
-                    });
-                }
-            });
-        });
-
-        return Array.from(seriesMap.values()).filter(series => {
-            const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
-            return itemCount >= 3;
-        });
-    };
-
-    const seriesData = buildSeriesData();
-
-    const getDisplayValue = (optionKey: string, value: number) => {
-        const option = BuiltinOptions[optionKey as keyof typeof BuiltinOptions];
-        if (!option) return value.toString();
-        return getDisplayOptionName(option) + ': ' + value;
-    };
-
-    return (
-        <TableContainer component={Paper} sx={{ mb: 2 }}>
-            <Table size="small">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>シリーズ名</TableCell>
-                        <TableCell>個別効果合計</TableCell>
-                        <TableCell>2セット効果</TableCell>
-                        <TableCell>3セット効果</TableCell>
-                        <TableCell>4セット効果</TableCell>
-                        <TableCell>最終合計効果</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {seriesData.map((series) => {
-                        const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
-                        const availableItems = [];
-                        if (series.costume) availableItems.push('コスチューム');
-                        if (series.glasses) availableItems.push('メガネ');
-                        if (series.earrings) availableItems.push('イヤリング');
-                        if (series.hat) availableItems.push('帽子');
-
-                        return (
-                            <TableRow key={series.synergyKey}>
-                                <TableCell>
-                                    <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                                        {series.seriesName}
-                                    </Typography>
-                                    <Box sx={{ mt: 1 }}>
-                                        <Chip
-                                            size="small"
-                                            label={itemCount === 3 && !series.costume && equippedCostume ? "3点+コス" : itemCount + "点セット"}
-                                            color={itemCount === 4 ? "primary" : "secondary"}
-                                            variant="outlined"
-                                        />
-                                        <Typography variant="caption" display="block" sx={{ mt: 0.5 }}>
-                                            {availableItems.join(', ')}
-                                        </Typography>
-                                    </Box>
-                                </TableCell>
-                                <TableCell>
-                                    <Box>
-                                        {Object.entries(series.totalStats).map(([key, value]) => (
-                                            <Typography key={key} variant="caption" display="block">
-                                                {getDisplayValue(key, value)}
-                                            </Typography>
-                                        ))}
-                                    </Box>
-                                </TableCell>
-                                <TableCell>
-                                    <Box>
-                                        {series.synergyEffects[2] ?
-                                            Object.entries(series.synergyEffects[2]).map(([key, value]) => (
-                                                <Typography key={key} variant="caption" display="block" color="primary">
-                                                    {getDisplayValue(key, value)}
-                                                </Typography>
-                                            )) :
-                                            <Typography variant="caption" color="textSecondary">なし</Typography>
-                                        }
-                                    </Box>
-                                </TableCell>
-                                <TableCell>
-                                    <Box>
-                                        {series.synergyEffects[3] ?
-                                            Object.entries(series.synergyEffects[3]).map(([key, value]) => (
-                                                <Typography key={key} variant="caption" display="block" color="primary">
-                                                    {getDisplayValue(key, value)}
-                                                </Typography>
-                                            )) :
-                                            <Typography variant="caption" color="textSecondary">なし</Typography>
-                                        }
-                                    </Box>
-                                </TableCell>
-                                <TableCell>
-                                    <Box>
-                                        {series.synergyEffects[4] ?
-                                            Object.entries(series.synergyEffects[4]).map(([key, value]) => (
-                                                <Typography key={key} variant="caption" display="block" color="primary">
-                                                    {getDisplayValue(key, value)}
-                                                </Typography>
-                                            )) :
-                                            <Typography variant="caption" color="textSecondary">なし</Typography>
-                                        }
-                                    </Box>
-                                </TableCell>
-                                <TableCell>
-                                    <Box>
-                                        {(() => {
-                                            const finalStats: { [key: string]: number } = { ...series.totalStats };
-
-                                            const maxSetEffect = Math.min(itemCount, 4);
-                                            // 2セットから最大セットまで累積で加算
-                                            for (let setCount = 2; setCount <= maxSetEffect; setCount++) {
-                                                if (series.synergyEffects[setCount]) {
-                                                    Object.entries(series.synergyEffects[setCount]).forEach(([key, value]) => {
-                                                        finalStats[key] = (finalStats[key] || 0) + value;
-                                                    });
-                                                }
-                                            }
-
-                                            return Object.entries(finalStats).map(([key, value]) => (
-                                                <Typography key={key} variant="caption" display="block" sx={{ fontWeight: 'bold', color: 'success.main' }}>
-                                                    {getDisplayValue(key, value)}
-                                                </Typography>
-                                            ));
-                                        })()}
-                                    </Box>
-                                </TableCell>
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
-};
 
 // HTML5 Drag and Drop APIを使用したドラッグ可能なヘッダーコンポーネント
 interface DraggableHeaderProps {
@@ -430,52 +155,6 @@ const ParameterComparisonTable: React.FC = () => {
 
         // 透明度を調整して背景色として使用
         return `rgba(${r}, ${g}, ${b}, 0.3)`;
-    };
-
-    const buildSeriesData = (): SeriesData[] => {
-        const seriesMap = new Map<string, SeriesData>();
-
-        [...displayCostumes, ...displayGlasses, ...displayEarrings, ...displayHats].forEach(item => {
-            if (!item.synergyKey || !item.seriesName) return;
-
-            if (!seriesMap.has(item.synergyKey)) {
-                seriesMap.set(item.synergyKey, {
-                    seriesName: item.seriesName,
-                    synergyKey: item.synergyKey,
-                    totalStats: {},
-                    synergyEffects: item.synergyOptions || {}
-                });
-            }
-
-            const series = seriesMap.get(item.synergyKey)!;
-
-            if (displayCostumes.includes(item)) {
-                series.costume = item;
-            } else if (displayGlasses.includes(item)) {
-                series.glasses = item;
-            } else if (displayEarrings.includes(item)) {
-                series.earrings = item;
-            } else if (displayHats.includes(item)) {
-                series.hat = item;
-            }
-        });
-
-        seriesMap.forEach(series => {
-            const items = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean) as ItemTemplate[];
-
-            items.forEach(item => {
-                if (item.fixedBaseOptions) {
-                    Object.entries(item.fixedBaseOptions).forEach(([key, value]) => {
-                        series.totalStats[key] = (series.totalStats[key] || 0) + value;
-                    });
-                }
-            });
-        });
-
-        return Array.from(seriesMap.values()).filter(series => {
-            const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
-            return itemCount >= 3;
-        });
     };
 
     const seriesData = buildSeriesData();
@@ -891,19 +570,19 @@ export const Costume: React.FC = () => {
                 </Box>
 
                 <TabPanel value={tabValue} index={0}>
-                    <ItemTable items={displayCostumes} categoryName="costume" />
+                    <CostumeItemTable items={displayCostumes} categoryName="costume" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={1}>
-                    <ItemTable items={displayGlasses} categoryName="glasses" />
+                    <CostumeItemTable items={displayGlasses} categoryName="glasses" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={2}>
-                    <ItemTable items={displayEarrings} categoryName="earrings" />
+                    <CostumeItemTable items={displayEarrings} categoryName="earrings" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={3}>
-                    <ItemTable items={displayHats} categoryName="hats" />
+                    <CostumeItemTable items={displayHats} categoryName="hats" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={4}>
