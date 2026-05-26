@@ -20,7 +20,6 @@ import { uiBaseAtomFamily } from '../../modules/state/ui'
 
 
 export const EquipmentPanel: React.FC = () => {
-    console.log('render EquipmentPanel')
     const jobid = Number(useAtomValue(uiBaseAtomFamily("jobid")));
     const raceid = Number(useAtomValue(uiBaseAtomFamily("raceid")));
     const style: React.CSSProperties = {

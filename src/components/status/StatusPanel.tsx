@@ -8,7 +8,6 @@ import { uiRemainingPointsAtom } from "../../modules/state/ui";
 
 
 export const StatusPanel: React.FC = () => {
-    console.log("render StatusPanel");
     const remainingPoints = useAtomValue(uiRemainingPointsAtom);
 
     return (

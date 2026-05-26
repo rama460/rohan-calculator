@@ -18,7 +18,7 @@ export const BuffIconButton: React.FC<BuffIconButtonProps> = ({ buffSpec, buffSt
         setBuff(buffSpec, !!buffState, Number(event.target.value));
     }
     const handleCheckChange = () => {
-        setBuff(buffSpec, !!!buffState, level);
+        setBuff(buffSpec, !buffState, level);
     }
 
     return (

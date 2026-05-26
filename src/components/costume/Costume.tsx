@@ -557,16 +557,6 @@ const ParameterComparisonTable: React.FC = () => {
     // 装備されたコスチュームの情報を取得
     const equippedCostume = useAtomValue(uiEquipmentAtomFamily('costume'));
 
-    // デバッグ: 装備されたコスチュームの情報を確認
-    React.useEffect(() => {
-        if (equippedCostume) {
-            console.log('装備されたコスチューム:', equippedCostume);
-            console.log('baseOptions:', equippedCostume.baseOptions);
-            console.log('craftedOptions:', equippedCostume.craftedOptions);
-            console.log('additionalOptions:', equippedCostume.additionalOptions);
-        }
-    }, [equippedCostume]);
-
     // 全シリーズの最終ステータスを計算
     const seriesWithFinalStats = seriesData.map(series => {
         const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
@@ -574,15 +564,11 @@ const ParameterComparisonTable: React.FC = () => {
 
         // 3点セットでコスチュームが装備されている場合、そのステータスを追加
         if (itemCount === 3 && !series.costume && equippedCostume) {
-            console.log(`${series.seriesName}にコスチューム反映開始:`, equippedCostume.name);
-            const beforeStats = { ...finalStats };
-
             // baseOptions (基本オプション)
             if (equippedCostume.baseOptions) {
                 Object.entries(equippedCostume.baseOptions).forEach(([key, value]) => {
                     if (typeof value === 'number') {
                         finalStats[key] = (finalStats[key] || 0) + value;
-                        console.log(`baseOptions ${key}: ${value} 追加`);
                     }
                 });
             }
@@ -592,7 +578,6 @@ const ParameterComparisonTable: React.FC = () => {
                 Object.entries(equippedCostume.craftedOptions).forEach(([key, value]) => {
                     if (typeof value === 'number') {
                         finalStats[key] = (finalStats[key] || 0) + value;
-                        console.log(`craftedOptions ${key}: ${value} 追加`);
                     }
                 });
             }
@@ -602,13 +587,9 @@ const ParameterComparisonTable: React.FC = () => {
                 Object.entries(equippedCostume.additionalOptions).forEach(([key, value]) => {
                     if (typeof value === 'number') {
                         finalStats[key] = (finalStats[key] || 0) + value;
-                        console.log(`additionalOptions ${key}: ${value} 追加`);
                     }
                 });
             }
-
-            console.log(`${series.seriesName} 反映前:`, beforeStats);
-            console.log(`${series.seriesName} 反映後:`, finalStats);
         }
 
         const maxSetEffect = Math.min(itemCount, 4);
