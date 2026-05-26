@@ -26,10 +26,15 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import {
     uiCustomFormulasState,
 } from '../../modules/state/ui';
-import { DEFAULT_FORMULAS } from '../../static/default-formulas';
 import { Formula as FormulaType } from '../../modules/state/custom-formulas';
-import { parseFormulaString } from './formulaDescription';
 import { FormulaCard } from './FormulaCard';
+import {
+    attackFormulas,
+    basicStatusFormulas,
+    defenseFormulas,
+    hpMpFormulas,
+    otherFormulas,
+} from './formulaGroups';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -91,146 +96,6 @@ export const Formula: React.FC = () => {
         setEditorOpen(false);
         setEditingFormula(null);
     };
-
-    // デフォルト計算式から基本ステータス計算式を生成
-    const basicStatusFormulas = [
-        {
-            id: '__strength' as CharactorStateType,
-            name: '筋力 (Strength)',
-            formula: DEFAULT_FORMULAS.__strength,
-            components: parseFormulaString(DEFAULT_FORMULAS.__strength)
-        },
-        {
-            id: '__vitality' as CharactorStateType,
-            name: '体力 (Vitality)',
-            formula: DEFAULT_FORMULAS.__vitality,
-            components: parseFormulaString(DEFAULT_FORMULAS.__vitality)
-        },
-        {
-            id: '__dexterity' as CharactorStateType,
-            name: '器用 (Dexterity)',
-            formula: DEFAULT_FORMULAS.__dexterity,
-            components: parseFormulaString(DEFAULT_FORMULAS.__dexterity)
-        },
-        {
-            id: '__intelligence' as CharactorStateType,
-            name: '知性 (Intelligence)',
-            formula: DEFAULT_FORMULAS.__intelligence,
-            components: parseFormulaString(DEFAULT_FORMULAS.__intelligence)
-        },
-        {
-            id: '__agility' as CharactorStateType,
-            name: '敏捷 (Agility)',
-            formula: DEFAULT_FORMULAS.__agility,
-            components: parseFormulaString(DEFAULT_FORMULAS.__agility)
-        },
-        {
-            id: '__mentality' as CharactorStateType,
-            name: '精神 (Mentality)',
-            formula: DEFAULT_FORMULAS.__mentality,
-            components: parseFormulaString(DEFAULT_FORMULAS.__mentality)
-        }
-    ];
-
-    // HP・MP計算式（仮のデータ）
-    const hpMpFormulas = [
-        {
-            id: '__hitPoint' as CharactorStateType,
-            name: 'HP (Hit Point)',
-            formula: DEFAULT_FORMULAS.__hitPoint,
-            components: parseFormulaString(DEFAULT_FORMULAS.__hitPoint)
-        },
-        {
-            id: '__magicPoint' as CharactorStateType,
-            name: 'MP (Magic Point)',
-            formula: DEFAULT_FORMULAS.__magicPoint,
-            components: parseFormulaString(DEFAULT_FORMULAS.__magicPoint)
-        }
-    ];
-
-    // 攻撃力計算式（仮のデータ）
-    const attackFormulas = [
-        {
-            id: '__meleeAttack' as CharactorStateType,
-            name: '近接攻撃力 (Melee Attack)',
-            formula: DEFAULT_FORMULAS.__meleeAttack,
-            components: parseFormulaString(DEFAULT_FORMULAS.__meleeAttack)
-        },
-        {
-            id: '__magicAttack' as CharactorStateType,
-            name: '魔法攻撃力 (Magic Attack)',
-            formula: DEFAULT_FORMULAS.__magicAttack,
-            components: parseFormulaString(DEFAULT_FORMULAS.__magicAttack)
-        },
-        {
-            id: '__rangeAttack' as CharactorStateType,
-            name: '遠距離攻撃力 (Range Attack)',
-            formula: DEFAULT_FORMULAS.__rangeAttack,
-            components: parseFormulaString(DEFAULT_FORMULAS.__rangeAttack)
-        }
-    ];
-
-    // 防御・命中・回避計算式（仮のデータ）
-    const defenseFormulas = [
-        {
-            id: '__physicalDefense' as CharactorStateType,
-            name: '物理防御力 (Physical Defense)',
-            formula: DEFAULT_FORMULAS.__physicalDefense,
-            components: parseFormulaString(DEFAULT_FORMULAS.__physicalDefense)
-        },
-        {
-            id: '__magicalDefense' as CharactorStateType,
-            name: '魔法防御力 (Magical Defense)',
-            formula: DEFAULT_FORMULAS.__magicalDefense,
-            components: parseFormulaString(DEFAULT_FORMULAS.__magicalDefense)
-        },
-        {
-            id: '__accuracy' as CharactorStateType,
-            name: '命中率 (Accuracy)',
-            formula: DEFAULT_FORMULAS.__accuracy,
-            components: parseFormulaString(DEFAULT_FORMULAS.__accuracy)
-        },
-        {
-            id: '__dodging' as CharactorStateType,
-            name: '回避率 (Dodging)',
-            formula: DEFAULT_FORMULAS.__dodging,
-            components: parseFormulaString(DEFAULT_FORMULAS.__dodging)
-        },
-        {
-            id: '__resistance' as CharactorStateType,
-            name: '全体抵抗 (Resistance)',
-            formula: DEFAULT_FORMULAS.__resistance,
-            components: parseFormulaString(DEFAULT_FORMULAS.__resistance)
-        }
-    ];
-
-    // その他のステータス計算式（仮のデータ）
-    const otherFormulas = [
-        {
-            id: '__movementSpeed' as CharactorStateType,
-            name: '移動速度 (Movement Speed)',
-            formula: DEFAULT_FORMULAS.__movementSpeed,
-            components: parseFormulaString(DEFAULT_FORMULAS.__movementSpeed)
-        },
-        {
-            id: '__attackSpeed' as CharactorStateType,
-            name: '攻撃速度 (Attack Speed)',
-            formula: DEFAULT_FORMULAS.__attackSpeed,
-            components: parseFormulaString(DEFAULT_FORMULAS.__attackSpeed)
-        },
-        {
-            id: '__hitPointRecovery' as CharactorStateType,
-            name: 'HP回復 (HP Recovery)',
-            formula: DEFAULT_FORMULAS.__hitPointRecovery,
-            components: parseFormulaString(DEFAULT_FORMULAS.__hitPointRecovery)
-        },
-        {
-            id: '__magicPointRecovery' as CharactorStateType,
-            name: 'MP回復 (MP Recovery)',
-            formula: DEFAULT_FORMULAS.__magicPointRecovery,
-            components: parseFormulaString(DEFAULT_FORMULAS.__magicPointRecovery)
-        }
-    ];
 
     return (
         <PageContainer
