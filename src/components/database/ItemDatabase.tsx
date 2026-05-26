@@ -2,12 +2,7 @@ import React, { useState, useMemo } from 'react';
 import {
     Box,
     TextField,
-    Grid,
-    Card,
-    CardContent,
-    CardMedia,
     Typography,
-    Chip,
     FormControl,
     InputLabel,
     Select,
@@ -17,18 +12,6 @@ import {
     SelectChangeEvent,
     Button,
     ButtonGroup,
-    List,
-    ListItem,
-    ListItemAvatar,
-    Avatar,
-    ListItemText,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
     ToggleButton,
     ToggleButtonGroup
 } from '@mui/material';
@@ -47,12 +30,11 @@ import { ItemCompareModal } from './ItemCompareModal';
 import { StatisticsModal } from './StatisticsModal';
 import { exportToJSON, exportToCSV, flattenDataForExport } from './exportUtils';
 import {
-    getCategoryDisplayName,
     getItemDatabaseItems,
     getRaceDisplayName,
-    getWeaponTypeDisplayName,
     ItemDatabaseItem,
 } from './itemDatabaseData';
+import { ItemCardView, ItemListView, ItemTableView } from './ItemDatabaseViews';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -172,247 +154,21 @@ export const ItemDatabase: React.FC = () => {
         exportToCSV(exportData, 'rohan-items');
     };
 
-    const renderCardView = () => (
-        <Grid container spacing={2}>
-            {paginatedItems.map((item) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={`${item.category}-${item.id}`}>
-                    <Card
-                        onClick={() => handleItemSelect(item)}
-                        sx={{
-                            height: '100%',
-                            cursor: 'pointer',
-                            transition: 'transform 0.2s, box-shadow 0.2s',
-                            border: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 2 : 1,
-                            borderColor: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 'primary.main' : 'divider',
-                            position: 'relative',
-                            '&:hover': {
-                                transform: 'translateY(-2px)',
-                                boxShadow: 3
-                            }
-                        }}
-                    >
-                        {compareMode && (
-                            <Box sx={{ position: 'absolute', top: 8, right: 8, zIndex: 1 }}>
-                                {compareItems.find(i => i.id === item.id && i.category === item.category) ? (
-                                    <CheckBoxIcon color="primary" />
-                                ) : (
-                                    <CheckBoxOutlineBlankIcon />
-                                )}
-                            </Box>
-                        )}
-                        <CardContent sx={{ flexGrow: 1 }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                                <CardMedia
-                                    component="img"
-                                    image={item.icon}
-                                    alt={item.name}
-                                    sx={{
-                                        width: 32,
-                                        height: 32,
-                                        objectFit: 'contain',
-                                        backgroundColor: 'grey.100',
-                                        borderRadius: 1,
-                                        flexShrink: 0
-                                    }}
-                                />
-                                <Typography variant="h6" component="h3" sx={{ fontSize: '0.9rem', flexGrow: 1 }}>
-                                    {item.name}
-                                </Typography>
-                            </Box>
-
-                            <Stack spacing={1}>
-                                <Chip
-                                    label={getCategoryDisplayName(item.category)}
-                                    size="small"
-                                    color="primary"
-                                    variant="outlined"
-                                />
-
-                                {'type' in item && item.type && (
-                                    <Chip
-                                        label={getWeaponTypeDisplayName(item.type)}
-                                        size="small"
-                                        color="secondary"
-                                        variant="outlined"
-                                    />
-                                )}
-
-                                {item.availableRaces && (
-                                    <Box>
-                                        <Typography variant="caption" color="text.secondary">
-                                            使用可能種族:
-                                        </Typography>
-                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
-                                            {item.availableRaces.slice(0, 3).map((race) => (
-                                                <Chip
-                                                    key={race}
-                                                    label={getRaceDisplayName(race)}
-                                                    size="small"
-                                                    variant="outlined"
-                                                    sx={{ fontSize: '0.7rem', height: 20 }}
-                                                />
-                                            ))}
-                                            {item.availableRaces.length > 3 && (
-                                                <Typography variant="caption" color="text.secondary">
-                                                    +{item.availableRaces.length - 3}
-                                                </Typography>
-                                            )}
-                                        </Box>
-                                    </Box>
-                                )}
-                            </Stack>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            ))}
-        </Grid>
-    );
-
-    const renderListView = () => (
-        <List>
-            {paginatedItems.map((item) => (
-                <ListItem
-                    key={`${item.category}-${item.id}`}
-                    onClick={() => handleItemSelect(item)}
-                    sx={{
-                        cursor: 'pointer',
-                        border: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 2 : 1,
-                        borderColor: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 'primary.main' : 'divider',
-                        borderRadius: 1,
-                        mb: 1,
-                        '&:hover': {
-                            backgroundColor: 'action.hover'
-                        }
-                    }}
-                    secondaryAction={
-                        compareMode ? (
-                            compareItems.find(i => i.id === item.id && i.category === item.category) ? (
-                                <CheckBoxIcon color="primary" />
-                            ) : (
-                                <CheckBoxOutlineBlankIcon />
-                            )
-                        ) : null
-                    }
-                >
-                    <ListItemAvatar>
-                        <Avatar
-                            src={item.icon}
-                            alt={item.name}
-                            sx={{ width: 40, height: 40, backgroundColor: 'grey.100' }}
-                        />
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={item.name}
-                        secondary={
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
-                                <Chip
-                                    label={getCategoryDisplayName(item.category)}
-                                    size="small"
-                                    color="primary"
-                                    variant="outlined"
-                                />
-                                {'type' in item && item.type && (
-                                    <Chip
-                                        label={getWeaponTypeDisplayName(item.type)}
-                                        size="small"
-                                        color="secondary"
-                                        variant="outlined"
-                                    />
-                                )}
-                                {item.availableRaces && item.availableRaces.length > 0 && (
-                                    <Chip
-                                        label={`${item.availableRaces.length}種族対応`}
-                                        size="small"
-                                        variant="outlined"
-                                    />
-                                )}
-                            </Box>
-                        }
-                    />
-                </ListItem>
-            ))}
-        </List>
-    );
-
-    const renderTableView = () => (
-        <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        {compareMode && <TableCell>選択</TableCell>}
-                        <TableCell>アイコン</TableCell>
-                        <TableCell>名前</TableCell>
-                        <TableCell>カテゴリ</TableCell>
-                        <TableCell>タイプ</TableCell>
-                        <TableCell>対応種族数</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {paginatedItems.map((item) => (
-                        <TableRow
-                            key={`${item.category}-${item.id}`}
-                            onClick={() => handleItemSelect(item)}
-                            sx={{
-                                cursor: 'pointer',
-                                backgroundColor: compareMode && compareItems.find(i => i.id === item.id && i.category === item.category) ? 'action.selected' : 'inherit',
-                                '&:hover': {
-                                    backgroundColor: 'action.hover'
-                                }
-                            }}
-                        >
-                            {compareMode && (
-                                <TableCell>
-                                    {compareItems.find(i => i.id === item.id && i.category === item.category) ? (
-                                        <CheckBoxIcon color="primary" />
-                                    ) : (
-                                        <CheckBoxOutlineBlankIcon />
-                                    )}
-                                </TableCell>
-                            )}
-                            <TableCell>
-                                <Avatar
-                                    src={item.icon}
-                                    alt={item.name}
-                                    sx={{ width: 32, height: 32, backgroundColor: 'grey.100' }}
-                                />
-                            </TableCell>
-                            <TableCell>{item.name}</TableCell>
-                            <TableCell>
-                                <Chip
-                                    label={getCategoryDisplayName(item.category)}
-                                    size="small"
-                                    color="primary"
-                                    variant="outlined"
-                                />
-                            </TableCell>
-                            <TableCell>
-                                {'type' in item && item.type ? (
-                                    <Chip
-                                        label={getWeaponTypeDisplayName(item.type)}
-                                        size="small"
-                                        color="secondary"
-                                        variant="outlined"
-                                    />
-                                ) : '-'}
-                            </TableCell>
-                            <TableCell>
-                                {item.availableRaces ? item.availableRaces.length : '全種族'}
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
-
     const renderCurrentView = () => {
+        const viewProps = {
+            items: paginatedItems,
+            compareItems,
+            compareMode,
+            onItemSelect: handleItemSelect,
+        };
+
         switch (viewMode) {
             case 'list':
-                return renderListView();
+                return <ItemListView {...viewProps} />;
             case 'table':
-                return renderTableView();
+                return <ItemTableView {...viewProps} />;
             default:
-                return renderCardView();
+                return <ItemCardView {...viewProps} />;
         }
     };
 
