@@ -1,0 +1,49 @@
+import { atom } from "jotai";
+import { atomFamily } from "jotai/utils";
+import { races } from "../../../static/races";
+import { getInitialSkillLevelsForJob } from "../../../components/skill/skillTreeData";
+import type { SkillLevelMap } from "../../character/types";
+import {
+    activeCharacterBaseAtomFamily,
+    activeCharacterSkillLevelsAtomFamily,
+} from "../activeCharacterAtoms";
+
+const getDefaultSkillLevels = (
+    type: "primary" | "secondary",
+    raceid: number,
+    jobid: number
+): SkillLevelMap => {
+    const race = races.find((candidate) => candidate.id === raceid);
+    const job = type === "primary"
+        ? race?.jobs[0]
+        : race?.jobs[jobid];
+    return getInitialSkillLevelsForJob(job);
+};
+
+export const uiSkillLevelsWithDefaultsAtomFamily = atomFamily((type: "primary" | "secondary") =>
+    atom(
+        (get) => {
+            const levels = get(activeCharacterSkillLevelsAtomFamily(type));
+            if (Object.keys(levels).length > 0) {
+                return levels;
+            }
+
+            return getDefaultSkillLevels(
+                type,
+                Number(get(activeCharacterBaseAtomFamily("raceid"))),
+                type === "primary" ? 0 : Number(get(activeCharacterBaseAtomFamily("jobid")))
+            );
+        },
+        (_, set, levels: SkillLevelMap) => {
+            set(activeCharacterSkillLevelsAtomFamily(type), levels);
+        }
+    )
+);
+
+export const uiUsedSkillPointsAtom = atom((get) => {
+    const primarySkills = get(uiSkillLevelsWithDefaultsAtomFamily("primary"));
+    const secondarySkills = get(uiSkillLevelsWithDefaultsAtomFamily("secondary"));
+
+    return [...Object.values(primarySkills), ...Object.values(secondarySkills)]
+        .reduce((sum, level) => sum + level, 0);
+});

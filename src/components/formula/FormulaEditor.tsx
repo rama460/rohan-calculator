@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
     Dialog,
     DialogTitle,
@@ -21,9 +21,24 @@ import {
     Help as HelpIcon,
 } from '@mui/icons-material';
 import { useAtom, useAtomValue } from 'jotai';
-import { customFormulaStateFamily, formulaStateFamily, Formula } from '../../modules/state/custom-formulas';
-import { CharactorStateType } from '../../modules/state/charactor';
+import { Formula } from '../../modules/state/custom-formulas';
+import {
+    uiCustomFormulaAtomFamily,
+    uiFormulaAtomFamily,
+} from '../../modules/state/ui';
+import { CharactorStateType } from '../../modules/character/constants';
 import { validateFormula, FormulaContext } from '../../modules/formula/formula-validator';
+
+type MonacoApi = {
+    languages: {
+        register: (language: { id: string }) => void;
+        setMonarchTokensProvider: (languageId: string, provider: unknown) => void;
+    };
+    editor: {
+        defineTheme: (themeName: string, themeData: unknown) => void;
+        setTheme: (themeName: string) => void;
+    };
+};
 
 interface FormulaEditorProps {
     open: boolean;
@@ -40,14 +55,13 @@ export const FormulaEditor: React.FC<FormulaEditorProps> = ({
     initialFormula,
     statusType,
 }) => {
-    const [customFormula, setCustomFormula] = useAtom(customFormulaStateFamily(statusType));
+    const [customFormula, setCustomFormula] = useAtom(uiCustomFormulaAtomFamily(statusType));
 
     // 初期値の決定：custom formulaがあればそれを使用、なければinitialFormulaを使用
     const [formula, setFormula] = useState(customFormula?.formula || initialFormula);
     const [name, setName] = useState(customFormula?.name || formulaName);
     const [description, setDescription] = useState(customFormula?.description || '');
     const [activeTab, setActiveTab] = useState(0);
-    const editorRef = useRef<any>(null);
 
     // エディターの高さを動的に計算
     const calculateEditorHeight = useMemo(() => {
@@ -68,9 +82,7 @@ export const FormulaEditor: React.FC<FormulaEditorProps> = ({
     }, [open, customFormula, initialFormula, formulaName]);
 
     // Monaco Editorの初期化設定
-    const handleEditorDidMount = (editor: any, monaco: any) => {
-        editorRef.current = editor;
-
+    const handleEditorDidMount = (_editor: unknown, monaco: MonacoApi) => {
         // カスタム言語の定義
         monaco.languages.register({ id: 'rohan-formula' });
 
@@ -121,26 +133,26 @@ export const FormulaEditor: React.FC<FormulaEditorProps> = ({
     };
 
     // 中間変数の数式を個別に取得
-    const strengthFormula = useAtomValue(formulaStateFamily('__strength'));
-    const vitalityFormula = useAtomValue(formulaStateFamily('__vitality'));
-    const dexterityFormula = useAtomValue(formulaStateFamily('__dexterity'));
-    const intelligenceFormula = useAtomValue(formulaStateFamily('__intelligence'));
-    const agilityFormula = useAtomValue(formulaStateFamily('__agility'));
-    const mentalityFormula = useAtomValue(formulaStateFamily('__mentality'));
-    const hitPointFormula = useAtomValue(formulaStateFamily('__hitPoint'));
-    const magicPointFormula = useAtomValue(formulaStateFamily('__magicPoint'));
-    const meleeAttackFormula = useAtomValue(formulaStateFamily('__meleeAttack'));
-    const magicAttackFormula = useAtomValue(formulaStateFamily('__magicAttack'));
-    const rangeAttackFormula = useAtomValue(formulaStateFamily('__rangeAttack'));
-    const physicalDefenseFormula = useAtomValue(formulaStateFamily('__physicalDefense'));
-    const magicalDefenseFormula = useAtomValue(formulaStateFamily('__magicalDefense'));
-    const accuracyFormula = useAtomValue(formulaStateFamily('__accuracy'));
-    const dodgingFormula = useAtomValue(formulaStateFamily('__dodging'));
-    const resistanceFormula = useAtomValue(formulaStateFamily('__resistance'));
-    const movementSpeedFormula = useAtomValue(formulaStateFamily('__movementSpeed'));
-    const attackSpeedFormula = useAtomValue(formulaStateFamily('__attackSpeed'));
-    const hitPointRecoveryFormula = useAtomValue(formulaStateFamily('__hitPointRecovery'));
-    const magicPointRecoveryFormula = useAtomValue(formulaStateFamily('__magicPointRecovery'));
+    const strengthFormula = useAtomValue(uiFormulaAtomFamily('__strength'));
+    const vitalityFormula = useAtomValue(uiFormulaAtomFamily('__vitality'));
+    const dexterityFormula = useAtomValue(uiFormulaAtomFamily('__dexterity'));
+    const intelligenceFormula = useAtomValue(uiFormulaAtomFamily('__intelligence'));
+    const agilityFormula = useAtomValue(uiFormulaAtomFamily('__agility'));
+    const mentalityFormula = useAtomValue(uiFormulaAtomFamily('__mentality'));
+    const hitPointFormula = useAtomValue(uiFormulaAtomFamily('__hitPoint'));
+    const magicPointFormula = useAtomValue(uiFormulaAtomFamily('__magicPoint'));
+    const meleeAttackFormula = useAtomValue(uiFormulaAtomFamily('__meleeAttack'));
+    const magicAttackFormula = useAtomValue(uiFormulaAtomFamily('__magicAttack'));
+    const rangeAttackFormula = useAtomValue(uiFormulaAtomFamily('__rangeAttack'));
+    const physicalDefenseFormula = useAtomValue(uiFormulaAtomFamily('__physicalDefense'));
+    const magicalDefenseFormula = useAtomValue(uiFormulaAtomFamily('__magicalDefense'));
+    const accuracyFormula = useAtomValue(uiFormulaAtomFamily('__accuracy'));
+    const dodgingFormula = useAtomValue(uiFormulaAtomFamily('__dodging'));
+    const resistanceFormula = useAtomValue(uiFormulaAtomFamily('__resistance'));
+    const movementSpeedFormula = useAtomValue(uiFormulaAtomFamily('__movementSpeed'));
+    const attackSpeedFormula = useAtomValue(uiFormulaAtomFamily('__attackSpeed'));
+    const hitPointRecoveryFormula = useAtomValue(uiFormulaAtomFamily('__hitPointRecovery'));
+    const magicPointRecoveryFormula = useAtomValue(uiFormulaAtomFamily('__magicPointRecovery'));
 
     // formulaContextを作成
     const formulaContext: FormulaContext = useMemo(() => ({

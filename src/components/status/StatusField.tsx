@@ -1,20 +1,25 @@
 import { Box, TextField, Typography, Chip } from "@mui/material";
 import React from "react";
 import { useAtom, useAtomValue } from "jotai";
-import { baseStatusState, metaStatusState, StatusType } from "../../modules/state/statuses";
-import { charactorStateFamily } from "../../modules/state/charactor";
-import { isFormulaCustomizedFamily } from "../../modules/state/custom-formulas";
+import {
+    uiAllocatedStatusAtomFamily,
+    uiIsFormulaCustomizedFamily,
+    uiMetaStatusAtomFamily,
+} from "../../modules/state/ui";
+import { CharacterStatusKey, CharacterValueKey } from "../../modules/character/constants";
+import { activeCharacterValueAtomFamily } from "../../modules/state/appState";
 
 interface StatusFieldProps {
-    name: StatusType;
+    name: CharacterStatusKey;
     displayName: string;
 }
 
 export const StatusField: React.FC<StatusFieldProps> = ({ name, displayName }) => {
-    const [base, setBase] = useAtom(baseStatusState(name));
-    const [meta, setMeta] = useAtom(metaStatusState(name));
-    const total = useAtomValue(charactorStateFamily(`__${name}` as any));
-    const isCustomized = useAtomValue(isFormulaCustomizedFamily(`__${name}` as any));
+    const [base, setBase] = useAtom(uiAllocatedStatusAtomFamily(name));
+    const [meta, setMeta] = useAtom(uiMetaStatusAtomFamily(name));
+    const valueKey = `__${name}` as CharacterValueKey;
+    const total = useAtomValue(activeCharacterValueAtomFamily(valueKey));
+    const isCustomized = useAtomValue(uiIsFormulaCustomizedFamily(valueKey));
 
     const handleBaseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBase(Number(event.target.value));

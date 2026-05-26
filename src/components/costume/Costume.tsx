@@ -23,11 +23,11 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import { costumes, glasses, earrings, hats, ItemTemplate } from '../../static/items';
+import { costumes, glasses, earrings, hats, ItemTemplate, getItemTemplatesForDisplay } from '../../static/items';
 import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import { EquipmentIconButton } from '../status/EquipmentIconButton';
 import { useAtomValue } from 'jotai';
-import { equipmentStateFamily } from '../../modules/state/items';
+import { uiEquipmentAtomFamily } from '../../modules/state/ui';
 import { PageContainer } from '../common/PageContainer';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 
@@ -157,13 +157,18 @@ interface SeriesData {
     synergyEffects: { [key: number]: { [key: string]: number } };
 }
 
+const displayCostumes = getItemTemplatesForDisplay(costumes);
+const displayGlasses = getItemTemplatesForDisplay(glasses);
+const displayEarrings = getItemTemplatesForDisplay(earrings);
+const displayHats = getItemTemplatesForDisplay(hats);
+
 const SeriesComparisonTable: React.FC = () => {
-    const equippedCostume = useAtomValue(equipmentStateFamily('costume'));
+    const equippedCostume = useAtomValue(uiEquipmentAtomFamily('costume'));
 
     const buildSeriesData = (): SeriesData[] => {
         const seriesMap = new Map<string, SeriesData>();
 
-        [...costumes, ...glasses, ...earrings, ...hats].forEach(item => {
+        [...displayCostumes, ...displayGlasses, ...displayEarrings, ...displayHats].forEach(item => {
             if (!item.synergyKey || !item.seriesName) return;
 
             if (!seriesMap.has(item.synergyKey)) {
@@ -177,13 +182,13 @@ const SeriesComparisonTable: React.FC = () => {
 
             const series = seriesMap.get(item.synergyKey)!;
 
-            if (costumes.includes(item)) {
+            if (displayCostumes.includes(item)) {
                 series.costume = item;
-            } else if (glasses.includes(item)) {
+            } else if (displayGlasses.includes(item)) {
                 series.glasses = item;
-            } else if (earrings.includes(item)) {
+            } else if (displayEarrings.includes(item)) {
                 series.earrings = item;
-            } else if (hats.includes(item)) {
+            } else if (displayHats.includes(item)) {
                 series.hat = item;
             }
         });
@@ -333,10 +338,10 @@ const SeriesComparisonTable: React.FC = () => {
 
 // HTML5 Drag and Drop APIを使用したドラッグ可能なヘッダーコンポーネント
 interface DraggableHeaderProps {
-    series: any;
+    series: SeriesData & { itemCount: number };
     index: number;
     moveColumn: (dragIndex: number, hoverIndex: number) => void;
-    equippedCostume?: any;
+    equippedCostume?: unknown;
 }
 
 const DraggableHeader: React.FC<DraggableHeaderProps> = ({ series, index, moveColumn, equippedCostume }) => {
@@ -430,7 +435,7 @@ const ParameterComparisonTable: React.FC = () => {
     const buildSeriesData = (): SeriesData[] => {
         const seriesMap = new Map<string, SeriesData>();
 
-        [...costumes, ...glasses, ...earrings, ...hats].forEach(item => {
+        [...displayCostumes, ...displayGlasses, ...displayEarrings, ...displayHats].forEach(item => {
             if (!item.synergyKey || !item.seriesName) return;
 
             if (!seriesMap.has(item.synergyKey)) {
@@ -444,13 +449,13 @@ const ParameterComparisonTable: React.FC = () => {
 
             const series = seriesMap.get(item.synergyKey)!;
 
-            if (costumes.includes(item)) {
+            if (displayCostumes.includes(item)) {
                 series.costume = item;
-            } else if (glasses.includes(item)) {
+            } else if (displayGlasses.includes(item)) {
                 series.glasses = item;
-            } else if (earrings.includes(item)) {
+            } else if (displayEarrings.includes(item)) {
                 series.earrings = item;
-            } else if (hats.includes(item)) {
+            } else if (displayHats.includes(item)) {
                 series.hat = item;
             }
         });
@@ -550,7 +555,7 @@ const ParameterComparisonTable: React.FC = () => {
     };
 
     // 装備されたコスチュームの情報を取得
-    const equippedCostume = useAtomValue(equipmentStateFamily('costume'));
+    const equippedCostume = useAtomValue(uiEquipmentAtomFamily('costume'));
 
     // デバッグ: 装備されたコスチュームの情報を確認
     React.useEffect(() => {
@@ -779,11 +784,11 @@ const ParameterComparisonTable: React.FC = () => {
                                                         items={(() => {
                                                             // 同じシリーズにコスチュームがある場合はそれのみ
                                                             if (series.costume) {
-                                                                return costumes.filter(costume => costume.synergyKey === series.synergyKey);
+                                                                return displayCostumes.filter(costume => costume.synergyKey === series.synergyKey);
                                                             }
                                                             // 同じシリーズにコスチュームがない場合は全てのコスチューム
                                                             else {
-                                                                return costumes;
+                                                                return displayCostumes;
                                                             }
                                                         })()}
                                                     />
@@ -905,19 +910,19 @@ export const Costume: React.FC = () => {
                 </Box>
 
                 <TabPanel value={tabValue} index={0}>
-                    <ItemTable items={costumes} categoryName="costume" />
+                    <ItemTable items={displayCostumes} categoryName="costume" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={1}>
-                    <ItemTable items={glasses} categoryName="glasses" />
+                    <ItemTable items={displayGlasses} categoryName="glasses" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={2}>
-                    <ItemTable items={earrings} categoryName="earrings" />
+                    <ItemTable items={displayEarrings} categoryName="earrings" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={3}>
-                    <ItemTable items={hats} categoryName="hats" />
+                    <ItemTable items={displayHats} categoryName="hats" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={4}>

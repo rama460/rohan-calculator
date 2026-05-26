@@ -1,4 +1,4 @@
-import { CharactorStateType } from "../modules/state/charactor";
+import { CharactorStateType } from "../modules/character/constants";
 
 /**
  * デフォルト計算式の定義

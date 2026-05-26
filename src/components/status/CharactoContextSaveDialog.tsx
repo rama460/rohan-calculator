@@ -11,7 +11,7 @@ interface CharactorContextSaveDialogProps {
 }
 
 export const CharactorContextSaveDialog: React.FC<CharactorContextSaveDialogProps> = ({ isOpen, setIsOpen, loadedName, setLoadedName }) => {
-    const [_, saveContext] = useStorageContext(loadedName);
+    const [, saveContext] = useStorageContext(loadedName);
 
     const handleSave = () => {
         setIsOpen(false);

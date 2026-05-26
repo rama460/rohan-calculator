@@ -7,11 +7,12 @@ import { DefaultEquipmentTooltipContent } from "./DefaultEquipmentTooltipContent
 import anyBackground from "../../assets/backgrounds/any.png"
 import { ItemTemplate } from "../../static/items";
 import { useAtom, useAtomValue } from "jotai";
-import { Equipments, equipmentStateFamily, equipmentSynergyCountState } from "../../modules/state/items";
+import { EquipmentSlotKey } from "../../modules/character/constants";
+import { uiEquipmentAtomFamily, uiEquipmentSynergyCountAtomFamily } from "../../modules/state/ui";
 
 
 interface EquipmentIconButtonProps {
-    equipmentType: keyof Equipments
+    equipmentType: EquipmentSlotKey
     title: string
     backgroundImage?: string
     items: ItemTemplate[]
@@ -19,8 +20,8 @@ interface EquipmentIconButtonProps {
 
 export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items }) => {
     console.log(`render EquipmentIconButton ${equipmentType}`)
-    const [equippedItem, setEquippedItem] = useAtom(equipmentStateFamily(equipmentType));
-    const synergyCount = useAtomValue(equipmentSynergyCountState(equipmentType));
+    const [equippedItem, setEquippedItem] = useAtom(uiEquipmentAtomFamily(equipmentType));
+    const synergyCount = useAtomValue(uiEquipmentSynergyCountAtomFamily(equipmentType));
     const [openDialog, setOpenDialog] = React.useState(false);
 
     const handleOpen = () => setOpenDialog(true);

@@ -1,8 +1,8 @@
 import { atom } from "jotai";
 import { atomWithCompressedHash } from "./common";
-import { getInitialSkillLevelsForJob } from "../../components/skill/skillTreeData";
+import { getInitialSkillLevelsForJob } from "../../../src/components/skill/skillTreeData";
 import { baseOptionStateFamily } from "./bases";
-import { races } from "../../static/races";
+import { races } from "../../../src/static/races";
 import { atomWithHash } from "jotai-location";
 
 // Skill level atoms for primary and secondary jobs

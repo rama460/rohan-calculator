@@ -1,7 +1,7 @@
 import { atomWithHash } from "jotai-location";
-import { titles } from "../../static/titles";
+import { titles } from "../../../src/static/titles";
 import { atom } from "jotai";
-import { BuiltinOptionKeyType } from "../../static/options";
+import { BuiltinOptionKeyType } from "../../../src/static/options";
 import { atomFamily } from "jotai/utils";
 
 export const titleNameState = atomWithHash<string>("title", "none",

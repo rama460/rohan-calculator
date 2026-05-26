@@ -1,6 +1,6 @@
-import { removeComments } from "./formula-calculator";
+import { removeComments } from "./formula-utils";
 import { BuiltinOptions } from "../../static/options";
-import { CharactorStateType } from "../state/charactor";
+import { CharactorStateType } from "../character/constants";
 
 // 安全なevalのための変数名パターン
 const ALLOWED_VARIABLE_PATTERN = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;

@@ -1,39 +1,18 @@
-import { atom } from "jotai";
+import { atom, type Getter } from "jotai";
 import { allOptionAggregorStateFamily } from "./options";
 import { atomFamily } from "jotai/utils";
-import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../static/options";
+import { BuiltinOptionKeys, BuiltinOptionKeyType } from "../../../src/static/options";
 import { BaseOptionKeyType, baseOptionStateFamily } from "./bases";
-import { races } from "../../static/races";
-import { FormulaContext, formulaStateFamily } from "./custom-formulas";
+import { races } from "../../../src/static/races";
+import { FormulaContext, formulaStateFamily } from "../../../src/modules/state/custom-formulas";
 import { executeCustomFormula } from "../formula/formula-calculator";
+import { characterValueKeys, type CharactorStateType } from "../../../src/modules/character/constants";
 
-export const charactorStateNames = [
-    "__strength",
-    "__vitality",
-    "__dexterity",
-    "__intelligence",
-    "__agility",
-    "__mentality",
-    "__hitPoint",
-    "__magicPoint",
-    "__meleeAttack",
-    "__magicAttack",
-    "__rangeAttack",
-    "__physicalDefense",
-    "__magicalDefense",
-    "__accuracy",
-    "__dodging",
-    "__resistance",
-    "__hitPointRecovery",
-    "__magicPointRecovery",
-    "__movementSpeed",
-    "__attackSpeed",
-] as const;
-
-export type CharactorStateType = typeof charactorStateNames[number];
+export const charactorStateNames = characterValueKeys;
+export type { CharactorStateType };
 
 // 統合計算システムで使用するゲッター関数を作成
-function createCalculationGetter(get: any): (key: string) => number {
+function createCalculationGetter(get: Getter): (key: string) => number {
     return (key: string): number => {
         if (BuiltinOptionKeys.includes(key as BuiltinOptionKeyType)) {
             return get(allOptionAggregorStateFamily(key as BuiltinOptionKeyType));
@@ -44,7 +23,7 @@ function createCalculationGetter(get: any): (key: string) => number {
 }
 
 // 特殊変数のマッピング関数
-function createSpecialVariableGetter(get: any): (key: string) => number {
+function createSpecialVariableGetter(get: Getter): (key: string) => number {
     return (key: string): number => {
         // 種族関連の特殊変数を処理
         if (key.startsWith('race') || key.startsWith('initialStatus')) {
@@ -136,4 +115,3 @@ export const charactorStateFamily = atomFamily((key: CharactorStateType) => {
         }
     });
 });
-

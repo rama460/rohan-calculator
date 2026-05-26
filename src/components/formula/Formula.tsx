@@ -34,10 +34,15 @@ import {
     Security as DefenseIcon,
     Speed as SpeedIcon
 } from '@mui/icons-material';
-import { CharactorStateType } from '../../modules/state/charactor';
+import { CharactorStateType } from '../../modules/character/constants';
 import { FormulaEditor } from './FormulaEditor';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { isFormulaCustomizedFamily, resetCustomFormulaFamily, customizedFormulasState, customFormulaStateFamily, customFormulasState } from '../../modules/state/custom-formulas';
+import {
+    uiCustomFormulaAtomFamily,
+    uiCustomFormulasState,
+    uiIsFormulaCustomizedFamily,
+    resetUiCustomFormulaFamily,
+} from '../../modules/state/ui';
 import { DEFAULT_FORMULAS } from '../../static/default-formulas';
 import { BuiltinOptions } from '../../static/options';
 import { Formula as FormulaType } from '../../modules/state/custom-formulas';
@@ -78,8 +83,8 @@ export const Formula: React.FC = () => {
     } | null>(null);
 
     // カスタム計算式の状態
-    const customizedFormulas = useAtomValue(customizedFormulasState);
-    const setCustomFormulas = useSetAtom(customFormulasState);
+    const customizedFormulas = useAtomValue(uiCustomFormulasState);
+    const setCustomFormulas = useSetAtom(uiCustomFormulasState);
     const [tabValue, setTabValue] = useState(0);
 
     // すべてのカスタム式をリセット
@@ -216,8 +221,8 @@ export const Formula: React.FC = () => {
         formulaName: string;
         originalFormula: string;
     }> = ({ formulaId, formulaName, originalFormula }) => {
-        const isCustomized = useAtomValue(isFormulaCustomizedFamily(formulaId));
-        const resetFormula = useSetAtom(resetCustomFormulaFamily(formulaId));
+        const isCustomized = useAtomValue(uiIsFormulaCustomizedFamily(formulaId));
+        const resetFormula = useSetAtom(resetUiCustomFormulaFamily(formulaId));
 
         return (
             <Box display="flex" gap={0.5} alignItems="center">
@@ -266,7 +271,7 @@ export const Formula: React.FC = () => {
             otherVariables: string[];
         };
     }> = ({ formulaId, formulaName, originalFormula, components }) => {
-        const customFormula = useAtomValue(customFormulaStateFamily(formulaId));
+        const customFormula = useAtomValue(uiCustomFormulaAtomFamily(formulaId));
 
         // custom formulaがあればそれを使用、なければoriginalを使用
         const displayFormula = customFormula?.formula || originalFormula;

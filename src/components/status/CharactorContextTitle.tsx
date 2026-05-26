@@ -1,14 +1,11 @@
 import { Box, Button, TextField } from "@mui/material"
 import React, { useState } from "react";
 import { contextNames } from "../../modules/state/storage";
-import { resetAllStatusState } from "../../modules/state/statuses";
 import { useAtomValue, useSetAtom } from "jotai";
-import { resetAllEquipmentState } from "../../modules/state/items";
-import { buffStateFamily } from "../../modules/state/skills";
 import CharactorContextLoadDialog from "./CharactoContextLoadDialog";
 import CharactorContextSaveDialog from "./CharactoContextSaveDialog";
-import { resetBaseState } from "../../modules/state/bases";
 import CharactorContextDeleteDialog from "./CharactoContextDeleteDialog";
+import { resetUiCharacterContextAtom } from "../../modules/state/ui";
 
 interface CharactorContextTitleProps {
     index?: number
@@ -20,13 +17,7 @@ export const CharactorContextTitle: React.FC<CharactorContextTitleProps> = ({ in
     const [saveDialogOpen, setSaveDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const names = useAtomValue(contextNames);
-    const resetAllStatus = useSetAtom(resetAllStatusState);
-    const resetAllEquipment = useSetAtom(resetAllEquipmentState);
-    const resetAllBaseState = useSetAtom(resetBaseState);
-    const setSelfBuffStatuses = useSetAtom(buffStateFamily("Self"));
-    const setGroupBuffStatuses = useSetAtom(buffStateFamily("Group"));
-    const setGuildBuffStatuses = useSetAtom(buffStateFamily("Guild"));
-    const setCashBuffStatuses = useSetAtom(buffStateFamily("Cash"));
+    const resetCharacterContext = useSetAtom(resetUiCharacterContextAtom);
 
     return (
 
@@ -41,7 +32,7 @@ export const CharactorContextTitle: React.FC<CharactorContextTitleProps> = ({ in
             <Box display="flex" gap={1}>
                 <Button
                     size="small"
-                    onClick={() => { resetAllStatus(); resetAllEquipment(); resetAllBaseState(); setSelfBuffStatuses([]); setGroupBuffStatuses([]); setGuildBuffStatuses([]); setCashBuffStatuses([]) }}
+                    onClick={() => { resetCharacterContext(); }}
                 >
                     リセット
                 </Button>

@@ -1,4 +1,4 @@
-import { Equipments } from "../modules/state/items";
+import { EquipmentSlotKey } from "../modules/character/constants";
 import { ItemTemplate } from "./items";
 
 export type Option = {
@@ -936,7 +936,7 @@ export const BuiltinOptions = {
     },
 
 } as const;
-export const getCraftedOptions = (type: keyof Equipments, template: ItemTemplate): CraftedOptions => {
+export const getCraftedOptions = (type: EquipmentSlotKey, template: ItemTemplate): CraftedOptions => {
     if (type == "weapon") {
         return CraftedWeaponOptions;
     }

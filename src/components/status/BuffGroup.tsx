@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid2";
 import { Skill, SkillOrigin } from "../../static/skills/skill";
 import BuffIconButton from "./BuffIconButton";
 import { useAtom } from "jotai";
-import { buffStateFamily } from "../../modules/state/skills";
+import { uiBuffsAtomFamily } from "../../modules/state/ui";
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 interface BuffGroupProps {
     title: string;
@@ -11,7 +11,7 @@ interface BuffGroupProps {
 }
 
 export const BuffGroup: React.FC<BuffGroupProps> = ({ title, buffOrigin, buffs }) => {
-    const [buffStatuses, setBuffStatuses] = useAtom(buffStateFamily(buffOrigin));
+    const [buffStatuses, setBuffStatuses] = useAtom(uiBuffsAtomFamily(buffOrigin));
     const setBuff = (buff: Skill, checked: boolean, level: number) => {
         if (checked) {
             if (buffStatuses.find((b) => b.name === buff.name)) {
