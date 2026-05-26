@@ -1,5 +1,5 @@
 import { getInitialBaseOtions, itemTemplates } from "../../static/items";
-import type { Item } from "../../static/items";
+import type { Item, ItemTemplate } from "../../static/items";
 import { EquipmentSlotKey } from "../character/constants";
 import type { EquipmentLeafState, OptionMap } from "../character/types";
 
@@ -9,6 +9,21 @@ const withoutUnchangedOptions = (options: OptionMap, staticOptions: OptionMap): 
     ) as OptionMap
 );
 
+const resolveTemplateById = (
+    templateId: number | undefined,
+    slot: EquipmentSlotKey
+): { template: ItemTemplate; templateId: number } | undefined => {
+    if (templateId === undefined) {
+        return undefined;
+    }
+
+    const template = slot === "shield" && templateId < 0
+        ? itemTemplates.weapon.find((candidate) => candidate.id === -(1 + templateId))
+        : itemTemplates[slot].find((candidate) => candidate.id === templateId);
+
+    return template ? { template, templateId } : undefined;
+};
+
 export const normalizeEquipmentItem = (
     item: Item,
     slot: EquipmentSlotKey,
@@ -16,16 +31,16 @@ export const normalizeEquipmentItem = (
     jobid: number
 ): EquipmentLeafState | undefined => {
     const templates = slot === "shield" && item.type ? itemTemplates.weapon : itemTemplates[slot];
-    const template = templates.find((candidate) => candidate.name === item.name);
-    if (!template) {
+    const resolvedById = resolveTemplateById(item.templateId, slot);
+    const template = resolvedById?.template ?? templates.find((candidate) => candidate.name === item.name);
+    const templateId = resolvedById?.templateId ?? (slot === "shield" && item.type && template ? -(1 + template.id) : template?.id);
+    if (!template || templateId === undefined) {
         return undefined;
     }
 
     const enchantLevel = item.enchantLevel ?? 0;
     const staticBaseOptions = getInitialBaseOtions(template, raceid, jobid, enchantLevel);
     const baseOverrides = withoutUnchangedOptions(item.baseOptions, staticBaseOptions);
-    const templateId = slot === "shield" && item.type ? -(1 + template.id) : template.id;
-
     return {
         templateId,
         ...(enchantLevel > 0 ? { enchantLevel } : {}),

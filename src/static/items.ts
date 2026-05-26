@@ -227,6 +227,7 @@ export type SetItemTemplate = {
 } & BaseItemTemplate;
 
 export type Item = {
+    templateId?: number;
     name: string;
     icon: string;
     availableRaces?: RaceNameOrTrinityJobName[];

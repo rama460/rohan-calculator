@@ -3,7 +3,10 @@ import { atomFamily } from "jotai/utils";
 import { skills, SkillOrigin } from "../../../static/skills/skill";
 import type { BuffLeafState } from "../../character/types";
 import { BuffState, normalizeBuffState } from "../../normalize";
-import { activeCharacterBuffsAtomFamily } from "../activeCharacterAtoms";
+import {
+    activeCharacterBaseAtomFamily,
+    activeCharacterBuffsAtomFamily,
+} from "../activeCharacterAtoms";
 
 const toBuffState = (buff: BuffLeafState): BuffState | undefined => {
     const skill = skills[buff.skillId];
@@ -23,9 +26,14 @@ export const uiBuffsAtomFamily = atomFamily((origin: SkillOrigin) =>
             const legacyBuff = toBuffState(buff);
             return legacyBuff ? [legacyBuff] : [];
         }),
-        (_, set, buffs: BuffState[]) => {
+        (get, set, buffs: BuffState[]) => {
             set(activeCharacterBuffsAtomFamily(origin), buffs.flatMap((buff) => {
-                const nextBuff = normalizeBuffState(buff);
+                const nextBuff = normalizeBuffState(
+                    buff,
+                    origin,
+                    Number(get(activeCharacterBaseAtomFamily("raceid"))),
+                    Number(get(activeCharacterBaseAtomFamily("jobid")))
+                );
                 return nextBuff ? [nextBuff] : [];
             }));
         }

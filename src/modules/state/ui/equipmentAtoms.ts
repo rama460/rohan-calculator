@@ -12,6 +12,7 @@ import {
 
 const toItem = (equipment: ResolvedEquipment): Item => {
     const item: Item = {
+        templateId: equipment.templateId,
         name: equipment.template.name,
         icon: equipment.template.icon,
         availableRaces: equipment.template.availableRaces,

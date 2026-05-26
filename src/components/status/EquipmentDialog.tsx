@@ -45,16 +45,23 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         itemTemplates.filter((template) => template.availableRaces?.some(
             (r) => (r === races[raceid].name || r === races[raceid].jobs[jobid].name)) ?? true)
     );
+    const getTemplateId = React.useCallback((template: ItemTemplate): number => (
+        equipmentType === "shield" && template.type ? -(1 + template.id) : template.id
+    ), [equipmentType]);
+    const getSelectedTemplate = React.useCallback((item: Item | undefined): ItemTemplate | undefined => (
+        item ? availableItemTemplates.find((template) => getTemplateId(template) === item.templateId) ??
+            availableItemTemplates.find((template) => template.name === item.name) : undefined
+    ), [availableItemTemplates, getTemplateId]);
+    const initialSelectedItemTemplate = getSelectedTemplate(equippedItem) ?? availableItemTemplates[0];
 
-    const [name, setName] = React.useState(
-        equippedItem ? equippedItem.name : (
-            availableItemTemplates.length > 0 ?
-                availableItemTemplates[0].name : "none"));
+    const [selectedTemplateId, setSelectedTemplateId] = React.useState(
+        initialSelectedItemTemplate ? String(getTemplateId(initialSelectedItemTemplate)) : ""
+    );
     const [enchantLevel, setEnchantLevel] = React.useState(
         equippedItem ? equippedItem.enchantLevel :
             0);
     const [selectedItemTemplate, setSelectedItemTemplate] = React.useState<ItemTemplate>(
-        equippedItem ? availableItemTemplates.find((template) => (template.name === equippedItem.name)) ?? availableItemTemplates[0] : availableItemTemplates[0])
+        initialSelectedItemTemplate)
     const [baseOptions, setBaseOptions] = React.useState<{ name: BuiltinOptionKeyType, value: number }[]>(
         equippedItem ? hashToArray(equippedItem.baseOptions) :
             availableItemTemplates.length > 0 ?
@@ -72,8 +79,8 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
         equippedItem ? hashToArray(equippedItem.additionalOptions) :
             []);
     const handleChange = (event: SelectChangeEvent) => {
-        setName(event.target.value as string);
-        const selectedItemTemplate: ItemTemplate = availableItemTemplates.find((itemTemplate) => itemTemplate.name === event.target.value) || itemTemplates[0];
+        setSelectedTemplateId(event.target.value);
+        const selectedItemTemplate: ItemTemplate = availableItemTemplates.find((itemTemplate) => getTemplateId(itemTemplate) === Number(event.target.value)) || itemTemplates[0];
         setBaseOptions(hashToArray(getInitialBaseOtions(selectedItemTemplate, raceid, jobid, enchantLevel)));
         if (!selectedItemTemplate.sockets)
             setCraftedOptions([]);
@@ -91,6 +98,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
 
     const handleConfirm = () => {
         setEquippedItem({
+            templateId: getTemplateId(selectedItemTemplate),
             enchantLevel: enchantLevel,
             baseOptions: ArrayToHash(baseOptions),
             additionalOptions: ArrayToHash(additionalOptions),
@@ -115,22 +123,24 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
     }
 
     const handleCancel = () => {
-        setName(equippedItem ? equippedItem.name : name);
+        const selectedTemplate = getSelectedTemplate(equippedItem) ?? selectedItemTemplate;
+        setSelectedTemplateId(String(getTemplateId(selectedTemplate)));
         setEnchantLevel(equippedItem ? equippedItem.enchantLevel : enchantLevel);
         setBaseOptions(equippedItem ? hashToArray(equippedItem.baseOptions) : baseOptions);
         setCraftedOptions(equippedItem ? hashToArray(equippedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : craftedOptions);
         setAdditionalOptions(equippedItem ? hashToArray(equippedItem.additionalOptions) : additionalOptions);
-        setSelectedItemTemplate(equippedItem ? availableItemTemplates.find((template) => (template.name === equippedItem.name)) ?? availableItemTemplates[0] : selectedItemTemplate);
+        setSelectedItemTemplate(selectedTemplate);
         onClose();
     }
 
     React.useEffect(() => {
-        setName(equippedItem ? equippedItem.name : name);
+        const selectedTemplate = getSelectedTemplate(equippedItem) ?? selectedItemTemplate;
+        setSelectedTemplateId(String(getTemplateId(selectedTemplate)));
         setEnchantLevel(equippedItem ? equippedItem.enchantLevel : enchantLevel);
         setBaseOptions(equippedItem ? hashToArray(equippedItem.baseOptions) : baseOptions);
         setCraftedOptions(equippedItem ? hashToArray(equippedItem.craftedOptions ?? {}, selectedItemTemplate.sockets) : craftedOptions);
         setAdditionalOptions(equippedItem ? hashToArray(equippedItem.additionalOptions) : additionalOptions);
-        setSelectedItemTemplate(equippedItem ? availableItemTemplates.find((template) => (template.name === equippedItem.name)) ?? availableItemTemplates[0] : selectedItemTemplate);
+        setSelectedItemTemplate(selectedTemplate);
 
     }, [equippedItem]);
     return (
@@ -148,13 +158,13 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType,
                     <FormControl size="small" sx={{ margin: "10px" }}>
                         <InputLabel>Name</InputLabel>
                         <Select
-                            value={name}
+                            value={selectedTemplateId}
                             label="Name"
                             onChange={handleChange}
                         >
                             {availableItemTemplates.map(
-                                (itemTemplate, index) => (
-                                    <MenuItem key={index} value={itemTemplate.name}>{itemTemplate.name}</MenuItem>
+                                (itemTemplate) => (
+                                    <MenuItem key={getTemplateId(itemTemplate)} value={String(getTemplateId(itemTemplate))}>{itemTemplate.name}</MenuItem>
                                 )
                             )}
                         </Select>
