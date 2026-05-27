@@ -74,28 +74,35 @@ const LOCAL_INTERMEDIATE_PATTERN = /^\s*@([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+)\s*$
 
 function createValidationFormula(formula: string): {
     validationFormula: string;
+    validationExpressions: string[];
     executionFormula: string;
     localIntermediateNames: Set<string>;
 } {
     const localIntermediateNames = new Set<string>();
-    const validationLines: string[] = [];
+    const localExpressions: string[] = [];
     const executionLines: string[] = [];
 
     formula.split('\n').forEach((line) => {
         const localMatch = LOCAL_INTERMEDIATE_PATTERN.exec(line);
         if (localMatch) {
             localIntermediateNames.add(localMatch[1]);
-            validationLines.push(localMatch[2].trim());
+            localExpressions.push(localMatch[2].trim());
             return;
         }
 
-        validationLines.push(line);
         executionLines.push(line);
     });
 
+    const executionFormula = executionLines.join('\n').trim();
+    const validationExpressions = [
+        ...localExpressions,
+        ...(executionFormula ? [executionFormula] : []),
+    ];
+
     return {
-        validationFormula: validationLines.join('\n').trim(),
-        executionFormula: executionLines.join('\n').trim(),
+        validationFormula: validationExpressions.join('\n').trim(),
+        validationExpressions,
+        executionFormula,
         localIntermediateNames,
     };
 }
@@ -103,11 +110,10 @@ function createValidationFormula(formula: string): {
 /**
  * 四則演算の規則をバリデーションする関数
  */
-function validateArithmeticRules(formula: string): ValidationError[] {
-    return formula
-        .split('\n')
-        .map((line) => line.trim())
-        .filter((line) => line.length > 0)
+function validateArithmeticRules(formulas: string[]): ValidationError[] {
+    return formulas
+        .map((formula) => formula.trim())
+        .filter((formula) => formula.length > 0)
         .flatMap(validateArithmeticExpression);
 }
 
@@ -339,7 +345,12 @@ export function validateFormula(
 
         // コメントを除去した式で以降のバリデーションを実行
         const cleanFormula = removeComments(formula);
-        const { validationFormula, executionFormula, localIntermediateNames } = createValidationFormula(cleanFormula);
+        const {
+            validationFormula,
+            validationExpressions,
+            executionFormula,
+            localIntermediateNames,
+        } = createValidationFormula(cleanFormula);
         // 空文字列チェック
         if (!validationFormula.trim()) {
             errors.push({
@@ -383,7 +394,7 @@ export function validateFormula(
         }
 
         // 四則演算の規則チェック
-        const arithmeticErrors = validateArithmeticRules(validationFormula);
+        const arithmeticErrors = validateArithmeticRules(validationExpressions);
         errors.push(...arithmeticErrors);
 
         // 変数名の妥当性チェック（コメント除去後の式をチェック）
