@@ -25,6 +25,18 @@ type ValueComparisonTableProps = {
     rightTraces: Partial<Record<CharacterValueKey, FormulaTrace>>;
 };
 
+type FormulaDefinitionMap = {
+    localFormulas: Map<string, string>;
+    finalFormula: string;
+};
+
+type FormulaTreeNode = {
+    name: string;
+    depth: number;
+    formula?: string;
+    children: FormulaTreeNode[];
+};
+
 const numberFormatter = new Intl.NumberFormat("ja-JP", {
     maximumFractionDigits: 3,
 });
@@ -40,20 +52,99 @@ const getLocalIntermediates = (trace: FormulaTrace | undefined): FormulaReferenc
     trace?.references.filter((reference) => reference.source === "localIntermediate") ?? []
 );
 
-const getIntermediateNames = (
-    leftReferences: FormulaReferenceTrace[],
-    rightReferences: FormulaReferenceTrace[]
-): string[] => (
-    Array.from(new Set([
-        ...leftReferences.map((reference) => reference.name),
-        ...rightReferences.map((reference) => reference.name),
-    ]))
-);
-
 const findIntermediateValue = (
     references: FormulaReferenceTrace[],
     name: string
 ): number | undefined => references.find((reference) => reference.name === name)?.value;
+
+const removeComment = (line: string): string => {
+    const commentIndex = line.indexOf("//");
+    return commentIndex >= 0 ? line.slice(0, commentIndex) : line;
+};
+
+const parseFormulaDefinitions = (trace: FormulaTrace | undefined): FormulaDefinitionMap => {
+    const localFormulas = new Map<string, string>();
+    const finalFormulaLines: string[] = [];
+
+    trace?.formulaSource.split("\n").forEach((line) => {
+        const cleanLine = removeComment(line).trim();
+        if (!cleanLine) {
+            return;
+        }
+
+        const localMatch = cleanLine.match(/^@([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/);
+        if (localMatch) {
+            localFormulas.set(localMatch[1], localMatch[2].trim());
+            return;
+        }
+
+        finalFormulaLines.push(cleanLine);
+    });
+
+    return {
+        localFormulas,
+        finalFormula: finalFormulaLines.join(" "),
+    };
+};
+
+const extractFormulaReferenceNames = (formula: string | undefined): string[] => {
+    if (!formula) {
+        return [];
+    }
+
+    return Array.from(formula.matchAll(/\{([^}]+)\}/g)).map((match) => match[1]);
+};
+
+const uniqueNames = (names: string[]): string[] => Array.from(new Set(names));
+
+const buildFormulaTree = (
+    leftTrace: FormulaTrace | undefined,
+    rightTrace: FormulaTrace | undefined
+): FormulaTreeNode[] => {
+    const leftDefinitions = parseFormulaDefinitions(leftTrace);
+    const rightDefinitions = parseFormulaDefinitions(rightTrace);
+
+    const buildNode = (name: string, depth: number, ancestors: ReadonlySet<string>): FormulaTreeNode => {
+        const formula = leftDefinitions.localFormulas.get(name) ?? rightDefinitions.localFormulas.get(name);
+        const nextAncestors = new Set(ancestors);
+        nextAncestors.add(name);
+
+        const childNames = formula
+            ? uniqueNames(extractFormulaReferenceNames(formula)).filter((childName) => !nextAncestors.has(childName))
+            : [];
+
+        return {
+            name,
+            depth,
+            formula,
+            children: childNames.map((childName) => buildNode(childName, depth + 1, nextAncestors)),
+        };
+    };
+
+    const rootNames = uniqueNames([
+        ...extractFormulaReferenceNames(leftDefinitions.finalFormula),
+        ...extractFormulaReferenceNames(rightDefinitions.finalFormula),
+    ]);
+
+    return rootNames.map((name) => buildNode(name, 0, new Set()));
+};
+
+const flattenFormulaTree = (nodes: FormulaTreeNode[]): FormulaTreeNode[] => (
+    nodes.flatMap((node) => [node, ...flattenFormulaTree(node.children)])
+);
+
+const findTraceReferenceValue = (
+    trace: FormulaTrace | undefined,
+    name: string
+): number | undefined => trace?.references.find((reference) => reference.name === name)?.value;
+
+const getFinalFormula = (
+    leftTrace: FormulaTrace | undefined,
+    rightTrace: FormulaTrace | undefined
+): string => (
+    parseFormulaDefinitions(leftTrace).finalFormula ||
+    parseFormulaDefinitions(rightTrace).finalFormula
+);
 
 export const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
     leftValues,
@@ -105,7 +196,11 @@ export const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
                         const diff = right - left;
                         const leftReferences = getLocalIntermediates(leftTraces[item.key]);
                         const rightReferences = getLocalIntermediates(rightTraces[item.key]);
-                        const intermediateNames = getIntermediateNames(leftReferences, rightReferences);
+                        const formulaTreeRows = flattenFormulaTree(buildFormulaTree(
+                            leftTraces[item.key],
+                            rightTraces[item.key]
+                        ));
+                        const finalFormula = getFinalFormula(leftTraces[item.key], rightTraces[item.key]);
                         const isExpanded = expandedKeys.has(item.key);
 
                         return (
@@ -113,32 +208,43 @@ export const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
                                 <TableRow
                                     hover
                                     onClick={() => {
-                                        if (intermediateNames.length > 0) {
+                                        if (formulaTreeRows.length > 0) {
                                             toggleExpanded(item.key);
                                         }
                                     }}
                                     sx={{
-                                        cursor: intermediateNames.length > 0 ? "pointer" : "default",
+                                        cursor: formulaTreeRows.length > 0 ? "pointer" : "default",
                                     }}
                                 >
                                     <TableCell>
                                         <IconButton
                                             size="small"
-                                            disabled={intermediateNames.length === 0}
+                                            disabled={formulaTreeRows.length === 0}
                                             aria-label={`${item.title} の中間ステータスを表示`}
                                         >
                                             {isExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
                                         </IconButton>
                                     </TableCell>
                                     <TableCell>
-                                        <Box display="flex" alignItems="center" gap={1}>
-                                            <Typography variant="body2">{item.title}</Typography>
-                                            <Chip
-                                                label={`${intermediateNames.length} 件`}
-                                                size="small"
-                                                variant="outlined"
-                                                sx={{ height: 20 }}
-                                            />
+                                        <Box>
+                                            <Box display="flex" alignItems="center" gap={1}>
+                                                <Typography variant="body2">{item.title}</Typography>
+                                                <Chip
+                                                    label={`${formulaTreeRows.length} 件`}
+                                                    size="small"
+                                                    variant="outlined"
+                                                    sx={{ height: 20 }}
+                                                />
+                                            </Box>
+                                            {isExpanded && finalFormula && (
+                                                <Typography
+                                                    variant="caption"
+                                                    color="text.disabled"
+                                                    sx={{ display: "block", lineHeight: 1.2, mt: 0.25 }}
+                                                >
+                                                    {finalFormula}
+                                                </Typography>
+                                            )}
                                         </Box>
                                     </TableCell>
                                     <TableCell align="right">{numberFormatter.format(left)}</TableCell>
@@ -159,7 +265,7 @@ export const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
                                     <TableCell colSpan={5} sx={{ p: 0, borderBottom: isExpanded ? undefined : 0 }}>
                                         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                                             <Box sx={{ p: 1, backgroundColor: "action.hover" }}>
-                                                {intermediateNames.length === 0 ? (
+                                                {formulaTreeRows.length === 0 ? (
                                                     <Typography variant="body2" color="text.secondary">
                                                         中間ステータスはありません
                                                     </Typography>
@@ -175,17 +281,36 @@ export const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
                                                         }}
                                                     >
                                                         <TableBody>
-                                                            {intermediateNames.map((name) => {
-                                                                const leftValue = findIntermediateValue(leftReferences, name);
-                                                                const rightValue = findIntermediateValue(rightReferences, name);
+                                                            {formulaTreeRows.map((node, index) => {
+                                                                const leftValue = findTraceReferenceValue(leftTraces[item.key], node.name)
+                                                                    ?? findIntermediateValue(leftReferences, node.name);
+                                                                const rightValue = findTraceReferenceValue(rightTraces[item.key], node.name)
+                                                                    ?? findIntermediateValue(rightReferences, node.name);
                                                                 const intermediateDiff = (rightValue ?? 0) - (leftValue ?? 0);
 
                                                                 return (
-                                                                    <TableRow key={name}>
+                                                                    <TableRow key={`${node.name}-${node.depth}-${index}`}>
                                                                         <TableCell>
-                                                                            <Typography variant="body2" color="text.secondary">
-                                                                                {name}
-                                                                            </Typography>
+                                                                            <Box
+                                                                                sx={{
+                                                                                    pl: node.depth * 2,
+                                                                                    borderLeft: node.depth > 0 ? "1px solid" : "none",
+                                                                                    borderColor: "divider",
+                                                                                }}
+                                                                            >
+                                                                                <Typography variant="body2" color="text.secondary">
+                                                                                    {node.name}
+                                                                                </Typography>
+                                                                                {node.formula && (
+                                                                                    <Typography
+                                                                                        variant="caption"
+                                                                                        color="text.disabled"
+                                                                                        sx={{ display: "block", lineHeight: 1.2 }}
+                                                                                    >
+                                                                                        {node.formula}
+                                                                                    </Typography>
+                                                                                )}
+                                                                            </Box>
                                                                         </TableCell>
                                                                         <TableCell align="right">
                                                                             {leftValue === undefined ? "-" : numberFormatter.format(leftValue)}
