@@ -104,6 +104,14 @@ function createValidationFormula(formula: string): {
  * 四則演算の規則をバリデーションする関数
  */
 function validateArithmeticRules(formula: string): ValidationError[] {
+    return formula
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0)
+        .flatMap(validateArithmeticExpression);
+}
+
+function validateArithmeticExpression(formula: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
     // 空白および改行を除去して解析しやすくする
