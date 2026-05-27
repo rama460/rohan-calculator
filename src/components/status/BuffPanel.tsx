@@ -5,7 +5,6 @@ import { uiBaseAtomFamily } from "../../modules/state/ui";
 import { BuffGroup } from "./BuffGroup";
 
 export const BuffPanel: React.FC = () => {
-    console.log("render BuffPanel");
     const raceid = Number(useAtomValue(uiBaseAtomFamily("raceid")));
     const jobid = Number(useAtomValue(uiBaseAtomFamily("jobid")));
     const selfBuffs = skills.filter(skill => skill.origin === "Self" && skill.raceid === raceid && (skill.jobid === jobid || skill.jobid === 0));

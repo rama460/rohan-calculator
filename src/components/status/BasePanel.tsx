@@ -13,7 +13,6 @@ import {
 import { skills } from "../../static/skills/skill";
 
 export const BasePanel: React.FC = () => {
-    console.log("render BasePanel");
     const [level, setLevel] = useAtom(uiBaseAtomFamily("level"));
     const [heroLevel, setHeroLevel] = useAtom(uiBaseAtomFamily("heroLevel"));
     const [raceid, setRaceid] = useAtom(uiBaseAtomFamily("raceid"));
@@ -31,7 +30,6 @@ export const BasePanel: React.FC = () => {
         setBuffStatuses([])
     }
     const handleJobChange = (event: SelectChangeEvent) => {
-        console.log("job changed")
         setJobid(Number(event.target.value as string));
         // unset all buffs associated with the job, but remain the base job buffs (jobid = 0) 
         setBuffStatuses([...buffStatuses.filter((b) => {

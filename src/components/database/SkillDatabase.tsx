@@ -2,10 +2,7 @@ import React, { useState, useMemo } from 'react';
 import {
     Box,
     TextField,
-    Card,
-    CardMedia,
     Typography,
-    Chip,
     FormControl,
     InputLabel,
     Select,
@@ -13,35 +10,33 @@ import {
     Stack,
     Pagination,
     SelectChangeEvent,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
     Button,
     ButtonGroup
 } from '@mui/material';
 import { skills, Skill } from '../../static/skills/skill';
 import { races } from '../../static/races';
-import { BuiltinOptions, getDisplayOptionName } from '../../static/options';
 import SearchIcon from '@mui/icons-material/Search';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DownloadIcon from '@mui/icons-material/Download';
 import { SkillDetailModal } from './SkillDetailModal';
 import { exportToJSON, exportToCSV, flattenDataForExport } from './exportUtils';
-
-interface SkillDatabaseProps {
-    // プロップスは後で追加可能
-}
+import { SkillDatabaseList } from './SkillDatabaseList';
+import {
+    getAvailableJobIds,
+    getJobById,
+    getJobDisplayName,
+    SkillDatabaseSkill,
+} from './skillDatabaseHelpers';
 
 const SKILLS_PER_PAGE = 20;
 
-export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
+export const SkillDatabase: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [jobFilter, setJobFilter] = useState('all'); // タイプフィルタ（既存のorigin基準）
     const [categoryFilter, setCategoryFilter] = useState('all');
     const [raceFilter, setRaceFilter] = useState('all'); // 種族フィルタ（raceid基準）
     const [professionFilter, setProfessionFilter] = useState('all'); // 職業フィルタ（jobid基準）
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedSkill, setSelectedSkill] = useState<(typeof allSkills)[0] | null>(null);
+    const [selectedSkill, setSelectedSkill] = useState<SkillDatabaseSkill | null>(null);
     const [modalOpen, setModalOpen] = useState(false);
 
     // 全スキルデータを統合（skillsは配列）
@@ -67,38 +62,6 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
             jobName: skill.origin || 'other'
         }));
     }, []);
-
-    // 種族ID から種族データを取得
-    const getRaceById = (raceId?: number) => {
-        if (raceId === undefined) return null;
-        return races.find(race => race.id === raceId);
-    };
-
-    // 職業ID から職業データを取得（種族ID も考慮）
-    const getJobById = (jobId?: number, raceId?: number) => {
-        if (jobId === undefined) return null;
-        const race = getRaceById(raceId);
-        if (!race) return null;
-        return race.jobs.find(job => job.id === jobId);
-    };
-
-    // 選択された種族で利用可能な職業IDsを取得
-    const getAvailableJobIds = (selectedRaceFilter: string) => {
-        if (selectedRaceFilter === 'all') {
-            // 全種族の職業IDを取得
-            const allJobIds = new Set<number>();
-            races.forEach(race => {
-                race.jobs.forEach(job => {
-                    allJobIds.add(job.id);
-                });
-            });
-            return Array.from(allJobIds);
-        }
-
-        const raceId = parseInt(selectedRaceFilter);
-        const race = getRaceById(raceId);
-        return race ? race.jobs.map(job => job.id) : [];
-    };
 
     // 利用可能な職業リスト
     const availableJobs = useMemo(() => {
@@ -173,7 +136,7 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
         setCurrentPage(value);
     };
 
-    const handleSkillClick = (skill: typeof allSkills[0]) => {
+    const handleSkillClick = (skill: SkillDatabaseSkill) => {
         setSelectedSkill(skill);
         setModalOpen(true);
     };
@@ -191,76 +154,6 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
     const handleExportCSV = () => {
         const exportData = flattenDataForExport(filteredSkills);
         exportToCSV(exportData, 'rohan-skills');
-    };
-
-    const getJobDisplayName = (jobName: string) => {
-        const jobMap: Record<string, string> = {
-            archer: 'アーチャー',
-            assassin: 'アサシン',
-            avenger: 'アベンジャー',
-            berserker: 'バーサーカー',
-            defender: 'ディフェンダー',
-            dragonfighter: 'ドラゴンファイター',
-            dragonknight: 'ドラゴンナイト',
-            dragonsage: 'ドラゴンセージ',
-            guardian: 'ガーディアン',
-            healer: 'ヒーラー',
-            knight: 'ナイト',
-            mage: 'メイジ',
-            mer: 'マー',
-            noir: 'ノワール',
-            predator: 'プレデター',
-            priest: 'プリースト',
-            ranger: 'レンジャー',
-            rumior: 'ルミオル',
-            savage: 'サベージ',
-            scout: 'スカウト',
-            templar: 'テンプラー',
-            warlock: 'ウォーロック',
-            warrior: 'ウォーリアー',
-            wizard: 'ウィザード',
-            common: '共通',
-            cash: 'キャッシュ',
-            guild: 'ギルド'
-        };
-        return jobMap[jobName] || jobName;
-    };
-
-    const getCategoryColor = (category: string) => {
-        switch (category) {
-            case 'Passive':
-                return 'secondary';
-            case 'Buff':
-                return 'success';
-            case 'Attack':
-                return 'error';
-            case 'Debuff':
-                return 'warning';
-            default:
-                return 'default';
-        }
-    };
-
-    // スキル表示用のヘルパー関数
-    const getSkillRaceDisplayName = (skill: any) => {
-        const race = getRaceById(skill.raceid);
-        return race ? race.displayName : '不明';
-    };
-
-    const getSkillJobDisplayName = (skill: any) => {
-        const job = getJobById(skill.jobid, skill.raceid);
-        return job ? job.displayName : '不明';
-    };
-
-    // スキル効果の表示名を取得する関数
-    const getSkillEffectDisplayName = (key: string, value: number) => {
-        const option = BuiltinOptions[key as keyof typeof BuiltinOptions];
-        if (option) {
-            const displayName = getDisplayOptionName(option);
-            return `${displayName}: ${value}`;
-        }
-        // options.tsに定義されていない場合はそのまま表示
-        return `${key}: ${value}`;
     };
 
     return (
@@ -376,142 +269,7 @@ export const SkillDatabase: React.FC<SkillDatabaseProps> = () => {
                 </Stack>
             </Box>
 
-            {/* スキル一覧 */}
-            <Stack spacing={2}>
-                {paginatedSkills.map((skill, index) => (
-                    <Card key={`${skill.jobName}-${skill.name}-${index}`}>
-                        <Accordion>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: '100%' }}>
-                                    <CardMedia
-                                        component="img"
-                                        sx={{ width: 40, height: 40, objectFit: 'contain' }}
-                                        image={skill.icon}
-                                        alt={skill.name}
-                                    />
-                                    <Box sx={{ flexGrow: 1 }}>
-                                        <Typography variant="h6" sx={{ fontSize: '1rem' }}>
-                                            {skill.displayName || skill.name}
-                                        </Typography>
-                                        <Box sx={{ display: 'flex', gap: 1, mt: 0.5, alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                                                <Chip
-                                                    label={getJobDisplayName(skill.jobName)}
-                                                    size="small"
-                                                    color="primary"
-                                                    variant="outlined"
-                                                />
-                                                <Chip
-                                                    label={skill.category}
-                                                    size="small"
-                                                    color={getCategoryColor(skill.category) as any}
-                                                    variant="outlined"
-                                                />
-                                                {/* 種族情報 */}
-                                                {skill.raceid !== undefined && (
-                                                    <Chip
-                                                        label={getSkillRaceDisplayName(skill)}
-                                                        size="small"
-                                                        color="secondary"
-                                                        variant="outlined"
-                                                        sx={{ fontSize: '0.7rem', height: 20 }}
-                                                    />
-                                                )}
-                                                {/* 職業情報 */}
-                                                {skill.jobid !== undefined && (
-                                                    <Chip
-                                                        label={getSkillJobDisplayName(skill)}
-                                                        size="small"
-                                                        color="info"
-                                                        variant="outlined"
-                                                        sx={{ fontSize: '0.7rem', height: 20 }}
-                                                    />
-                                                )}
-                                            </Box>
-                                            <Button
-                                                size="small"
-                                                variant="outlined"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    handleSkillClick(skill);
-                                                }}
-                                            >
-                                                詳細
-                                            </Button>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Stack spacing={2}>
-                                    {skill.descriptions && skill.descriptions.length > 0 && (
-                                        <Box>
-                                            <Typography variant="subtitle2" gutterBottom>
-                                                説明
-                                            </Typography>
-                                            {skill.descriptions.map((desc, i) => (
-                                                <Typography key={i} variant="body2" color="text.secondary">
-                                                    {desc}
-                                                </Typography>
-                                            ))}
-                                        </Box>
-                                    )}
-
-                                    <Box>
-                                        <Typography variant="subtitle2">
-                                            レベル範囲: {skill.min} - {skill.max}
-                                        </Typography>
-                                    </Box>
-
-                                    {/* 種族・職業情報の詳細表示 */}
-                                    {(skill.raceid !== undefined || skill.jobid !== undefined) && (
-                                        <Box>
-                                            <Typography variant="subtitle2" gutterBottom>
-                                                使用可能情報
-                                            </Typography>
-                                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                                                {skill.raceid !== undefined && (
-                                                    <Chip
-                                                        label={`種族: ${getSkillRaceDisplayName(skill)}`}
-                                                        size="small"
-                                                        color="secondary"
-                                                        variant="outlined"
-                                                    />
-                                                )}
-                                                {skill.jobid !== undefined && (
-                                                    <Chip
-                                                        label={`職業: ${getSkillJobDisplayName(skill)}`}
-                                                        size="small"
-                                                        color="info"
-                                                        variant="outlined"
-                                                    />
-                                                )}
-                                            </Box>
-                                        </Box>
-                                    )}
-
-                                    {skill.attributes && Object.keys(skill.attributes).length > 0 && (
-                                        <Box>
-                                            <Typography variant="subtitle2" gutterBottom>
-                                                スキル効果
-                                            </Typography>
-                                            <Box sx={{ maxHeight: 200, overflow: 'auto' }}>
-                                                {Object.entries(skill.attributes).slice(0, 5).map(([level, effects]) => (
-                                                    <Typography key={level} variant="body2" color="text.secondary">
-                                                        Lv.{level}: {Object.entries(effects).map(([key, value]) =>
-                                                            getSkillEffectDisplayName(key, value)
-                                                        ).join(', ')}
-                                                    </Typography>
-                                                ))}
-                                            </Box>
-                                        </Box>
-                                    )}
-                                </Stack>
-                            </AccordionDetails>
-                        </Accordion>
-                    </Card>
-                ))}
-            </Stack>
+            <SkillDatabaseList skills={paginatedSkills} onSkillClick={handleSkillClick} />
 
             {/* ページネーション */}
             {totalPages > 1 && (

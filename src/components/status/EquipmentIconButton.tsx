@@ -19,7 +19,6 @@ interface EquipmentIconButtonProps {
 }
 
 export const EquipmentIconButton: React.FC<EquipmentIconButtonProps> = ({ equipmentType, title, backgroundImage = anyBackground, items }) => {
-    console.log(`render EquipmentIconButton ${equipmentType}`)
     const [equippedItem, setEquippedItem] = useAtom(uiEquipmentAtomFamily(equipmentType));
     const synergyCount = useAtomValue(uiEquipmentSynergyCountAtomFamily(equipmentType));
     const [openDialog, setOpenDialog] = React.useState(false);

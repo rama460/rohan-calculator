@@ -44,13 +44,13 @@ export const EquipmentTooltipContent: React.FC<EquipmentTooltipContentProps> = (
             color: BuiltinOptions[key as BuiltinOptionKeyType].displayColor,
             operationType: BuiltinOptions[key as BuiltinOptionKeyType].operationType,
         })),
-        ...Object.entries(currentItem.additionalOptions).filter(([key, _]) => (key !== "none")).map(([key, value]) => ({
+        ...Object.entries(currentItem.additionalOptions).filter(([key]) => (key !== "none")).map(([key, value]) => ({
             name: BuiltinOptions[key as BuiltinOptionKeyType].displayName,
             value: value.toString(),
             color: BuiltinOptions[key as BuiltinOptionKeyType].displayColor,
             operationType: BuiltinOptions[key as BuiltinOptionKeyType].operationType,
         })),
-        ...Object.entries(currentItem.craftedOptions).filter(([key, _]) => (key !== "none")).map(([key, value]) => ({
+        ...Object.entries(currentItem.craftedOptions).filter(([key]) => (key !== "none")).map(([key, value]) => ({
             name: BuiltinOptions[key as BuiltinOptionKeyType].displayName,
             value: value.toString(),
             color: "purple",

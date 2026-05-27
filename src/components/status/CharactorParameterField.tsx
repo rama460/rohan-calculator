@@ -1,9 +1,9 @@
-import { Box, TextField, Typography, Chip } from "@mui/material";
 import { CharactorStateType } from "../../modules/character/constants";
 import { uiCustomFormulaAtomFamily } from "../../modules/state/ui";
 import { useAtomValue } from "jotai";
 import { CharacterValueKey } from "../../modules/character/constants";
 import { activeCharacterValueAtomFamily } from "../../modules/state/appState";
+import { CharacterValueDisplayField } from "./CharacterValuesView";
 
 interface CharactorParameterFieldProps {
     name: CharactorStateType;
@@ -13,59 +13,14 @@ interface CharactorParameterFieldProps {
 export const CharactorParameterField: React.FC<CharactorParameterFieldProps> = ({ name, title }) => {
     const value = useAtomValue(activeCharacterValueAtomFamily(name as CharacterValueKey));
     const customFormula = useAtomValue(uiCustomFormulaAtomFamily(name));
-
-    // カスタマイズされているかどうかをチェック
     const isCustomized = customFormula !== null && customFormula?.isActive;
 
     return (
-        <Box display="flex" alignItems="center" justifyContent={"space-between"} gap={1}>
-            <Box display="flex" alignItems="center" gap={0.5} flex={1}>
-                <Typography
-                    variant="caption"
-                    sx={{
-                        textAlign: "left",
-                        color: 'text.primary',
-                        fontWeight: 'normal'
-                    }}
-                >
-                    {title}
-                </Typography>
-                {isCustomized && (
-                    <Chip
-                        label="カスタム"
-                        size="small"
-                        variant="outlined"
-                        color="primary"
-                        sx={{
-                            fontSize: '8px',
-                            height: '16px',
-                            ml: 0.5,
-                            '& .MuiChip-label': {
-                                px: 0.5
-                            }
-                        }}
-                    />
-                )}
-            </Box>
-            <TextField
-                type="text"
-                size="small"
-                value={value}
-                sx={{
-                    width: "70px",
-                    "& .MuiInputBase-input": {
-                        fontSize: 10,
-                        height: 5,
-                        padding: 1,
-                        fontWeight: isCustomized ? 'bold' : 'normal',
-                        backgroundColor: isCustomized ? '#e3f2fd' : 'transparent'
-                    }
-                }}
-                InputProps={{
-                    readOnly: true
-                }}
-            />
-        </Box>
+        <CharacterValueDisplayField
+            title={title}
+            value={value}
+            isCustomized={isCustomized}
+        />
     );
 }
 export default CharactorParameterField;
