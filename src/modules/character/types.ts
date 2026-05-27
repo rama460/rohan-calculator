@@ -107,6 +107,8 @@ export type FormulaReferenceTrace = {
     source: FormulaReferenceSource;
     value: number;
     formulaId?: CharacterValueKey;
+    formula?: string;
+    processedFormula?: string;
 };
 
 export type FormulaTrace = {

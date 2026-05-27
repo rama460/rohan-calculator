@@ -22,13 +22,28 @@ export type FormulaEvaluationResult = {
     trace: FormulaTrace;
 };
 
-type FormulaReference = {
+export type FormulaReference =
+    | {
+        name: string;
+        source: "characterValue";
+        executionName: CharacterValueKey;
+        formulaId: CharacterValueKey;
+    }
+    | {
+        name: string;
+        source: "localIntermediate";
+        executionName: string;
+    };
+
+type LocalIntermediateDefinition = {
     name: string;
-    source: "characterValue";
-    formulaId: CharacterValueKey;
+    formula: string;
+    processedFormula: string;
+    references: FormulaReference[];
 };
 
 const intermediateVariablePattern = /\{([^}]+)\}/g;
+const localIntermediatePattern = /^\s*@([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+)\s*$/;
 
 const removeFormulaComments = (formula: string): string => {
     return formula
@@ -53,32 +68,94 @@ const getFormulaSource = (
     return DEFAULT_FORMULAS[formulaId];
 };
 
-const preprocessFormula = (formula: string): {
-    processedFormula: string;
+const getLocalExecutionName = (name: string) => `__local_${name}`;
+
+const preprocessReferences = (
+    expression: string,
+    localIntermediateNames: Set<string>
+): {
+    processedExpression: string;
     references: FormulaReference[];
 } => {
-    const preprocessedFormula = removeFormulaComments(formula);
     const referencesByName = new Map<string, FormulaReference>();
-    let processedFormula = preprocessedFormula;
+    let processedExpression = expression;
     let match: RegExpExecArray | null;
 
-    while ((match = intermediateVariablePattern.exec(preprocessedFormula)) !== null) {
-        const variableName = match[1];
-        const replacementVar = `__${variableName}` as CharacterValueKey;
-        referencesByName.set(variableName, {
-            name: variableName,
-            source: "characterValue",
-            formulaId: replacementVar,
-        });
-        processedFormula = processedFormula.replace(
-            new RegExp(`\\{${variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\}`, "g"),
-            replacementVar
+    intermediateVariablePattern.lastIndex = 0;
+    while ((match = intermediateVariablePattern.exec(expression)) !== null) {
+        const referenceName = match[1];
+        const isLocalIntermediate = localIntermediateNames.has(referenceName);
+        const executionName = isLocalIntermediate
+            ? getLocalExecutionName(referenceName)
+            : `__${referenceName}`;
+
+        referencesByName.set(`${isLocalIntermediate ? "localIntermediate" : "characterValue"}:${referenceName}`, isLocalIntermediate
+            ? {
+                name: referenceName,
+                source: "localIntermediate",
+                executionName,
+            }
+            : {
+                name: referenceName,
+                source: "characterValue",
+                executionName: executionName as CharacterValueKey,
+                formulaId: executionName as CharacterValueKey,
+            }
+        );
+        processedExpression = processedExpression.replace(
+            new RegExp(`\\{${referenceName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\}`, "g"),
+            executionName
         );
     }
 
     return {
-        processedFormula,
+        processedExpression,
         references: Array.from(referencesByName.values()),
+    };
+};
+
+const preprocessFormula = (formula: string): {
+    processedFormula: string;
+    references: FormulaReference[];
+    localIntermediates: LocalIntermediateDefinition[];
+} => {
+    const preprocessedFormula = removeFormulaComments(formula);
+    const localIntermediateFormulas = new Map<string, string>();
+    const formulaLines: string[] = [];
+
+    preprocessedFormula.split("\n").forEach((line) => {
+        const localMatch = localIntermediatePattern.exec(line);
+        if (localMatch) {
+            localIntermediateFormulas.set(localMatch[1], localMatch[2].trim());
+            return;
+        }
+        formulaLines.push(line);
+    });
+
+    const localIntermediateNames = new Set(localIntermediateFormulas.keys());
+    const localIntermediates = Array.from(localIntermediateFormulas.entries()).map(([name, localFormula]) => {
+        const { processedExpression, references } = preprocessReferences(
+            localFormula,
+            localIntermediateNames,
+        );
+
+        return {
+            name,
+            formula: localFormula,
+            processedFormula: processedExpression,
+            references,
+        };
+    });
+
+    const { processedExpression, references } = preprocessReferences(
+        formulaLines.join("\n").trim(),
+        localIntermediateNames
+    );
+
+    return {
+        processedFormula: processedExpression,
+        references,
+        localIntermediates,
     };
 };
 
@@ -111,37 +188,84 @@ export const evaluateFormula = (
     resolveReference: (reference: FormulaReference) => number
 ): FormulaEvaluationResult => {
     const formula = getFormulaSource(formulaId, customFormulas);
-    const { processedFormula, references } = preprocessFormula(formula);
+    const { processedFormula, references, localIntermediates } = preprocessFormula(formula);
     const contextValues = { ...context };
     const resolvedReferences = new Map<string, FormulaReferenceTrace>();
+    const localIntermediateByName = new Map(localIntermediates.map((localIntermediate) => [localIntermediate.name, localIntermediate]));
+    const localIntermediateValues = new Map<string, number>();
+    const resolvingLocalIntermediates = new Set<string>();
 
     try {
-        const executionContext = {
+        const baseExecutionContext = {
             ...context,
             ...allowedMathFunctions,
         };
 
-        references.forEach((reference) => {
-            const executionVariableName = reference.formulaId;
-            Object.defineProperty(executionContext, executionVariableName, {
-                get: () => {
-                    const value = resolveReference(reference);
-                    resolvedReferences.set(reference.name, {
-                        name: reference.name,
-                        source: reference.source,
-                        formulaId: reference.formulaId,
-                        value,
-                    });
-                    return value;
-                },
-                enumerable: true,
-            });
-        });
+        const evaluateExpression = (expression: string, expressionReferences: FormulaReference[]) => {
+            const executionContext: Record<string, unknown> = {
+                ...baseExecutionContext,
+            };
 
-        const parameterNames = Object.keys(executionContext);
-        const parameterValues = Object.values(executionContext);
-        const func = new Function(...parameterNames, `return (${processedFormula});`);
-        const rawResult = func(...parameterValues);
+            expressionReferences.forEach((reference) => {
+                executionContext[reference.executionName] = resolveFormulaReference(reference);
+            });
+
+            const parameterNames = Object.keys(executionContext);
+            const parameterValues = Object.values(executionContext);
+            const func = new Function(...parameterNames, `return (${expression});`);
+            return func(...parameterValues);
+        };
+
+        const resolveLocalIntermediate = (name: string): number => {
+            if (localIntermediateValues.has(name)) {
+                return localIntermediateValues.get(name) ?? 0;
+            }
+
+            const localIntermediate = localIntermediateByName.get(name);
+            if (!localIntermediate) {
+                return 0;
+            }
+
+            if (resolvingLocalIntermediates.has(name)) {
+                throw new Error(`Circular local intermediate reference detected: ${name}`);
+            }
+
+            resolvingLocalIntermediates.add(name);
+            const value = evaluateExpression(localIntermediate.processedFormula, localIntermediate.references);
+            resolvingLocalIntermediates.delete(name);
+
+            if (typeof value !== "number" || !Number.isFinite(value)) {
+                throw new Error(`Local intermediate ${name} did not evaluate to a finite number`);
+            }
+
+            localIntermediateValues.set(name, value);
+            resolvedReferences.set(`localIntermediate:${name}`, {
+                name,
+                source: "localIntermediate",
+                value,
+                formula: localIntermediate.formula,
+                processedFormula: localIntermediate.processedFormula,
+            });
+
+            return value;
+        };
+
+        const resolveFormulaReference = (reference: FormulaReference): number => {
+            if (reference.source === "localIntermediate") {
+                return resolveLocalIntermediate(reference.name);
+            }
+
+            const value = resolveReference(reference);
+            resolvedReferences.set(`characterValue:${reference.name}`, {
+                name: reference.name,
+                source: reference.source,
+                formulaId: reference.formulaId,
+                value,
+            });
+            return value;
+        };
+
+        const rawResult = evaluateExpression(processedFormula, references);
         const traceReferences = Array.from(resolvedReferences.values());
 
         if (typeof rawResult !== "number") {

@@ -34,7 +34,7 @@ export const calculateCharacter = (
             formulaId,
             formulaContext,
             customFormulas,
-            (reference) => resolveValue(reference.formulaId)
+            (reference) => reference.source === "characterValue" ? resolveValue(reference.formulaId) : 0
         );
         resolving.delete(formulaId);
         formulaTraces[formulaId] = result.trace;

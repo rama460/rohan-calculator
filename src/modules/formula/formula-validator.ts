@@ -70,6 +70,32 @@ const BUILTIN_INTERMEDIATE_VARIABLE = [
     '{attackSpeed}', '{hitPointRecovery}', '{magicPointRecovery}',
 ];
 
+const LOCAL_INTERMEDIATE_PATTERN = /^\s*@([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+)\s*$/;
+
+function createValidationFormula(formula: string): {
+    validationFormula: string;
+    localIntermediateNames: Set<string>;
+} {
+    const localIntermediateNames = new Set<string>();
+    const validationLines: string[] = [];
+
+    formula.split('\n').forEach((line) => {
+        const localMatch = LOCAL_INTERMEDIATE_PATTERN.exec(line);
+        if (localMatch) {
+            localIntermediateNames.add(localMatch[1]);
+            validationLines.push(localMatch[2].trim());
+            return;
+        }
+
+        validationLines.push(line);
+    });
+
+    return {
+        validationFormula: validationLines.join('\n').trim(),
+        localIntermediateNames,
+    };
+}
+
 /**
  * 四則演算の規則をバリデーションする関数
  */
@@ -301,8 +327,9 @@ export function validateFormula(
 
         // コメントを除去した式で以降のバリデーションを実行
         const cleanFormula = removeComments(formula);
+        const { validationFormula, localIntermediateNames } = createValidationFormula(cleanFormula);
         // 空文字列チェック
-        if (!cleanFormula.trim()) {
+        if (!validationFormula.trim()) {
             errors.push({
                 type: 'syntax',
                 message: '計算式が空です',
@@ -313,7 +340,7 @@ export function validateFormula(
 
         // 危険なパターンのチェック（コメント除去後の式をチェック）
         for (const pattern of DANGEROUS_PATTERNS) {
-            if (pattern.test(cleanFormula)) {
+            if (pattern.test(validationFormula)) {
                 errors.push({
                     type: 'security',
                     message: `危険な文字列が含まれています: ${pattern.source}`,
@@ -323,8 +350,8 @@ export function validateFormula(
         }
 
         // 基本的な文法チェック（コメント除去後の式をチェック）
-        const openParens = (cleanFormula.match(/\(/g) || []).length;
-        const closeParens = (cleanFormula.match(/\)/g) || []).length;
+        const openParens = (validationFormula.match(/\(/g) || []).length;
+        const closeParens = (validationFormula.match(/\)/g) || []).length;
         if (openParens !== closeParens) {
             errors.push({
                 type: 'syntax',
@@ -334,7 +361,7 @@ export function validateFormula(
         }
 
         // より詳細な構文チェック（コメント除去後の式をチェック）
-        const invalidChars = cleanFormula.match(/[^\w\s+\-*/(){}.,'">=<!&|?:]/g);
+        const invalidChars = validationFormula.match(/[^\w\s+\-*/(){}.,'">=<!&|?:]/g);
         if (invalidChars) {
             errors.push({
                 type: 'syntax',
@@ -344,11 +371,11 @@ export function validateFormula(
         }
 
         // 四則演算の規則チェック
-        const arithmeticErrors = validateArithmeticRules(cleanFormula);
+        const arithmeticErrors = validateArithmeticRules(validationFormula);
         errors.push(...arithmeticErrors);
 
         // 変数名の妥当性チェック（コメント除去後の式をチェック）
-        const variableMatches = cleanFormula.match(/(?:\{[a-zA-Z_][a-zA-Z0-9_]*\}|[a-zA-Z_$][a-zA-Z0-9_$]*)/g);
+        const variableMatches = validationFormula.match(/(?:\{[a-zA-Z_][a-zA-Z0-9_]*\}|[a-zA-Z_$][a-zA-Z0-9_$]*)/g);
         if (variableMatches) {
             const allowedVars = new Set([
                 // 基本ステータス
@@ -362,6 +389,8 @@ export function validateFormula(
                 ...Object.keys(allowedMathFunctions),
                 // src/static/options.ts の BuiltinOptions から取得
                 ...Object.keys(BuiltinOptions),
+                // ローカル中間変数
+                ...Array.from(localIntermediateNames).map((name) => `{${name}}`),
             ]);
 
             const unknownVars: string[] = [];
@@ -383,13 +412,13 @@ export function validateFormula(
 
         // 中間変数の循環参照チェック（formulaContextが提供されている場合のみ）
         if (formulaContext) {
-            const circularErrors = validateCircularReferences(cleanFormula, statusType, formulaContext);
+            const circularErrors = validateCircularReferences(validationFormula, statusType, formulaContext);
             errors.push(...circularErrors);
         }
 
         // 実際の計算による検証（構文エラーがない場合のみ）
         if (errors.length === 0) {
-            const executionErrors = validateFormulaByExecution(cleanFormula);
+            const executionErrors = validateFormulaByExecution(validationFormula);
             errors.push(...executionErrors);
         }
 
