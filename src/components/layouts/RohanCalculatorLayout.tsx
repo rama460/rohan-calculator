@@ -9,6 +9,7 @@ import Stats from "../stats/Stats";
 import Config from "../config/Config";
 import Database from "../database/Database";
 import Formula from "../formula/Formula";
+import Compare from "../compare/Compare";
 
 export const RohanCalculatorLayout: React.FC = () => {
     const [open, setOpen] = React.useState(false);
@@ -29,6 +30,7 @@ export const RohanCalculatorLayout: React.FC = () => {
                 <Route path="/config" element={<Config />} />
                 <Route path="/database" element={<Database />} />
                 <Route path="/formula" element={<Formula />} />
+                <Route path="/compare" element={<Compare />} />
             </Routes>
         </BrowserRouter>
     );

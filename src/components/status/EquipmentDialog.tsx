@@ -20,6 +20,8 @@ interface EquipmentDialogProps {
     equippedItem: Item | undefined;
     setEquippedItem: (item: Item | undefined) => void;
     itemTemplates: ItemTemplate[];
+    raceid?: number;
+    jobid?: number;
 }
 // FIXME: Reconsider the data structure of Item / Options, and states in this component
 // Because in the UI, the options need to hold the order to display,
@@ -37,9 +39,21 @@ const ArrayToHash = (array: { name: BuiltinOptionKeyType, value: number }[]): { 
     return Object.assign({}, ...array.map((option) => ({ [option.name]: option.value })));
 }
 
-export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({ equipmentType, isOpen, onClose, title, equippedItem, setEquippedItem, itemTemplates }) => {
-    const raceid = Number(useAtomValue(uiBaseAtomFamily("raceid")));
-    const jobid = Number(useAtomValue(uiBaseAtomFamily("jobid")));
+export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
+    equipmentType,
+    isOpen,
+    onClose,
+    title,
+    equippedItem,
+    setEquippedItem,
+    itemTemplates,
+    raceid: raceidProp,
+    jobid: jobidProp,
+}) => {
+    const activeRaceid = Number(useAtomValue(uiBaseAtomFamily("raceid")));
+    const activeJobid = Number(useAtomValue(uiBaseAtomFamily("jobid")));
+    const raceid = raceidProp ?? activeRaceid;
+    const jobid = jobidProp ?? activeJobid;
 
     const availableItemTemplates = React.useMemo(() => getItemTemplatesForDisplay(
         itemTemplates.filter((template) => template.availableRaces?.some(
