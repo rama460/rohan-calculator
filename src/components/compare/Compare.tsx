@@ -21,6 +21,7 @@ import Grid from "@mui/material/Grid2";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import PageContainer from "../common/PageContainer";
+import { CombatModifierComparisonTable } from "./CombatModifierComparisonTable";
 import { CompareEquipmentGrid } from "./CompareEquipmentGrid";
 import { CompareCharacterDetails } from "./CompareCharacterDetails";
 import { ValueComparisonTable } from "./ValueComparisonTable";
@@ -187,9 +188,9 @@ export const Compare: React.FC = () => {
             icon={<CompareArrowsIcon fontSize="large" />}
             subtitle="装備を変えながら、ステータスと差分を確認します"
         >
-            <Stack spacing={3} sx={{ pb: 4 }}>
-                <Paper variant="outlined" sx={{ p: 2, borderRadius: 1 }}>
-                    <Grid container spacing={2} alignItems="center">
+            <Stack spacing={2} sx={{ pb: 3 }}>
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1 }}>
+                    <Grid container spacing={1.5} alignItems="center">
                         <Grid size={{ xs: 12, md: 5 }}>
                             <FormControl fullWidth size="small">
                                 <InputLabel>左キャラクター</InputLabel>
@@ -251,10 +252,10 @@ export const Compare: React.FC = () => {
                     </Grid>
                 </Paper>
 
-                <Grid container spacing={3}>
+                <Grid container spacing={2}>
                     <Grid size={{ xs: 12, lg: 6 }}>
-                        <Paper variant="outlined" sx={{ p: 2, borderRadius: 1, height: "100%" }}>
-                            <Typography variant="h6" sx={{ mb: 2 }}>
+                        <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1, height: "100%" }}>
+                            <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: "bold" }}>
                                 {leftCharacter.name}
                             </Typography>
                             <CompareEquipmentGrid
@@ -269,8 +270,8 @@ export const Compare: React.FC = () => {
                         </Paper>
                     </Grid>
                     <Grid size={{ xs: 12, lg: 6 }}>
-                        <Paper variant="outlined" sx={{ p: 2, borderRadius: 1, height: "100%" }}>
-                            <Typography variant="h6" sx={{ mb: 2 }}>
+                        <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1, height: "100%" }}>
+                            <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: "bold" }}>
                                 {rightCharacter.name}
                             </Typography>
                             <CompareEquipmentGrid
@@ -286,19 +287,36 @@ export const Compare: React.FC = () => {
                     </Grid>
                 </Grid>
 
-                <Paper variant="outlined" sx={{ p: 2, borderRadius: 1 }}>
-                    <Typography variant="h6" sx={{ mb: 1 }}>
-                        ステータス差分
-                    </Typography>
-                    <ValueComparisonTable
-                        leftValues={leftCalculated.values}
-                        rightValues={rightCalculated.values}
-                    />
-                </Paper>
+                <Grid container spacing={2} alignItems="flex-start">
+                    <Grid size={{ xs: 12, xl: 7 }}>
+                        <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1 }}>
+                            <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: "bold" }}>
+                                ステータス差分
+                            </Typography>
+                            <ValueComparisonTable
+                                leftValues={leftCalculated.values}
+                                rightValues={rightCalculated.values}
+                                leftTraces={leftCalculated.formulaTraces}
+                                rightTraces={rightCalculated.formulaTraces}
+                            />
+                        </Paper>
+                    </Grid>
+                    <Grid size={{ xs: 12, xl: 5 }}>
+                        <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1 }}>
+                            <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: "bold" }}>
+                                戦闘補正
+                            </Typography>
+                            <CombatModifierComparisonTable
+                                leftOptions={leftCalculated.aggregatedOptions}
+                                rightOptions={rightCalculated.aggregatedOptions}
+                            />
+                        </Paper>
+                    </Grid>
+                </Grid>
 
-                <Paper variant="outlined" sx={{ p: 2, borderRadius: 1 }}>
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1 }}>
                     <Box display="flex" alignItems="center" justifyContent="space-between" gap={2}>
-                        <Typography variant="h6">装備差分</Typography>
+                        <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>装備差分</Typography>
                         <Typography variant="body2" color="text.secondary">
                             {equipmentDifferences.length} 件
                         </Typography>
@@ -310,7 +328,16 @@ export const Compare: React.FC = () => {
                         </Typography>
                     ) : (
                         <TableContainer>
-                            <Table size="small" aria-label="equipment difference">
+                            <Table
+                                size="small"
+                                aria-label="equipment difference"
+                                sx={{
+                                    "& .MuiTableCell-root": {
+                                        px: 1,
+                                        py: 0.5,
+                                    },
+                                }}
+                            >
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>部位</TableCell>
