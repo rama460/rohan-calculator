@@ -141,3 +141,11 @@ export const calculatedActiveCharacterAtom = atom((get) =>
 export const activeCharacterValueAtomFamily = atomFamily((key: CharacterValueKey) =>
     atom((get) => get(calculatedActiveCharacterAtom).values[key])
 );
+
+export const activeCharacterFormulaTracesAtom = atom((get) =>
+    get(calculatedActiveCharacterAtom).formulaTraces
+);
+
+export const activeCharacterFormulaTraceAtomFamily = atomFamily((key: CharacterValueKey) =>
+    atom((get) => get(calculatedActiveCharacterAtom).formulaTraces[key])
+);

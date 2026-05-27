@@ -1,5 +1,6 @@
 import { DEFAULT_FORMULAS } from "../../static/default-formulas";
 import { CharacterValueKey } from "../character/constants";
+import type { FormulaReferenceTrace, FormulaTrace } from "../character/types";
 import type { Formula, FormulaContext } from "../state/custom-formulas";
 
 const allowedMathFunctions = {
@@ -16,7 +17,15 @@ const allowedMathFunctions = {
 export type FormulaEvaluationResult = {
     success: boolean;
     result?: number;
+    rawResult?: number;
     error?: string;
+    trace: FormulaTrace;
+};
+
+type FormulaReference = {
+    name: string;
+    source: "characterValue";
+    formulaId: CharacterValueKey;
 };
 
 const intermediateVariablePattern = /\{([^}]+)\}/g;
@@ -46,17 +55,21 @@ const getFormulaSource = (
 
 const preprocessFormula = (formula: string): {
     processedFormula: string;
-    intermediateVariables: CharacterValueKey[];
+    references: FormulaReference[];
 } => {
     const preprocessedFormula = removeFormulaComments(formula);
-    const intermediateVariables = new Set<CharacterValueKey>();
+    const referencesByName = new Map<string, FormulaReference>();
     let processedFormula = preprocessedFormula;
     let match: RegExpExecArray | null;
 
     while ((match = intermediateVariablePattern.exec(preprocessedFormula)) !== null) {
         const variableName = match[1];
         const replacementVar = `__${variableName}` as CharacterValueKey;
-        intermediateVariables.add(replacementVar);
+        referencesByName.set(variableName, {
+            name: variableName,
+            source: "characterValue",
+            formulaId: replacementVar,
+        });
         processedFormula = processedFormula.replace(
             new RegExp(`\\{${variableName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\}`, "g"),
             replacementVar
@@ -65,27 +78,62 @@ const preprocessFormula = (formula: string): {
 
     return {
         processedFormula,
-        intermediateVariables: Array.from(intermediateVariables),
+        references: Array.from(referencesByName.values()),
     };
 };
+
+const createTrace = (
+    formulaId: CharacterValueKey,
+    formulaSource: string,
+    processedFormula: string,
+    contextValues: Record<string, number>,
+    references: FormulaReferenceTrace[] = [],
+    result?: {
+        rawResult?: number;
+        result?: number;
+        error?: string;
+    }
+): FormulaTrace => ({
+    formulaId,
+    formulaSource,
+    processedFormula,
+    references,
+    contextValues,
+    rawResult: result?.rawResult,
+    result: result?.result,
+    error: result?.error,
+});
 
 export const evaluateFormula = (
     formulaId: CharacterValueKey,
     context: FormulaContext,
     customFormulas: Partial<Record<CharacterValueKey, Formula>>,
-    resolveIntermediate: (formulaId: CharacterValueKey) => number
+    resolveReference: (reference: FormulaReference) => number
 ): FormulaEvaluationResult => {
+    const formula = getFormulaSource(formulaId, customFormulas);
+    const { processedFormula, references } = preprocessFormula(formula);
+    const contextValues = { ...context };
+    const resolvedReferences = new Map<string, FormulaReferenceTrace>();
+
     try {
-        const formula = getFormulaSource(formulaId, customFormulas);
-        const { processedFormula, intermediateVariables } = preprocessFormula(formula);
         const executionContext = {
             ...context,
             ...allowedMathFunctions,
         };
 
-        intermediateVariables.forEach((intermediateVariable) => {
-            Object.defineProperty(executionContext, intermediateVariable, {
-                get: () => resolveIntermediate(intermediateVariable),
+        references.forEach((reference) => {
+            const executionVariableName = reference.formulaId;
+            Object.defineProperty(executionContext, executionVariableName, {
+                get: () => {
+                    const value = resolveReference(reference);
+                    resolvedReferences.set(reference.name, {
+                        name: reference.name,
+                        source: reference.source,
+                        formulaId: reference.formulaId,
+                        value,
+                    });
+                    return value;
+                },
                 enumerable: true,
             });
         });
@@ -93,21 +141,41 @@ export const evaluateFormula = (
         const parameterNames = Object.keys(executionContext);
         const parameterValues = Object.values(executionContext);
         const func = new Function(...parameterNames, `return (${processedFormula});`);
-        const result = func(...parameterValues);
+        const rawResult = func(...parameterValues);
+        const traceReferences = Array.from(resolvedReferences.values());
 
-        if (typeof result !== "number") {
-            return { success: false, error: "計算結果が数値ではありません" };
+        if (typeof rawResult !== "number") {
+            const error = "計算結果が数値ではありません";
+            return {
+                success: false,
+                error,
+                trace: createTrace(formulaId, formula, processedFormula, contextValues, traceReferences, { error }),
+            };
         }
 
-        if (!Number.isFinite(result)) {
-            return { success: false, error: "計算結果が無限大またはNaNです" };
+        if (!Number.isFinite(rawResult)) {
+            const error = "計算結果が無限大またはNaNです";
+            return {
+                success: false,
+                rawResult,
+                error,
+                trace: createTrace(formulaId, formula, processedFormula, contextValues, traceReferences, { rawResult, error }),
+            };
         }
 
-        return { success: true, result: Math.floor(result) };
+        const result = Math.floor(rawResult);
+        return {
+            success: true,
+            rawResult,
+            result,
+            trace: createTrace(formulaId, formula, processedFormula, contextValues, traceReferences, { rawResult, result }),
+        };
     } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : "計算エラーが発生しました";
         return {
             success: false,
-            error: error instanceof Error ? error.message : "計算エラーが発生しました",
+            error: errorMessage,
+            trace: createTrace(formulaId, formula, processedFormula, contextValues, Array.from(resolvedReferences.values()), { error: errorMessage }),
         };
     }
 };

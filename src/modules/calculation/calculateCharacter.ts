@@ -16,6 +16,7 @@ export const calculateCharacter = (
     const aggregatedOptions = aggregateOptions(optionSources);
     const formulaContext = buildFormulaContext(resolvedCharacter, aggregatedOptions);
     const values = {} as Record<CharacterValueKey, number>;
+    const formulaTraces: CalculatedCharacter["formulaTraces"] = {};
     const resolving = new Set<CharacterValueKey>();
 
     const resolveValue = (formulaId: CharacterValueKey): number => {
@@ -33,9 +34,10 @@ export const calculateCharacter = (
             formulaId,
             formulaContext,
             customFormulas,
-            resolveValue
+            (reference) => resolveValue(reference.formulaId)
         );
         resolving.delete(formulaId);
+        formulaTraces[formulaId] = result.trace;
 
         if (!result.success || result.result === undefined) {
             console.warn(`Formula failed for ${formulaId}:`, result.error);
@@ -54,5 +56,6 @@ export const calculateCharacter = (
         optionSources,
         aggregatedOptions,
         values,
+        formulaTraces,
     };
 };
