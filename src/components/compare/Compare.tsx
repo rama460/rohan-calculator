@@ -48,11 +48,6 @@ const compareSlotIds: Record<ComparisonSide, string> = {
     right: "compare-right",
 };
 
-const compareSlotLabels: Record<ComparisonSide, string> = {
-    left: "A",
-    right: "B",
-};
-
 const cloneCharacter = (character: CharacterState, id: string, name: string): CharacterState => ({
     ...JSON.parse(JSON.stringify(character)),
     id,
@@ -60,7 +55,7 @@ const cloneCharacter = (character: CharacterState, id: string, name: string): Ch
 });
 
 const createCompareSlotCharacter = (character: CharacterState, side: ComparisonSide): CharacterState => (
-    cloneCharacter(character, compareSlotIds[side], `${character.name} ${compareSlotLabels[side]}`)
+    cloneCharacter(character, compareSlotIds[side], character.name)
 );
 
 const isCompareSlotId = (id: string): boolean => Object.values(compareSlotIds).includes(id);
@@ -265,6 +260,7 @@ export const Compare: React.FC = () => {
                             />
                             <CompareCharacterDetails
                                 character={leftCharacter}
+                                values={leftCalculated.values}
                                 onChange={(character) => setCompareCharacter("left", character)}
                             />
                         </Paper>
@@ -281,6 +277,7 @@ export const Compare: React.FC = () => {
                             />
                             <CompareCharacterDetails
                                 character={rightCharacter}
+                                values={rightCalculated.values}
                                 onChange={(character) => setCompareCharacter("right", character)}
                             />
                         </Paper>

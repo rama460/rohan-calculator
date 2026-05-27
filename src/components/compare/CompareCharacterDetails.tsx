@@ -19,7 +19,7 @@ import {
 import Grid from "@mui/material/Grid2";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import type { CharacterState } from "../../modules/character/types";
-import type { CharacterStatusKey } from "../../modules/character/constants";
+import type { CharacterStatusKey, CharacterValueKey } from "../../modules/character/constants";
 import { characterStatusNames } from "../../modules/character/constants";
 import { races } from "../../static/races";
 import { titles } from "../../static/titles";
@@ -28,6 +28,7 @@ import type { Skill, SkillOrigin } from "../../static/skills/skill";
 
 type CompareCharacterDetailsProps = {
     character: CharacterState;
+    values: Record<CharacterValueKey, number>;
     onChange: (character: CharacterState) => void;
 };
 
@@ -47,6 +48,18 @@ const originLabels: Record<SkillOrigin, string> = {
     Cash: "課金バフ",
 };
 
+const compactNumberFieldSx = {
+    "& .MuiInputBase-input": {
+        fontSize: 11,
+        px: 0.5,
+        py: 0.75,
+        textAlign: "right",
+    },
+    "& .MuiInputLabel-root": {
+        fontSize: 10,
+    },
+};
+
 const getBuffCandidates = (character: CharacterState, origin: SkillOrigin): Skill[] => (
     skills.filter((skill) => {
         if (skill.origin !== origin || (skill.category !== "Buff" && skill.category !== "Passive")) {
@@ -64,6 +77,7 @@ const getBuffCandidates = (character: CharacterState, origin: SkillOrigin): Skil
 
 export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = ({
     character,
+    values,
     onChange,
 }) => {
     const updateBase = <K extends keyof CharacterState["base"]>(
@@ -131,6 +145,7 @@ export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = (
 
     const numericRaceId = Number(character.base.raceid);
     const numericJobId = Number(character.base.jobid);
+    const initialStatuses = races[numericRaceId].initialStatus;
 
     return (
         <Accordion variant="outlined" disableGutters sx={{ mt: 2 }}>
@@ -154,10 +169,19 @@ export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = (
                                     slotProps={{ htmlInput: { min: 1, max: 115 } }}
                                     onChange={(event) => {
                                         const level = Number(event.target.value);
-                                        updateBase("level", level);
-                                        if (level < 115) {
-                                            updateBase("heroLevel", 0);
-                                        }
+                                        onChange({
+                                            ...character,
+                                            base: {
+                                                ...character.base,
+                                                level,
+                                                heroLevel: level < 115 ? 0 : character.base.heroLevel,
+                                                jobid: level < 50 ? 0 : character.base.jobid,
+                                            },
+                                            buffs: level < 50 ? {
+                                                ...character.buffs,
+                                                Self: [],
+                                            } : character.buffs,
+                                        });
                                     }}
                                 />
                             </Grid>
@@ -263,22 +287,45 @@ export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = (
                         <Grid container spacing={1}>
                             {characterStatusNames.map((status) => (
                                 <Grid key={status} size={{ xs: 12, md: 6 }}>
-                                    <Box display="grid" gridTemplateColumns="80px 1fr 1fr" gap={1} alignItems="center">
+                                    <Box
+                                        display="grid"
+                                        gridTemplateColumns="64px 56px 1fr 1fr 64px"
+                                        gap={1}
+                                        alignItems="center"
+                                    >
                                         <Typography variant="caption">{statusLabels[status]}</Typography>
                                         <TextField
-                                            label="割振"
+                                            label="初"
+                                            type="number"
+                                            size="small"
+                                            value={initialStatuses[status]}
+                                            sx={compactNumberFieldSx}
+                                            slotProps={{ htmlInput: { readOnly: true } }}
+                                        />
+                                        <TextField
+                                            label="振"
                                             type="number"
                                             size="small"
                                             value={character.statuses.allocated[status]}
+                                            sx={compactNumberFieldSx}
                                             slotProps={{ htmlInput: { min: 0 } }}
                                             onChange={(event) => updateStatus("allocated", status, Number(event.target.value))}
                                         />
                                         <TextField
-                                            label="補正"
+                                            label="補"
                                             type="number"
                                             size="small"
                                             value={character.statuses.meta[status]}
+                                            sx={compactNumberFieldSx}
                                             onChange={(event) => updateStatus("meta", status, Number(event.target.value))}
+                                        />
+                                        <TextField
+                                            label="計"
+                                            type="number"
+                                            size="small"
+                                            value={values[`__${status}` as CharacterValueKey] ?? 0}
+                                            sx={compactNumberFieldSx}
+                                            slotProps={{ htmlInput: { readOnly: true } }}
                                         />
                                     </Box>
                                 </Grid>
