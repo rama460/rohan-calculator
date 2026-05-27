@@ -100,9 +100,32 @@ export type OptionSource = {
 
 export type AggregatedOptions = OptionMap;
 
+export type FormulaReferenceSource = "characterValue" | "localIntermediate";
+
+export type FormulaReferenceTrace = {
+    name: string;
+    source: FormulaReferenceSource;
+    value: number;
+    formulaId?: CharacterValueKey;
+    formula?: string;
+    processedFormula?: string;
+};
+
+export type FormulaTrace = {
+    formulaId: CharacterValueKey;
+    formulaSource: string;
+    processedFormula: string;
+    references: FormulaReferenceTrace[];
+    contextValues: Record<string, number>;
+    rawResult?: number;
+    result?: number;
+    error?: string;
+};
+
 export type CalculatedCharacter = {
     character: CharacterState;
     optionSources: OptionSource[];
     aggregatedOptions: AggregatedOptions;
     values: Record<CharacterValueKey, number>;
+    formulaTraces: Partial<Record<CharacterValueKey, FormulaTrace>>;
 };

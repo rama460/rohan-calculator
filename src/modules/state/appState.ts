@@ -62,6 +62,8 @@ export {
     activeCharacterBaseAtomFamily,
     activeCharacterBuffsAtomFamily,
     activeCharacterEquipmentAtomFamily,
+    activeCharacterFormulaTraceAtomFamily,
+    activeCharacterFormulaTracesAtom,
     activeCharacterMetaStatusAtomFamily,
     activeCharacterNameAtom,
     activeCharacterSkillLevelsAtomFamily,

@@ -1,38 +1,14 @@
 import { atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import type { Item } from "../../../static/items";
-import type { ResolvedEquipment } from "../../character/types";
 import { equipmentSlotKeys, EquipmentSlotKey } from "../../character/constants";
+import { resolvedEquipmentToItem } from "../../equipment";
 import { normalizeEquipmentItem } from "../../normalize";
 import { resolveEquipment } from "../../resolve/resolveEquipment";
 import {
     activeCharacterBaseAtomFamily,
     activeCharacterEquipmentAtomFamily,
 } from "../activeCharacterAtoms";
-
-const toItem = (equipment: ResolvedEquipment): Item => {
-    const item: Item = {
-        templateId: equipment.templateId,
-        name: equipment.template.name,
-        icon: equipment.template.icon,
-        availableRaces: equipment.template.availableRaces,
-        enchantLevel: equipment.enchantLevel ?? 0,
-        baseOptions: equipment.options.base,
-        additionalOptions: equipment.options.additional,
-        craftedOptions: equipment.options.crafted,
-        synergyKey: equipment.template.synergyKey,
-        synergyOptions: equipment.template.synergyOptions,
-    };
-
-    if (equipment.template.type) {
-        return {
-            ...item,
-            type: equipment.template.type,
-        };
-    }
-
-    return item;
-};
 
 export const uiEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
     atom(
@@ -43,7 +19,7 @@ export const uiEquipmentAtomFamily = atomFamily((slot: EquipmentSlotKey) =>
                 Number(get(activeCharacterBaseAtomFamily("raceid"))),
                 Number(get(activeCharacterBaseAtomFamily("jobid")))
             );
-            return equipment ? toItem(equipment) : undefined;
+            return equipment ? resolvedEquipmentToItem(equipment) : undefined;
         },
         (get, set, item: Item | undefined) => {
             const equipment = item

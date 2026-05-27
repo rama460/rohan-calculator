@@ -15,6 +15,8 @@ export const contextNames = atom((get) => {
     return Object.keys(contexts);
 });
 
+export const storedCharacterContextsAtom = atom((get) => get(storedCharacterContexts));
+
 export const contextState = atomFamily((name: string) =>
     atom(
         (get): CharacterState | undefined => {

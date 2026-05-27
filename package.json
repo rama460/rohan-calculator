@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "compare:legacy": "node test/legacy-calculation/runComparison.mjs",
     "validate:items": "node test/static/validateItemTemplateIds.mjs",
-    "validate:skills": "node test/static/validateSkillNames.mjs"
+    "validate:skills": "node test/static/validateSkillNames.mjs",
+    "validate:formulas": "node test/static/validateFormulas.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

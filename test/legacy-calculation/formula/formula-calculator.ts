@@ -73,6 +73,47 @@ function addRequiredParametersToContext(
     }
 }
 
+type ParsedFormula = {
+    localFormulas: Array<{ name: string; formula: string }>;
+    formula: string;
+};
+
+const parseLocalFormulas = (formula: string): ParsedFormula => {
+    const localFormulas: ParsedFormula["localFormulas"] = [];
+    const formulaLines: string[] = [];
+
+    formula.split("\n").forEach((line) => {
+        const localMatch = line.trim().match(/^@([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/);
+        if (localMatch) {
+            localFormulas.push({ name: localMatch[1], formula: localMatch[2].trim() });
+            return;
+        }
+
+        formulaLines.push(line);
+    });
+
+    return {
+        localFormulas,
+        formula: formulaLines.join("\n").trim(),
+    };
+};
+
+const createLocalVariableName = (name: string): string => `__local_${name}`;
+
+const evaluateProcessedFormula = (
+    processedFormula: string,
+    executionContext: Record<string, unknown>,
+    getter: Getter
+): number => {
+    const requiredParams = extractRequiredParameters(processedFormula);
+    addRequiredParametersToContext(executionContext, requiredParams, getter);
+
+    const parameterNames = Object.keys(executionContext);
+    const parameterValues = Object.values(executionContext);
+    const func = new Function(...parameterNames, `return (${processedFormula});`);
+    return func(...parameterValues);
+};
+
 
 /**
  * カスタム計算式を実行
@@ -85,6 +126,8 @@ export function executeCustomFormula(
     try {
         // コメントを除去
         const preprocessedFormula = removeComments(formula);
+        const { localFormulas, formula: executionFormula } = parseLocalFormulas(preprocessedFormula);
+        const localFormulaNames = new Set(localFormulas.map((localFormula) => localFormula.name));
 
         // contextをそのまま使用（外部から全てのパラメータが設定済み）
         const executionContext = {
@@ -95,19 +138,22 @@ export function executeCustomFormula(
 
         // 式に含まれる中間変数({XXX}形式)を網羅的に確認
         const intermediateVariables = new Set<string>();
-        const intermediateVariablePattern = /\{([^}]+)\}/g;
-        let match;
-        let processedFormula = preprocessedFormula;
+        const replaceIntermediateReferences = (sourceFormula: string): string =>
+            sourceFormula.replace(/\{([^}]+)\}/g, (_match, variableName: string) => {
+                if (localFormulaNames.has(variableName)) {
+                    return createLocalVariableName(variableName);
+                }
 
-        while ((match = intermediateVariablePattern.exec(preprocessedFormula)) !== null) {
-            const variableName = match[1];
-            const replacementVar = `__${variableName}`;
+                const replacementVar = `__${variableName}`;
+                intermediateVariables.add(replacementVar);
+                return replacementVar;
+            });
 
-            intermediateVariables.add(replacementVar);
-
-            // 計算式中の{XXX}を__XXXに置き換え
-            processedFormula = processedFormula.replace(new RegExp(`\\{${variableName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\}`, 'g'), replacementVar);
-        }
+        const processedLocalFormulas = localFormulas.map((localFormula) => ({
+            ...localFormula,
+            processedFormula: replaceIntermediateReferences(localFormula.formula),
+        }));
+        const processedFormula = replaceIntermediateReferences(executionFormula);
 
         // 検出された中間変数に対してネスト評価を設定
         for (const intermediateVar of intermediateVariables) {
@@ -147,17 +193,15 @@ export function executeCustomFormula(
             }
         }
 
-        // 計算式から必要なパラメータを抽出して動的にコンテキストに追加
-        const requiredParams = extractRequiredParameters(processedFormula);
-        addRequiredParametersToContext(executionContext, requiredParams, getter);
+        for (const localFormula of processedLocalFormulas) {
+            executionContext[createLocalVariableName(localFormula.name)] = evaluateProcessedFormula(
+                localFormula.processedFormula,
+                executionContext,
+                getter
+            );
+        }
 
-        const fullContext = executionContext;
-
-        // Function constructorで安全に実行（置き換え後の式を使用）
-        const parameterNames = Object.keys(fullContext);
-        const parameterValues = Object.values(fullContext);
-        const func = new Function(...parameterNames, `return (${processedFormula});`);
-        const result = func(...parameterValues);
+        const result = evaluateProcessedFormula(processedFormula, executionContext, getter);
 
         // 結果の妥当性チェック
         if (typeof result !== 'number') {

@@ -20,6 +20,7 @@ import CheckroomIcon from '@mui/icons-material/Checkroom';
 import SettingsIcon from '@mui/icons-material/Settings';
 import StorageIcon from '@mui/icons-material/Storage';
 import FunctionsIcon from '@mui/icons-material/Functions';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 
 interface DrawerProps {
     open: boolean;
@@ -52,6 +53,13 @@ export const RohanCaluculatorDrawer: React.FC<DrawerProps> = ({ open, toggleDraw
             icon: <BarChartIcon />,
             description: 'ステータス統計と分析',
             status: 'development' as const
+        },
+        {
+            displayName: '比較',
+            path: '/compare',
+            icon: <CompareArrowsIcon />,
+            description: 'キャラクターと装備差分の比較',
+            status: 'ready' as const
         },
         {
             displayName: 'コスチューム',

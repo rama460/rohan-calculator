@@ -1,0 +1,1 @@
+export { resolvedEquipmentToItem } from "./itemAdapter";
