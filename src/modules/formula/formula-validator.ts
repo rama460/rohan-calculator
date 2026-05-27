@@ -74,10 +74,12 @@ const LOCAL_INTERMEDIATE_PATTERN = /^\s*@([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.+)\s*$
 
 function createValidationFormula(formula: string): {
     validationFormula: string;
+    executionFormula: string;
     localIntermediateNames: Set<string>;
 } {
     const localIntermediateNames = new Set<string>();
     const validationLines: string[] = [];
+    const executionLines: string[] = [];
 
     formula.split('\n').forEach((line) => {
         const localMatch = LOCAL_INTERMEDIATE_PATTERN.exec(line);
@@ -88,10 +90,12 @@ function createValidationFormula(formula: string): {
         }
 
         validationLines.push(line);
+        executionLines.push(line);
     });
 
     return {
         validationFormula: validationLines.join('\n').trim(),
+        executionFormula: executionLines.join('\n').trim(),
         localIntermediateNames,
     };
 }
@@ -327,7 +331,7 @@ export function validateFormula(
 
         // コメントを除去した式で以降のバリデーションを実行
         const cleanFormula = removeComments(formula);
-        const { validationFormula, localIntermediateNames } = createValidationFormula(cleanFormula);
+        const { validationFormula, executionFormula, localIntermediateNames } = createValidationFormula(cleanFormula);
         // 空文字列チェック
         if (!validationFormula.trim()) {
             errors.push({
@@ -418,7 +422,7 @@ export function validateFormula(
 
         // 実際の計算による検証（構文エラーがない場合のみ）
         if (errors.length === 0) {
-            const executionErrors = validateFormulaByExecution(validationFormula);
+            const executionErrors = validateFormulaByExecution(executionFormula);
             errors.push(...executionErrors);
         }
 
