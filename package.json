@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "convert:legacy-url": "node tools/convertLegacyUrl.mjs",
     "compare:legacy": "node test/legacy-calculation/runComparison.mjs",
     "validate:items": "node test/static/validateItemTemplateIds.mjs",
     "validate:skills": "node test/static/validateSkillNames.mjs",
