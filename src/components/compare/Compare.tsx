@@ -33,6 +33,7 @@ import { storedCharacterContextsAtom } from "../../modules/state/storage";
 import { calculateCharacter } from "../../modules/calculation";
 import type { CharacterState } from "../../modules/character/types";
 import type { CharacterValueKey } from "../../modules/character/constants";
+import { migrateLegacyStoredCharacter } from "../../modules/character/legacyStoredCharacter";
 import { resolveEquipment } from "../../modules/resolve";
 import { useAtom, useAtomValue } from "jotai";
 
@@ -95,14 +96,21 @@ export const Compare: React.FC = () => {
             label: `${character.name} (作業中)`,
             character,
         }));
-        const storedCharacters = Object.entries(storedCharacterContexts).map(([name, character]) => ({
-            id: `storage:${name}`,
-            label: `${name} (保存済み)`,
-            character: {
-                ...character,
-                name: character.name || name,
-            },
-        }));
+        const storedCharacters = Object.entries(storedCharacterContexts).flatMap(([name, character]) => {
+            const migratedCharacter = migrateLegacyStoredCharacter(name, character);
+            if (!migratedCharacter) {
+                return [];
+            }
+
+            return [{
+                id: `storage:${name}`,
+                label: `${name} (保存済み)`,
+                character: {
+                    ...migratedCharacter,
+                    name: migratedCharacter.name || name,
+                },
+            }];
+        });
 
         return [...storedCharacters, ...appCharacters];
     }, [appState.characters, storedCharacterContexts]);
@@ -149,7 +157,12 @@ export const Compare: React.FC = () => {
             return;
         }
 
-        setCompareCharacter(side, createCompareSlotCharacter(source, side));
+        const migratedSource = migrateLegacyStoredCharacter(source.name, source);
+        if (!migratedSource) {
+            return;
+        }
+
+        setCompareCharacter(side, createCompareSlotCharacter(migratedSource, side));
     };
 
     const copyLeftToRight = () => {
