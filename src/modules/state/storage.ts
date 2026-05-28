@@ -2,12 +2,20 @@ import { atom, useAtom } from "jotai";
 import { atomFamily, atomWithStorage, RESET } from "jotai/utils";
 import type { CharacterState } from "../character/types";
 import { activeCharacterAtom } from "./appState";
+import { migrateStoredCharacterContexts } from "../character/legacyStoredCharacter";
 
 type StoredCharacterContexts = Record<string, CharacterState>;
 
-const storedCharacterContexts = atomWithStorage<StoredCharacterContexts>(
+const rawStoredCharacterContexts = atomWithStorage<Record<string, unknown>>(
     "charactorContext",
     {}
+);
+
+const storedCharacterContexts = atom(
+    (get): StoredCharacterContexts => migrateStoredCharacterContexts(get(rawStoredCharacterContexts)),
+    (_, set, nextContexts: StoredCharacterContexts) => {
+        set(rawStoredCharacterContexts, nextContexts);
+    }
 );
 
 export const contextNames = atom((get) => {
@@ -23,18 +31,18 @@ export const contextState = atomFamily((name: string) =>
             const contexts = get(storedCharacterContexts);
             return contexts[name];
         },
-        (_, set, newValue: CharacterState | typeof RESET) => {
-            set(storedCharacterContexts, (prev) => {
-                if (newValue === RESET) {
-                    const rest = { ...prev };
-                    delete rest[name];
-                    return rest;
-                }
+        (get, set, newValue: CharacterState | typeof RESET) => {
+            const contexts = get(storedCharacterContexts);
+            if (newValue === RESET) {
+                const rest = { ...contexts };
+                delete rest[name];
+                set(storedCharacterContexts, rest);
+                return;
+            }
 
-                return {
-                    ...prev,
-                    [name]: newValue,
-                };
+            set(storedCharacterContexts, {
+                ...contexts,
+                [name]: newValue,
             });
         }
     )
