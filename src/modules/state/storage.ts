@@ -2,7 +2,10 @@ import { atom, useAtom } from "jotai";
 import { atomFamily, atomWithStorage, RESET } from "jotai/utils";
 import type { CharacterState } from "../character/types";
 import { activeCharacterAtom } from "./appState";
-import { migrateStoredCharacterContexts } from "../character/legacyStoredCharacter";
+import {
+    migrateLegacyStoredCharacter,
+    migrateStoredCharacterContexts,
+} from "../character/legacyStoredCharacter";
 
 type StoredCharacterContexts = Record<string, CharacterState>;
 
@@ -53,11 +56,12 @@ export const useStorageContext = (name: string) => {
     const [activeCharacter, setActiveCharacter] = useAtom(activeCharacterAtom);
 
     const loadContext = () => {
-        if (!context) {
+        const migratedContext = migrateLegacyStoredCharacter(name || "Character", context);
+        if (!migratedContext) {
             return;
         }
 
-        setActiveCharacter(context);
+        setActiveCharacter(migratedContext);
     };
 
     const saveContext = () => {

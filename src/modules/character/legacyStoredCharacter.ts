@@ -57,12 +57,24 @@ const isRecord = (value: unknown): value is Record<string, unknown> => (
     typeof value === "object" && value !== null
 );
 
+const hasStatusMap = (value: unknown): value is Record<CharacterStatusKey, number> => (
+    isRecord(value) &&
+    characterStatusNames.every((status) => typeof value[status] === "number")
+);
+
 export const isCharacterState = (value: unknown): value is CharacterState => (
     isRecord(value) &&
     typeof value.id === "string" &&
     typeof value.name === "string" &&
     isRecord(value.base) &&
+    typeof value.base.title === "string" &&
+    typeof value.base.level === "number" &&
+    typeof value.base.heroLevel === "number" &&
+    typeof value.base.raceid === "number" &&
+    typeof value.base.jobid === "number" &&
     isRecord(value.statuses) &&
+    hasStatusMap(value.statuses.allocated) &&
+    hasStatusMap(value.statuses.meta) &&
     isRecord(value.equipment) &&
     isRecord(value.buffs) &&
     isRecord(value.skillLevels)
@@ -191,11 +203,21 @@ export const migrateLegacyStoredCharacter = (
 
 export const migrateStoredCharacterContexts = (
     contexts: StoredCharacterContextsInput
-): Record<string, CharacterState> => (
-    Object.fromEntries(
+): Record<string, CharacterState> => {
+    const singleContext = migrateLegacyStoredCharacter(
+        typeof contexts.title === "string" ? contexts.title : "Character",
+        contexts
+    );
+    if (singleContext) {
+        return {
+            [singleContext.name]: singleContext,
+        };
+    }
+
+    return Object.fromEntries(
         Object.entries(contexts).flatMap(([name, context]) => {
             const migrated = migrateLegacyStoredCharacter(name, context);
             return migrated ? [[name, migrated]] : [];
         })
     )
-);
+};
