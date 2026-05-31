@@ -1,4 +1,4 @@
-import { skills, SkillOrigin } from "../../static/skills/skill";
+import { isSkillAvailableForCharacter, skills, SkillOrigin } from "../../static/skills/skill";
 import type { BuffLeafState } from "../character/types";
 
 export type BuffState = {
@@ -21,7 +21,7 @@ export const normalizeBuffState = (
             return true;
         }
 
-        return skill.raceid === raceid && (skill.jobid === jobid || skill.jobid === 0);
+        return isSkillAvailableForCharacter(skill, raceid, jobid);
     });
     if (skillId < 0) {
         return undefined;

@@ -10,7 +10,7 @@ import {
     uiBuffsAtomFamily,
     uiTitleAtom,
 } from "../../modules/state/ui";
-import { skills } from "../../static/skills/skill";
+import { isSkillAvailableForCharacter, skills } from "../../static/skills/skill";
 
 export const BasePanel: React.FC = () => {
     const [level, setLevel] = useAtom(uiBaseAtomFamily("level"));
@@ -37,7 +37,7 @@ export const BasePanel: React.FC = () => {
             if (!skillSpec) {
                 return false;
             }
-            return skillSpec.raceid === numericRaceid && (skillSpec.jobid === Number(event.target.value) || skillSpec.jobid === 0);;
+            return isSkillAvailableForCharacter(skillSpec, numericRaceid, Number(event.target.value));
         })]);
     }
     const handleLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {

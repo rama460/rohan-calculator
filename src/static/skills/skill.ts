@@ -63,6 +63,16 @@ export const SkillCategoryNames = [
 export type SkillCategory = typeof SkillCategoryNames[number];
 export const hasSkillCategory = (skill: Pick<Skill, "categories">, category: SkillCategory): boolean =>
     skill.categories.includes(category);
+export const isSkillAvailableForCharacter = (
+    skill: Pick<Skill, "raceid" | "jobid">,
+    raceid: number,
+    jobid: number,
+): boolean => {
+    const matchesRace = skill.raceid === -1 || skill.raceid === raceid;
+    const matchesJob = skill.jobid === -1 || skill.jobid === 0 || skill.jobid === jobid;
+
+    return matchesRace && matchesJob;
+};
 export const SKillOriginNames = [
     "Self", "Group", "Guild", "Cash"
 ] as const;

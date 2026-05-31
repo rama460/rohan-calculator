@@ -4,26 +4,32 @@ export const DEFAULT_DAMAGE_FORMULAS: Record<CombatDamageFormulaId, string> = {
     normalMeleeAttack: `
 @attack = {attacker.meleeAttack}
 @defense = {defender.physicalDefense}
-@pvpAttackMultiplier = (100 + {attacker.multiplyPVPAttack}) / 100
-@pvpDefenseMultiplier = (100 + {defender.multiplyPVPDefense}) / 100
+@pvpDamageMultiplier = (100 + {attacker.multiplyPVPAttack} - {defender.multiplyPVPDefense}) / 100
+@DamageMultiplierByItem = (100 - {defender.multiplyDecreaseDamageTaken}) / 100
+@DamageMultiplierByBuff = (100 + {attacker.multiplyIncreaseDamageDealtBySkill} - {defender.multiplyDecreaseDamageDealtBySkill}) / 100
+@DamageMultiplierByHeroicPower = (100 - {defender.multiplyPVPDefenseByHeroicPower}) / 100
 
-floor(max(1, ({attack} - {defense}) * {pvpAttackMultiplier} / {pvpDefenseMultiplier}))
+floor(max(1, ({attack} - {defense}) * {pvpDamageMultiplier} * {DamageMultiplierByItem} * {DamageMultiplierByBuff} * {DamageMultiplierByHeroicPower}) / 10)
 `,
     normalRangeAttack: `
 @attack = {attacker.rangeAttack}
 @defense = {defender.physicalDefense}
-@pvpAttackMultiplier = (100 + {attacker.multiplyPVPAttack}) / 100
-@pvpDefenseMultiplier = (100 + {defender.multiplyPVPDefense}) / 100
+@pvpDamageMultiplier = (100 + {attacker.multiplyPVPAttack} - {defender.multiplyPVPDefense}) / 100
+@DamageMultiplierByItem = (100 - {defender.multiplyDecreaseDamageTaken}) / 100
+@DamageMultiplierByBuff = (100 + {attacker.multiplyIncreaseDamageDealtBySkill} - {defender.multiplyDecreaseDamageDealtBySkill}) / 100
+@DamageMultiplierByHeroicPower = (100 - {defender.multiplyPVPDefenseByHeroicPower}) / 100
 
-floor(max(1, ({attack} - {defense}) * {pvpAttackMultiplier} / {pvpDefenseMultiplier}))
+floor(max(1, ({attack} - {defense}) * {pvpDamageMultiplier} * {DamageMultiplierByItem} * {DamageMultiplierByBuff} * {DamageMultiplierByHeroicPower}) / 10)
 `,
     normalMagicAttack: `
 @attack = {attacker.magicAttack}
 @defense = {defender.magicalDefense}
-@pvpAttackMultiplier = (100 + {attacker.multiplyPVPAttack}) / 100
-@pvpDefenseMultiplier = (100 + {defender.multiplyPVPDefense}) / 100
+@pvpDamageMultiplier = (100 + {attacker.multiplyPVPAttack} - {defender.multiplyPVPDefense}) / 100
+@DamageMultiplierByItem = (100 - {defender.multiplyDecreaseDamageTaken}) / 100
+@DamageMultiplierByBuff = (100 + {attacker.multiplyIncreaseDamageDealtBySkill} - {defender.multiplyDecreaseDamageDealtBySkill}) / 100
+@DamageMultiplierByHeroicPower = (100 - {defender.multiplyPVPDefenseByHeroicPower}) / 100
 
-floor(max(1, ({attack} - {defense}) * {pvpAttackMultiplier} / {pvpDefenseMultiplier}))
+floor(max(1, ({attack} - {defense}) * {pvpDamageMultiplier} * {DamageMultiplierByItem} * {DamageMultiplierByBuff} * {DamageMultiplierByHeroicPower}) / 10)
 `,
     additionalNormalAttackDamage: `
 @additionalDamage = {normalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / 100

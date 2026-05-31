@@ -23,7 +23,7 @@ import type { CharacterStatusKey, CharacterValueKey } from "../../modules/charac
 import { characterStatusNames } from "../../modules/character/constants";
 import { races } from "../../static/races";
 import { titles } from "../../static/titles";
-import { hasSkillCategory, skills, SKillOriginNames } from "../../static/skills/skill";
+import { hasSkillCategory, isSkillAvailableForCharacter, skills, SKillOriginNames } from "../../static/skills/skill";
 import type { Skill, SkillOrigin } from "../../static/skills/skill";
 
 type CompareCharacterDetailsProps = {
@@ -70,8 +70,11 @@ const getBuffCandidates = (character: CharacterState, origin: SkillOrigin): Skil
             return true;
         }
 
-        return skill.raceid === Number(character.base.raceid) &&
-            (skill.jobid === Number(character.base.jobid) || skill.jobid === 0);
+        return isSkillAvailableForCharacter(
+            skill,
+            Number(character.base.raceid),
+            Number(character.base.jobid),
+        );
     })
 );
 
@@ -245,8 +248,7 @@ export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = (
                                                     ...character.buffs,
                                                     Self: (character.buffs.Self ?? []).filter((buff) => {
                                                         const skill = skills[buff.skillId];
-                                                        return skill?.raceid === numericRaceId &&
-                                                            (skill.jobid === nextJobId || skill.jobid === 0);
+                                                        return skill ? isSkillAvailableForCharacter(skill, numericRaceId, nextJobId) : false;
                                                     }),
                                                 },
                                             });
