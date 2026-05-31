@@ -12,6 +12,10 @@ const getFormulaId = (input: DamageCalculationInput): CombatDamageFormulaId => {
         return input.action.formulaId;
     }
 
+    if (input.action.type === "criticalDamage") {
+        return "criticalDamage";
+    }
+
     return NORMAL_ATTACK_FORMULA_BY_DAMAGE_TYPE[input.action.damageType];
 };
 
@@ -34,11 +38,20 @@ const getNormalAttackDamage = (
 
 export const calculateDamage = (input: DamageCalculationInput): DamageCalculationResult => {
     const formulaId = getFormulaId(input);
-    const combatContext = input.action.type === "skillAttack"
-        ? {
+    let combatContext: Record<string, number> | undefined;
+
+    if (input.action.type === "skillAttack") {
+        combatContext = {
             normalAttackDamage: getNormalAttackDamage(input, input.action) ?? 0,
-        }
-        : undefined;
+        };
+    }
+
+    if (input.action.type === "criticalDamage") {
+        combatContext = {
+            baseDamage: input.action.baseDamage,
+        };
+    }
+
     const skillParameters = input.action.type === "skillAttack"
         ? {
             ...input.action.parameters,

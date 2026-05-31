@@ -17,6 +17,7 @@ export type {
     CombatSide,
     DamageCalculationInput,
     DamageCalculationResult,
+    CriticalDamageAction,
     NormalAttackAction,
     SkillAttackAction,
 } from "./types";

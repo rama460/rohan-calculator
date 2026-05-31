@@ -63,20 +63,6 @@ const formatDamageRange = (damage: number): string => {
     return `${formatDamage(range.min)} - ${formatDamage(range.max)}`;
 };
 
-const getCriticalDamage = (damage: number, attacker: CalculatedCharacter, defender: CalculatedCharacter): number => {
-    const criticalDamageRate = attacker.aggregatedOptions.multiplyCriticalDamage ?? 0;
-    const decreaseCriticalDamageRate = defender.aggregatedOptions.multiplyDecreaseCriticalDamageTaken ?? 0;
-    const criticalDamageMultiplier = Math.max(0, (100 + criticalDamageRate - decreaseCriticalDamageRate) / 100);
-
-    return Math.floor(damage * criticalDamageMultiplier);
-};
-
-const formatCriticalDamageRange = (
-    damage: number,
-    attacker: CalculatedCharacter,
-    defender: CalculatedCharacter,
-): string => formatDamageRange(getCriticalDamage(damage, attacker, defender));
-
 const removeComment = (line: string): string => {
     const commentIndex = line.indexOf("//");
     return commentIndex >= 0 ? line.slice(0, commentIndex) : line;
@@ -143,6 +129,29 @@ const buildFormulaTree = (trace: CombatFormulaTrace | undefined): FormulaTreeNod
 const flattenFormulaTree = (nodes: FormulaTreeNode[]): FormulaTreeNode[] => (
     nodes.flatMap((node) => [node, ...flattenFormulaTree(node.children)])
 );
+
+const getFormulaTreeRowKey = (node: FormulaTreeNode): string => `${node.depth}:${node.name}:${node.formula ?? ""}`;
+
+const mergeFormulaTreeRows = (
+    leftTrace: CombatFormulaTrace | undefined,
+    rightTrace: CombatFormulaTrace | undefined,
+): FormulaTreeNode[] => {
+    const rows = [
+        ...flattenFormulaTree(buildFormulaTree(leftTrace)),
+        ...flattenFormulaTree(buildFormulaTree(rightTrace)),
+    ];
+    const seen = new Set<string>();
+
+    return rows.filter((row) => {
+        const key = getFormulaTreeRowKey(row);
+        if (seen.has(key)) {
+            return false;
+        }
+
+        seen.add(key);
+        return true;
+    });
+};
 
 const findTraceReferenceValue = (
     trace: CombatFormulaTrace | undefined,
@@ -233,14 +242,36 @@ const calculateSkillDamage = (
     });
 };
 
-type DamageTraceRowsProps = {
-    result: DamageCalculationResult | undefined;
+const calculateCriticalDamage = (
+    baseResult: DamageCalculationResult | undefined,
+    attacker: CalculatedCharacter,
+    defender: CalculatedCharacter,
+): DamageCalculationResult | undefined => {
+    if (!baseResult) {
+        return undefined;
+    }
+
+    return calculateDamage({
+        attacker,
+        defender,
+        action: {
+            type: "criticalDamage",
+            baseDamage: baseResult.damage,
+        },
+    });
 };
 
-const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result }) => {
+type DamageTraceRowsProps = {
+    result: DamageCalculationResult | undefined;
+    criticalResult: DamageCalculationResult | undefined;
+};
+
+const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result, criticalResult }) => {
     const trace = result?.trace;
-    const formulaTreeRows = flattenFormulaTree(buildFormulaTree(trace));
+    const criticalTrace = criticalResult?.trace;
+    const formulaTreeRows = mergeFormulaTreeRows(trace, criticalTrace);
     const finalFormula = getFinalFormula(trace);
+    const criticalFinalFormula = getFinalFormula(criticalTrace);
 
     if (!trace) {
         return (
@@ -254,7 +285,12 @@ const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result }) => {
         <Box sx={{ p: 1, backgroundColor: "action.hover" }}>
             {finalFormula && (
                 <Typography variant="caption" color="text.disabled" sx={{ display: "block", lineHeight: 1.2, mb: 0.75 }}>
-                    {finalFormula}
+                    ダメージ: {finalFormula}
+                </Typography>
+            )}
+            {criticalFinalFormula && (
+                <Typography variant="caption" color="text.disabled" sx={{ display: "block", lineHeight: 1.2, mb: 0.75 }}>
+                    クリティカル: {criticalFinalFormula}
                 </Typography>
             )}
             <Table
@@ -267,9 +303,17 @@ const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result }) => {
                     },
                 }}
             >
+                <TableHead>
+                    <TableRow>
+                        <TableCell>項目</TableCell>
+                        <TableCell align="right" sx={{ width: 180 }}>ダメージ</TableCell>
+                        <TableCell align="right" sx={{ width: 180 }}>クリティカル</TableCell>
+                    </TableRow>
+                </TableHead>
                 <TableBody>
                     {formulaTreeRows.map((node, index) => {
                         const value = findTraceReferenceValue(trace, node.name);
+                        const criticalValue = findTraceReferenceValue(criticalTrace, node.name);
 
                         return (
                             <TableRow key={`${node.name}-${node.depth}-${index}`}>
@@ -298,6 +342,9 @@ const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result }) => {
                                 <TableCell align="right" sx={{ width: 180 }}>
                                     {value === undefined ? "-" : numberFormatter.format(value)}
                                 </TableCell>
+                                <TableCell align="right" sx={{ width: 180 }}>
+                                    {criticalValue === undefined ? "-" : numberFormatter.format(criticalValue)}
+                                </TableCell>
                             </TableRow>
                         );
                     })}
@@ -309,6 +356,9 @@ const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result }) => {
                         </TableCell>
                         <TableCell align="right" sx={{ fontWeight: "bold" }}>
                             {numberFormatter.format(result.damage)}
+                        </TableCell>
+                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
+                            {criticalResult ? numberFormatter.format(criticalResult.damage) : "-"}
                         </TableCell>
                     </TableRow>
                 </TableBody>
@@ -349,6 +399,7 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
             },
         })
         : undefined;
+    const normalCriticalDamage = calculateCriticalDamage(normalAttackDamage, attacker, defender);
 
     const getLevelOverrideKey = (skill: Skill): string => `${attackerSide}:${getSkillKey(skill)}`;
     const getDisplayedSkillLevel = (skill: Skill): number => (
@@ -463,15 +514,16 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                                 {normalAttackDamage ? formatDamageRange(normalAttackDamage.damage) : "-"}
                             </TableCell>
                             <TableCell align="right">
-                                {normalAttackDamage
-                                    ? formatCriticalDamageRange(normalAttackDamage.damage, attacker, defender)
-                                    : "-"}
+                                {normalCriticalDamage ? formatDamageRange(normalCriticalDamage.damage) : "-"}
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell colSpan={5} sx={{ p: 0, borderBottom: isNormalAttackExpanded ? undefined : 0 }}>
                                 <Collapse in={isNormalAttackExpanded} timeout="auto" unmountOnExit>
-                                    <DamageTraceRows result={normalAttackDamage} />
+                                    <DamageTraceRows
+                                        result={normalAttackDamage}
+                                        criticalResult={normalCriticalDamage}
+                                    />
                                 </Collapse>
                             </TableCell>
                         </TableRow>
@@ -510,6 +562,7 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                         {attackSkills.map((skill) => {
                             const level = getDisplayedSkillLevel(skill);
                             const damage = calculateSkillDamage(attacker, defender, skill, level);
+                            const criticalDamage = calculateCriticalDamage(damage, attacker, defender);
                             const expandedKey = `${attackerSide}:skill:${getSkillKey(skill)}`;
                             const isExpanded = expandedKeys.has(expandedKey);
 
@@ -588,13 +641,16 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                                             {damage === undefined ? "-" : formatDamageRange(damage.damage)}
                                         </TableCell>
                                         <TableCell align="right">
-                                            {damage === undefined ? "-" : formatCriticalDamageRange(damage.damage, attacker, defender)}
+                                            {criticalDamage === undefined ? "-" : formatDamageRange(criticalDamage.damage)}
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell colSpan={5} sx={{ p: 0, borderBottom: isExpanded ? undefined : 0 }}>
                                             <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                                                <DamageTraceRows result={damage} />
+                                                <DamageTraceRows
+                                                    result={damage}
+                                                    criticalResult={criticalDamage}
+                                                />
                                             </Collapse>
                                         </TableCell>
                                     </TableRow>

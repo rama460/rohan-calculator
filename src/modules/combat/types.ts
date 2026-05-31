@@ -6,7 +6,8 @@ export type CombatDamageFormulaId =
     | "normalMeleeAttack"
     | "normalRangeAttack"
     | "normalMagicAttack"
-    | "additionalNormalAttackDamage";
+    | "additionalNormalAttackDamage"
+    | "criticalDamage";
 
 export type CombatDamageType = "melee" | "range" | "magic";
 
@@ -24,7 +25,12 @@ export type SkillAttackAction = {
     parameters: Record<string, number>;
 };
 
-export type CombatAction = NormalAttackAction | SkillAttackAction;
+export type CriticalDamageAction = {
+    type: "criticalDamage";
+    baseDamage: number;
+};
+
+export type CombatAction = NormalAttackAction | SkillAttackAction | CriticalDamageAction;
 
 export type CombatSide = "attacker" | "defender";
 
