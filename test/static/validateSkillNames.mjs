@@ -26,13 +26,20 @@ try {
   const { skills } = await server.ssrLoadModule("/src/static/skills/skill.ts");
   const { races } = await server.ssrLoadModule("/src/static/races.ts");
   const duplicates = [];
+  const invalidCategories = [];
   const stateManagedCategories = new Set(["Buff", "Passive"]);
+
+  skills.forEach((skill) => {
+    if (!Array.isArray(skill.categories) || skill.categories.length === 0) {
+      invalidCategories.push(`${skill.name}: categories must be a non-empty array`);
+    }
+  });
 
   const validateScope = (label, candidates) => {
     const seen = new Map();
 
     candidates
-      .filter((skill) => stateManagedCategories.has(skill.category))
+      .filter((skill) => skill.categories.some((category) => stateManagedCategories.has(category)))
       .forEach((skill) => {
         const previous = seen.get(skill.name);
         if (previous !== undefined) {
@@ -62,8 +69,9 @@ try {
     });
   });
 
-  if (duplicates.length > 0) {
-    console.error(duplicates.join("\n"));
+  const errors = [...invalidCategories, ...duplicates];
+  if (errors.length > 0) {
+    console.error(errors.join("\n"));
     process.exitCode = 1;
   } else {
     console.log("Validated skill names in buff selection scopes.");

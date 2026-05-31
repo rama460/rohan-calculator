@@ -32,7 +32,7 @@ export type Skill = {
     name: string;
     displayName: string;
     icon: string;
-    category: SkillCategory;
+    categories: SkillCategory[];
     origin: SkillOrigin;
     raceid?: number;
     jobid?: number;
@@ -50,6 +50,8 @@ export const SkillCategoryNames = [
     "Passive", "Buff", "Attack", "Other", "Debuff"
 ] as const;
 export type SkillCategory = typeof SkillCategoryNames[number];
+export const hasSkillCategory = (skill: Pick<Skill, "categories">, category: SkillCategory): boolean =>
+    skill.categories.includes(category);
 export const SKillOriginNames = [
     "Self", "Group", "Guild", "Cash"
 ] as const;
@@ -174,4 +176,3 @@ export const getSkillByJob = (job: Job): Skill[] => {
         return [];
     }
 }
-

@@ -52,12 +52,15 @@ export const SkillDatabaseList: React.FC<SkillDatabaseListProps> = ({ skills, on
                                             color="primary"
                                             variant="outlined"
                                         />
-                                        <Chip
-                                            label={skill.category}
-                                            size="small"
-                                            color={getCategoryColor(skill.category)}
-                                            variant="outlined"
-                                        />
+                                        {skill.categories.map((category) => (
+                                            <Chip
+                                                key={category}
+                                                label={category}
+                                                size="small"
+                                                color={getCategoryColor(category)}
+                                                variant="outlined"
+                                            />
+                                        ))}
                                         {skill.raceid !== undefined && (
                                             <Chip
                                                 label={getSkillRaceDisplayName(skill)}

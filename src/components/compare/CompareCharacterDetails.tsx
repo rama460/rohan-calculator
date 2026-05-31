@@ -23,7 +23,7 @@ import type { CharacterStatusKey, CharacterValueKey } from "../../modules/charac
 import { characterStatusNames } from "../../modules/character/constants";
 import { races } from "../../static/races";
 import { titles } from "../../static/titles";
-import { skills, SKillOriginNames } from "../../static/skills/skill";
+import { hasSkillCategory, skills, SKillOriginNames } from "../../static/skills/skill";
 import type { Skill, SkillOrigin } from "../../static/skills/skill";
 
 type CompareCharacterDetailsProps = {
@@ -62,7 +62,7 @@ const compactNumberFieldSx = {
 
 const getBuffCandidates = (character: CharacterState, origin: SkillOrigin): Skill[] => (
     skills.filter((skill) => {
-        if (skill.origin !== origin || (skill.category !== "Buff" && skill.category !== "Passive")) {
+        if (skill.origin !== origin || (!hasSkillCategory(skill, "Buff") && !hasSkillCategory(skill, "Passive"))) {
             return false;
         }
 

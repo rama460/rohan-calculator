@@ -6,7 +6,7 @@ export const common_skills: Skill[] = [
         name: "heroicPower",
         displayName: "ヒロイックパワー",
         icon: unknown,
-        category: "Passive",
+        categories: ["Passive"],
         origin: "Self",
         raceid: -1,
         jobid: -1,
