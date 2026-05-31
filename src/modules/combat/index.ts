@@ -1,4 +1,5 @@
 export { calculateDamage } from "./calculateDamage";
+export { createSkillAttackAction } from "./createSkillAttackAction";
 export { evaluateCombatFormula } from "./evaluateCombatFormula";
 export {
     DEFAULT_DAMAGE_FORMULAS,
@@ -17,4 +18,5 @@ export type {
     DamageCalculationInput,
     DamageCalculationResult,
     NormalAttackAction,
+    SkillAttackAction,
 } from "./types";

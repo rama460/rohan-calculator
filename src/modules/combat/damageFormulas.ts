@@ -25,6 +25,11 @@ floor(max(1, ({attack} - {defense}) * {pvpAttackMultiplier} / {pvpDefenseMultipl
 
 floor(max(1, ({attack} - {defense}) * {pvpAttackMultiplier} / {pvpDefenseMultiplier}))
 `,
+    additionalNormalAttackDamage: `
+@additionalDamage = {normalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / 100
+
+floor(max(1, {normalAttackDamage} + {additionalDamage}))
+`,
 };
 
 export const NORMAL_ATTACK_FORMULA_BY_DAMAGE_TYPE: Record<CombatDamageType, CombatDamageFormulaId> = {

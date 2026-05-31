@@ -5,7 +5,8 @@ import type { CalculatedCharacter } from "../character/types";
 export type CombatDamageFormulaId =
     | "normalMeleeAttack"
     | "normalRangeAttack"
-    | "normalMagicAttack";
+    | "normalMagicAttack"
+    | "additionalNormalAttackDamage";
 
 export type CombatDamageType = "melee" | "range" | "magic";
 
@@ -14,7 +15,16 @@ export type NormalAttackAction = {
     damageType: CombatDamageType;
 };
 
-export type CombatAction = NormalAttackAction;
+export type SkillAttackAction = {
+    type: "skillAttack";
+    skillName: string;
+    level: number;
+    formulaId: CombatDamageFormulaId;
+    damageType?: CombatDamageType;
+    parameters: Record<string, number>;
+};
+
+export type CombatAction = NormalAttackAction | SkillAttackAction;
 
 export type CombatSide = "attacker" | "defender";
 
