@@ -22,6 +22,7 @@ import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import PageContainer from "../common/PageContainer";
 import { CombatModifierComparisonTable } from "./CombatModifierComparisonTable";
+import { DamageSimulationPanel } from "./DamageSimulationPanel";
 import { CompareEquipmentGrid } from "./CompareEquipmentGrid";
 import { CompareCharacterDetails } from "./CompareCharacterDetails";
 import { ValueComparisonTable } from "./ValueComparisonTable";
@@ -323,6 +324,13 @@ export const Compare: React.FC = () => {
                         </Paper>
                     </Grid>
                 </Grid>
+
+                <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1 }}>
+                    <DamageSimulationPanel
+                        left={leftCalculated}
+                        right={rightCalculated}
+                    />
+                </Paper>
 
                 <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1 }}>
                     <Box display="flex" alignItems="center" justifyContent="space-between" gap={2}>
