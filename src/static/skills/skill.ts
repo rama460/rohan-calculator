@@ -28,6 +28,16 @@ import { warlock_skills } from "./warlock";
 import { warrior_skills } from "./warrior";
 import { wizard_skills } from "./wizard";
 
+export type SkillAttackDamageType = "melee" | "range" | "magic";
+export type SkillAttackParameters = Record<string, number>;
+export type SkillAttackMetadata = {
+    formulaId?: string;
+    damageType?: SkillAttackDamageType;
+    parameters: {
+        [level: number]: SkillAttackParameters;
+    };
+};
+
 export type Skill = {
     name: string;
     displayName: string;
@@ -43,7 +53,8 @@ export type Skill = {
         [key: number]: {
             [key in BuiltinOptionKeyType]?: number;
         }
-    }
+    };
+    attack?: SkillAttackMetadata;
 }
 
 export const SkillCategoryNames = [

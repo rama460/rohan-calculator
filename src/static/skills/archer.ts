@@ -116,7 +116,20 @@ export const archer_skills: Skill[] = [
             "対象に通常攻撃の160%の追加ダメージ。",
             "対象に通常攻撃の250%の追加ダメージ。",
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 60 },
+                2: { normalAttackAdditionalDamageRate: 80 },
+                3: { normalAttackAdditionalDamageRate: 100 },
+                4: { normalAttackAdditionalDamageRate: 120 },
+                5: { normalAttackAdditionalDamageRate: 140 },
+                6: { normalAttackAdditionalDamageRate: 160 },
+                7: { normalAttackAdditionalDamageRate: 250 },
+            },
+        },
     },
     {
         name: "longShot",

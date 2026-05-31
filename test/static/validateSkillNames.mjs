@@ -27,12 +27,38 @@ try {
   const { races } = await server.ssrLoadModule("/src/static/races.ts");
   const duplicates = [];
   const invalidCategories = [];
+  const invalidAttacks = [];
   const stateManagedCategories = new Set(["Buff", "Passive"]);
 
   skills.forEach((skill) => {
     if (!Array.isArray(skill.categories) || skill.categories.length === 0) {
       invalidCategories.push(`${skill.name}: categories must be a non-empty array`);
     }
+
+    if (skill.attack === undefined) {
+      return;
+    }
+
+    if (!skill.categories.includes("Attack")) {
+      invalidAttacks.push(`${skill.name}: attack metadata requires Attack category`);
+    }
+
+    if (!skill.attack.parameters || Object.keys(skill.attack.parameters).length === 0) {
+      invalidAttacks.push(`${skill.name}: attack.parameters must be a non-empty object`);
+    }
+
+    Object.entries(skill.attack.parameters ?? {}).forEach(([level, parameters]) => {
+      const numericLevel = Number(level);
+      if (!Number.isInteger(numericLevel) || numericLevel < skill.min || numericLevel > skill.max) {
+        invalidAttacks.push(`${skill.name}: attack parameter level ${level} is outside ${skill.min}-${skill.max}`);
+      }
+
+      Object.entries(parameters ?? {}).forEach(([key, value]) => {
+        if (typeof value !== "number" || !Number.isFinite(value)) {
+          invalidAttacks.push(`${skill.name}: attack parameter ${key} at level ${level} must be a finite number`);
+        }
+      });
+    });
   });
 
   const validateScope = (label, candidates) => {
@@ -69,7 +95,7 @@ try {
     });
   });
 
-  const errors = [...invalidCategories, ...duplicates];
+  const errors = [...invalidCategories, ...invalidAttacks, ...duplicates];
   if (errors.length > 0) {
     console.error(errors.join("\n"));
     process.exitCode = 1;
