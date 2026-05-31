@@ -2,17 +2,16 @@ import React from "react";
 import {
     Box,
     Chip,
-    FormControl,
-    InputLabel,
     MenuItem,
     Select,
-    Stack,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
+    ToggleButton,
+    ToggleButtonGroup,
     Typography,
 } from "@mui/material";
 import {
@@ -42,6 +41,8 @@ const damageRows: DamageRow[] = [
 
 const formatDamage = (value: number): string => value.toLocaleString();
 
+const getSkillKey = (skill: Skill): string => `${skill.raceid ?? "all"}-${skill.jobid ?? "all"}-${skill.name}`;
+
 const getAvailableAttackSkills = (character: CalculatedCharacter): Skill[] => {
     const raceid = Number(character.character.base.raceid);
     const jobid = Number(character.character.base.jobid);
@@ -53,46 +54,72 @@ const getAvailableAttackSkills = (character: CalculatedCharacter): Skill[] => {
     ));
 };
 
+const getCharacterSkillLevel = (character: CalculatedCharacter, skill: Skill): number => {
+    const skillLevels = skill.jobid === 0
+        ? character.character.skillLevels.primary
+        : character.character.skillLevels.secondary;
+    const currentLevel = skillLevels[skill.name] ?? 0;
+
+    return currentLevel > 0 ? currentLevel : skill.max;
+};
+
+const calculateSkillDamage = (
+    attacker: CalculatedCharacter,
+    defender: CalculatedCharacter,
+    skill: Skill,
+    level: number,
+): number | undefined => {
+    const skillAction = createSkillAttackAction(
+        skill,
+        level,
+    );
+
+    if (!skillAction) {
+        return undefined;
+    }
+
+    return calculateDamage({
+        attacker,
+        defender,
+        action: skillAction,
+    }).damage;
+};
+
 export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
     left,
     right,
 }) => {
     const [attackerSide, setAttackerSide] = React.useState<"left" | "right">("left");
+    const [skillLevelOverrides, setSkillLevelOverrides] = React.useState<Record<string, number>>({});
     const attacker = attackerSide === "left" ? left : right;
     const defender = attackerSide === "left" ? right : left;
-    const availableAttackSkills = React.useMemo(
-        () => getAvailableAttackSkills(attacker),
-        [attacker],
+    const attackerLabel = attackerSide === "left" ? "左" : "右";
+    const defenderLabel = attackerSide === "left" ? "右" : "左";
+    const leftAttackSkills = React.useMemo(
+        () => getAvailableAttackSkills(left),
+        [left],
     );
-    const [selectedSkillName, setSelectedSkillName] = React.useState("");
-    const selectedSkill = availableAttackSkills.find((skill) => skill.name === selectedSkillName) ?? availableAttackSkills[0];
-    const [selectedSkillLevel, setSelectedSkillLevel] = React.useState(1);
+    const rightAttackSkills = React.useMemo(
+        () => getAvailableAttackSkills(right),
+        [right],
+    );
+    const attackSkills = attackerSide === "left" ? leftAttackSkills : rightAttackSkills;
 
-    React.useEffect(() => {
-        const nextSkill = availableAttackSkills[0];
-        setSelectedSkillName(nextSkill?.name ?? "");
-        setSelectedSkillLevel(nextSkill?.max ?? 1);
-    }, [availableAttackSkills]);
-
-    React.useEffect(() => {
-        if (!selectedSkill) {
-            return;
-        }
-        setSelectedSkillLevel((currentLevel) => Math.min(Math.max(currentLevel, selectedSkill.min), selectedSkill.max));
-    }, [selectedSkill]);
+    const getLevelOverrideKey = (skill: Skill): string => `${attackerSide}:${getSkillKey(skill)}`;
+    const getDisplayedSkillLevel = (skill: Skill): number => (
+        skillLevelOverrides[getLevelOverrideKey(skill)] ?? getCharacterSkillLevel(attacker, skill)
+    );
+    const setDisplayedSkillLevel = (skill: Skill, level: number) => {
+        setSkillLevelOverrides((current) => ({
+            ...current,
+            [getLevelOverrideKey(skill)]: level,
+        }));
+    };
 
     const rows = damageRows.map((row) => {
-        const leftToRight = calculateDamage({
-            attacker: left,
-            defender: right,
-            action: {
-                type: "normalAttack",
-                damageType: row.damageType,
-            },
-        });
-        const rightToLeft = calculateDamage({
-            attacker: right,
-            defender: left,
+        const damage = calculateDamage({
+            attacker,
+            defender,
             action: {
                 type: "normalAttack",
                 damageType: row.damageType,
@@ -101,21 +128,9 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
 
         return {
             ...row,
-            leftToRight,
-            rightToLeft,
-            difference: leftToRight.damage - rightToLeft.damage,
+            damage,
         };
     });
-    const skillAction = selectedSkill
-        ? createSkillAttackAction(selectedSkill, selectedSkillLevel)
-        : undefined;
-    const skillDamage = skillAction
-        ? calculateDamage({
-            attacker,
-            defender,
-            action: skillAction,
-        })
-        : undefined;
 
     return (
         <Box>
@@ -123,7 +138,19 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                 <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                     ダメージシミュレーション
                 </Typography>
-                <Chip size="small" label="通常攻撃" />
+                <ToggleButtonGroup
+                    size="small"
+                    exclusive
+                    value={attackerSide}
+                    onChange={(_, nextSide: "left" | "right" | null) => {
+                        if (nextSide) {
+                            setAttackerSide(nextSide);
+                        }
+                    }}
+                >
+                    <ToggleButton value="left">左</ToggleButton>
+                    <ToggleButton value="right">右</ToggleButton>
+                </ToggleButtonGroup>
             </Box>
             <TableContainer>
                 <Table
@@ -141,82 +168,110 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                     <TableHead>
                         <TableRow>
                             <TableCell sx={{ width: 80 }}>種別</TableCell>
-                            <TableCell align="right">左 → 右</TableCell>
-                            <TableCell align="right">右 → 左</TableCell>
-                            <TableCell align="right" sx={{ width: 96 }}>差分</TableCell>
+                            <TableCell align="right">{attackerLabel} → {defenderLabel}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
                             <TableRow key={row.damageType} hover>
                                 <TableCell>{row.label}</TableCell>
-                                <TableCell align="right">{formatDamage(row.leftToRight.damage)}</TableCell>
-                                <TableCell align="right">{formatDamage(row.rightToLeft.damage)}</TableCell>
-                                <TableCell align="right">
-                                    {row.difference > 0 ? "+" : ""}{formatDamage(row.difference)}
-                                </TableCell>
+                                <TableCell align="right">{formatDamage(row.damage.damage)}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Stack direction={{ xs: "column", md: "row" }} spacing={1.5} sx={{ mt: 2 }} alignItems={{ md: "center" }}>
-                <FormControl size="small" sx={{ minWidth: 132 }}>
-                    <InputLabel>攻撃者</InputLabel>
-                    <Select
-                        label="攻撃者"
-                        value={attackerSide}
-                        onChange={(event) => setAttackerSide(event.target.value as "left" | "right")}
-                    >
-                        <MenuItem value="left">左</MenuItem>
-                        <MenuItem value="right">右</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl size="small" sx={{ minWidth: 240, flex: 1 }}>
-                    <InputLabel>攻撃スキル</InputLabel>
-                    <Select
-                        label="攻撃スキル"
-                        value={selectedSkill?.name ?? ""}
-                        onChange={(event) => {
-                            const nextSkill = availableAttackSkills.find((skill) => skill.name === event.target.value);
-                            setSelectedSkillName(event.target.value);
-                            setSelectedSkillLevel(nextSkill?.max ?? 1);
-                        }}
-                    >
-                        {availableAttackSkills.map((skill) => (
-                            <MenuItem key={`${skill.raceid}-${skill.jobid}-${skill.name}`} value={skill.name}>
-                                {skill.displayName}{skill.attack ? "" : "（式未設定）"}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl size="small" sx={{ minWidth: 96 }}>
-                    <InputLabel>Lv</InputLabel>
-                    <Select
-                        label="Lv"
-                        value={String(selectedSkillLevel)}
-                        onChange={(event) => setSelectedSkillLevel(Number(event.target.value))}
-                        disabled={!selectedSkill}
-                    >
-                        {selectedSkill && Array.from(
-                            { length: selectedSkill.max - selectedSkill.min + 1 },
-                            (_, index) => selectedSkill.min + index,
-                        ).map((level) => (
-                            <MenuItem key={level} value={String(level)}>
-                                {level}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <Box sx={{ minWidth: 180, textAlign: { xs: "left", md: "right" } }}>
-                    <Typography variant="caption" color="text.secondary">
-                        スキルダメージ
-                    </Typography>
-                    <Typography variant="h6" sx={{ lineHeight: 1.2 }}>
-                        {skillDamage ? formatDamage(skillDamage.damage) : "-"}
-                    </Typography>
-                </Box>
-            </Stack>
+
+            <Box display="flex" alignItems="center" justifyContent="space-between" gap={1} sx={{ mt: 2, mb: 1 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+                    攻撃スキル
+                </Typography>
+                <Chip size="small" label={`${attackSkills.length} 件`} />
+            </Box>
+            <TableContainer>
+                <Table
+                    size="small"
+                    aria-label="skill damage simulation"
+                    sx={{
+                        tableLayout: "fixed",
+                        "& .MuiTableCell-root": {
+                            px: 1,
+                            py: 0.5,
+                        },
+                    }}
+                >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>スキル</TableCell>
+                            <TableCell align="right" sx={{ width: 96 }}>Lv</TableCell>
+                            <TableCell align="right">{attackerLabel} → {defenderLabel}</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {attackSkills.map((skill) => {
+                            const level = getDisplayedSkillLevel(skill);
+                            const damage = calculateSkillDamage(attacker, defender, skill, level);
+
+                            return (
+                                <TableRow key={getSkillKey(skill)} hover>
+                                    <TableCell>
+                                        <Box display="flex" alignItems="center" gap={1} sx={{ minWidth: 0 }}>
+                                            <Box
+                                                component="img"
+                                                src={skill.icon}
+                                                alt=""
+                                                sx={{
+                                                    width: 28,
+                                                    height: 28,
+                                                    flex: "0 0 auto",
+                                                    borderRadius: 0.5,
+                                                }}
+                                            />
+                                            <Box sx={{ minWidth: 0 }}>
+                                                <Typography variant="body2" noWrap>
+                                                    {skill.displayName}
+                                                </Typography>
+                                                {!skill.attack && (
+                                                    <Typography variant="caption" color="text.secondary" noWrap>
+                                                        式未設定
+                                                    </Typography>
+                                                )}
+                                            </Box>
+                                        </Box>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Select
+                                            size="small"
+                                            value={String(level)}
+                                            onChange={(event) => setDisplayedSkillLevel(skill, Number(event.target.value))}
+                                            sx={{
+                                                minWidth: 72,
+                                                "& .MuiSelect-select": {
+                                                    py: 0.25,
+                                                    pr: 3,
+                                                    textAlign: "right",
+                                                },
+                                            }}
+                                        >
+                                            {Array.from(
+                                                { length: skill.max - skill.min + 1 },
+                                                (_, index) => skill.min + index,
+                                            ).map((nextLevel) => (
+                                                <MenuItem key={nextLevel} value={String(nextLevel)}>
+                                                    {nextLevel}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {damage === undefined ? "-" : formatDamage(damage)}
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </Box>
     );
 };
