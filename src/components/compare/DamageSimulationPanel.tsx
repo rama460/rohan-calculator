@@ -2,6 +2,8 @@ import React from "react";
 import {
     Box,
     Chip,
+    Collapse,
+    IconButton,
     MenuItem,
     Select,
     Table,
@@ -14,11 +16,14 @@ import {
     ToggleButtonGroup,
     Typography,
 } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import {
     calculateDamage,
     createSkillAttackAction,
     type CombatDamageType,
 } from "../../modules/combat";
+import type { DamageCalculationResult, CombatFormulaTrace } from "../../modules/combat";
 import type { CalculatedCharacter } from "../../modules/character/types";
 import { resolveEquipment } from "../../modules/resolve";
 import { BuiltinWeaponTypes } from "../../static/items";
@@ -30,6 +35,22 @@ type DamageSimulationPanelProps = {
     left: CalculatedCharacter;
     right: CalculatedCharacter;
 };
+
+type FormulaDefinitionMap = {
+    localFormulas: Map<string, string>;
+    finalFormula: string;
+};
+
+type FormulaTreeNode = {
+    name: string;
+    depth: number;
+    formula?: string;
+    children: FormulaTreeNode[];
+};
+
+const numberFormatter = new Intl.NumberFormat("ja-JP", {
+    maximumFractionDigits: 3,
+});
 
 const formatDamage = (value: number): string => value.toLocaleString();
 const getDamageRange = (damage: number): { min: number; max: number } => ({
@@ -55,6 +76,82 @@ const formatCriticalDamageRange = (
     attacker: CalculatedCharacter,
     defender: CalculatedCharacter,
 ): string => formatDamageRange(getCriticalDamage(damage, attacker, defender));
+
+const removeComment = (line: string): string => {
+    const commentIndex = line.indexOf("//");
+    return commentIndex >= 0 ? line.slice(0, commentIndex) : line;
+};
+
+const parseFormulaDefinitions = (trace: CombatFormulaTrace | undefined): FormulaDefinitionMap => {
+    const localFormulas = new Map<string, string>();
+    const finalFormulaLines: string[] = [];
+
+    trace?.formulaSource.split("\n").forEach((line) => {
+        const cleanLine = removeComment(line).trim();
+        if (!cleanLine) {
+            return;
+        }
+
+        const localMatch = cleanLine.match(/^@([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/);
+        if (localMatch) {
+            localFormulas.set(localMatch[1], localMatch[2].trim());
+            return;
+        }
+
+        finalFormulaLines.push(cleanLine);
+    });
+
+    return {
+        localFormulas,
+        finalFormula: finalFormulaLines.join(" "),
+    };
+};
+
+const extractFormulaReferenceNames = (formula: string | undefined): string[] => {
+    if (!formula) {
+        return [];
+    }
+
+    return Array.from(formula.matchAll(/\{([^}]+)\}/g)).map((match) => match[1]);
+};
+
+const uniqueNames = (names: string[]): string[] => Array.from(new Set(names));
+
+const buildFormulaTree = (trace: CombatFormulaTrace | undefined): FormulaTreeNode[] => {
+    const definitions = parseFormulaDefinitions(trace);
+
+    const buildNode = (name: string, depth: number, ancestors: ReadonlySet<string>): FormulaTreeNode => {
+        const formula = definitions.localFormulas.get(name);
+        const nextAncestors = new Set(ancestors);
+        nextAncestors.add(name);
+        const childNames = formula
+            ? uniqueNames(extractFormulaReferenceNames(formula)).filter((childName) => !nextAncestors.has(childName))
+            : [];
+
+        return {
+            name,
+            depth,
+            formula,
+            children: childNames.map((childName) => buildNode(childName, depth + 1, nextAncestors)),
+        };
+    };
+
+    return uniqueNames(extractFormulaReferenceNames(definitions.finalFormula))
+        .map((name) => buildNode(name, 0, new Set()));
+};
+
+const flattenFormulaTree = (nodes: FormulaTreeNode[]): FormulaTreeNode[] => (
+    nodes.flatMap((node) => [node, ...flattenFormulaTree(node.children)])
+);
+
+const findTraceReferenceValue = (
+    trace: CombatFormulaTrace | undefined,
+    name: string,
+): number | undefined => trace?.references.find((reference) => reference.name === name)?.value;
+
+const getFinalFormula = (trace: CombatFormulaTrace | undefined): string => (
+    parseFormulaDefinitions(trace).finalFormula
+);
 
 const meleeWeaponTypes = new Set<WeaponType>([
     "sword",
@@ -119,7 +216,7 @@ const calculateSkillDamage = (
     defender: CalculatedCharacter,
     skill: Skill,
     level: number,
-): number | undefined => {
+): DamageCalculationResult | undefined => {
     const skillAction = createSkillAttackAction(
         skill,
         level,
@@ -133,7 +230,91 @@ const calculateSkillDamage = (
         attacker,
         defender,
         action: skillAction,
-    }).damage;
+    });
+};
+
+type DamageTraceRowsProps = {
+    result: DamageCalculationResult | undefined;
+};
+
+const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result }) => {
+    const trace = result?.trace;
+    const formulaTreeRows = flattenFormulaTree(buildFormulaTree(trace));
+    const finalFormula = getFinalFormula(trace);
+
+    if (!trace) {
+        return (
+            <Typography variant="body2" color="text.secondary">
+                計算式はありません
+            </Typography>
+        );
+    }
+
+    return (
+        <Box sx={{ p: 1, backgroundColor: "action.hover" }}>
+            {finalFormula && (
+                <Typography variant="caption" color="text.disabled" sx={{ display: "block", lineHeight: 1.2, mb: 0.75 }}>
+                    {finalFormula}
+                </Typography>
+            )}
+            <Table
+                size="small"
+                aria-label="damage calculation trace"
+                sx={{
+                    "& .MuiTableCell-root": {
+                        px: 1,
+                        py: 0.25,
+                    },
+                }}
+            >
+                <TableBody>
+                    {formulaTreeRows.map((node, index) => {
+                        const value = findTraceReferenceValue(trace, node.name);
+
+                        return (
+                            <TableRow key={`${node.name}-${node.depth}-${index}`}>
+                                <TableCell>
+                                    <Box
+                                        sx={{
+                                            pl: node.depth * 2,
+                                            borderLeft: node.depth > 0 ? "1px solid" : "none",
+                                            borderColor: "divider",
+                                        }}
+                                    >
+                                        <Typography variant="body2" color="text.secondary">
+                                            {node.name}
+                                        </Typography>
+                                        {node.formula && (
+                                            <Typography
+                                                variant="caption"
+                                                color="text.disabled"
+                                                sx={{ display: "block", lineHeight: 1.2 }}
+                                            >
+                                                {node.formula}
+                                            </Typography>
+                                        )}
+                                    </Box>
+                                </TableCell>
+                                <TableCell align="right" sx={{ width: 180 }}>
+                                    {value === undefined ? "-" : numberFormatter.format(value)}
+                                </TableCell>
+                            </TableRow>
+                        );
+                    })}
+                    <TableRow>
+                        <TableCell>
+                            <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                                result
+                            </Typography>
+                        </TableCell>
+                        <TableCell align="right" sx={{ fontWeight: "bold" }}>
+                            {numberFormatter.format(result.damage)}
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </Box>
+    );
 };
 
 export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
@@ -142,6 +323,7 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
 }) => {
     const [attackerSide, setAttackerSide] = React.useState<"left" | "right">("left");
     const [skillLevelOverrides, setSkillLevelOverrides] = React.useState<Record<string, number>>({});
+    const [expandedKeys, setExpandedKeys] = React.useState<ReadonlySet<string>>(() => new Set());
     const attacker = attackerSide === "left" ? left : right;
     const defender = attackerSide === "left" ? right : left;
     const leftAttackSkills = React.useMemo(
@@ -178,6 +360,19 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
             [getLevelOverrideKey(skill)]: level,
         }));
     };
+    const toggleExpanded = (key: string) => {
+        setExpandedKeys((current) => {
+            const next = new Set(current);
+            if (next.has(key)) {
+                next.delete(key);
+            } else {
+                next.add(key);
+            }
+            return next;
+        });
+    };
+    const normalAttackExpandedKey = `${attackerSide}:normalAttack`;
+    const isNormalAttackExpanded = expandedKeys.has(normalAttackExpandedKey);
 
     return (
         <Box>
@@ -230,6 +425,7 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                 >
                     <TableHead>
                         <TableRow>
+                            <TableCell sx={{ width: 40 }} />
                             <TableCell>攻撃</TableCell>
                             <TableCell sx={{ width: 96 }}>種別</TableCell>
                             <TableCell align="right">ダメージ</TableCell>
@@ -237,7 +433,26 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow hover>
+                        <TableRow
+                            hover
+                            onClick={() => {
+                                if (normalAttackDamage) {
+                                    toggleExpanded(normalAttackExpandedKey);
+                                }
+                            }}
+                            sx={{
+                                cursor: normalAttackDamage ? "pointer" : "default",
+                            }}
+                        >
+                            <TableCell sx={{ width: 40 }}>
+                                <IconButton
+                                    size="small"
+                                    disabled={!normalAttackDamage}
+                                    aria-label="通常攻撃の計算過程を表示"
+                                >
+                                    {isNormalAttackExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+                                </IconButton>
+                            </TableCell>
                             <TableCell>通常攻撃</TableCell>
                             <TableCell>
                                 {attackerWeapon?.template.type
@@ -251,6 +466,13 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                                 {normalAttackDamage
                                     ? formatCriticalDamageRange(normalAttackDamage.damage, attacker, defender)
                                     : "-"}
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell colSpan={5} sx={{ p: 0, borderBottom: isNormalAttackExpanded ? undefined : 0 }}>
+                                <Collapse in={isNormalAttackExpanded} timeout="auto" unmountOnExit>
+                                    <DamageTraceRows result={normalAttackDamage} />
+                                </Collapse>
                             </TableCell>
                         </TableRow>
                     </TableBody>
@@ -277,6 +499,7 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                 >
                     <TableHead>
                         <TableRow>
+                            <TableCell sx={{ width: 40 }} />
                             <TableCell>スキル</TableCell>
                             <TableCell align="right" sx={{ width: 96 }}>Lv</TableCell>
                             <TableCell align="right">ダメージ</TableCell>
@@ -287,65 +510,95 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                         {attackSkills.map((skill) => {
                             const level = getDisplayedSkillLevel(skill);
                             const damage = calculateSkillDamage(attacker, defender, skill, level);
+                            const expandedKey = `${attackerSide}:skill:${getSkillKey(skill)}`;
+                            const isExpanded = expandedKeys.has(expandedKey);
 
                             return (
-                                <TableRow key={getSkillKey(skill)} hover>
-                                    <TableCell>
-                                        <Box display="flex" alignItems="center" gap={1} sx={{ minWidth: 0 }}>
-                                            <Box
-                                                component="img"
-                                                src={skill.icon}
-                                                alt=""
-                                                sx={{
-                                                    width: 28,
-                                                    height: 28,
-                                                    flex: "0 0 auto",
-                                                    borderRadius: 0.5,
-                                                }}
-                                            />
-                                            <Box sx={{ minWidth: 0 }}>
-                                                <Typography variant="body2" noWrap>
-                                                    {skill.displayName}
-                                                </Typography>
-                                                {!skill.attack && (
-                                                    <Typography variant="caption" color="text.secondary" noWrap>
-                                                        式未設定
+                                <React.Fragment key={getSkillKey(skill)}>
+                                    <TableRow
+                                        hover
+                                        onClick={() => {
+                                            if (damage) {
+                                                toggleExpanded(expandedKey);
+                                            }
+                                        }}
+                                        sx={{
+                                            cursor: damage ? "pointer" : "default",
+                                        }}
+                                    >
+                                        <TableCell>
+                                            <IconButton
+                                                size="small"
+                                                disabled={!damage}
+                                                aria-label={`${skill.displayName} の計算過程を表示`}
+                                            >
+                                                {isExpanded ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+                                            </IconButton>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Box display="flex" alignItems="center" gap={1} sx={{ minWidth: 0 }}>
+                                                <Box
+                                                    component="img"
+                                                    src={skill.icon}
+                                                    alt=""
+                                                    sx={{
+                                                        width: 28,
+                                                        height: 28,
+                                                        flex: "0 0 auto",
+                                                        borderRadius: 0.5,
+                                                    }}
+                                                />
+                                                <Box sx={{ minWidth: 0 }}>
+                                                    <Typography variant="body2" noWrap>
+                                                        {skill.displayName}
                                                     </Typography>
-                                                )}
+                                                    {!skill.attack && (
+                                                        <Typography variant="caption" color="text.secondary" noWrap>
+                                                            式未設定
+                                                        </Typography>
+                                                    )}
+                                                </Box>
                                             </Box>
-                                        </Box>
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        <Select
-                                            size="small"
-                                            value={String(level)}
-                                            onChange={(event) => setDisplayedSkillLevel(skill, Number(event.target.value))}
-                                            sx={{
-                                                minWidth: 72,
-                                                "& .MuiSelect-select": {
-                                                    py: 0.25,
-                                                    pr: 3,
-                                                    textAlign: "right",
-                                                },
-                                            }}
-                                        >
-                                            {Array.from(
-                                                { length: skill.max - skill.min + 1 },
-                                                (_, index) => skill.min + index,
-                                            ).map((nextLevel) => (
-                                                <MenuItem key={nextLevel} value={String(nextLevel)}>
-                                                    {nextLevel}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        {damage === undefined ? "-" : formatDamageRange(damage)}
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        {damage === undefined ? "-" : formatCriticalDamageRange(damage, attacker, defender)}
-                                    </TableCell>
-                                </TableRow>
+                                        </TableCell>
+                                        <TableCell align="right" onClick={(event) => event.stopPropagation()}>
+                                            <Select
+                                                size="small"
+                                                value={String(level)}
+                                                onChange={(event) => setDisplayedSkillLevel(skill, Number(event.target.value))}
+                                                sx={{
+                                                    minWidth: 72,
+                                                    "& .MuiSelect-select": {
+                                                        py: 0.25,
+                                                        pr: 3,
+                                                        textAlign: "right",
+                                                    },
+                                                }}
+                                            >
+                                                {Array.from(
+                                                    { length: skill.max - skill.min + 1 },
+                                                    (_, index) => skill.min + index,
+                                                ).map((nextLevel) => (
+                                                    <MenuItem key={nextLevel} value={String(nextLevel)}>
+                                                        {nextLevel}
+                                                    </MenuItem>
+                                                ))}
+                                            </Select>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {damage === undefined ? "-" : formatDamageRange(damage.damage)}
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            {damage === undefined ? "-" : formatCriticalDamageRange(damage.damage, attacker, defender)}
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell colSpan={5} sx={{ p: 0, borderBottom: isExpanded ? undefined : 0 }}>
+                                            <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+                                                <DamageTraceRows result={damage} />
+                                            </Collapse>
+                                        </TableCell>
+                                    </TableRow>
+                                </React.Fragment>
                             );
                         })}
                     </TableBody>
