@@ -20,6 +20,9 @@ import {
     type CombatDamageType,
 } from "../../modules/combat";
 import type { CalculatedCharacter } from "../../modules/character/types";
+import { resolveEquipment } from "../../modules/resolve";
+import { BuiltinWeaponTypes } from "../../static/items";
+import type { WeaponType } from "../../static/items";
 import { hasSkillCategory, skills } from "../../static/skills/skill";
 import type { Skill } from "../../static/skills/skill";
 
@@ -28,20 +31,45 @@ type DamageSimulationPanelProps = {
     right: CalculatedCharacter;
 };
 
-type DamageRow = {
-    damageType: CombatDamageType;
-    label: string;
-};
-
-const damageRows: DamageRow[] = [
-    { damageType: "melee", label: "近接" },
-    { damageType: "range", label: "遠距離" },
-    { damageType: "magic", label: "魔法" },
-];
-
 const formatDamage = (value: number): string => value.toLocaleString();
 
+const meleeWeaponTypes = new Set<WeaponType>([
+    "sword",
+    "dagger",
+    "blunt",
+    "axe",
+    "katar",
+    "zen",
+    "dualsword",
+    "polearm",
+    "glove",
+]);
+const rangeWeaponTypes = new Set<WeaponType>(["bow", "crossbow"]);
+const magicWeaponTypes = new Set<WeaponType>(["wand", "staff", "orb"]);
+
 const getSkillKey = (skill: Skill): string => `${skill.raceid ?? "all"}-${skill.jobid ?? "all"}-${skill.name}`;
+
+const getDamageTypeByWeaponType = (weaponType: WeaponType): CombatDamageType | undefined => {
+    if (meleeWeaponTypes.has(weaponType)) {
+        return "melee";
+    }
+    if (rangeWeaponTypes.has(weaponType)) {
+        return "range";
+    }
+    if (magicWeaponTypes.has(weaponType)) {
+        return "magic";
+    }
+    return undefined;
+};
+
+const getEquippedWeapon = (character: CalculatedCharacter) => (
+    resolveEquipment(
+        "weapon",
+        character.character.equipment.weapon,
+        Number(character.character.base.raceid),
+        Number(character.character.base.jobid),
+    )
+);
 
 const getAvailableAttackSkills = (character: CalculatedCharacter): Skill[] => {
     const raceid = Number(character.character.base.raceid);
@@ -104,6 +132,20 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
         [right],
     );
     const attackSkills = attackerSide === "left" ? leftAttackSkills : rightAttackSkills;
+    const attackerWeapon = getEquippedWeapon(attacker);
+    const normalAttackDamageType = attackerWeapon?.template.type
+        ? getDamageTypeByWeaponType(attackerWeapon.template.type)
+        : undefined;
+    const normalAttackDamage = normalAttackDamageType
+        ? calculateDamage({
+            attacker,
+            defender,
+            action: {
+                type: "normalAttack",
+                damageType: normalAttackDamageType,
+            },
+        })
+        : undefined;
 
     const getLevelOverrideKey = (skill: Skill): string => `${attackerSide}:${getSkillKey(skill)}`;
     const getDisplayedSkillLevel = (skill: Skill): number => (
@@ -115,22 +157,6 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
             [getLevelOverrideKey(skill)]: level,
         }));
     };
-
-    const rows = damageRows.map((row) => {
-        const damage = calculateDamage({
-            attacker,
-            defender,
-            action: {
-                type: "normalAttack",
-                damageType: row.damageType,
-            },
-        });
-
-        return {
-            ...row,
-            damage,
-        };
-    });
 
     return (
         <Box>
@@ -167,17 +193,23 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                 >
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ width: 80 }}>種別</TableCell>
+                            <TableCell>攻撃</TableCell>
+                            <TableCell sx={{ width: 96 }}>種別</TableCell>
                             <TableCell align="right">{attackerLabel} → {defenderLabel}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.damageType} hover>
-                                <TableCell>{row.label}</TableCell>
-                                <TableCell align="right">{formatDamage(row.damage.damage)}</TableCell>
-                            </TableRow>
-                        ))}
+                        <TableRow hover>
+                            <TableCell>通常攻撃</TableCell>
+                            <TableCell>
+                                {attackerWeapon?.template.type
+                                    ? BuiltinWeaponTypes[attackerWeapon.template.type].displayName
+                                    : "-"}
+                            </TableCell>
+                            <TableCell align="right">
+                                {normalAttackDamage ? formatDamage(normalAttackDamage.damage) : "-"}
+                            </TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </TableContainer>
