@@ -32,6 +32,29 @@ type DamageSimulationPanelProps = {
 };
 
 const formatDamage = (value: number): string => value.toLocaleString();
+const getDamageRange = (damage: number): { min: number; max: number } => ({
+    min: Math.floor(damage * 0.9),
+    max: Math.floor(damage * 1.1),
+});
+const formatDamageRange = (damage: number): string => {
+    const range = getDamageRange(damage);
+
+    return `${formatDamage(range.min)} - ${formatDamage(range.max)}`;
+};
+
+const getCriticalDamage = (damage: number, attacker: CalculatedCharacter, defender: CalculatedCharacter): number => {
+    const criticalDamageRate = attacker.aggregatedOptions.multiplyCriticalDamage ?? 0;
+    const decreaseCriticalDamageRate = defender.aggregatedOptions.multiplyDecreaseCriticalDamageTaken ?? 0;
+    const criticalDamageMultiplier = Math.max(0, (100 + criticalDamageRate - decreaseCriticalDamageRate) / 100);
+
+    return Math.floor(damage * criticalDamageMultiplier);
+};
+
+const formatCriticalDamageRange = (
+    damage: number,
+    attacker: CalculatedCharacter,
+    defender: CalculatedCharacter,
+): string => formatDamageRange(getCriticalDamage(damage, attacker, defender));
 
 const meleeWeaponTypes = new Set<WeaponType>([
     "sword",
@@ -121,8 +144,6 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
     const [skillLevelOverrides, setSkillLevelOverrides] = React.useState<Record<string, number>>({});
     const attacker = attackerSide === "left" ? left : right;
     const defender = attackerSide === "left" ? right : left;
-    const attackerLabel = attackerSide === "left" ? "左" : "右";
-    const defenderLabel = attackerSide === "left" ? "右" : "左";
     const leftAttackSkills = React.useMemo(
         () => getAvailableAttackSkills(left),
         [left],
@@ -164,19 +185,35 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                 <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                     ダメージシミュレーション
                 </Typography>
-                <ToggleButtonGroup
-                    size="small"
-                    exclusive
-                    value={attackerSide}
-                    onChange={(_, nextSide: "left" | "right" | null) => {
-                        if (nextSide) {
-                            setAttackerSide(nextSide);
-                        }
-                    }}
-                >
-                    <ToggleButton value="left">左</ToggleButton>
-                    <ToggleButton value="right">右</ToggleButton>
-                </ToggleButtonGroup>
+                <Box display="flex" alignItems="center" gap={1}>
+                    <Typography variant="caption" color="text.secondary">
+                        攻撃者
+                    </Typography>
+                    <ToggleButtonGroup
+                        size="small"
+                        exclusive
+                        value={attackerSide}
+                        onChange={(_, nextSide: "left" | "right" | null) => {
+                            if (nextSide) {
+                                setAttackerSide(nextSide);
+                            }
+                        }}
+                        sx={{
+                            "& .MuiToggleButton-root.Mui-selected": {
+                                bgcolor: "primary.main",
+                                borderColor: "primary.main",
+                                color: "primary.contrastText",
+                                fontWeight: "bold",
+                                "&:hover": {
+                                    bgcolor: "primary.dark",
+                                },
+                            },
+                        }}
+                    >
+                        <ToggleButton value="left">左</ToggleButton>
+                        <ToggleButton value="right">右</ToggleButton>
+                    </ToggleButtonGroup>
+                </Box>
             </Box>
             <TableContainer>
                 <Table
@@ -195,7 +232,8 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                         <TableRow>
                             <TableCell>攻撃</TableCell>
                             <TableCell sx={{ width: 96 }}>種別</TableCell>
-                            <TableCell align="right">{attackerLabel} → {defenderLabel}</TableCell>
+                            <TableCell align="right">ダメージ</TableCell>
+                            <TableCell align="right">クリティカル</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -207,7 +245,12 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                                     : "-"}
                             </TableCell>
                             <TableCell align="right">
-                                {normalAttackDamage ? formatDamage(normalAttackDamage.damage) : "-"}
+                                {normalAttackDamage ? formatDamageRange(normalAttackDamage.damage) : "-"}
+                            </TableCell>
+                            <TableCell align="right">
+                                {normalAttackDamage
+                                    ? formatCriticalDamageRange(normalAttackDamage.damage, attacker, defender)
+                                    : "-"}
                             </TableCell>
                         </TableRow>
                     </TableBody>
@@ -236,7 +279,8 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                         <TableRow>
                             <TableCell>スキル</TableCell>
                             <TableCell align="right" sx={{ width: 96 }}>Lv</TableCell>
-                            <TableCell align="right">{attackerLabel} → {defenderLabel}</TableCell>
+                            <TableCell align="right">ダメージ</TableCell>
+                            <TableCell align="right">クリティカル</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -296,7 +340,10 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                                         </Select>
                                     </TableCell>
                                     <TableCell align="right">
-                                        {damage === undefined ? "-" : formatDamage(damage)}
+                                        {damage === undefined ? "-" : formatDamageRange(damage)}
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {damage === undefined ? "-" : formatCriticalDamageRange(damage, attacker, defender)}
                                     </TableCell>
                                 </TableRow>
                             );
