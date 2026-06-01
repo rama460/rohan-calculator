@@ -259,12 +259,20 @@ const calculateCriticalDamage = (
         return undefined;
     }
 
+    return calculateCriticalDamageByBaseDamage(baseResult.damage, attacker, defender);
+};
+
+const calculateCriticalDamageByBaseDamage = (
+    baseDamage: number,
+    attacker: CalculatedCharacter,
+    defender: CalculatedCharacter,
+): DamageCalculationResult => {
     return calculateDamage({
         attacker,
         defender,
         action: {
             type: "criticalDamage",
-            baseDamage: baseResult.damage,
+            baseDamage,
         },
     });
 };
@@ -573,6 +581,9 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                             const criticalDamage = calculateCriticalDamage(damage, attacker, defender);
                             const singleHitDamage = getSingleHitDamage(damage);
                             const hitCount = getHitCount(damage);
+                            const singleHitCriticalDamage = singleHitDamage === undefined
+                                ? undefined
+                                : calculateCriticalDamageByBaseDamage(singleHitDamage, attacker, defender);
                             const expandedKey = `${attackerSide}:skill:${getSkillKey(skill)}`;
                             const isExpanded = expandedKeys.has(expandedKey);
 
@@ -664,7 +675,20 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                                             )}
                                         </TableCell>
                                         <TableCell align="right">
-                                            {criticalDamage === undefined ? "-" : formatDamageRange(criticalDamage.damage)}
+                                            {criticalDamage === undefined ? (
+                                                "-"
+                                            ) : (
+                                                <Box>
+                                                    <Typography variant="body2">
+                                                        {formatDamageRange(criticalDamage.damage)}
+                                                    </Typography>
+                                                    {singleHitCriticalDamage !== undefined && hitCount !== undefined && (
+                                                        <Typography variant="caption" color="text.secondary">
+                                                            {formatDamageRange(singleHitCriticalDamage.damage)} x {numberFormatter.format(hitCount)}
+                                                        </Typography>
+                                                    )}
+                                                </Box>
+                                            )}
                                         </TableCell>
                                     </TableRow>
                                     <TableRow>
