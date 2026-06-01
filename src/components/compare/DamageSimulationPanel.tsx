@@ -162,6 +162,14 @@ const getFinalFormula = (trace: CombatFormulaTrace | undefined): string => (
     parseFormulaDefinitions(trace).finalFormula
 );
 
+const getSingleHitDamage = (result: DamageCalculationResult | undefined): number | undefined => (
+    findTraceReferenceValue(result?.trace, "singleHitDamage")
+);
+
+const getHitCount = (result: DamageCalculationResult | undefined): number | undefined => (
+    findTraceReferenceValue(result?.trace, "hitCount")
+);
+
 const meleeWeaponTypes = new Set<WeaponType>([
     "sword",
     "dagger",
@@ -563,6 +571,8 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                             const level = getDisplayedSkillLevel(skill);
                             const damage = calculateSkillDamage(attacker, defender, skill, level);
                             const criticalDamage = calculateCriticalDamage(damage, attacker, defender);
+                            const singleHitDamage = getSingleHitDamage(damage);
+                            const hitCount = getHitCount(damage);
                             const expandedKey = `${attackerSide}:skill:${getSkillKey(skill)}`;
                             const isExpanded = expandedKeys.has(expandedKey);
 
@@ -638,7 +648,20 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                                             </Select>
                                         </TableCell>
                                         <TableCell align="right">
-                                            {damage === undefined ? "-" : formatDamageRange(damage.damage)}
+                                            {damage === undefined ? (
+                                                "-"
+                                            ) : (
+                                                <Box>
+                                                    <Typography variant="body2">
+                                                        {formatDamageRange(damage.damage)}
+                                                    </Typography>
+                                                    {singleHitDamage !== undefined && hitCount !== undefined && (
+                                                        <Typography variant="caption" color="text.secondary">
+                                                            {formatDamageRange(singleHitDamage)} x {numberFormatter.format(hitCount)}
+                                                        </Typography>
+                                                    )}
+                                                </Box>
+                                            )}
                                         </TableCell>
                                         <TableCell align="right">
                                             {criticalDamage === undefined ? "-" : formatDamageRange(criticalDamage.damage)}
