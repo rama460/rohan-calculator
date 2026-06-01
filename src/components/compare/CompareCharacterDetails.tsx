@@ -128,10 +128,23 @@ export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = (
 
     const toggleBuff = (origin: SkillOrigin, skillId: number, checked: boolean) => {
         const currentBuffs = character.buffs[origin] ?? [];
-        const nextBuffIds = checked
-            ? [...currentBuffs.filter((buff) => buff.skillId !== skillId).map((buff) => buff.skillId), skillId]
-            : currentBuffs.filter((buff) => buff.skillId !== skillId).map((buff) => buff.skillId);
-        setOriginBuffs(origin, nextBuffIds);
+        const nextBuffs = checked
+            ? [
+                ...currentBuffs.filter((buff) => buff.skillId !== skillId),
+                currentBuffs.find((buff) => buff.skillId === skillId) ?? {
+                    skillId,
+                    level: skills[skillId]?.max ?? 1,
+                },
+            ]
+            : currentBuffs.filter((buff) => buff.skillId !== skillId);
+
+        onChange({
+            ...character,
+            buffs: {
+                ...character.buffs,
+                [origin]: nextBuffs,
+            },
+        });
     };
 
     const updateBuffLevel = (origin: SkillOrigin, skillId: number, level: number) => {
