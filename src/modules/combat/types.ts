@@ -7,6 +7,7 @@ export type CombatDamageFormulaId =
     | "normalRangeAttack"
     | "normalMagicAttack"
     | "additionalNormalAttackDamage"
+    | "additionalDefenseIgnoredNormalAttackDamage"
     | "criticalDamage";
 
 export type CombatDamageType = "melee" | "range" | "magic";

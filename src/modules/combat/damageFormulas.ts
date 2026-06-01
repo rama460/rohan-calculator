@@ -36,6 +36,12 @@ floor(max(1, ({attack} - {defense}) * {pvpDamageMultiplier} * {DamageMultiplierB
 
 floor(max(1, {normalAttackDamage} + {additionalDamage}))
 `,
+    additionalDefenseIgnoredNormalAttackDamage: `
+@additionalDamage = {defenseIgnoredNormalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {defenseIgnoredNormalAttackDamage} + {additionalDamage}) * {skillDamageMultiplier})
+`,
     criticalDamage: `
 @damageBeforeCritical = {baseDamage}
 @criticalDamageMultiplier = (150 + {attacker.multiplyCriticalDamage} - {defender.multiplyDecreaseCriticalDamageTaken}) / 100

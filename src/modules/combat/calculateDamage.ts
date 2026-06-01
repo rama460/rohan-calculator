@@ -36,6 +36,31 @@ const getNormalAttackDamage = (
     return normalAttackResult.result ?? 0;
 };
 
+const getDefenseIgnoredNormalAttackDamage = (
+    input: DamageCalculationInput,
+    action: SkillAttackAction,
+): number | undefined => {
+    if (!action.damageType) {
+        return undefined;
+    }
+
+    const normalAttackFormulaId = NORMAL_ATTACK_FORMULA_BY_DAMAGE_TYPE[action.damageType];
+    const defender = {
+        ...input.defender,
+        values: {
+            ...input.defender.values,
+            __physicalDefense: 0,
+            __magicalDefense: 0,
+        },
+    };
+    const normalAttackResult = evaluateCombatFormula(normalAttackFormulaId, {
+        attacker: input.attacker,
+        defender,
+    });
+
+    return normalAttackResult.result ?? 0;
+};
+
 export const calculateDamage = (input: DamageCalculationInput): DamageCalculationResult => {
     const formulaId = getFormulaId(input);
     let combatContext: Record<string, number> | undefined;
@@ -43,6 +68,7 @@ export const calculateDamage = (input: DamageCalculationInput): DamageCalculatio
     if (input.action.type === "skillAttack") {
         combatContext = {
             normalAttackDamage: getNormalAttackDamage(input, input.action) ?? 0,
+            defenseIgnoredNormalAttackDamage: getDefenseIgnoredNormalAttackDamage(input, input.action) ?? 0,
         };
     }
 
