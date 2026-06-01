@@ -330,13 +330,13 @@ export const scout_skills: Skill[] = [
             formulaId: "additionalNormalAttackDamage",
             damageType: "range",
             parameters: {
-                1: { normalAttackAdditionalDamageRate: 100 },
-                2: { normalAttackAdditionalDamageRate: 110 },
-                3: { normalAttackAdditionalDamageRate: 120 },
-                4: { normalAttackAdditionalDamageRate: 130 },
-                5: { normalAttackAdditionalDamageRate: 140 },
-                6: { normalAttackAdditionalDamageRate: 150 },
-                7: { normalAttackAdditionalDamageRate: 160 },
+                1: { normalAttackAdditionalDamageRate: 200 },
+                2: { normalAttackAdditionalDamageRate: 210 },
+                3: { normalAttackAdditionalDamageRate: 220 },
+                4: { normalAttackAdditionalDamageRate: 230 },
+                5: { normalAttackAdditionalDamageRate: 240 },
+                6: { normalAttackAdditionalDamageRate: 250 },
+                7: { normalAttackAdditionalDamageRate: 260 },
             }
         }
     },

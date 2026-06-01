@@ -15,11 +15,13 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Tooltip,
     Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PageContainer from "../common/PageContainer";
 import { CombatModifierComparisonTable } from "./CombatModifierComparisonTable";
 import { DamageSimulationPanel } from "./DamageSimulationPanel";
@@ -93,10 +95,10 @@ export const Compare: React.FC = () => {
         const appCharacters = Object.values(appState.characters)
             .filter((character) => !isCompareSlotId(character.id))
             .map((character) => ({
-            id: `app:${character.id}`,
-            label: `${character.name} (作業中)`,
-            character,
-        }));
+                id: `app:${character.id}`,
+                label: `${character.name} (作業中)`,
+                character,
+            }));
         const storedCharacters = Object.entries(storedCharacterContexts).flatMap(([name, character]) => {
             const migratedCharacter = migrateLegacyStoredCharacter(name, character);
             if (!migratedCharacter) {
@@ -115,29 +117,48 @@ export const Compare: React.FC = () => {
 
         return [...storedCharacters, ...appCharacters];
     }, [appState.characters, storedCharacterContexts]);
-    const activeSourceId = characterSources.find((source) => source.character.id === baseCharacter.id)?.id ?? characterSources[0]?.id ?? "";
+    const initialSourceId = characterSources[0]?.id ?? "";
 
-    const [leftSourceId, setLeftSourceId] = React.useState(activeSourceId);
-    const [rightSourceId, setRightSourceId] = React.useState(activeSourceId);
+    const [leftSourceId, setLeftSourceId] = React.useState(initialSourceId);
+    const [rightSourceId, setRightSourceId] = React.useState(initialSourceId);
 
     React.useEffect(() => {
-        if (appState.characters[compareSlotIds.left] && appState.characters[compareSlotIds.right]) {
+        const hasLeftCharacter = Boolean(appState.characters[compareSlotIds.left]);
+        const hasRightCharacter = Boolean(appState.characters[compareSlotIds.right]);
+        if (hasLeftCharacter && hasRightCharacter) {
             return;
+        }
+
+        const initialSource = characterSources[0];
+        if (!initialSource) {
+            return;
+        }
+
+        const migratedSource = migrateLegacyStoredCharacter(initialSource.character.name, initialSource.character);
+        if (!migratedSource) {
+            return;
+        }
+
+        if (!hasLeftCharacter) {
+            setLeftSourceId(initialSource.id);
+        }
+        if (!hasRightCharacter) {
+            setRightSourceId(initialSource.id);
         }
 
         setAppState({
             ...appState,
             characters: {
                 ...appState.characters,
-                ...(appState.characters[compareSlotIds.left]
+                ...(hasLeftCharacter
                     ? {}
-                    : { [compareSlotIds.left]: createCompareSlotCharacter(baseCharacter, "left") }),
-                ...(appState.characters[compareSlotIds.right]
+                    : { [compareSlotIds.left]: createCompareSlotCharacter(migratedSource, "left") }),
+                ...(hasRightCharacter
                     ? {}
-                    : { [compareSlotIds.right]: createCompareSlotCharacter(baseCharacter, "right") }),
+                    : { [compareSlotIds.right]: createCompareSlotCharacter(migratedSource, "right") }),
             },
         });
-    }, [appState, baseCharacter, setAppState]);
+    }, [appState, characterSources, setAppState]);
 
     const setCompareCharacter = React.useCallback((side: ComparisonSide, character: CharacterState) => {
         setAppState({
@@ -199,6 +220,22 @@ export const Compare: React.FC = () => {
         >
             <Stack spacing={2} sx={{ pb: 3 }}>
                 <Paper variant="outlined" sx={{ p: 1.5, borderRadius: 1 }}>
+                    <Box display="flex" justifyContent="flex-end" sx={{ mb: 1 }}>
+                        <Tooltip
+                            title={
+                                <Box>
+                                    <Typography variant="caption" sx={{ display: "block" }}>
+                                        保存済み: localStorage に保存したキャラクターです。
+                                    </Typography>
+                                    <Typography variant="caption" sx={{ display: "block" }}>
+                                        作業中: 現在の URL / 画面上で編集中のキャラクターです。
+                                    </Typography>
+                                </Box>
+                            }
+                        >
+                            <InfoOutlinedIcon fontSize="small" color="action" />
+                        </Tooltip>
+                    </Box>
                     <Grid container spacing={1.5} alignItems="center">
                         <Grid size={{ xs: 12, md: 5 }}>
                             <FormControl fullWidth size="small">
