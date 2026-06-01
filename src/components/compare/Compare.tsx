@@ -366,6 +366,8 @@ export const Compare: React.FC = () => {
                     <DamageSimulationPanel
                         left={leftCalculated}
                         right={rightCalculated}
+                        onLeftChange={(character) => setCompareCharacter("left", character)}
+                        onRightChange={(character) => setCompareCharacter("right", character)}
                     />
                 </Paper>
 

@@ -24,7 +24,7 @@ import {
     type CombatDamageType,
 } from "../../modules/combat";
 import type { DamageCalculationResult, CombatFormulaTrace } from "../../modules/combat";
-import type { CalculatedCharacter } from "../../modules/character/types";
+import type { CalculatedCharacter, CharacterState } from "../../modules/character/types";
 import { resolveEquipment } from "../../modules/resolve";
 import { BuiltinWeaponTypes } from "../../static/items";
 import type { WeaponType } from "../../static/items";
@@ -34,6 +34,8 @@ import type { Skill } from "../../static/skills/skill";
 type DamageSimulationPanelProps = {
     left: CalculatedCharacter;
     right: CalculatedCharacter;
+    onLeftChange: (character: CharacterState) => void;
+    onRightChange: (character: CharacterState) => void;
 };
 
 type FormulaDefinitionMap = {
@@ -228,6 +230,10 @@ const getCharacterSkillLevel = (character: CalculatedCharacter, skill: Skill): n
     return currentLevel > 0 ? currentLevel : skill.max;
 };
 
+const getSkillLevelType = (skill: Skill): "primary" | "secondary" => (
+    skill.jobid === 0 ? "primary" : "secondary"
+);
+
 const calculateSkillDamage = (
     attacker: CalculatedCharacter,
     defender: CalculatedCharacter,
@@ -386,12 +392,14 @@ const DamageTraceRows: React.FC<DamageTraceRowsProps> = ({ result, criticalResul
 export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
     left,
     right,
+    onLeftChange,
+    onRightChange,
 }) => {
     const [attackerSide, setAttackerSide] = React.useState<"left" | "right">("left");
-    const [skillLevelOverrides, setSkillLevelOverrides] = React.useState<Record<string, number>>({});
     const [expandedKeys, setExpandedKeys] = React.useState<ReadonlySet<string>>(() => new Set());
     const attacker = attackerSide === "left" ? left : right;
     const defender = attackerSide === "left" ? right : left;
+    const onAttackerChange = attackerSide === "left" ? onLeftChange : onRightChange;
     const leftAttackSkills = React.useMemo(
         () => getAvailableAttackSkills(left),
         [left],
@@ -417,15 +425,18 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
         : undefined;
     const normalCriticalDamage = calculateCriticalDamage(normalAttackDamage, attacker, defender);
 
-    const getLevelOverrideKey = (skill: Skill): string => `${attackerSide}:${getSkillKey(skill)}`;
-    const getDisplayedSkillLevel = (skill: Skill): number => (
-        skillLevelOverrides[getLevelOverrideKey(skill)] ?? getCharacterSkillLevel(attacker, skill)
-    );
     const setDisplayedSkillLevel = (skill: Skill, level: number) => {
-        setSkillLevelOverrides((current) => ({
-            ...current,
-            [getLevelOverrideKey(skill)]: level,
-        }));
+        const type = getSkillLevelType(skill);
+        onAttackerChange({
+            ...attacker.character,
+            skillLevels: {
+                ...attacker.character.skillLevels,
+                [type]: {
+                    ...attacker.character.skillLevels[type],
+                    [skill.name]: level,
+                },
+            },
+        });
     };
     const toggleExpanded = (key: string) => {
         setExpandedKeys((current) => {
@@ -576,7 +587,7 @@ export const DamageSimulationPanel: React.FC<DamageSimulationPanelProps> = ({
                     </TableHead>
                     <TableBody>
                         {attackSkills.map((skill) => {
-                            const level = getDisplayedSkillLevel(skill);
+                            const level = getCharacterSkillLevel(attacker, skill);
                             const damage = calculateSkillDamage(attacker, defender, skill, level);
                             const criticalDamage = calculateCriticalDamage(damage, attacker, defender);
                             const singleHitDamage = getSingleHitDamage(damage);
