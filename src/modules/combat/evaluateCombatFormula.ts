@@ -206,7 +206,7 @@ const preprocessFormula = (formula: string): {
 };
 
 const createTrace = (
-    formulaId: CombatDamageFormulaId,
+    formulaId: string,
     formulaSource: string,
     processedFormula: string,
     contextValues: Record<string, number>,
@@ -267,10 +267,20 @@ const getExternalReferenceValue = (
 };
 
 export const evaluateCombatFormula = (
-    formulaId: CombatDamageFormulaId,
+    formulaId: string,
     context: CombatFormulaContext,
+    formulaSource?: string,
 ): CombatFormulaEvaluationResult => {
-    const formula = DEFAULT_DAMAGE_FORMULAS[formulaId];
+    const formula = formulaSource ?? DEFAULT_DAMAGE_FORMULAS[formulaId as CombatDamageFormulaId];
+    if (!formula) {
+        const error = `Damage formula not found: ${formulaId}`;
+        return {
+            success: false,
+            error,
+            trace: createTrace(formulaId, "", "", {}, [], { error }),
+        };
+    }
+
     const { processedFormula, references, localIntermediates } = preprocessFormula(formula);
     const resolvedReferences = new Map<string, CombatFormulaReferenceTrace>();
     const localIntermediateByName = new Map(localIntermediates.map((localIntermediate) => [localIntermediate.name, localIntermediate]));

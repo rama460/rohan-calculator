@@ -10,7 +10,11 @@ export const createSkillAttackAction = (
     skill: Skill,
     level: number,
 ): SkillAttackAction | undefined => {
-    if (!skill.attack?.formulaId || !isCombatDamageFormulaId(skill.attack.formulaId)) {
+    if (!skill.attack?.formulaId) {
+        return undefined;
+    }
+
+    if (!isCombatDamageFormulaId(skill.attack.formulaId) && !skill.attack.formula) {
         return undefined;
     }
 
@@ -19,6 +23,7 @@ export const createSkillAttackAction = (
         skillName: skill.name,
         level,
         formulaId: skill.attack.formulaId,
+        formula: skill.attack.formula,
         damageType: skill.attack.damageType,
         parameters: skill.attack.parameters[level] ?? {},
     };

@@ -22,7 +22,8 @@ export type SkillAttackAction = {
     type: "skillAttack";
     skillName: string;
     level: number;
-    formulaId: CombatDamageFormulaId;
+    formulaId: string;
+    formula?: string;
     damageType?: CombatDamageType;
     parameters: Record<string, number>;
 };
@@ -53,7 +54,7 @@ export type CombatFormulaReferenceTrace = {
 };
 
 export type CombatFormulaTrace = {
-    formulaId: CombatDamageFormulaId;
+    formulaId: string;
     formulaSource: string;
     processedFormula: string;
     references: CombatFormulaReferenceTrace[];
@@ -87,7 +88,7 @@ export type DamageCalculationInput = {
 
 export type DamageCalculationResult = {
     action: CombatAction;
-    formulaId: CombatDamageFormulaId;
+    formulaId: string;
     damage: number;
     rawDamage: number;
     trace: CombatFormulaTrace;

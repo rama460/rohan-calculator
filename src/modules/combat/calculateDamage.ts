@@ -1,13 +1,12 @@
 import { NORMAL_ATTACK_FORMULA_BY_DAMAGE_TYPE } from "./damageFormulas";
 import { evaluateCombatFormula } from "./evaluateCombatFormula";
 import type {
-    CombatDamageFormulaId,
     DamageCalculationInput,
     DamageCalculationResult,
     SkillAttackAction,
 } from "./types";
 
-const getFormulaId = (input: DamageCalculationInput): CombatDamageFormulaId => {
+const getFormulaId = (input: DamageCalculationInput): string => {
     if (input.action.type === "skillAttack") {
         return input.action.formulaId;
     }
@@ -90,7 +89,7 @@ export const calculateDamage = (input: DamageCalculationInput): DamageCalculatio
         defender: input.defender,
         skillParameters,
         combatContext,
-    });
+    }, input.action.type === "skillAttack" ? input.action.formula : undefined);
 
     return {
         action: input.action,

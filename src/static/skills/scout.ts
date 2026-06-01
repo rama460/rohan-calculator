@@ -481,6 +481,14 @@ export const scout_skills: Skill[] = [
         attributes: {},
         attack: {
             formulaId: "allInShotDamage",
+            formula: `
+@oneHitDamage = {normalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / {skill.hitCount} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+@singleHitDamage = floor(max(1, {oneHitDamage}) * {skillDamageMultiplier})
+@hitCount = {skill.hitCount}
+
+floor({singleHitDamage} * {hitCount})
+`,
             damageType: "range",
             parameters: {
                 1: { normalAttackAdditionalDamageRate: 105, hitCount: 7 },

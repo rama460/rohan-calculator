@@ -32,6 +32,7 @@ export type SkillAttackDamageType = "melee" | "range" | "magic";
 export type SkillAttackParameters = Record<string, number>;
 export type SkillAttackMetadata = {
     formulaId?: string;
+    formula?: string;
     damageType?: SkillAttackDamageType;
     parameters: {
         [level: number]: SkillAttackParameters;
