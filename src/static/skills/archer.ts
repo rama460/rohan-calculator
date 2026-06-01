@@ -492,7 +492,20 @@ export const archer_skills: Skill[] = [
             "通常攻撃に50%増加したダメージ。100%の確率で7秒間移動不可(ルート)。",
             "通常攻撃に60%増加したダメージ。100%の確率で10秒間移動不可(ルート)。",
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 0 },
+                2: { normalAttackAdditionalDamageRate: 10 },
+                3: { normalAttackAdditionalDamageRate: 20 },
+                4: { normalAttackAdditionalDamageRate: 30 },
+                5: { normalAttackAdditionalDamageRate: 40 },
+                6: { normalAttackAdditionalDamageRate: 50 },
+                7: { normalAttackAdditionalDamageRate: 60 },
+            },
+        }
     },
     {
         name: "doubleStrike",
@@ -513,6 +526,19 @@ export const archer_skills: Skill[] = [
             "120%追加されたダメージで2回連続攻撃します。",
             "140%追加されたダメージで2回連続攻撃します。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "multiHitAdditionalNormalAttackDamage",
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 20, hitCount: 2 },
+                2: { normalAttackAdditionalDamageRate: 40, hitCount: 2 },
+                3: { normalAttackAdditionalDamageRate: 60, hitCount: 2 },
+                4: { normalAttackAdditionalDamageRate: 80, hitCount: 2 },
+                5: { normalAttackAdditionalDamageRate: 100, hitCount: 2 },
+                6: { normalAttackAdditionalDamageRate: 120, hitCount: 2 },
+                7: { normalAttackAdditionalDamageRate: 140, hitCount: 2 },
+            }
+        }
     }
 ]

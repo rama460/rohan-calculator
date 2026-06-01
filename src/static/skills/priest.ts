@@ -503,7 +503,7 @@ export const priest_skills: Skill[] = [
         name: "obligation",
         displayName: "オブリゲーション",
         icon: priest_obligation,
-        categories: ["Other"],
+        categories: ["Buff"],
         origin: "Group",
         raceid: 1,
         jobid: 1,
@@ -520,25 +520,25 @@ export const priest_skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyDecreaseDamageTaken: 10,
+                multiplyDecreaseDamageDealtBySkill: 10,
             },
             1: {
-                multiplyDecreaseDamageTaken: 20,
+                multiplyDecreaseDamageDealtBySkill: 20,
             },
             2: {
-                multiplyDecreaseDamageTaken: 30,
+                multiplyDecreaseDamageDealtBySkill: 30,
             },
             3: {
-                multiplyDecreaseDamageTaken: 40,
+                multiplyDecreaseDamageDealtBySkill: 40,
             },
             4: {
-                multiplyDecreaseDamageTaken: 50,
+                multiplyDecreaseDamageDealtBySkill: 50,
             },
             5: {
-                multiplyDecreaseDamageTaken: 60,
+                multiplyDecreaseDamageDealtBySkill: 60,
             },
             6: {
-                multiplyDecreaseDamageTaken: 70,
+                multiplyDecreaseDamageDealtBySkill: 70,
             }
         }
     },
