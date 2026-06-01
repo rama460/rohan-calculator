@@ -13,7 +13,7 @@ import {
     Button,
     ButtonGroup
 } from '@mui/material';
-import { skills, Skill } from '../../static/skills/skill';
+import { SkillCategory, skills, Skill } from '../../static/skills/skill';
 import { races } from '../../static/races';
 import SearchIcon from '@mui/icons-material/Search';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -88,7 +88,7 @@ export const SkillDatabase: React.FC = () => {
 
         // カテゴリフィルター
         if (categoryFilter !== 'all') {
-            filtered = filtered.filter(skill => skill.category === categoryFilter);
+            filtered = filtered.filter(skill => skill.categories.includes(categoryFilter as SkillCategory));
         }
 
         // 種族フィルター（raceidベース）

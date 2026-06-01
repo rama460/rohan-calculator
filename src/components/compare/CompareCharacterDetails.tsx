@@ -23,7 +23,7 @@ import type { CharacterStatusKey, CharacterValueKey } from "../../modules/charac
 import { characterStatusNames } from "../../modules/character/constants";
 import { races } from "../../static/races";
 import { titles } from "../../static/titles";
-import { skills, SKillOriginNames } from "../../static/skills/skill";
+import { hasSkillCategory, isSkillAvailableForCharacter, skills, SKillOriginNames } from "../../static/skills/skill";
 import type { Skill, SkillOrigin } from "../../static/skills/skill";
 
 type CompareCharacterDetailsProps = {
@@ -62,7 +62,7 @@ const compactNumberFieldSx = {
 
 const getBuffCandidates = (character: CharacterState, origin: SkillOrigin): Skill[] => (
     skills.filter((skill) => {
-        if (skill.origin !== origin || (skill.category !== "Buff" && skill.category !== "Passive")) {
+        if (skill.origin !== origin || (!hasSkillCategory(skill, "Buff") && !hasSkillCategory(skill, "Passive"))) {
             return false;
         }
 
@@ -70,8 +70,11 @@ const getBuffCandidates = (character: CharacterState, origin: SkillOrigin): Skil
             return true;
         }
 
-        return skill.raceid === Number(character.base.raceid) &&
-            (skill.jobid === Number(character.base.jobid) || skill.jobid === 0);
+        return isSkillAvailableForCharacter(
+            skill,
+            Number(character.base.raceid),
+            Number(character.base.jobid),
+        );
     })
 );
 
@@ -125,10 +128,23 @@ export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = (
 
     const toggleBuff = (origin: SkillOrigin, skillId: number, checked: boolean) => {
         const currentBuffs = character.buffs[origin] ?? [];
-        const nextBuffIds = checked
-            ? [...currentBuffs.filter((buff) => buff.skillId !== skillId).map((buff) => buff.skillId), skillId]
-            : currentBuffs.filter((buff) => buff.skillId !== skillId).map((buff) => buff.skillId);
-        setOriginBuffs(origin, nextBuffIds);
+        const nextBuffs = checked
+            ? [
+                ...currentBuffs.filter((buff) => buff.skillId !== skillId),
+                currentBuffs.find((buff) => buff.skillId === skillId) ?? {
+                    skillId,
+                    level: skills[skillId]?.max ?? 1,
+                },
+            ]
+            : currentBuffs.filter((buff) => buff.skillId !== skillId);
+
+        onChange({
+            ...character,
+            buffs: {
+                ...character.buffs,
+                [origin]: nextBuffs,
+            },
+        });
     };
 
     const updateBuffLevel = (origin: SkillOrigin, skillId: number, level: number) => {
@@ -245,8 +261,7 @@ export const CompareCharacterDetails: React.FC<CompareCharacterDetailsProps> = (
                                                     ...character.buffs,
                                                     Self: (character.buffs.Self ?? []).filter((buff) => {
                                                         const skill = skills[buff.skillId];
-                                                        return skill?.raceid === numericRaceId &&
-                                                            (skill.jobid === nextJobId || skill.jobid === 0);
+                                                        return skill ? isSkillAvailableForCharacter(skill, numericRaceId, nextJobId) : false;
                                                     }),
                                                 },
                                             });

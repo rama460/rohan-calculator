@@ -18,7 +18,8 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Paper
+    Paper,
+    ChipProps,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Skill } from '../../static/skills/skill';
@@ -65,7 +66,7 @@ export const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ open, onClos
         return jobMap[jobName] || jobName;
     };
 
-    const getCategoryColor = (category: string) => {
+    const getCategoryColor = (category: string): ChipProps['color'] => {
         switch (category) {
             case 'Passive':
                 return 'secondary';
@@ -80,7 +81,7 @@ export const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ open, onClos
         }
     };
 
-    const getOriginColor = (origin: string) => {
+    const getOriginColor = (origin: string): ChipProps['color'] => {
         switch (origin) {
             case 'Self':
                 return 'primary';
@@ -127,14 +128,17 @@ export const SkillDetailModal: React.FC<SkillDetailModalProps> = ({ open, onClos
                                     color="primary"
                                     variant="outlined"
                                 />
-                                <Chip
-                                    label={skill.category}
-                                    color={getCategoryColor(skill.category) as any}
-                                    variant="outlined"
-                                />
+                                {skill.categories.map((category) => (
+                                    <Chip
+                                        key={category}
+                                        label={category}
+                                        color={getCategoryColor(category)}
+                                        variant="outlined"
+                                    />
+                                ))}
                                 <Chip
                                     label={skill.origin}
-                                    color={getOriginColor(skill.origin) as any}
+                                    color={getOriginColor(skill.origin)}
                                     variant="outlined"
                                 />
                             </Box>

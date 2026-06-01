@@ -6,7 +6,7 @@ export const common_skills: Skill[] = [
         name: "heroicPower",
         displayName: "ヒロイックパワー",
         icon: unknown,
-        category: "Passive",
+        categories: ["Passive"],
         origin: "Self",
         raceid: -1,
         jobid: -1,
@@ -21,19 +21,19 @@ export const common_skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyPVPDefense: 5,
+                multiplyPVPDefenseByHeroicPower: 5,
             },
             1: {
-                multiplyPVPDefense: 10,
+                multiplyPVPDefenseByHeroicPower: 10,
             },
             2: {
-                multiplyPVPDefense: 15,
+                multiplyPVPDefenseByHeroicPower: 15,
             },
             3: {
-                multiplyPVPDefense: 20,
+                multiplyPVPDefenseByHeroicPower: 20,
             },
             4: {
-                multiplyPVPDefense: 25,
+                multiplyPVPDefenseByHeroicPower: 25,
             }
         }
     },

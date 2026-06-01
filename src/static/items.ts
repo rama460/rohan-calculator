@@ -4398,7 +4398,7 @@ const celestiteArmorSynergisticOptions = {
     3: {
         'multiplyAttack': 10,
         'plusAllStatus': 700,
-        'muptiplyDecreaseDamageTakenPenetration': 10,
+        'multiplyDecreaseDamageTakenPenetration': 10,
     },
     5: {
         'multiplyDecreaseDamageTaken': 5,

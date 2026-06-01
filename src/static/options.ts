@@ -934,6 +934,27 @@ export const BuiltinOptions = {
         unit: 'number',
         operationType: 'absolute',
     },
+    'multiplyPVPDefenseByHeroicPower': {
+        name: 'multiplyPVPDefenseByHeroicPower',
+        displayColor: 'green',
+        displayName: 'PvP防御力増加',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyDecreaseDamageDealtBySkill': {
+        name: 'multiplyDecreaseDamageDealtBySkill',
+        displayColor: 'green',
+        displayName: 'スキルによるダメージ減少率増加',
+        unit: 'percent',
+        operationType: 'multiply'
+    },
+    'multiplyIncreaseDamageDealtBySkill': {
+        name: 'multiplyIncreaseDamageDealtBySkill',
+        displayColor: 'green',
+        displayName: 'スキルによるダメージ増加率増加',
+        unit: 'percent',
+        operationType: 'multiply'
+    }
 
 } as const;
 export const getCraftedOptions = (type: EquipmentSlotKey, template: ItemTemplate): CraftedOptions => {

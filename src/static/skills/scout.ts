@@ -26,7 +26,7 @@ export const scout_skills: Skill[] = [
         name: "bowMastery",
         displayName: "ボウマスタリー",
         icon: scout_bow_mastery,
-        category: "Buff",
+        categories: ["Buff"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -83,7 +83,7 @@ export const scout_skills: Skill[] = [
         name: "melting",
         displayName: "メルティング",
         icon: scout_melting,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -98,7 +98,7 @@ export const scout_skills: Skill[] = [
         name: "ignoreAggro",
         displayName: "イグノアアグロ",
         icon: scout_ignore_aggro,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -119,7 +119,7 @@ export const scout_skills: Skill[] = [
         name: "detect",
         displayName: "ディテクト",
         icon: scout_detect,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -140,7 +140,7 @@ export const scout_skills: Skill[] = [
         name: "sharpMelee",
         displayName: "シャープメレー",
         icon: scout_sharp_melee,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -162,7 +162,7 @@ export const scout_skills: Skill[] = [
         name: "alarityBlow",
         displayName: "アラクリティブロー",
         icon: scout_alacrity_blow,
-        category: "Buff",
+        categories: ["Buff"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -205,7 +205,7 @@ export const scout_skills: Skill[] = [
         name: "combineShot",
         displayName: "コンバインショット",
         icon: scout_combine_shot,
-        category: "Attack",
+        categories: ["Attack"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -226,7 +226,7 @@ export const scout_skills: Skill[] = [
         name: "multiShot",
         displayName: "マルチショット",
         icon: scout_multi_shot,
-        category: "Attack",
+        categories: ["Attack"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -241,13 +241,26 @@ export const scout_skills: Skill[] = [
             "対象とその周辺4体の敵に120%増加したダメージ。",
             "対象とその周辺4体の敵に140%増加したダメージ。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 20 },
+                2: { normalAttackAdditionalDamageRate: 40 },
+                3: { normalAttackAdditionalDamageRate: 60 },
+                4: { normalAttackAdditionalDamageRate: 80 },
+                5: { normalAttackAdditionalDamageRate: 100 },
+                6: { normalAttackAdditionalDamageRate: 120 },
+                7: { normalAttackAdditionalDamageRate: 140 },
+            }
+        }
     },
     {
         name: "kaelsArrow",
         displayName: "カエールアロー",
         icon: scout_kaels_arrow,
-        category: "Buff",
+        categories: ["Buff"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -297,7 +310,7 @@ export const scout_skills: Skill[] = [
         name: "drillShot",
         displayName: "ドリルショット",
         icon: scout_drill_shot,
-        category: "Attack",
+        categories: ["Attack"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -312,13 +325,26 @@ export const scout_skills: Skill[] = [
             "対象に150%増加したダメージ、一直線上の敵にも順番に10%ずつ減少したダメージ。",
             "対象に160%増加したダメージ、一直線上の敵にも順番に5%ずつ減少したダメージ。",
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 200 },
+                2: { normalAttackAdditionalDamageRate: 210 },
+                3: { normalAttackAdditionalDamageRate: 220 },
+                4: { normalAttackAdditionalDamageRate: 230 },
+                5: { normalAttackAdditionalDamageRate: 240 },
+                6: { normalAttackAdditionalDamageRate: 250 },
+                7: { normalAttackAdditionalDamageRate: 260 },
+            }
+        }
     },
     {
         name: "violentShot",
         displayName: "バイオレントショット",
         icon: scout_violent_shot,
-        category: "Attack",
+        categories: ["Attack"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -339,7 +365,7 @@ export const scout_skills: Skill[] = [
         name: "ghostArrow",
         displayName: "ゴーストアロー",
         icon: scout_ghost_arrow,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -356,25 +382,25 @@ export const scout_skills: Skill[] = [
         ],
         attributes: {
             0: {
-                multiplyDecreaseDamageTaken: 10,
+                multiplyDecreaseDamageDealtBySkill: 10,
             },
             1: {
-                multiplyDecreaseDamageTaken: 12,
+                multiplyDecreaseDamageDealtBySkill: 12,
             },
             2: {
-                multiplyDecreaseDamageTaken: 14,
+                multiplyDecreaseDamageDealtBySkill: 14,
             },
             3: {
-                multiplyDecreaseDamageTaken: 18,
+                multiplyDecreaseDamageDealtBySkill: 18,
             },
             4: {
-                multiplyDecreaseDamageTaken: 20,
+                multiplyDecreaseDamageDealtBySkill: 20,
             },
             5: {
-                multiplyDecreaseDamageTaken: 24,
+                multiplyDecreaseDamageDealtBySkill: 24,
             },
             6: {
-                multiplyDecreaseDamageTaken: 30,
+                multiplyDecreaseDamageDealtBySkill: 30,
             }
         }
     },
@@ -382,7 +408,7 @@ export const scout_skills: Skill[] = [
         name: "premiumShot",
         displayName: "プレミアムショット",
         icon: scout_premium_shot,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -403,7 +429,7 @@ export const scout_skills: Skill[] = [
         name: "rainShot",
         displayName: "レインショット",
         icon: scout_rain_shot,
-        category: "Attack",
+        categories: ["Attack"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -418,13 +444,26 @@ export const scout_skills: Skill[] = [
             "対象とその周辺の4人の敵に50%確率でクリティカルダメージ。",
             "対象とその周辺の4人の敵に60%確率でクリティカルダメージ。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 0 },
+                2: { normalAttackAdditionalDamageRate: 0 },
+                3: { normalAttackAdditionalDamageRate: 0 },
+                4: { normalAttackAdditionalDamageRate: 0 },
+                5: { normalAttackAdditionalDamageRate: 0 },
+                6: { normalAttackAdditionalDamageRate: 0 },
+                7: { normalAttackAdditionalDamageRate: 0 },
+            }
+        }
     },
     {
         name: "allInShot",
         displayName: "オールインショット",
         icon: scout_all_in_shot,
-        category: "Attack",
+        categories: ["Attack"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -439,13 +478,34 @@ export const scout_skills: Skill[] = [
             "7回に及んでダメージを与える。(ダメージの合計は一般攻撃の280%)",
             "7回に及んでダメージを与える。(ダメージの合計は一般攻撃の315%)"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "allInShotDamage",
+            formula: `
+@oneHitDamage = {normalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / {skill.hitCount} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+@singleHitDamage = floor(max(1, {oneHitDamage}) * {skillDamageMultiplier})
+@hitCount = {skill.hitCount}
+
+floor({singleHitDamage} * {hitCount})
+`,
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 105, hitCount: 7 },
+                2: { normalAttackAdditionalDamageRate: 140, hitCount: 7 },
+                3: { normalAttackAdditionalDamageRate: 175, hitCount: 7 },
+                4: { normalAttackAdditionalDamageRate: 210, hitCount: 7 },
+                5: { normalAttackAdditionalDamageRate: 245, hitCount: 7 },
+                6: { normalAttackAdditionalDamageRate: 280, hitCount: 7 },
+                7: { normalAttackAdditionalDamageRate: 315, hitCount: 7 }
+            }
+        }
     },
     {
         name: "rankShot",
         displayName: "ランクショット",
         icon: scout_rank_shot,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -488,7 +548,7 @@ export const scout_skills: Skill[] = [
         name: "pouringShot",
         displayName: "ポアリングショット",
         icon: scout_pouring_shot,
-        category: "Attack",
+        categories: ["Attack"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -503,13 +563,26 @@ export const scout_skills: Skill[] = [
             "対象とその周辺9体の敵に防御力を無視して80%増加したダメージを負わせます。",
             "対象とその周辺9体の敵に防御力を無視して100%増加したダメージを負わせます。",
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalDefenseIgnoredNormalAttackDamage",
+            damageType: "range",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 20 },
+                2: { normalAttackAdditionalDamageRate: 30 },
+                3: { normalAttackAdditionalDamageRate: 40 },
+                4: { normalAttackAdditionalDamageRate: 50 },
+                5: { normalAttackAdditionalDamageRate: 60 },
+                6: { normalAttackAdditionalDamageRate: 80 },
+                7: { normalAttackAdditionalDamageRate: 100 },
+            }
+        }
     },
     {
         name: "rainforceAction",
         displayName: "レインフォースアクション",
         icon: scout_rainforce_action,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -552,7 +625,7 @@ export const scout_skills: Skill[] = [
         name: "scatterShot",
         displayName: "スケッターショット",
         icon: scout_scatter_shot,
-        category: "Other",
+        categories: ["Other"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
@@ -595,7 +668,7 @@ export const scout_skills: Skill[] = [
         name: "cataclysm",
         displayName: "カタクリズム",
         icon: scout_cataclysm,
-        category: "Buff",
+        categories: ["Buff"],
         origin: "Self",
         raceid: 2,
         jobid: 2,
