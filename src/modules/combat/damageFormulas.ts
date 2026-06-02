@@ -43,6 +43,54 @@ floor(max(1, {normalAttackDamage} + {additionalDamage}) * {skillDamageMultiplier
 
 floor(max(1, {defenseIgnoredNormalAttackDamage} + {additionalDamage}) * {skillDamageMultiplier})
 `,
+    additionalDamageReductionIgnoredNormalAttackDamage: `
+@additionalDamage = {damageReductionIgnoredNormalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {damageReductionIgnoredNormalAttackDamage} + {additionalDamage}) * {skillDamageMultiplier})
+`,
+    additionalDefenseAndDamageReductionIgnoredNormalAttackDamage: `
+@additionalDamage = {defenseAndDamageReductionIgnoredNormalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {defenseAndDamageReductionIgnoredNormalAttackDamage} + {additionalDamage}) * {skillDamageMultiplier})
+`,
+    additionalStrengthBasedNormalAttackDamage: `
+@statusAdditionalDamage = {attacker.strength} * {skill.statusAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor((max(1, {normalAttackDamage}*10 + {statusAdditionalDamage}) * {skillDamageMultiplier})/10)
+`,
+    additionalVitalityBasedNormalAttackDamage: `
+@statusAdditionalDamage = {attacker.vitality} * {skill.statusAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {normalAttackDamage} + {statusAdditionalDamage}) * {skillDamageMultiplier})
+`,
+    additionalDexterityBasedNormalAttackDamage: `
+@statusAdditionalDamage = {attacker.dexterity} * {skill.statusAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {normalAttackDamage} + {statusAdditionalDamage}) * {skillDamageMultiplier})
+`,
+    additionalIntelligenceBasedNormalAttackDamage: `
+@statusAdditionalDamage = {attacker.intelligence} * {skill.statusAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {normalAttackDamage} + {statusAdditionalDamage}) * {skillDamageMultiplier})
+`,
+    additionalAgilityBasedNormalAttackDamage: `
+@statusAdditionalDamage = {attacker.agility} * {skill.statusAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {normalAttackDamage} + {statusAdditionalDamage}) * {skillDamageMultiplier})
+`,
+    additionalMentalityBasedNormalAttackDamage: `
+@statusAdditionalDamage = {attacker.mentality} * {skill.statusAdditionalDamageRate} / 100
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1, {normalAttackDamage} + {statusAdditionalDamage}) * {skillDamageMultiplier})
+`,
     multiHitAdditionalNormalAttackDamage: `
 @additionalDamage = {normalAttackDamage} * {skill.normalAttackAdditionalDamageRate} / 100
 @skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
