@@ -293,7 +293,20 @@ export const guardian_skills: Skill[] = [
             "対象にダメージ 200% 増加した攻撃をします.",
             "対象にダメージ 220% 増加した攻撃をします."
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 120 },
+                2: { normalAttackAdditionalDamageRate: 130 },
+                3: { normalAttackAdditionalDamageRate: 150 },
+                4: { normalAttackAdditionalDamageRate: 170 },
+                5: { normalAttackAdditionalDamageRate: 180 },
+                6: { normalAttackAdditionalDamageRate: 200 },
+                7: { normalAttackAdditionalDamageRate: 220 },
+            }
+        }
     },
     {
         name: "crazySwing",
@@ -364,7 +377,20 @@ export const guardian_skills: Skill[] = [
             "対象にダメージの 400% MPを減少させます。",
             "対象にダメージの 500% MPを減少させます。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 0 },
+                2: { normalAttackAdditionalDamageRate: 0 },
+                3: { normalAttackAdditionalDamageRate: 0 },
+                4: { normalAttackAdditionalDamageRate: 0 },
+                5: { normalAttackAdditionalDamageRate: 0 },
+                6: { normalAttackAdditionalDamageRate: 0 },
+                7: { normalAttackAdditionalDamageRate: 0 },
+            }
+        }
     },
     {
         name: "orderSwing",
@@ -385,7 +411,7 @@ export const guardian_skills: Skill[] = [
             "20秒間攻撃する度にダメージの 7%を累積して次の攻撃のダメージを増加させます。",
             "20秒間攻撃する度にダメージの 8%を累積して次の攻撃のダメージを増加させます。"
         ],
-        attributes: {}
+        attributes: {},
     },
     {
         name: "heavyWeapon",
@@ -477,7 +503,20 @@ export const guardian_skills: Skill[] = [
             "対象に180%増加したダメージを与え、一直線上の敵に10%ずつ減少したダメージを与えます。",
             "対象に200%増加したダメージを与え、一直線上の敵に5%ずつ減少したダメージを与えます。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 100 },
+                2: { normalAttackAdditionalDamageRate: 120 },
+                3: { normalAttackAdditionalDamageRate: 130 },
+                4: { normalAttackAdditionalDamageRate: 150 },
+                5: { normalAttackAdditionalDamageRate: 160 },
+                6: { normalAttackAdditionalDamageRate: 180 },
+                7: { normalAttackAdditionalDamageRate: 200 },
+            }
+        }
     },
     {
         name: "rohaBless",
@@ -519,7 +558,20 @@ export const guardian_skills: Skill[] = [
             "対象の防御力を無視してダメージが130%増加した攻撃をします。",
             "対象の防御力を無視してダメージが150%増加した攻撃をします。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalDefenseAndDamageReductionIgnoredNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 70 },
+                2: { normalAttackAdditionalDamageRate: 80 },
+                3: { normalAttackAdditionalDamageRate: 90 },
+                4: { normalAttackAdditionalDamageRate: 100 },
+                5: { normalAttackAdditionalDamageRate: 110 },
+                6: { normalAttackAdditionalDamageRate: 130 },
+                7: { normalAttackAdditionalDamageRate: 150 },
+            }
+        }
     },
     {
         name: "stoneSkin",
@@ -561,7 +613,20 @@ export const guardian_skills: Skill[] = [
             "力の250%に値するダメージを与え、7秒間スタン。",
             "力の300%に値するダメージを与え、7秒間スタン。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalStrengthBasedNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { statusAdditionalDamageRate: 100 },
+                2: { statusAdditionalDamageRate: 130 },
+                3: { statusAdditionalDamageRate: 160 },
+                4: { statusAdditionalDamageRate: 190 },
+                5: { statusAdditionalDamageRate: 220 },
+                6: { statusAdditionalDamageRate: 250 },
+                7: { statusAdditionalDamageRate: 300 },
+            }
+        }
     },
     {
         name: "knightsMind",
