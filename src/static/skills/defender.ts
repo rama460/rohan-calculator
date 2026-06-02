@@ -98,7 +98,20 @@ export const defender_skills: Skill[] = [
             "ダメージの 400%対象のMPを減少させます。",
             "ダメージの 500%対象のMPを減少させます。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 0 },
+                2: { normalAttackAdditionalDamageRate: 0 },
+                3: { normalAttackAdditionalDamageRate: 0 },
+                4: { normalAttackAdditionalDamageRate: 0 },
+                5: { normalAttackAdditionalDamageRate: 0 },
+                6: { normalAttackAdditionalDamageRate: 0 },
+                7: { normalAttackAdditionalDamageRate: 0 },
+            }
+        }
     },
     {
         name: "shieldMastery",
@@ -285,7 +298,27 @@ export const defender_skills: Skill[] = [
             "対象に力の750%ほどの追加ダメージを与え、40秒間移動速度を60%減少させます。",
             "対象に力の900%ほどの追加ダメージを与え、50秒間移動速度を70%減少させます。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "shieldBardenDamage",
+            formula: `
+@statusAdditionalDamage = {attacker.strength} * {skill.statusAdditionalDamageRate} / 100 / 2
+@skillDamageMultiplier = (100 + {attacker.multiplySkillAttack} - {defender.multiplySkillDefense}) / 100
+
+floor(max(1,{statusAdditionalDamage}) * {skillDamageMultiplier})
+            
+`,
+            damageType: "melee",
+            parameters: {
+                1: { statusAdditionalDamageRate: 500 },
+                2: { statusAdditionalDamageRate: 550 },
+                3: { statusAdditionalDamageRate: 600 },
+                4: { statusAdditionalDamageRate: 650 },
+                5: { statusAdditionalDamageRate: 700 },
+                6: { statusAdditionalDamageRate: 750 },
+                7: { statusAdditionalDamageRate: 900 },
+            }
+        }
     },
     {
         name: "powerHeavyArmor",
@@ -561,7 +594,20 @@ export const defender_skills: Skill[] = [
             "対象と対象の周囲9人に300%増加したダメージを与え、15メートル後ろに押し出します。",
             "対象と対象の周囲9人に400%増加したダメージを与え、15メートル後ろに押し出します。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 50 },
+                2: { normalAttackAdditionalDamageRate: 100 },
+                3: { normalAttackAdditionalDamageRate: 150 },
+                4: { normalAttackAdditionalDamageRate: 200 },
+                5: { normalAttackAdditionalDamageRate: 250 },
+                6: { normalAttackAdditionalDamageRate: 300 },
+                7: { normalAttackAdditionalDamageRate: 400 },
+            }
+        }
     },
     {
         name: "leadersMind",
@@ -625,7 +671,20 @@ export const defender_skills: Skill[] = [
             "対象と周囲8体の敵に170%ほど増加したダメージを与え、更に7秒間移動を封じます。",
             "対象と周囲9体の敵に220%ほど増加したダメージを与え、更に9秒間移動を封じます。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 20 },
+                2: { normalAttackAdditionalDamageRate: 50 },
+                3: { normalAttackAdditionalDamageRate: 80 },
+                4: { normalAttackAdditionalDamageRate: 110 },
+                5: { normalAttackAdditionalDamageRate: 140 },
+                6: { normalAttackAdditionalDamageRate: 170 },
+                7: { normalAttackAdditionalDamageRate: 220 },
+            }
+        }
     },
     {
         name: "ultimateBastian",

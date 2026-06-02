@@ -8,6 +8,14 @@ export type CombatDamageFormulaId =
     | "normalMagicAttack"
     | "additionalNormalAttackDamage"
     | "additionalDefenseIgnoredNormalAttackDamage"
+    | "additionalDamageReductionIgnoredNormalAttackDamage"
+    | "additionalDefenseAndDamageReductionIgnoredNormalAttackDamage"
+    | "additionalStrengthBasedNormalAttackDamage"
+    | "additionalVitalityBasedNormalAttackDamage"
+    | "additionalDexterityBasedNormalAttackDamage"
+    | "additionalIntelligenceBasedNormalAttackDamage"
+    | "additionalAgilityBasedNormalAttackDamage"
+    | "additionalMentalityBasedNormalAttackDamage"
     | "multiHitAdditionalNormalAttackDamage"
     | "criticalDamage";
 

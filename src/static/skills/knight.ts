@@ -303,7 +303,19 @@ export const knight_skills: Skill[] = [
             "通常攻撃時に110%ほどの追加ダメージを与える。",
             "通常攻撃時に120%ほどの追加ダメージを与える。"
         ],
-        attributes: {
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 60 },
+                2: { normalAttackAdditionalDamageRate: 70 },
+                3: { normalAttackAdditionalDamageRate: 80 },
+                4: { normalAttackAdditionalDamageRate: 90 },
+                5: { normalAttackAdditionalDamageRate: 100 },
+                6: { normalAttackAdditionalDamageRate: 110 },
+                7: { normalAttackAdditionalDamageRate: 120 },
+            }
         }
     },
     {
@@ -409,15 +421,28 @@ export const knight_skills: Skill[] = [
         min: 1,
         max: 7,
         descriptions: [
-            "盾を使って230%のダメージを与え、2メートル吹き飛ばす。",
-            "盾を使って250%のダメージを与え、3メートル吹き飛ばす。",
-            "盾を使って270%のダメージを与え、4メートル吹き飛ばす。",
-            "盾を使って280%のダメージを与え、5メートル吹き飛ばす。",
-            "盾を使って300%のダメージを与え、6メートル吹き飛ばす。",
-            "盾を使って320%のダメージを与え、7メートル吹き飛ばす。",
-            "盾を使って340%のダメージを与え、8メートル吹き飛ばす。"
+            "盾を使って130%のダメージを与え、2メートル吹き飛ばす。",
+            "盾を使って150%のダメージを与え、3メートル吹き飛ばす。",
+            "盾を使って170%のダメージを与え、4メートル吹き飛ばす。",
+            "盾を使って180%のダメージを与え、5メートル吹き飛ばす。",
+            "盾を使って200%のダメージを与え、6メートル吹き飛ばす。",
+            "盾を使って220%のダメージを与え、7メートル吹き飛ばす。",
+            "盾を使って240%のダメージを与え、8メートル吹き飛ばす。"
         ],
-        attributes: {}
+        attributes: {},
+        attack: {
+            formulaId: "additionalNormalAttackDamage",
+            damageType: "melee",
+            parameters: {
+                1: { normalAttackAdditionalDamageRate: 130 },
+                2: { normalAttackAdditionalDamageRate: 150 },
+                3: { normalAttackAdditionalDamageRate: 170 },
+                4: { normalAttackAdditionalDamageRate: 180 },
+                5: { normalAttackAdditionalDamageRate: 200 },
+                6: { normalAttackAdditionalDamageRate: 220 },
+                7: { normalAttackAdditionalDamageRate: 240 },
+            }
+        }
     },
     {
         name: "breeding",
@@ -459,7 +484,7 @@ export const knight_skills: Skill[] = [
             "攻撃力を120%増加させ、対象に最終ダメージの100%、周りの敵に90%のダメージを与える。スキルの有效範囲は7メートル",
             "攻撃力を150%増加させ、対象に最終ダメージの100%、周りの敵に100%のダメージを与える。スキルの有效範囲は7メートル"
         ],
-        attributes: {}
+        attributes: {},
     },
     {
         name: "changeMind",
