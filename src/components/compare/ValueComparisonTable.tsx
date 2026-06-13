@@ -32,6 +32,7 @@ type FormulaDefinitionMap = {
 
 type FormulaTreeNode = {
     name: string;
+    source: "formulaReference" | "contextValue";
     depth: number;
     formula?: string;
     children: FormulaTreeNode[];
@@ -95,6 +96,41 @@ const extractFormulaReferenceNames = (formula: string | undefined): string[] => 
     return Array.from(formula.matchAll(/\{([^}]+)\}/g)).map((match) => match[1]);
 };
 
+const ignoredIdentifierNames = new Set([
+    "abs",
+    "ceil",
+    "false",
+    "floor",
+    "max",
+    "min",
+    "null",
+    "pow",
+    "round",
+    "sqrt",
+    "true",
+    "undefined",
+]);
+
+const extractContextValueNames = (
+    formula: string | undefined,
+    leftTrace: FormulaTrace | undefined,
+    rightTrace: FormulaTrace | undefined
+): string[] => {
+    if (!formula) {
+        return [];
+    }
+
+    const contextValueNames = new Set([
+        ...Object.keys(leftTrace?.contextValues ?? {}),
+        ...Object.keys(rightTrace?.contextValues ?? {}),
+    ]);
+    const formulaWithoutReferences = formula.replace(/\{[^}]+\}/g, " ");
+
+    return Array.from(formulaWithoutReferences.matchAll(/\b[A-Za-z_$][A-Za-z0-9_$]*\b/g))
+        .map((match) => match[0])
+        .filter((name) => contextValueNames.has(name) && !ignoredIdentifierNames.has(name));
+};
+
 const uniqueNames = (names: string[]): string[] => Array.from(new Set(names));
 
 const buildFormulaTree = (
@@ -104,29 +140,48 @@ const buildFormulaTree = (
     const leftDefinitions = parseFormulaDefinitions(leftTrace);
     const rightDefinitions = parseFormulaDefinitions(rightTrace);
 
-    const buildNode = (name: string, depth: number, ancestors: ReadonlySet<string>): FormulaTreeNode => {
+    const buildNode = (
+        name: string,
+        source: FormulaTreeNode["source"],
+        depth: number,
+        ancestors: ReadonlySet<string>
+    ): FormulaTreeNode => {
         const formula = leftDefinitions.localFormulas.get(name) ?? rightDefinitions.localFormulas.get(name);
         const nextAncestors = new Set(ancestors);
         nextAncestors.add(name);
 
-        const childNames = formula
-            ? uniqueNames(extractFormulaReferenceNames(formula)).filter((childName) => !nextAncestors.has(childName))
+        const referenceChildren = formula
+            ? uniqueNames(extractFormulaReferenceNames(formula))
+                .filter((childName) => !nextAncestors.has(childName))
+                .map((childName) => buildNode(childName, "formulaReference", depth + 1, nextAncestors))
+            : [];
+        const contextChildren = formula
+            ? uniqueNames(extractContextValueNames(formula, leftTrace, rightTrace))
+                .map((childName) => buildNode(childName, "contextValue", depth + 1, nextAncestors))
             : [];
 
         return {
             name,
+            source,
             depth,
             formula,
-            children: childNames.map((childName) => buildNode(childName, depth + 1, nextAncestors)),
+            children: [...referenceChildren, ...contextChildren],
         };
     };
 
-    const rootNames = uniqueNames([
+    const rootReferenceNames = uniqueNames([
         ...extractFormulaReferenceNames(leftDefinitions.finalFormula),
         ...extractFormulaReferenceNames(rightDefinitions.finalFormula),
     ]);
+    const rootContextNames = uniqueNames([
+        ...extractContextValueNames(leftDefinitions.finalFormula, leftTrace, rightTrace),
+        ...extractContextValueNames(rightDefinitions.finalFormula, leftTrace, rightTrace),
+    ]);
 
-    return rootNames.map((name) => buildNode(name, 0, new Set()));
+    return [
+        ...rootReferenceNames.map((name) => buildNode(name, "formulaReference", 0, new Set())),
+        ...rootContextNames.map((name) => buildNode(name, "contextValue", 0, new Set())),
+    ];
 };
 
 const flattenFormulaTree = (nodes: FormulaTreeNode[]): FormulaTreeNode[] => (
@@ -137,6 +192,24 @@ const findTraceReferenceValue = (
     trace: FormulaTrace | undefined,
     name: string
 ): number | undefined => trace?.references.find((reference) => reference.name === name)?.value;
+
+const findContextValue = (
+    trace: FormulaTrace | undefined,
+    name: string
+): number | undefined => trace?.contextValues[name];
+
+const findFormulaTreeNodeValue = (
+    trace: FormulaTrace | undefined,
+    localReferences: FormulaReferenceTrace[],
+    node: FormulaTreeNode
+): number | undefined => {
+    if (node.source === "contextValue") {
+        return findContextValue(trace, node.name);
+    }
+
+    return findTraceReferenceValue(trace, node.name)
+        ?? findIntermediateValue(localReferences, node.name);
+};
 
 const getFinalFormula = (
     leftTrace: FormulaTrace | undefined,
@@ -267,7 +340,7 @@ export const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
                                             <Box sx={{ p: 1, backgroundColor: "action.hover" }}>
                                                 {formulaTreeRows.length === 0 ? (
                                                     <Typography variant="body2" color="text.secondary">
-                                                        中間ステータスはありません
+                                                        計算要素はありません
                                                     </Typography>
                                                 ) : (
                                                     <Table
@@ -282,14 +355,12 @@ export const ValueComparisonTable: React.FC<ValueComparisonTableProps> = ({
                                                     >
                                                         <TableBody>
                                                             {formulaTreeRows.map((node, index) => {
-                                                                const leftValue = findTraceReferenceValue(leftTraces[item.key], node.name)
-                                                                    ?? findIntermediateValue(leftReferences, node.name);
-                                                                const rightValue = findTraceReferenceValue(rightTraces[item.key], node.name)
-                                                                    ?? findIntermediateValue(rightReferences, node.name);
+                                                                const leftValue = findFormulaTreeNodeValue(leftTraces[item.key], leftReferences, node);
+                                                                const rightValue = findFormulaTreeNodeValue(rightTraces[item.key], rightReferences, node);
                                                                 const intermediateDiff = (rightValue ?? 0) - (leftValue ?? 0);
 
                                                                 return (
-                                                                    <TableRow key={`${node.name}-${node.depth}-${index}`}>
+                                                                    <TableRow key={`${node.source}-${node.name}-${node.depth}-${index}`}>
                                                                         <TableCell>
                                                                             <Box
                                                                                 sx={{
