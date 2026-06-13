@@ -7,9 +7,14 @@ import {
     Button,
     Checkbox,
     Chip,
+    FormControl,
     FormControlLabel,
     FormGroup,
+    IconButton,
+    InputLabel,
+    MenuItem,
     Paper,
+    Select,
     Table,
     TableBody,
     TableCell,
@@ -18,13 +23,18 @@ import {
     TableRow,
     Tab,
     Tabs,
+    TextField,
     Typography,
 } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useAtomValue } from "jotai";
 import { BuiltinOptions, getDisplayOptionName } from "../../static/options";
+import { Item } from "../../static/items";
 import { uiEquipmentAtomFamily } from "../../modules/state/ui";
 import { EquipmentIconButton } from "../status/EquipmentIconButton";
+import EquipmentDialog from "../status/EquipmentDialog";
 import { buildSeriesData, displayCostumes, SeriesData } from "./costumeData";
 
 type SeriesWithFinalStats = SeriesData & {
@@ -33,6 +43,22 @@ type SeriesWithFinalStats = SeriesData & {
 };
 
 type ComparisonMode = "costume" | "accessory" | "combined";
+
+type CombinedComparisonSet = {
+    id: string;
+    name: string;
+    costumeSeriesKey: string;
+    accessorySeriesKey: string;
+    arbitraryCostume?: Item;
+    visible: boolean;
+};
+
+type CombinedSetWithFinalStats = CombinedComparisonSet & {
+    displayName: string;
+    costumeSeries?: SeriesWithFinalStats;
+    accessorySeries?: SeriesWithFinalStats;
+    finalStats: { [key: string]: number };
+};
 
 const comparisonModeLabels: Record<ComparisonMode, string> = {
     costume: "コスチューム系",
@@ -148,6 +174,52 @@ const defaultVisibleSeries = [
     "アルボス Ⅰ", "アルボス Ⅱ", "アルボス Ⅲ",
 ];
 
+const findSeriesKeyByName = (seriesData: SeriesData[], category: SeriesData["category"], seriesName: string) => {
+    const series = seriesData.find(item => item.category === category && item.seriesName === seriesName);
+    return series ? getSeriesKey(series) : "";
+};
+
+const createDefaultCombinedSets = (seriesData: SeriesData[]): CombinedComparisonSet[] => [
+    {
+        id: "combined-1",
+        name: "",
+        costumeSeriesKey: findSeriesKeyByName(seriesData, "costume", "ステラリス Ⅲ"),
+        accessorySeriesKey: findSeriesKeyByName(seriesData, "accessory", "アルボス Ⅲ"),
+        visible: true,
+    },
+    {
+        id: "combined-2",
+        name: "",
+        costumeSeriesKey: findSeriesKeyByName(seriesData, "costume", "イグニス Ⅲ"),
+        accessorySeriesKey: findSeriesKeyByName(seriesData, "accessory", "ジェネシス Ⅲ"),
+        visible: true,
+    },
+];
+
+const addStats = (...statsList: Array<{ [key: string]: number } | undefined>) => {
+    const total: { [key: string]: number } = {};
+
+    statsList.forEach(stats => {
+        Object.entries(stats ?? {}).forEach(([key, value]) => {
+            total[key] = (total[key] || 0) + value;
+        });
+    });
+
+    return total;
+};
+
+const getItemStats = (item?: Item) => {
+    if (!item) {
+        return {};
+    }
+
+    return addStats(item.baseOptions, item.craftedOptions, item.additionalOptions);
+};
+
+const requiresArbitraryCostume = (series?: SeriesWithFinalStats) => (
+    Boolean(series && series.category === "costume" && series.itemCount === 3 && !series.costume)
+);
+
 export const ParameterComparisonTable: React.FC = () => {
     const seriesData = buildSeriesData();
     const [comparisonMode, setComparisonMode] = React.useState<ComparisonMode>("costume");
@@ -161,6 +233,10 @@ export const ParameterComparisonTable: React.FC = () => {
     );
     const [sortParameter, setSortParameter] = React.useState<string | null>(null);
     const [sortOrder, setSortOrder] = React.useState<"asc" | "desc">("desc");
+    const [combinedSets, setCombinedSets] = React.useState<CombinedComparisonSet[]>(() =>
+        createDefaultCombinedSets(seriesData)
+    );
+    const [editingCombinedSetId, setEditingCombinedSetId] = React.useState<string | null>(null);
     const equippedCostume = useAtomValue(uiEquipmentAtomFamily("costume"));
 
     const moveColumn = (dragIndex: number, hoverIndex: number) => {
@@ -218,6 +294,36 @@ export const ParameterComparisonTable: React.FC = () => {
             setSortParameter(parameter);
             setSortOrder("desc");
         }
+    };
+
+    const updateCombinedSet = (id: string, changes: Partial<CombinedComparisonSet>) => {
+        setCombinedSets(sets => sets.map(set => (
+            set.id === id ? { ...set, ...changes } : set
+        )));
+    };
+
+    const addCombinedSet = () => {
+        const defaultCostumeSeriesKey = findSeriesKeyByName(seriesData, "costume", "ステラリス Ⅲ");
+        const defaultAccessorySeriesKey = findSeriesKeyByName(seriesData, "accessory", "アルボス Ⅲ");
+        const firstCostumeSeries = seriesData.find(series => series.category === "costume");
+        const firstAccessorySeries = seriesData.find(series => series.category === "accessory");
+        const costumeSeriesKey = defaultCostumeSeriesKey || (firstCostumeSeries ? getSeriesKey(firstCostumeSeries) : "");
+        const accessorySeriesKey = defaultAccessorySeriesKey || (firstAccessorySeries ? getSeriesKey(firstAccessorySeries) : "");
+
+        setCombinedSets(sets => [
+            ...sets,
+            {
+                id: `combined-${Date.now()}`,
+                name: "",
+                costumeSeriesKey,
+                accessorySeriesKey,
+                visible: true,
+            },
+        ]);
+    };
+
+    const removeCombinedSet = (id: string) => {
+        setCombinedSets(sets => sets.filter(set => set.id !== id));
     };
 
     const seriesWithFinalStats: SeriesWithFinalStats[] = seriesData.map(series => {
@@ -292,10 +398,50 @@ export const ParameterComparisonTable: React.FC = () => {
         : "リング、ブローチ、ブレスレット、ネックレスのアクセサリーセット効果を比較します。";
 
     if (comparisonMode === "combined") {
+        const seriesByKey = new Map(seriesWithFinalStats.map(series => [getSeriesKey(series), series]));
+        const costumeSeries = seriesWithFinalStats.filter(series => series.category === "costume");
+        const accessorySeries = seriesWithFinalStats.filter(series => series.category === "accessory");
+
+        let combinedSetsWithFinalStats: CombinedSetWithFinalStats[] = combinedSets
+            .filter(set => set.visible)
+            .map(set => {
+                const costumeSeriesItem = seriesByKey.get(set.costumeSeriesKey);
+                const accessorySeriesItem = seriesByKey.get(set.accessorySeriesKey);
+                const arbitraryCostumeStats = requiresArbitraryCostume(costumeSeriesItem)
+                    ? getItemStats(set.arbitraryCostume)
+                    : undefined;
+                const autoName = [
+                    costumeSeriesItem?.seriesName,
+                    accessorySeriesItem?.seriesName,
+                ].filter(Boolean).join(" + ");
+
+                return {
+                    ...set,
+                    displayName: set.name.trim() || autoName || "未設定",
+                    costumeSeries: costumeSeriesItem,
+                    accessorySeries: accessorySeriesItem,
+                    finalStats: addStats(costumeSeriesItem?.finalStats, arbitraryCostumeStats, accessorySeriesItem?.finalStats),
+                };
+            });
+
+        if (sortParameter) {
+            combinedSetsWithFinalStats = [...combinedSetsWithFinalStats].sort((a, b) => {
+                const valueA = a.finalStats[sortParameter] || 0;
+                const valueB = b.finalStats[sortParameter] || 0;
+
+                return sortOrder === "desc" ? valueB - valueA : valueA - valueB;
+            });
+        }
+
+        const combinedParameters = new Set<string>();
+        combinedSetsWithFinalStats.forEach(set => {
+            Object.keys(set.finalStats).forEach(key => combinedParameters.add(key));
+        });
+
         return (
             <Box sx={{ mt: 3 }}>
                 <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
-                    パラメータ別比較
+                    合算比較
                 </Typography>
                 <Tabs
                     value={comparisonMode}
@@ -306,14 +452,230 @@ export const ParameterComparisonTable: React.FC = () => {
                     <Tab value="accessory" label={comparisonModeLabels.accessory} />
                     <Tab value="combined" label={comparisonModeLabels.combined} />
                 </Tabs>
-                <Paper variant="outlined" sx={{ p: 2 }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
-                        合算比較は準備中です
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        コスチューム系シリーズとアクセサリー系シリーズを組み合わせた総合値を比較するビューをここに追加予定です。
-                    </Typography>
-                </Paper>
+                <Typography variant="body2" sx={{ mb: 2, p: 2, backgroundColor: "info.light", borderRadius: 1 }}>
+                    <strong>合算比較について:</strong><br />
+                    コスチューム系シリーズとアクセサリー系シリーズを組み合わせた比較セットを作成し、候補同士の総合値を比較します。
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 2, color: "text.secondary" }}>
+                    パラメータ名をクリックするとその値で列をソートできます（降順 → 昇順 → 非ソート）
+                    {sortParameter && (
+                        <span style={{ color: "#1976d2", fontWeight: "bold" }}>
+                            {" "}• 現在のソート: {getDisplayName(sortParameter)} ({sortOrder === "asc" ? "昇順" : "降順"})
+                        </span>
+                    )}
+                </Typography>
+
+                <Accordion sx={{ mb: 2 }} defaultExpanded>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography variant="subtitle2">比較セット</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Box sx={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 2, mb: 2 }}>
+                            {combinedSets.map((set, index) => (
+                                <Paper key={set.id} variant="outlined" sx={{ p: 2 }}>
+                                    {(() => {
+                                        const selectedCostumeSeries = seriesByKey.get(set.costumeSeriesKey);
+                                        const showArbitraryCostume = requiresArbitraryCostume(selectedCostumeSeries);
+
+                                        return (
+                                            <>
+                                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1.5, gap: 1 }}>
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={set.visible}
+                                                    onChange={event => updateCombinedSet(set.id, { visible: event.target.checked })}
+                                                />
+                                            }
+                                            label={`セット${index + 1}`}
+                                        />
+                                        <IconButton
+                                            size="small"
+                                            onClick={() => removeCombinedSet(set.id)}
+                                            disabled={combinedSets.length <= 1}
+                                            aria-label="比較セットを削除"
+                                        >
+                                            <DeleteIcon fontSize="small" />
+                                        </IconButton>
+                                    </Box>
+                                    <TextField
+                                        size="small"
+                                        label="表示名"
+                                        value={set.name}
+                                        onChange={event => updateCombinedSet(set.id, { name: event.target.value })}
+                                        fullWidth
+                                        sx={{ mb: 1.5 }}
+                                        placeholder="未入力なら自動生成"
+                                    />
+                                    <FormControl size="small" fullWidth sx={{ mb: 1.5 }}>
+                                        <InputLabel>コスチューム系</InputLabel>
+                                        <Select
+                                            label="コスチューム系"
+                                            value={set.costumeSeriesKey}
+                                            onChange={event => updateCombinedSet(set.id, { costumeSeriesKey: event.target.value })}
+                                        >
+                                            {costumeSeries.map(series => (
+                                                <MenuItem key={getSeriesKey(series)} value={getSeriesKey(series)}>
+                                                    {series.seriesName}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                    {showArbitraryCostume && (
+                                        <Box sx={{ mb: 1.5 }}>
+                                            <Button
+                                                size="small"
+                                                variant="outlined"
+                                                fullWidth
+                                                onClick={() => setEditingCombinedSetId(set.id)}
+                                            >
+                                                任意コスチューム設定
+                                            </Button>
+                                            <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 0.5 }}>
+                                                {set.arbitraryCostume?.name ?? "未設定"}
+                                            </Typography>
+                                            <EquipmentDialog
+                                                equipmentType="costume"
+                                                isOpen={editingCombinedSetId === set.id}
+                                                onClose={() => setEditingCombinedSetId(null)}
+                                                title={`任意コスチューム (${set.name.trim() || `セット${index + 1}`})`}
+                                                equippedItem={set.arbitraryCostume}
+                                                setEquippedItem={item => updateCombinedSet(set.id, { arbitraryCostume: item })}
+                                                itemTemplates={displayCostumes}
+                                            />
+                                        </Box>
+                                    )}
+                                    <FormControl size="small" fullWidth>
+                                        <InputLabel>アクセサリー系</InputLabel>
+                                        <Select
+                                            label="アクセサリー系"
+                                            value={set.accessorySeriesKey}
+                                            onChange={event => updateCombinedSet(set.id, { accessorySeriesKey: event.target.value })}
+                                        >
+                                            {accessorySeries.map(series => (
+                                                <MenuItem key={getSeriesKey(series)} value={getSeriesKey(series)}>
+                                                    {series.seriesName}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                            </>
+                                        );
+                                    })()}
+                                </Paper>
+                            ))}
+                        </Box>
+                        <Button size="small" variant="outlined" startIcon={<AddIcon />} onClick={addCombinedSet}>
+                            比較セットを追加
+                        </Button>
+                    </AccordionDetails>
+                </Accordion>
+
+                {combinedSetsWithFinalStats.length === 0 ? (
+                    <Paper variant="outlined" sx={{ p: 2 }}>
+                        <Typography variant="body2" color="text.secondary">
+                            表示対象の比較セットがありません。
+                        </Typography>
+                    </Paper>
+                ) : (
+                    <TableContainer component={Paper} sx={{ mb: 2 }}>
+                        <Table size="small">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell sx={{ fontWeight: "bold" }}>パラメータ</TableCell>
+                                    {combinedSetsWithFinalStats.map(set => (
+                                        <TableCell key={set.id} sx={{ fontWeight: "bold", textAlign: "center", minWidth: 120 }}>
+                                            {set.name.trim() && (
+                                                <Typography variant="caption" display="block">
+                                                    {set.name.trim()}
+                                                </Typography>
+                                            )}
+                                            <Typography variant="caption" display="block" color={set.name.trim() ? "text.secondary" : "text.primary"} sx={{ fontSize: "0.65rem", fontWeight: set.name.trim() ? "normal" : "bold" }}>
+                                                {set.costumeSeries?.seriesName ?? "未設定"}
+                                            </Typography>
+                                            <Typography variant="caption" display="block" color={set.name.trim() ? "text.secondary" : "text.primary"} sx={{ fontSize: "0.65rem", fontWeight: set.name.trim() ? "normal" : "bold" }}>
+                                                {set.accessorySeries?.seriesName ?? "未設定"}
+                                            </Typography>
+                                            {requiresArbitraryCostume(set.costumeSeries) && (
+                                                <Typography variant="caption" display="block" color="text.secondary" sx={{ fontSize: "0.65rem" }}>
+                                                    任意: {set.arbitraryCostume?.name ?? "未設定"}
+                                                </Typography>
+                                            )}
+                                        </TableCell>
+                                    ))}
+                                    <TableCell sx={{ fontWeight: "bold", textAlign: "center", minWidth: 140 }}>最高値</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {Array.from(combinedParameters).map(parameter => {
+                                    const values = combinedSetsWithFinalStats.map(set => set.finalStats[parameter] || 0);
+                                    const maxValue = Math.max(...values);
+                                    const minValue = Math.min(...values);
+
+                                    return (
+                                        <TableRow key={parameter}>
+                                            <TableCell
+                                                sx={{
+                                                    fontWeight: "bold",
+                                                    cursor: "pointer",
+                                                    "&:hover": {
+                                                        backgroundColor: "rgba(0, 0, 0, 0.04)",
+                                                    },
+                                                    backgroundColor: sortParameter === parameter ? "primary.light" : "inherit",
+                                                    color: sortParameter === parameter ? "primary.contrastText" : "inherit",
+                                                }}
+                                                onClick={() => handleParameterSort(parameter)}
+                                            >
+                                                {getDisplayName(parameter)}
+                                                {sortParameter === parameter && (
+                                                    <span style={{ marginLeft: "4px" }}>
+                                                        {sortOrder === "desc" ? "↓" : "↑"}
+                                                    </span>
+                                                )}
+                                            </TableCell>
+                                            {combinedSetsWithFinalStats.map(set => {
+                                                const value = set.finalStats[parameter] || 0;
+                                                const backgroundColor = getColorGradient(value, minValue, maxValue);
+                                                const isMax = value === maxValue && value > 0;
+
+                                                return (
+                                                    <TableCell
+                                                        key={set.id}
+                                                        sx={{
+                                                            textAlign: "center",
+                                                            backgroundColor,
+                                                            border: isMax ? "2px solid #2e7d32" : "1px solid rgba(224, 224, 224, 1)",
+                                                            fontWeight: isMax ? "bold" : "normal",
+                                                        }}
+                                                    >
+                                                        <Typography variant="body2" sx={{
+                                                            color: isMax ? "#1b5e20" : "text.primary",
+                                                            fontWeight: isMax ? "bold" : "normal",
+                                                        }}>
+                                                            {value > 0 ? formatValue(value) : "-"}
+                                                        </Typography>
+                                                    </TableCell>
+                                                );
+                                            })}
+                                            <TableCell sx={{
+                                                textAlign: "center",
+                                                backgroundColor: "success.main",
+                                                border: "2px solid #1b5e20",
+                                            }}>
+                                                <Typography variant="body2" sx={{ fontWeight: "bold", color: "white" }}>
+                                                    {maxValue > 0 ? (() => {
+                                                        const bestSet = combinedSetsWithFinalStats.find(set => (set.finalStats[parameter] || 0) === maxValue);
+                                                        return `${formatValue(maxValue)} (${bestSet?.displayName ?? ""})`;
+                                                    })() : "-"}
+                                                </Typography>
+                                            </TableCell>
+                                        </TableRow>
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                )}
             </Box>
         );
     }
