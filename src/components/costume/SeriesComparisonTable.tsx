@@ -13,7 +13,26 @@ import {
 import { useAtomValue } from "jotai";
 import { BuiltinOptions, getDisplayOptionName } from "../../static/options";
 import { uiEquipmentAtomFamily } from "../../modules/state/ui";
-import { buildSeriesData } from "./costumeData";
+import { buildSeriesData, SeriesData } from "./costumeData";
+
+const getSeriesItemCount = (series: SeriesData): number => (
+    series.category === "accessory"
+        ? (series.accessories ?? []).length
+        : [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length
+);
+
+const getAvailableItemLabels = (series: SeriesData): string[] => {
+    if (series.category === "accessory") {
+        return (series.accessories ?? []).map((item) => item.name);
+    }
+
+    const availableItems = [];
+    if (series.costume) availableItems.push("コスチューム");
+    if (series.glasses) availableItems.push("メガネ");
+    if (series.earrings) availableItems.push("イヤリング");
+    if (series.hat) availableItems.push("帽子");
+    return availableItems;
+};
 
 export const SeriesComparisonTable: React.FC = () => {
     const equippedCostume = useAtomValue(uiEquipmentAtomFamily("costume"));
@@ -40,23 +59,29 @@ export const SeriesComparisonTable: React.FC = () => {
                 </TableHead>
                 <TableBody>
                     {seriesData.map((series) => {
-                        const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
-                        const availableItems = [];
-                        if (series.costume) availableItems.push("コスチューム");
-                        if (series.glasses) availableItems.push("メガネ");
-                        if (series.earrings) availableItems.push("イヤリング");
-                        if (series.hat) availableItems.push("帽子");
+                        const itemCount = getSeriesItemCount(series);
+                        const availableItems = getAvailableItemLabels(series);
 
                         return (
-                            <TableRow key={series.synergyKey}>
+                            <TableRow key={`${series.category}-${series.synergyKey}`}>
                                 <TableCell>
                                     <Typography variant="body2" sx={{ fontWeight: "bold" }}>
                                         {series.seriesName}
                                     </Typography>
-                                    <Box sx={{ mt: 1 }}>
+                                    <Box sx={{ mt: 1, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 0.5 }}>
                                         <Chip
                                             size="small"
-                                            label={itemCount === 3 && !series.costume && equippedCostume ? "3点+コス" : itemCount + "点セット"}
+                                            label={series.category === "accessory" ? "アクセサリー" : "コスチューム系"}
+                                            color={series.category === "accessory" ? "info" : "default"}
+                                            variant="outlined"
+                                        />
+                                        <Chip
+                                            size="small"
+                                            label={
+                                                series.category === "costume" && itemCount === 3 && !series.costume && equippedCostume
+                                                    ? "3点+コス"
+                                                    : itemCount + "点セット"
+                                            }
                                             color={itemCount === 4 ? "primary" : "secondary"}
                                             variant="outlined"
                                         />

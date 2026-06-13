@@ -18,6 +18,11 @@ interface CostumeItemTableProps {
     categoryName: string;
 }
 
+const getDisplayBaseOptions = (item: ItemTemplate): Record<string, number> => ({
+    ...(item.enchantableBaseOptions?.[0] as Record<string, number> | undefined),
+    ...(item.fixedBaseOptions as Record<string, number> | undefined),
+});
+
 export const CostumeItemTable: React.FC<CostumeItemTableProps> = ({ items, categoryName }) => (
     <TableContainer component={Paper} sx={{ mb: 2 }}>
         <Table size="small">
@@ -43,9 +48,9 @@ export const CostumeItemTable: React.FC<CostumeItemTableProps> = ({ items, categ
                             <Typography variant="body2">{item.name}</Typography>
                         </TableCell>
                         <TableCell>
-                            {item.fixedBaseOptions ? (
+                            {Object.keys(getDisplayBaseOptions(item)).length > 0 ? (
                                 <Box>
-                                    {Object.entries(item.fixedBaseOptions).map(([key, value]) => {
+                                    {Object.entries(getDisplayBaseOptions(item)).map(([key, value]) => {
                                         const option = BuiltinOptions[key as keyof typeof BuiltinOptions];
                                         if (!option || !value) return null;
                                         return (

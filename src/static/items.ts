@@ -8345,6 +8345,21 @@ const chaosSynergisticOptions = {
     }
 }
 
+const megasSynergisticOptions = {
+    2: {
+        'multiplyDefensePenetration': 20,
+        'multiplyDecreaseDamageTakenPenetration': 20,
+        'multiplySkillAttack': 20,
+        'multiplySkillDefense': 20,
+    },
+    4: {
+        'multiplyPVPAttack': 50,
+        'multiplyPVPDefense': 20,
+        'multiplyHitPoint': 100,
+        'multiplyDamageReflectionRate': 20,
+    }
+}
+
 const variantSynergisticOptions = {
     2: {
         'multiplyHitPoint': 100,
@@ -11160,6 +11175,8 @@ export const accessories: ItemTemplate[] = [
             'plusDefense': 1000,
         },
         icon: accessory_ring_2,
+        synergyOptions: megasSynergisticOptions,
+        synergyKey: "megas"
     },
     {
         id: 17,
@@ -11170,6 +11187,8 @@ export const accessories: ItemTemplate[] = [
             'plusDefense': 1000,
         },
         icon: accessory_brooch_2,
+        synergyOptions: megasSynergisticOptions,
+        synergyKey: "megas"
     },
     {
         id: 18,
@@ -11180,6 +11199,8 @@ export const accessories: ItemTemplate[] = [
             'plusDefense': 1000,
         },
         icon: accessory_bracelet_2,
+        synergyOptions: megasSynergisticOptions,
+        synergyKey: "megas"
 
     },
     {
@@ -11191,6 +11212,8 @@ export const accessories: ItemTemplate[] = [
             'plusDefense': 1000,
         },
         icon: accessory_necklace_2,
+        synergyOptions: megasSynergisticOptions,
+        synergyKey: "megas"
 
     },
     {
