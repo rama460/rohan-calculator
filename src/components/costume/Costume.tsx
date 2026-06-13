@@ -9,6 +9,7 @@ import { PageContainer } from '../common/PageContainer';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import { CostumeItemTable } from './CostumeItemTable';
 import {
+    displayAccessories,
     displayCostumes,
     displayEarrings,
     displayGlasses,
@@ -58,8 +59,9 @@ export const Costume: React.FC = () => {
                         <Tab label="メガネ" id="costume-tab-1" />
                         <Tab label="イヤリング" id="costume-tab-2" />
                         <Tab label="帽子" id="costume-tab-3" />
-                        <Tab label="シリーズ合計" id="costume-tab-4" />
-                        <Tab label="シリーズ比較" id="costume-tab-5" />
+                        <Tab label="アクセサリー" id="costume-tab-4" />
+                        <Tab label="シリーズ合計" id="costume-tab-5" />
+                        <Tab label="シリーズ比較" id="costume-tab-6" />
                     </Tabs>
                 </Box>
 
@@ -80,10 +82,14 @@ export const Costume: React.FC = () => {
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={4}>
-                    <SeriesComparisonTable />
+                    <CostumeItemTable items={displayAccessories} categoryName="accessories" />
                 </TabPanel>
 
                 <TabPanel value={tabValue} index={5}>
+                    <SeriesComparisonTable />
+                </TabPanel>
+
+                <TabPanel value={tabValue} index={6}>
                     <ParameterComparisonTable />
                 </TabPanel>
             </Box>

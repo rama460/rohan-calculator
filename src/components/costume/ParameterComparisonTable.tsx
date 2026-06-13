@@ -16,6 +16,8 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Tab,
+    Tabs,
     Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -25,8 +27,33 @@ import { uiEquipmentAtomFamily } from "../../modules/state/ui";
 import { EquipmentIconButton } from "../status/EquipmentIconButton";
 import { buildSeriesData, displayCostumes, SeriesData } from "./costumeData";
 
+type SeriesWithFinalStats = SeriesData & {
+    finalStats: { [key: string]: number };
+    itemCount: number;
+};
+
+type ComparisonMode = "costume" | "accessory" | "combined";
+
+const comparisonModeLabels: Record<ComparisonMode, string> = {
+    costume: "コスチューム系",
+    accessory: "アクセサリー系",
+    combined: "合算比較",
+};
+
+const getSeriesItemCount = (series: SeriesData): number => (
+    series.category === "accessory"
+        ? (series.accessories ?? []).length
+        : [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length
+);
+
+const getSeriesKey = (series: SeriesData): string => `${series.category}:${series.synergyKey}`;
+
+const getSeriesCategoryLabel = (series: SeriesData): string => (
+    series.category === "accessory" ? "アクセサリー" : "コスチューム系"
+);
+
 interface DraggableHeaderProps {
-    series: SeriesData & { itemCount: number };
+    series: SeriesWithFinalStats;
     index: number;
     moveColumn: (dragIndex: number, hoverIndex: number) => void;
     equippedCostume?: unknown;
@@ -78,10 +105,13 @@ const DraggableHeader: React.FC<DraggableHeaderProps> = ({ series, index, moveCo
                 <Typography variant="caption" display="block">
                     {series.seriesName}
                 </Typography>
+                <Typography variant="caption" display="block" color="text.secondary" sx={{ fontSize: "0.65rem" }}>
+                    {getSeriesCategoryLabel(series)}
+                </Typography>
                 <Chip
                     size="small"
                     label={(() => {
-                        if (series.itemCount === 3 && !series.costume && equippedCostume) {
+                        if (series.category === "costume" && series.itemCount === 3 && !series.costume && equippedCostume) {
                             return "3点+コス";
                         }
                         return `${series.itemCount}点`;
@@ -114,12 +144,13 @@ const getColorGradient = (value: number, minValue: number, maxValue: number) => 
 };
 
 const defaultVisibleSeries = [
-    "ロハ", "ステラリス Ⅰ", "ステラリス Ⅱ", "ステラリス Ⅲ", "ジェネシス Ⅰ", "ジェネシス Ⅱ", "ジェネシス Ⅲ", "イグニス Ⅰ", "イグニス Ⅱ", "イグニス Ⅲ",
-    "アルボス Ⅰ", "アルボス Ⅱ", "アルボス Ⅲ", "ヴァリアント", "ガルガンチュア", "カタストロフ",
+    "ステラリス Ⅰ", "ステラリス Ⅱ", "ステラリス Ⅲ", "ジェネシス Ⅰ", "ジェネシス Ⅱ", "ジェネシス Ⅲ", "イグニス Ⅰ", "イグニス Ⅱ", "イグニス Ⅲ",
+    "アルボス Ⅰ", "アルボス Ⅱ", "アルボス Ⅲ",
 ];
 
 export const ParameterComparisonTable: React.FC = () => {
     const seriesData = buildSeriesData();
+    const [comparisonMode, setComparisonMode] = React.useState<ComparisonMode>("costume");
     const [columnOrder, setColumnOrder] = React.useState<number[]>(() =>
         Array.from({ length: seriesData.length }, (_, i) => i)
     );
@@ -146,20 +177,33 @@ export const ParameterComparisonTable: React.FC = () => {
         setVisibleColumns(newVisibility);
     };
 
+    const currentCategory = comparisonMode === "accessory" ? "accessory" : "costume";
+    const currentCategoryIndexes = seriesData.flatMap((series, index) =>
+        series.category === currentCategory ? [index] : []
+    );
+
     const showAllColumns = () => {
-        setVisibleColumns(new Array(seriesData.length).fill(true));
+        const newVisibility = [...visibleColumns];
+        currentCategoryIndexes.forEach((index) => {
+            newVisibility[index] = true;
+        });
+        setVisibleColumns(newVisibility);
     };
 
     const hideAllColumns = () => {
-        setVisibleColumns(new Array(seriesData.length).fill(false));
+        const newVisibility = [...visibleColumns];
+        currentCategoryIndexes.forEach((index) => {
+            newVisibility[index] = false;
+        });
+        setVisibleColumns(newVisibility);
     };
 
     const resetToDefaultColumns = () => {
-        setVisibleColumns(
-            Array.from({ length: seriesData.length }, (_, index) =>
-                defaultVisibleSeries.includes(seriesData[index].seriesName)
-            )
-        );
+        const newVisibility = [...visibleColumns];
+        currentCategoryIndexes.forEach((index) => {
+            newVisibility[index] = defaultVisibleSeries.includes(seriesData[index].seriesName);
+        });
+        setVisibleColumns(newVisibility);
     };
 
     const handleParameterSort = (parameter: string) => {
@@ -176,11 +220,11 @@ export const ParameterComparisonTable: React.FC = () => {
         }
     };
 
-    const seriesWithFinalStats = seriesData.map(series => {
-        const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
+    const seriesWithFinalStats: SeriesWithFinalStats[] = seriesData.map(series => {
+        const itemCount = getSeriesItemCount(series);
         const finalStats: { [key: string]: number } = { ...series.totalStats };
 
-        if (itemCount === 3 && !series.costume && equippedCostume) {
+        if (series.category === "costume" && itemCount === 3 && !series.costume && equippedCostume) {
             Object.entries(equippedCostume.baseOptions ?? {}).forEach(([key, value]) => {
                 if (typeof value === "number") {
                     finalStats[key] = (finalStats[key] || 0) + value;
@@ -214,11 +258,6 @@ export const ParameterComparisonTable: React.FC = () => {
         };
     });
 
-    const allParameters = new Set<string>();
-    seriesWithFinalStats.forEach(series => {
-        Object.keys(series.finalStats).forEach(key => allParameters.add(key));
-    });
-
     const getDisplayName = (optionKey: string) => {
         const option = BuiltinOptions[optionKey as keyof typeof BuiltinOptions];
         return option ? getDisplayOptionName(option) : optionKey;
@@ -228,7 +267,10 @@ export const ParameterComparisonTable: React.FC = () => {
 
     let orderedSeriesWithFinalStats = columnOrder
         .map(index => ({ series: seriesWithFinalStats[index], originalIndex: index }))
-        .filter(({ originalIndex }) => visibleColumns[originalIndex]);
+        .filter(({ series, originalIndex }) => (
+            series.category === currentCategory &&
+            visibleColumns[originalIndex]
+        ));
 
     if (sortParameter) {
         orderedSeriesWithFinalStats = [...orderedSeriesWithFinalStats].sort((a, b) => {
@@ -240,16 +282,59 @@ export const ParameterComparisonTable: React.FC = () => {
     }
 
     const displayedSeries = orderedSeriesWithFinalStats.map(({ series }) => series);
+    const allParameters = new Set<string>();
+    displayedSeries.forEach(series => {
+        Object.keys(series.finalStats).forEach(key => allParameters.add(key));
+    });
+
+    const modeDescription = comparisonMode === "costume"
+        ? "コスチューム、メガネ、イヤリング、帽子のセット効果を比較します。3点セットでは任意のコスチューム装備を反映できます。"
+        : "リング、ブローチ、ブレスレット、ネックレスのアクセサリーセット効果を比較します。";
+
+    if (comparisonMode === "combined") {
+        return (
+            <Box sx={{ mt: 3 }}>
+                <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
+                    パラメータ別比較
+                </Typography>
+                <Tabs
+                    value={comparisonMode}
+                    onChange={(_, value: ComparisonMode) => setComparisonMode(value)}
+                    sx={{ mb: 2, borderBottom: 1, borderColor: "divider" }}
+                >
+                    <Tab value="costume" label={comparisonModeLabels.costume} />
+                    <Tab value="accessory" label={comparisonModeLabels.accessory} />
+                    <Tab value="combined" label={comparisonModeLabels.combined} />
+                </Tabs>
+                <Paper variant="outlined" sx={{ p: 2 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+                        合算比較は準備中です
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        コスチューム系シリーズとアクセサリー系シリーズを組み合わせた総合値を比較するビューをここに追加予定です。
+                    </Typography>
+                </Paper>
+            </Box>
+        );
+    }
 
     return (
         <Box sx={{ mt: 3 }}>
             <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
                 パラメータ別比較（列をドラッグして並び替え可能）
             </Typography>
+            <Tabs
+                value={comparisonMode}
+                onChange={(_, value: ComparisonMode) => setComparisonMode(value)}
+                sx={{ mb: 2, borderBottom: 1, borderColor: "divider" }}
+            >
+                <Tab value="costume" label={comparisonModeLabels.costume} />
+                <Tab value="accessory" label={comparisonModeLabels.accessory} />
+                <Tab value="combined" label={comparisonModeLabels.combined} />
+            </Tabs>
             <Typography variant="body2" sx={{ mb: 2, p: 2, backgroundColor: "info.light", borderRadius: 1 }}>
                 <strong>シリーズ比較について:</strong><br />
-                • 4点セット: コスチューム、メガネ、イヤリング、帽子の全4点で構成<br />
-                • 3点セット: メガネ、イヤリング、帽子の3点で構成されるが、コスチューム部分には任意の装備を設定可能<br />
+                {modeDescription}
             </Typography>
             <Typography variant="body2" sx={{ mb: 2, color: "text.secondary" }}>
                 パラメータ名をクリックするとその値で列をソートできます（降順 → 昇順 → 非ソート）
@@ -266,24 +351,27 @@ export const ParameterComparisonTable: React.FC = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Box sx={{ mb: 2, display: "flex", gap: 1, flexWrap: "wrap" }}>
-                        <Button size="small" variant="outlined" onClick={showAllColumns}>すべて表示</Button>
-                        <Button size="small" variant="outlined" onClick={hideAllColumns}>すべてクリア</Button>
+                        <Button size="small" variant="outlined" onClick={showAllColumns}>このカテゴリをすべて表示</Button>
+                        <Button size="small" variant="outlined" onClick={hideAllColumns}>このカテゴリをすべてクリア</Button>
                         <Button size="small" variant="outlined" onClick={resetToDefaultColumns}>デフォルトに戻す</Button>
                     </Box>
 
                     <FormGroup row>
-                        {seriesData.map((series, index) => (
-                            <FormControlLabel
-                                key={series.synergyKey}
-                                control={
-                                    <Checkbox
-                                        checked={visibleColumns[index]}
-                                        onChange={() => toggleColumnVisibility(index)}
-                                    />
-                                }
-                                label={series.seriesName}
-                            />
-                        ))}
+                        {currentCategoryIndexes.map((index) => {
+                            const series = seriesData[index];
+                            return (
+                                <FormControlLabel
+                                    key={getSeriesKey(series)}
+                                    control={
+                                        <Checkbox
+                                            checked={visibleColumns[index]}
+                                            onChange={() => toggleColumnVisibility(index)}
+                                        />
+                                    }
+                                    label={series.seriesName}
+                                />
+                            );
+                        })}
                     </FormGroup>
                 </AccordionDetails>
             </Accordion>
@@ -294,7 +382,7 @@ export const ParameterComparisonTable: React.FC = () => {
                             <TableCell sx={{ fontWeight: "bold" }}>パラメータ</TableCell>
                             {orderedSeriesWithFinalStats.map(({ series }, displayIndex) => (
                                 <DraggableHeader
-                                    key={series.synergyKey}
+                                    key={getSeriesKey(series)}
                                     series={series}
                                     index={displayIndex}
                                     equippedCostume={equippedCostume}
@@ -309,49 +397,50 @@ export const ParameterComparisonTable: React.FC = () => {
                             ))}
                             <TableCell sx={{ fontWeight: "bold", textAlign: "center" }}>最高値</TableCell>
                         </TableRow>
-                        <TableRow>
-                            <TableCell sx={{ fontWeight: "bold", backgroundColor: "action.hover" }}>コスチューム設定</TableCell>
-                            {orderedSeriesWithFinalStats.map(({ series }) => {
-                                const itemCount = [series.costume, series.glasses, series.earrings, series.hat].filter(Boolean).length;
-                                return (
-                                    <TableCell key={`costume-${series.synergyKey}`} sx={{ textAlign: "center", backgroundColor: "action.hover" }}>
-                                        {itemCount === 4 ? (
-                                            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                                                <Typography variant="caption" color="text.secondary" sx={{ fontSize: "0.65rem" }}>
-                                                    セット装備済み
-                                                </Typography>
-                                                <Typography variant="caption" color="text.secondary" sx={{ fontSize: "0.6rem" }}>
-                                                    （設定不要）
-                                                </Typography>
-                                            </Box>
-                                        ) : (
-                                            <>
-                                                <Box sx={{ display: "flex", justifyContent: "center" }}>
-                                                    <EquipmentIconButton
-                                                        equipmentType="costume"
-                                                        title={`コスチューム (${series.seriesName})`}
-                                                        items={series.costume
-                                                            ? displayCostumes.filter(costume => costume.synergyKey === series.synergyKey)
-                                                            : displayCostumes
-                                                        }
-                                                    />
-                                                </Box>
-                                                {!series.costume && (
-                                                    <Typography variant="caption" color="info.main" display="block" sx={{ textAlign: "center", mt: 0.5, fontSize: "0.65rem" }}>
-                                                        任意装備可能
+                        {comparisonMode === "costume" && (
+                            <TableRow>
+                                <TableCell sx={{ fontWeight: "bold", backgroundColor: "action.hover" }}>装備設定</TableCell>
+                                {orderedSeriesWithFinalStats.map(({ series }) => {
+                                    return (
+                                        <TableCell key={`equipment-${getSeriesKey(series)}`} sx={{ textAlign: "center", backgroundColor: "action.hover" }}>
+                                            {series.itemCount === 4 ? (
+                                                <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                                    <Typography variant="caption" color="text.secondary" sx={{ fontSize: "0.65rem" }}>
+                                                        セット装備済み
                                                     </Typography>
-                                                )}
-                                            </>
-                                        )}
-                                    </TableCell>
-                                );
-                            })}
-                            <TableCell sx={{ backgroundColor: "action.hover", textAlign: "center" }}>
-                                <Typography variant="caption" color="text.secondary">
-                                    設定
-                                </Typography>
-                            </TableCell>
-                        </TableRow>
+                                                    <Typography variant="caption" color="text.secondary" sx={{ fontSize: "0.6rem" }}>
+                                                        （設定不要）
+                                                    </Typography>
+                                                </Box>
+                                            ) : (
+                                                <>
+                                                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                                                        <EquipmentIconButton
+                                                            equipmentType="costume"
+                                                            title={`コスチューム (${series.seriesName})`}
+                                                            items={series.costume
+                                                                ? displayCostumes.filter(costume => costume.synergyKey === series.synergyKey)
+                                                                : displayCostumes
+                                                            }
+                                                        />
+                                                    </Box>
+                                                    {!series.costume && (
+                                                        <Typography variant="caption" color="info.main" display="block" sx={{ textAlign: "center", mt: 0.5, fontSize: "0.65rem" }}>
+                                                            任意装備可能
+                                                        </Typography>
+                                                    )}
+                                                </>
+                                            )}
+                                        </TableCell>
+                                    );
+                                })}
+                                <TableCell sx={{ backgroundColor: "action.hover", textAlign: "center" }}>
+                                    <Typography variant="caption" color="text.secondary">
+                                        設定
+                                    </Typography>
+                                </TableCell>
+                            </TableRow>
+                        )}
                     </TableHead>
                     <TableBody>
                         {Array.from(allParameters).map(parameter => {
@@ -387,7 +476,7 @@ export const ParameterComparisonTable: React.FC = () => {
 
                                         return (
                                             <TableCell
-                                                key={series.synergyKey}
+                                                key={getSeriesKey(series)}
                                                 sx={{
                                                     textAlign: "center",
                                                     backgroundColor,
@@ -412,7 +501,7 @@ export const ParameterComparisonTable: React.FC = () => {
                                         <Typography variant="body2" sx={{ fontWeight: "bold", color: "white" }}>
                                             {maxValue > 0 ? (() => {
                                                 const bestSeries = displayedSeries.find(s => (s.finalStats[parameter] || 0) === maxValue);
-                                                return `${formatValue(maxValue)} (${bestSeries?.seriesName})`;
+                                                return `${formatValue(maxValue)} (${bestSeries?.seriesName} / ${bestSeries ? getSeriesCategoryLabel(bestSeries) : ""})`;
                                             })() : "-"}
                                         </Typography>
                                     </TableCell>
